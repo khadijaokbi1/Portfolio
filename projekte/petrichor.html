@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Petrichor Gin Packaging – Khadija Okbi Portfolio</title>
+    <meta name="description" content="Luxuriöses Gin Packaging Design mit minimalistischem Ansatz"/>
+    <link rel="icon" type="image/png" href="../images/favicon.png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Mulish:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- Swiper for Carousel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/project-detail.css" />
+</head>
+<body class="project-detail-page">
+    <!-- Header / Navbar -->
+    <header class="site-header" id="top" aria-label="Seitennavigation">
+        <div class="container nav-bar">
+            <a href="../index.html" class="logo">
+                <img src="../img/logo_white.png" alt="" width="45">
+                <img src="../img/logo_black.png" alt="" width="45" class="logo-onscroll">
+            </a>
+            <nav class="nav" aria-label="Hauptnavigation">
+                <a href="../index.html#hero">Home</a>
+                <a href="../index.html#projects">Projekte</a>
+                <a href="../index.html#blog">Blog</a>
+                <a href="../about.html">Über mich</a>
+                <a href="../index.html#contact">Kontakt</a>
+            </nav>
+            <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">☰</button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu" aria-label="Mobiles Menü">
+            <a href="../index.html#hero">Home</a>
+            <a href="../index.html#projects">Projekte</a>
+            <a href="../index.html#blog">Blog</a>
+            <a href="../about.html">Über mich</a>
+            <a href="../index.html#contact">Kontakt</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Project Hero -->
+        <section class="project-hero" style="background-image: url('../img/gallery/1_petrichor_dark.jpg')">
+            <div class="project-hero-overlay"></div>
+            <div class="container">
+                <div class="project-hero-content">
+                    <h1 class="project-hero-title">Petrichor</h1>
+                    <p class="project-hero-subtitle">Gin Packaging Design</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Info -->
+        <section class="project-info-section">
+            <div class="container">
+                <div class="project-info-grid">
+                    <div class="project-description">
+                        <h2>Über das Projekt</h2>
+                        <p>Petrichor ist ein luxuriöses Gin-Packaging-Projekt, das den charakteristischen Duft von Regen auf trockener Erde einfängt. Das Design kombiniert minimalistische Eleganz mit natürlichen Elementen und schafft eine visuelle Identität, die sowohl modern als auch zeitlos ist.</p>
+                        <p>Die Verpackung zeichnet sich durch eine dunkel-elegante Farbpalette aus, die mit goldenen Akzenten und handgezeichneten botanischen Illustrationen veredelt wurde. Jedes Detail wurde sorgfältig konzipiert, um die Premium-Qualität des Produkts widerzuspiegeln.</p>
+                    </div>
+                    <div class="project-meta">
+                        <div class="meta-item">
+                            <h3>Rolle</h3>
+                            <p>Art Direction, Packaging Design, Illustration</p>
+                        </div>
+                        <div class="meta-item">
+                            <h3>Jahr</h3>
+                            <p>2023</p>
+                        </div>
+                        <div class="meta-item">
+                            <h3>Tools</h3>
+                            <p>Adobe Illustrator, Photoshop, InDesign</p>
+                        </div>
+                        <div class="meta-item">
+                            <h3>Kategorie</h3>
+                            <p>Produktdesign, Branding</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section with Carousel -->
+        <section class="project-carousel">
+            <div class="container">
+                <h2>Design Galerie</h2>
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="../img/gallery/1_petrichor_dark.jpg" alt="Petrichor Gin Hauptansicht">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/gallery/1_petrichor_dark.jpg" alt="Petrichor Gin Detailansicht">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/gallery/1_petrichor_dark.jpg" alt="Petrichor Gin Label Design">
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Text Content -->
+        <section class="project-text-content">
+            <div class="container">
+                <h2>Design-Konzept</h2>
+                <p>Der Name "Petrichor" stammt aus dem Griechischen und beschreibt den erdigen Duft, der entsteht, wenn Regen auf trockenen Boden fällt. Dieses Konzept wurde zur Grundlage für die gesamte visuelle Identität.</p>
+                
+                <h3>Farbpalette</h3>
+                <p>Die dunkle, tiefe Farbpalette wurde gewählt, um Eleganz und Exklusivität zu vermitteln. Die goldenen Akzente symbolisieren Qualität und Raffinesse, während die erdigen Töne die natürlichen Botanicals des Gins widerspiegeln.</p>
+                
+                <h3>Typografie</h3>
+                <p>Eine Kombination aus klassischer Serifenschrift für den Markennamen und einer modernen Sans-Serif für die Produktinformationen schafft einen ausgewogenen, zeitgemäßen Look.</p>
+                
+                <h3>Ergebnis</h3>
+                <p>Das finale Packaging-Design vereint traditionelle Handwerkskunst mit moderner Ästhetik und positioniert Petrichor als Premium-Gin-Marke im gehobenen Segment.</p>
+            </div>
+        </section>
+
+        <!-- Navigation to Next/Previous Projects -->
+        <section class="project-navigation">
+            <div class="container">
+                <div class="nav-projects">
+                    <a href="../index.html#projects" class="nav-project back">
+                        <span class="nav-label">Alle Projekte</span>
+                    </a>
+                    <a href="trailerpark.html" class="nav-project next">
+                        <span class="nav-label">Nächstes Projekt</span>
+                        <span class="nav-title">Trailerpark Streetstyle</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" aria-label="Seitenende">
+        <div class="container footer-inner">
+            <div class="footer-socials">
+                <a class="social-link" href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a>
+                <a class="social-link" href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="social-link" href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a>
+                <a class="social-link" href="https://x.com" target="_blank" rel="noopener">X</a>
+            </div>
+            <div class="footer-copy">© 2025 Design & Development by Khadija Okbi</div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../script/script.js"></script>
+    <script src="../script/project-detail.js"></script>
+</body>
+</html>

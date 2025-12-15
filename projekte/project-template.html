@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{PROJECT_TITLE}} – Khadija Okbi Portfolio</title>
+    <meta name="description" content="{{PROJECT_DESCRIPTION}}"/>
+    <link rel="icon" type="image/png" href="../images/favicon.png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Mulish:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- Swiper for Carousel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/project-detail.css" />
+</head>
+<body class="project-detail-page">
+    <!-- Header / Navbar -->
+    <header class="site-header" id="top" aria-label="Seitennavigation">
+        <div class="container nav-bar">
+            <a href="../index.html" class="logo">
+                <img src="../img/logo_white.png" alt="" width="45">
+                <img src="../img/logo_black.png" alt="" width="45" class="logo-onscroll">
+            </a>
+            <nav class="nav" aria-label="Hauptnavigation">
+                <a href="../index.html#hero">Home</a>
+                <a href="../index.html#projects">Projekte</a>
+                <a href="../index.html#blog">Blog</a>
+                <a href="../about.html">Über mich</a>
+                <a href="../index.html#contact">Kontakt</a>
+            </nav>
+            <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">☰</button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu" aria-label="Mobiles Menü">
+            <a href="../index.html#hero">Home</a>
+            <a href="../index.html#projects">Projekte</a>
+            <a href="../index.html#blog">Blog</a>
+            <a href="../about.html">Über mich</a>
+            <a href="../index.html#contact">Kontakt</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Project Hero -->
+        <section class="project-hero" style="background-image: url('{{HERO_IMAGE}}')">
+            <div class="project-hero-overlay"></div>
+            <div class="container">
+                <div class="project-hero-content">
+                    <h1 class="project-hero-title">{{PROJECT_TITLE}}</h1>
+                    <p class="project-hero-subtitle">{{PROJECT_CATEGORY}}</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Info -->
+        <section class="project-info-section">
+            <div class="container">
+                <div class="project-info-grid">
+                    <div class="project-description">
+                        <h2>Über das Projekt</h2>
+                        <p>{{PROJECT_LONG_DESCRIPTION}}</p>
+                    </div>
+                    <div class="project-meta">
+                        <div class="meta-item">
+                            <h3>Rolle</h3>
+                            <p>{{PROJECT_ROLE}}</p>
+                        </div>
+                        <div class="meta-item">
+                            <h3>Jahr</h3>
+                            <p>{{PROJECT_YEAR}}</p>
+                        </div>
+                        <div class="meta-item">
+                            <h3>Tools</h3>
+                            <p>{{PROJECT_TOOLS}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Content (Gallery, Video, etc.) -->
+        {{PROJECT_CONTENT}}
+
+        <!-- Navigation to Next/Previous Projects -->
+        <section class="project-navigation">
+            <div class="container">
+                <div class="nav-projects">
+                    <a href="{{PREV_PROJECT}}" class="nav-project prev">
+                        <span class="nav-label">Vorheriges Projekt</span>
+                        <span class="nav-title">{{PREV_PROJECT_TITLE}}</span>
+                    </a>
+                    <a href="../index.html#projects" class="nav-project back">
+                        <span class="nav-label">Alle Projekte</span>
+                    </a>
+                    <a href="{{NEXT_PROJECT}}" class="nav-project next">
+                        <span class="nav-label">Nächstes Projekt</span>
+                        <span class="nav-title">{{NEXT_PROJECT_TITLE}}</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" aria-label="Seitenende">
+        <div class="container footer-inner">
+            <div class="footer-socials">
+                <a class="social-link" href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a>
+                <a class="social-link" href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="social-link" href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a>
+                <a class="social-link" href="https://x.com" target="_blank" rel="noopener">X</a>
+            </div>
+            <div class="footer-copy">© 2025 Design & Development by Khadija Okbi</div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../script/script.js"></script>
+    <script src="../script/project-detail.js"></script>
+</body>
+</html>
