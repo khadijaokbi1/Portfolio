@@ -1844,7 +1844,6 @@ h1 {
       height: 500px;
     }
 
-    .carousel-item.left-1,
     .carousel-item.right-1 {
       transform: translateX(400px) scale(0.8);
     }
@@ -1869,7 +1868,6 @@ h1 {
       height: 400px;
     }
 
-    .carousel-item.left-1,
     .carousel-item.right-1 {
       transform: translateX(250px) scale(0.75);
     }
@@ -2278,13 +2276,12 @@ h1 {
 
   .footer-column h4 {
     font-family: var(--font-display);
-    font-size: var(--text-lg);
+    font-size: var(--text-sm);
     font-weight: 600;
     margin-bottom: var(--space-2);
     color: var(--text-primary-light);
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    font-size: var(--text-sm);
   }
 
   .footer-column a,
