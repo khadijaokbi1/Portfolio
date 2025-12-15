@@ -228,8 +228,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const dots = document.querySelectorAll('.carousel-dot');
 
   if (carouselItems.length > 0) {
-    let currentIndex = 3; // Start with index 3 (center)
     const totalItems = carouselItems.length;
+    // Start with middle item or first item if less than 4 items
+    let currentIndex = totalItems >= 4 ? Math.floor(totalItems / 2) : 0;
 
     function updateCarousel() {
       carouselItems.forEach((item, index) => {
@@ -279,10 +280,30 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Keyboard navigation
+    // Keyboard navigation - only when carousel is in viewport
+    let carouselInView = false;
+    const carouselObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        carouselInView = entry.isIntersecting;
+      });
+    }, { threshold: 0.3 });
+    
+    if (carouselTrack) {
+      carouselObserver.observe(carouselTrack);
+    }
+    
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') prevSlide();
-      if (e.key === 'ArrowRight') nextSlide();
+      // Only respond to arrow keys when carousel is visible and no input is focused
+      if (carouselInView && !document.activeElement.matches('input, textarea, select')) {
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          prevSlide();
+        }
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          nextSlide();
+        }
+      }
     });
 
     // Click on items to navigate
