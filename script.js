@@ -293,8 +293,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     document.addEventListener('keydown', (e) => {
-      // Only respond to arrow keys when carousel is visible and no input is focused
-      if (carouselInView && !document.activeElement.matches('input, textarea, select')) {
+      // Only respond to arrow keys when carousel is visible and no interactive element is focused
+      if (carouselInView && !document.activeElement.matches('input, textarea, select, [contenteditable], [tabindex]')) {
         if (e.key === 'ArrowLeft') {
           e.preventDefault();
           prevSlide();
