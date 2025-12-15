@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ballett Fotoreihe – Khadija Okbi Portfolio</title>
+    <meta name="description" content="Künstlerische Fotografie Serie"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/project-detail.css" />
+</head>
+<body class="project-detail-page">
+    <header class="site-header">
+        <div class="container nav-bar">
+            <a href="../index.html" class="logo">
+                <img src="../img/logo_white.png" alt="" width="45">
+                <img src="../img/logo_black.png" alt="" width="45" class="logo-onscroll">
+            </a>
+            <nav class="nav">
+                <a href="../index.html#hero">Home</a>
+                <a href="../index.html#projects">Projekte</a>
+                <a href="../index.html#contact">Kontakt</a>
+            </nav>
+            <button class="nav-toggle" id="navToggle">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="project-hero" style="background-image: url('../img/gallery/4_ballet_light.jpg')">
+            <div class="project-hero-overlay"></div>
+            <div class="container">
+                <div class="project-hero-content">
+                    <h1 class="project-hero-title">Ballet</h1>
+                    <p class="project-hero-subtitle">Fotografie Serie</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-info-section">
+            <div class="container">
+                <div class="project-info-grid">
+                    <div class="project-description">
+                        <h2>Über das Projekt</h2>
+                        <p>Eine künstlerische Fotoserie die Bewegung und Eleganz des klassischen Balletts einfängt. Die Serie spielt mit Licht, Schatten und Bewegungsunschärfe um die Dynamik des Tanzes visuell darzustellen.</p>
+                    </div>
+                    <div class="project-meta">
+                        <div class="meta-item">
+                            <h3>Rolle</h3>
+                            <p>Fotografie, Bildbearbeitung</p>
+                        </div>
+                        <div class="meta-item">
+                            <h3>Jahr</h3>
+                            <p>2023</p>
+                        </div>
+                        <div class="meta-item">
+                            <h3>Tools</h3>
+                            <p>Canon EOS, Adobe Lightroom, Photoshop</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-carousel">
+            <div class="container">
+                <h2>Fotogalerie</h2>
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="../img/gallery/4_ballet_light.jpg" alt="Ballet Photo 1">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/gallery/4_ballet_light.jpg" alt="Ballet Photo 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/gallery/4_ballet_light.jpg" alt="Ballet Photo 3">
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-navigation">
+            <div class="container">
+                <div class="nav-projects">
+                    <a href="gamedays.html" class="nav-project prev">
+                        <span class="nav-label">Vorheriges</span>
+                        <span class="nav-title">Gamedays</span>
+                    </a>
+                    <a href="../index.html#projects" class="nav-project back">
+                        <span class="nav-label">Alle Projekte</span>
+                    </a>
+                    <a href="petrichor.html" class="nav-project next">
+                        <span class="nav-label">Nächstes</span>
+                        <span class="nav-title">Petrichor</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-copy">© 2025 Khadija Okbi</div>
+        </div>
+    </footer>
+
+    <script src="../script/script.js"></script>
+    <script src="../script/project-detail.js"></script>
+</body>
+</html>
