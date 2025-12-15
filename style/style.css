@@ -185,11 +185,37 @@ button{
   padding: 0 var(--grid-margin);
 }
 
-/* Grid System */
+/* Grid System - Enhanced */
 .grid {
   display: grid;
   grid-template-columns: repeat(var(--grid-columns), 1fr);
   gap: var(--grid-gap);
+}
+
+/* Responsive grid utilities */
+.grid-1 { grid-column: span 1; }
+.grid-2 { grid-column: span 2; }
+.grid-3 { grid-column: span 3; }
+.grid-4 { grid-column: span 4; }
+.grid-6 { grid-column: span 6; }
+.grid-12 { grid-column: span 12; }
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .grid-3, .grid-4, .grid-6 {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .grid-1, .grid-2, .grid-3, .grid-4, .grid-6, .grid-12 {
+    grid-column: span 1;
+  }
 }
 
 /* Editorial Section Titles - Le Jour Serif */
@@ -236,23 +262,68 @@ button{
 }
 
 /* =========================================
-   h3 - Einheitlicher Style für alle Überschriften
+   Unified Typography System - Einheitlich
    ========================================= */
-h3 {
-  font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  font-weight: 800;
-  font-style: italic;
-  margin-bottom: 1.5rem;
-  max-width: 80%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 var(--space-3) 0;
 }
 
-/* Icons in h3 */
-h3 i {
-  margin-right: var(--space-3);
+h1 {
+  font-family: var(--font-editorial);
+  font-size: clamp(3rem, 8vw, 8rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 600;
+  font-style: italic;
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 700;
+  font-style: italic;
+}
+
+h4 {
+  font-family: var(--font-body);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+h5 {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+h6 {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Body text consistency */
+p {
+  font-size: var(--text-base);
+  line-height: 1.7;
+  margin-bottom: var(--space-3);
+  font-weight: 400;
+}
+
+/* Icons in headings */
+h3 i, h2 i {
+  margin-right: var(--space-2);
   color: var(--accent-burgundy);
   font-size: 1.1em;
   transition: transform var(--speed-fast);
@@ -2119,12 +2190,46 @@ h1 {
     .section-title-editorial {
       font-size: clamp(3rem, 15vw, 6rem);
       margin-bottom: var(--space-8);
-      max-width: 80%;
+      max-width: 90%;
     }
     
     .section-title-display {
       font-size: clamp(2rem, 8vw, 3.5rem);
       margin-bottom: var(--space-6);
+    }
+
+    /* Better hero scaling on mobile */
+    .hero-top {
+      font-size: 18vw;
+      top: calc(50% - 20vw);
+    }
+
+    .hero-middle {
+      font-size: 8vw;
+    }
+
+    .hero-bottom {
+      font-size: 15vw;
+      top: calc(50% + 20vw);
+    }
+
+    .hero-portrait-bg, .hero-portrait {
+      width: 50vw;
+    }
+
+    /* Improve mobile navigation */
+    .nav-bar {
+      padding-top: 8px;
+      height: 60px;
+    }
+
+    .mobile-menu {
+      top: 61px;
+    }
+
+    .mobile-menu a {
+      padding: var(--space-3) var(--space-4);
+      font-size: var(--text-base);
     }
   }
 
@@ -2309,6 +2414,64 @@ h1 {
 
 @media (max-width: 480px){
     .projects-grid{ grid-template-columns: 1fr; }
+    
+    /* Further hero optimization for small screens */
+    .hero-section {
+      height: 100vh;
+      min-height: 600px;
+    }
+
+    .hero-top {
+      font-size: 20vw;
+    }
+
+    .hero-middle {
+      font-size: 10vw;
+    }
+
+    .hero-bottom {
+      font-size: 16vw;
+    }
+
+    .hero-portrait-bg, .hero-portrait {
+      width: 60vw;
+    }
+
+    /* Container padding */
+    .container {
+      padding: 0 var(--space-3);
+    }
+
+    .container-wide {
+      padding: 0 var(--space-3);
+    }
+
+    /* Section spacing */
+    .section-about,
+    .section-projects,
+    .section-blog,
+    .section-contact {
+      padding: var(--space-12) 0;
+    }
+
+    /* Typography scaling */
+    .section-title-editorial {
+      font-size: clamp(2.5rem, 18vw, 5rem);
+    }
+
+    .section-title-display {
+      font-size: clamp(1.5rem, 10vw, 2.5rem);
+    }
+
+    /* Filter buttons */
+    .filter-bar {
+      gap: var(--space-1);
+    }
+
+    .filter-btn {
+      padding: var(--space-1) var(--space-2);
+      font-size: 0.7rem;
+    }
   }
 
 @media (max-width: 1100px){
