@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
   events.forEach((event, index) => {
     const card = event.querySelector('.event-card__inner');
     const dot = event.querySelector('.timeline-marker__dot');
-    const label = event. querySelector('.timeline-marker__label');
+    const label = event.querySelector('.timeline-marker__label');
 
     // Set initial states
     gsap.set(event, {
@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', () => {
         opacity:  1,
         y: 0,
         duration: 0.9,
-        ease: 'cubic. out'
+        ease: 'cubic.out'
       },
       0
     );
