@@ -32,26 +32,26 @@
 
 @font-face {
   font-family: 'Le Jour Serif';
-  src: url('../fonts/lejour.woff2') format('woff2');
+  src: url('fonts/lejour.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Milaness';
-  src: url('../fonts/Milaness.woff2') format('woff2');
+  src: url('fonts/Milaness.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'eternal';
-  src: url('../fonts/eternal.woff2') format('woff2');
+  src: url('fonts/eternal.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'Higuen';
-  src: url('../fonts/Higuen.woff2') format('woff2');
+  src: url('fonts/Higuen.woff2') format('woff2');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -388,7 +388,7 @@ h3 i {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background-image: url('../img/hintergrund.jpg');
+  background-image: url('img/hintergrund.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
