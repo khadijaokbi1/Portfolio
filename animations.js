@@ -156,21 +156,56 @@ const initProjectCards = () => {
     }
   });
   
-  // Einfacher Hover-Effekt ohne komplexe 3D-Transformationen
+  // Enhanced Hover-Effekt mit GSAP
   cards.forEach(card => {
+    const media = card.querySelector('.project-media');
+    const info = card.querySelector('.project-info');
+    
     card.addEventListener('mouseenter', () => {
       gsap.to(card, {
-        y: -10,
-        duration: 0.4,
+        y: -15,
+        scale: 1.03,
+        duration: 0.5,
+        ease: 'power2.out',
+        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.35)'
+      });
+      
+      gsap.to(media, {
+        scale: 1.15,
+        rotation: 2,
+        duration: 0.6,
         ease: 'power2.out'
+      });
+      
+      gsap.to(info, {
+        opacity: 1,
+        y: 0,
+        duration: 0.4,
+        ease: 'back.out(1.5)'
       });
     });
     
     card.addEventListener('mouseleave', () => {
       gsap.to(card, {
         y: 0,
-        duration: 0.4,
+        scale: 1,
+        duration: 0.5,
+        ease: 'power2.out',
+        boxShadow: '0 1px 2px 0 rgb(0 0 0 / 0.05)'
+      });
+      
+      gsap.to(media, {
+        scale: 1,
+        rotation: 0,
+        duration: 0.6,
         ease: 'power2.out'
+      });
+      
+      gsap.to(info, {
+        opacity: 0,
+        y: 20,
+        duration: 0.3,
+        ease: 'power2.in'
       });
     });
   });

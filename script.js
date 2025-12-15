@@ -217,4 +217,83 @@ document.addEventListener('DOMContentLoaded', () => {
       if (icon) icon.style.transform = 'scale(1)';
     });
   });
+
+  // =========================================
+  // Image Carousel Functionality
+  // =========================================
+  const carouselTrack = document.querySelector('.carousel-track');
+  const carouselItems = document.querySelectorAll('.carousel-item');
+  const prevBtn = document.querySelector('.carousel-nav-prev');
+  const nextBtn = document.querySelector('.carousel-nav-next');
+  const dots = document.querySelectorAll('.carousel-dot');
+
+  if (carouselItems.length > 0) {
+    let currentIndex = 3; // Start with index 3 (center)
+    const totalItems = carouselItems.length;
+
+    function updateCarousel() {
+      carouselItems.forEach((item, index) => {
+        // Remove all position classes
+        item.classList.remove('active', 'left-1', 'left-2', 'right-1', 'right-2');
+        
+        const position = index - currentIndex;
+        
+        if (position === 0) {
+          item.classList.add('active');
+        } else if (position === -1) {
+          item.classList.add('left-1');
+        } else if (position === -2) {
+          item.classList.add('left-2');
+        } else if (position === 1) {
+          item.classList.add('right-1');
+        } else if (position === 2) {
+          item.classList.add('right-2');
+        }
+      });
+
+      // Update dots
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalItems;
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+      updateCarousel();
+    }
+
+    // Event listeners
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+
+    // Dot navigation
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentIndex = index;
+        updateCarousel();
+      });
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'ArrowRight') nextSlide();
+    });
+
+    // Click on items to navigate
+    carouselItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        currentIndex = index;
+        updateCarousel();
+      });
+    });
+
+    // Initialize
+    updateCarousel();
+  }
 });
