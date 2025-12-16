@@ -28,9 +28,9 @@
             </a>
             <nav class="nav" aria-label="Hauptnavigation">
                <a href="#hero">Home</a>
-               <a href="#projects">Projekte</a>
+               <a href="#about">About</a>
+               <a href="#projects">What I Do</a>
                <a href="#blog">Blog</a>
-               <a href="about.html">Über mich</a>
                <a href="#contact">Kontakt</a>
             </nav>
             <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">☰</button>
@@ -38,9 +38,9 @@
          <!-- Mobile menu -->
          <div class="mobile-menu" id="mobileMenu" aria-label="Mobiles Menü">
             <a href="#hero">Home</a>
-            <a href="#projects">Projekte</a>
+            <a href="#about">About</a>
+            <a href="#projects">What I Do</a>
             <a href="#blog">Blog</a>
-            <a href="about.html">Über mich</a>
             <a href="#contact">Kontakt</a>
          </div>
       </header>
@@ -56,6 +56,10 @@
             </div>
             <div class="hero-portrait">
                <img src="img/cutout.png" alt="Portrait von Khadija Okbi">
+            </div>
+            <div class="hero-cta">
+               <a href="#projects" class="cta-btn">View My Work</a>
+               <a href="#contact" class="cta-btn cta-btn-secondary">Get In Touch</a>
             </div>
          </header>
       </div>
@@ -607,6 +611,50 @@
       </div>
       </article>
       </div>
+      
+      <!-- Image Carousel Section -->
+      <section class="section-carousel" id="carousel" aria-label="Featured Work Carousel">
+      <div class="container-wide">
+      <h2 class="section-title-editorial">Featured Work</h2>
+      <div class="carousel-container">
+      <button class="carousel-nav carousel-nav-prev" aria-label="Previous Image">‹</button>
+      <div class="carousel-track">
+      <div class="carousel-item" data-index="0">
+      <img src="img/gallery/1_petrichor_dark.jpg" alt="Project 1" />
+      </div>
+      <div class="carousel-item" data-index="1">
+      <img src="img/gallery/2_trailerpark_light.jpg" alt="Project 2" />
+      </div>
+      <div class="carousel-item" data-index="2">
+      <img src="img/gallery/3_gamedays_dark.jpg" alt="Project 3" />
+      </div>
+      <div class="carousel-item active" data-index="3">
+      <img src="img/gallery/4_ballet_light.jpg" alt="Project 4" />
+      </div>
+      <div class="carousel-item" data-index="4">
+      <img src="img/gallery/5_nextgame_dark.jpg" alt="Project 5" />
+      </div>
+      <div class="carousel-item" data-index="5">
+      <img src="img/gallery/6_socialmediakonzept_light.jpg" alt="Project 6" />
+      </div>
+      <div class="carousel-item" data-index="6">
+      <img src="img/gallery/7_beauty_dark.jpg" alt="Project 7" />
+      </div>
+      </div>
+      <button class="carousel-nav carousel-nav-next" aria-label="Next Image">›</button>
+      </div>
+      <div class="carousel-indicators">
+      <span class="carousel-dot" data-slide="0"></span>
+      <span class="carousel-dot" data-slide="1"></span>
+      <span class="carousel-dot" data-slide="2"></span>
+      <span class="carousel-dot active" data-slide="3"></span>
+      <span class="carousel-dot" data-slide="4"></span>
+      <span class="carousel-dot" data-slide="5"></span>
+      <span class="carousel-dot" data-slide="6"></span>
+      </div>
+      </div>
+      </section>
+      
       <!-- Animation Strip Section -->
       <section class="section-strip" aria-label="Sponsoring Animationen">
       <div class="strip-track" id="stripTrack">
@@ -722,13 +770,35 @@
       <!-- Footer -->
       <footer class="site-footer" aria-label="Seitenende">
          <div class="container footer-inner">
-            <div class="footer-socials">
-               <a class="social-link" href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a>
-               <a class="social-link" href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-               <a class="social-link" href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a>
-               <a class="social-link" href="https://x.com" target="_blank" rel="noopener">X</a>
+            <div class="footer-brand">
+               <h3 class="footer-logo">Khadija Okbi</h3>
+               <p class="footer-tagline">Creative Art Director & Digital Strategist</p>
             </div>
-            <div class="footer-copy">© 2025 Design & Development by Khadija Okbi</div>
+            <div class="footer-links">
+               <div class="footer-column">
+                  <h4>Quick Links</h4>
+                  <a href="#about">About</a>
+                  <a href="#projects">What I Do</a>
+                  <a href="#blog">Blog</a>
+                  <a href="#contact">Contact</a>
+               </div>
+               <div class="footer-column">
+                  <h4>Connect</h4>
+                  <a class="social-link" href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a>
+                  <a class="social-link" href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+                  <a class="social-link" href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a>
+                  <a class="social-link" href="https://x.com" target="_blank" rel="noopener">X</a>
+               </div>
+               <div class="footer-column">
+                  <h4>Contact</h4>
+                  <p>khadija.okbi@sbw-media.ch</p>
+                  <p>Kloten, Zürich – Switzerland</p>
+               </div>
+            </div>
+            <div class="footer-bottom">
+               <div class="footer-copy">© 2025 Khadija Okbi. All rights reserved.</div>
+               <div class="footer-credits">Crafted with passion & precision</div>
+            </div>
          </div>
       </footer>
       <!-- Scripts -->
