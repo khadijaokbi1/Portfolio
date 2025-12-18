@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Website – Konzept / Prototype – Khadija Okbi Portfolio</title>
-    <meta name="description" content="Interaktiver Prototype für ein modernes Website-Konzept."/>
-    <link rel="icon" type="image/png" href="../images/favicon.png" />
+    <title>{{PROJECT_TITLE}} – Khadija Okbi Portfolio</title>
+    <meta name="description" content="{{PROJECT_DESCRIPTION}}"/>
+    <link rel="icon" type="image/png" href="../img/logo_white.png" />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,23 +54,23 @@
     <main>
         <!-- Parallax Hero -->
         <section class="project-hero-parallax">
-            <div class="parallax-bg" style="background-image: url('../img/gallery/9_website_dark.jpg')"></div>
+            <div class="parallax-bg" style="background-image: url('{{HERO_IMAGE}}')"></div>
             <div class="grain-overlay"></div>
             <div class="hero-content-editorial">
-                <span class="hero-category">Web / UI</span>
-                <h1 class="hero-title-large">Website – Konzept / Prototype</h1>
+                <span class="hero-category">{{PROJECT_CATEGORY}}</span>
+                <h1 class="hero-title-large">{{PROJECT_TITLE}}</h1>
                 <div class="hero-meta-grid">
                     <div class="meta-col">
                         <span class="meta-label">Jahr</span>
-                        <span class="meta-value">2024</span>
+                        <span class="meta-value">{{PROJECT_YEAR}}</span>
                     </div>
                     <div class="meta-col">
                         <span class="meta-label">Rolle</span>
-                        <span class="meta-value">UX/UI Design</span>
+                        <span class="meta-value">{{PROJECT_ROLE}}</span>
                     </div>
                     <div class="meta-col">
                         <span class="meta-label">Tools</span>
-                        <span class="meta-value">Figma, Adobe XD</span>
+                        <span class="meta-value">{{PROJECT_TOOLS}}</span>
                     </div>
                 </div>
             </div>
@@ -82,11 +82,12 @@
                 <div class="content-grid">
                     <div class="text-block">
                         <h2 class="section-title">Das Projekt</h2>
-                        <p class="lead-text">Interaktiver Prototype für ein modernes Website-Konzept.</p>
-                        <p>Interaktiver Prototype für ein modernes Website-Konzept.</p>
+                        <p class="lead-text">{{PROJECT_DESCRIPTION}}</p>
+                        <p>{{PROJECT_LONG_DESCRIPTION}}</p>
                     </div>
                     <div class="image-block">
-                        <img src="../img/gallery/9_website_dark.jpg" alt="Detailansicht">
+                        <!-- Placeholder for secondary image if available, or reuse hero -->
+                        <img src="{{HERO_IMAGE}}" alt="Detailansicht">
                         <span class="img-caption">Detailansicht</span>
                     </div>
                 </div>
@@ -95,7 +96,7 @@
 
         <!-- Full Width Visual (Optional) -->
         <section class="full-width-visual">
-            <div class="parallax-image" style="background-image: url('../img/gallery/9_website_dark.jpg')"></div>
+            <div class="parallax-image" style="background-image: url('{{HERO_IMAGE}}')"></div>
         </section>
 
         <!-- Gallery Swiper -->
@@ -104,14 +105,15 @@
                 <h2 class="section-title mb-5">Galerie</h2>
                 <div class="swiper project-swiper">
                     <div class="swiper-wrapper">
+                        <!-- Slides will be injected here or manually added -->
                         <div class="swiper-slide">
-                            <img src="../img/gallery/9_website_dark.jpg" alt="Gallery 1">
+                            <img src="{{HERO_IMAGE}}" alt="Gallery 1">
                         </div>
                         <div class="swiper-slide">
-                            <img src="../img/gallery/9_website_dark.jpg" alt="Gallery 2">
+                            <img src="{{HERO_IMAGE}}" alt="Gallery 2">
                         </div>
                         <div class="swiper-slide">
-                            <img src="../img/gallery/9_website_dark.jpg" alt="Gallery 3">
+                            <img src="{{HERO_IMAGE}}" alt="Gallery 3">
                         </div>
                     </div>
                     <div class="swiper-button-next"></div>
@@ -124,17 +126,17 @@
         <section class="next-project-nav">
             <div class="container">
                 <div class="nav-grid">
-                    <a href="eiskunstlauf.html" class="nav-item prev">
+                    <a href="{{PREV_PROJECT}}" class="nav-item prev">
                         <span class="nav-label">Vorheriges</span>
-                        <span class="nav-name">Eiskunstlauf</span>
+                        <span class="nav-name">{{PREV_PROJECT_TITLE}}</span>
                     </a>
                     <a href="../index.html#projects" class="nav-item center">
                         <span class="nav-icon">grid_view</span>
                         <span class="nav-label">Alle Projekte</span>
                     </a>
-                    <a href="vinyl.html" class="nav-item next">
+                    <a href="{{NEXT_PROJECT}}" class="nav-item next">
                         <span class="nav-label">Nächstes</span>
-                        <span class="nav-name">Vinyl Cover</span>
+                        <span class="nav-name">{{NEXT_PROJECT_TITLE}}</span>
                     </a>
                 </div>
             </div>
