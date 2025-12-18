@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beauty of Being Different – Khadija Okbi Portfolio</title>
+    <meta name="description" content="Ein künstlerisches Collage-Projekt, das die Schönheit der Vielfalt und Individualität feiert."/>
+    <link rel="icon" type="image/png" href="../images/favicon.png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/project-detail.css" />
+</head>
+<body class="project-detail-page">
+    <!-- Header / Navbar -->
+    <header class="site-header" id="top" aria-label="Seitennavigation">
+        <div class="container nav-bar">
+            <a href="../index.html" class="logo">
+                <img src="../img/logo_white.png" alt="" width="45">
+                <img src="../img/logo_black.png" alt="" width="45" class="logo-onscroll">
+            </a>
+            <nav class="nav" aria-label="Hauptnavigation">
+                <a href="../index.html#hero">Home</a>
+                <a href="../index.html#projects">Projekte</a>
+                <a href="../index.html#blog">Blog</a>
+                <a href="../about.html">Über mich</a>
+                <a href="../index.html#contact">Kontakt</a>
+            </nav>
+            <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">☰</button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu" aria-label="Mobiles Menü">
+            <a href="../index.html#hero">Home</a>
+            <a href="../index.html#projects">Projekte</a>
+            <a href="../index.html#blog">Blog</a>
+            <a href="../about.html">Über mich</a>
+            <a href="../index.html#contact">Kontakt</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Parallax Hero -->
+        <section class="project-hero-parallax">
+            <div class="parallax-bg" style="background-image: url('../img/gallery/7_beauty_dark.jpg')"></div>
+            <div class="grain-overlay"></div>
+            <div class="hero-content-editorial">
+                <span class="hero-category">Collage / Design</span>
+                <h1 class="hero-title-large">Beauty of Being Different</h1>
+                <div class="hero-meta-grid">
+                    <div class="meta-col">
+                        <span class="meta-label">Jahr</span>
+                        <span class="meta-value">2024</span>
+                    </div>
+                    <div class="meta-col">
+                        <span class="meta-label">Rolle</span>
+                        <span class="meta-value">Design & Konzept</span>
+                    </div>
+                    <div class="meta-col">
+                        <span class="meta-label">Tools</span>
+                        <span class="meta-value">Photoshop, Illustrator</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Editorial Content Grid -->
+        <section class="editorial-content">
+            <div class="container-wide">
+                <div class="content-grid">
+                    <div class="text-block">
+                        <h2 class="section-title">Das Projekt</h2>
+                        <p class="lead-text">Ein künstlerisches Collage-Projekt, das die Schönheit der Vielfalt und Individualität feiert.</p>
+                        <p>Ein künstlerisches Collage-Projekt, das die Schönheit der Vielfalt und Individualität feiert.</p>
+                    </div>
+                    <div class="image-block">
+                        <img src="../img/gallery/7_beauty_dark.jpg" alt="Detailansicht">
+                        <span class="img-caption">Detailansicht</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Full Width Visual (Optional) -->
+        <section class="full-width-visual">
+            <div class="parallax-image" style="background-image: url('../img/gallery/7_beauty_dark.jpg')"></div>
+        </section>
+
+        <!-- Gallery Swiper -->
+        <section class="gallery-section">
+            <div class="container-wide">
+                <h2 class="section-title mb-5">Galerie</h2>
+                <div class="swiper project-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="../img/gallery/7_beauty_dark.jpg" alt="Gallery 1">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/gallery/7_beauty_dark.jpg" alt="Gallery 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../img/gallery/7_beauty_dark.jpg" alt="Gallery 3">
+                        </div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Next Project Navigation -->
+        <section class="next-project-nav">
+            <div class="container">
+                <div class="nav-grid">
+                    <a href="tiktok.html" class="nav-item prev">
+                        <span class="nav-label">Vorheriges</span>
+                        <span class="nav-name">TikTok Konzept</span>
+                    </a>
+                    <a href="../index.html#projects" class="nav-item center">
+                        <span class="nav-icon">grid_view</span>
+                        <span class="nav-label">Alle Projekte</span>
+                    </a>
+                    <a href="eiskunstlauf.html" class="nav-item next">
+                        <span class="nav-label">Nächstes</span>
+                        <span class="nav-name">Eiskunstlauf</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" aria-label="Seitenende">
+        <div class="container footer-inner">
+            <div class="footer-socials">
+                <a class="social-link" href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a>
+                <a class="social-link" href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="social-link" href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a>
+                <a class="social-link" href="https://x.com" target="_blank" rel="noopener">X</a>
+            </div>
+            <div class="footer-copy">© 2025 Design & Development by Khadija Okbi</div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../script/script.js"></script>
+    <script src="../script/project-detail.js"></script>
+</body>
+</html>

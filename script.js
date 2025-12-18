@@ -73,16 +73,60 @@ projectFilterButtons.forEach(btn => {
     projectFilterButtons.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const filter = btn.dataset.filter;
+    
+    // Animate cards out first
+    const hideCards = [];
+    const showCards = [];
+    
     projectCards.forEach(card => {
       const cat = card.dataset.category;
       if (filter === 'all' || cat === filter) {
-        card.style.display = 'block';
-        card.style.opacity = '1';
-        card.style.visibility = 'visible';
+        showCards.push(card);
       } else {
-        card.style.display = 'none';
+        hideCards.push(card);
       }
     });
+    
+    // Hide cards - Clean & Fast
+    if (hideCards.length > 0) {
+      gsap.to(hideCards, {
+        opacity: 0,
+        scale: 0.85,
+        y: -30,
+        duration: 0.35,
+        stagger: 0.03,
+        ease: 'power3.in',
+        onComplete: () => {
+          hideCards.forEach(card => {
+            card.style.display = 'none';
+          });
+        }
+      });
+    }
+    
+    // Show cards - Clean & Powerful
+    if (showCards.length > 0) {
+      showCards.forEach(card => {
+        card.style.display = 'block';
+      });
+      
+      gsap.fromTo(showCards, 
+        {
+          opacity: 0,
+          scale: 0.85,
+          y: 40
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.04,
+          ease: 'power3.out',
+          delay: 0.25
+        }
+      );
+    }
   });
 });
 
@@ -97,15 +141,61 @@ blogFilterButtons.forEach(btn => {
     blogFilterButtons.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const filter = btn.dataset.filter;
+    
+    // Animate blog cards
+    const hideCards = [];
+    const showCards = [];
+    
     blogCards.forEach(card => {
       const cat = card.dataset.category;
       if (filter === 'all' || cat === filter) {
-        card.style.display = 'grid';
-        card.classList.add('is-visible');
+        showCards.push(card);
       } else {
-        card.style.display = 'none';
+        hideCards.push(card);
       }
     });
+    
+    // Hide cards - Clean & Fast
+    if (hideCards.length > 0) {
+      gsap.to(hideCards, {
+        opacity: 0,
+        scale: 0.85,
+        y: -30,
+        duration: 0.35,
+        stagger: 0.03,
+        ease: 'power3.in',
+        onComplete: () => {
+          hideCards.forEach(card => {
+            card.style.display = 'none';
+          });
+        }
+      });
+    }
+    
+    // Show cards - Clean & Powerful
+    if (showCards.length > 0) {
+      showCards.forEach(card => {
+        card.style.display = 'grid';
+        card.classList.add('is-visible');
+      });
+      
+      gsap.fromTo(showCards, 
+        {
+          opacity: 0,
+          scale: 0.85,
+          y: 40
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.04,
+          ease: 'power3.out',
+          delay: 0.25
+        }
+      );
+    }
   });
 });
 
@@ -153,6 +243,35 @@ if (contactForm) {
 // Resume Section - Skills Animation
 // =========================================
 document.addEventListener('DOMContentLoaded', () => {
+  // PARALLAX EFFECT ON HERO SECTION
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Parallax on Hero Background Image
+    gsap.to('.hero-bg-image', {
+      yPercent: 30,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero-section',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+
+    // Parallax on Hero Portrait
+    gsap.to('.hero-portrait', {
+      yPercent: -15,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero-section',
+        start: 'top top',
+        end: 'bottom center',
+        scrub: true
+      }
+    });
+  }
+
   // 1. Linear Skill Bars (Technical Skills)
   const skillBars = document.querySelectorAll('.resume .skills-prog .bar');
   skillBars.forEach((bar, i) => {
