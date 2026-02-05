@@ -1,339 +1,246 @@
-// =========================================
-// Smooth scrolling for anchors
-// =========================================
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const href = a.getAttribute('href');
-    if (href && href.length > 1) {
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        const offset = 64; // header height
-        const y = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-        // close mobile menu
-        const mobileMenu = document.getElementById('mobileMenu');
-        if (mobileMenu) mobileMenu.classList.remove('open');
-      }
-    }
-  });
-});
+'use strict';
 
 // =========================================
-// Sticky header on scroll
+// GSAP SETUP
 // =========================================
-const header = document.querySelector('.site-header');
-const toggleHeader = () => {
-  if (header) {
-    if (window.scrollY > 100) header.classList.add('is-solid');
-    else header.classList.remove('is-solid');
-  }
-};
-window.addEventListener('scroll', toggleHeader);
-window.addEventListener('load', toggleHeader);
-
-// =========================================
-// Mobile menu toggle
-// =========================================
-const navToggle = document.getElementById('navToggle');
-const mobileMenu = document.getElementById('mobileMenu');
-if (navToggle && mobileMenu) {
-  navToggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
 }
 
 // =========================================
-// IntersectionObserver for reveal animations
-// =========================================
-const reveals = document.querySelectorAll('.section-hero, .about-card, .cluster, .project-card, .blog-card, .contact-form, .contact-info, .timeline, .resume');
-const io = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('is-visible');
-      io.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-reveals.forEach(el => io.observe(el));
-
-// =========================================
-// Projects filter
-// =========================================
-const projectFilterButtons = document.querySelectorAll('.section-projects .filter-btn');
-const projectCards = document.querySelectorAll('#projectsGrid .project-card');
-
-// Zeige alle Projekte beim Laden
-projectCards.forEach(card => {
-  card.style.display = 'block';
-  card.style.opacity = '1';
-  card.style.visibility = 'visible';
-});
-
-projectFilterButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    projectFilterButtons.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const filter = btn.dataset.filter;
-    
-    // Animate cards out first
-    const hideCards = [];
-    const showCards = [];
-    
-    projectCards.forEach(card => {
-      const cat = card.dataset.category;
-      if (filter === 'all' || cat === filter) {
-        showCards.push(card);
-      } else {
-        hideCards.push(card);
-      }
-    });
-    
-    // Hide cards - Clean & Fast
-    if (hideCards.length > 0) {
-      gsap.to(hideCards, {
-        opacity: 0,
-        scale: 0.85,
-        y: -30,
-        duration: 0.35,
-        stagger: 0.03,
-        ease: 'power3.in',
-        onComplete: () => {
-          hideCards.forEach(card => {
-            card.style.display = 'none';
-          });
-        }
-      });
-    }
-    
-    // Show cards - Clean & Powerful
-    if (showCards.length > 0) {
-      showCards.forEach(card => {
-        card.style.display = 'block';
-      });
-      
-      gsap.fromTo(showCards, 
-        {
-          opacity: 0,
-          scale: 0.85,
-          y: 40
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.04,
-          ease: 'power3.out',
-          delay: 0.25
-        }
-      );
-    }
-  });
-});
-
-// =========================================
-// Blog filter
-// =========================================
-const blogFilterButtons = document.querySelectorAll('.section-blog .filter-btn');
-const blogCards = document.querySelectorAll('#blogGrid .blog-card');
-
-blogFilterButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    blogFilterButtons.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const filter = btn.dataset.filter;
-    
-    // Animate blog cards
-    const hideCards = [];
-    const showCards = [];
-    
-    blogCards.forEach(card => {
-      const cat = card.dataset.category;
-      if (filter === 'all' || cat === filter) {
-        showCards.push(card);
-      } else {
-        hideCards.push(card);
-      }
-    });
-    
-    // Hide cards - Clean & Fast
-    if (hideCards.length > 0) {
-      gsap.to(hideCards, {
-        opacity: 0,
-        scale: 0.85,
-        y: -30,
-        duration: 0.35,
-        stagger: 0.03,
-        ease: 'power3.in',
-        onComplete: () => {
-          hideCards.forEach(card => {
-            card.style.display = 'none';
-          });
-        }
-      });
-    }
-    
-    // Show cards - Clean & Powerful
-    if (showCards.length > 0) {
-      showCards.forEach(card => {
-        card.style.display = 'grid';
-        card.classList.add('is-visible');
-      });
-      
-      gsap.fromTo(showCards, 
-        {
-          opacity: 0,
-          scale: 0.85,
-          y: 40
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.04,
-          ease: 'power3.out',
-          delay: 0.25
-        }
-      );
-    }
-  });
-});
-
-// =========================================
-// Blog modals (Read More)
-// =========================================
-const modals = document.querySelectorAll('.modal');
-const openModal = (id) => {
-  const modal = document.getElementById(id);
-  if (modal) modal.classList.add('open');
-};
-const closeModal = (modal) => modal.classList.remove('open');
-
-document.querySelectorAll('.read-more').forEach(btn => {
-  btn.addEventListener('click', () => openModal(btn.dataset.target));
-});
-modals.forEach(modal => {
-  modal.addEventListener('click', (e) => {
-    if (e.target.classList.contains('modal') || e.target.classList.contains('modal-close')) {
-      closeModal(modal);
-    }
-  });
-});
-
-// =========================================
-// Contact Form Handler
-// =========================================
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const formNote = document.getElementById('formNote');
-    if (formNote) {
-      formNote.textContent = 'Nachricht wird gesendet...';
-      formNote.style.color = 'green';
-      setTimeout(() => {
-        formNote.textContent = 'Vielen Dank! Deine Nachricht wurde gesendet.';
-        contactForm.reset();
-      }, 1500);
-    }
-  });
-}
-
-// =========================================
-// Resume Section - Skills Animation
+// DOM READY
 // =========================================
 document.addEventListener('DOMContentLoaded', () => {
-  // PARALLAX EFFECT ON HERO SECTION
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
 
-    // Parallax on Hero Background Image
-    gsap.to('.hero-bg-image', {
-      yPercent: 30,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.hero-section',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true
+  // =========================================
+  // 1. SMOOTH SCROLL
+  // =========================================
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      window.scrollTo({
+        top: target.offsetTop - 64,
+        behavior: 'smooth'
+      });
+      document.getElementById('mobileMenu')?.classList.remove('open');
+    });
+  });
+
+  // =========================================
+  // 2. STICKY HEADER
+  // =========================================
+  const header = document.querySelector('.site-header');
+  const updateHeader = () =>
+    header?.classList.toggle('is-solid', window.scrollY > 100);
+
+  window.addEventListener('scroll', updateHeader);
+  updateHeader();
+
+  // =========================================
+  // 3. MOBILE MENU
+  // =========================================
+  document.getElementById('navToggle')
+    ?.addEventListener('click', () =>
+      document.getElementById('mobileMenu')?.classList.toggle('open')
+    );
+
+  // =========================================
+  // 4. ACCORDION
+  // =========================================
+  const accordionItems = document.querySelectorAll('.accordion-item');
+
+  accordionItems.forEach(item => {
+    const trigger = item.querySelector('.accordion-trigger');
+    if (!trigger) return;
+
+    trigger.addEventListener('click', () => {
+      const active = item.classList.contains('active');
+
+      accordionItems.forEach(i => {
+        i.classList.remove('active');
+        i.querySelector('.accordion-trigger')
+          ?.setAttribute('aria-expanded', 'false');
+      });
+
+      if (!active) {
+        item.classList.add('active');
+        trigger.setAttribute('aria-expanded', 'true');
       }
     });
+  });
 
-    // Parallax on Hero Portrait
-    gsap.to('.hero-portrait', {
-      yPercent: -15,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.hero-section',
-        start: 'top top',
-        end: 'bottom center',
-        scrub: true
+  // =========================================
+  // 5. PROJECT FILTER
+  // =========================================
+  const projectCards = [...document.querySelectorAll('.project-card')];
+  document.querySelectorAll('.section-projects .filter-btn')
+    .forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        projectCards.forEach(card => {
+          const show = filter === 'all' || card.dataset.category === filter;
+          card.style.display = show ? 'block' : 'none';
+        });
+
+        ScrollTrigger.refresh();
+      });
+    });
+
+  // =========================================
+  // 6. BLOG FILTER
+  // =========================================
+  const blogCards = [...document.querySelectorAll('.blog-card')];
+  document.querySelectorAll('.section-blog .filter-btn')
+    .forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.section-blog .filter-btn')
+          .forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        blogCards.forEach(card => {
+          const show = filter === 'all' || card.dataset.category === filter;
+          card.style.display = show ? 'grid' : 'none';
+        });
+
+        ScrollTrigger.refresh();
+      });
+    });
+
+  // =========================================
+  // 7. BLOG MODALS
+  // =========================================
+  document.querySelectorAll('.read-more').forEach(btn => {
+    btn.addEventListener('click', () =>
+      document.getElementById(btn.dataset.target)?.classList.add('open')
+    );
+  });
+
+  document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', e => {
+      if (e.target.classList.contains('modal') ||
+          e.target.classList.contains('modal-close')) {
+        modal.classList.remove('open');
       }
     });
+  });
+
+  // =========================================
+  // 8. SKILL BARS
+  // =========================================
+  document.querySelectorAll('.skills-bar li').forEach(li => {
+    const bar = li.querySelector('.bar');
+    if (!bar) return;
+
+    gsap.to(bar, {
+      width: `${li.dataset.percent || 0}%`,
+      duration: 1.4,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: li,
+        start: 'top 85%',
+        once: true
+      }
+    });
+  });
+
+  // =========================================
+  // 9. SCROLL ANIMATIONS
+  // =========================================
+  gsap.utils.toArray('.project-card, .blog-card').forEach(el => {
+    gsap.from(el, {
+      y: 60,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        once: true
+      }
+    });
+  });
+
+  ScrollTrigger.refresh();
+});
+
+// =========================================
+// 10. RESIZE
+// =========================================
+window.addEventListener('resize', () =>
+  ScrollTrigger?.refresh()
+);
+// ================================
+// GSAP CAROUSEL (jQuery-frei)
+// ================================
+gsap.registerPlugin();
+
+const carousel = document.querySelector('.carousel');
+if (carousel) {
+  const slides = gsap.utils.toArray('.carousel-item');
+  const nextBtn = document.getElementById('moveRight');
+  const prevBtn = document.getElementById('moveLeft');
+
+  let current = 0;
+  let isAnimating = false;
+
+  // Initial State
+  slides.forEach((slide, i) => {
+    gsap.set(slide, {
+      xPercent: i === 0 ? 0 : 100,
+      opacity: i === 0 ? 1 : 0,
+      zIndex: slides.length - i
+    });
+  });
+
+  function goToSlide(index, direction = 1) {
+    if (isAnimating || index === current) return;
+    isAnimating = true;
+
+    const currentSlide = slides[current];
+    const nextSlide = slides[index];
+
+    gsap.set(nextSlide, {
+      xPercent: direction > 0 ? 100 : -100,
+      opacity: 1,
+      zIndex: slides.length
+    });
+
+    gsap.timeline({
+      defaults: { duration: 0.8, ease: 'power3.inOut' },
+      onComplete: () => {
+        gsap.set(currentSlide, { opacity: 0 });
+        current = index;
+        isAnimating = false;
+      }
+    })
+    .to(currentSlide, { xPercent: direction > 0 ? -100 : 100 }, 0)
+    .to(nextSlide, { xPercent: 0 }, 0);
   }
 
-  // 1. Linear Skill Bars (Technical Skills)
-  const skillBars = document.querySelectorAll('.resume .skills-prog .bar');
-  skillBars.forEach((bar, i) => {
-    const li = bar.closest('li');
-    if (li) {
-      const percent = li.getAttribute('data-percent') || 0;
-      const delay = i * 150;
-      
-      setTimeout(() => {
-        bar.style.transition = 'width 1s cubic-bezier(0.19, 1, 0.22, 1)';
-        bar.style.width = percent + '%';
-      }, delay);
-    }
+  nextBtn?.addEventListener('click', () => {
+    goToSlide((current + 1) % slides.length, 1);
   });
 
-  // 2. Circular Skill Bars (Soft/Adobe Skills)
-  const circleBars = document.querySelectorAll('.resume .skills-soft li');
-  circleBars.forEach((li, i) => {
-      const percent = li.getAttribute('data-percent') || 0;
-      const cbar = li.querySelector('.cbar');
-      const small = li.querySelector('small');
-      const delay = i * 150;
-
-      if (cbar) {
-          // Radius is 45 (from HTML), Circumference = 2 * PI * 45 ≈ 282.74
-          const radius = 45;
-          const circumference = 2 * Math.PI * radius;
-          
-          // Set initial dasharray
-          cbar.style.strokeDasharray = circumference;
-          cbar.style.strokeDashoffset = circumference;
-
-          setTimeout(() => {
-              const offset = circumference - (percent / 100) * circumference;
-              cbar.style.strokeDashoffset = offset;
-          }, delay);
-      }
-
-      if (small) {
-          // Count up animation for text
-          setTimeout(() => {
-            small.textContent = percent + '%';
-            small.style.opacity = 1;
-          }, delay);
-      }
+  prevBtn?.addEventListener('click', () => {
+    goToSlide((current - 1 + slides.length) % slides.length, -1);
   });
 
-  // Hover-Effekte auf Resume Funktions-Blöcke
-  const funcSections = document.querySelectorAll('.resume .func > div');
-  funcSections.forEach(section => {
-    section.addEventListener('mouseenter', () => {
-      const h3 = section.querySelector('h3');
-      const icon = section.querySelector('h3 i');
-      if (h3) h3.style.letterSpacing = '1.6px';
-      if (icon) icon.style.transform = 'scale(1.2)';
-    });
+  // Autoplay (optional)
+  let autoplay = setInterval(() => {
+    goToSlide((current + 1) % slides.length, 1);
+  }, 6000);
 
-    section.addEventListener('mouseleave', () => {
-      const h3 = section.querySelector('h3');
-      const icon = section.querySelector('h3 i');
-      if (h3) h3.style.letterSpacing = '0.65px';
-      if (icon) icon.style.transform = 'scale(1)';
-    });
+  // Pause on hover (optional, empfehlenswert)
+  carousel.addEventListener('mouseenter', () => clearInterval(autoplay));
+  carousel.addEventListener('mouseleave', () => {
+    autoplay = setInterval(() => {
+      goToSlide((current + 1) % slides.length, 1);
+    }, 6000);
   });
-});
+}
