@@ -1,675 +1,609 @@
 <!DOCTYPE html>
 <html lang="de">
-   <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <title>Khadija Okbi – Portfolio | Mediamatikerin EFZ</title>
-      <meta name="description" content="Luxuriöses, modernes Portfolio von Khadija Okbi – Kreatives Design & Digitalstrategie."/>
-      <link rel="icon" type="img/png" href="img/logo_white.png" />
-      <!-- Fonts-->
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Mulish:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-      <!-- GSAP & ScrollTrigger -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollSmoother.min.js" integrity="sha512-8tLk2RKvrL2flcPqz0zQJcQgBCiNWaH/qfLU0Eb+iQFMgv6U2nQkIJF3fKOdPfqrHR4FUF7yzqxNNhvN9vkPvw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      <script src="https://unpkg.com/split-type"></script>
-      <!-- Styles -->
-      <link rel="stylesheet" href="style.css" />
-   </head>
-   <body>
-      <div class="grain-overlay"></div>
-      <!-- Header / Navbar -->
-      <header class="site-header" id="top" aria-label="Seitennavigation">
-         <div class="container nav-bar">
-            <a href="index.html" class="logo">
-            <img src="img/logo_white.png" alt="Khadija Okbi Logo" width="45">
-            <img src="img/logo_black.png" alt="Khadija Okbi Logo" width="45" class="logo-onscroll">
-            </a>
-            <nav class="nav" aria-label="Hauptnavigation">
-               <a href="#hero" class="nav-link">Home</a>
-               <a href="#about" class="nav-link">Über mich</a>
-               <a href="#projects" class="nav-link">Work</a>
-               <a href="#blog" class="nav-link">Blog</a>
-               <a href="#contact" class="nav-link nav-cta">Kontakt</a>
-            </nav>
-            <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
-               <span class="menu-line"></span>
-               <span class="menu-line"></span>
-               <span class="menu-line"></span>
-            </button>
-         </div>
-         <!-- Mobile menu -->
-         <div class="mobile-menu" id="mobileMenu" aria-label="Mobiles Menü">
-            <a href="#hero" class="mobile-link">Home</a>
-            <a href="#about" class="mobile-link">Über mich</a>
-            <a href="#projects" class="mobile-link">Work</a>
-            <a href="#blog" class="mobile-link">Blog</a>
-            <a href="#contact" class="mobile-link mobile-cta">Kontakt</a>
-         </div>
-      </header>
-      <!-- Hero Section -->
-      <div class="hero-section" id="hero">
-         <div class="hero-bg-image"></div>
-         <header class="hero-header">
-            <h1 class="hero-top">CREATIVE</h1>
-            <p class="hero-middle">Art</p>
-            <h1 class="hero-bottom">DIRECTOR</h1>
-            <div class="hero-portrait-bg">
-               <img src="cutout_bg.png" alt="Hintergrund des Portraits">
-            </div>
-            <div class="hero-portrait">
-               <img src="cutout.png" alt="Portrait von Khadija Okbi">
-            </div>
-         </header>
-      </div>
-      <main>
-      <!-- About Section -->
-             <section class="section-projects" id="projects" aria-label="Projekte & Arbeiten">
-   <div class="container-wide">
-      <h2>Work</h2>
-      <div class="filter-bar" role="toolbar" aria-label="Projektfilter">
-      <button class="filter-btn" data-filter="all">Alle</button>
-      <button class="filter-btn" data-filter="visual">Visual Art</button>
-      <button class="filter-btn" data-filter="motion">Motion</button>
-      <button class="filter-btn" data-filter="marketing">Marketing</button>
-      <button class="filter-btn" data-filter="web">Web Dev</button>
-      </div>
-      <!-- Grid -->
-      <div class="projects-grid" id="projectsGrid">
-      <!-- 1 -->
-      <a href="projekte/petrichor.html" class="project-card tone-dark" data-category="visual">
-      <div class="project-media" style="background-image:url('img/gallery/1_petrichor_dark.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 2 -->
-      <a href="projekte/trailerpark.html" class="project-card tone-light" data-category="visual">
-      <div class="project-media" style="background-image:url('img/gallery/2_trailerpark_light.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 3 -->
-      <a href="projekte/gamedays.html" class="project-card tone-dark" data-category="visual">
-      <div class="project-media" style="background-image:url('img/gallery/3_gamedays_dark.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 4 -->
-      <a href="projekte/ballet.html" class="project-card tone-light" data-category="visual">
-      <div class="project-media" style="background-image:url('img/gallery/4_ballet_light.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 5 -->
-      <a href="projekte/pfadi.html" class="project-card tone-dark" data-category="marketing">
-      <div class="project-media" style="background-image:url('img/gallery/5_nextgame_dark.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 6 -->
-      <a href="projekte/tiktok.html" class="project-card tone-light" data-category="marketing">
-      <div class="project-media" style="background-image:url('img/gallery/6_socialmediakonzept_light.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 7 -->
-      <a href="projekte/beauty.html" class="project-card tone-dark" data-category="visual">
-      <div class="project-media" style="background-image:url('img/gallery/7_beauty_dark.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 8 -->
-      <a href="projekte/eiskunstlauf.html" class="project-card tone-light" data-category="web">
-      <div class="project-media" style="background-image:url('img/gallery/8_ecw_light.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 9 -->
-      <a href="projekte/website-prototype.html" class="project-card tone-dark" data-category="web">
-      <div class="project-media" style="background-image:url('img/gallery/9_website_dark.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 10 -->
-      <a href="projekte/vinyl.html" class="project-card tone-light" data-category="visual">
-      <div class="project-media" style="background-image:url('img/gallery/10_vinyl_light.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 11 -->
-      <a href="projekte/komthur.html" class="project-card tone-dark" data-category="web">
-      <div class="project-media" style="background-image:url('img/gallery/11_komthur_dark.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 12 -->
-      <a href="projekte/muted.html" class="project-card tone-light" data-category="visual">
-      <div class="project-media" style="background-image:url('img/gallery/12_muted_light.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 13 -->
-      <a href="projekte/animation-promo.html" class="project-card tone-dark" data-category="motion">
-      <div class="project-media" style="background-image:url('img/gallery/13_ani_dark.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 14 -->
-      <a href="projekte/typebook.html" class="project-card tone-light" data-category="visual">
-      <div class="project-media" style="background-image:url('img/gallery/14_typobook_light.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 15 -->
-      <a href="projekte/sgmodel.html" class="project-card tone-dark" data-category="visual">
-      <div class="project-media" style="background-image:url('img/gallery/15_sgmodel_dark.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 16 -->
-      <a href="projekte/self-collage.html" class="project-card tone-light" data-category="visual">
-      <div class="project-media" style="background-image:url('img/gallery/16_collage_light.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 17 -->
-      <a href="projekte/wehelp.html" class="project-card tone-dark" data-category="marketing">
-      <div class="project-media" style="background-image:url('img/gallery/17_wehelp_dark.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 18 -->
-      <a href="projekte/bewerbung.html" class="project-card tone-light" data-category="visual">
-      <div class="project-media" style="background-image:url('img/gallery/18_bewerbung_light.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 19 -->
-      <a href="projekte/youth-festival.html" class="project-card tone-dark" data-category="motion">
-      <div class="project-media" style="background-image:url('img/gallery/19_yftrailer_dark.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 20 -->
-      <a href="projekte/jumpin.html" class="project-card tone-light" data-category="marketing">
-      <div class="project-media" style="background-image:url('img/gallery/20_jumpin_light.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 21 -->
-      <a href="projekte/presentation.html" class="project-card tone-dark" data-category="motion">
-      <div class="project-media" style="background-image:url('img/gallery/21_presentation_dark.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 22 -->
-      <a href="projekte/instagram.html" class="project-card tone-light" data-category="marketing">
-      <div class="project-media" style="background-image:url('img/gallery/22_insta_light.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 23 -->
-      <a href="projekte/immobilien.html" class="project-card tone-dark" data-category="marketing">
-      <div class="project-media" style="background-image:url('img/gallery/23_immo_dark.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      <!-- 24 -->
-      <a href="projekte/corona.html" class="project-card tone-light" data-category="visual">
-      <div class="project-media" style="background-image:url('img/gallery/24_corona_light.jpg')"></div>
-      <div class="project-overlay"></div>
-      <div class="project-info">
-      <button class="project-btn">MEHR DETAILS</button>
-      </div>
-      </a>
-      </div>
-      </div>
-      </section>
-      <section class="section-about" id="about" aria-label="Über mich">
-         <div class="container-wide">
-                <div class="section-title-editorial">The Visionary</div>
-            <div class="section-title-display">& the Strategist</div>
-            <div class="about-image-wrapper">
-                     <img src="img/pb.png" alt="Arch-Shape Dekoration" />
-                  </div>
-      <!--   <div class="about-text-container">
-         <p class="about-text">
-            Als Creative Art Director verbinde ich strategisches Denken mit visueller Exzellenz. Meine Arbeit zeichnet sich durch klare Konzepte, durchdachte Gestaltung und den Mut zu unkonventionellen Lösungen aus. Ich glaube daran, dass großartiges Design nicht nur schön aussieht, sondern eine Geschichte erzählt und Emotionen weckt.
-         </p>
-      </div> -->
-         </div>
-         <div class="resume">
-            <div class="base">
-               <div class="profile">
-               <div class="about">    
-               <div class="skills-soft">
-                       <h3>MBTI Persönlichkeit</h3>
-               <h4>INTP-A/Logiker</h4>  
-                  <ul>
-                  <li data-percent="51">
-                  <svg viewbox="0 0 100 100">
-                  <circle cx="50" cy="50" r="45"></circle>
-                  <circle class="cbar" cx="50" cy="50" r="45"></circle>
-                  </svg>
-                  <span>Introvertiert</span><small></small>
-                  </li>
-                  <li data-percent="95">
-                  <svg viewbox="0 0 100 100">
-                  <circle cx="50" cy="50" r="45"></circle>
-                  <circle class="cbar" cx="50" cy="50" r="45"></circle>
-                  </svg>
-                  <span>Intuitiv</span><small></small>
-                  </li>
-                    </ul>
-                  <ul class="skills-list-secondary">
-                  <li data-percent="74">
-                  <svg viewbox="0 0 100 100">
-                  <circle cx="50" cy="50" r="45"></circle>
-                  <circle class="cbar" cx="50" cy="50" r="45"></circle>
-                  </svg>
-                  <span>Flexibel</span><small></small>
-                  </li>
-                  <li data-percent="100">
-                  <svg viewbox="0 0 100 100">
-                  <circle cx="50" cy="50" r="45"></circle>
-                  <circle class="cbar" cx="50" cy="50" r="45"></circle>
-                  </svg>
-                  <span>Kreativ</span><small></small>
-                  </li>
-                  </ul>
-                     <ul class="skills-list-secondary">
-                  <li data-percent="90">
-                  <svg viewbox="0 0 100 100">
-                  <circle cx="50" cy="50" r="45"></circle>
-                  <circle class="cbar" cx="50" cy="50" r="45"></circle>
-                  </svg>
-                  <span>Neugierig</span><small></small>
-                  </li>
-                  <li data-percent="88">
-                  <svg viewbox="0 0 100 100">
-                  <circle cx="50" cy="50" r="45"></circle>
-                  <circle class="cbar" cx="50" cy="50" r="45"></circle>
-                  </svg>
-                  <span>Analytisch</span><small></small>
-                  </li>
-                  </ul>
-               </div>
-            </div>
-                  <div class="favorites">
-                     <h3>Meine Favoriten </h3>
-                     <div class="editorial-grid">
-                        <div class="grid-item item-main">
-                           <h4 class="fav-title">Buch</h4>
-                           <p class="fav-detail" data-text="Fourth Wing">Fourth Wing</p>
-                           <div class="fav-book">
-                              <img src="img/fourthwing.jpg" alt="fourthwing">
-                           </div>
-                        </div>
-                        <div class="grid-item item-color">
-                           <h4 class="fav-title">Farbe</h4>
-                           <div class="color-box" data-color="#AF8D9C"></div>
-                           <p class="fav-detail color-name">Altrosa</p>
-                           <div class="fav-image">
-                              <img src="img/mauve.jpg" alt="mauve" style="max-width: 100%; height: auto;">
-                           </div>
-                        </div>
-                        <div class="grid-item item-art">
-                           <h4 class="fav-title">Podcast</h4>
-                           <p class="fav-detail" data-text="mordaufex">Mord auf Ex</p>
-                           <div class="fav-image">
-                              <img src="img/mordaufex.jpg" alt="mordaufex" style="max-width: 100%; height: auto;">
-                           </div>
-                        </div>
-                        <div class="grid-item item-book">
-                           <h4 class="fav-title">Serie</h4>
-                           <p class="fav-detail" data-text="Emily in Paris">Emily in Paris</p>
-                           <div class="fav-image">
-                              <img src="img/emilyinparis.jpg" alt="fourthwing" style="max-width: 100%; height: auto;">
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="spotify-wrapped">
-                     <h3>
-                        <i class="fa fa-spotify"></i>
-                        Am liebsten Höre ich:
-                     </h3>
-                     <div id="wrap">
-                        <div class="record-container">
-                           <div class="album">
-                              <img src="img/runaway.jpeg" />
-                           </div>
-                           <div class="record">
-                              <img src="http://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" />
-                           </div>
-                        </div>
-                        <div class="record-container">
-                           <div class="album">
-                              <img src="img/fear.jpeg" />
-                           </div>
-                           <div class="record">
-                              <img src="http://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" />
-                           </div>
-                        </div>
-                        <div class="record-container">
-                           <div class="album">
-                              <img src="img/millionyears.jpeg" />
-                           </div>
-                           <div class="record">
-                              <img src="http://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" />
-                           </div>
-                        </div>
-                     </div>
-                  </div>  
-               <h3>MBTI Persönlichkeit</h3>
-               <h4>INTP-A/Logiker</h4>      
-               <div class="skills-soft">
-                  <ul>
-                  <li data-percent="51">
-                  <svg viewbox="0 0 100 100">
-                  <circle cx="50" cy="50" r="45"></circle>
-                  <circle class="cbar" cx="50" cy="50" r="45"></circle>
-                  </svg>
-                  <span>Introvertiert</span><small></small>
-                  </li>
-                  <li data-percent="95">
-                  <svg viewbox="0 0 100 100">
-                  <circle cx="50" cy="50" r="45"></circle>
-                  <circle class="cbar" cx="50" cy="50" r="45"></circle>
-                  </svg>
-                  <span>Intuitiv</span><small></small>
-                  </li>
-                    </ul>
-                  <ul class="skills-list-secondary">
-                  <li data-percent="74">
-                  <svg viewbox="0 0 100 100">
-                  <circle cx="50" cy="50" r="45"></circle>
-                  <circle class="cbar" cx="50" cy="50" r="45"></circle>
-                  </svg>
-                  <span>Flexibel</span><small></small>
-                  </li>
-                  <li data-percent="100">
-                  <svg viewbox="0 0 100 100">
-                  <circle cx="50" cy="50" r="45"></circle>
-                  <circle class="cbar" cx="50" cy="50" r="45"></circle>
-                  </svg>
-                  <span>Kreativ</span><small></small>
-                  </li>
-                  </ul>
-                     <ul class="skills-list-secondary">
-                  <li data-percent="90">
-                  <svg viewbox="0 0 100 100">
-                  <circle cx="50" cy="50" r="45"></circle>
-                  <circle class="cbar" cx="50" cy="50" r="45"></circle>
-                  </svg>
-                  <span>Neugierig</span><small></small>
-                  </li>
-                  <li data-percent="88">
-                  <svg viewbox="0 0 100 100">
-                  <circle cx="50" cy="50" r="45"></circle>
-                  <circle class="cbar" cx="50" cy="50" r="45"></circle>
-                  </svg>
-                  <span>Analytisch</span><small></small>
-                  </li>
-                  </ul>
-               </div>
-            </div>
-         </div>
-            <div class="func">
-               <h3>Bildung </h3>
-               <div class="timeline-container" aria-labelledby="timeline-heading">
-                  <ul class="timeline" role="list">
-                    <li class="timeline-event" data-year="2023">
-                      <div class="event-card event-card--left">
-                        <div class="event-card__inner">
-                           <div class="event-card__title">Social Media</div>
-                          <p class="event-card__subtitle">Online Marketing Konzept</p>
-                          <p class="event-card__meta">Komthur GmbH · Kreuzlingen</p>
-                        </div>
-                      </div>
-                      <div class="timeline-marker" aria-hidden="true">
-                        <div class="timeline-marker__dot"></div>
-                        <div class="timeline-marker__label">2023</div>
-                      </div>
-                    </li>
-                
-                    <li class="timeline-event" data-year="2022">
-                      <div class="event-card event-card--right">
-                        <div class="event-card__inner">
-                          <div class="event-card__title">Social Media</div>
-                          <p class="event-card__subtitle">Praktikum Marketing</p>
-                          <p class="event-card__meta">SBW Haus des Lernens</p>
-                        </div>
-                      </div>
-                      <div class="timeline-marker" aria-hidden="true">
-                        <div class="timeline-marker__dot"></div>
-                        <div class="timeline-marker__label">2022</div>
-                      </div>
-                    </li>
-                
-                    <li class="timeline-event" data-year="2021">
-                      <div class="event-card event-card--left">
-                        <div class="event-card__inner">
-                           <div class="event-card__title">Social Media</div>
-                          <p class="event-card__subtitle">Marketing Praktikum</p>
-                          <p class="event-card__meta">Win-4 · Winterthur</p>
-                        </div>
-                      </div>
-                      <div class="timeline-marker" aria-hidden="true">
-                        <div class="timeline-marker__dot"></div>
-                        <div class="timeline-marker__label">2021</div>
-                      </div>
-                    </li>
-                
-                    <li class="timeline-event" data-year="2019">
-                      <div class="event-card event-card--right">
-                        <div class="event-card__inner">
-                           <div class="event-card__title">Social Media</div>
-                          <p class="event-card__subtitle">Lehre</p>
-                          <p class="event-card__meta">SBW NM · Romanshorn</p>
-                        </div>
-                      </div>
-                      <div class="timeline-marker" aria-hidden="true">
-                        <div class="timeline-marker__dot"></div>
-                        <div class="timeline-marker__label">2019</div>
-                      </div>
-                    </li>
-                
-                    <li class="timeline-event" data-year="2018">
-                      <div class="event-card event-card--left">
-                        <div class="event-card__inner">
-                           <div class="event-card__title">Social Media</div>
-                          <p class="event-card__subtitle">Management Praktikum</p>
-                          <p class="event-card__meta">Hillsong · Konstanz</p>
-                        </div>
-                      </div>
-                      <div class="timeline-marker" aria-hidden="true">
-                        <div class="timeline-marker__dot"></div>
-                        <div class="timeline-marker__label">2018</div>
-                      </div>
-                    </li>
-                  </ul>
-                
-                  <div class="timeline-spine" aria-hidden="true"></div>
-                </div>
-                           
-                  <div class="skills-prog">
-                  <h3>Technical Skills</h3>
-                  <ul>
-                  <li data-percent="95"><span>Adobe InDesign</span>
-                  <div class="skills-bar">
-                  <div class="bar"></div>
-                  </div>
-                  </li>
-                  <li data-percent="98"><span>Photoshop</span>
-                  <div class="skills-bar">
-                  <div class="bar"></div>
-                  </div>
-                  </li>
-                  <li data-percent="92"><span>Premiere Pro</span>
-                  <div class="skills-bar">
-                  <div class="bar"></div>
-                  </div>
-                  </li>
-                  <li data-percent="90"><span>After Effects</span>
-                  <div class="skills-bar">
-                  <div class="bar"></div>
-                  </div>
-                  </li>
-                  <li data-percent="85"><span>Frontend (HTML, CSS, JS)</span>
-                  <div class="skills-bar">
-                  <div class="bar"></div>
-                  </div>
-                  </li>
-                  <li data-percent="75"><span>Backend (NodeJS, PHP)</span>
-                  <div class="skills-bar">
-                  <div class="bar"></div>
-                  </div>
-                  </li>
-                  <li data-percent="80"><span>Marketing & Social Media</span>
-                  <div class="skills-bar">
-                  <div class="bar"></div>
-                  </div>
-                  </li>
-                  </ul>
-                  </div>
-                  <div class="skills-prog">
-                  <h3>Personality / Soft Skills</h3>
-                  <ul>
-                  <li data-percent="95"><span>Strategisch</span>
-                  <div class="skills-bar">
-                  <div class="bar"></div>
-                  </div>
-                  </li>
-                  <li data-percent="90"><span>Entschlossen</span>
-                  <div class="skills-bar">
-                  <div class="bar"></div>
-                  </div>
-                  </li>
-                  <li data-percent="92"><span>Effizient</span>
-                  <div class="skills-bar">
-                  <div class="bar"></div>
-                  </div>
-                  </li>
-                  <li data-percent="85"><span>Kreativ & Analytisch</span>
-                  <div class="skills-bar">
-                  <div class="bar"></div>
-                  </div>
-                  </li>
-                  <li data-percent="88"><span>Perfektionistisch</span>
-                  <div class="skills-bar">
-                  <div class="bar"></div>
-                  </div>
-                  </li>
-                  <li data-percent="80"><span>Selbstreflektiert</span>
-                  <div class="skills-bar">
-                  <div class="bar"></div>
-                  </div>
-                  </li>
-                  </ul>
-                  </div>
-            </div>
-      </section>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Khadija Okbi | Portfolio</title>
+		<meta name="description" content="Editorial, modernes Portfolio von Khadija Okbi – Kreatives Design & Digitalstrategie." />
+		<link rel="icon" type="image/png" href="img/logo_white.png" />
+		<!-- Fonts-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		 <!-- Font Awesome Icons -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<!-- GSAP & ScrollTrigger -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+		<script src="https://unpkg.com/split-type"></script>
+		<!-- Styles -->
+		<link rel="stylesheet" href="style/style.css" />
+		<link rel="stylesheet" href="style/combined.css" />
+	</head>
+	<body>
+		<header class="site-header" id="top" aria-label="Seitennavigation">
+			<div class="container nav-bar">
+			   <a href="index.html" class="logo">
+			   <img src="img/logo_black.png" alt="Khadija Okbi Logo" width="45">
+			   <img src="img/logo_white.png" alt="Khadija Okbi Logo" width="45" class="logo-onscroll">
+			   </a>
+			   <nav class="nav" aria-label="Hauptnavigation">
+				  <a href="#hero" class="nav-link">Home</a>
+				  <a href="#expertise" class="nav-link">What I do</a>
+				  <a href="#blog" class="nav-link">Blog</a>
+				  <a href="about.html" class="nav-link">About me</a>
 
-      <!-- Blog Section -->
-      <section class="section-blog" id="blog" aria-label="Blog">
-      <div class="container-wide">
-      <h2>Blog</h2>
-      <!-- Blog grid -->
-      <div class="blog-grid" id="blogGrid">
-      <article class="blog-card" data-category="design">
-      <div class="blog-thumb" style="background-image:url('img/collage.jpg')" loading="lazy" aria-hidden="true"></div>
-      <div class="blog-content">
-      <h3 class="blog-title">Die Illusion der freien Meinung</h3>
-      <p class="blog-teaser">Demokratie in Zeiten von Social Media & KI</p>
-      <button class="read-more" data-target="post-1">Weiterlesen</button>
-      </div>
-      </article>
-      <article class="blog-card" data-category="process">
-      <div class="blog-thumb" style="background-image:url('img/collage.jpg')" loading="lazy" aria-hidden="true"></div>
-      <div class="blog-content">
-      <h3 class="blog-title">10k Follower in 30 Tagen</h3>
-      <p class="blog-teaser">Meine Faceless Tiktok Strategie</p>
-      <button class="read-more" data-target="post-2">Weiterlesen</button>
-      </div>
-      </article>
-      <article class="blog-card" data-category="marketing">
-      <div class="blog-thumb" style="background-image:url('img/collage.jpg')" loading="lazy" aria-hidden="true"></div>
-      <div class="blog-content">
-      <h3 class="blog-title">Trending on Threads</h3>
-      <p class="blog-teaser">Wie ich auf Threads meine eigene Trading Community aufgebaut habe</p>
-      <button class="read-more" data-target="post-3">Weiterlesen</button>
-      </div>
-      </article>
-      </div>
-      </div>
-      </section>
-      <!-- Contact Section -->
-   </main>
-      <!-- Footer -->
-      <footer class="site-footer" aria-label="Seitenende">
-         <div class="container footer-inner">
-            <div class="footer-socials">
-               <a class="social-link" href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a>
-               <a class="social-link" href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-               <a class="social-link" href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a>
-               <a class="social-link" href="https://x.com" target="_blank" rel="noopener">X</a>
-            </div>
-            <div class="footer-copy">© 2025 Design & Development by Khadija Okbi</div>
-         </div>
-      </footer>
-      <!-- Scripts -->
-      <script src="script.js"></script>
-      <script src="animations.js"></script>
-      <script src="timeline.js"></script>
-   </body>
+			   </nav>
+			</div>
+		 </header>
+			<main>
+				<div class="hero-section" id="hero">
+					<div class="hero-bg-image"></div>
+					<div class="hero-header">
+						<h1 class="hero-top">CREATIVE</h1>
+						<h1 class="hero-bottom">DIRECTOR</h1>
+						<div class="hero-bilder">
+							<div class="hero-portrait-bg">
+								<img src="img/cutout_bg.png" alt="Hintergrund des Portraits">
+							</div>
+							<div class="hero-portrait">
+								<img src="img/cutout.png" alt="Portrait von Khadija Okbi">
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Work Section -->
+				<section class="section-skills" id="expertise">
+					<div class="container">
+						<div class="skills-header">
+							<h2>What I do</h2>
+						</div>
+						<div class="skills-accordion">
+							<!-- 1. DESIGN -->
+							<div class="accordion-item" data-category="design">
+								<button class="accordion-trigger" aria-expanded="false">
+									<div class="trigger-left">
+										<span class="trigger-number">01</span>
+										<h3 class="trigger-title">DESIGN</h3>
+									</div>
+									<div class="trigger-icon">
+										<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+											<path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+										</svg>
+									</div>
+								</button>
+								<div class="accordion-content">
+									<div class="skills-table">
+										<div class="table-row">
+											<div class="table-cell">
+												<h4>Was ich mache</h4>
+												<ul>
+													<li>Branding & visuelle Identitäten</li>
+													<li>Logo-Design</li>
+													<li>Corporate Design & Design-Systeme</li>
+													<li>UI Design für Web & Digital Media</li>
+													<li>Layouts für Plakate, Kampagnen & Social</li>
+													<li>Bildbearbeitung & visuelles Feintuning</li>
+												</ul>
+											</div>
+											<div class="table-cell">
+												<h4>Kontext & Erfahrung</h4>
+												<ul>
+													<li>Agenturmarketing (Full Service)</li>
+													<li>Sportmarketing & Vereinskommunikation</li>
+													<li>Digital & Print kombiniert</li>
+													<li>Design für reale Anforderungen</li>
+												</ul>
+											</div>
+											<div class="table-cell">
+												<h4>Tools & Technologien</h4>
+												<div class="tool-grid">
+													<div class="tool-item">
+														<i class="fab fa-adobe"></i>
+														<span>Photoshop</span>
+													</div>
+													<div class="tool-item">
+														<img src="img/icons/illustrator.svg" alt="Illustrator">
+														<span>Illustrator</span>
+													</div>
+													<div class="tool-item">
+														<img src="img/icons/indesign.svg" alt="InDesign">
+														<span>InDesign</span>
+													</div>
+													<div class="tool-item">
+														<img src="img/icons/procreate.svg" alt="Procreate">
+														<span>Procreate</span>
+													</div>
+													<div class="tool-item">
+														<img src="img/icons/canva.svg" alt="Canva">
+														<span>Canva</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 2. MARKETING -->
+							<div class="accordion-item" data-category="marketing">
+								<button class="accordion-trigger" aria-expanded="false">
+									<div class="trigger-left">
+										<span class="trigger-number">02</span>
+										<h3 class="trigger-title">MARKETING</h3>
+									</div>
+									<div class="trigger-icon">
+										<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+											<path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+										</svg>
+									</div>
+								</button>
+								<div class="accordion-content">
+									<div class="skills-table">
+										<div class="table-row">
+											<div class="table-cell">
+												<h4>Was ich mache</h4>
+												<ul>
+													<li>Themen- & Kampagnenkonzeption</li>
+													<li>Content-Strategien</li>
+													<li>Social Media Marketing</li>
+													<li>Storytelling & Copywriting</li>
+													<li>Positionierung & Zielgruppenansprache</li>
+												</ul>
+											</div>
+											<div class="table-cell">
+												<h4>Kontext & Erfahrung</h4>
+												<ul>
+													<li>Sportmarketing</li>
+													<li>Social Media Marketing</li>
+													<li>Agenturumfeld (Full Service)</li>
+													<li>Arbeit mit Organisationen & Vereinen</li>
+												</ul>
+											</div>
+											<div class="table-cell">
+												<h4>Tools & Technologien</h4>
+												<div class="tool-grid">
+													<div class="tool-item">
+														<img src="img/icons/instagram.svg" alt="Instagram">
+														<span>Instagram</span>
+													</div>
+													<div class="tool-item">
+														<img src="img/icons/tiktok.svg" alt="TikTok">
+														<span>TikTok</span>
+													</div>
+													<div class="tool-item">
+														<img src="img/icons/canva.svg" alt="Canva">
+														<span>Canva</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 3. MOTION -->
+							<div class="accordion-item" data-category="motion">
+								<button class="accordion-trigger" aria-expanded="false">
+									<div class="trigger-left">
+										<span class="trigger-number">03</span>
+										<h3 class="trigger-title">MOTION</h3>
+									</div>
+									<div class="trigger-icon">
+										<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+											<path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+										</svg>
+									</div>
+								</button>
+								<div class="accordion-content">
+									<div class="skills-table">
+										<div class="table-row">
+											<div class="table-cell">
+												<h4>Was ich mache</h4>
+												<ul>
+													<li>Motion Design für Social Media</li>
+													<li>Typo-Animationen</li>
+													<li>Video-Schnitt</li>
+													<li>Dynamische Inhalte für Kampagnen & Sport</li>
+												</ul>
+											</div>
+											<div class="table-cell">
+												<h4>Kontext & Erfahrung</h4>
+												<ul>
+													<li>Social Content für Sport & Organisationen</li>
+													<li>Kampagnenvideos</li>
+													<li>Kurzformate mit Fokus auf Wirkung</li>
+												</ul>
+											</div>
+											<div class="table-cell">
+												<h4>Tools & Technologien</h4>
+												<div class="tool-grid">
+													<div class="tool-item">
+														<img src="img/icons/aftereffects.svg" alt="After Effects">
+														<span>After Effects</span>
+													</div>
+													<div class="tool-item">
+														<img src="img/icons/premierepro.svg" alt="Premiere Pro">
+														<span>Premiere Pro</span>
+													</div>
+													<div class="tool-item">
+														<img src="img/icons/capcut.svg" alt="CapCut">
+														<span>CapCut</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 4. WEB -->
+							<div class="accordion-item" data-category="web">
+								<button class="accordion-trigger" aria-expanded="false">
+									<div class="trigger-left">
+										<span class="trigger-number">04</span>
+										<h3 class="trigger-title">WEB</h3>
+									</div>
+									<div class="trigger-icon">
+										<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+											<path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+										</svg>
+									</div>
+								</button>
+								<div class="accordion-content">
+									<div class="skills-table">
+										<div class="table-row">
+											<div class="table-cell">
+												<h4>Was ich mache</h4>
+												<ul>
+													<li>Konzeption & Umsetzung moderner Websites</li>
+													<li>Onepager & Portfolio-Websites</li>
+													<li>UI / UX Design</li>
+													<li>Interaktive Elemente & Animationen</li>
+													<li>Tool-abhängige Umsetzung je nach Projekt</li>
+												</ul>
+											</div>
+											<div class="table-cell">
+												<h4>Systeme & Erfahrung</h4>
+												<ul>
+													<li>Drupal</li>
+													<li>Webflow</li>
+													<li>Canva Websites</li>
+												</ul>
+											</div>
+										</div>
+										<div class="table-row">
+											<div class="table-cell">
+												<h4>Technologien</h4>
+												<div class="tool-grid">
+													<div class="tool-item">
+														<img src="img/icons/html5.svg" alt="HTML5">
+														<span>HTML5</span>
+													</div>
+													<div class="tool-item">
+														<img src="img/icons/css3.svg" alt="CSS3">
+														<span>CSS3</span>
+													</div>
+													<div class="tool-item">
+														<img src="img/icons/javascript.svg" alt="JavaScript">
+														<span>JavaScript</span>
+													</div>
+													<div class="tool-item">
+														<img src="img/icons/vscode.svg" alt="VS Code">
+														<span>VS Code</span>
+													</div>
+													<div class="tool-item">
+														<img src="img/icons/github.svg" alt="GitHub">
+														<span>GitHub</span>
+													</div>
+												</div>
+											</div>
+											<div class="table-cell">
+												<h4>KI-Tools</h4>
+												<div class="tool-grid">
+													<div class="tool-item">
+														<img src="img/icons/chatgpt.svg" alt="ChatGPT">
+														<span>ChatGPT</span>
+													</div>
+													<div class="tool-item">
+														<img src="img/icons/gemini.svg" alt="Google Gemini">
+														<span>Gemini</span>
+													</div>
+													<div class="tool-item">
+														<img src="img/icons/claude.svg" alt="Claude">
+														<span>Claude</span>
+													</div>
+													<div class="tool-item">
+														<img src="img/icons/perplexity.svg" alt="Perplexity">
+														<span>Perplexity</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="section-projects" id="projects" aria-label="Projekte & Arbeiten">
+						<div class="container">
+							<h2 class="selected-projects" style="margin-top: 3rem;">Ausgewählte Projekte</h2>
+							<div class="filter-bar" role="toolbar" aria-label="Projektfilter">
+								<button class="filter-btn" data-filter="all">Alle</button>
+								<button class="filter-btn" data-filter="visual">Visual Art</button>
+								<button class="filter-btn" data-filter="motion">Motion</button>
+								<button class="filter-btn" data-filter="marketing">Marketing</button>
+								<button class="filter-btn" data-filter="web">Web Dev</button>
+							</div>
+							<!-- Grid -->
+							<div class="projects-grid" id="projectsGrid">
+								<!-- 1 -->
+								<a href="work/sbw.html" class="project-card tone-dark" data-category="visual">
+									<div class="project-media" style="background-image:url('img/gallery/1_petrichor_dark.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<!-- 2 -->
+								<a href="work/sbw.html" class="project-card tone-light" data-category="visual">
+									<div class="project-media" style="background-image:url('img/gallery/2_trailerpark_light.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<!-- 3 -->
+								<a href="work/win4.html" class="project-card tone-dark" data-category="visual">
+									<div class="project-media" style="background-image:url('img/gallery/3_gamedays_dark.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<!-- 4 -->
+								<a href="work/fotografie.html" class="project-card tone-light" data-category="visual">
+									<div class="project-media" style="background-image:url('img/gallery/4_ballet_light.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<!-- 5 -->
+								<a href="work/personal.html" class="project-card tone-light" data-category="visual">
+									<div class="project-media" style="background-image:url('img/gallery/10_vinyl_light.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<a href="work/win4.html" class="project-card tone-dark" data-category="marketing">
+									<div class="project-media" style="background-image:url('img/gallery/5_nextgame_dark.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<!-- 6 -->
+								<a href="work/tiktok.html" class="project-card tone-light" data-category="marketing">
+									<div class="project-media" style="background-image:url('img/gallery/6_socialmediakonzept_light.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<!-- 7 -->
+								<a href="work/personal.html" class="project-card tone-dark" data-category="visual">
+									<div class="project-media" style="background-image:url('img/gallery/7_beauty_dark.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<!-- 8 -->
+								<a href="work/personal.html" class="project-card tone-dark" data-category="web">
+									<div class="project-media" style="background-image:url('img/gallery/9_website_dark.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<a href="work/eiskunstlauf.html" class="project-card tone-light" data-category="web">
+									<div class="project-media" style="background-image:url('img/gallery/8_ecw_light.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<!-- 9 -->
+						
+								<!-- 10 -->
+								
+								<!-- 11 -->
+								<a href="work/komthur.html" class="project-card tone-dark" data-category="web">
+									<div class="project-media" style="background-image:url('img/gallery/11_komthur_dark.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<!-- 12 -->
+								<a href="work/sbw.html" class="project-card tone-light" data-category="visual">
+									<div class="project-media" style="background-image:url('img/gallery/12_muted_light.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<!-- 13 -->
+						
+								<!-- 14 -->
+								<a href="work/sbw.html" class="project-card tone-light" data-category="visual">
+									<div class="project-media" style="background-image:url('img/gallery/14_typobook_light.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<a href="work/animation.html" class="project-card tone-dark" data-category="motion">
+									<div class="project-media" style="background-image:url('img/gallery/13_ani_dark.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<!-- 15 -->
+								<a href="work/personal.html" class="project-card tone-light" data-category="visual">
+									<div class="project-media" style="background-image:url('img/gallery/16_collage_light.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<a href="work/fotografie.html" class="project-card tone-dark" data-category="visual">
+									<div class="project-media" style="background-image:url('img/gallery/15_sgmodel_dark.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<!-- 16 -->
+						
+								<!-- 17 -->
+								<a href="work/wehelp.html" class="project-card tone-dark" data-category="marketing">
+									<div class="project-media" style="background-image:url('img/gallery/17_wehelp_dark.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<!-- 18 -->
+								<a href="work/personal.html" class="project-card tone-light" data-category="visual">
+									<div class="project-media" style="background-image:url('img/gallery/18_bewerbung_light.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<!-- 19 -->
+								<a href="work/animation.html" class="project-card tone-dark" data-category="motion">
+									<div class="project-media" style="background-image:url('img/gallery/19_yftrailer_dark.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<!-- 20 -->
+								<a href="work/sbwn.html" class="project-card tone-light" data-category="marketing">
+									<div class="project-media" style="background-image:url('img/gallery/20_jumpin_light.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<!-- 21 -->
+						
+								<!-- 22 -->
+								<a href="work/komthur.html" class="project-card tone-light" data-category="marketing">
+									<div class="project-media" style="background-image:url('img/gallery/22_insta_light.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<a href="work/personal.html" class="project-card tone-dark" data-category="motion">
+									<div class="project-media" style="background-image:url('img/gallery/21_presentation_dark.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<!-- 23 -->
+							
+								<!-- 24 -->
+								<a href="work/fotografie.html" class="project-card tone-light" data-category="visual">
+									<div class="project-media" style="background-image:url('img/gallery/24_corona_light.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+								<a href="work/sbw.html" class="project-card tone-dark" data-category="marketing">
+									<div class="project-media" style="background-image:url('img/gallery/23_immo_dark.jpg')"></div>
+									<div class="project-overlay"></div>
+									<div class="project-info">
+										<button class="project-btn">MEHR DETAILS</button>
+									</div>
+								</a>
+							</div>
+				</section>
+				<!-- Blog Section -->
+				<section class="section-blog" id="blog" aria-label="Blog">
+					<div class="container">
+						<h2 style="color: white;">Blog</h2>
+						<div class="blog-grid" id="blogGrid">
+							<article class="blog-card" data-category="design">
+								<div class="blog-thumb" style="background-image:url('img/idpa.jpg')" loading="lazy" aria-hidden="true"></div>
+								<div class="blog-content">
+									<h3 class="blog-title">Die Illusion der freien Meinung</h3>
+									<p class="blog-teaser">Demokratie in Zeiten von Social Media & KI</p>
+									<a href="../blog/idpa.html" class="read-more" data-target="post-1">Weiterlesen</a>
+								</div>
+							</article>
+							<article class="blog-card" data-category="process">
+								<div class="blog-thumb" style="background-image:url('img/tiktok.png')" loading="lazy" aria-hidden="true"></div>
+								<div class="blog-content">
+									<h3 class="blog-title">10k Follower in 30 Tagen</h3>
+									<p class="blog-teaser">Meine Faceless Tiktok Strategie</p>
+									<a href="../blog/tiktok.html" class="read-more" data-target="post-3">Weiterlesen</a>
+								</div>
+							</article>
+							<article class="blog-card" data-category="marketing">
+								<div class="blog-thumb" style="background-image:url('img/threads.webp')" loading="lazy" aria-hidden="true"></div>
+								<div class="blog-content">
+									<h3 class="blog-title">Trending on Threads</h3>
+									<p class="blog-teaser">Wie ich auf Threads meine eigene Trading Community aufgebaut habe</p>
+									<a href="../blog/threads.html" class="read-more" data-target="post-3">Weiterlesen</a>
+								</div>
+							</article>
+						</div>
+					</div>
+				</section>
+			</main>
+ <!-- Footer -->
+ <footer class="site-footer" aria-label="Seitenende">
+	<div class="container footer-inner">
+	   <div class="footer-copy">© 2026 Design & Development by Khadija Okbi</div>
+	   <div class="footer-socials" aria-label="Soziale Netzwerke">
+		  <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
+			<!-- GitHub Icon -->
+			<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/>
+			</svg>
+		  </a>
+		  <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn">
+			<!-- LinkedIn Icon -->
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/>
+			  <path d="M6.5 9.5v8.5M6.5 7.5v.01M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>
+		  </a>
+		  <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok">
+			<!-- TikTok Icon (stylized note) -->
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <path d="M16 7.5c.5 0 .9.04 1.3.12v3.38a4.2 4.2 0 0 1-2.3-.64v5.64A4.86 4.86 0 0 1 11 20a4.86 4.86 0 0 1-4.86-4.86 4.86 4.86 0 0 1 4.86-4.86c.28 0 .55.03.81.08V7.5h.19c1.14 0 2.09.37 2.99 1.03V7.5z" fill="currentColor"/>
+			</svg>
+		  </a>
+		  <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen">
+			<!-- CodePen Icon -->
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.1" fill="none"/>
+			  <path d="M3.5 7.5l8.5 5 8.5-5" stroke="currentColor" stroke-width="1.1" fill="none"/>
+			  <path d="M12 21.5v-10" stroke="currentColor" stroke-width="1.1" fill="none"/>
+			</svg>
+		  </a>
+	   </div>
+	</div>
+ </footer>
+<script src="script/main.js"></script>
+	</body>
 </html>
