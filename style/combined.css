@@ -57,7 +57,8 @@
   }
   html {
     scroll-behavior: smooth;
-      overflow:hidden;
+      overflow-x: hidden;
+  overflow-y: auto;
   }
   body {
     font-family: var(--font-body);
