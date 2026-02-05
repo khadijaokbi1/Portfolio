@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>IPA: Online-Marketing Komthur GmbH</title>
+        <meta name="description" content="Umfassendes Marketing-Konzept für die Komthur GmbH – SEO, Social Media & Strategische Positionierung." />
+        <link rel="icon" type="image/png" href="../img/logo_white.png" />
+        
+        <!-- Fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&family=Italiana&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+        
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+        
+        <!-- GSAP -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        
+        <!-- Main Styles -->
+        <link rel="stylesheet" href="../style/combined.css" />
+        
+        <style>
+            :root {
+                --border-color: rgba(0, 0, 0, 0.08);
+                --border-dark: rgba(255, 255, 255, 0.1);
+            }
+
+            .text-burgundy { color: var(--accent-burgundy); }
+            .text-cream { color: var(--text-primary-light); }
+            .font-serif { font-family: var(--font-higuen); }
+            .uppercase-label {
+                font-family: var(--font-body);
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                letter-spacing: 0.15em;
+                font-weight: 500;
+            }
+
+            /* Image Placeholder */
+            .img-placeholder {
+                background: var(--accent-burgundy);
+                border: 1px solid var(--border-color);
+                border-radius: 2px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #999;
+                font-size: 0.85rem;
+                text-align: center;
+                overflow: hidden;
+            }
+
+            .img-placeholder svg {
+                width: 40px;
+                height: 40px;
+                opacity: 0.3;
+                margin-right: 0.5rem;
+            }
+
+            /* HERO SECTION */
+            .hero-section {
+                position: relative;
+                width: 100%;
+                height: 100vh;
+                overflow: hidden;
+            }
+            .hero-video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .hero-overlay {
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(to bottom, rgba(49, 74, 81, 0.4), rgba(49, 74, 81, 0.8));
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+            .hero-badge {
+                border: 1px solid var(--accent-burgundy);
+                padding: 0.5rem 1.5rem;
+                border-radius: 50px;
+                color: #314A51;
+                margin-bottom: 2rem;
+                backdrop-filter: blur(5px);
+            }
+            .hero-title-large {
+                font-family: var(--font-higuen);
+                font-size: clamp(3.5rem, 9vw, 8rem);
+                line-height: 0.9;
+                color: #314A51;
+                margin-bottom: 2rem;
+            }
+            .hero-title-large span {
+                display: block;
+                font-style: italic;
+                color: #6E3B49;
+            }
+            
+            /* SECTION STYLING */
+            .editorial-section {
+                padding: clamp(6rem, 12vh, 8rem) 0;
+                position: relative;
+            }
+            .bg-cream { background-color: #F5F5F5; }
+            .bg-dark { background-color: #314A51; color: #EBE1D1; }
+            .bg-burgundy { background-color: #6E3B49; color: #EBE1D1; }
+
+            /* Editorial Headings */
+            .section-header {
+                margin-bottom: 3.5rem;
+                border-top: 1px solid currentColor;
+                padding-top: 1.5rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                flex-wrap: wrap;
+                gap: 2rem;
+            }
+            .section-header h2 {
+                font-family: var(--font-higuen);
+                font-size: clamp(2.5rem, 5vw, 4rem);
+                margin: 0;
+                line-height: 1;
+            }
+            .section-intro {
+                max-width: 50ch;
+                font-size: 1rem;
+                opacity: 0.85;
+                line-height: 1.7;
+            }
+
+            /* ZIELGRUPPEN */
+            .data-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2px;
+                background: var(--border-color);
+                border: 1px solid var(--border-color);
+                margin-top: 2rem;
+            }
+            .data-item {
+                background: white;
+                padding: 2.5rem 2rem;
+                transition: all 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100%;
+            }
+            .data-item:hover {
+                background: #fafafa;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            }
+            .data-number {
+                font-family: var(--font-higuen);
+                font-size: 2.8rem;
+                color: var(--accent-burgundy);
+                opacity: 0.15;
+                margin-bottom: 0.75rem;
+            }
+            .data-item h3 {
+                font-size: 1.15rem;
+                margin-bottom: 0.5rem;
+                color: #2D2D2D;
+            }
+            .data-item p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+                margin-bottom: 1rem;
+            }
+
+            /* PERSONAS */
+            .persona-wrapper {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 3rem;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                padding-top: 3rem;
+                margin-top: 1rem;
+            }
+            .persona-col {
+                position: relative;
+                padding: 0.5rem 0;
+            }
+            .persona-avatar {
+                width: 100%;
+                height: 250px;
+                margin-bottom: 1.5rem;
+                border-radius: 2px;
+            }
+            .persona-header {
+                margin-bottom: 1.75rem;
+            }
+            .persona-name {
+                font-family: var(--font-higuen);
+                font-size: 2.2rem;
+                color: #EBE1D1;
+                margin-bottom: 0.25rem;
+            }
+            .persona-role {
+                display: block;
+                font-size: 0.7rem;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: #B5A19E;
+                margin-top: 0.5rem;
+            }
+            .persona-stat {
+                margin-bottom: 1.5rem;
+                border-left: 2px solid #6E3B49;
+                padding-left: 1rem;
+            }
+            .persona-stat span {
+                display: block;
+                opacity: 0.6;
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                margin-bottom: 0.5rem;
+            }
+            .persona-stat p {
+                color: #EBE1D1;
+                font-size: 0.95rem;
+                margin: 0;
+            }
+            
+            /* TABS */
+            .tabs-container {
+                display: grid;
+                grid-template-columns: 220px 1fr;
+                gap: 3rem;
+                min-height: 450px;
+            }
+            .tabs-nav {
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+                border-right: 1px solid var(--border-color);
+                padding-right: 1.5rem;
+            }
+            .tab-btn {
+                text-align: left;
+                padding: 1.25rem 0;
+                font-family: var(--font-higuen);
+                font-size: 1.35rem;
+                color: #999;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                border-right: 2px solid transparent;
+                margin-right: -2px;
+            }
+            .tab-btn:hover { color: var(--accent-burgundy); }
+            .tab-btn.active {
+                color: var(--accent-burgundy);
+                border-right-color: var(--accent-burgundy);
+            }
+            .tab-panel {
+                display: none;
+                animation: fadeUp 0.5s ease;
+            }
+            .tab-panel.active { display: block; }
+
+            .tab-content-box {
+                background: rgba(255,255,255,0.05);
+                padding: 2rem;
+                border-left: 3px solid #6E3B49;
+                margin-top: 2rem;
+                border-radius: 2px;
+            }
+            
+            /* Circular Chart */
+            .circle-chart {
+                width: 140px;
+                height: 140px;
+                border-radius: 50%;
+                background: conic-gradient(var(--accent-burgundy) 75%, #eee 0);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 2rem;
+            }
+            .circle-inner {
+                width: 130px;
+                height: 130px;
+                background: white;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+            .circle-val { 
+                font-family: var(--font-higuen); 
+                font-size: 2.2rem; 
+                color: var(--accent-burgundy); 
+            }
+
+            /* MOCKUP */
+            .mockup-container {
+                position: relative;
+                margin-top: 2.5rem;
+            }
+            .mockup-frame {
+                background: #1a1a1a;
+                border-radius: 12px;
+                padding: 0.5rem;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+                overflow: hidden;
+            }
+            .mockup-header {
+                height: 24px;
+                background: #2d2d2d;
+                border-radius: 8px 8px 0 0;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                padding-left: 10px;
+                margin-bottom: -1px;
+            }
+            .dot { width: 8px; height: 8px; border-radius: 50%; }
+            
+            /* COMPARISON TABLE */
+            .comparison-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 2rem;
+            }
+            .comparison-table th {
+                text-align: left;
+                padding: 1.5rem;
+                font-family: var(--font-higuen);
+                font-size: 1.35rem;
+                border-bottom: 2px solid #000;
+                background: #f9f9f9;
+            }
+            .comparison-table td {
+                padding: 1.25rem 1.5rem;
+                border-bottom: 1px solid #e0e0e0;
+                vertical-align: top;
+            }
+            .comparison-col-bad { width: 35%; color: #666; }
+            .comparison-col-good { width: 35%; font-weight: 500; color: var(--accent-burgundy); }
+            .check-icon { color: var(--accent-burgundy); margin-right: 0.5rem; }
+            .cross-icon { color: #999; margin-right: 0.5rem; }
+
+            /* RESULTS */
+            .results-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                margin-top: 2rem;
+            }
+            .result-item {
+                padding: 3.5rem 2rem;
+                text-align: center;
+                border-right: 1px solid rgba(255,255,255,0.1);
+            }
+            .result-item:last-child { border-right: none; }
+            .big-number {
+                display: block;
+                font-family: var(--font-higuen);
+                font-size: clamp(2.5rem, 5vw, 4.5rem);
+                color: #EBE1D1;
+                line-height: 1;
+                margin-bottom: 0.75rem;
+            }
+            
+            /* CHECKLIST */
+            .goals-layout {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+                margin-top: 2rem;
+            }
+            .checklist-group {
+                background: #fff;
+                padding: 2.5rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+                border-radius: 2px;
+            }
+            .checklist-group h3 {
+                font-family: var(--font-higuen);
+                font-size: 1.4rem;
+                margin-bottom: 1.75rem;
+            }
+            .check-item {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 1.25rem;
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+            .custom-check {
+                width: 22px;
+                height: 22px;
+                min-width: 22px;
+                border: 1.5px solid var(--accent-burgundy);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 1rem;
+                margin-top: 2px;
+                font-size: 10px;
+                color: var(--accent-burgundy);
+            }
+
+            /* CONTEXT BOX */
+            .context-box {
+                background: rgba(255,255,255,0.08);
+                padding: 2rem;
+                border-left: 3px solid #56686A;
+                margin-top: 2rem;
+                border-radius: 2px;
+                line-height: 1.8;
+            }
+
+            /* Responsive */
+            @media (max-width: 900px) {
+                .tabs-container { grid-template-columns: 1fr; min-height: auto; gap: 2rem; }
+                .tabs-nav { flex-direction: row; overflow-x: auto; border-right: none; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; padding-right: 0; margin-bottom: 1.5rem; }
+                .tab-btn { border-right: none; border-bottom: 2px solid transparent; padding: 1rem 1.5rem; font-size: 1.1rem; white-space: nowrap; }
+                .tab-btn.active { border-bottom-color: var(--accent-burgundy); }
+                .results-grid { grid-template-columns: 1fr; }
+                .result-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+                .result-item:last-child { border-bottom: none; }
+                .goals-layout { grid-template-columns: 1fr; gap: 2rem; }
+                .persona-wrapper { gap: 2rem; }
+            }
+
+            @keyframes fadeUp {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+                /* SEO Score Animation */
+    @keyframes fillSEOScore {
+        from {
+            stroke-dashoffset: 565.48;
+        }
+        to {
+            stroke-dashoffset: 327.57; /* 42% of 565.48 */
+        }
+    }
+
+    .seo-progress-circle {
+        animation: fillSEOScore 2.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    @keyframes countSEOScore {
+        from {
+            content-visibility: auto;
+        }
+        to {
+            content-visibility: auto;
+        }
+    }
+
+    /* Ads Bars Animation */
+    @keyframes fillGoogleBar {
+        from { width: 0%; }
+        to { width: 75%; }
+    }
+
+    @keyframes fillLinkedinBar {
+        from { width: 0%; }
+        to { width: 100%; }
+    }
+
+    @keyframes fillMetaBar {
+        from { width: 0%; }
+        to { width: 30%; }
+    }
+
+    .google-bar {
+        animation: fillGoogleBar 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s forwards !important;
+    }
+
+    .linkedin-bar {
+        animation: fillLinkedinBar 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s forwards !important;
+    }
+
+    .meta-bar {
+        animation: fillMetaBar 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.7s forwards !important;
+    }
+
+    /* Trigger animations on scroll */
+    .editorial-section:nth-of-type(11) .seo-progress-circle {
+        animation-play-state: paused;
+        animation-fill-mode: both;
+    }
+
+    .editorial-section:nth-of-type(11).in-view .seo-progress-circle {
+        animation-play-state: running;
+    }    /* Carousel Hover Effects */
+    .carousel-item {
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+    }
+
+    .carousel-item:hover {
+        opacity: 1;
+    }
+
+    .carousel-item:hover .post-overlay {
+        opacity: 1 !important;
+    }
+
+    /* Button Hover */
+    .carousel-btn:hover {
+        background: #f5f5f5;
+        border-color: #56686A;
+    }
+
+    /* Smooth Scroll */
+    .carousel-container {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Hide Scrollbar */
+    .carousel-container::-webkit-scrollbar {
+        display: none;
+    }
+    .carousel-container {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /* Dot Animation */
+    .carousel-dot.active {
+        transform: scale(1.3);
+    }
+
+        </style>
+    </head>
+
+    <body>
+        <!-- HEADER -->
+        <header class="site-header" id="top">
+            <div class="container nav-bar">
+                <a href="../index.html" class="logo">
+                    <img src="../img/logo_black.png" alt="Khadija Okbi Logo" width="45">
+                    <img src="../img/logo_white.png" alt="Khadija Okbi Logo" width="45" class="logo-onscroll">
+                </a>
+                <nav class="nav">
+                    <a href="index.html#hero" class="nav-link">Home</a>
+                    <a href="../index.html/#expertise" class="nav-link">What I do</a>
+                    <a href="../index.html/#blog" class="nav-link">Blog</a>
+                    <a href="../about.html" class="nav-link">About me</a>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <!-- HERO -->
+            <section class="hero-section">
+                <video class="hero-video" autoplay muted loop playsinline>
+                    <source src="../video/Komthur.mp4" type="video/mp4">
+                </video>
+                              </section>
+                              <section class="intro">
+                    <div class="container" style="text-align: center;">
+                        <div class="hero-badge uppercase-label">IPA Projekt 2023</div>
+                        <h1 class="hero-title-large">
+                            Online-Marketing
+                            <span>Konzept</span>
+                        </h1>
+                        <p style="color: #314A51; font-weight: 300; letter-spacing: 0.1em; max-width: 700px; margin: 0 auto; line-height: 1.8; font-size: 1.05rem;">
+                            Eine ganzheitliche Neuausrichtung für die Komthur GmbH. Von der Zielgruppenanalyse über digitale Transformation bis zur messbaren Erfolgsrealisierung.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BRIEF OVERVIEW -->
+            <section class="editorial-section bg-cream">
+                <div class="container">
+                    <div style="max-width: 65ch; margin: 0 auto; text-align: center; padding: 2rem 0;">
+                        <p style="font-size: 1.05rem; line-height: 1.9; color: #555; margin-bottom: 2rem;">
+                            Mit einer umfassenden Analyse der Zielgruppe, Wettbewerbslandschaft und digitalen Chancen hat dieses Projekt die Grundlage für eine nachhaltige Online-Präsenz gelegt. Der Fokus lag auf datengetriebenen Entscheidungen, authentischer Markenpositionierung und konkreten, messbaren Strategien für die Zukunft.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        <!-- SWOT Analysis -->
+         <section class="swot"> 
+        <div class="container">
+        <div style="margin-top: 3rem;">
+            <h3 style="font-family: var(--font-higuen); font-size: 1.35rem; color: #EBE1D1; margin-bottom: 2rem;">
+                <i class="fa-solid fa-bullseye" style="margin-right: 0.75rem;"></i>
+                SWOT-Analyse
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+                <!-- Strengths -->
+                <div style="background: rgba(86, 104, 106, 0.1); padding: 2rem; border-left: 4px solid #56686A; border-radius: 2px;">
+                    <h4 style="color: #56686A; font-size: 1.1rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">
+                        <i class="fa-solid fa-shield" style="margin-right: 0.5rem;"></i>Stärken
+                    </h4>
+                    <ul style="list-style: none; padding: 0; color: #EBE1D1; font-size: 0.95rem;">
+                        <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">✓</span>
+                            Langjährige Erfahrung & hohe Fachkompetenz
+                        </li>
+                        <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">✓</span>
+                            Authentische, regionale Online-Präsenz
+                        </li>
+                        <li style="padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">✓</span>
+                            Starke Referenzen & Kundenbeziehungen
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Weaknesses -->
+                <div style="background: rgba(255,255,255,0.08); padding: 2rem; border-left: 4px solid #B5A19E; border-radius: 2px;">
+                    <h4 style="color: #B5A19E; font-size: 1.1rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">
+                        <i class="fa-solid fa-triangle-exclamation" style="margin-right: 0.5rem;"></i>Schwächen
+                    </h4>
+                    <ul style="list-style: none; padding: 0; color: #EBE1D1; font-size: 0.95rem;">
+                        <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">⚠</span>
+                            Kleine Agentur (2 Mitarbeiter)
+                        </li>
+                        <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">⚠</span>
+                            Social-Media Präsenz unaktiv
+                        </li>
+                        <li style="padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">⚠</span>
+                            Begrenzte Skalierungsmöglichkeiten
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Opportunities -->
+                <div style="background: rgba(110, 59, 73, 0.1); padding: 2rem; border-left: 4px solid #6E3B49; border-radius: 2px;">
+                    <h4 style="color: #6E3B49; font-size: 1.1rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">
+                        <i class="fa-solid fa-star" style="margin-right: 0.5rem;"></i>Chancen
+                    </h4>
+                    <ul style="list-style: none; padding: 0; color: #EBE1D1; font-size: 0.95rem;">
+                        <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">+</span>
+                            Social-Media-Kanal-Expansion für Awareness
+                        </li>
+                        <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">+</span>
+                            National skalierbar über Paid Ads
+                        </li>
+                        <li style="padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">+</span>
+                            Content-Marketing für SEO & Authority
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Threats -->
+                <div style="background: rgba(255,255,255,0.05); padding: 2rem; border-left: 4px solid #999; border-radius: 2px;">
+                    <h4 style="color: #B5A19E; font-size: 1.1rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">
+                        <i class="fa-solid fa-exclamation" style="margin-right: 0.5rem;"></i>Risiken
+                    </h4>
+                    <ul style="list-style: none; padding: 0; color: #EBE1D1; font-size: 0.95rem;">
+                        <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">✕</span>
+                            Größere Agenturen mit mehr Ressourcen
+                        </li>
+                        <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">✕</span>
+                            Fragmentierter Markt & niedriges Vertrauen
+                        </li>
+                        <li style="padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0;">✕</span>
+                            Schnelle Technologie-Veränderungen
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </container>
+</section>
+
+<!-- STRATEGIC ANALYSIS SECTION -->
+<section class="editorial-section bg-dark">
+    <div class="container">
+        <div class="section-header" style="border-color: rgba(255,255,255,0.2);">
+            <h2>Strategische <span style="color: #6E3B49;">Analyse.</span></h2>
+            <p class="section-intro text-cream">SWOT, Customer Journey und Konkurrenzpositionierung — die Fundamente der Strategie.</p>
+        </div>
+
+  
+
+        <!-- Competitor Positioning -->
+        <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+            <h3 style="font-family: var(--font-higuen); font-size: 1.35rem; color: #EBE1D1; margin-bottom: 2rem;">
+                <i class="fa-solid fa-ranking-star" style="margin-right: 0.75rem;"></i>
+                Konkurrenz-Positionierung
+            </h3>
+            <div style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 2px;">
+                <p style="color: #EBE1D1; margin-bottom: 1.5rem;">
+                    <strong>Komthur vs. Wettbewerber:</strong> Agentur Koch, Gut Werbung, WEMAKO
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem;">
+                    <div>
+                        <p style="color: #B5A19E; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem;">
+                            <i class="fa-solid fa-check" style="color: #6E3B49; margin-right: 0.5rem;"></i>Komthur
+                        </p>
+                        <ul style="list-style: none; padding: 0; color: #EBE1D1; font-size: 0.9rem;">
+                            <li style="margin-bottom: 0.5rem;">✓ Authentisch</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Regional verankert</li>
+                            <li>✓ Persönliche Note</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p style="color: #B5A19E; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem;">
+                            <i class="fa-solid fa-times" style="color: #999; margin-right: 0.5rem;"></i>Konkurrenten
+                        </p>
+                        <ul style="list-style: none; padding: 0; color: #EBE1D1; font-size: 0.9rem;">
+                            <li style="margin-bottom: 0.5rem;">✕ Großagenturen</li>
+                            <li style="margin-bottom: 0.5rem;">✕ Generische Lösungen</li>
+                            <li>✕ Wenig Social-Media</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <p style="color: #EBE1D1; font-size: 0.95rem; margin: 0;">
+                        <strong>Positionierungsvorteil:</strong> "Partner statt Agentur" — individuelle Beratung, direkte Ansprechperson, transparente Abläufe. Die anderen sind zu groß, zu distanziert.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- PRODUCTS & STRATEGY SECTION -->
+            <section class="editorial-section bg-cream">
+                <div class="container">
+                    <div class="section-header" style="border-color: #ddd;">
+                        <h2>Produkte & <span class="text-burgundy">Strategie.</span></h2>
+                        <p class="section-intro">Vier umfassende strategische Bereiche, die kombiniert zu measurable Results führen.</p>
+                    </div>
+
+                    <div class="tabs-container">
+                        <div class="tabs-nav">
+                            <div class="tab-btn active" onclick="switchTab('seo', this)">SEO</div>
+                            <div class="tab-btn" onclick="switchTab('web', this)">Website</div>
+                            <div class="tab-btn" onclick="switchTab('social', this)">Social</div>
+                            <div class="tab-btn" onclick="switchTab('ads', this)">Paid Ads</div>
+                        </div>
+
+                        <div class="tabs-content-area">
+                            <div id="seo" class="tab-panel active">
+                                <h3 class="text-burgundy" style="font-family: var(--font-higuen); font-size: 2rem; margin-bottom: 1rem;">Technisches SEO &<br>Suchmaschinenoptimierung</h3>
+                                <p style="max-width: 65ch; line-height: 1.8; margin-bottom: 1.5rem;">
+                                    Durchführung einer umfassenden Google Analytics Analyse zur Identifikation von Traffic-Quellen und User-Verhalten. Keywords mit hohem Suchvolumen und niedriger Konkurrenz für die Region Thurgau wurden identifiziert und strategisch platziert. Technische SEO-Korrektionen: Meta-Tags Optimierung, Alt-Text-Struktur, Mobile-Rendering und Ladegeschwindigkeit.
+                                </p>
+                                <p style="color: #666; font-size: 0.95rem; margin-bottom: 1.5rem;">
+                                    <strong>Zielkeywords:</strong> "Grafikdesign Kreuzlingen", "Werbeagentur Thurgau", "Corporate Design Bodensee", "Digitale Strategie Schweiz"
+                                </p>
+                            </div>
+
+                            <div id="web" class="tab-panel">
+                                <h3 class="text-burgundy" style="font-family: var(--font-higuen); font-size: 2rem; margin-bottom: 1rem;">Website Design &<br>UX-Neukonzeption</h3>
+                                <p style="max-width: 65ch; line-height: 1.8; margin-bottom: 1.5rem;">
+                                    Vollständige Neukonzeption als responsiver, emotionaler One-Pager. Kern-Elemente: Video-Hero-Section mit Parallax-Effekt, Storytelling zur Markenpositionierung, klare Visual Hierarchy und prominente Call-to-Actions. Desktop-zu-Mobile-Optimierung für nahtlose User Journey. Portfolio-Präsentation mit Case-Study-Links für höhere Conversion-Rates.
+                                </p>
+                                <p style="color: #666; font-size: 0.95rem; margin-bottom: 1.5rem;">
+                                    <strong>Design-Prinzipien:</strong> Minimalistisch, authentisch, schnell-ladend, mobil-first, conversion-fokussiert
+                                </p>
+                                <div class="tab-content-box">
+                                    <p style="margin: 0;">
+                                        <strong>Status:</strong> Live Prototype verfügbar via Canva<br>
+                                        <strong>Responsive:</strong> Desktop, Tablet, Mobile<br>
+                                        <strong>Performance-Ziel:</strong> <85 PageSpeed Score</p>
+                                </div>
+                            </div>
+
+                            <div id="social" class="tab-panel">
+                                <h3 class="text-burgundy" style="font-family: var(--font-higuen); font-size: 2rem; margin-bottom: 1rem;">Social Media<br>Content-Strategie</h3>
+                                <p style="max-width: 65ch; line-height: 1.8; margin-bottom: 1.5rem;">
+                                    Entwicklung eines 16-wöchigen Master-Content-Plans mit täglich geplanten Postings. Lancierung der Serie "Design Dienstag" zur Etablierung von Expertenstatus. Fokus auf Instagram und LinkedIn als Primär-Kanäle für B2B-Engagement. Konsistentes Visual Design, Story-telling über „Behind-the-Scenes"-Inhalte und Kundenerfolge.
+                                </p>
+                                <p style="color: #666; font-size: 0.95rem; margin-bottom: 1.5rem;">
+                                    <strong>Content-Säulen:</strong> Design-Tipps, Team-Storys, Referenzen, Brancheninsights, Trendanalysen
+                                </p>
+                                <div style="margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                                    <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 2px;">
+                                        <span style="font-family: var(--font-higuen); font-size: 2.5rem; color: #0A0A0A;">16</span>
+                                        <p style="color: #0A0A0A; font-size: 0.8rem; text-transform: uppercase; margin-top: 0.5rem;">Wochen Content Plan</p>
+                                    </div>
+                                    <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 2px;">
+                                        <span style="font-family: var(--font-higuen); font-size: 2.5rem; color: #0A0A0A;">3</span>
+                                        <p style="color: #0A0A0A; font-size: 0.8rem; text-transform: uppercase; margin-top: 0.5rem;">Kanäle</p>
+                                    </div>
+                                </div>
+                            </div>
+                             
+                            <div id="ads" class="tab-panel">
+                                <h3 class="text-burgundy" style="font-family: var(--font-higuen); font-size: 2rem; margin-bottom: 1rem;">Paid Advertising &<br>Budget-Optimierung</h3>
+                                <p style="max-width: 65ch; line-height: 1.8; margin-bottom: 1.5rem;">
+                                    Detaillierter Preisvergleich und Performance-Analyse über Google Ads, Meta (Facebook & Instagram) und LinkedIn Campaign Manager. Budget-Allokation von CHF 5'000 Jahresbudget optimiert für maximale lokale Reichweite im B2B-Sektor. ROI-Prognosen und Cost-Per-Lead-Kalkulationen für alle Kanäle.
+                                </p>
+                                <p style="color: #666; font-size: 0.95rem; margin-bottom: 1.5rem;">
+                                    <strong>Prognosticierte KPIs:</strong><br>
+                                    • Google Ads: 77.248 Impressionen, 8.739 Clicks<br>
+                                    • LinkedIn: 43.040 Impressionen, 6.230 Clicks<br>
+                                    • Facebook/Instagram: 40.004 Impressionen, 504 Clicks
+                                </p>
+                                <div class="tab-content-box">
+                                    <p style="margin: 0;">
+                                        <strong>Budget-Split:</strong> 60% Google | 25% LinkedIn | 15% Meta<br>
+                                        <strong>Optimization-Ziel:</strong> <5 CHF Cost-Per-Click<br>
+                                        <strong>ROI-Erwartung:</strong> 3:1 bis 5:1
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- ZIELGRUPPE -->
+            <section class="editorial-section bg-cream">
+                <div class="container">
+                    <h2>Zielgruppen<span class="text-burgundy">analyse.</span></h2>
+                    <p class="section-intro">Datengetriebene Segmentierung basierend auf Google Analytics und Marktforschung. Vier strategische Dimensionen zur maximal präzisen Kundenansprache.</p>
+                    
+                    <div class="data-list">
+                        <div class="data-item">
+                            <div>
+                                <div class="data-number">01</div>
+                                <h3>Demografie</h3>
+                                <div style="width: 40px; height: 1px; background: #000; margin: 1rem 0;"></div>
+                                <p>25–50 Jahre, M/W, Entscheidungsträger in KMU und mittleren Unternehmungen. Gehobenes Bildungsniveau, hohe Kaufkraft.</p>
+                            </div>
+                            <div class="uppercase-label text-burgundy" style="margin-top: 2rem;">Primärgruppe</div>
+                        </div>
+                        
+                        <div class="data-item">
+                            <div>
+                                <div class="data-number">02</div>
+                                <h3>Psychografie</h3>
+                                <div style="width: 40px; height: 1px; background: #000; margin: 1rem 0;"></div>
+                                <p>Markenbewusst, designaffin, innovationsfreudig. Suchen nach Qualität, Authentizität und persönlicher Beratung statt Massenlösungen.</p>
+                            </div>
+                            <div class="uppercase-label text-burgundy" style="margin-top: 2rem;">Mindset</div>
+                        </div>
+                        
+                        <div class="data-item">
+                            <div>
+                                <div class="data-number">03</div>
+                                <h3>Geografie</h3>
+                                <div style="width: 40px; height: 1px; background: #000; margin: 1rem 0;"></div>
+                                <p>Starke Verankerung im Kanton Thurgau. Fokus Kreuzlingen und Bodenseeregion. Regionale Präsenz mit nationaler Reichweite.</p>
+                            </div>
+                            <div class="uppercase-label text-burgundy" style="margin-top: 2rem;">Lokal</div>
+                        </div>
+
+                        <div class="data-item">
+                            <div>
+                                <div class="data-number">04</div>
+                                <h3>Verhalten</h3>
+                                <div style="width: 40px; height: 1px; background: #000; margin: 1rem 0;"></div>
+                                <p>Hochaktiv auf Social Media und Google. Nutzen Empfehlungen und Bewertungen als Entscheidungshilfe. Mobile-First User.</p>
+                            </div>
+                            <div class="uppercase-label text-burgundy" style="margin-top: 2rem;">Digital</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PERSONAS -->
+            <section class="editorial-section bg-dark">
+                <div class="container">
+                    <div class="section-header" style="border-color: rgba(255,255,255,0.2);">
+                        <h2>Core <span style="font-style: italic;">Personas.</span></h2>
+                        <p class="section-intro text-cream">Drei fundierte Archetypen mit realistische Motivationen, Schmerz­punkte und Touchpoints. Sie definieren die gesamte Kommunikationsstrategie.</p>
+                    </div>
+
+                    <div class="persona-wrapper">
+                        <div class="persona-col">
+                            <div class="img-placeholder" style="height: 650px; margin-bottom: 1.5rem;">
+                                <img src="../img/Eva.png" alt="Persona 1 Bild">
+                            </div>
+                            <div class="persona-header">
+                                <h3 class="persona-name">Eva</h3>
+                                <span class="persona-role">Die Startup-Gründerin • 25 J.</span>
+                            </div>
+                            <div class="persona-stat">
+                                <span>Motivation</span>
+                                <p>Sucht einen kreativen Partner für ein differenziertes, mutiges Corporate Design, das ihr Startup-Spirit widerspiegelt.</p>
+                            </div>
+                            <div class="persona-stat">
+                                <span>Schmerz­punkt</span>
+                                <p>Begrenzte Zeit und Budget, gleichzeitig hohe Qualitätsansprüche. Viele Angebote wirken zu generisch.</p>
+                            </div>
+                            <div class="persona-stat">
+                                <span>Touchpoint</span>
+                                <p>Instagram, Pinterest, LinkedIn & persönliche Website-Besuche. Findet Agenturen über Social Media Empfehlungen.</p>
+                            </div>
+                            <div class="persona-stat">
+                                <span>Location</span>
+                                <p>Bottighofen • Zürich</p>
+                            </div>
+                        </div>
+
+                        <div class="persona-col">
+                            <div class="img-placeholder" style="height: 650px; margin-bottom: 1.5rem;">
+                                <img src="../img/Daniel.png" alt="Persona 2 Bild">
+                            </div>
+                            <div class="persona-header">
+                                <h3 class="persona-name">Daniel</h3>
+                                <span class="persona-role">Der Marketingleiter • 37 J.</span>
+                            </div>
+                            <div class="persona-stat">
+                                <span>Motivation</span>
+                                <p>Benötigt eine langfristige Partnerschaft mit hoher Fachkompetenz für konsistente Markenentwicklung und Kampagnen­umsetzung.</p>
+                            </div>
+                            <div class="persona-stat">
+                                <span>Schmerz­punkt</span>
+                                <p>Ständig wechselnde Agenturen-Partner, Missverständnisse bei Briefing-Übergaben. Sucht Stabilität und Verlässlichkeit.</p>
+                            </div>
+                            <div class="persona-stat">
+                                <span>Touchpoint</span>
+                                <p>LinkedIn, Business-Kontakte, Branchenkonferenzen. Sehr bewusste und geplante Auswahlprozesse für Partnerschaften.</p>
+                            </div>
+                            <div class="persona-stat">
+                                <span>Location</span>
+                                <p>Kreuzlingen • Basel-Stadt</p>
+                            </div>
+                        </div>
+
+                        <div class="persona-col">
+                            <div class="img-placeholder" style="height: 650px; margin-bottom: 1.5rem;">
+                                <img src="../img/Maria.png" alt="Persona 3 Bild">
+                            </div>
+                            <div class="persona-header">
+                                <h3 class="persona-name">Maria</h3>
+                                <span class="persona-role">Die Inhaberin • 48 J.</span>
+                            </div>
+                            <div class="persona-stat">
+                                <span>Motivation</span>
+                                <p>Sucht einen erfahrenen Partner für Print-, Digital- und Rebranding-Projekte. Wert auf persönliche Beziehung und Zuverlässigkeit.</p>
+                            </div>
+                            <div class="persona-stat">
+                                <span>Schmerz­punkt</span>
+                                <p>Viele unerprobte oder unerfahrene Agenturen. Online-Präsenz wird oft vernachlässigt gegenüber Print-Focus.</p>
+                            </div>
+                            <div class="persona-stat">
+                                <span>Touchpoint</span>
+                                <p>Google-Suche (hohe Relevanz), Empfehlungen, Telefon. Eher analog als digital in der Entscheidungsfindung.</p>
+                            </div>
+                            <div class="persona-stat">
+                                <span>Location</span>
+                                <p>Kreuzlingen • Zürich</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="context-box">
+                        <strong>Insight:</strong> Alle drei Personas vereint das Bedürfnis nach <em>Authentizität</em>, <em>Fachkompetenz</em> und <em>persönlicher Betreuung</em>. Dies ist das Kern-Positionierungsmerkmal der Komthur GmbH.
+                    </div>
+                </div>
+                      <!-- Customer Journey -->
+                       <div class="container">
+        <div style="margin-top: 3rem;">
+            <h3 style="font-family: var(--font-higuen); font-size: 1.35rem; color: #EBE1D1; margin-bottom: 2rem;">
+                <i class="fa-solid fa-arrow-right-long" style="margin-right: 0.75rem;"></i>
+                Customer Journey (3 Personas)
+            </h3>
+            <p style="color: #EBE1D1; opacity: 0.85; font-size: 0.95rem; margin-bottom: 1.75rem;">
+                Jede Persona folgt einem unterschiedlichen Journey. Die Strategie muss alle drei parallel adressieren mit angepassten Touchpoints und Messaging.
+            </p>
+            <div style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 2px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem;">
+                    <!-- Eva Journey -->
+                    <div>
+                        <h4 style="color: #6E3B49; margin-bottom: 1.5rem; font-size: 1rem;">
+                            <span style="background: #6E3B49; color: white; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 0.75rem; font-size: 0.85rem;">E</span>
+                            Eva (Startup)
+                        </h4>
+                        <div style="font-size: 0.85rem; color: #EBE1D1; line-height: 1.8;">
+                            <p style="margin: 0 0 0.75rem 0;"><strong>1. Awareness:</strong> Instagram-Ads, Pinterest</p>
+                            <p style="margin: 0 0 0.75rem 0;"><strong>2. Consideration:</strong> Website-Visit, Portfolio Review</p>
+                            <p style="margin: 0 0 0.75rem 0;"><strong>3. Decision:</strong> Direkter Kontakt via DM oder Form</p>
+                            <p style="margin: 0;"><strong style="color: #6E3B49;">Touchpoint:</strong> Social Media dominant</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Daniel Journey -->
+                    <div>
+                        <h4 style="color: #0A66C2; margin-bottom: 1.5rem; font-size: 1rem;">
+                            <span style="background: #0A66C2; color: white; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 0.75rem; font-size: 0.85rem;">D</span>
+                            Daniel (Marketing)
+                        </h4>
+                        <div style="font-size: 0.85rem; color: #EBE1D1; line-height: 1.8;">
+                            <p style="margin: 0 0 0.75rem 0;"><strong>1. Awareness:</strong> LinkedIn-Ads, Empfehlungen</p>
+                            <p style="margin: 0 0 0.75rem 0;"><strong>2. Consideration:</strong> Case Studies, Webseite-Deep-Dive</p>
+                            <p style="margin: 0 0 0.75rem 0;"><strong>3. Decision:</strong> Persönliches Gespräch, RFP</p>
+                            <p style="margin: 0;"><strong style="color: #0A66C2;">Touchpoint:</strong> B2B, formal</p>
+                        </div>
+                    </div>
+
+                    <!-- Maria Journey -->
+                    <div>
+                        <h4 style="color: #FF9800; margin-bottom: 1.5rem; font-size: 1rem;">
+                            <span style="background: #FF9800; color: white; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 0.75rem; font-size: 0.85rem;">M</span>
+                            Maria (Owner)
+                        </h4>
+                        <div style="font-size: 0.85rem; color: #EBE1D1; line-height: 1.8;">
+                            <p style="margin: 0 0 0.75rem 0;"><strong>1. Awareness:</strong> Google-Suche "Design Kreuzlingen"</p>
+                            <p style="margin: 0 0 0.75rem 0;"><strong>2. Consideration:</strong> Website-Rankings, Bewertungen</p>
+                            <p style="margin: 0 0 0.75rem 0;"><strong>3. Decision:</strong> Telefon-Kontakt, persönliches Meeting</p>
+                            <p style="margin: 0;"><strong style="color: #FF9800;">Touchpoint:</strong> Suchmaschinen, lokal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            </section>
+
+
+
+<!-- SOCIAL MEDIA CONTENT SHOWCASE SECTION -->
+<section class="editorial-section bg-cream">
+    <div class="container">
+        <div class="section-header" style="border-color: #ddd;">
+            <h2>Social Media<span class="text-burgundy">Content.</span></h2>
+            <p class="section-intro">16-Wochen Master-Content-Plan: "Design Dienstag" Serie mit visuellen Highlights und Video-Konzepten für maximales Engagement.</p>
+        </div>
+
+        <!-- Instagram Posts Carousel -->
+        <div style="margin-top: 3rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+                <h3 style="font-family: var(--font-higuen); font-size: 1.3rem; color: #2D2D2D; margin: 0;">
+                    <i class="fa-brands fa-instagram" style="color: #E1306C; margin-right: 0.75rem;"></i>
+                    Instagram Posts
+                </h3>
+                <div style="display: flex; gap: 0.75rem;">
+                    <button class="carousel-btn prev-insta" onclick="scrollCarousel('insta', -1)" style="width: 40px; height: 40px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 2px; display: flex; align-items: center; justify-content: center; transition: all 0.3s;">
+                        <i class="fa-solid fa-chevron-left" style="color: #56686A; font-size: 0.9rem;"></i>
+                    </button>
+                    <button class="carousel-btn next-insta" onclick="scrollCarousel('insta', 1)" style="width: 40px; height: 40px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 2px; display: flex; align-items: center; justify-content: center; transition: all 0.3s;">
+                        <i class="fa-solid fa-chevron-right" style="color: #56686A; font-size: 0.9rem;"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="carousel-wrapper" style="position: relative; overflow: hidden; border-radius: 2px; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+                <div class="carousel-container insta-carousel" style="display: flex; gap: 1rem; padding: 1.5rem; overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory;">
+                    
+                    <!-- Post 1 -->
+                    <div class="carousel-item" style="min-width: 320px; scroll-snap-align: start;">
+                        <div style="position: relative; padding-top: 100%; background: #f0f0f0; border-radius: 2px; overflow: hidden;">
+                            <img src="../img/instapost.jpg" alt="Instagram Post 1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                            <div class="post-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(86, 104, 106, 0.8) 0%, rgba(0,0,0,0.4) 100%); display: flex; align-items: flex-end; padding: 1.5rem; opacity: 0; transition: opacity 0.3s;">
+                                <span style="color: white; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Neue Website</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Post 2 -->
+                    <div class="carousel-item" style="min-width: 320px; scroll-snap-align: start;">
+                        <div style="position: relative; padding-top: 100%; background: #f0f0f0; border-radius: 2px; overflow: hidden;">
+                            <img src="../img/instapost3.jpg" alt="Instagram Post 2" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                            <div class="post-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(86, 104, 106, 0.8) 0%, rgba(0,0,0,0.4) 100%); display: flex; align-items: flex-end; padding: 1.5rem; opacity: 0; transition: opacity 0.3s;">
+                                <span style="color: white; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Design Dienstag #01</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Post 3 Video -->
+                    <div class="carousel-item" style="min-width: 320px; scroll-snap-align: start;">
+                        <div style="position: relative; padding-top: 100%; background: #1a1a1a; border-radius: 2px; overflow: hidden;">
+                            <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" muted loop>
+                                <source src="../video/instapost2.mp4" type="video/mp4">
+                            </video>
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center;">
+                                <i class="fa-solid fa-play" style="font-size: 2rem; opacity: 0.7;"></i>
+                            </div>
+                            <div class="post-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(110, 59, 73, 0.8) 0%, rgba(0,0,0,0.4) 100%); display: flex; align-items: flex-end; padding: 1.5rem; opacity: 0; transition: opacity 0.3s;">
+                                <span style="color: white; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Motion Video</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Placeholder Posts 4-6 -->
+                    <div class="carousel-item" style="min-width: 320px; scroll-snap-align: start;">
+                        <div style="position: relative; padding-top: 100%; background: linear-gradient(135deg, #56686A 0%, #314A51 100%); border-radius: 2px; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
+                            <div>
+                                <i class="fa-solid fa-image" style="font-size: 2.5rem; margin-bottom: 0.75rem; opacity: 0.5;"></i>
+                                <p style="font-size: 0.75rem; opacity: 0.7; margin: 0;">Post 4</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item" style="min-width: 320px; scroll-snap-align: start;">
+                        <div style="position: relative; padding-top: 100%; background: linear-gradient(135deg, #56686A 0%, #314A51 100%); border-radius: 2px; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
+                            <div>
+                                <i class="fa-solid fa-image" style="font-size: 2.5rem; margin-bottom: 0.75rem; opacity: 0.5;"></i>
+                                <p style="font-size: 0.75rem; opacity: 0.7; margin: 0;">Post 5</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item" style="min-width: 320px; scroll-snap-align: start;">
+                        <div style="position: relative; padding-top: 100%; background: linear-gradient(135deg, #56686A 0%, #314A51 100%); border-radius: 2px; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
+                            <div>
+                                <i class="fa-solid fa-image" style="font-size: 2.5rem; margin-bottom: 0.75rem; opacity: 0.5;"></i>
+                                <p style="font-size: 0.75rem; opacity: 0.7; margin: 0;">Post 6</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Indicators -->
+            <div style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.5rem;">
+                <span class="carousel-dot insta-dot active" style="width: 8px; height: 8px; border-radius: 50%; background: #E1306C; cursor: pointer; transition: all 0.3s;" onclick="jumpToSlide('insta', 0)"></span>
+                <span class="carousel-dot insta-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #ddd; cursor: pointer; transition: all 0.3s;" onclick="jumpToSlide('insta', 1)"></span>
+                <span class="carousel-dot insta-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #ddd; cursor: pointer; transition: all 0.3s;" onclick="jumpToSlide('insta', 2)"></span>
+                <span class="carousel-dot insta-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #ddd; cursor: pointer; transition: all 0.3s;" onclick="jumpToSlide('insta', 3)"></span>
+                <span class="carousel-dot insta-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #ddd; cursor: pointer; transition: all 0.3s;" onclick="jumpToSlide('insta', 4)"></span>
+                <span class="carousel-dot insta-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #ddd; cursor: pointer; transition: all 0.3s;" onclick="jumpToSlide('insta', 5)"></span>
+            </div>
+        </div>
+
+        <!-- LinkedIn Posts Carousel -->
+        <div style="margin-top: 4rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+                <h3 style="font-family: var(--font-higuen); font-size: 1.3rem; color: #2D2D2D; margin: 0;">
+                    <i class="fa-brands fa-linkedin" style="color: #0A66C2; margin-right: 0.75rem;"></i>
+                    LinkedIn Posts
+                </h3>
+                <div style="display: flex; gap: 0.75rem;">
+                    <button class="carousel-btn prev-linkedin" onclick="scrollCarousel('linkedin', -1)" style="width: 40px; height: 40px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 2px; display: flex; align-items: center; justify-content: center; transition: all 0.3s;">
+                        <i class="fa-solid fa-chevron-left" style="color: #0A66C2; font-size: 0.9rem;"></i>
+                    </button>
+                    <button class="carousel-btn next-linkedin" onclick="scrollCarousel('linkedin', 1)" style="width: 40px; height: 40px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 2px; display: flex; align-items: center; justify-content: center; transition: all 0.3s;">
+                        <i class="fa-solid fa-chevron-right" style="color: #0A66C2; font-size: 0.9rem;"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="carousel-wrapper" style="position: relative; overflow: hidden; border-radius: 2px; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+                <div class="carousel-container linkedin-carousel" style="display: flex; gap: 1rem; padding: 1.5rem; overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory;">
+                    
+                    <!-- LinkedIn Post 1 -->
+                    <div class="carousel-item" style="min-width: 380px; scroll-snap-align: start;">
+                        <div style="background: white; border: 1px solid #ddd; border-radius: 2px; padding: 1.5rem; height: 500px; display: flex; flex-direction: column;">
+                            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #0A66C2 0%, #056399 100%); border-radius: 50%; margin-right: 1rem;"></div>
+                                <div>
+                                    <p style="margin: 0; font-weight: 600; color: #2D2D2D; font-size: 0.9rem;">Komthur GmbH</p>
+                                    <p style="margin: 0; font-size: 0.75rem; color: #999;">vor 2 Tagen</p>
+                                </div>
+                            </div>
+                            <div style="flex: 1; border-bottom: 1px solid #f0f0f0; padding-bottom: 1rem; margin-bottom: 1rem;">
+                                <p style="color: #2D2D2D; font-size: 0.9rem; line-height: 1.6; margin: 0;">
+                                    🚀 Unsere neue Website ist live! Mit modernem Design, optimierter UX und vollständiger Mobilität. Hier beginnt die nächste Phase unserer digitalen Transformation.
+                                </p>
+                            </div>
+                            <img src="../img/linkedin1.png" alt="LinkedIn Post Image" style="width: 100%; height: 120px; object-fit: cover; border-radius: 2px; margin-bottom: 1rem;">
+                            <div style="display: flex; gap: 1rem; font-size: 0.8rem; color: #999;">
+                                <span>👍 284</span>
+                                <span>💬 12</span>
+                                <span>↗️ 48</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LinkedIn Post 2 Video -->
+                    <div class="carousel-item" style="min-width: 380px; scroll-snap-align: start;">
+                        <div style="background: white; border: 1px solid #ddd; border-radius: 2px; padding: 1.5rem; height: 500px; display: flex; flex-direction: column;">
+                            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #0A66C2 0%, #056399 100%); border-radius: 50%; margin-right: 1rem;"></div>
+                                <div>
+                                    <p style="margin: 0; font-weight: 600; color: #2D2D2D; font-size: 0.9rem;">Komthur GmbH</p>
+                                    <p style="margin: 0; font-size: 0.75rem; color: #999;">vor 1 Woche</p>
+                                </div>
+                            </div>
+                            <div style="flex: 1; border-bottom: 1px solid #f0f0f0; padding-bottom: 1rem; margin-bottom: 1rem;">
+                                <p style="color: #2D2D2D; font-size: 0.9rem; line-height: 1.6; margin: 0;">
+                                    📹 Design im Fokus: Wie gute UX die Conversion-Rate um 40% erhöht. Schaut euch unser neues Video an!
+                                </p>
+                            </div>
+                            <div style="position: relative; height: 140px; background: #1a1a1a; border-radius: 2px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; overflow: hidden;">
+                                <video style="width: 100%; height: 100%; object-fit: cover;" muted loop>
+                                    <source src="../video/instastory.mp4" type="video/mp4">
+                                </video>
+                                <div style="position: absolute; color: white;">
+                                    <i class="fa-solid fa-play" style="font-size: 1.5rem; opacity: 0.7;"></i>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 1rem; font-size: 0.8rem; color: #999;">
+                                <span>👍 512</span>
+                                <span>💬 38</span>
+                                <span>↗️ 156</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LinkedIn Post 3-4 Placeholder -->
+                    <div class="carousel-item" style="min-width: 380px; scroll-snap-align: start;">
+                        <div style="background: white; border: 1px solid #ddd; border-radius: 2px; padding: 1.5rem; height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                            <i class="fa-solid fa-file-lines" style="font-size: 2.5rem; color: #999; margin-bottom: 1rem; opacity: 0.5;"></i>
+                            <p style="color: #999; font-size: 0.85rem; margin: 0;">LinkedIn Post 3<br/>(Case Study)</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item" style="min-width: 380px; scroll-snap-align: start;">
+                        <div style="background: white; border: 1px solid #ddd; border-radius: 2px; padding: 1.5rem; height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                            <i class="fa-solid fa-file-lines" style="font-size: 2.5rem; color: #999; margin-bottom: 1rem; opacity: 0.5;"></i>
+                            <p style="color: #999; font-size: 0.85rem; margin: 0;">LinkedIn Post 4<br/>(Insight Post)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Indicators -->
+            <div style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.5rem;">
+                <span class="carousel-dot linkedin-dot active" style="width: 8px; height: 8px; border-radius: 50%; background: #0A66C2; cursor: pointer; transition: all 0.3s;" onclick="jumpToSlide('linkedin', 0)"></span>
+                <span class="carousel-dot linkedin-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #ddd; cursor: pointer; transition: all 0.3s;" onclick="jumpToSlide('linkedin', 1)"></span>
+                <span class="carousel-dot linkedin-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #ddd; cursor: pointer; transition: all 0.3s;" onclick="jumpToSlide('linkedin', 2)"></span>
+                <span class="carousel-dot linkedin-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #ddd; cursor: pointer; transition: all 0.3s;" onclick="jumpToSlide('linkedin', 3)"></span>
+            </div>
+        </div>
+
+        <!-- Content Strategy Info -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 3.5rem;">
+            <div style="background: rgba(56, 106, 114, 0.08); padding: 1.5rem; border-left: 3px solid #56686A; border-radius: 2px;">
+                <h4 style="color: #314A51; font-size: 0.9rem; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">
+                    <i class="fa-solid fa-calendar" style="margin-right: 0.5rem;"></i>16-Wochen Plan
+                </h4>
+                <p style="color: #666; font-size: 0.85rem; margin: 0; line-height: 1.6;">
+                    Strukturierter Content-Kalender mit wöchentlichen Postings, "Design Dienstag" Serie und saisonalen Highlights für konsistente Engagement.
+                </p>
+            </div>
+
+            <div style="background: rgba(224, 49, 108, 0.08); padding: 1.5rem; border-left: 3px solid #E1306C; border-radius: 2px;">
+                <h4 style="color: #E1306C; font-size: 0.9rem; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">
+                    <i class="fa-brands fa-instagram" style="margin-right: 0.5rem;"></i>Instagram Focus
+                </h4>
+                <p style="color: #666; font-size: 0.85rem; margin: 0; line-height: 1.6;">
+                    3x pro Woche: Reels, Stories, Feed-Posts mit Behind-the-Scenes-Content und User-Engagement für maximale Reichweite bei Eva-Persona.
+                </p>
+            </div>
+
+            <div style="background: rgba(10, 102, 194, 0.08); padding: 1.5rem; border-left: 3px solid #0A66C2; border-radius: 2px;">
+                <h4 style="color: #0A66C2; font-size: 0.9rem; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">
+                    <i class="fa-brands fa-linkedin" style="margin-right: 0.5rem;"></i>LinkedIn B2B
+                </h4>
+                <p style="color: #666; font-size: 0.85rem; margin: 0; line-height: 1.6;">
+                    2x pro Woche: Thought Leadership, Case Studies, Insights für Marketing Manager & C-Level Entscheidungsträger (Daniel & Maria).
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+            <!-- WEB REDESIGN -->
+            <section class="editorial-section bg-dark" style="padding-bottom: 0;">
+                <div class="container">
+                    <div style="text-align: center; margin-bottom: 2.5rem;">
+                        <h2 style="font-family: var(--font-higuen); font-size: clamp(2.5rem, 6vw, 4.5rem); color: #EBE1D1;">Website Redesign.<br/><span style="color: #6E3B49;">Live Prototype</span></h2>
+                        <p style="color: #B5A19E; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 1rem;">Mobile First • Storytelling • Conversion-Fokussiert</p>
+                    </div>
+
+                    <div class="mockup-container">
+                        <div class="mockup-frame">
+                            <div class="mockup-header">
+                                <div class="dot" style="background:#ff5f56"></div>
+                                <div class="dot" style="background:#ffbd2e"></div>
+                                <div class="dot" style="background:#27c93f"></div>
+                            </div>
+                            <iframe loading="lazy" style="width: 100%; height: 800px; border: none;"
+                              src="https://www.canva.com/design/DAFiUbYkJD8/imYPvUNS2rY7GK7_-WPWZw/view?embed" allowfullscreen allow="fullscreen">
+                            </iframe>
+                        </div>
+                        <div style="text-align: center; margin-top: 1.5rem; padding-bottom: 4rem;">
+                            <a href="https://komthur.my.canva.site/" target="_blank" style="display: inline-block; color: #EBE1D1; text-decoration: none; border-bottom: 1px solid #6E3B49; padding-bottom: 8px; transition: all 0.3s;">
+                                Interaktiven Prototype erkunden <i class="fa-solid fa-arrow-right" style="margin-left: 0.5rem; font-size: 0.8rem;"></i>
+                            </a>
+                            <p style="color: #999; font-size: 0.8rem; margin-top: 1rem;">Responsive Design • Animationen • User-Testing validiert</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TRANSFORMATION -->
+            <section class="editorial-section bg-cream">
+                <div class="container">
+                    <div class="section-header" style="border-color: #ddd;">
+                        <h2>Transformation <span class="text-burgundy">Check.</span></h2>
+                        <p class="section-intro">Objektiver Vergleich der strategischen Weiterentwicklung vor und nach Projektdurchführung.</p>
+                    </div>
+
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;">Dimension</th>
+                                <th style="width: 35%;">Ist-Zustand (Vorher)</th>
+                                <th style="width: 40%;">✓ Zielzustand (Nachher)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Sichtbarkeit</strong></td>
+                                <td class="comparison-col-bad"><i class="fa-solid fa-xmark cross-icon"></i> Kaum in Suchmaschinen sichtbar</td>
+                                <td class="comparison-col-good"><i class="fa-solid fa-check check-icon"></i> Top-Rankings für Zielkeywords</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Content & Story</strong></td>
+                                <td class="comparison-col-bad"><i class="fa-solid fa-xmark cross-icon"></i> Statische, generische Texte</td>
+                                <td class="comparison-col-good"><i class="fa-solid fa-check check-icon"></i> Emotionales Storytelling, Authentizität</td>
+                            </tr>
+                            <tr>
+                                <td><strong>User Journey</strong></td>
+                                <td class="comparison-col-bad"><i class="fa-solid fa-xmark cross-icon"></i> Unklare CTAs, hohe Bounce Rate</td>
+                                <td class="comparison-col-good"><i class="fa-solid fa-check check-icon"></i> Gelenkte Journey, optimierte Conversions</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mobile Experience</strong></td>
+                                <td class="comparison-col-bad"><i class="fa-solid fa-xmark cross-icon"></i> Darstellungsprobleme, Slow Loading</td>
+                                <td class="comparison-col-good"><i class="fa-solid fa-check check-icon"></i> 100% responsive, <3s Load Time</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Social Presence</strong></td>
+                                <td class="comparison-col-bad"><i class="fa-solid fa-xmark cross-icon"></i> Unregelmäßige Posts, keine Strategie</td>
+                                <td class="comparison-col-good"><i class="fa-solid fa-check check-icon"></i> Konsistenter Content-Plan, Engagement</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Paid Strategy</strong></td>
+                                <td class="comparison-col-bad"><i class="fa-solid fa-xmark cross-icon"></i> Kaum Ads-Budget genutzt</td>
+                                <td class="comparison-col-good"><i class="fa-solid fa-check check-icon"></i> Datengetriebene Optimierung, Scaling</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tech Score</strong></td>
+                                <td class="comparison-col-bad" style="font-family: var(--font-higuen); font-size: 1.25rem; font-weight: 300;">42/100</td>
+                                <td class="comparison-col-good" style="font-family: var(--font-higuen); font-size: 1.25rem;">75–85/100</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+<!-- ANALYTICS & ADS PERFORMANCE SECTION -->
+<section class="editorial-section bg-cream">
+    <div class="container">
+        <div class="section-header" style="border-color: #ddd;">
+            <h2>SEO & Paid Ads<span class="text-burgundy">Performance.</span></h2>
+            <p class="section-intro">Datengestützte Analyse der Ads-Kanäle mit prognostizierten KPIs und ROI-Potenzial für maximale Effizienz.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2.5rem; align-items: start;">
+            <!-- SEO Section -->
+            <div>
+                <h3 style="font-family: var(--font-higuen); font-size: 1.5rem; margin-bottom: 1.5rem; color: #2D2D2D;">
+                    <i class="fa-solid fa-magnifying-glass" style="margin-right: 0.75rem; color: #56686A;"></i>
+                    SEO Checkbot Score
+                </h3>
+                <div class="seo-score-container" style="background: white; padding: 2rem; border-radius: 2px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <svg viewBox="0 0 200 200" style="width: 180px; height: 180px;">
+                            <!-- Background circle -->
+                            <circle cx="100" cy="100" r="90" fill="none" stroke="#f0f0f0" stroke-width="12" />
+                            <!-- Progress circle (animated) -->
+                            <circle 
+                                class="seo-progress-circle"
+                                cx="100" 
+                                cy="100" 
+                                r="90" 
+                                fill="none" 
+                                stroke="#56686A" 
+                                stroke-width="12"
+                                stroke-dasharray="565.48"
+                                stroke-dashoffset="565.48"
+                                stroke-linecap="round"
+                                transform="rotate(-90 100 100)"
+                            />
+                            <!-- Score text -->
+                            <text x="100" y="110" font-size="48" font-family="var(--font-higuen)" font-weight="400" text-anchor="middle" fill="#2D2D2D">
+                                <tspan class="seo-score-text">42</tspan>%
+                            </text>
+                        </svg>
+                    </div>
+                    <p style="text-align: center; color: #666; font-size: 0.95rem; margin-bottom: 1rem;">
+                        <strong>Aktueller Status:</strong> 42/100
+                    </p>
+                    <div style="background: rgba(86, 104, 106, 0.08); padding: 1.25rem; border-left: 3px solid #56686A; margin-top: 1rem;">
+                        <p style="margin: 0; color: #2D2D2D; font-size: 0.9rem; line-height: 1.6;">
+                            <strong>Ziel nach Optimierung:</strong> 75–85/100<br/>
+                            <strong>Verbesserung:</strong> +78% möglich durch Technical SEO, Keyword-Optimierung und Mobile-First-Ansatz.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ads Channels Comparison -->
+            <div>
+                <h3 style="font-family: var(--font-higuen); font-size: 1.5rem; margin-bottom: 1.5rem; color: #2D2D2D;">
+                    <i class="fa-solid fa-chart-bar" style="margin-right: 0.75rem; color: #56686A;"></i>
+                    Paid Ads Prognose (7 Tage)
+                </h3>
+                
+                <div style="background: white; padding: 2rem; border-radius: 2px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                    <!-- Google Ads -->
+                    <div style="margin-bottom: 2rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                            <span style="font-weight: 600; color: #2D2D2D; font-size: 0.95rem;">
+                                <i class="fa-brands fa-google" style="color: #4285F4; margin-right: 0.5rem;"></i>
+                                Google Ads
+                            </span>
+                            <span class="ads-value" style="color: #4285F4; font-weight: 600;">306 Klicks</span>
+                        </div>
+                        <div style="background: #f0f0f0; height: 12px; border-radius: 2px; overflow: hidden;">
+                            <div class="ads-bar google-bar" style="height: 100%; background: #4285F4; width: 0%; border-radius: 2px; transition: width 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);"></div>
+                        </div>
+                        <p style="font-size: 0.75rem; color: #999; margin-top: 0.5rem;">2.642 Impressionen • CPL ~0,23 CHF</p>
+                    </div>
+
+                    <!-- LinkedIn Ads -->
+                    <div style="margin-bottom: 2rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                            <span style="font-weight: 600; color: #2D2D2D; font-size: 0.95rem;">
+                                <i class="fa-brands fa-linkedin" style="color: #0A66C2; margin-right: 0.5rem;"></i>
+                                LinkedIn Ads
+                            </span>
+                            <span class="ads-value" style="color: #0A66C2; font-weight: 600;">890 Klicks</span>
+                        </div>
+                        <div style="background: #f0f0f0; height: 12px; border-radius: 2px; overflow: hidden;">
+                            <div class="ads-bar linkedin-bar" style="height: 100%; background: #0A66C2; width: 0%; border-radius: 2px; transition: width 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s;"></div>
+                        </div>
+                        <p style="font-size: 0.75rem; color: #999; margin-top: 0.5rem;">43.040 Impressionen • CPL <5 CHF</p>
+                    </div>
+
+                    <!-- Meta Ads -->
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                            <span style="font-weight: 600; color: #2D2D2D; font-size: 0.95rem;">
+                                <i class="fa-brands fa-meta" style="color: #E1306C; margin-right: 0.5rem;"></i>
+                                Meta (FB/IG)
+                            </span>
+                            <span class="ads-value" style="color: #E1306C; font-weight: 600;">72 Klicks</span>
+                        </div>
+                        <div style="background: #f0f0f0; height: 12px; border-radius: 2px; overflow: hidden;">
+                            <div class="ads-bar meta-bar" style="height: 100%; background: #E1306C; width: 0%; border-radius: 2px; transition: width 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s;"></div>
+                        </div>
+                        <p style="font-size: 0.75rem; color: #999; margin-top: 0.5rem;">40.004 Impressionen • CPL ~6 CHF</p>
+                    </div>
+
+                    <div style="background: rgba(110, 59, 73, 0.08); padding: 1.25rem; border-left: 3px solid #6E3B49; margin-top: 1.75rem;">
+                        <p style="margin: 0; color: #2D2D2D; font-size: 0.9rem; line-height: 1.6;">
+                            <strong>Budget-Allokation:</strong> 60% Google | 25% LinkedIn | 15% Meta<br/>
+                            <strong>ROI-Erwartung:</strong> 3:1 bis 5:1 mit Optimization
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why This Makes Sense -->
+        <div style="background: white; padding: 2.5rem; border-radius: 2px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-top: 3rem;">
+            <h4 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: #2D2D2D;">
+                <i class="fa-solid fa-lightbulb" style="color: #56686A; margin-right: 0.5rem;"></i>
+                Warum diese Multi-Channel-Strategie Sinn macht:
+            </h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                <div>
+                    <h5 style="color: #56686A; margin-bottom: 0.75rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.1em;">🎯 Google Ads</h5>
+                    <p style="color: #666; font-size: 0.9rem; line-height: 1.6; margin: 0;">Höchste Kaufabsicht-Keywords erfassen. Direkter Zugang zu Suchern mit akutem Bedarf nach Design-Services.</p>
+                </div>
+                <div>
+                    <h5 style="color: #0A66C2; margin-bottom: 0.75rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.1em;">💼 LinkedIn Ads</h5>
+                    <p style="color: #666; font-size: 0.9rem; line-height: 1.6; margin: 0;">B2B-qualifizierte Leads von Marketingleitern & Geschäftsführern. Höchste Conversion-Rate, niedrigster Drop-off.</p>
+                </div>
+                <div>
+                    <h5 style="color: #E1306C; margin-bottom: 0.75rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.1em;">📱 Meta Ads</h5>
+                    <p style="color: #666; font-size: 0.9rem; line-height: 1.6; margin: 0;">Awareness & Retargeting für jüngere Zielgruppe (Eva-Persona). Brand-Awareness mit niedrigem CPC.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+            <!-- RESULTS -->
+            <section class="editorial-section bg-dark">
+                <div class="container">
+                    <div class="section-header" style="border-color: rgba(255,255,255,0.2);">
+                        <h2>Prognose & <span style="color: #6E3B49;">Ergebnisse.</span></h2>
+                        <p class="section-intro text-cream">Prognostizierte KPIs basierend auf Budgetallokation und Marktanalyse bei vollständiger Strategieumsetzung.</p>
+                    </div>
+                    
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <span class="big-number">77K</span>
+                            <span class="uppercase-label text-cream">Google Ads Impressionen</span>
+                            <p style="color: #B5A19E; font-size: 0.8rem; margin-top: 0.75rem;">8.739 erwartete Clicks bei ~0.11 CTR</p>
+                        </div>
+                        <div class="result-item">
+                            <span class="big-number">6.2K</span>
+                            <span class="uppercase-label text-cream">LinkedIn Link-Clicks</span>
+                            <p style="color: #B5A19E; font-size: 0.8rem; margin-top: 0.75rem;">Hochqualifizierte B2B-Leads, CPL <CHF 5</p>
+                        </div>
+                        <div class="result-item">
+                            <span class="big-number">5K</span>
+                            <span class="uppercase-label text-cream">Jahresbudget (CHF)</span>
+                            <p style="color: #B5A19E; font-size: 0.8rem; margin-top: 0.75rem;">Optimiert über alle Kanäle für Max. ROI</p>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 3rem; font-family: var(--font-higuen); font-size: 1.15rem; color: #B5A19E; line-height: 1.8;">
+                        "Effektives Marketing bedeutet nicht überall präsent zu sein,<br/>sondern dort sichtbar und relevant zu sein, <em>wo es zählt.</em>"
+                    </p>
+                </div>
+            </section>
+
+            <!-- ZIELE -->
+            <section class="editorial-section bg-cream">
+                <div class="container">
+                    <div class="section-header" style="border-color: #ddd;">
+                        <h2>Erreichte <span class="text-burgundy">Ziele.</span></h2>
+                        <p class="section-intro">Alle definierten Projektziele wurden in der 90-Stunden-Projektphase erfolgreich umgesetzt und dokumentiert.</p>
+                    </div>
+
+                    <div class="goals-layout">
+                        <div class="checklist-group">
+                            <h3><i class="fa-solid fa-circle-check" style="color: var(--accent-burgundy); margin-right: 0.5rem;"></i>Verbindliche Ziele</h3>
+                            <div class="check-item"><span class="custom-check"><i class="fa-solid fa-check"></i></span><strong>SMART Ziele</strong> definiert und dokumentiert</div>
+                            <div class="check-item"><span class="custom-check"><i class="fa-solid fa-check"></i></span><strong>3 Personas</strong> mit detaillierten Profilen</div>
+                            <div class="check-item"><span class="custom-check"><i class="fa-solid fa-check"></i></span><strong>Konkurrenzanalyse</strong> (3 Wettbewerber)</div>
+                            <div class="check-item"><span class="custom-check"><i class="fa-solid fa-check"></i></span><strong>SEO Optimierung</strong> mit Checkbot-Prüfung</div>
+                            <div class="check-item"><span class="custom-check"><i class="fa-solid fa-check"></i></span><strong>UX/Website Design</strong> Neukonzeption</div>
+                            <div class="check-item"><span class="custom-check"><i class="fa-solid fa-check"></i></span><strong>Paid Ads Plan</strong> mit Budget-Breakdown</div>
+                            <div class="check-item"><span class="custom-check"><i class="fa-solid fa-check"></i></span><strong>2 Design-Vorschläge</strong> (Social Media)</div>
+                            <div class="check-item"><span class="custom-check"><i class="fa-solid fa-check"></i></span><strong>4-Monats Content-Plan</strong> erstellt</div>
+                        </div>
+
+                        <div class="checklist-group" style="background: transparent; border: 1px solid #ddd;">
+                            <h3 style="color: #666;"><i class="fa-solid fa-star" style="color: var(--accent-burgundy); margin-right: 0.5rem;"></i>Optionale Ziele</h3>
+                            <div class="check-item"><span class="custom-check"><i class="fa-solid fa-check"></i></span><strong>Automatisierung</strong> & Email-Workflows</div>
+                            <div class="check-item"><span class="custom-check"><i class="fa-solid fa-check"></i></span><strong>Animierter Trailer</strong> (After Effects)</div>
+                            <div class="check-item"><span class="custom-check"><i class="fa-solid fa-check"></i></span><strong>Pre-Production</strong> für Visuals</div>
+                            <div class="check-item" style="opacity: 0.5;"><span class="custom-check" style="border-color: #999; color: #999;"><i class="fa-solid fa-minus"></i></span><strong>TikTok Kanal</strong> (nicht empfohlen)</div>
+                            <div class="check-item" style="opacity: 0.5;"><span class="custom-check" style="border-color: #999; color: #999;"><i class="fa-solid fa-minus"></i></span><strong>YouTube Strategy</strong> (Zielgruppe-Mismatch)</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER INFO -->
+            <section class="editorial-section bg-burgundy" style="padding: 4rem 0;">
+                <div class="container">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 3rem;">
+                        <div>
+                            <span class="uppercase-label text-cream" style="opacity: 0.7;">Auftraggeber</span>
+                            <h3 style="color: #fff; font-size: 1.5rem; margin-top: 0.75rem; font-family: var(--font-higuen); margin-bottom: 0.25rem;">Komthur GmbH</h3>
+                            <p style="color: #EBE1D1; opacity: 0.8; font-size: 0.9rem;">Kreuzlingen, Thurgau • Gegründet 2020</p>
+                        </div>
+                        <div>
+                            <span class="uppercase-label text-cream" style="opacity: 0.7;">Projektdauer</span>
+                            <h3 style="color: #fff; font-size: 1.5rem; margin-top: 0.75rem; font-family: var(--font-higuen); margin-bottom: 0.25rem;">90 Stunden</h3>
+                            <p style="color: #EBE1D1; opacity: 0.8; font-size: 0.9rem;">6 Wochen intensiver Strategieentwicklung</p>
+                        </div>
+                        <div>
+                            <span class="uppercase-label text-cream" style="opacity: 0.7;">Budget</span>
+                            <h3 style="color: #fff; font-size: 1.5rem; margin-top: 0.75rem; font-family: var(--font-higuen); margin-bottom: 0.25rem;">CHF 14.650</h3>
+                            <p style="color: #EBE1D1; opacity: 0.8; font-size: 0.9rem;">Inkl. Beratung, Design, Dokumentation</p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); text-align: center;">
+                        <a href="#" style="display: inline-block; border: 1px solid rgba(255,255,255,0.4); padding: 0.9rem 2rem; color: white; text-decoration: none; transition: all 0.3s; border-radius: 2px;">
+                            <i class="fa-solid fa-download" style="margin-right: 0.5rem;"></i>Vollständige Dokumentation (PDF)
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+<!-- Footer -->
+<footer class="site-footer" aria-label="Seitenende">
+	<div class="container footer-inner">
+	   <div class="footer-copy">© 2026 Design & Development by Khadija Okbi</div>
+	   <div class="footer-socials" aria-label="Soziale Netzwerke">
+		  <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
+			<!-- GitHub Icon -->
+			<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/>
+			</svg>
+		  </a>
+		  <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn">
+			<!-- LinkedIn Icon -->
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/>
+			  <path d="M6.5 9.5v8.5M6.5 7.5v.01M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>
+		  </a>
+		  <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok">
+			<!-- TikTok Icon (stylized note) -->
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <path d="M16 7.5c.5 0 .9.04 1.3.12v3.38a4.2 4.2 0 0 1-2.3-.64v5.64A4.86 4.86 0 0 1 11 20a4.86 4.86 0 0 1-4.86-4.86 4.86 4.86 0 0 1 4.86-4.86c.28 0 .55.03.81.08V7.5h.19c1.14 0 2.09.37 2.99 1.03V7.5z" fill="currentColor"/>
+			</svg>
+		  </a>
+		  <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen">
+			<!-- CodePen Icon -->
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.1" fill="none"/>
+			  <path d="M3.5 7.5l8.5 5 8.5-5" stroke="currentColor" stroke-width="1.1" fill="none"/>
+			  <path d="M12 21.5v-10" stroke="currentColor" stroke-width="1.1" fill="none"/>
+			</svg>
+		  </a>
+	   </div>
+	</div>
+ </footer>
+
+        <script>
+            const header = document.querySelector('.site-header');
+            window.addEventListener('scroll', () => {
+                if(window.scrollY > 50) header.classList.add('is-solid');
+                else header.classList.remove('is-solid');
+            });
+
+            function switchTab(tabId, btn) {
+                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                btn.classList.add('active');
+            }
+
+            const fadeObserver = new IntersectionObserver((entries) => {
+                            entries.forEach(entry => {
+                                if (entry.isIntersecting) {
+                                    entry.target.style.opacity = 1;
+                                    entry.target.style.transform = 'translateY(0)';
+                                }
+                            });
+                        }, { threshold: 0.1 });
+            
+                        document.querySelectorAll('.data-item, .persona-col, .result-item').forEach(el => {
+                            el.style.opacity = 0;
+                            el.style.transform = 'translateY(30px)';
+                            el.style.transition = 'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)';
+                            fadeObserver.observe(el);
+                        });
+            document.querySelectorAll("section").forEach((sec, i, arr) => {
+  const next = arr[i + 1];
+  if (next) {
+    sec.style.setProperty(
+      "--next-bg",
+      getComputedStyle(next).backgroundColor
+    );
+  }
+});
+  // Intersection Observer für Animation Trigger
+  const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Trigger SEO Animation
+                const seoCircle = entry.target.querySelector('.seo-progress-circle');
+                if (seoCircle && !seoCircle.classList.contains('animated')) {
+                    seoCircle.style.animationPlayState = 'running';
+                    seoCircle.classList.add('animated');
+                }
+
+                // Trigger Ads Bars
+                const googleBar = entry.target.querySelector('.google-bar');
+                const linkedinBar = entry.target.querySelector('.linkedin-bar');
+                const metaBar = entry.target.querySelector('.meta-bar');
+
+                if (googleBar && !googleBar.classList.contains('animated')) {
+                    googleBar.style.animationPlayState = 'running';
+                    linkedinBar.style.animationPlayState = 'running';
+                    metaBar.style.animationPlayState = 'running';
+                    
+                    googleBar.classList.add('animated');
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Observe all analytics sections
+    document.querySelectorAll('.editorial-section').forEach((section, index) => {
+        if (index >= 10) { // Nur die neuen Sections
+            observer.observe(section);
+        }
+    });
+    let currentSlideInsta = 0;
+    let currentSlideLinkedin = 0;
+
+    function scrollCarousel(type, direction) {
+        const container = document.querySelector(`.${type}-carousel`);
+        const items = container.querySelectorAll('.carousel-item');
+        const itemWidth = items[0].offsetWidth + 16; // width + gap
+
+        if (type === 'insta') {
+            currentSlideInsta = Math.max(0, Math.min(currentSlideInsta + direction, items.length - 3));
+            updateDots('insta', Math.floor(currentSlideInsta / 1));
+        } else {
+            currentSlideLinkedin = Math.max(0, Math.min(currentSlideLinkedin + direction, items.length - 2));
+            updateDots('linkedin', Math.floor(currentSlideLinkedin / 1));
+        }
+
+        gsap.to(container, {
+            scrollLeft: type === 'insta' ? currentSlideInsta * itemWidth : currentSlideLinkedin * itemWidth,
+            duration: 0.6,
+            ease: 'power2.out'
+        });
+    }
+
+    function jumpToSlide(type, index) {
+        const container = document.querySelector(`.${type}-carousel`);
+        const items = container.querySelectorAll('.carousel-item');
+        const itemWidth = items[0].offsetWidth + 16;
+
+        if (type === 'insta') {
+            currentSlideInsta = index;
+        } else {
+            currentSlideLinkedin = index;
+        }
+
+        updateDots(type, index);
+
+        gsap.to(container, {
+            scrollLeft: index * itemWidth,
+            duration: 0.6,
+            ease: 'power2.out'
+        });
+    }
+
+    function updateDots(type, index) {
+        const dots = document.querySelectorAll(`.${type}-dot`);
+        dots.forEach((dot, i) => {
+            if (i === index) {
+                dot.style.background = type === 'insta' ? '#E1306C' : '#0A66C2';
+                dot.classList.add('active');
+            } else {
+                dot.style.background = '#ddd';
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    // Auto-scroll carousel every 8 seconds (optional)
+    /*
+    setInterval(() => {
+        const instaItems = document.querySelectorAll('.insta-carousel .carousel-item').length;
+        const nextSlide = (currentSlideInsta + 1) % instaItems;
+        jumpToSlide('insta', nextSlide);
+    }, 8000);
+    */
+
+    // Fade in animation on scroll
+    const observerCarousel = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                gsap.from(entry.target.querySelectorAll('.carousel-item'), {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: 'power2.out'
+                });
+                observerCarousel.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.carousel-wrapper').forEach(wrapper => {
+        observerCarousel.observe(wrapper);
+    });
+        </script>
+    </body>
+</html>

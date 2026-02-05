@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blog articles by Khadija Okbi">
+  <title>Blog – Khadija Okbi</title>
+  <link rel="icon" type="image/png" href="img/logo_white.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Mulish:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style/style.css">
+  <style>
+    /* Blog Page Styles - Vogue Inspired */
+    body {
+      background: #FAFAFA;
+    }
+    
+    .blog-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 4vw, 2rem);
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: #314A51;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+      transition: all 0.3s ease;
+    }
+    
+    .back-link:hover {
+      color: #6E3B49;
+      transform: translateX(-4px);
+    }
+    
+    .back-icon {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    
+    .blog-hero {
+      text-align: center;
+      padding: clamp(3rem, 8vw, 6rem) 0;
+      border-bottom: 1px solid #E5E5E5;
+    }
+    
+    .blog-category {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #6E3B49;
+      margin-bottom: 1.5rem;
+    }
+    
+    .blog-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.1;
+      color: #0A0A0A;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    
+    .blog-subtitle {
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      line-height: 1.6;
+      color: #525252;
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    
+    .blog-meta {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      font-size: 0.875rem;
+      color: #7A7A7A;
+    }
+    
+    .blog-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .blog-images {
+      margin: clamp(3rem, 6vw, 5rem) 0;
+      display: grid;
+      gap: 1.5rem;
+    }
+    
+    .blog-image-primary {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    
+    .blog-image-secondary {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 4px;
+      opacity: 0.95;
+    }
+    
+    .blog-content {
+      padding: clamp(2rem, 4vw, 3rem) 0;
+    }
+    
+    .blog-content h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 400;
+      font-style: italic;
+      color: #314A51;
+      margin: 2.5rem 0 1.5rem;
+      letter-spacing: -0.01em;
+    }
+    
+    .blog-content p {
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      color: #2D2D2D;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+    
+    .blog-content p:first-of-type::first-letter {
+      font-size: 4rem;
+      line-height: 1;
+      float: left;
+      font-family: var(--font-display);
+      font-weight: 400;
+      margin: 0.1rem 0.75rem 0 0;
+      color: #6E3B49;
+    }
+    
+    .blog-content a {
+      color: #6E3B49;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: all 0.2s ease;
+    }
+    
+    .blog-content a:hover {
+      color: #314A51;
+    }
+    
+    .blog-quote {
+      border-left: 3px solid #6E3B49;
+      padding-left: 2rem;
+      margin: 3rem 0;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-style: italic;
+      line-height: 1.6;
+      color: #314A51;
+    }
+    
+    .blog-divider {
+      width: 60px;
+      height: 1px;
+      background: #6E3B49;
+      margin: 3rem auto;
+    }
+    
+    .blog-footer {
+      margin-top: clamp(3rem, 6vw, 5rem);
+      padding-top: 3rem;
+      border-top: 1px solid #E5E5E5;
+      text-align: center;
+    }
+    
+    .blog-footer-text {
+      font-size: 0.875rem;
+      color: #7A7A7A;
+      margin-bottom: 2rem;
+    }
+    
+    .blog-share {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    .share-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid #E5E5E5;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #525252;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .share-btn:hover {
+      border-color: #6E3B49;
+      color: #6E3B49;
+      transform: translateY(-2px);
+    }
+    
+    @media (max-width: 768px) {
+      .blog-content p:first-of-type::first-letter {
+        font-size: 3rem;
+        margin-right: 0.5rem;
+      }
+      
+      .blog-quote {
+        font-size: 1.25rem;
+        padding-left: 1.5rem;
+      }
+    }
+
+    /* New Blog Detail Layout - Parallax & Reveal */
+    .blog-detail-wrapper {
+      background: var(--bg-secondary);
+      overflow-x: hidden;
+    }
+
+    /* Parallax Hero */
+    .blog-hero-parallax {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .hero-bg-container {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 120%;
+      z-index: 1;
+    }
+
+    .parallax-bg {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(0.6);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 5vw;
+    }
+
+    .blog-main-title {
+      font-family: var(--font-higuen);
+      font-size: clamp(3rem, 8vw, 6rem);
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .category-tag {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--accent-warm);
+      margin-bottom: 2rem;
+    }
+
+    /* Reveal Sections */
+    .reveal-section {
+      padding: 15vh 10vw;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 5vw;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease-out;
+    }
+
+    .reveal-section.show2 {
+      grid-template-columns: 1fr 1.2fr;
+    }
+
+    .reveal-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-badge {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 2rem;
+    }
+
+    .bg-number {
+      position: absolute;
+      font-size: 10rem;
+      font-family: var(--font-display);
+      color: var(--accent-burgundy);
+      opacity: 0.05;
+      z-index: -1;
+      left: -2rem;
+      top: -4rem;
+    }
+
+    .accent-line {
+      width: 40px;
+      height: 1px;
+      background: var(--accent-warm);
+    }
+
+    .section-text h2 {
+      font-family: var(--font-display);
+      color: var(--accent-burgundy);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-image {
+      overflow: hidden;
+      height: 60vh;
+    }
+
+    .section-image img {
+      width: 100%;
+      height: 110%;
+      object-fit: cover;
+      transition: transform 0.1s linear;
+    }
+
+    @media (max-width: 900px) {
+      .reveal-section, .reveal-section.show2 {
+        grid-template-columns: 1fr;
+        padding: 10vh 5vw;
+      }
+      .section-image { order: -1; height: 40vh; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header class="site-header" id="top" aria-label="Seitennavigation">
+    <div class="container nav-bar">
+      <a href="index.html" class="logo">
+        <img src="img/logo_white.png" alt="Khadija Okbi Logo" width="45">
+        <img src="img/logo_black.png" alt="Khadija Okbi Logo" width="45" class="logo-onscroll">
+      </a>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="index.html#hero" class="nav-link">Home</a>
+        <a href="index.html#projects" class="nav-link">What I do</a>
+        <a href="about.html" class="nav-link">About me</a>
+        <a href="index.html#blog" class="nav-link">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="blog-detail-wrapper">
+    <!-- Parallax Hero Section -->
+    <section class="blog-hero-parallax">
+      <div class="hero-bg-container">
+        <img src="img/idpa2.jpg" alt="Hero Background" class="parallax-bg">
+      </div>
+      <div class="hero-content">
+        <span class="category-tag">Philosophie & Technologie</span>
+        <h1 class="blog-main-title">Die Illusion der freien Meinung</h1>
+        <p class="blog-subtitle">Demokratie in Zeiten von Social Media & KI</p>
+      </div>
+    </section>
+
+    <!-- Content Sections with Reveal and Parallax -->
+    <section class="reveal-section">
+      <div class="section-text">
+        <div class="section-badge">
+          <span class="bg-number">01</span>
+          <hr class="accent-line">
+          <p class="category-tag">Prägung</p>
+        </div>
+        <h2>Die biologische Programmierung</h2>
+        <p>Wir machen uns vor, eine freie Meinung zu besitzen, während sie lediglich ein Ergebnis von Prägung, Erfahrung und Umfeld ist. Gene wie das COMT-Gen bestimmen schon bei unserer Geburt, wie risikofreudig oder neugierig wir sind.</p>
+      </div>
+      <div class="section-image">
+        <img src="img/idpa.jpg" alt="Biologie" class="parallax-img">
+      </div>
+    </section>
+
+    <section class="reveal-section show2">
+      <div class="section-image">
+        <img src="img/background.jpg" alt="Soziologie" class="parallax-img">
+      </div>
+      <div class="section-text">
+        <div class="section-badge">
+          <span class="bg-number">02</span>
+          <hr class="accent-line">
+          <p class="category-tag">Gesellschaft</p>
+        </div>
+        <h2>Soziale Konditionierung</h2>
+        <p>Unser tiefstes Bedürfnis ist die Zugehörigkeit – ein evolutionäres Überlebensmuster. Religionen und soziale Strukturen nutzen dieses Bedürfnis, um Verhaltensregeln und Loyalitäten zu festigen.</p>
+      </div>
+    </section>
+
+    <section class="reveal-section">
+      <div class="section-text">
+        <div class="section-badge">
+          <span class="bg-number">03</span>
+          <hr class="accent-line">
+          <p class="category-tag">Algorithmen</p>
+        </div>
+        <h2>Die digitale Dimension</h2>
+        <p>Social-Media-Algorithmen fördern emotional aufgeladene Inhalte. Wut verbreitet sich sechsmal schneller als Fakten, was uns tiefer in digitale Echokammern rutschen lässt.</p>
+      </div>
+      <div class="section-image">
+        <img src="img/idpa2.jpg" alt="Digital" class="parallax-img">
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer" aria-label="Seitenende" style="background: var(--bg-secondary);">
+    <div class="container footer-inner">
+      <div class="footer-copy">© 2025 Design & Development by Khadija Okbi</div>
+      <div class="footer-socials" aria-label="Soziale Netzwerke">
+        <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/>
+          </svg>
+        </a>
+        <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/>
+            <path d="M6.5 9.5v8.5M6.5 7.5v.01M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 7.5c.5 0 .9.04 1.3.12v3.38a4.2 4.2 0 0 1-2.3-.64v5.64A4.86 4.86 0 0 1 11 20a4.86 4.86 0 0 1-4.86-4.86 4.86 4.86 0 0 1 4.86-4.86c.28 0 .55.03.81.08V7.5h.19c1.14 0 2.09.37 2.99 1.03V7.5z" fill="currentColor"/>
+          </svg>
+        </a>
+        <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.1" fill="none"/>
+            <path d="M3.5 7.5l8.5 5 8.5-5" stroke="currentColor" stroke-width="1.1" fill="none"/>
+            <path d="M12 21.5v-10" stroke="currentColor" stroke-width="1.1" fill="none"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Intersection Observer für Reveal-Effekte
+      const observerOptions = {
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal-section').forEach(section => {
+        observer.observe(section);
+      });
+
+      // Simple Parallax Effekt
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        
+        // Hero Parallax
+        const heroBg = document.querySelector('.parallax-bg');
+        if (heroBg) {
+          heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+
+        // Section Images Parallax
+        document.querySelectorAll('.parallax-img').forEach(img => {
+          const speed = 0.15;
+          const rect = img.parentElement.getBoundingClientRect();
+          const visible = rect.top < window.innerHeight && rect.bottom > 0;
+          
+          if (visible) {
+            const yPos = -(rect.top * speed);
+            img.style.transform = `translateY(${yPos}px) scale(1.1)`;
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

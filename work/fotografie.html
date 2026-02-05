@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Portfolio | AI Enhanced Editorial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,700&family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- GSAP & Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --bg-primary: #000;
+            --bg-secondary: #F5F5F5;
+            --bg-dark: #314A51;
+            --text-primary: #0A0A0A;
+            --text-primary-light: #EBE1D1;
+            --text-secondary: #525252;
+            --text-tertiary: #56686A;
+            --accent-warm: #6E3B49;
+            --accent-burgundy: #6E3B49;
+            --border-light: #D1D1D1;
+            --font-body: 'Work Sans', sans-serif;
+            --font-display: 'Playfair Display', serif;
+            --space-4: 2rem;
+            --space-8: 4rem;
+            --space-12: 6rem;
+            --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            font-weight: 300;
+        }
+        img { max-width: 100%; display: block; object-fit: cover; background: #eee; }
+        .container { width: 100%; max-width: 90vw; margin: 0 auto; padding: 0 clamp(1rem, 5vw, 4rem); }
+
+        /* Typography */
+        h1 { font-family: var(--font-display); font-size: clamp(3rem, 12vw, 8rem); font-weight: 400; color: var(--text-primary-light); font-style: italic; }
+        h2 { font-family: var(--font-display); font-size: clamp(2rem, 8vw, 5rem); font-weight: 800; text-transform: uppercase; color: var(--accent-burgundy); }
+        h4 { font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; color: var(--text-tertiary); }
+        
+        /* Layout Components */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 110%;
+            opacity: 0.5;
+            object-fit: cover;
+        }
+
+        /* Horizontal Section */
+        .horizontal-section {
+            background: #fff;
+            overflow: hidden;
+        }
+        .horizontal-wrapper {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            padding: 0 10vw;
+            will-change: transform;
+        }
+        .horizontal-item {
+            flex-shrink: 0;
+            width: clamp(300px, 45vw, 800px);
+            margin-right: 15vw;
+        }
+        .horizontal-item img { height: 60vh; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+    
+
+        /* Loading */
+        #loader {
+            position: fixed; inset: 0; background: #000; z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-family: var(--font-display); font-size: 1.2rem;
+        }
+
+        /* Portrait Focus */
+        .portrait-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+        @media (max-width: 768px) { .portrait-section { grid-template-columns: 1fr; } }
+        
+        .error-message {
+            color: #ff4444;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">VISUALIZING...</div>
+
+    <header class="hero">
+        <img src="../img/fotografie/slider1.jpg" alt="Hero" class="hero-img" id="heroBg" onerror="this.src='https://images.unsplash.com/photo-1493863641943-9b68992a8d07?auto=format&fit=crop&w=1920&q=80'">
+        <div style="z-index: 10; text-align: center;">
+            <h4 style="color: white; opacity: 0.8;">Edition 2026</h4>
+            <h1>Pure Aesthetics</h1>
+        </div>
+    </header>
+
+    <!-- Horizontal Gallery -->
+    <section class="horizontal-section" id="horizontalTarget">
+        <div class="horizontal-wrapper" id="horizontalWrapper">
+            <div class="horizontal-item">
+                <img src="../img/fotografie/Corona(5 von 10).JPG" alt="C5" onerror="this.src='https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1200&q=80'">
+                <h4 style="margin-top:1rem;">Stille I</h4>
+            </div>
+            <div class="horizontal-item">
+                <img src="../img/fotografie/Corona(6 von 10).JPG" alt="C6" onerror="this.src='https://images.unsplash.com/photo-1449156001931-82992a472695?auto=format&fit=crop&w=1200&q=80'">
+                <h4 style="margin-top:1rem;">Stille II</h4>
+            </div>
+            <div class="horizontal-item">
+                <img src="../img/fotografie/Corona(7 von 10).JPG" alt="C7" onerror="this.src='https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=80'">
+                <h4 style="margin-top:1rem;">Stille III</h4>
+            </div>
+            <div class="horizontal-item">
+                <img src="../img/fotografie/Corona(10 von 10) 2.JPG" alt="C10" onerror="this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80'">
+                <h4 style="margin-top:1rem;">Finale</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portrait Focus -->
+    <section class="portrait-section" style="background: white;">
+        <div style="padding: 10vw; display: flex; flex-direction: column; justify-content: center;">
+            <h4>Focus</h4>
+            <h2>Lia Series</h2>
+            <p>Ein tiefer Blick in das Wesen des Porträts. Minimalismus trifft auf Emotion.</p>
+        </div>
+        <div style="height: 100vh;">
+            <img src="../img/fotografie/Lia 1.jpg" alt="Lia" style="width:100%; height:100%;" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80'">
+        </div>
+    </section>
+
+    <footer style="padding: var(--space-12) 0; background: #000; color: white; text-align: center;">
+        <h1 style="font-size: 2rem;">Vision.</h1>
+        <p style="opacity: 0.5; margin-top: 1rem;">Photography & AI Fusion</p>
+    </footer>
+
+    <script>
+
+        // GSAP Initialization
+        gsap.registerPlugin(ScrollTrigger);
+
+        window.onload = () => {
+            gsap.to("#loader", { opacity: 0, duration: 1, onComplete: () => document.getElementById('loader').style.display='none' });
+            
+            // Hero Animation
+            gsap.from("#heroBg", { scale: 1.4, duration: 3, ease: "power2.out" });
+            
+            // Horizontal Scroll
+            const wrapper = document.getElementById("horizontalWrapper");
+            const totalWidth = wrapper.scrollWidth - window.innerWidth + (window.innerWidth * 0.1);
+
+            gsap.to(wrapper, {
+                x: -totalWidth,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#horizontalTarget",
+                    pin: true,
+                    scrub: 1,
+                    start: "top top",
+                    end: () => "+=" + totalWidth,
+                    invalidateOnRefresh: true
+                }
+            });
+
+            // AI Integration UI Logic
+            const aiBtn = document.getElementById('aiBtn');
+            const aiText = document.getElementById('aiText');
+            const aiLoading = document.getElementById('aiLoading');
+            const aiError = document.getElementById('aiError');
+
+            aiBtn.onclick = async () => {
+                aiBtn.style.display = 'none';
+                aiLoading.style.display = 'block';
+                aiText.style.opacity = '0';
+                aiError.innerText = '';
+
+                try {
+                    const prompt = "Schreibe eine luxuriöse, editorial-artige Bildunterschrift für eine Fotostrecke namens 'Corona Stille' und 'Lia Portraits', die Einsamkeit und zeitlose Schönheit thematisiert.";
+                    const narrative = await callGemini(prompt);
+                    aiText.innerText = narrative;
+                    aiText.style.opacity = '1';
+                } catch (err) {
+                    aiError.innerText = "Fehler: Die KI ist gerade nicht verfügbar. Bitte versuchen Sie es später erneut.";
+                    aiBtn.style.display = 'inline-block';
+                } finally {
+                    aiLoading.style.display = 'none';
+                }
+            };
+        };
+
+        // Resize Refresh
+        window.addEventListener('resize', () => ScrollTrigger.refresh());
+    </script>
+</body>
+</html>

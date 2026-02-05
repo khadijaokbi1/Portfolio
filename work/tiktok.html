@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Marketing Masterclass | Der Strategie-Guide</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            /* Deine Originalen Roots */
+            --bg-primary: #FFFFFF; /* Auf Weiss umgestellt für Kontrast */
+            --bg-secondary: #ebebeb;
+            --bg-accent: #F5F5F5;
+            --bg-dark: #314A51;
+            
+            --text-primary: #0A0A0A;
+            --text-primary-light: #EBE1D1;
+            --text-secondary: #525252;
+            --text-tertiary: #B5A19E;
+            
+            --accent-primary: #2D2D2D;
+            --accent-secondary: #56686A;
+            --accent-warm: #BBA28A;
+            --accent-burgundy: #6E3B49;
+            
+            --border-light: #E5E5E5;
+            --border-default: #D4D4D4;
+
+            --font-body: 'Work Sans', sans-serif;
+            --font-display: 'Playfair Display', serif;
+            
+            /* Motion */
+            --speed-base: 250ms;
+            --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Buch-Stil Layout */
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-default);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color var(--speed-base);
+            position: relative;
+        }
+
+        .nav-item.active {
+            color: var(--accent-burgundy);
+        }
+
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-burgundy);
+        }
+
+        /* Header */
+        header {
+            padding: 8rem 0 4rem 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 4rem;
+        }
+
+        .pre-title {
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            color: var(--accent-warm);
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            color: var(--accent-primary);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        /* Content Pages */
+        .course-page {
+            display: none;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .course-page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chapter-intro {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.5rem;
+            color: var(--accent-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.4;
+            border-left: 3px solid var(--accent-warm);
+            padding-left: 2rem;
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            color: var(--accent-burgundy);
+            margin: 4rem 0 2rem 0;
+        }
+
+        h3 {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            margin: 2rem 0 1rem 0;
+            color: var(--accent-primary);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .highlight-box {
+            background: var(--bg-accent);
+            padding: 2.5rem;
+            border-radius: 4px;
+            margin: 3rem 0;
+            border-left: 5px solid var(--accent-burgundy);
+        }
+
+        .pro-tip {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            background: var(--bg-dark);
+            color: var(--text-primary-light);
+            padding: 2rem;
+            border-radius: 4px;
+            margin: 2rem 0;
+        }
+
+        .pro-tip i { color: var(--accent-warm); flex-shrink: 0; }
+
+        /* Quiz Section */
+        .quiz-section {
+            margin-top: 6rem;
+            padding-top: 4rem;
+            border-top: 2px solid var(--border-default);
+        }
+
+        .quiz-card {
+            background: white;
+            border: 1px solid var(--border-default);
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .quiz-question {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .options-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .option-btn {
+            border: 1px solid var(--border-default);
+            padding: 1.25rem;
+            text-align: left;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .option-btn:hover {
+            border-color: var(--accent-burgundy);
+            background: var(--bg-accent);
+        }
+
+        .option-btn.correct {
+            background: #e8f5e9;
+            border-color: #2e7d32;
+            color: #1b5e20;
+        }
+
+        .option-btn.wrong {
+            background: #ffebee;
+            border-color: #c62828;
+            color: #b71c1c;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 8rem;
+            padding: 4rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-tertiary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .dropcap {
+            float: left;
+            font-family: var(--font-display);
+            font-size: 4rem;
+            line-height: 0.8;
+            padding-top: 4px;
+            padding-right: 8px;
+            color: var(--accent-burgundy);
+        }
+
+    </style> 
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-inner">
+            <div class="nav-item active" onclick="switchPage(0)">Kapitel I: Analyse</div>
+            <div class="nav-item" onclick="switchPage(1)">Kapitel II: Strategie</div>
+            <div class="nav-item" onclick="switchPage(2)">Kapitel III: Kreation</div>
+            <div class="nav-item" onclick="switchPage(3)">Kapitel IV: Skalierung</div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <span class="pre-title">Ein Strategischer Leitfaden</span>
+            <h1>The TikTok<br>Mastery Blueprint</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- KAPITEL 1: ANALYSE -->
+        <div class="course-page active" id="p0">
+            <div class="chapter-intro">
+                "Erfolg auf TikTok ist kein Zufallsprodukt viraler Glückstreffer, sondern das Resultat einer chirurgisch präzisen Positionierung."
+            </div>
+            
+            <p><span class="dropcap">B</span>evor die erste Aufnahme startet, muss das Fundament gegossen werden. Im Zeitalter der algorithmischen Überflutung ist die Wahl der Nische der entscheidende Hebel zwischen Bedeutungslosigkeit und massiver Reichweite. Eine Nische ist nicht nur ein Thema; sie ist ein Versprechen an eine spezifische Gruppe von Menschen.</p>
+            
+            <h2>Die perfekte Nische finden</h2>
+            <p>Ein strategischer Content Producer sucht nicht nach Trends, sondern nach Überschneidungen. Die ideale Positionierung liegt im Schnittpunkt von drei Vektoren:</p>
+            
+            <div class="highlight-box">
+                <ol style="padding-left: 1.5rem;">
+                    <li><strong>Persönliche Expertise:</strong> Worüber kannst du sprechen, ohne zu recherchieren? Authentizität ist die Währung auf TikTok.</li>
+                    <li><strong>Marktlücke (SWOT):</strong> Wo sind die Schwachstellen deiner Konkurrenz? Analysiere mindestens drei Top-Accounts deiner Sparte. Was fehlt? Was ist langweilig?</li>
+                    <li><strong>Algorithmische Signale:</strong> Gibt es eine aktive Community? Trends sind Wegweiser, keine Zielvorgaben.</li>
+                </ol>
+            </div>
+
+            <h3>Persona Development</h3>
+            <p>Wer ist dein idealer Zuschauer? Erstelle zwei detaillierte Personas. Gehe über Alter und Ort hinaus: Welche Ängste haben sie? Welche Probleme löst dein Content? Ein Video für "alle" erreicht am Ende niemanden.</p>
+
+            <div class="pro-tip">
+                <i data-lucide="book-open"></i>
+                <div>
+                    <strong>Executive Summary:</strong>
+                    Investiere 6 Stunden in die reine Vorbereitung. Je spezifischer die Zielgruppe, desto schneller lernt der Algorithmus, wem er deine Inhalte ausspielen muss.
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-card">
+                    <p class="quiz-question">Warum ist eine extrem spitze Nische auf TikTok vorteilhafter als ein breites Thema?</p>
+                    <div class="options-grid">
+                        <button class="option-btn" onclick="checkAnswer(this, true)">Weil der Algorithmus die Zielgruppe schneller identifizieren und die Retention maximieren kann.</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">Damit man weniger Konkurrenz hat, da niemand sich für Nischen interessiert.</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">Weil man dann weniger Videos produzieren muss.</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- KAPITEL 2: STRATEGIE -->
+        <div class="course-page" id="p1">
+            <div class="chapter-intro">
+                "Content ohne Strategie ist lediglich Rauschen. Wahre Reichweite entsteht durch psychologische Anker."
+            </div>
+
+            <p><span class="dropcap">D</span>ie Aufmerksamkeitsökonomie auf TikTok wird in Millisekunden gemessen. Eine professionelle Strategie wandelt flüchtige Views in loyale Follower um. Dies geschieht durch die Implementierung von SMART-Zielen und psychologischen Triggern.</p>
+
+            <h2>Viralität durch Struktur</h2>
+            <p>Jedes erfolgreiche Video folgt einem unsichtbaren Blueprint. Wenn du lernst, diesen Blueprint auf deine Nische anzuwenden, wird Erfolg reproduzierbar.</p>
+            
+            <div class="highlight-box">
+                <h3>Die Anatomie des Erfolgs:</h3>
+                <ul>
+                    <li><strong>Der Hook (Sekunde 0-2):</strong> Ein visuelles oder verbales Versprechen. "Die meisten machen X falsch..."</li>
+                    <li><strong>Retention Management (Sekunde 3-15):</strong> Information-Gaps schaffen. Der Zuschauer muss bleiben, um die Antwort zu erfahren.</li>
+                    <li><strong>The CTA (Call to Action):</strong> Nicht nur "Follow me", sondern ein Grund für das Follow. "Folge für Teil 2 der Serie."</li>
+                </ul>
+            </div>
+
+            <h3>SMART-Framework</h3>
+            <p>Definiere klare Metriken für die ersten 30 Tage. 500 Follower sind ein Ziel – 10.000 Aufrufe ein Meilenstein. Nutze SEO-Maßnahmen: Keywords in der Bio, den Captions und sogar im gesprochenen Text (TikTok hört mit!).</p>
+
+            <div class="quiz-section">
+                <div class="quiz-card">
+                    <p class="quiz-question">Was ist das wichtigste Element in den ersten 3 Sekunden eines Videos?</p>
+                    <div class="options-grid">
+                        <button class="option-btn" onclick="checkAnswer(this, false)">Eine schöne Hintergrundmusik in hoher Lautstärke.</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true)">Ein psychologischer Hook, der den 'Scroll-Reflex' unterbricht.</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">Ein ausführliches Intro über die eigene Person.</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- KAPITEL 3: KREATION -->
+        <div class="course-page" id="p2">
+            <div class="chapter-intro">
+                "Batch-Production ist die Geheimwaffe der Elite. Kreativität braucht System, nicht Chaos."
+            </div>
+
+            <p><span class="dropcap">K</span>onsistenz ist der Treibstoff des Algorithmus. Wer täglich postet, gewinnt – doch tägliches Filmen führt zum Burnout. Professionelle Creator trennen die Phasen von Ideenfindung, Aufnahme und Schnitt strikt voneinander.</p>
+
+            <h2>Hocheffiziente Workflows</h2>
+            <p>In der Umsetzung geht es um 'Maximalen Impact bei minimalem Aufwand'. Nutze moderne Werkzeuge nicht als Spielzeug, sondern als Effizienz-Hebel.</p>
+
+            <div class="highlight-box">
+                <h3>Der Batch-Workflow:</h3>
+                <p>Anstatt jeden Tag 2 Stunden zu investieren, blocke dir einen festen Tag (8 Stunden) für die gesamte Woche:</p>
+                <ul style="padding-left: 1.5rem;">
+                    <li><strong>Ideen-Inkubation (2h):</strong> Nutze ChatGPT für Skripte und Trend-Analysen.</li>
+                    <li><strong>Filming (3h):</strong> Produziere 7-10 Videos in einem Rutsch. Achte auf gute Beleuchtung und klaren Ton.</li>
+                    <li><strong>Editing (3h):</strong> Nutze CapCut oder Canva für dynamische Schnitte und Text-Overlays.</li>
+                </ul>
+            </div>
+
+            <div class="pro-tip">
+                <i data-lucide="zap"></i>
+                <div>
+                    <strong>Pro-Tip: KI-Integration</strong>
+                    Lass dir von der KI keine Videos erstellen, sondern Skripte optimieren. Die menschliche Komponente muss erhalten bleiben, die Struktur darf jedoch perfektioniert werden.
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-card">
+                    <p class="quiz-question">Was ist der Hauptvorteil der 'Batch-Production'?</p>
+                    <div class="options-grid">
+                        <button class="option-btn" onclick="checkAnswer(this, false)">Dass man mehr Filter in den Videos nutzen kann.</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true)">Der Erhalt des kreativen Fokus und die Sicherstellung täglicher Postings ohne täglichen Dreh-Stress.</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">Dass die Videos automatisch viral gehen.</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- KAPITEL 4: SKALIERUNG -->
+        <div class="course-page" id="p3">
+            <div class="chapter-intro">
+                "Daten lügen nicht. Wer seine Analytics ignoriert, fliegt im Blindflug durch den Markt."
+            </div>
+
+            <p><span class="dropcap">E</span>rfolg ist auf TikTok skalierbar, wenn man die Mechanismen dahinter versteht. Die vierte Phase widmet sich der gnadenlosen Analyse. Der PDCA-Zyklus (Plan-Do-Check-Act) ist hierbei dein wichtigstes Werkzeug.</p>
+
+            <h2>Performance-Optimierung</h2>
+            <p>Ein Video, das nicht performt, ist kein Fehlschlag, sondern ein Datenpunkt. Analysiere wöchentlich:</p>
+
+            <div class="highlight-box">
+                <ul>
+                    <li><strong>Watch Time Retention:</strong> Wo springen die Leute ab? Wenn die Kurve nach 2 Sekunden steil abfällt, war der Hook schwach.</li>
+                    <li><strong>Share-Ratio:</strong> Ein hoher Share-Wert signalisiert dem Algorithmus extremen Mehrwert.</li>
+                    <li><strong>Conversion-Rate:</strong> Wie viele Zuschauer werden zu Followern?</li>
+                </ul>
+            </div>
+
+            <h3>Der Act-Teil im PDCA</h3>
+            <p>Was funktioniert hat, wird verstärkt. Was ignoriert wurde, wird gnadenlos gestrichen. Wahre Anpassungsfähigkeit bedeutet, den eigenen Stolz beiseite zu schieben und das zu produzieren, was die Zielgruppe wirklich konsumiert.</p>
+
+            <div class="quiz-section">
+                <div class="quiz-card">
+                    <p class="quiz-question">Welche Metrik ist am wichtigsten für die Skalierung eines Kanals?</p>
+                    <div class="options-grid">
+                        <button class="option-btn" onclick="checkAnswer(this, false)">Die Anzahl der Likes unter einem Video.</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">Die Gesamtzahl der Follower.</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true)">Die Zuschauerbindung (Retention) und die Watch-Time.</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            © 2026 TikTok Marketing Mastery | Ein Exklusiver Leitfaden
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        function switchPage(index) {
+            document.querySelectorAll('.course-page').forEach((p, i) => {
+                p.classList.toggle('active', i === index);
+            });
+            document.querySelectorAll('.nav-item').forEach((item, i) => {
+                item.classList.toggle('active', i === index);
+            });
+            window.scrollTo(0, 0);
+            
+            gsap.from('.course-page.active', {
+                opacity: 0,
+                y: 20,
+                duration: 0.6,
+                ease: "power2.out"
+            });
+        }
+
+        function checkAnswer(btn, isCorrect) {
+            const container = btn.parentElement;
+            const buttons = container.querySelectorAll('.option-btn');
+            
+            buttons.forEach(b => b.style.pointerEvents = 'none');
+            
+            if(isCorrect) {
+                btn.classList.add('correct');
+                gsap.to(btn, { x: 10, duration: 0.1, yoyo: true, repeat: 3 });
+            } else {
+                btn.classList.add('wrong');
+                // Highlight correct one
+                buttons.forEach(b => {
+                    if (b.innerText.includes("Algorithmus") || b.innerText.includes("psychologischer") || b.innerText.includes("Erhalt des kreativen") || b.innerText.includes("Zuschauerbindung")) {
+                        b.classList.add('correct');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

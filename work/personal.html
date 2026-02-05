@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Khadija Okbi | Portfolio</title>
+		<meta name="description" content="Editorial, modernes Portfolio von Khadija Okbi – Kreatives Design & Digitalstrategie." />
+		<link rel="icon" type="image/png" href="../img/logo_white.png" />
+		<!-- Fonts-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Mulish:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+		 <!-- Font Awesome Icons -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<!-- GSAP & ScrollTrigger -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+		<!-- Styles -->
+		<link rel="stylesheet" href="../style/combined.css" />
+
+<style>
+    /* --- WAVE TRANSITION --- */
+    .wave-container {
+        position: relative;
+        width: 100%;
+        height: 100px;
+        background: transparent;
+        margin-top: -1px;
+    }
+
+    .wave-svg {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        fill: currentColor;
+    }
+
+    /* --- STACKED SLIDER (FOTOGRAFIE) --- */
+    .stack-slider {
+        position: relative;
+        height: 80vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+    }
+
+    .stack-item {
+        position: absolute;
+        width: 250px;
+        height: 350px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 15px;
+        transition: all 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+        cursor: pointer;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .stack-item.active {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        left: 0;
+        top: 0;
+        transform: none;
+        z-index: 1;
+    }
+
+    .stack-content {
+        position: absolute;
+        bottom: 10%;
+        left: 5%;
+        z-index: 10;
+        color: white;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s ease;
+    }
+
+    .stack-item.active .stack-content {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* --- LOGO SLIDER (VELO STYLE) --- */
+    .logo-slider {
+        background: white;
+        padding: 100px 0;
+    }
+
+    .logo-track {
+        display: flex;
+        overflow: hidden;
+        width: 100%;
+        gap: 100px;
+    }
+
+    .logo-item {
+        flex: 0 0 auto;
+        width: 300px;
+        text-align: center;
+    }
+
+    .logo-item img {
+        width: 100%;
+        height: auto;
+        filter: grayscale(1);
+        transition: filter 0.5s;
+    }
+
+    .logo-item:hover img {
+        filter: grayscale(0);
+    }
+
+    /* --- VIDEO MOCKUP --- */
+    .mockup-container {
+        width: 800px;
+        height: 518px;
+        max-width: 90vw;
+        margin: 0 auto;
+        background: #111;
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 50px 100px rgba(0,0,0,0.1);
+    }
+
+    .mockup-container video, .mockup-container iframe {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .section-title-wrapper {
+        margin-bottom: 5rem;
+    }
+
+    .white-space {
+        padding: 120px 0;
+    }
+
+    .hero-parallax {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 120%;
+        background-image: url('../img/collage.jpg');
+        background-size: cover;
+        background-position: center;
+        z-index: 0;
+        opacity: 0.6;
+    }
+
+    .text-outline {
+        -webkit-text-stroke: 1px #EBE1D1;
+        color: transparent;
+    }
+</style> 
+	</head>
+	<body>
+		<header class="site-header" id="top" aria-label="Seitennavigation">
+			<div class="container nav-bar">
+			   <a href="../index.html" class="logo">
+			   <img src="../img/logo_black.png" alt="Khadija Okbi Logo" width="45">
+			   <img src="../img/logo_white.png" alt="Khadija Okbi Logo" width="45" class="logo-onscroll">
+			   </a>
+			   <nav class="nav" aria-label="Hauptnavigation">
+				  <a href="index.html#hero" class="nav-link">Home</a>
+				  <a href="../index.html#expertise" class="nav-link">What I do</a>
+				  <a href="../index.html#blog" class="nav-link">Blog</a>
+				  <a href="../about.html" class="nav-link">About me</a>
+
+			   </nav>
+			</div>
+		 </header>
+    <main>
+        <section class="hero-section relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+            <div class="hero-parallax parallax-item" data-speed="0.1"></div>
+            
+            <div class="container mx-auto px-6 relative z-10 text-center">
+                <p class="reveal-text font-mono text-sm tracking-[0.4em] uppercase mb-6 text-[#EBE1D1] opacity-90">Personal Projects & Vision</p>
+                <h1 class="reveal-text font-display italic text-6xl md:text-[9rem] font-bold leading-none tracking-tighter mb-10">
+                    Creative <span class="text-outline">Spirit</span>
+                </h1>
+                <div class="reveal-text flex justify-center items-center gap-6">
+                    <div class="h-px w-12 bg-[#EBE1D1]/30"></div>
+                    <p class="text-lg md:text-xl text-[#EBE1D1]/70 max-w-xl font-light italic">
+                        Ein Spielplatz für Design, Ästhetik und die Schönheit des Andersseins.
+                    </p>
+                    <div class="h-px w-12 bg-[#EBE1D1]/30"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WAVE TRANSITION -->
+        <div class="wave-container text-white bg-[#F5F5F5]">
+            <svg class="wave-svg" viewBox="0 0 1440 120">
+                <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
+            </svg>
+        </div>
+
+        <!-- SECTION 1: DESIGN PROJECTS (Wide Slider) -->
+        <section class="white-space bg-[#F5F5F5]">
+            <div class="container mx-auto px-6">
+                <div class="section-title-wrapper">
+                    <h2 class="text-[#0A0A0A]">Design <br/><span class="italic text-[#6E3B49]">Excellence</span></h2>
+                    <p class="max-w-md text-gray-500 mt-4">Kuration meiner besten Grafik- und Branding-Konzepte.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Project Item -->
+                    <div class="group cursor-pointer">
+                        <div class="overflow-hidden rounded-lg bg-gray-200 aspect-[4/3]">
+                            <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1000" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Design 1">
+                        </div>
+                        <h3 class="font-display text-2xl mt-6 font-bold italic">Brand Identity "Lace"</h3>
+                        <p class="text-gray-400 font-light">Minimalistisches Branding für High-Fashion.</p>
+                    </div>
+                    <!-- Project Item -->
+                    <div class="group cursor-pointer pt-20">
+                        <div class="overflow-hidden rounded-lg bg-gray-200 aspect-[4/3]">
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Design 2">
+                        </div>
+                        <h3 class="font-display text-2xl mt-6 font-bold italic">Abstract Forms</h3>
+                        <p class="text-gray-400 font-light">Exploration von Farben und Vektoren.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WAVE TRANSITION -->
+        <div class="wave-container text-[#F5F5F5] bg-[#314A51]">
+            <svg class="wave-svg" viewBox="0 0 1440 120">
+                <path d="M0,32L60,42.7C120,53,240,75,360,74.7C480,75,600,53,720,42.7C840,32,960,32,1080,42.7C1200,53,1320,75,1380,85.3L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
+            </svg>
+        </div>
+
+        <!-- SECTION 2: LOGO SHOWCASE (Minimal Velo Slider) -->
+        <section class="white-space bg-[#314A51] text-[#EBE1D1]">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-20">
+                    <h2 class="text-white">Iconic <br/><span class="italic text-[#EBE1D1]">Logotypes</span></h2>
+                    <div class="h-px w-full md:w-1/3 bg-white/20 mb-6"></div>
+                </div>
+
+                <div class="logo-track py-20" id="logoTrack">
+                    <!-- Logos -->
+                    <div class="logo-item">
+                        <img src="../img/personal/logo.PNG" alt="OKBI STUDIO Logo" class="max-h-20 w-auto object-contain mx-auto">
+                        <p class="text-xs mt-2 uppercase tracking-widest">Minimal Branding</p>
+                    </div>
+                    <div class="logo-item">
+                        <img src="../img/personal/logo2.PNG" alt="KYOTO NOIR Logo" class="max-h-20 w-auto object-contain mx-auto">
+                        <p class="text-xs mt-2 uppercase tracking-widest">Fashion Label</p>
+                    </div>
+                    <div class="logo-item">
+                        <img src="../img/personal/logo_black.png" alt="AESTHETICA Logo" class="max-h-20 w-auto object-contain mx-auto">
+                        <p class="text-xs mt-2 uppercase tracking-widest">Editorial Mag</p>
+                    </div>
+                     <div class="logo-item">
+                        <img src="../img/personal/logo_white.png" alt="FLUID FORM Logo" class="max-h-20 w-auto object-contain mx-auto">
+                        <p class="text-xs mt-2 uppercase tracking-widest">Motion Studio</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WAVE TRANSITION -->
+        <div class="wave-container text-[#314A51] bg-black">
+            <svg class="wave-svg" viewBox="0 0 1440 120">
+                <path d="M0,64L120,58.7C240,53,480,43,720,48C960,53,1200,75,1320,85.3L1440,96L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path>
+            </svg>
+        </div>
+
+        <!-- SECTION 3: PHOTOGRAPHY (Stacked Slider) -->
+        <section class="bg-black py-40">
+            <div class="container mx-auto px-6 mb-20">
+                <h2 class="text-white">Captured <br/><span class="italic text-[#6E3B49]">Moments</span></h2>
+            </div>
+            
+            <div class="stack-slider" id="photoSlider">
+                <div class="stack-item active" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000')">
+                    <div class="stack-content">
+                        <h3 class="text-5xl font-display italic">Essence of Light</h3>
+                        <p class="max-w-xs mt-4">Porträtstudie über natürlichen Schattenfall.</p>
+                    </div>
+                </div>
+                <div class="stack-item" style="background-image: url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000'); transform: translate(300px, 50px) rotate(5deg);">
+                    <div class="stack-content">
+                        <h3 class="text-5xl font-display italic">Editorial Pink</h3>
+                        <p class="max-w-xs mt-4">Fashion-Fotografie für das Manifest.</p>
+                    </div>
+                </div>
+                <div class="stack-item" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000'); transform: translate(600px, -30px) rotate(-3deg);">
+                    <div class="stack-content">
+                        <h3 class="text-5xl font-display italic">Urban Soul</h3>
+                        <p class="max-w-xs mt-4">Street Photography in Paris.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <p class="text-white/30 font-mono text-xs uppercase tracking-widest">Click a card to expand</p>
+            </div>
+        </section>
+
+        <!-- SECTION 4: WEB MOCKUP VIDEO -->
+        <section class="white-space bg-[#F5F5F5]">
+            <div class="container mx-auto px-6 text-center">
+                <div class="section-title-wrapper mb-20">
+                    <h2 class="text-[#0A0A0A]">Digital <br/><span class="italic text-[#6E3B49]">Experience</span></h2>
+                    <p class="text-gray-500">Website Mockup - 800x518 Vision</p>
+                </div>
+
+                <div class="mockup-container">
+                    <!-- Platzhalter für dein Video -->
+                    <video autoplay muted loop playsinline>
+                        <source src="https://player.vimeo.com/external/494298132.hd.mp4?s=53474039866897284880c1071987D70d8a57630a&profile_id=175" type="video/mp4">
+                    </video>
+                    
+                    <!-- Overlay für Beschreibung -->
+                    <div class="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <div class="text-[#EBE1D1] p-10 border border-[#EBE1D1]/30 backdrop-blur-sm">
+                            <h4 class="text-2xl font-display italic">Portfolio UI</h4>
+                            <p class="text-sm mt-2">Smooth Transitions & Minimal Layout</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-20 max-w-xl mx-auto">
+                    <p class="italic text-xl text-gray-400 font-light">
+                        "Design ist nicht nur wie es aussieht, sondern wie es sich anfühlt, wenn man hindurchgleitet."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+<!-- Footer -->
+<footer class="site-footer" aria-label="Seitenende">
+	<div class="container footer-inner">
+	   <div class="footer-copy">© 2026 Design & Development by Khadija Okbi</div>
+	   <div class="footer-socials" aria-label="Soziale Netzwerke">
+		  <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
+			<!-- GitHub Icon -->
+			<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/>
+			</svg>
+		  </a>
+		  <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn">
+			<!-- LinkedIn Icon -->
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/>
+			  <path d="M6.5 9.5v8.5M6.5 7.5v.01M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>
+		  </a>
+		  <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok">
+			<!-- TikTok Icon (stylized note) -->
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <path d="M16 7.5c.5 0 .9.04 1.3.12v3.38a4.2 4.2 0 0 1-2.3-.64v5.64A4.86 4.86 0 0 1 11 20a4.86 4.86 0 0 1-4.86-4.86 4.86 4.86 0 0 1 4.86-4.86c.28 0 .55.03.81.08V7.5h.19c1.14 0 2.09.37 2.99 1.03V7.5z" fill="currentColor"/>
+			</svg>
+		  </a>
+		  <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen">
+			<!-- CodePen Icon -->
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.1" fill="none"/>
+			  <path d="M3.5 7.5l8.5 5 8.5-5" stroke="currentColor" stroke-width="1.1" fill="none"/>
+			  <path d="M12 21.5v-10" stroke="currentColor" stroke-width="1.1" fill="none"/>
+			</svg>
+		  </a>
+	   </div>
+	</div>
+ </footer>
+    <script>
+        // --- STACK SLIDER LOGIC ---
+        const items = document.querySelectorAll('.stack-item');
+        
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                // Remove active from others
+                items.forEach(i => {
+                    i.classList.remove('active');
+                    // Reset to small cards
+                    if(i !== item) {
+                        const randomX = Math.random() * 400 + 200;
+                        const randomY = (Math.random() - 0.5) * 100;
+                        const randomRot = (Math.random() - 0.5) * 20;
+                        i.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${randomRot}deg)`;
+                        i.style.zIndex = "0";
+                    }
+                });
+
+                // Set active
+                item.classList.add('active');
+                item.style.transform = `translate(0,0) rotate(0)`;
+                item.style.zIndex = "10";
+            });
+        });
+
+        // --- GSAP ANIMATIONS ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Reveal Titles
+        gsap.utils.toArray('h2').forEach(title => {
+            gsap.from(title, {
+                scrollTrigger: {
+                    trigger: title,
+                    start: "top 90%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Horizontal Logo Scroll
+        gsap.to("#logoTrack", {
+            xPercent: -20,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#logoTrack",
+                scrub: 1,
+            }
+        });
+    </script>
+    </body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lehre | SBW Neuen Medien</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Work+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP & Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="../style/combined.css" />
+<style>
+        :root {
+            --bg-primary: #000;
+            --bg-secondary: #F5F5F5;
+            --accent-burgundy: #6E3B49;
+            --font-body: 'Work Sans', sans-serif;
+            --font-display: 'Playfair Display', serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: white;
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            margin: 0;
+            padding-top: 72px;
+        }
+
+        .font-display { font-family: var(--font-display); }
+        .work-page-wrapper { padding-top: 0; }
+
+        /* --- WAVES --- */
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 23vh;
+            background-color: var(--bg-secondary);
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
+            mask-size: 100% 100%;
+            -webkit-mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .section-modules::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 25vh;
+            background-color: var(--accent-burgundy);
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            mask-size: 100% 100%;
+            -webkit-mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .video-container {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .text-outline {
+            -webkit-text-stroke: 1px #EBE1D1;
+            color: transparent;
+        }
+
+        /* --- GALLERY STYLES --- */
+        .story-gallery {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 2rem 0;
+            scrollbar-width: none;
+        }
+        .story-gallery::-webkit-scrollbar { display: none; }
+
+        .story-card {
+            flex: 0 0 280px;
+            aspect-ratio: 9 / 16;
+            background: #1a1a1a;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+        .story-card:hover { transform: scale(1.02); }
+        .story-card video, .story-card img { width: 100%; height: 100%; object-fit: cover; }
+
+        .client-marquee {
+            display: flex;
+            overflow: hidden;
+            user-select: none;
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .marquee-content {
+            display: flex;
+            gap: 6rem;
+            animation: scroll 40s linear infinite;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+    </style> 
+</head>
+<body>
+        <!-- HEADER -->
+        <header class="site-header" id="top">
+            <div class="container nav-bar">
+                <a href="../index.html" class="logo">
+                    <img src="../img/logo_black.png" alt="Khadija Okbi Logo" width="45">
+                    <img src="../img/logo_white.png" alt="Khadija Okbi Logo" width="45" class="logo-onscroll">
+                </a>
+                <nav class="nav">
+                    <a href="index.html#hero" class="nav-link">Home</a>
+                    <a href="../index.html/#expertise" class="nav-link">What I do</a>
+                    <a href="../index.html/#blog" class="nav-link">Blog</a>
+                    <a href="../about.html" class="nav-link">About me</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- HERO SECTION WITH DYNAMIC VIDEO -->
+        <section class="hero-section relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+            <div class="video-container parallax-video z-0 opacity-50">
+                <!-- Desktop Video -->
+                <video class="hidden md:block" autoplay muted loop playsinline>
+                    <source src="../video/petrichor_hero.mp4" type="video/mp4">
+                </video>
+                <!-- Mobile Video (Story Format) -->
+                <video class="md:hidden" autoplay muted loop playsinline>
+                    <source src="video/promo.MP4" type="video/mp4">
+                </video>
+                <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/40"></div>
+            </div>
+            
+            <div class="container mx-auto px-6 relative z-10 text-center">
+                <p class="reveal-text font-mono text-sm tracking-[0.5em] uppercase mb-6 text-[#EBE1D1]">4 Jahre Lehre // 2020 - 2024</p>
+                <h1 class="reveal-text font-display italic text-6xl md:text-[8rem] lg:text-[11rem] font-bold leading-none tracking-tighter mb-10">
+                    SBW <span class="text-outline">Medien</span>
+                </h1>
+                <div class="reveal-text flex justify-center items-center gap-6">
+                    <div class="h-px w-12 bg-[#EBE1D1]/30"></div>
+                    <p class="text-lg md:text-xl text-[#EBE1D1]/70 max-w-2xl font-light italic">
+                        Die Grundsteine meiner kreativen Reise. Von Modulen bis hin zu echten Kundenprojekten.
+                    </p>
+                    <div class="h-px w-12 bg-[#EBE1D1]/30"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE SECTION (2x4 Grid) -->
+        <section class="section-modules py-40 bg-[#F5F5F5] text-[#0A0A0A] relative">
+            <div class="container mx-auto px-6 relative z-20">
+                <div class="mb-24">
+                    <h2 class="font-display text-5xl md:text-8xl mb-8">Ausbildungs <br/><span class="italic text-[#6E3B49]">Module</span></h2>
+                    <div class="h-1 w-24 bg-[#6E3B49]"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-300 border border-gray-300 reveal-grid">
+                    <!-- Module 1-8 -->
+                    <div class="bg-[#F5F5F5] p-12 hover:bg-[#EBE1D1] transition-all duration-700 min-h-[320px] flex flex-col justify-between group">
+                        <div>
+                            <h3 class="font-display italic text-3xl font-bold mb-4 group-hover:text-[#6E3B49]">Grafikdesign</h3>
+                            <p class="text-[#525252] leading-relaxed">Grundlagen der Typografie, Layouting und Markenbildung von Beginn an.</p>
+                        </div>
+                        <span class="font-mono text-[10px] opacity-30">M01 / BASICS</span>
+                    </div>
+                    <div class="bg-[#F5F5F5] p-12 hover:bg-[#EBE1D1] transition-all duration-700 min-h-[320px] flex flex-col justify-between group">
+                        <div>
+                            <h3 class="font-display italic text-3xl font-bold mb-4 group-hover:text-[#6E3B49]">Motion Design</h3>
+                            <p class="text-[#525252] leading-relaxed">Keyframes, Transitions und dynamisches Storytelling in After Effects.</p>
+                        </div>
+                        <span class="font-mono text-[10px] opacity-30">M02 / MOTION</span>
+                    </div>
+                    <div class="bg-[#F5F5F5] p-12 hover:bg-[#EBE1D1] transition-all duration-700 min-h-[320px] flex flex-col justify-between group">
+                        <div>
+                            <h3 class="font-display italic text-3xl font-bold mb-4 group-hover:text-[#6E3B49]">Web Development</h3>
+                            <p class="text-[#525252] leading-relaxed">Struktur und Ästhetik im Web – Verständnis für Code und Design-Systeme.</p>
+                        </div>
+                        <span class="font-mono text-[10px] opacity-30">M03 / TECH</span>
+                    </div>
+                    <div class="bg-[#F5F5F5] p-12 hover:bg-[#EBE1D1] transition-all duration-700 min-h-[320px] flex flex-col justify-between group">
+                        <div>
+                            <h3 class="font-display italic text-3xl font-bold mb-4 group-hover:text-[#6E3B49]">Video Editing</h3>
+                            <p class="text-[#525252] leading-relaxed">Schnittrhythmus und Color Grading für professionelle Video-Produktionen.</p>
+                        </div>
+                        <span class="font-mono text-[10px] opacity-30">M04 / POST</span>
+                    </div>
+                    <div class="bg-[#F5F5F5] p-12 hover:bg-[#EBE1D1] transition-all duration-700 min-h-[320px] flex flex-col justify-between group">
+                        <div>
+                            <h3 class="font-display italic text-3xl font-bold mb-4 group-hover:text-[#6E3B49]">Fotografie</h3>
+                            <p class="text-[#525252] leading-relaxed">Lichtführung und Komposition – Die Welt durch die Linse sehen.</p>
+                        </div>
+                        <span class="font-mono text-[10px] opacity-30">M05 / VISUALS</span>
+                    </div>
+                    <div class="bg-[#F5F5F5] p-12 hover:bg-[#EBE1D1] transition-all duration-700 min-h-[320px] flex flex-col justify-between group">
+                        <div>
+                            <h3 class="font-display italic text-3xl font-bold mb-4 group-hover:text-[#6E3B49]">Konzeption</h3>
+                            <p class="text-[#525252] leading-relaxed">Vom ersten Brainstorming bis zum fertigen Kampagnen-Konzept.</p>
+                        </div>
+                        <span class="font-mono text-[10px] opacity-30">M06 / BRAIN</span>
+                    </div>
+                    <div class="bg-[#F5F5F5] p-12 hover:bg-[#EBE1D1] transition-all duration-700 min-h-[320px] flex flex-col justify-between group">
+                        <div>
+                            <h3 class="font-display italic text-3xl font-bold mb-4 group-hover:text-[#6E3B49]">3D Animation</h3>
+                            <p class="text-[#525252] leading-relaxed">Eintauchen in dreidimensionale Welten und Objekterstellung.</p>
+                        </div>
+                        <span class="font-mono text-[10px] opacity-30">M07 / DIMENSION</span>
+                    </div>
+                    <div class="bg-[#F5F5F5] p-12 hover:bg-[#EBE1D1] transition-all duration-700 min-h-[320px] flex flex-col justify-between group">
+                        <div>
+                            <h3 class="font-display italic text-3xl font-bold mb-4 group-hover:text-[#6E3B49]">Lehrabschluss</h3>
+                            <p class="text-[#525252] leading-relaxed">Bündelung aller Kompetenzen im großen Abschlussprojekt.</p>
+                        </div>
+                        <span class="font-mono text-[10px] opacity-30">M08 / FINALE</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KUNDENPROJEKTE (Burgundy Section) -->
+        <section class="py-40 bg-[#6E3B49] text-[#EBE1D1]">
+            <div class="container mx-auto px-6">
+                <h2 class="font-display italic text-5xl md:text-9xl mb-20 text-center">Reale <br/><span class="text-white">Projekte</span></h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
+                    <div class="group reveal-up">
+                        <div class="relative aspect-square overflow-hidden rounded-3xl mb-8">
+                            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110" alt="Projekt 1">
+                        </div>
+                        <h3 class="font-display text-4xl font-bold italic mb-4">Corporate Identity Case</h3>
+                        <p class="text-[#EBE1D1]/60 font-light leading-relaxed">Entwicklung eines kompletten Brandings für ein Start-up während des 3. Lehrjahres.</p>
+                    </div>
+                    <div class="group reveal-up" style="margin-top: 10vh;">
+                        <div class="relative aspect-square overflow-hidden rounded-3xl mb-8">
+                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110" alt="Projekt 2">
+                        </div>
+                        <h3 class="font-display text-4xl font-bold italic mb-4">Web Design Redesign</h3>
+                        <p class="text-[#EBE1D1]/60 font-light leading-relaxed">Konzeption und User Experience Optimierung für eine regionale Web-Plattform.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MARQUEE (Kunden Logos) -->
+        <div class="client-marquee border-y border-gray-100">
+            <div class="marquee-content font-display italic text-4xl md:text-6xl text-gray-200">
+                <span>SBW NEUEN MEDIEN</span>
+                <span>PROJEKT X</span>
+                <span>KUNDE Y</span>
+                <span>STARTUP Z</span>
+                <span>EVENT AGENCY</span>
+                <span>DESIGN STUDIO</span>
+                <!-- Repeat for loop -->
+                <span>SBW NEUEN MEDIEN</span>
+                <span>PROJEKT X</span>
+                <span>KUNDE Y</span>
+                <span>STARTUP Z</span>
+                <span>EVENT AGENCY</span>
+                <span>DESIGN STUDIO</span>
+            </div>
+        </div>
+
+        <!-- SOCIAL MEDIA & INSTA STORIES -->
+        <section class="py-40 bg-[#314A51] text-[#EBE1D1]">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-baseline mb-20 gap-8">
+                    <h2 class="font-display italic text-5xl md:text-8xl">Social <br/>Content</h2>
+                    <p class="text-[#EBE1D1]/50 font-mono text-sm tracking-widest uppercase">Video / Story / Reel</p>
+                </div>
+
+                <div class="story-gallery reveal-up">
+                    <!-- Insta Story Video Cards -->
+                    <div class="story-card">
+                        <video autoplay muted loop playsinline>
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-fashion-girl-walking-in-a-studio-34442-large.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute bottom-6 left-6 text-white text-xs font-mono uppercase opacity-70">Insta Story 01</div>
+                    </div>
+                    <div class="story-card">
+                        <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800" alt="Insta Story 2">
+                        <div class="absolute bottom-6 left-6 text-white text-xs font-mono uppercase opacity-70">Branding Reel</div>
+                    </div>
+                    <div class="story-card">
+                        <video autoplay muted loop playsinline>
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-young-woman-dancing-in-a-pink-light-34439-large.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute bottom-6 left-6 text-white text-xs font-mono uppercase opacity-70">Insta Story 03</div>
+                    </div>
+                    <div class="story-card">
+                        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&q=80&w=800" alt="Insta Story 4">
+                        <div class="absolute bottom-6 left-6 text-white text-xs font-mono uppercase opacity-70">Project Reveal</div>
+                    </div>
+                    <div class="story-card">
+                        <video autoplay muted loop playsinline>
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-dancing-woman-in-neon-light-34438-large.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute bottom-6 left-6 text-white text-xs font-mono uppercase opacity-70">Insta Story 05</div>
+                    </div>
+                </div>
+                
+                <p class="mt-12 text-center font-mono text-xs uppercase tracking-[0.5em] opacity-30 animate-pulse">Scroll sideways for more content</p>
+            </div>
+        </section>
+
+ <!-- Footer -->
+ <footer class="site-footer" aria-label="Seitenende">
+	<div class="container footer-inner">
+	   <div class="footer-copy">© 2026 Design & Development by Khadija Okbi</div>
+	   <div class="footer-socials" aria-label="Soziale Netzwerke">
+		  <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
+			<!-- GitHub Icon -->
+			<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/>
+			</svg>
+		  </a>
+		  <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn">
+			<!-- LinkedIn Icon -->
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/>
+			  <path d="M6.5 9.5v8.5M6.5 7.5v.01M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>
+		  </a>
+		  <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok">
+			<!-- TikTok Icon (stylized note) -->
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <path d="M16 7.5c.5 0 .9.04 1.3.12v3.38a4.2 4.2 0 0 1-2.3-.64v5.64A4.86 4.86 0 0 1 11 20a4.86 4.86 0 0 1-4.86-4.86 4.86 4.86 0 0 1 4.86-4.86c.28 0 .55.03.81.08V7.5h.19c1.14 0 2.09.37 2.99 1.03V7.5z" fill="currentColor"/>
+			</svg>
+		  </a>
+		  <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen">
+			<!-- CodePen Icon -->
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.1" fill="none"/>
+			  <path d="M3.5 7.5l8.5 5 8.5-5" stroke="currentColor" stroke-width="1.1" fill="none"/>
+			  <path d="M12 21.5v-10" stroke="currentColor" stroke-width="1.1" fill="none"/>
+			</svg>
+		  </a>
+	   </div>
+	</div>
+ </footer>
+    <script src="work-header.js"></script>
+</body>
+</html>

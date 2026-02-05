@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDPA | Die Illusion der freien Meinung</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP & Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+       <!-- Main Styles -->
+       <link rel="stylesheet" href="../style/combined.css" />
+<style>
+        :root {
+            --bg-primary: #000;
+            --bg-secondary: #F8F7F4; /* Etwas wärmeres Editorial-Weiß */
+            --text-dark: #121212;
+            --accent-burgundy: #6E3B49;
+            --text-gray: #666666;
+            --font-body: 'Work Sans', sans-serif;
+            --font-display: 'Playfair Display', serif;
+        }
+
+        body {
+            background-color: var(--bg-secondary);
+            color: var(--text-dark);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            padding-top: 72px;
+        }
+
+        /* Reading Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            height: 3px;
+            background: rgba(0,0,0,0.05);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--accent-burgundy);
+            width: 0%;
+        }
+
+        /* Grid Layout */
+        .editorial-container {
+            max-width: 140rem;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            padding: 0 4rem;
+        }
+
+        /* Navigation */
+        .nav-header {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4rem 0;
+            z-index: 100;
+        }
+
+        .back-btn {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Typography Styles */
+        .title-large {
+            font-family: var(--font-display);
+            font-size: clamp(6rem, 12vw, 16rem);
+            font-weight: 900;
+            line-height: 0.85;
+            letter-spacing: -0.04em;
+            margin-bottom: 6rem;
+            position: relative;
+        }
+
+        .title-italic {
+            font-style: italic;
+            font-weight: 400;
+            display: block;
+            margin-left: 10vw;
+            color: var(--accent-burgundy);
+        }
+
+        .meta-info {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        /* Content Blocks */
+        .article-main {
+            grid-column: 2 / 8;
+            padding-bottom: 20rem;
+        }
+
+        .article-sidebar {
+            grid-column: 9 / 13;
+            position: sticky;
+            top: 15rem;
+            height: fit-content;
+        }
+
+        .text-lead {
+            font-size: 1.8rem;
+            line-height: 1.4;
+            font-family: var(--font-body);
+            margin-bottom: 6rem;
+            font-weight: 400;
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+            text-align-last: left;
+        }
+
+        .text-body {
+            font-size: 1.8rem;
+            line-height: 1.8;
+            color: #222;
+        }
+
+        .text-body p {
+            margin-bottom: 3.5rem;
+            position: relative;
+        }
+.p {
+            font-size: 1.4rem !important;
+        }
+        .drop-cap::first-letter {
+            font-family: var(--font-display);
+            font-size: 8rem;
+            float: left;
+            line-height: 0.7;
+            padding-right: 1.5rem;
+            margin-top: 1rem;
+            color: var(--accent-burgundy);
+            font-style: italic;
+        }
+
+        /* Pull Quote */
+        .pull-quote {
+            margin: 8rem 0;
+            padding: 4rem 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-style: italic;
+            line-height: 1.2;
+            color: var (--text-dark);
+            text-align: center;
+        }
+
+        /* Media Elements */
+        .img-reveal-wrapper {
+            overflow: hidden;
+            border-radius: 0.4rem;
+            margin-bottom: 4rem;
+            background: #eee;
+        }
+
+        .img-reveal-wrapper img {
+            width: 100%;
+            height: auto;
+            transform: scale(1.1);
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Mobile Layout */
+        @media (max-width: 1024px) {
+            .article-main { grid-column: 1 / -1; }
+            .article-sidebar { display: none; }
+            .title-large { font-size: 8rem; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-burgundy); }
+
+    </style> 
+</head>
+<body>
+        <!-- HEADER -->
+        <header class="site-header" id="top">
+            <div class="container nav-bar">
+                <a href="../index.html" class="logo">
+                    <img src="../img/logo_black.png" alt="Khadija Okbi Logo" width="45">
+                    <img src="../img/logo_white.png" alt="Khadija Okbi Logo" width="45" class="logo-onscroll">
+                </a>
+                <nav class="nav">
+                    <a href="index.html#hero" class="nav-link">Home</a>
+                    <a href="../index.html/#expertise" class="nav-link">What I do</a>
+                    <a href="../index.html/#blog" class="nav-link">Blog</a>
+                    <a href="../about.html" class="nav-link">About me</a>
+                </nav>
+            </div>
+        </header>
+ 
+        <div class="editorial-container">
+            <!-- HERO HEADER -->
+            <div class="grid col-span-12 py-20">
+                <span class="meta-info stagger-item">Lesezeit: 6 Minuten // Psychologie</span>
+                <h1 class="title-large stagger-item">
+                    Die Illusion <br>
+                    <span class="title-italic">der freien Meinung</span>
+                </h1>
+            </div>
+
+            <!-- MAIN ARTICLE CONTENT -->
+            <main class="article-main">
+                <p class="text-lead reveal-item drop-cap">
+                    Meine IDPA entstand aus einer intensiven Beschäftigung mit der menschlichen Psyche. 
+                    Damals war das Ziel klar: Ich wollte die psychologischen, biologischen und sozialen Mechanismen verstehen, 
+                    die unser Denken prägen. Doch je tiefer ich einstieg, desto mehr offenbarte sich eine unbequeme Wahrheit.
+                </p>
+
+                <div class="text-body">
+                    <p class="reveal-item">
+                        Schon seit einiger Zeit befasse ich mich intensiv mit der menschlichen Psyche. Was mit dem Ziel begann, mir Wissen anzueignen, um zu verstehen, endete in der Akzeptanz, dass wir als Menschen eigentlich alle machtlos unserer selbst sind. Wir machen uns vor, eine freie Meinung zu besitzen, während sie lediglich ein Ergebnis von Prägung, Erfahrung und Umfeld ist. Lange bevor wir ein bewusstes Wort sprechen, ist die Weiche bereits gestellt – unsere Meinungen werden nicht im Kopf, sondern im Bauch, oder genauer gesagt, in den Drüsen gemacht.
+                    </p>
+
+                    <div class="img-reveal-wrapper reveal-item">
+                        <img src="../img/idpa.jpg" alt="Neurologische Prozesse">
+                    </div>
+
+                    <p class="reveal-item">
+                        Gene wie das COMT-Gen bestimmen schon bei unserer Geburt, wie risikofreudig oder neugierig wir sind und damit, ob wir eher zu progressiven oder konservativen politischen Ansichten neigen. Die Epigenetik zeigt uns, dass sogar Traumata unserer Vorfahren wie Hungersnöte, Kriege und Verfolgung über Generationen hinweg unsere Ängstlichkeit und unser Sicherheitsbedürfnis prägen. Hinzu kommt ein komplexer Hormon-Cocktail: Neurotransmitter wie Oxytocin steuern nicht nur die Bindung, sondern auch unsere politische Loyalität und das Vertrauen gegenüber Anführern.
+                    </p>
+
+                    <blockquote class="pull-quote reveal-item">
+                        "Das Ich ist nicht Herr im eigenen Hause." <br>
+                        <span class="text-[1.4rem] uppercase tracking-widest mt-4 block font-sans font-bold not-italic">— Sigmund Freud</span>
+                    </blockquote>
+
+                    <p class="reveal-item">
+                        Doch Biologie allein erzählt nicht die ganze Geschichte. Weltgeschehen und technischer Fortschritt bekamen aus dieser Perspektive eine ganz andere Bedeutung. Wir sind tiefgreifend soziale Wesen, und unser tiefstes Bedürfnis ist die Zugehörigkeit – ein evolutionäres Überlebensmuster, das systematisch von unseren sozialen Strukturen genutzt wird. Religionen funktionieren als hocheffiziente "kulturelle Technologien", die Verhaltensregeln durch Belohnung und Bestrafung festlegen und so Kooperation in großem Maßstab ermöglichen.
+                    </p>
+
+                    <p class="reveal-item">
+                        Das 21. Jahrhundert hat alle Mechanismen der psychischen und sozialen Konditionierung perfektioniert und globalisiert. Social-Media-Algorithmen sind darauf optimiert, uns möglichst lange zu binden und fördern dafür emotional aufgeladene, polarisierende Inhalte – Wut und Empörung verbreiten sich sechsmal schneller als Fakten und schaffen so digitale Echokammern. Empfehlungsalgorithmen auf Plattformen wie YouTube führen Nutzer systematisch zu extremeren Inhalten.
+                    </p>
+
+                    <p class="reveal-item">
+                        Wenn unsere Meinungen biologisch vorcodiert, neurochemisch gesteuert und technologisch konditioniert sind, bleibt die Frage: Was ist dann noch echt? Philosophen wie Nietzsche erkannten: Der freie Wille ist eine Illusion, aber eine notwendige. Die einzige verbleibende Freiheit liegt in der Selbsterkenntnis. Wahre geistige Autonomie erfordert kritische Distanz – das Erkennen der eigenen biologischen und psychischen Prägungen – sowie algorithmische Aufklärung.
+                    </p>
+                </div>
+            </main>
+
+            <!-- SIDEBAR -->
+            <aside class="article-sidebar">
+                <div class="border-l border-black/10 pl-8 space-y-12">
+                    <div class="sidebar-item reveal-item">
+                        <h5 class="font-bold text-[1.2rem] uppercase tracking-widest mb-4">Über die Arbeit</h5>
+                        <p class="text-[1.4rem] text-gray-500 italic">Untersuchung der fünf Kernaspekte: Genetik, Neurowissenschaft, Soziologie, Psychologie und Philosophie.</p>
+                    </div>
+                    
+                    <div class="sidebar-item reveal-item">
+                        <h5 class="font-bold text-[1.2rem] uppercase tracking-widest mb-4">Zugehörigkeit</h5>
+                        <p class="text-[1.4rem] text-gray-500 leading-relaxed">Der Mensch ist ein Herdentier. Unser Wunsch nach Konformität ist stärker als der Wunsch nach Wahrheit.</p>
+                    </div>
+
+                    <div class="img-reveal-wrapper reveal-item">
+                        <img src="../img/idpa.jpg" alt="Abstraktes Netz">
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+<!-- Footer -->
+<footer class="site-footer" aria-label="Seitenende">
+	<div class="container footer-inner">
+	   <div class="footer-copy">© 2026 Design & Development by Khadija Okbi</div>
+	   <div class="footer-socials" aria-label="Soziale Netzwerke">
+		  <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
+			<!-- GitHub Icon -->
+			<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/>
+			</svg>
+		  </a>
+		  <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn">
+			<!-- LinkedIn Icon -->
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/>
+			  <path d="M6.5 9.5v8.5M6.5 7.5v.01M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>
+		  </a>
+		  <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok">
+			<!-- TikTok Icon (stylized note) -->
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <path d="M16 7.5c.5 0 .9.04 1.3.12v3.38a4.2 4.2 0 0 1-2.3-.64v5.64A4.86 4.86 0 0 1 11 20a4.86 4.86 0 0 1-4.86-4.86 4.86 4.86 0 0 1 4.86-4.86c.28 0 .55.03.81.08V7.5h.19c1.14 0 2.09.37 2.99 1.03V7.5z" fill="currentColor"/>
+			</svg>
+		  </a>
+		  <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen">
+			<!-- CodePen Icon -->
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			  <path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.1" fill="none"/>
+			  <path d="M3.5 7.5l8.5 5 8.5-5" stroke="currentColor" stroke-width="1.1" fill="none"/>
+			  <path d="M12 21.5v-10" stroke="currentColor" stroke-width="1.1" fill="none"/>
+			</svg>
+		  </a>
+	   </div>
+	</div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Progress Bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            if(document.getElementById("myBar")) {
+                document.getElementById("myBar").style.width = scrolled + "%";
+            }
+        };
+
+        // Hero Stagger
+        gsap.from(".stagger-item", {
+            y: 60,
+            opacity: 0,
+            duration: 1.4,
+            stagger: 0.2,
+            ease: "power4.out"
+        });
+
+        // Content Reveal on Scroll
+        gsap.utils.toArray(".reveal-item").forEach((item) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                },
+                y: 40,
+                opacity: 0,
+                duration: 1.2,
+                ease: "power2.out"
+            });
+        });
+
+        // Image Zoom in Wrapper
+        gsap.utils.toArray(".img-reveal-wrapper img").forEach((img) => {
+            gsap.to(img, {
+                scrollTrigger: {
+                    trigger: img,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                },
+                scale: 1,
+                ease: "none"
+            });
+        });
+
+        // Sidebar smooth sticky logic (handled by CSS, but we can add fade)
+        gsap.from(".article-sidebar", {
+            scrollTrigger: {
+                trigger: ".article-main",
+                start: "top center",
+                toggleActions: "play none none none"
+            },
+            opacity: 0,
+            x: 20,
+            duration: 1.5,
+            ease: "power3.out"
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      window.scrollTo({
+        top: target.offsetTop - 64,
+        behavior: 'smooth'
+      });
+      document.getElementById('mobileMenu')?.classList.remove('open');
+    });
+  });
+
+  // =========================================
+  // 2. STICKY HEADER
+  // =========================================
+  const header = document.querySelector('.site-header');
+  const updateHeader = () =>
+    header?.classList.toggle('is-solid', window.scrollY > 100);
+
+  window.addEventListener('scroll', updateHeader);
+  updateHeader();
+
+  // =========================================
+  // 3. MOBILE MENU
+  // =========================================
+  document.getElementById('navToggle')
+    ?.addEventListener('click', () =>
+      document.getElementById('mobileMenu')?.classList.toggle('open')
+    );
+
+    </script>
+</body>
+</html>

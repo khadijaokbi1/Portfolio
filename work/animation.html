@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praktikum | Hillsong Germany Comms</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Work+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP & Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- AUSKOMMENTIERT - CSS wird bereits über Tailwind CSS geladen -->
+ <style>
+        :root {
+            --bg-primary: #000;
+            --bg-secondary: #F5F5F5;
+            --accent-burgundy: #6E3B49;
+            --font-body: 'Work Sans', sans-serif;
+            --font-display: 'Playfair Display', serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: white;
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            margin: 0;
+            padding-top: 72px;
+        }
+
+        .font-display { font-family: var(--font-display); }
+        .work-page-wrapper { padding-top: 0; }
+
+        /* --- WAVES --- */
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 23vh;
+            background-color: var(--bg-secondary);
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
+            mask-size: 100% 100%;
+            -webkit-mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .text-outline {
+            -webkit-text-stroke: 1px #EBE1D1;
+            color: transparent;
+        }
+
+        /* --- VIDEO CAROUSEL --- */
+        .carousel-viewport {
+            width: 100%;
+            padding: 5vh 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .video-card {
+            flex: 0 0 350px;
+            aspect-ratio: 1080 / 1920;
+            margin: 0 40px;
+            position: relative;
+            border-radius: 2rem;
+            overflow: hidden;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: scale(0.85);
+            filter: blur(8px);
+            opacity: 0.4;
+            background: #111;
+            cursor: pointer;
+        }
+
+        .video-card.active {
+            transform: scale(1.1);
+            filter: blur(0px);
+            opacity: 1;
+            z-index: 10;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        }
+
+        .video-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(110, 59, 73, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .video-card.active:hover .play-button {
+            opacity: 1;
+        }
+
+        .video-card.playing .play-button {
+            display: none;
+        }
+
+        /* --- CONTROLS --- */
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .nav-btn {
+            width: 60px;
+            height: 60px;
+            border: 1px solid rgba(235, 225, 209, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent-burgundy);
+            border-color: var(--accent-burgundy);
+        }
+
+    </style>
+</head>
+<body>
+ 
+        <!-- Navigation -->
+        <main>
+        <!-- HERO SECTION -->
+<!-- HERO -->
+<section class="hero-section">
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="../video/Komthur.mp4" type="video/mp4">
+    </video>
+                  </section>
+                  <section class="intro">
+        <div class="container" style="text-align: center;">
+            <div class="hero-badge uppercase-label">IPA Projekt 2023</div>
+            <h1 class="hero-title-large">
+                Strategisches
+                <span>Marketing</span>
+            </h1>
+            <p style="color: #314A51; font-weight: 300; letter-spacing: 0.1em; max-width: 700px; margin: 0 auto; line-height: 1.8; font-size: 1.05rem;">
+                Eine ganzheitliche Neuausrichtung für die Komthur GmbH. Von der Zielgruppenanalyse über digitale Transformation bis zur messbaren Erfolgsrealisierung.
+            </p>
+        </div>
+    </div>
+</section>
+        <!-- VIDEO CAROUSEL SECTION -->
+        <section class="py-40 bg-[#F5F5F5] text-[#0A0A0A] relative min-h-screen">
+            <div class="container mx-auto px-6 mb-20 text-center">
+                <h2 class="font-display italic text-5xl md:text-8xl mb-6">Visual <br/><span class="italic text-[#6E3B49]">Storytelling</span></h2>
+                <p class="font-mono text-xs uppercase tracking-[0.4em] text-[#56686A]">Video Production // Social Media // 1080x1920</p>
+            </div>
+
+            <div class="carousel-viewport">
+                <div class="carousel-track" id="track">
+                    <!-- Video Card 01 -->
+                    <div class="video-card active" onclick="selectVideo(0)">
+                        <video loop playsinline class="content-video">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-hand-holding-a-smartphone-showing-a-social-media-app-32860-large.mp4" type="video/mp4">
+                        </video>
+                        <div class="play-button" onclick="togglePlay(event, 0)">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <!-- Video Card 02 -->
+                    <div class="video-card" onclick="selectVideo(1)">
+                        <video loop playsinline class="content-video">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-young-woman-with-her-phone-under-the-sun-33045-large.mp4" type="video/mp4">
+                        </video>
+                        <div class="play-button" onclick="togglePlay(event, 1)">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <!-- Video Card 03 -->
+                    <div class="video-card" onclick="selectVideo(2)">
+                        <video loop playsinline class="content-video">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-girl-taking-a-selfie-with-a-smartphone-32859-large.mp4" type="video/mp4">
+                        </video>
+                        <div class="play-button" onclick="togglePlay(event, 2)">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <!-- Video Card 04 -->
+                    <div class="video-card" onclick="selectVideo(3)">
+                        <video loop playsinline class="content-video">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-using-a-smartphone-to-take-a-photo-32862-large.mp4" type="video/mp4">
+                        </video>
+                        <div class="play-button" onclick="togglePlay(event, 3)">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <!-- Video Card 05 -->
+                    <div class="video-card" onclick="selectVideo(4)">
+                        <video loop playsinline class="content-video">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-young-woman-holding-her-phone-while-it-snows-33046-large.mp4" type="video/mp4">
+                        </video>
+                        <div class="play-button" onclick="togglePlay(event, 4)">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-nav">
+                <div class="nav-btn" onclick="prev()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+                </div>
+                <div class="nav-btn" onclick="next()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="m9 18 6-6 6-6"/></svg>
+                </div>
+            </div>
+        </section>
+
+</main>
+</site-layout>
+
+<!-- Skript in work-header.js integriert
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+    // ... (entfernte Logik) ...
+</script>
+-->
+<script src="work-header.js"></script>
+</body>
+</html>
