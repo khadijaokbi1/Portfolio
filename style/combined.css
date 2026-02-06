@@ -26,7 +26,7 @@
    /* Typography */
     --font-body: 'Work Sans', sans-serif;
     --font-display: 'Playfair Display', serif;
-    --font-higuen: 'Bodoni Moda', serif;
+    --font-higuen: 'Higuen', serif;
    /* Spacing */
     --space-1: 0.5rem;
     --space-2: 1rem;
@@ -96,8 +96,8 @@
   h1 {
     font-family: var(--font-higuen);
     font-size: clamp(3rem, 5vw, 4.5rem);
-    font-weight: 400;
-    color: var(--accent-burgundy);
+    font-weight: 600;
+    color: var(--mauve);
   }
   h2 {
     font-family: var(--font-display);
