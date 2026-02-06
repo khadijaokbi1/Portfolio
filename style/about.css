@@ -1,71 +1,7 @@
 /* =========================================
    1. DESIGN SYSTEM
    ========================================= */
-
-   @font-face {
-    font-family: 'Higuen';
-    src: url('../fonts/Higuen.woff2') format('woff2');
-    font-weight: 100 900;
-    font-display: swap;
-  }
-  
-  :root {
-    /* Colors */
-    --bg-primary: #000;
-    --bg-secondary: #ebebeb;
-    --bg-accent: #F5F5F5;
-    --bg-dark: #314A51;
-    
-    --text-primary: #0A0A0A;
-    --text-primary-light: #EBE1D1;
-    --text-secondary: #525252;
-    --text-tertiary: #B5A19E;
-    
-    --accent-primary: #2D2D2D;
-    --accent-secondary: #56686A;
-    --accent-warm: #BBA28A;
-    --accent-burgundy: #6E3B49;
-    
-    --border-light: #E5E5E5;
-    --border-default: #D4D4D4;
-  
-    /* Typography */
-    --font-body: 'Work Sans', sans-serif;
-    --font-display: 'Playfair Display', serif;
-    --font-higuen: 'Higuen', sans-serif;
-    
-    /* Spacing */
-    --space-1: 0.5rem;
-    --space-2: 1rem;
-    --space-3: 1.5rem;
-    --space-4: 2rem;
-    --space-6: 3rem;
-    --space-8: 4rem;
-    --space-12: 6rem;
-    
-    /* Motion */
-    --speed-fast: 150ms;
-    --speed-base: 250ms;
-    --speed-slow: 350ms;
-    --speed-slower: 500ms;
-    --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
-    --easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-
-  --speed-fast: 150ms;
-  --speed-base: 250ms;
-  --speed-slow: 350ms;
-  --speed-slower: 500ms;
-  --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
-  --easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
-  --easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
-  --easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
-}/* GRAIN OVERLAY */
+/* GRAIN OVERLAY */
 .grain-overlay {
   position: fixed;
   top: 0;
