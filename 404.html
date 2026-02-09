@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Seite nicht gefunden | Khadija Okbi</title>
+    <link rel="icon" type="image/png" href="img/logo_white.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/combined.css">
+    <style>
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--mauve) 100%);
+        }
+
+        .error-code {
+            font-family: var(--font-higuen);
+            font-size: clamp(8rem, 20vw, 15rem);
+            font-weight: 700;
+            color: var(--accent-burgundy);
+            line-height: 1;
+            margin: 0;
+            opacity: 0.9;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .error-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            color: var(--text-primary);
+            margin: 1rem 0;
+            font-style: italic;
+        }
+
+        .error-message {
+            font-family: var(--font-body);
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 1.5rem auto 3rem;
+            line-height: 1.6;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .error-btn {
+            padding: 1rem 2.5rem;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border: 2px solid var(--accent-burgundy);
+            background: transparent;
+            color: var(--accent-burgundy);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .error-btn:hover {
+            background: var(--accent-burgundy);
+            color: var(--bg-secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(110, 59, 73, 0.3);
+        }
+
+        .error-btn.primary {
+            background: var(--accent-burgundy);
+            color: var(--bg-secondary);
+        }
+
+        .error-btn.primary:hover {
+            background: var(--text-primary);
+            border-color: var(--text-primary);
+            transform: translateY(-3px);
+        }
+
+        .error-illustration {
+            margin: 2rem 0;
+            opacity: 0.6;
+        }
+
+        .error-illustration svg {
+            width: clamp(150px, 30vw, 300px);
+            height: auto;
+        }
+
+        @media (max-width: 480px) {
+            .error-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .error-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        
+        <div class="error-illustration">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="80" fill="none" stroke="#6E3B49" stroke-width="3" opacity="0.3"/>
+                <circle cx="100" cy="100" r="60" fill="none" stroke="#6E3B49" stroke-width="2" opacity="0.2"/>
+                <path d="M70 80 Q100 110 130 80" stroke="#6E3B49" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.4"/>
+                <circle cx="75" cy="70" r="5" fill="#6E3B49" opacity="0.4"/>
+                <circle cx="125" cy="70" r="5" fill="#6E3B49" opacity="0.4"/>
+            </svg>
+        </div>
+
+        <h2 class="error-title">Seite nicht gefunden</h2>
+        
+        <p class="error-message">
+            Die Seite, die du suchst, existiert leider nicht oder wurde verschoben. 
+            Vielleicht findest du auf der Startseite, was du suchst?
+        </p>
+
+        <div class="error-actions">
+            <a href="index.html" class="error-btn primary">Zur Startseite</a>
+            <a href="javascript:history.back()" class="error-btn">Zurück</a>
+            <a href="mailto:khadijaokbi@gmail.com" class="error-btn">Kontakt</a>
+        </div>
+    </div>
+</body>
+</html>
