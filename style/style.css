@@ -1,4 +1,12 @@
-
+/* 3. Smooth Wrapper Korrektur */
+#smooth-content {
+  overflow: visible !important;
+  width: 100%;
+}
+/* 2. Bild-Container Fix für Parallax */
+.project-card, .hero-portrait, .blog-thumb {
+  overflow: hidden; /* Verhindert, dass der Zoom den Rahmen verlässt */
+}
   /* ========================================= 5. HERO SECTION ========================================= */
   .hero-section {
     position: relative;
@@ -35,6 +43,8 @@
     letter-spacing: 0.1em;
     white-space: nowrap;
     margin: 0;
+    overflow: hidden; /* Die Wörter gleiten aus dem Nichts nach oben */
+    display: block;
   }
   .hero-top {
     font-size: 11vw;

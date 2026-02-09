@@ -24,8 +24,8 @@
     --border-default: #6E3B49;
     --mauve: #B5A19E;
    /* Typography */
-    --font-body: 'Work Sans', sans-serif;
-    --font-display: 'Playfair Display', serif;
+    --font-body: 'Work Sans', sans-serif;  font-optical-sizing: auto;
+    --font-display: 'Abril Fatface', serif;
     --font-higuen: 'Higuen', serif;
    /* Spacing */
     --space-1: 0.5rem;
