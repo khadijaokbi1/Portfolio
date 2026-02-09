@@ -11,7 +11,6 @@ const initHeroParallax = () => {
   
   gsap.to('.hero-top', {
     y: 100,
-    opacity: 0.5,
     scrollTrigger: {
       trigger: '.hero-section',
       start: 'top top',
@@ -21,8 +20,7 @@ const initHeroParallax = () => {
   });
   
   gsap.to('.hero-bottom', {
-    y: 150,
-    opacity: 0.3,
+    y: 120,
     scrollTrigger: {
       trigger: '.hero-section',
       start: 'top top',
@@ -32,8 +30,7 @@ const initHeroParallax = () => {
   });
   
   gsap.to('.hero-portrait', {
-    y: -100,
-    scale: 0.9,
+    y: -20,
     scrollTrigger: {
       trigger: '.hero-section',
       start: 'top top',
@@ -43,9 +40,7 @@ const initHeroParallax = () => {
   });
   
   gsap.to('.hero-portrait-bg', {
-    y: -150,
-    scale: 0.85,
-    opacity: 0.3,
+    y: -20,
     scrollTrigger: {
       trigger: '.hero-section',
       start: 'top top',
@@ -53,32 +48,85 @@ const initHeroParallax = () => {
       scrub: 1
     }
   });
-};
 
 // =========================================
-// ACCORDION (Skills Section)
+// ACCORDION
 // =========================================
 const initAccordion = () => {
   const accordionItems = document.querySelectorAll('.accordion-item');
   
   accordionItems.forEach(item => {
     const trigger = item.querySelector('.accordion-trigger');
-    if (!trigger) return;
+    const content = item.querySelector('.accordion-content');
+    if (!trigger || !content) return;
+
+    // Initial: Alle Contents auf 0 setzen
+    gsap.set(content, { height: 0, opacity: 0 });
 
     trigger.addEventListener('click', () => {
-      const active = item.classList.contains('active');
+      const isActive = item.classList.contains('active');
       
-      accordionItems.forEach(i => {
-        i.classList.remove('active');
-        i.querySelector('.accordion-trigger')?.setAttribute('aria-expanded', 'false');
+      // Alle anderen schließen
+      accordionItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          const otherContent = otherItem.querySelector('.accordion-content');
+          otherItem.classList.remove('active');
+          otherItem.querySelector('.accordion-trigger')?.setAttribute('aria-expanded', 'false');
+          
+          gsap.to(otherContent, {
+            height: 0,
+            opacity: 0,
+            duration: 0.5,
+            ease: 'power2.inOut'
+          });
+        }
       });
 
-      if (!active) {
+      // Toggle current item
+      if (!isActive) {
         item.classList.add('active');
         trigger.setAttribute('aria-expanded', 'true');
+        
+        // Measure real height
+        gsap.set(content, { height: 'auto', opacity: 0 });
+        const fullHeight = content.offsetHeight;
+        gsap.set(content, { height: 0, opacity: 0 });
+        
+        // Animate open
+        gsap.to(content, {
+          height: fullHeight,
+          opacity: 1,
+          duration: 0.6,
+          ease: 'power2.out',
+          onComplete: () => {
+            gsap.set(content, { height: 'auto' });
+          }
+        });
+        
+        // Animate content inside
+        const items = content.querySelectorAll('.table-cell, .tool-item');
+        gsap.from(items, {
+          y: 20,
+          opacity: 0,
+          stagger: 0.03,
+          duration: 0.4,
+          delay: 0.2,
+          ease: 'power2.out'
+        });
+        
+      } else {
+        item.classList.remove('active');
+        trigger.setAttribute('aria-expanded', 'false');
+        
+        gsap.to(content, {
+          height: 0,
+          opacity: 0,
+          duration: 0.5,
+          ease: 'power2.inOut'
+        });
       }
       
-      setTimeout(() => ScrollTrigger.refresh(), 400);
+      setTimeout(() => ScrollTrigger.refresh(), 700);
     });
   });
 };
@@ -95,12 +143,39 @@ const initProjectFilter = () => {
       btn.classList.add('active');
 
       const filter = btn.dataset.filter;
+      
+      // Erst alle ausblenden
       projectCards.forEach(card => {
-        const show = filter === 'all' || card.dataset.category === filter;
-        card.style.display = show ? 'block' : 'none';
+        gsap.to(card, {
+          opacity: 0,
+          y: 20,
+          duration: 0.3,
+          ease: 'power2.in'
+        });
       });
-
-      ScrollTrigger.refresh();
+      
+      // Dann gefilterte einblenden
+      setTimeout(() => {
+        projectCards.forEach((card, index) => {
+          const show = filter === 'all' || card.dataset.category === filter;
+          card.style.display = show ? 'block' : 'none';
+          
+          if (show) {
+            gsap.fromTo(card, 
+              { opacity: 0, y: 30 },
+              { 
+                opacity: 1, 
+                y: 0, 
+                duration: 0.5,
+                delay: index * 0.05,
+                ease: 'power3.out'
+              }
+            );
+          }
+        });
+        
+        ScrollTrigger.refresh();
+      }, 300);
     });
   });
 };
@@ -109,30 +184,61 @@ const initProjectFilter = () => {
 // PROJECT CARDS ANIMATION
 // =========================================
 const initProjectCards = () => {
-  const cards = document.querySelectorAll('.project-card');
-  if (!cards.length) return;
-  
-  gsap.from(cards, {
-    y: 60,
-    opacity: 0,
-    stagger: 0.1,
-    duration: 0.8,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.projects-grid',
-      start: 'top 70%',
-      toggleActions: 'play none none none'
-    }
-  });
-  
-  // Hover Effect
-  cards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      gsap.to(card, { y: -10, duration: 0.4, ease: 'power2.out' });
-    });
+    const cards = document.querySelectorAll('.project-card');
     
-    card.addEventListener('mouseleave', () => {
-      gsap.to(card, { y: 0, duration: 0.4, ease: 'power2.out' });
+    gsap.fromTo(cards, 
+        { 
+            autoAlpha: 0, 
+            y: 40 
+        }, 
+        {
+            autoAlpha: 1, 
+            y: 0, 
+            duration: 1.2,
+            ease: 'expo.out',
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: '.projects-grid',
+                start: 'top 85%',
+                once: true,
+                toggleActions: 'play none none none'
+            }, // <-- Hier endet das scrollTrigger-Objekt
+
+            // Hier kommt onComplete hin:
+            onComplete: () => {
+                gsap.set(cards, { clearProps: 'transform' });
+            }
+        }
+    );
+};
+    
+    // Nur Hover Effect
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        gsap.to(card, { y: -8, duration: 0.5, ease: 'power1.out' }); // Sanfteres Heben
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, { y: 0, duration: 0.5, ease: 'power1.out' }); // Sanfteres Zurücksetzen
+      });
+    });
+  };
+// =========================================
+// PARALLAX IMAGES
+// =========================================
+const initParallaxImages = () => {
+  // NUR Parallax für Blog Thumbnails
+  const blogThumbs = document.querySelectorAll('.blog-thumb');
+  blogThumbs.forEach(thumb => {
+    gsap.to(thumb, {
+      yPercent: 15,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: thumb.closest('.blog-card'),
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1
+      }
     });
   });
 };
@@ -211,6 +317,8 @@ const initCarousel = () => {
   const nextBtn = document.getElementById('moveRight');
   const prevBtn = document.getElementById('moveLeft');
 
+  if (!slides.length) return;
+
   let current = 0;
   let isAnimating = false;
 
@@ -279,6 +387,8 @@ const initAlbumCovers = () => {
     const album = container.querySelector('.album');
     const record = container.querySelector('.record');
     
+    if (!album || !record) return;
+    
     tl.to(album, { x: -15, rotation: -5, duration: 0.5, ease: 'power2.out' }, 0);
     tl.to(record, { x: 30, rotation: 360, duration: 0.75, ease: 'power2.out' }, 0);
     
@@ -296,6 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initAccordion();
     initProjectFilter();
     initProjectCards();
+    initParallaxImages();
     initBlogFilter();
     initBlogModals();
     initSkillBars();

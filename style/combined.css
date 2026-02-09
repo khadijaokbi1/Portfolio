@@ -359,6 +359,30 @@
     pointer-events: none;
   }
   
+
+
+/* ========== 6. SECTIONS ========== */
+.work-section {
+  padding: clamp(4rem, 12vh, 8rem) 0;
+  position: relative;
+}
+
+.work-section.bg-cream {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.work-section.bg-dark {
+  background-color: var(--bg-dark);
+  color: var(--text-primary-light);
+}
+
+.work-section.bg-burgundy {
+  background-color: var(--bg-burgundy);
+  color: var(--text-primary-light);
+}
+
+
   /* ========================================= 6. SECTION TITLES & ANIMATIONS ========================================= */
   /* UNIFIED SECTION TITLE STYLE */
   section h2 {

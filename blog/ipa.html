@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>IPA: Online-Marketing Komthur GmbH</title>
-        <meta name="description" content="Umfassendes Marketing-Konzept für die Komthur GmbH – SEO, Social Media & Strategische Positionierung." />
-        <link rel="icon" type="image/png" href="../img/logo_white.png" />
-        
-        <!-- Fonts-->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&family=Italiana&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-        
-        <!-- Font Awesome Icons -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-        
-        <!-- GSAP -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-        
-        <!-- Main Styles -->
-        <link rel="stylesheet" href="../style/combined.css" />
-        
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Khadija Okbi | Portfolio</title>
+    <meta name="description" content="Khadija Okbi | Mediamatikerin Design, Marketing, Social Media, Full Stack & Animation />
+		<link rel=" icon" type="image/png" href="../img/logo_white.png" />
+    <!-- Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- GSAP-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollSmoother.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/SplitText.min.js"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style/combined.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B415ZJNKNW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-B415ZJNKNW');
+    </script>
+  </head>        
         <style>
             :root {
                 --border-color: rgba(0, 0, 0, 0.08);
@@ -543,20 +553,22 @@
     </head>
 
     <body>
-        <!-- HEADER -->
-        <header class="site-header" id="top">
-            <div class="container nav-bar">
-                <a href="../index.html" class="logo">
-                    <img src="../img/logo_black.png" alt="Khadija Okbi Logo" width="45">
-                    <img src="../img/logo_white.png" alt="Khadija Okbi Logo" width="45" class="logo-onscroll">
-                </a>
-                <nav class="nav">
-                    <a href="index.html#hero" class="nav-link">Home</a>
-                    <a href="../index.html/#expertise" class="nav-link">What I do</a>
-                    <a href="../index.html/#blog" class="nav-link">Blog</a>
-                    <a href="../about.html" class="nav-link">About me</a>
-                </nav>
-            </div>
+        <div id="smooth-wrapper">
+              <div id="smooth-content">
+        <!-- Header / Navbar -->
+        <header class="site-header" id="top" aria-label="Seitennavigation">
+           <div class="container nav-bar">
+              <a href="index.html" class="logo">
+              <img src="../img/logo_white.png" alt="Khadija Okbi Logo" width="40">
+              <img src="../img/logo_black.png" alt="Khadija Okbi Logo" width="40" class="logo-onscroll">
+              </a>
+              <nav class="nav" aria-label="Hauptnavigation">
+                 <a href="../index.html#hero" class="nav-link">Home</a>
+                 <a href="../index.html#projects" class="nav-link">Work</a>
+                 <a href="../about.html" class="nav-link">About</a>
+                 <a href="../index.html#blog" class="nav-link">Blog</a>
+              </nav>
+           </div>
         </header>
 
         <main>
@@ -1615,7 +1627,9 @@
 	   </div>
 	</div>
  </footer>
-
+</div>
+</div>
+</body>
         <script>
             const header = document.querySelector('.site-header');
             window.addEventListener('scroll', () => {
