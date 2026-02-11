@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeHelp - Psychische Gesundheit für Erwachsene und Kinder</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #4E8E82;
+            --color-secondary: #AFD5C1;
+            --color-dark: #3B5F74;
+            --color-accent: #82A3A6;
+            --color-light: #F5F7F6;
+            --color-white: #FFFFFF;
+            --color-text: #2D3E45;
+            --color-text-light: #666F75;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: var(--color-white);
+        }
+
+        /* ========== TYPOGRAPHY - FUNKY ========== */
+        h1, h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+        }
+
+        /* ========== NAVIGATION ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(78, 142, 130, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            font-family: 'Space Grotesk', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo svg {
+            width: 35px;
+            height: 35px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: var(--color-primary);
+        }
+
+        .cta-nav {
+            padding: 0.7rem 1.5rem;
+            background: var(--color-primary);
+            color: var(--color-white);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-nav:hover {
+            background: var(--color-dark);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2.5px;
+            background: var(--color-text);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            margin-top: 70px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #4E8E82 0%, #82A3A6 50%, #AFD5C1 100%);
+            background-size: 200% 200%;
+            transition: background 0.5s ease;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -100px;
+            left: -100px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero:hover::before {
+            background: radial-gradient(circle, rgba(175, 213, 193, 0.3) 0%, transparent 70%);
+        }
+
+        .hero:hover::after {
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            color: var(--color-dark);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .hero-content .highlight {
+            color: var(--color-primary);
+            font-style: italic;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.2rem;
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 1.1rem 2.8rem;
+            background: var(--color-primary);
+            color: var(--color-white);
+            text-decoration: none;
+            border-radius: 35px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(78, 142, 130, 0.25);
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(78, 142, 130, 0.35);
+            background: var(--color-dark);
+        }
+
+        .btn-secondary {
+            padding: 1.1rem 2.8rem;
+            background: transparent;
+            color: var(--color-primary);
+            text-decoration: none;
+            border: 2px solid var(--color-primary);
+            border-radius: 35px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-primary);
+            color: var(--color-white);
+            transform: translateY(-4px);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-visual svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 20px 40px rgba(78, 142, 130, 0.2));
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* ========== SECTION GENERAL ========== */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: var(--color-dark);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ========== ABOUT SECTION ========== */
+        .about {
+            background: linear-gradient(180deg, var(--color-light) 0%, var(--color-white) 100%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            padding: 2.5rem;
+            background: var(--color-white);
+            border-radius: 20px;
+            border: 1.5px solid rgba(78, 142, 130, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            border-radius: 20px 20px 0 0;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .about-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .about-card:hover {
+            transform: translateY(-12px);
+            border-color: rgba(78, 142, 130, 0.3);
+            box-shadow: 0 20px 40px rgba(78, 142, 130, 0.12);
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .about-card p {
+            color: var(--color-text-light);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* ========== SERVICES SECTION ========== */
+        .services {
+            background: var(--color-white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(78, 142, 130, 0.05) 0%, rgba(175, 213, 193, 0.08) 100%);
+            padding: 2.8rem;
+            border-radius: 20px;
+            border: 1px solid rgba(78, 142, 130, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(175, 213, 193, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            top: -30%;
+            right: -30%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--color-primary);
+            box-shadow: 0 20px 50px rgba(78, 142, 130, 0.15);
+        }
+
+        .service-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: var(--color-white);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            color: var(--color-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: var(--color-text-light);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* ========== CTA SECTION ========== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            color: var(--color-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+        }
+
+        .cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* ========== BLOG/NEWS SECTION ========== */
+        .blog {
+            background: var(--color-light);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .blog-card {
+            background: var(--color-white);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 15px 40px rgba(78, 142, 130, 0.15);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(78, 142, 130, 0.1);
+            color: var(--color-primary);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .blog-card h3 {
+            font-size: 1.3rem;
+            color: var(--color-dark);
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(78, 142, 130, 0.1);
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+        }
+
+        .read-more {
+            color: var(--color-primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--color-dark);
+        }
+
+        /* ========== TESTIMONIALS ========== */
+        .testimonials {
+            background: var(--color-white);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(78, 142, 130, 0.05) 0%, rgba(175, 213, 193, 0.05) 100%);
+            border-radius: 15px;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .testimonial-text {
+            color: var(--color-text);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--color-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .testimonial-role {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--color-dark);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--color-white);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--color-secondary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2.3rem;
+            }
+
+            .nav-menu {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.98);
+                padding: 1.5rem;
+                gap: 1rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                margin-top: 60px;
+                padding: 2rem 0;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-visual {
+                height: 350px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .services-grid,
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .trust-badges {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.8rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .logo svg {
+                width: 28px;
+                height: 28px;
+            }
+
+            .hero {
+                margin-top: 60px;
+                padding: 1rem 0;
+            }
+
+            .hero-container {
+                padding: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.6rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 0.95rem;
+            }
+
+            .hero-visual {
+                height: 280px;
+                margin-top: 2rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .service-card,
+            .about-card,
+            .blog-card {
+                border-radius: 15px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .blog-image {
+                height: 200px;
+            }
+        }
+
+        /* ========== ANIMATIONS ========== */
+        .fade-in {
+            opacity: 0;
+        }
+
+        .stagger-delay {
+            animation-delay: var(--delay);
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">
+            <svg viewBox="0 0 403.17 239.34" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100 120 L200 80 L250 150 L180 200 Z" fill="currentColor"/>
+            </svg>
+            WeHelp
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Über uns</a></li>
+            <li><a href="#services">Angebot</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+            <li><a href="#test" class="cta-nav">Kostenloses Gespräch</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content fade-in">
+                <h1>Professionelle Unterstützung für <span class="highlight">Deine psychische Gesundheit</span></h1>
+                <p class="subtitle">Für Erwachsene und Kinder mit psychischen Störungen aller Diagnosegruppen. Gemeinsam machen wir den Unterschied.</p>
+                <div class="hero-buttons">
+                    <a href="#test" class="btn-primary">Zum kostenlosen Test</a>
+                    <a href="#services" class="btn-secondary">Unser Angebot entdecken</a>
+                </div>
+                <div class="trust-badges">
+                    <div class="badge">✓ Sichere & vertrauliche Kommunikation</div>
+                    <div class="badge">✓ Zertifizierte Fachleute</div>
+                    <div class="badge">✓ 24/7 Unterstützung</div>
+                </div>
+            </div>
+            <div class="hero-visual fade-in">
+                <svg viewBox="0 0 403.17 239.34" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#4E8E82;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#82A3A6;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Brain Shape -->
+                    <circle cx="200" cy="120" r="80" fill="url(#grad1)" opacity="0.3"/>
+                    <!-- Puzzle Elements -->
+                    <path d="M160 100 Q160 80 180 80 Q200 80 200 100 L200 140 Q200 160 180 160 Q160 160 160 140 Z" fill="#AFD5C1" opacity="0.8"/>
+                    <path d="M200 100 Q200 80 220 80 Q240 80 240 100 L240 140 Q240 160 220 160 Q200 160 200 140 Z" fill="#4E8E82" opacity="0.6"/>
+                    <!-- People Elements -->
+                    <circle cx="120" cy="180" r="12" fill="#AFD5C1"/>
+                    <circle cx="280" cy="180" r="12" fill="#82A3A6"/>
+                    <!-- Connection Lines -->
+                    <line x1="120" y1="192" x2="120" y2="210" stroke="#4E8E82" stroke-width="2"/>
+                    <line x1="280" y1="192" x2="280" y2="210" stroke="#82A3A6" stroke-width="2"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Wer wir sind</h2>
+                <p class="section-subtitle">Professionelle und persönliche Begleitung in den wichtigsten Bereichen der psychischen Gesundheit</p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-card fade-in">
+                    <h3>Unser Anspruch</h3>
+                    <p>Unser vorrangiges Ziel besteht in der Unterstützung bei psychologischen Störungen sowie die Begleitung der betroffenen und angehörigen Personen in dieser schwierigen Lebenszeit.</p>
+                </div>
+                <div class="about-card fade-in">
+                    <h3>Breites Spektrum</h3>
+                    <p>Wir bieten persönliche und professionelle Begleitung in mehreren Kerngebieten: Depression, Angststörung, Burnout-Syndrom, Essstörungen, Borderline, PTBS und viele weitere.</p>
+                </div>
+                <div class="about-card fade-in">
+                    <h3>Moderne Technologie</h3>
+                    <p>Durch unsere technisch einwandfreie und sichere App begleiten wir Sie vom ersten Moment bis zur vollständigen Genesung mit allen notwendigen Ressourcen.</p>
+                </div>
+                <div class="about-card fade-in">
+                    <h3>Vernetzte Begleitung</h3>
+                    <p>Wir helfen mit Informationen, Kliniken und Ärzten aus der ganzen Schweiz. Außerdem bringen wir Sie in Kontakt mit gleich betroffenen Personen in vertrauter Umgebung.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services" id="services">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Unser Angebot</h2>
+                <p class="section-subtitle">Umfassende Lösungen für jeden Schritt Ihrer Genesung</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">💬</div>
+                    <h3>Austausch Forum</h3>
+                    <p>Tauschen Sie sich im vertrauten und geschütztem Kreis mit gleich betroffenen Personen aus. Ein Gespräch mit anderen, die Ihre Situation zu 100% verstehen, kann sehr beruhigend und ermutigend sein. Auch für Eltern und Begleitpersonen.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🏥</div>
+                    <h3>Klinik & Psychologen</h3>
+                    <p>Durch unsere Partner Kliniken und Psychologen finden Sie die richtige Anschlusslösung. Wir arbeiten mit zertifizierten Fachleuten aus der ganzen Schweiz zusammen für den besten Aufenthalt und erfolgreiche Behandlung.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🏠</div>
+                    <h3>Betreute Wohngruppen</h3>
+                    <p>Noch nicht zurück im normalen Alltag, aber Klinik nicht mehr nötig? Leben Sie mit gleich betroffenen Personen und fachkundigen Begleitpersonen zusammen in unseren Wohngruppen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section" id="test">
+        <div class="cta-container">
+            <h2>Starten Sie Ihre Reise zur Genesung</h2>
+            <p>Unser kostenfreier Selbsttest hilft Ihnen, Ihre Symptome zu verstehen und die richtige Unterstützung zu finden. In nur wenigen Minuten erhalten Sie personalisierte Empfehlungen.</p>
+            <button class="btn-primary" style="background: white; color: var(--color-primary); box-shadow: 0 10px 30px rgba(0,0,0,0.2);">Jetzt zum Test</button>
+        </div>
+    </section>
+
+    <!-- BLOG/NEWS SECTION -->
+    <section class="blog" id="blog">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Blog & News</h2>
+                <p class="section-subtitle">Aktuelle Beiträge aus unserem Instagram und Expertenratschläge</p>
+            </div>
+            
+            <div class="blog-grid">
+                <div class="blog-card fade-in">
+                    <div class="blog-image" style="background: linear-gradient(135deg, #4E8E82, #82A3A6); color: white; font-size: 4rem;">
+                        🌟
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-tag">MOTIVATIONS</span>
+                        <h3>Die Kraft der positiven Gedanken</h3>
+                        <p class="blog-excerpt">Wie Ihre Gedanken Ihre psychische Gesundheit beeinflussen und praktische Techniken zur Gedankenkontrolle.</p>
+                        <div class="blog-meta">
+                            <span>5 Min Lesezeit</span>
+                            <a href="#" class="read-more">Mehr →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card fade-in">
+                    <div class="blog-image" style="background: linear-gradient(135deg, #AFD5C1, #4E8E82); color: white; font-size: 4rem;">
+                        💪
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-tag">SELBSTPFLEGE</span>
+                        <h3>Alltägliche Routinen für mentale Gesundheit</h3>
+                        <p class="blog-excerpt">Einfache aber effektive Gewohnheiten, die Sie täglich implementieren können für ein besseres Wohlbefinden.</p>
+                        <div class="blog-meta">
+                            <span>7 Min Lesezeit</span>
+                            <a href="#" class="read-more">Mehr →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card fade-in">
+                    <div class="blog-image" style="background: linear-gradient(135deg, #82A3A6, #AFD5C1); color: white; font-size: 4rem;">
+                        🤝
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-tag">COMMUNITY</span>
+                        <h3>Erfolgsgeschichten unserer Nutzer</h3>
+                        <p class="blog-excerpt">Inspirierende Geschichten von Menschen, die ihre psychische Gesundheit verbessert haben und jetzt anderen helfen.</p>
+                        <div class="blog-meta">
+                            <span>6 Min Lesezeit</span>
+                            <a href="#" class="read-more">Mehr →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Was unsere Nutzer sagen</h2>
+                <p class="section-subtitle">Echte Erfahrungen und Erfolgsgeschichten</p>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card fade-in">
+                    <p class="testimonial-text">"WeHelp hat mein Leben verändert. Die Kombination aus professioneller Hilfe und Austausch mit anderen war genau das, was ich brauchte."</p>
+                    <div class="testimonial-author">Sarah M.</div>
+                    <div class="testimonial-role">Patientin seit 2 Jahren</div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <p class="testimonial-text">"Die Unterstützung und Wärme, die ich hier gefunden habe, war unglaublich. Ich fühle mich endlich verstanden und nicht allein."</p>
+                    <div class="testimonial-author">Marcus L.</div>
+                    <div class="testimonial-role">Patientin seit 1,5 Jahren</div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <p class="testimonial-text">"Der Test hat mir geholfen zu verstehen, was mit mir los ist. Die Empfehlungen waren sehr hilfreich und genau zugeschnitten."</p>
+                    <div class="testimonial-author">Julia P.</div>
+                    <div class="testimonial-role">Neu bei WeHelp</div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <p class="testimonial-text">"Als Eltern konnten wir unsere Tochter besser unterstützen. Die Ressourcen und das Forum haben uns alles gegeben, was wir brauchten."</p>
+                    <div class="testimonial-author">Thomas & Anna K.</div>
+                    <div class="testimonial-role">Eltern von Patientin</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>WeHelp</h4>
+                <p style="margin-bottom: 1rem;">Professionelle Unterstützung für psychische Gesundheit.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Navigation</h4>
+                <a href="#home">Home</a>
+                <a href="#about">Über uns</a>
+                <a href="#services">Angebot</a>
+                <a href="#blog">Blog</a>
+            </div>
+            <div class="footer-section">
+                <h4>Kontakt</h4>
+                <a href="mailto:info@wehelp.ch">info@wehelp.ch</a>
+                <a href="tel:+41800123456">+41 800 123 456</a>
+                <a href="#">Hotline 24/7</a>
+            </div>
+            <div class="footer-section">
+                <h4>Rechtliches</h4>
+                <a href="#">Datenschutz</a>
+                <a href="#">Impressum</a>
+                <a href="#">AGB</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 WeHelp. Together we can make a difference. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hamburger Menu
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Hero Animations
+        gsap.from('.hero-content', {
+            duration: 0.8,
+            y: 50,
+            opacity: 0,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.hero-visual', {
+            duration: 0.8,
+            y: 50,
+            opacity: 0,
+            ease: 'power3.out',
+            delay: 0.15
+        });
+
+        // Fade in on scroll
+        const fadeInElements = document.querySelectorAll('.fade-in');
+
+        fadeInElements.forEach((element, index) => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    end: 'top 50%',
+                    toggleActions: 'play none none reverse'
+                },
+                duration: 0.7,
+                y: 40,
+                opacity: 0,
+                ease: 'power3.out',
+                delay: index * 0.08
+            });
+        });
+
+        // Card Hover Animations
+        document.querySelectorAll('.about-card, .service-card, .blog-card, .testimonial-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                gsap.to(this, {
+                    duration: 0.3,
+                    y: -12,
+                    ease: 'power2.out'
+                });
+            });
+
+            card.addEventListener('mouseleave', function() {
+                gsap.to(this, {
+                    duration: 0.3,
+                    y: 0,
+                    ease: 'power2.out'
+                });
+            });
+        });
+
+        // Button Animations
+        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                gsap.to(this, {
+                    duration: 0.3,
+                    y: -4,
+                    ease: 'power2.out'
+                });
+            });
+
+            button.addEventListener('mouseleave', function() {
+                gsap.to(this, {
+                    duration: 0.3,
+                    y: 0,
+                    ease: 'power2.out'
+                });
+            });
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    gsap.to(window, {
+                        duration: 0.8,
+                        scrollTo: {
+                            y: target,
+                            offsetY: 70
+                        },
+                        ease: 'power2.inOut'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect
+        gsap.utils.toArray('section').forEach((section) => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top center',
+                    end: 'bottom center',
+                    scrub: 0.5
+                },
+                opacity: 0.8
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHEIN COSMETICS - Shein bright like a diamond</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        ::selection {
+            background-color: #6E3B49;
+            color: white;
+        }
+        
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .parallax-bg {
+            will-change: transform;
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom Cursor Effect */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #6E3B49;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.2s ease;
+        }
+        
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #6E3B49;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.15s ease;
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #6E3B49 0%, #C85A6E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Glass Morphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        /* Animated Background */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Luxury Grid Pattern */
+        .luxury-grid {
+            background-image: 
+                linear-gradient(rgba(110, 59, 73, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(110, 59, 73, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        /* Image Hover Effect */
+        .image-reveal {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-reveal::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            transition: left 0.7s;
+        }
+        
+        .image-reveal:hover::after {
+            left: 100%;
+        }
+        
+        /* Button Glow */
+        .btn-glow {
+            box-shadow: 0 0 20px rgba(110, 59, 73, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-glow:hover {
+            box-shadow: 0 0 40px rgba(110, 59, 73, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+        
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #F8F7F4;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        .loading-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(110, 59, 73, 0.1);
+            border-top-color: #6E3B49;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-[#F8F7F4] text-[#121212] smooth-scroll">
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-outline" id="cursorOutline"></div>
+
+    <!-- Back Button -->
+    <a href="../index.html" class="fixed top-8 left-8 z-50 bg-white/90 backdrop-blur-md px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all group flex items-center gap-2 hover:bg-[#6E3B49] hover:text-white">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:-translate-x-1">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span class="font-medium text-sm uppercase tracking-wider">Zurück</span>
+    </a>
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="fixed top-0 w-full z-40 flex justify-between items-center px-8 py-6 transition-all duration-500 bg-white/80 backdrop-blur-md border-b border-black/5">
+        <div class="flex items-center gap-2 group cursor-pointer" onclick="scrollToTop()">
+            <div class="text-[#6E3B49] transition-transform group-hover:rotate-45 duration-500">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="6" y="6" width="12" height="12" rx="1" transform="rotate(45 12 12)"></rect>
+                </svg>
+            </div>
+            <span class="font-serif font-bold text-2xl tracking-tighter uppercase">SHEIN <span class="text-[#6E3B49] italic">COSMETICS</span></span>
+        </div>
+        
+        <div class="hidden md:flex gap-12 font-medium uppercase text-sm tracking-widest">
+            <a href="#philosophy" class="nav-link hover:text-[#6E3B49] transition-colors cursor-pointer">Philosophie</a>
+            <a href="#products" class="nav-link hover:text-[#6E3B49] transition-colors cursor-pointer">Produkte</a>
+            <a href="#sustainability" class="nav-link hover:text-[#6E3B49] transition-colors cursor-pointer">Refill</a>
+            <a href="#contact" class="nav-link hover:text-[#6E3B49] transition-colors cursor-pointer">Kontakt</a>
+        </div>
+        
+        <div class="flex items-center gap-6">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cursor-pointer hover:text-[#6E3B49] transition-colors">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <button class="bg-[#121212] text-white px-6 py-2 rounded-full uppercase text-xs font-bold tracking-widest hover:bg-[#6E3B49] transition-all btn-glow">Shop</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative h-screen overflow-hidden flex items-center justify-center">
+        <div class="absolute inset-0 z-0">
+            <img 
+                src="https://images.unsplash.com/photo-1596704017254-9b121068ec31?w=1920&q=80" 
+                class="w-full h-full object-cover parallax-bg" 
+                alt="SHEIN COSMETICS Luxury Banner"
+                loading="eager"
+            />
+            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
+        </div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-20 w-32 h-32 bg-white/10 rounded-full blur-3xl floating"></div>
+        <div class="absolute bottom-40 right-40 w-48 h-48 bg-[#6E3B49]/20 rounded-full blur-3xl floating" style="animation-delay: -3s;"></div>
+        
+        <div class="relative z-10 text-center text-white px-4 max-w-5xl">
+            <span class="text-white/90 mb-4 block uppercase tracking-[0.5em] font-bold text-sm animate-fade-in">Vegan // Fairtrade // Bio</span>
+            <h1 class="font-serif italic text-5xl md:text-8xl lg:text-9xl font-black leading-none tracking-tighter mb-8 drop-shadow-2xl">
+                Shein bright <br /> <span class="gradient-text text-white">like a diamond</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-white/80 mb-12 font-light max-w-2xl mx-auto">
+                Luxuriöse, vegane Kosmetik die deinen natürlichen Glanz unterstreicht
+            </p>
+            <a 
+                href="#products"
+                class="group inline-flex items-center gap-4 border-2 border-white px-10 py-4 rounded-full text-xl font-serif italic hover:bg-white hover:text-black transition-all btn-glow">
+                Kollektion entdecken 
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-2 transition-transform">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator z-10">
+            <svg width="30" height="50" viewBox="0 0 30 50">
+                <rect x="5" y="5" width="20" height="40" rx="10" fill="none" stroke="white" stroke-width="2"/>
+                <circle cx="15" cy="15" r="3" fill="white">
+                    <animate attributeName="cy" from="15" to="30" dur="1.5s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" from="1" to="0" dur="1.5s" repeatCount="indefinite"/>
+                </circle>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Philosophie -->
+    <section id="philosophy" class="py-32 max-w-7xl mx-auto px-8 luxury-grid">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+            <div class="md:col-span-6 reveal-item">
+                <span class="text-[#6E3B49] font-bold tracking-widest uppercase text-sm mb-4 block">Seit 2019</span>
+                <h2 class="font-serif text-5xl md:text-7xl lg:text-8xl italic leading-none mb-12">
+                    Unsere <br/><span class="gradient-text">Vision.</span>
+                </h2>
+                <p class="text-xl md:text-2xl font-light leading-relaxed text-[#666] mb-8">
+                    Wir stehen für hohe Qualität ohne Abstriche. Seit 2019 ist Shein Cosmetics eine anerkannte vegane und Fairtrade Kosmetikmarke, die den modernen Ansprüchen an Nachhaltigkeit und Ethik gerecht wird.
+                </p>
+                <p class="text-lg font-light leading-relaxed text-[#666]">
+                    Jedes Produkt wird mit Liebe entwickelt und mit dem Respekt für Mensch, Tier und Umwelt hergestellt. Wir glauben an Schönheit, die von innen kommt – und von außen strahlt.
+                </p>
+            </div>
+            
+            <div class="md:col-start-8 md:col-span-5 grid grid-cols-2 gap-8">
+                <div class="p-10 bg-white border border-black/5 rounded-3xl flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all duration-500 reveal-item hover:-translate-y-2">
+                    <svg class="text-[#6E3B49] mb-4" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                    <h4 class="font-bold uppercase text-xs mb-2 tracking-widest">Vegan</h4>
+                    <p class="text-sm text-[#666]">100% Cruelty-free Inhaltsstoffe</p>
+                </div>
+                
+                <div class="p-10 bg-white border border-black/5 rounded-3xl flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all duration-500 reveal-item hover:-translate-y-2" style="animation-delay: 0.1s;">
+                    <svg class="text-[#6E3B49] mb-4" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                    <h4 class="font-bold uppercase text-xs mb-2 tracking-widest">Fairtrade</h4>
+                    <p class="text-sm text-[#666]">Gerechte Löhne weltweit</p>
+                </div>
+                
+                <div class="p-10 bg-white border border-black/5 rounded-3xl flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all duration-500 reveal-item hover:-translate-y-2" style="animation-delay: 0.2s;">
+                    <svg class="text-[#6E3B49] mb-4" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"></path>
+                    </svg>
+                    <h4 class="font-bold uppercase text-xs mb-2 tracking-widest">Glas</h4>
+                    <p class="text-sm text-[#666]">Exklusive Glasbehälter</p>
+                </div>
+                
+                <div class="p-10 bg-white border border-black/5 rounded-3xl flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all duration-500 reveal-item hover:-translate-y-2" style="animation-delay: 0.3s;">
+                    <svg class="text-[#6E3B49] mb-4" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                    </svg>
+                    <h4 class="font-bold uppercase text-xs mb-2 tracking-widest">Rein</h4>
+                    <p class="text-sm text-[#666]">Ohne Schadstoffe</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produktschau -->
+    <section id="products" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center mb-24 reveal-item">
+                <span class="text-[#6E3B49] font-bold tracking-widest uppercase text-sm">Unser Sortiment</span>
+                <h2 class="font-serif text-5xl md:text-7xl lg:text-8xl italic mt-4 mb-6">Kollektionen</h2>
+                <p class="text-xl text-[#666] font-light max-w-2xl mx-auto">
+                    Entdecke unsere sorgfältig kuratierten Produktlinien für jeden Hauttyp und jeden Anlass
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- Product 1: Gesicht -->
+                <div class="group cursor-pointer reveal-item">
+                    <div class="relative aspect-[3/4] overflow-hidden rounded-3xl mb-6 shadow-md image-reveal">
+                        <img 
+                            src="https://images.unsplash.com/photo-1631730486572-226d1f595b8d?w=800&q=80" 
+                            class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+                            alt="Foundation & Gesichtspflege" 
+                            loading="lazy"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:from-black/70 transition-all"></div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+                            <button class="bg-white text-black px-8 py-3 rounded-full font-bold translate-y-4 group-hover:translate-y-0 transition-all uppercase text-xs tracking-widest">Ansehen</button>
+                        </div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <span class="text-sm uppercase tracking-wider opacity-80">Best Seller</span>
+                        </div>
+                    </div>
+                    <h3 class="font-serif text-3xl italic mb-2 group-hover:text-[#6E3B49] transition-colors">Gesicht</h3>
+                    <p class="text-[#666] font-light leading-relaxed">Foundation, Concealer & Primer für einen makellosen Teint</p>
+                </div>
+
+                <!-- Product 2: Lippen -->
+                <div class="group cursor-pointer reveal-item" style="animation-delay: 0.1s;">
+                    <div class="relative aspect-[3/4] overflow-hidden rounded-3xl mb-6 shadow-md image-reveal">
+                        <img 
+                            src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=800&q=80" 
+                            class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+                            alt="Lippenstifte & Lipgloss" 
+                            loading="lazy"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:from-black/70 transition-all"></div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+                            <button class="bg-white text-black px-8 py-3 rounded-full font-bold translate-y-4 group-hover:translate-y-0 transition-all uppercase text-xs tracking-widest">Ansehen</button>
+                        </div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <span class="text-sm uppercase tracking-wider opacity-80">Neu</span>
+                        </div>
+                    </div>
+                    <h3 class="font-serif text-3xl italic mb-2 group-hover:text-[#6E3B49] transition-colors">Lippen</h3>
+                    <p class="text-[#666] font-light leading-relaxed">Lipgloss, Lipliner & Lippenstift in verführerischen Nuancen</p>
+                </div>
+
+                <!-- Product 3: Puder -->
+                <div class="group cursor-pointer reveal-item" style="animation-delay: 0.2s;">
+                    <div class="relative aspect-[3/4] overflow-hidden rounded-3xl mb-6 shadow-md image-reveal">
+                        <img 
+                            src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=800&q=80" 
+                            class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+                            alt="Puder & Highlighter" 
+                            loading="lazy"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:from-black/70 transition-all"></div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+                            <button class="bg-white text-black px-8 py-3 rounded-full font-bold translate-y-4 group-hover:translate-y-0 transition-all uppercase text-xs tracking-widest">Ansehen</button>
+                        </div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <span class="text-sm uppercase tracking-wider opacity-80">Limited</span>
+                        </div>
+                    </div>
+                    <h3 class="font-serif text-3xl italic mb-2 group-hover:text-[#6E3B49] transition-colors">Puder</h3>
+                    <p class="text-[#666] font-light leading-relaxed">Highlighter, Bronzer & Kontouring für Definition</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Refill-System -->
+    <section id="sustainability" class="py-32 bg-[#121212] text-[#F8F7F4] relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <svg width="100%" height="100%">
+                <pattern id="dots" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+                    <circle cx="25" cy="25" r="2" fill="white"/>
+                </pattern>
+                <rect width="100%" height="100%" fill="url(#dots)"/>
+            </svg>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-24 items-center relative z-10">
+            <div class="reveal-item">
+                <span class="text-[#6E3B49] font-bold tracking-widest uppercase text-sm mb-4 block">Zero Waste</span>
+                <h2 class="font-serif text-5xl md:text-7xl lg:text-8xl italic mb-12">
+                    Das <br/><span class="text-[#C85A6E]">Refill-System.</span>
+                </h2>
+                
+                <div class="space-y-10 mb-16">
+                    <div class="flex gap-8 items-start group">
+                        <div class="p-4 bg-white/10 rounded-full text-[#6E3B49] mt-1 group-hover:bg-[#6E3B49] group-hover:text-white transition-all">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-3 tracking-tight">Zero Plastic Policy</h4>
+                            <p class="text-white/60 leading-relaxed font-light">Wir verzichten komplett auf Plastik. Schick uns deine leeren Glasbehälter zurück und wir füllen sie für einen günstigeren Preis wieder auf.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-8 items-start group">
+                        <div class="p-4 bg-white/10 rounded-full text-[#6E3B49] mt-1 group-hover:bg-[#6E3B49] group-hover:text-white transition-all">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-3 tracking-tight">10% Belohnung</h4>
+                            <p class="text-white/60 leading-relaxed font-light">Jeder zurückgegebene Behälter wird gereinigt und wiederverwendet. Als Dankeschön erhältst du 10% Rabatt auf deinen nächsten Einkauf.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-8 items-start group">
+                        <div class="p-4 bg-white/10 rounded-full text-[#6E3B49] mt-1 group-hover:bg-[#6E3B49] group-hover:text-white transition-all">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="23 4 23 10 17 10"></polyline>
+                                <polyline points="1 20 1 14 7 14"></polyline>
+                                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-3 tracking-tight">Kreislauf-System</h4>
+                            <p class="text-white/60 leading-relaxed font-light">Jedes Glas kann bis zu 50 Mal wiederverwendet werden. Gemeinsam reduzieren wir Müll und schonen Ressourcen.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="bg-[#6E3B49] text-white px-12 py-5 rounded-full text-xl font-serif italic hover:bg-white hover:text-[#6E3B49] transition-all btn-glow">
+                    System entdecken
+                </button>
+            </div>
+            
+            <div class="relative reveal-item">
+                <div class="rounded-3xl overflow-hidden border-8 border-white/5 shadow-2xl">
+                    <img 
+                        src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&q=80" 
+                        alt="Eco Friendly Cosmetic Refill" 
+                        class="w-full h-auto"
+                        loading="lazy"
+                    />
+                </div>
+                <div class="absolute -bottom-10 -left-10 bg-[#6E3B49] p-12 rounded-3xl shadow-2xl hidden lg:block">
+                    <p class="font-serif italic text-3xl leading-tight">Wir pflegen <br/>unsere Erde.</p>
+                </div>
+                
+                <!-- Floating Stats -->
+                <div class="absolute -top-10 -right-10 bg-white p-8 rounded-2xl shadow-2xl hidden lg:block">
+                    <div class="text-5xl font-bold text-[#6E3B49] mb-2">50x</div>
+                    <div class="text-sm text-[#666] uppercase tracking-wider">Wiederverwendbar</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-32 bg-gradient-to-b from-white to-[#F8F7F4]">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center mb-24 reveal-item">
+                <span class="text-[#6E3B49] font-bold tracking-widest uppercase text-sm">Kundenstimmen</span>
+                <h2 class="font-serif text-5xl md:text-7xl italic mt-4">Was unsere Community sagt</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all reveal-item">
+                    <div class="flex gap-1 mb-6">
+                        <svg class="text-[#6E3B49]" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="text-[#6E3B49]" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="text-[#6E3B49]" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="text-[#6E3B49]" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="text-[#6E3B49]" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                    </div>
+                    <p class="text-[#666] leading-relaxed mb-6 italic">"Die Foundation ist einfach perfekt! Deckt wunderbar und fühlt sich so leicht an. Und das Refill-System ist genial!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-[#6E3B49] rounded-full"></div>
+                        <div>
+                            <div class="font-bold">Sarah M.</div>
+                            <div class="text-sm text-[#999]">Zürich</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all reveal-item" style="animation-delay: 0.1s;">
+                    <div class="flex gap-1 mb-6">
+                        <svg class="text-[#6E3B49]" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="text-[#6E3B49]" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="text-[#6E3B49]" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="text-[#6E3B49]" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="text-[#6E3B49]" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                    </div>
+                    <p class="text-[#666] leading-relaxed mb-6 italic">"Endlich eine Marke, die zu meinen Werten passt. Die Lippenstifte halten super lange und die Farben sind einfach traumhaft."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-[#6E3B49] rounded-full"></div>
+                        <div>
+                            <div class="font-bold">Lisa K.</div>
+                            <div class="text-sm text-[#999]">Berlin</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all reveal-item" style="animation-delay: 0.2s;">
+                    <div class="flex gap-1 mb-6">
+                        <svg class="text-[#6E3B49]" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="text-[#6E3B49]" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="text-[#6E3B49]" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="text-[#6E3B49]" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="text-[#6E3B49]" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                    </div>
+                    <p class="text-[#666] leading-relaxed mb-6 italic">"Qualität auf höchstem Niveau! Ich liebe es, dass ich mit jedem Kauf etwas Gutes für die Umwelt tue. Großartig!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-[#6E3B49] rounded-full"></div>
+                        <div>
+                            <div class="font-bold">Anna P.</div>
+                            <div class="text-sm text-[#999]">Wien</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-white py-32 border-t border-black/5">
+        <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-16">
+            <div class="md:col-span-2">
+                <div class="flex items-center gap-2 mb-8">
+                    <div class="text-[#6E3B49]">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="6" y="6" width="12" height="12" rx="1" transform="rotate(45 12 12)"></rect>
+                        </svg>
+                    </div>
+                    <span class="font-serif font-bold text-4xl tracking-tighter uppercase">SHEIN <span class="text-[#6E3B49] italic">COSMETICS</span></span>
+                </div>
+                <p class="text-[#666] max-w-sm mb-12 font-light leading-relaxed">
+                    Wir vertreten jeden Menschen unabhängig von Herkunft, Religion, Sexualität und Hautfarbe. Sei das Licht auf dieser Welt.
+                </p>
+                <div class="flex gap-8">
+                    <svg class="cursor-pointer hover:text-[#6E3B49] transition-colors" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                    <svg class="cursor-pointer hover:text-[#6E3B49] transition-colors" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                    </svg>
+                    <svg class="cursor-pointer hover:text-[#6E3B49] transition-colors" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <div>
+                <h5 class="font-bold uppercase text-sm tracking-[0.2em] mb-8">Service</h5>
+                <ul class="space-y-4 text-[#666] font-light">
+                    <li><a href="#products" class="hover:text-[#6E3B49] transition-colors">Bestellung</a></li>
+                    <li><a href="#sustainability" class="hover:text-[#6E3B49] transition-colors">Refill Programm</a></li>
+                    <li><a href="#contact" class="hover:text-[#6E3B49] transition-colors">Hautspezialisten</a></li>
+                    <li><a href="#contact" class="hover:text-[#6E3B49] transition-colors">Partner werden</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h5 class="font-bold uppercase text-sm tracking-[0.2em] mb-8">Newsletter</h5>
+                <p class="text-sm text-[#666] mb-8 font-light">Erhalte 10% auf deinen ersten Einkauf und exklusive Blitzangebote.</p>
+                <div class="flex border-b border-black py-3 group">
+                    <input type="email" placeholder="Deine E-Mail" class="bg-transparent outline-none w-full italic text-sm" />
+                    <button class="hover:text-[#6E3B49] transition-colors">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-40 text-sm text-[#999] uppercase tracking-widest font-mono">
+            © 2024 SHEIN COSMETICS // Shein bright like a diamond.
+        </div>
+    </footer>
+
+    <script>
+        // Loading Animation
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').classList.add('hidden');
+            }, 800);
+        });
+
+        // Custom Cursor
+        const cursorDot = document.getElementById('cursorDot');
+        const cursorOutline = document.getElementById('cursorOutline');
+
+        document.addEventListener('mousemove', (e) => {
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+            
+            cursorOutline.style.left = e.clientX + 'px';
+            cursorOutline.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('mousedown', () => {
+            cursorDot.style.transform = 'scale(1.5)';
+            cursorOutline.style.transform = 'scale(1.5)';
+        });
+
+        document.addEventListener('mouseup', () => {
+            cursorDot.style.transform = 'scale(1)';
+            cursorOutline.style.transform = 'scale(1)';
+        });
+
+        // Scroll to Top Function
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Navigation Scroll Effect
+        let lastScroll = 0;
+        const nav = document.getElementById('mainNav');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.classList.add('shadow-lg');
+                nav.classList.remove('bg-white/80');
+                nav.classList.add('bg-white');
+            } else {
+                nav.classList.remove('shadow-lg');
+                nav.classList.remove('bg-white');
+                nav.classList.add('bg-white/80');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 100;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Reveal Items Animation
+        gsap.utils.toArray(".reveal-item").forEach((item, index) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out",
+                delay: index * 0.1
+            });
+        });
+
+        // Parallax Background
+        gsap.to(".parallax-bg", {
+            scrollTrigger: {
+                trigger: "#hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            },
+            y: 150,
+            ease: "none"
+        });
+
+        // Hero Text Animation
+        gsap.from("#hero h1", {
+            opacity: 0,
+            y: 100,
+            duration: 1.5,
+            ease: "power4.out",
+            delay: 0.5
+        });
+
+        gsap.from("#hero p", {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            ease: "power3.out",
+            delay: 0.8
+        });
+
+        gsap.from("#hero a", {
+            opacity: 0,
+            y: 30,
+            duration: 1,
+            ease: "power3.out",
+            delay: 1.1
+        });
+
+        // Stats Counter Animation
+        const stats = document.querySelectorAll('.text-5xl');
+        stats.forEach(stat => {
+            ScrollTrigger.create({
+                trigger: stat,
+                start: "top 80%",
+                onEnter: () => {
+                    const text = stat.textContent;
+                    const num = parseInt(text);
+                    if (!isNaN(num)) {
+                        gsap.from(stat, {
+                            textContent: 0,
+                            duration: 2,
+                            ease: "power1.out",
+                            snap: { textContent: 1 },
+                            onUpdate: function() {
+                                stat.textContent = Math.ceil(this.targets()[0].textContent) + 'x';
+                            }
+                        });
+                    }
+                }
+            });
+        });
+
+        // Image Reveal on Scroll
+        gsap.utils.toArray(".image-reveal img").forEach(img => {
+            gsap.from(img, {
+                scrollTrigger: {
+                    trigger: img,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                },
+                scale: 1.2,
+                duration: 1.5,
+                ease: "power2.out"
+            });
+        });
+
+        // Floating Elements
+        gsap.to(".floating", {
+            y: -20,
+            duration: 3,
+            ease: "power1.inOut",
+            yoyo: true,
+            repeat: -1
+        });
+
+        console.log('🌟 SHEIN COSMETICS - Shein bright like a diamond 💎');
+    </script>
+</body>
+</html>

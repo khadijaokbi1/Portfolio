@@ -11,43 +11,9 @@
     <!-- GSAP & Plugins -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
+    <link rel="stylesheet" href="assets/css/main.css">
     <style>
-        :root {
-            --bg-primary: #000;
-            --bg-secondary: #F5F5F5;
-            --bg-dark: #314A51;
-            --text-primary: #0A0A0A;
-            --text-primary-light: #EBE1D1;
-            --text-secondary: #525252;
-            --text-tertiary: #56686A;
-            --accent-warm: #6E3B49;
-            --accent-burgundy: #6E3B49;
-            --border-light: #D1D1D1;
-            --font-body: 'Work Sans', sans-serif;
-            --font-display: 'Playfair Display', serif;
-            --space-4: 2rem;
-            --space-8: 4rem;
-            --space-12: 6rem;
-            --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
-        }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: var(--font-body);
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            font-weight: 300;
-        }
-        img { max-width: 100%; display: block; object-fit: cover; background: #eee; }
-        .container { width: 100%; max-width: 90vw; margin: 0 auto; padding: 0 clamp(1rem, 5vw, 4rem); }
-
-        /* Typography */
-        h1 { font-family: var(--font-display); font-size: clamp(3rem, 12vw, 8rem); font-weight: 400; color: var(--text-primary-light); font-style: italic; }
-        h2 { font-family: var(--font-display); font-size: clamp(2rem, 8vw, 5rem); font-weight: 800; text-transform: uppercase; color: var(--accent-burgundy); }
-        h4 { font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; color: var(--text-tertiary); }
-        
         /* Layout Components */
         .hero {
             height: 100vh;
@@ -109,9 +75,6 @@
     </style>
 </head>
 <body>
-
-    <div id="loader">VISUALIZING...</div>
-
     <header class="hero">
         <img src="../img/fotografie/slider1.jpg" alt="Hero" class="hero-img" id="heroBg" onerror="this.src='https://images.unsplash.com/photo-1493863641943-9b68992a8d07?auto=format&fit=crop&w=1920&q=80'">
         <div style="z-index: 10; text-align: center;">
