@@ -4,7 +4,7 @@
   width: 100%;
 }
 /* 2. Bild-Container Fix für Parallax */
-.project-card, .hero-portrait, .blog-thumb {
+.project-card, .blog-thumb {
   overflow: hidden; /* Verhindert, dass der Zoom den Rahmen verlässt */
 }
   /* ========================================= 5. HERO SECTION ========================================= */
@@ -19,7 +19,7 @@
     position: absolute;
     inset: 0;
     z-index: 1;
-    background-image: url('../img/hintergrund.jpg');
+    background-image: url('../images/hero/hintergrund.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -32,7 +32,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: var(--space-6);
   }
   .hero-top, .hero-middle, .hero-bottom {
     position: absolute;
@@ -43,12 +42,12 @@
     letter-spacing: 0.1em;
     white-space: nowrap;
     margin: 0;
-    overflow: hidden; /* Die Wörter gleiten aus dem Nichts nach oben */
+    overflow: hidden;
     display: block;
   }
   .hero-top {
-    font-size: 11vw;
-    top: 0%;
+    font-size: 18vw;
+    top: 25%;
     z-index: 3;
   }
   .hero-middle {
@@ -61,17 +60,29 @@
     letter-spacing: 0.05em;
   }
   .hero-bottom {
-    font-size: 11vw;
-    top: 60%;
+    font-size: 18vw;
+    bottom: 5%;
+    top: auto;
     z-index: 5;
   }
-  /* Portrait-Bilder Positionierung */
+  /* Portrait-Bilder Positionierung - Mobile First */
+  .hero-bilder {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70vw;
+    bottom: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
   .hero-portrait-bg, .hero-portrait {
     position: absolute;
-    top: 70%;
+    top: 0;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 40vw;
+    transform: translateX(-50%);
+    width: 70vw;
     height: auto;
     pointer-events: none;
   }
@@ -86,13 +97,67 @@
     height: auto;
     display: block;
   }
-  .hero-video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+
+  /* Tablet */
+  @media (min-width: 481px) and (max-width: 768px) {
+    .hero-top {
+      font-size: 14vw;
+      top: 26%;
+    }
+    .hero-bottom {
+      font-size: 14vw;
+      bottom: 8%;
+    }
+    .hero-bilder,
+    .hero-portrait-bg,
+    .hero-portrait {
+      width: 50vw;
+    }
+    .hero-bilder {
+      top: 28%;
+    }
   }
+
+  /* Desktop */
+  @media (min-width: 769px) {
+    .hero-top {
+      font-size: 11vw;
+      top: 24%;
+    }
+    .hero-bottom {
+      font-size: 11vw;
+      bottom: 5%;
+    }
+    .hero-bilder,
+    .hero-portrait-bg,
+    .hero-portrait {
+      width: 32vw;
+    }
+    .hero-bilder {
+      top: 25%;
+    }
+  }
+
+  /* Large Desktop */
+  @media (min-width: 1200px) {
+    .hero-bilder,
+    .hero-portrait-bg,
+    .hero-portrait {
+      width: 26vw;
+    }
+    .hero-bilder {
+      top: 22%;
+    }
+    .hero-top {
+      font-size: 9vw;
+      top: 22%;
+    }
+    .hero-bottom {
+      font-size: 9vw;
+      bottom: 4%;
+    }
+  }
+
   .hero-overlay {
     position: absolute;
     inset: 0;
@@ -674,45 +739,35 @@
 
 /* Smartphone (480px und kleiner) */
 @media (max-width: 480px) {
-  .section-blog {
-    padding: 2.5rem 1rem;
+ /* Hero Section */
+  .hero-section {
+      height: 100vh;
+ }
+  .hero-claim {
+      font-size: clamp(2.5rem, 10vw, 6rem);
+ }
+  .hero-circle-element {
+      display: none;
+     /* Hide on very small screens */
+ }
+ /* Accordion */
+  .accordion-trigger {
+      padding: clamp(20px, 5vw, 35px) 0;
+ }
+  .trigger-left {
+      gap: clamp(12px, 4vw, 25px);
+ }
+  .skills-table {
+      padding: clamp(15px, 3vw, 30px) 0 0 clamp(20px, 4vw, 50px);
+ }
+  .filter-bar {
+      gap: 0.5rem;
   }
-
-  .blog-grid {
-    gap: 1.75rem;
-  }
-
-  .blog-card {
-    animation: blogReveal 0.8s ease-out forwards;
-  }
-
-  .blog-thumb {
-    height: 32vh;
-    min-height: 220px;
-  }
-
-  .blog-content {
-    padding: 1.25rem;
-  }
-
-  .blog-title {
-    font-size: 1.05rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .blog-teaser {
-    font-size: 0.85rem;
-    line-height: 1.5;
-    margin-bottom: 0.8rem;
-  }
-
-  .read-more {
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-  }
-
-  .blog-card:hover {
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+  .filter-btn {
+      padding: 0.6rem 1rem;
+      font-size: 0.7rem;
+      flex: 1 1 auto;
+      text-align: center;
   }
 }
 
@@ -870,7 +925,7 @@
 @media (max-width: 480px) {
  /* Hero Section */
   .hero-section {
-      height: 70vh;
+      height: 100vh;
  }
   .hero-claim {
       font-size: clamp(2.5rem, 10vw, 6rem);
