@@ -48,92 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('mobileMenu')?.classList.toggle('open');
   });
 
-  // Note: Accordion is handled by animations.js with GSAP animations
-
-  // Project Filter
-  const projectCards = [...document.querySelectorAll('.project-card')];
-  document.querySelectorAll('.section-projects .filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filter = btn.dataset.filter;
-      projectCards.forEach(card => {
-        const show = filter === 'all' || card.dataset.category === filter;
-        card.style.display = show ? 'block' : 'none';
-      });
-
-      ScrollTrigger.refresh();
-    });
-  });
-
-  // Blog Filter
-  const blogCards = [...document.querySelectorAll('.blog-card')];
-  document.querySelectorAll('.section-blog .filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.section-blog .filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filter = btn.dataset.filter;
-      blogCards.forEach(card => {
-        const show = filter === 'all' || card.dataset.category === filter;
-        card.style.display = show ? 'grid' : 'none';
-      });
-
-      ScrollTrigger.refresh();
-    });
-  });
-
-  // Blog Modals
-  document.querySelectorAll('.read-more').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.getElementById(btn.dataset.target)?.classList.add('open');
-    });
-  });
-
-  document.querySelectorAll('.modal').forEach(modal => {
-    modal.addEventListener('click', e => {
-      if (e.target.classList.contains('modal') || e.target.classList.contains('modal-close')) {
-        modal.classList.remove('open');
-      }
-    });
-  });
-
-  // Skill Bars Animation (nur wenn GSAP vorhanden)
-  if (typeof gsap !== 'undefined') {
-    document.querySelectorAll('.skills-bar li').forEach(li => {
-      const bar = li.querySelector('.bar');
-      if (!bar) return;
-
-      gsap.to(bar, {
-        width: `${li.dataset.percent || 0}%`,
-        duration: 1.4,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: li,
-          start: 'top 85%',
-          once: true
-        }
-      });
-    });
-
-    // Scroll Animationen für Cards
-    gsap.utils.toArray('.project-card, .blog-card').forEach(el => {
-      gsap.from(el, {
-        y: 60,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          once: true
-        }
-      });
-    });
-
-    ScrollTrigger.refresh();
-  }
+  // Note: All other animations and interactions (Accordion, Project Filter, 
+  // Blog Filter, Blog Modals, Skill Bars, Card animations) are handled 
+  // by animations.js with GSAP for smooth animations
 });
 
 // Resize Handler
