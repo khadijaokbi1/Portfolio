@@ -48,28 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('mobileMenu')?.classList.toggle('open');
   });
 
-  // Accordion (Work Section)
-  const accordionItems = document.querySelectorAll('.accordion-item');
-  accordionItems.forEach(item => {
-    const trigger = item.querySelector('.accordion-trigger');
-    if (!trigger) return;
-
-    trigger.addEventListener('click', () => {
-      const active = item.classList.contains('active');
-
-      // Alle schließen
-      accordionItems.forEach(i => {
-        i.classList.remove('active');
-        i.querySelector('.accordion-trigger')?.setAttribute('aria-expanded', 'false');
-      });
-
-      // Aktuelles öffnen (falls nicht schon offen)
-      if (!active) {
-        item.classList.add('active');
-        trigger.setAttribute('aria-expanded', 'true');
-      }
-    });
-  });
+  // Note: Accordion functionality is handled by animations.js for enhanced GSAP animations
 
   // Project Filter
   const projectCards = [...document.querySelectorAll('.project-card')];
