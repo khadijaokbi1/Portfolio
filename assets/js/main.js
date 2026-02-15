@@ -50,7 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Note: All other animations and interactions (Accordion, Project Filter, 
   // Blog Filter, Blog Modals, Skill Bars, Card animations) are handled 
-  // by animations.js with GSAP for smooth animations
+  // by animations.js which must be loaded after this script.
+  // If animations.js fails to load, these features will not work.
 });
 
 // Resize Handler
