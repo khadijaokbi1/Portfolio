@@ -70,12 +70,14 @@ h2 {
 }
 
 .hero-title-large {
-    font-family: var(--font-higuen);
+    font-family: var(--font-display);
     font-size: clamp(3rem, 10vw, 7rem);
     line-height: 0.9;
     color: #314A51;
     margin-bottom: 5rem;
     margin-top: 5rem;
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: "opsz" 72;
 }
 
 .hero-title-large span {
@@ -166,6 +168,8 @@ h2 {
    font-style: italic;
    font-family: var(--font-display);
    justify-content: center;
+   -webkit-font-smoothing: antialiased;
+   font-variation-settings: "opsz" 72;
     }
 
 
@@ -310,7 +314,7 @@ h2 {
 .tab-btn {
     text-align: left;
     padding: 1.25rem 0;
-    font-family: var(--font-higuen);
+    font-family: var(--font-display);
     font-size: 1.35rem;
     color: #999;
     cursor: pointer;
@@ -319,6 +323,8 @@ h2 {
     margin-right: -2px;
     background: none;
     border: none;
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: "opsz" 72;
 }
 
 .tab-btn:hover {
@@ -386,10 +392,12 @@ h2 {
 }
 
 .stat-number {
-    font-family: var(--font-higuen);
+    font-family: var(--font-display);
     font-size: 2.5rem;
     color: #0A0A0A;
     display: block;
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: "opsz" 72;
 }
 
 .stat-box p {
@@ -426,7 +434,7 @@ h2 {
 }
 
 .data-number {
-    font-family: var(--font-higuen);
+    font-family: var(--font-display);
     font-size: 2.8rem;
     color: white;
     margin-bottom: 0.75rem;
@@ -855,7 +863,7 @@ h2 {
 
 .big-number {
     display: block;
-    font-family: var(--font-higuen);
+    font-family: var(--font-display);
     font-size: clamp(2.5rem, 5vw, 4.5rem);
     color: black;
     line-height: 1;
@@ -879,7 +887,7 @@ h2 {
 .results-quote {
     text-align: center;
     margin-top: 3rem;
-    font-family: var(--font-higuen);
+    font-family: var(--font-display);
     font-size: 1.15rem;
     color: black;
     line-height: 1.8;

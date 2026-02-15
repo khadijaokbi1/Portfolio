@@ -186,15 +186,15 @@ const initProjectFilter = () => {
 // =========================================
 const initProjectCards = () => {
     const cards = document.querySelectorAll('.project-card');
-    
-    gsap.fromTo(cards, 
-        { 
-            autoAlpha: 0, 
-            y: 40 
-        }, 
+
+    gsap.fromTo(cards,
         {
-            autoAlpha: 1, 
-            y: 0, 
+            autoAlpha: 0,
+            y: 40
+        },
+        {
+            autoAlpha: 1,
+            y: 0,
             duration: 1.2,
             ease: 'expo.out',
             stagger: 0.1,
@@ -209,13 +209,13 @@ const initProjectCards = () => {
             }
         }
     );
-    
+
     // Hover Effect
     cards.forEach(card => {
       card.addEventListener('mouseenter', () => {
         gsap.to(card, { y: -8, duration: 0.5, ease: 'power1.out' });
       });
-      
+
       card.addEventListener('mouseleave', () => {
         gsap.to(card, { y: 0, duration: 0.5, ease: 'power1.out' });
       });

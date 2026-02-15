@@ -11,9 +11,9 @@
     --text-secondary: #525252;
     --accent-burgundy: #6E3B49;
     --accent-warm: #B5A19E;
-    --font-body: 'Work Sans', sans-serif;
-    --font-display: 'Abril Fatface', serif;
-    --font-higuen: 'Higuen', serif;
+    --font-body: 'Outfit', sans-serif;
+    --font-display: 'Playfair Display', serif;
+    --font-subtitle: 'Tenor Sans', sans-serif;
 }
 
 body {
@@ -77,13 +77,15 @@ body {
 }
 
 .blog-hero-title {
-    font-family: var(--font-higuen);
+    font-family: var(--font-display);
     font-size: clamp(3rem, 8vw, 7rem);
     line-height: 1.1;
     margin-bottom: 1.5rem;
     opacity: 0;
     transform: translateY(50px);
     animation: fadeInUp 1s ease forwards;
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: "opsz" 72;
 }
 
 .blog-hero-subtitle {
@@ -157,7 +159,7 @@ body {
 }
 
 .article-title {
-    font-family: var(--font-higuen);
+    font-family: var(--font-subtitle);
     font-size: clamp(2.5rem, 6vw, 4rem);
     line-height: 1.2;
     margin-bottom: 1.5rem;

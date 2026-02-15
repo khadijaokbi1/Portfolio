@@ -8,876 +8,1025 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --color-primary: #4E8E82;
-            --color-secondary: #AFD5C1;
-            --color-dark: #3B5F74;
-            --color-accent: #82A3A6;
-            --color-light: #F5F7F6;
-            --color-white: #FFFFFF;
-            --color-text: #2D3E45;
-            --color-text-light: #666F75;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--color-text);
-            line-height: 1.6;
-            overflow-x: hidden;
-            background: var(--color-white);
-        }
-
-        /* ========== TYPOGRAPHY - FUNKY ========== */
-        h1, h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
-        }
-
-        /* ========== NAVIGATION ========== */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 1.2rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border-bottom: 1px solid rgba(78, 142, 130, 0.1);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--color-primary);
-            font-family: 'Space Grotesk', sans-serif;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo svg {
-            width: 35px;
-            height: 35px;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .nav-menu a {
-            color: var(--color-text);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--color-primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-
-        .nav-menu a:hover {
-            color: var(--color-primary);
-        }
-
-        .cta-nav {
-            padding: 0.7rem 1.5rem;
-            background: var(--color-primary);
-            color: var(--color-white);
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .cta-nav:hover {
-            background: var(--color-dark);
-            transform: translateY(-2px);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 2.5px;
-            background: var(--color-text);
-            border-radius: 2px;
-            transition: 0.3s;
-        }
-
-        /* ========== HERO SECTION ========== */
-        .hero {
-            margin-top: 70px;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, #4E8E82 0%, #82A3A6 50%, #AFD5C1 100%);
-            background-size: 200% 200%;
-            transition: background 0.5s ease;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            top: -100px;
-            right: -100px;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            bottom: -100px;
-            left: -100px;
-            animation: float 10s ease-in-out infinite reverse;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(30px); }
-        }
-
-        .hero:hover::before {
-            background: radial-gradient(circle, rgba(175, 213, 193, 0.3) 0%, transparent 70%);
-        }
-
-        .hero:hover::after {
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
-        }
-
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-            padding: 2rem;
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            color: var(--color-dark);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-        }
-
-        .hero-content .highlight {
-            color: var(--color-primary);
-            font-style: italic;
-        }
-
-        .hero-content .subtitle {
-            font-size: 1.2rem;
-            color: var(--color-text-light);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            padding: 1.1rem 2.8rem;
-            background: var(--color-primary);
-            color: var(--color-white);
-            text-decoration: none;
-            border-radius: 35px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(78, 142, 130, 0.25);
-            display: inline-block;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 40px rgba(78, 142, 130, 0.35);
-            background: var(--color-dark);
-        }
-
-        .btn-secondary {
-            padding: 1.1rem 2.8rem;
-            background: transparent;
-            color: var(--color-primary);
-            text-decoration: none;
-            border: 2px solid var(--color-primary);
-            border-radius: 35px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: inline-block;
-        }
-
-        .btn-secondary:hover {
-            background: var(--color-primary);
-            color: var(--color-white);
-            transform: translateY(-4px);
-        }
-
-        .hero-visual {
-            position: relative;
-            height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-visual svg {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 20px 40px rgba(78, 142, 130, 0.2));
-        }
-
-        .trust-badges {
-            display: flex;
-            gap: 2rem;
-            margin-top: 2rem;
-            font-size: 0.85rem;
-            color: var(--color-text-light);
-        }
-
-        .badge {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        /* ========== SECTION GENERAL ========== */
-        section {
-            padding: 6rem 2rem;
-        }
-
-        .section-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            color: var(--color-dark);
-            margin-bottom: 1rem;
-            font-weight: 800;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--color-text-light);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* ========== ABOUT SECTION ========== */
-        .about {
-            background: linear-gradient(180deg, var(--color-light) 0%, var(--color-white) 100%);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .about-card {
-            padding: 2.5rem;
-            background: var(--color-white);
-            border-radius: 20px;
-            border: 1.5px solid rgba(78, 142, 130, 0.15);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .about-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-            border-radius: 20px 20px 0 0;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-
-        .about-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .about-card:hover {
-            transform: translateY(-12px);
-            border-color: rgba(78, 142, 130, 0.3);
-            box-shadow: 0 20px 40px rgba(78, 142, 130, 0.12);
-        }
-
-        .about-card h3 {
-            font-size: 1.5rem;
-            color: var(--color-primary);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .about-card p {
-            color: var(--color-text-light);
-            line-height: 1.8;
-            font-size: 0.95rem;
-        }
-
-        /* ========== SERVICES SECTION ========== */
-        .services {
-            background: var(--color-white);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            background: linear-gradient(135deg, rgba(78, 142, 130, 0.05) 0%, rgba(175, 213, 193, 0.08) 100%);
-            padding: 2.8rem;
-            border-radius: 20px;
-            border: 1px solid rgba(78, 142, 130, 0.15);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(175, 213, 193, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover::before {
-            top: -30%;
-            right: -30%;
-        }
-
-        .service-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--color-primary);
-            box-shadow: 0 20px 50px rgba(78, 142, 130, 0.15);
-        }
-
-        .service-card > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-            color: var(--color-white);
-        }
-
-        .service-card h3 {
-            font-size: 1.4rem;
-            color: var(--color-dark);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .service-card p {
-            color: var(--color-text-light);
-            line-height: 1.8;
-            font-size: 0.95rem;
-        }
-
-        /* ========== CTA SECTION ========== */
-        .cta-section {
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
-            color: var(--color-white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            top: -200px;
-            right: -200px;
-        }
-
-        .cta-container {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-        }
-
-        .cta-section p {
-            font-size: 1.1rem;
-            line-height: 1.9;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        /* ========== BLOG/NEWS SECTION ========== */
-        .blog {
-            background: var(--color-light);
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .blog-card {
-            background: var(--color-white);
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 15px 40px rgba(78, 142, 130, 0.15);
-        }
-
-        .blog-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-white);
-            font-size: 3rem;
-            font-weight: bold;
-        }
-
-        .blog-content {
-            padding: 2rem;
-        }
-
-        .blog-tag {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            background: rgba(78, 142, 130, 0.1);
-            color: var(--color-primary);
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .blog-card h3 {
-            font-size: 1.3rem;
-            color: var(--color-dark);
-            margin-bottom: 0.8rem;
-            line-height: 1.4;
-        }
-
-        .blog-excerpt {
-            color: var(--color-text-light);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .blog-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(78, 142, 130, 0.1);
-            font-size: 0.85rem;
-            color: var(--color-text-light);
-        }
-
-        .read-more {
-            color: var(--color-primary);
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .read-more:hover {
-            color: var(--color-dark);
-        }
-
-        /* ========== TESTIMONIALS ========== */
-        .testimonials {
-            background: var(--color-white);
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .testimonial-card {
-            padding: 2.5rem;
-            background: linear-gradient(135deg, rgba(78, 142, 130, 0.05) 0%, rgba(175, 213, 193, 0.05) 100%);
-            border-radius: 15px;
-            border-left: 4px solid var(--color-primary);
-        }
-
-        .testimonial-text {
-            color: var(--color-text);
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            color: var(--color-dark);
-            margin-bottom: 0.3rem;
-        }
-
-        .testimonial-role {
-            font-size: 0.85rem;
-            color: var(--color-text-light);
-        }
-
-        /* ========== FOOTER ========== */
-        footer {
-            background: var(--color-dark);
-            color: rgba(255, 255, 255, 0.8);
-            padding: 3rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h4 {
-            color: var(--color-white);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .footer-section a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: block;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: var(--color-secondary);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 1024px) {
-            .hero-container {
-                grid-template-columns: 1fr;
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+        }
+:root {
+--color-primary: #4E8E82;
+--color-secondary: #AFD5C1;
+--color-dark: #3B5F74;
+--color-accent: #82A3A6;
+--color-light: #F5F7F6;
+--color-white: #FFFFFF;
+--color-text: #2D3E45;
+--color-text-light: #666F75;
+        }
+html {
+scroll-behavior: smooth;
+        }
+body {
+font-family: 'Poppins', sans-serif;
+color: var(--color-text);
+line-height: 1.6;
+overflow-x: hidden;
+background: var(--color-white);
+        }
+/* ========== TYPOGRAPHY ========== */
+h1, h2 {
+font-family: 'Space Grotesk', sans-serif;
+font-weight: 700;
+letter-spacing: -0.5px;
+        }
+h3 {
+font-family: 'Space Grotesk', sans-serif;
+font-weight: 600;
+        }
+/* ========== NAVIGATION ========== */
+nav {
+position: fixed;
+top: 0;
+width: 100%;
+z-index: 1000;
+background: rgba(255, 255, 255, 0.97);
+backdrop-filter: blur(20px);
+padding: 1.2rem 2rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+border-bottom: 1px solid rgba(78, 142, 130, 0.1);
+        }
+.logo {
+font-size: 1.5rem;
+font-weight: 700;
+color: var(--color-primary);
+font-family: 'Space Grotesk', sans-serif;
+display: flex;
+align-items: center;
+gap: 0.7rem;
+text-decoration: none;
+cursor: pointer;
+        }
+.logo svg {
+width: 40px;
+height: 40px;
+        }
+.nav-menu {
+display: flex;
+list-style: none;
+gap: 2.5rem;
+align-items: center;
+        }
+.nav-menu a {
+color: var(--color-text);
+text-decoration: none;
+font-size: 0.9rem;
+font-weight: 500;
+position: relative;
+transition: color 0.3s ease;
+        }
+.nav-menu a::after {
+content: '';
+position: absolute;
+bottom: -5px;
+left: 0;
+width: 0;
+height: 2px;
+background: var(--color-primary);
+transition: width 0.3s ease;
+        }
+.nav-menu a:hover::after {
+width: 100%;
+        }
+.nav-menu a:hover {
+color: var(--color-primary);
+        }
+/* Dropdown Menu */
+.nav-item-dropdown {
+position: relative;
+        }
+.nav-item-dropdown > a {
+display: flex;
+align-items: center;
+gap: 0.4rem;
+        }
+.dropdown-menu {
+position: absolute;
+top: 100%;
+left: 0;
+background: rgba(255, 255, 255, 0.98);
+border: 1px solid rgba(78, 142, 130, 0.15);
+border-radius: 12px;
+min-width: 250px;
+box-shadow: 0 10px 40px rgba(78, 142, 130, 0.15);
+opacity: 0;
+visibility: hidden;
+transform: translateY(-10px);
+transition: all 0.3s ease;
+margin-top: 0.5rem;
+        }
+.nav-item-dropdown:hover .dropdown-menu {
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
+        }
+.dropdown-menu a {
+display: block;
+padding: 0.8rem 1.5rem;
+color: var(--color-text);
+text-decoration: none;
+transition: all 0.2s ease;
+border-bottom: 1px solid rgba(78, 142, 130, 0.08);
+        }
+.dropdown-menu a:last-child {
+border-bottom: none;
+        }
+.dropdown-menu a:hover {
+background: rgba(78, 142, 130, 0.08);
+color: var(--color-primary);
+padding-left: 2rem;
+        }
+.cta-nav {
+padding: 0.7rem 1.8rem;
+background: var(--color-primary);
+color: var(--color-white);
+border-radius: 30px;
+text-decoration: none;
+font-weight: 600;
+font-size: 0.9rem;
+transition: all 0.3s ease;
+display: inline-block;
+border: none;
+cursor: pointer;
+        }
+.cta-nav:hover {
+background: var(--color-dark);
+transform: translateY(-2px);
+box-shadow: 0 8px 20px rgba(78, 142, 130, 0.3);
+        }
+.hamburger {
+display: none;
+flex-direction: column;
+cursor: pointer;
+gap: 5px;
+        }
+.hamburger span {
+width: 25px;
+height: 2.5px;
+background: var(--color-text);
+border-radius: 2px;
+transition: 0.3s;
+        }
+/* ========== HERO SECTION ========== */
+.hero {
+margin-top: 70px;
+min-height: 100vh;
+display: flex;
+align-items: center;
+position: relative;
+overflow: hidden;
+background: linear-gradient(135deg, #4E8E82 0%, #82A3A6 50%, #AFD5C1 100%);
+background-size: 200% 200%;
+transition: background 0.5s ease;
+        }
+.hero::before {
+content: '';
+position: absolute;
+width: 600px;
+height: 600px;
+background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+border-radius: 50%;
+top: -100px;
+right: -100px;
+animation: float 8s ease-in-out infinite;
+        }
+.hero::after {
+content: '';
+position: absolute;
+width: 500px;
+height: 500px;
+background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+border-radius: 50%;
+bottom: -100px;
+left: -100px;
+animation: float 10s ease-in-out infinite reverse;
+        }
+@keyframes float {
+0%, 100% { transform: translateY(0px); }
+50% { transform: translateY(30px); }
+        }
+.hero:hover::before {
+background: radial-gradient(circle, rgba(175, 213, 193, 0.3) 0%, transparent 70%);
+        }
+.hero:hover::after {
+background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+        }
+.hero-container {
+max-width: 1400px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 4rem;
+align-items: center;
+position: relative;
+z-index: 1;
+padding: 2rem;
+        }
+.hero-content {
+opacity: 1;
+        }
+.hero-content h1 {
+font-size: 3.5rem;
+color: var(--color-white);
+line-height: 1.1;
+margin-bottom: 1.5rem;
+font-weight: 800;
+        }
+.hero-content .highlight {
+color: #FFE066;
+font-weight: 800;
+        }
+.hero-content .subtitle {
+font-size: 1.1rem;
+color: rgba(255, 255, 255, 0.95);
+margin-bottom: 2.5rem;
+line-height: 1.8;
+        }
+.hero-buttons {
+display: flex;
+gap: 1.5rem;
+align-items: center;
+flex-wrap: wrap;
+        }
+.btn-primary {
+padding: 1.1rem 2.8rem;
+background: var(--color-white);
+color: var(--color-primary);
+text-decoration: none;
+border-radius: 35px;
+font-weight: 700;
+font-size: 1rem;
+transition: all 0.3s ease;
+border: none;
+cursor: pointer;
+box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+display: inline-block;
+        }
+.btn-primary:hover {
+transform: translateY(-4px);
+box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+background: var(--color-light);
+        }
+.btn-secondary {
+padding: 1.1rem 2.8rem;
+background: transparent;
+color: var(--color-white);
+text-decoration: none;
+border: 2.5px solid var(--color-white);
+border-radius: 35px;
+font-weight: 700;
+font-size: 1rem;
+transition: all 0.3s ease;
+cursor: pointer;
+display: inline-block;
+        }
+.btn-secondary:hover {
+background: var(--color-white);
+color: var(--color-primary);
+transform: translateY(-4px);
+        }
+.hero-visual {
+position: relative;
+height: 500px;
+display: flex;
+align-items: center;
+justify-content: center;
+opacity: 1;
+        }
+.hero-visual svg {
+width: 100%;
+height: 100%;
+filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.2));
+        }
+.hero-visual img {
+width: 100%;
+height: auto;
+object-fit: contain;
+filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.2));
+        }
+.trust-badges {
+display: flex;
+gap: 2rem;
+margin-top: 2.5rem;
+font-size: 0.95rem;
+color: rgba(255, 255, 255, 0.9);
+        }
+.badge {
+display: flex;
+align-items: center;
+gap: 0.6rem;
+        }
+.badge::before {
+content: '✓';
+font-weight: bold;
+color: #FFE066;
+font-size: 1.2rem;
+        }
+/* ========== SECTION GENERAL ========== */
+section {
+padding: 6rem 2rem;
+        }
+.section-container {
+max-width: 1400px;
+margin: 0 auto;
+        }
+.section-header {
+text-align: center;
+margin-bottom: 4rem;
+        }
+.section-title {
+font-size: 2.8rem;
+color: var(--color-dark);
+margin-bottom: 1rem;
+font-weight: 800;
+        }
+.section-subtitle {
+font-size: 1.05rem;
+color: var(--color-text-light);
+max-width: 700px;
+margin: 0 auto;
+line-height: 1.7;
+        }
+/* ========== ABOUT SECTION ========== */
+.about {
+background: linear-gradient(180deg, var(--color-light) 0%, var(--color-white) 100%);
+        }
+.about-intro {
+max-width: 900px;
+margin: 0 auto 4rem;
+text-align: center;
+font-size: 1.05rem;
+color: var(--color-text);
+line-height: 1.8;
+        }
+.about-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 3rem;
+margin-top: 3rem;
+        }
+.about-card {
+padding: 2.8rem;
+background: var(--color-white);
+border-radius: 20px;
+border: 1.5px solid rgba(78, 142, 130, 0.15);
+transition: all 0.3s ease;
+position: relative;
+        }
+.about-card::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 4px;
+background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+border-radius: 20px 20px 0 0;
+transform: scaleX(0);
+transform-origin: left;
+transition: transform 0.3s ease;
+        }
+.about-card:hover::before {
+transform: scaleX(1);
+        }
+.about-card:hover {
+transform: translateY(-12px);
+border-color: rgba(78, 142, 130, 0.3);
+box-shadow: 0 20px 40px rgba(78, 142, 130, 0.12);
+        }
+.about-card h3 {
+font-size: 1.5rem;
+color: var(--color-primary);
+margin-bottom: 1rem;
+font-weight: 700;
+        }
+.about-card p {
+color: var(--color-text-light);
+line-height: 1.8;
+font-size: 0.95rem;
+        }
+/* ========== SERVICES SECTION ========== */
+.services {
+background: var(--color-white);
+        }
+.services-intro {
+max-width: 900px;
+margin: 0 auto 4rem;
+text-align: center;
+font-size: 1.05rem;
+color: var(--color-text);
+line-height: 1.8;
+        }
+.services-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 3rem;
+margin-top: 3rem;
+        }
+.service-card {
+background: linear-gradient(135deg, rgba(78, 142, 130, 0.05) 0%, rgba(175, 213, 193, 0.08) 100%);
+padding: 3rem;
+border-radius: 20px;
+border: 1px solid rgba(78, 142, 130, 0.15);
+transition: all 0.3s ease;
+position: relative;
+overflow: hidden;
+        }
+.service-card::before {
+content: '';
+position: absolute;
+top: -50%;
+right: -50%;
+width: 200px;
+height: 200px;
+background: radial-gradient(circle, rgba(175, 213, 193, 0.3) 0%, transparent 70%);
+border-radius: 50%;
+transition: all 0.3s ease;
+        }
+.service-card:hover::before {
+top: -30%;
+right: -30%;
+        }
+.service-card:hover {
+transform: translateY(-15px);
+border-color: var(--color-primary);
+box-shadow: 0 25px 60px rgba(78, 142, 130, 0.15);
+        }
+.service-card > * {
+position: relative;
+z-index: 1;
+        }
+.service-icon {
+width: 100px;
+height: 100px;
+background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+border-radius: 18px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 2rem;
+font-size: 2.5rem;
+        }
+.service-card svg {
+width: 100%;
+height: 100%;
+max-width: 120px;
+max-height: 120px;
+margin-bottom: 2rem;
+        }
+.service-card h3 {
+font-size: 1.5rem;
+color: var(--color-dark);
+margin-bottom: 1rem;
+font-weight: 700;
+        }
+.service-card p {
+color: var(--color-text-light);
+line-height: 1.8;
+font-size: 0.95rem;
+        }
+/* ========== CTA SECTION ========== */
+.cta-section {
+background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+color: var(--color-white);
+position: relative;
+overflow: hidden;
+        }
+.cta-section::before {
+content: '';
+position: absolute;
+width: 600px;
+height: 600px;
+background: rgba(255, 255, 255, 0.05);
+border-radius: 50%;
+top: -200px;
+right: -200px;
+        }
+.cta-container {
+max-width: 900px;
+margin: 0 auto;
+position: relative;
+z-index: 1;
+text-align: center;
+        }
+.cta-section h2 {
+font-size: 2.5rem;
+margin-bottom: 1.5rem;
+font-weight: 800;
+        }
+.cta-section p {
+font-size: 1.1rem;
+line-height: 1.9;
+margin-bottom: 2.5rem;
+opacity: 0.98;
+}
+.cta-section .btn-primary {
+background: var(--color-white);
+color: var(--color-primary);
+}
+/* ========== GALLERY SECTION ========== */
+.gallery {
+background: linear-gradient(180deg, var(--color-white) 0%, var(--color-light) 100%);
+        }
+.gallery-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+grid-template-rows: repeat(2, 250px);
+gap: 2rem;
+margin-top: 3rem;
+        }
+.gallery-item {
+position: relative;
+overflow: hidden;
+border-radius: 20px;
+cursor: pointer;
+transition: all 0.3s ease;
+box-shadow: 0 10px 30px rgba(78, 142, 130, 0.15);
+background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+display: flex;
+align-items: center;
+justify-content: center;
+        }
+.gallery-item:hover {
+transform: scale(1.05);
+box-shadow: 0 15px 40px rgba(78, 142, 130, 0.25);
+        }
+.gallery-item img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+opacity: 1 !important;
+        }
+.gallery-placeholder {
+color: var(--color-white);
+font-size: 4rem;
+text-align: center;
+opacity: 0.9;
+        }
+/* ========== INSTAGRAM SECTION ========== */
+.instagram-section {
+background: linear-gradient(135deg, rgba(78, 142, 130, 0.03) 0%, rgba(175, 213, 193, 0.05) 100%);
+        }
+.instagram-header {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 1rem;
+margin-bottom: 1rem;
+        }
+.instagram-header h2 {
+margin: 0;
+        }
+.instagram-link {
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+padding: 0.6rem 1.5rem;
+background: var(--color-primary);
+color: var(--color-white);
+border-radius: 25px;
+text-decoration: none;
+font-weight: 600;
+font-size: 0.9rem;
+transition: all 0.3s ease;
+        }
+.instagram-link:hover {
+background: var(--color-dark);
+transform: translateY(-2px);
+box-shadow: 0 8px 20px rgba(78, 142, 130, 0.3);
+        }
+.instagram-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1.5rem;
+margin-top: 2rem;
+        }
+.instagram-post {
+position: relative;
+overflow: hidden;
+border-radius: 15px;
+aspect-ratio: 1 / 1;
+background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+cursor: pointer;
+transition: all 0.3s ease;
+box-shadow: 0 8px 25px rgba(78, 142, 130, 0.12);
+display: flex;
+align-items: center;
+justify-content: center;
+        }
+.instagram-post:hover {
+transform: translateY(-8px);
+box-shadow: 0 15px 40px rgba(78, 142, 130, 0.2);
+        }
+.instagram-post img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+opacity: 1 !important;
+        }
+.instagram-placeholder {
+font-size: 3.5rem;
+color: var(--color-white);
+opacity: 0.8;
+text-align: center;
+        }
+/* ========== BLOG/NEWS SECTION ========== */
+.blog {
+background: var(--color-light);
+        }
+.blog-intro {
+max-width: 900px;
+margin: 0 auto 3rem;
+text-align: center;
+font-size: 1.05rem;
+color: var(--color-text);
+line-height: 1.8;
+        }
+.blog-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2.5rem;
+margin-top: 3rem;
+        }
+.blog-card {
+background: var(--color-white);
+border-radius: 18px;
+overflow: hidden;
+box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+transition: all 0.3s ease;
+cursor: pointer;
+        }
+.blog-card:hover {
+transform: translateY(-12px);
+box-shadow: 0 15px 40px rgba(78, 142, 130, 0.15);
+        }
+.blog-image {
+width: 100%;
+height: 250px;
+background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(--color-white);
+font-size: 3.5rem;
+font-weight: bold;
+object-fit: cover;
+opacity: 1 !important;
+        }
+.blog-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+        }
+.blog-content {
+padding: 2rem;
+        }
+.blog-tag {
+display: inline-block;
+padding: 0.5rem 1.2rem;
+background: rgba(78, 142, 130, 0.1);
+color: var(--color-primary);
+border-radius: 20px;
+font-size: 0.8rem;
+font-weight: 700;
+margin-bottom: 1rem;
+        }
+.blog-card h3 {
+font-size: 1.3rem;
+color: var(--color-dark);
+margin-bottom: 0.8rem;
+line-height: 1.4;
+        }
+.blog-excerpt {
+color: var(--color-text-light);
+font-size: 0.95rem;
+line-height: 1.7;
+margin-bottom: 1.5rem;
+        }
+.blog-meta {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding-top: 1.5rem;
+border-top: 1px solid rgba(78, 142, 130, 0.1);
+font-size: 0.85rem;
+color: var(--color-text-light);
+        }
+.read-more {
+color: var(--color-primary);
+font-weight: 700;
+text-decoration: none;
+transition: all 0.3s ease;
+        }
+.read-more:hover {
+color: var(--color-dark);
+gap: 0.3rem;
+        }
+/* ========== TESTIMONIALS ========== */
+.testimonials {
+background: var(--color-white);
+        }
+.testimonial-intro {
+max-width: 900px;
+margin: 0 auto 3rem;
+text-align: center;
+font-size: 1.05rem;
+color: var(--color-text);
+line-height: 1.8;
+        }
+.testimonial-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 3rem;
+margin-top: 3rem;
+        }
+.testimonial-card {
+padding: 3rem;
+background: linear-gradient(135deg, rgba(78, 142, 130, 0.05) 0%, rgba(175, 213, 193, 0.05) 100%);
+border-radius: 18px;
+border-left: 5px solid var(--color-primary);
+transition: all 0.3s ease;
+        }
+.testimonial-card:hover {
+transform: translateY(-8px);
+box-shadow: 0 15px 40px rgba(78, 142, 130, 0.1);
+        }
+.testimonial-text {
+color: var(--color-text);
+font-size: 1rem;
+line-height: 1.8;
+margin-bottom: 1.5rem;
+font-style: italic;
+        }
+.testimonial-author {
+font-weight: 700;
+color: var(--color-dark);
+margin-bottom: 0.3rem;
+        }
+.testimonial-role {
+font-size: 0.85rem;
+color: var(--color-text-light);
+}
+/* ========== FOOTER ========== */
+footer {
+background: var(--color-dark);
+color: rgba(255, 255, 255, 0.85);
+padding: 4rem 2rem 2rem;
+        }
+.footer-content {
+max-width: 1400px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 3rem;
+margin-bottom: 3rem;
+        }
+.footer-section h4 {
+color: var(--color-white);
+margin-bottom: 1.2rem;
+font-weight: 700;
+font-size: 1rem;
+        }
+.footer-section p {
+font-size: 0.95rem;
+line-height: 1.7;
+}
+.footer-section a {
+color: rgba(255, 255, 255, 0.75);
+text-decoration: none;
+font-size: 0.95rem;
+display: block;
+margin-bottom: 0.7rem;
+transition: color 0.3s ease;
+        }
+.footer-section a:hover {
+color: var(--color-secondary);
+        }
+.footer-bottom {
+border-top: 1px solid rgba(255, 255, 255, 0.1);
+padding-top: 2rem;
+text-align: center;
+font-size: 0.9rem;
+color: rgba(255, 255, 255, 0.7);
+        }
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+.hero-container {
+grid-template-columns: 1fr;
+gap: 2rem;
+        }
+.hero-content h1 {
+font-size: 2.8rem;
+        }
+.hero-visual {
+height: 400px;
+        }
+.services-grid {
+grid-template-columns: repeat(2, 1fr);
+        }
+.blog-grid {
+grid-template-columns: repeat(2, 1fr);
+        }
+.instagram-grid {
+grid-template-columns: repeat(2, 1fr);
+        }
+.about-grid {
+grid-template-columns: 1fr;
+        }
+.testimonial-grid {
+grid-template-columns: 1fr;
+        }
+.gallery-grid {
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: auto;
+        }
+.gallery-item:first-child {
+grid-column: span 1;
+grid-row: span 1;
+        }
+.section-title {
+font-size: 2.3rem;
+        }
+.nav-menu {
+gap: 1.5rem;
+        }
+        }
+@media (max-width: 768px) {
+nav {
+padding: 1rem 1.5rem;
             }
-
-            .hero-content h1 {
-                font-size: 2.8rem;
+.logo {
+font-size: 1.3rem;
             }
-
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
+.nav-menu {
+display: none;
+position: absolute;
+top: 70px;
+left: 0;
+width: 100%;
+flex-direction: column;
+background: rgba(255, 255, 255, 0.98);
+padding: 1.5rem;
+gap: 0.5rem;
             }
-
-            .blog-grid {
-                grid-template-columns: repeat(2, 1fr);
+.nav-menu.active {
+display: flex;
             }
-
-            .about-grid {
-                grid-template-columns: 1fr;
+.hamburger {
+display: flex;
             }
-
-            .testimonial-grid {
-                grid-template-columns: 1fr;
+.dropdown-menu {
+position: static;
+opacity: 1;
+visibility: visible;
+transform: none;
+background: rgba(78, 142, 130, 0.08);
+box-shadow: none;
+border: none;
+margin-top: 0;
+border-radius: 8px;
             }
-
-            .section-title {
-                font-size: 2.3rem;
+.nav-item-dropdown:hover .dropdown-menu {
+opacity: 1;
             }
-
-            .nav-menu {
-                gap: 1.5rem;
+.dropdown-menu a {
+padding: 0.6rem 1rem;
+border-bottom: none;
             }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
+.hero {
+margin-top: 60px;
+padding: 1rem 0;
             }
-
-            .logo {
-                font-size: 1.3rem;
+.hero-container {
+padding: 1rem;
+gap: 1.5rem;
             }
-
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                flex-direction: column;
-                background: rgba(255, 255, 255, 0.98);
-                padding: 1.5rem;
-                gap: 1rem;
+.hero-content h1 {
+font-size: 2rem;
+line-height: 1.2;
             }
-
-            .nav-menu.active {
-                display: flex;
+.hero-content .subtitle {
+font-size: 0.95rem;
+margin-bottom: 1.5rem;
             }
-
-            .hamburger {
-                display: flex;
+.hero-visual {
+height: 350px;
+margin-top: 1rem;
             }
-
-            .hero {
-                margin-top: 60px;
-                padding: 2rem 0;
+.trust-badges {
+flex-direction: column;
+gap: 0.8rem;
             }
-
-            .hero-content h1 {
-                font-size: 2rem;
+.hero-buttons {
+flex-direction: column;
             }
-
-            .hero-content .subtitle {
-                font-size: 1rem;
+.btn-primary, .btn-secondary {
+width: 100%;
+text-align: center;
             }
-
-            .hero-visual {
-                height: 350px;
+.services-grid,
+.blog-grid,
+.instagram-grid,
+.gallery-grid {
+grid-template-columns: 1fr;
+grid-template-rows: auto;
             }
-
-            .hero-buttons {
-                flex-direction: column;
+.gallery-item:first-child {
+grid-column: span 1;
             }
-
-            .btn-primary, .btn-secondary {
-                width: 100%;
-                text-align: center;
+.section-title {
+font-size: 2rem;
             }
-
-            .services-grid,
-            .blog-grid {
-                grid-template-columns: 1fr;
+section {
+padding: 4rem 1.5rem;
             }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            section {
-                padding: 4rem 1.5rem;
-            }
-
-            .trust-badges {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
+.footer-content {
+grid-template-columns: repeat(2, 1fr);
             }
         }
-
-        @media (max-width: 480px) {
-            nav {
-                padding: 0.8rem;
+@media (max-width: 480px) {
+nav {
+padding: 0.8rem;
             }
-
-            .logo {
-                font-size: 1.2rem;
+.logo {
+font-size: 1.2rem;
             }
-
-            .logo svg {
-                width: 28px;
-                height: 28px;
+.hero-content h1 {
+font-size: 1.8rem;
             }
-
-            .hero {
-                margin-top: 60px;
-                padding: 1rem 0;
+.hero-visual {
+height: 300px;
             }
-
-            .hero-container {
-                padding: 1rem;
+.cta-section h2 {
+font-size: 2rem;
             }
-
-            .hero-content h1 {
-                font-size: 1.6rem;
+.section-title {
+font-size: 1.6rem;
             }
-
-            .hero-content .subtitle {
-                font-size: 0.95rem;
+section {
+padding: 3rem 1rem;
             }
-
-            .hero-visual {
-                height: 280px;
-                margin-top: 2rem;
+.footer-content {
+grid-template-columns: 1fr;
+gap: 1.5rem;
             }
-
-            .cta-section h2 {
-                font-size: 1.8rem;
+.blog-image {
+height: 200px;
             }
-
-            .section-title {
-                font-size: 1.6rem;
-            }
-
-            section {
-                padding: 3rem 1rem;
-            }
-
-            .service-card,
-            .about-card,
-            .blog-card {
-                border-radius: 15px;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .blog-image {
-                height: 200px;
+.testimonial-grid {
+gap: 2rem;
             }
         }
-
-        /* ========== ANIMATIONS ========== */
-        .fade-in {
-            opacity: 0;
+/* ========== ANIMATIONS ========== */
+.fade-in {
+opacity: 0;
         }
-
-        .stagger-delay {
-            animation-delay: var(--delay);
+@keyframes slideUp {
+from {
+opacity: 0;
+transform: translateY(30px);
+        }
+to {
+opacity: 1;
+transform: translateY(0);
+        }
         }
     </style>
 </head>
 <body>
-    <!-- NAVIGATION -->
+<!-- NAVIGATION -->
     <nav>
-        <div class="logo">
-            <svg viewBox="0 0 403.17 239.34" xmlns="http://www.w3.org/2000/svg">
-                <path d="M100 120 L200 80 L250 150 L180 200 Z" fill="currentColor"/>
-            </svg>
+        <a href="#home" class="logo">
+            <img src="images/wehelp/wehelp_logo_2.svg" alt="WeHelp Logo" style="height: 35px; width: 35px; display: inline-block;">
             WeHelp
-        </div>
+        </a>
         <ul class="nav-menu">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">Über uns</a></li>
-            <li><a href="#services">Angebot</a></li>
+            <li class="nav-item-dropdown">
+                <a href="#services">Angebot <span>▼</span></a>
+                <div class="dropdown-menu">
+                    <a href="#forum">Austausch Forum</a>
+                    <a href="#clinics">Klinik & Psychologen</a>
+                    <a href="#living">Betreute Wohngruppen</a>
+                </div>
+            </li>
+            <li><a href="#instagram">Community</a></li>
             <li><a href="#blog">Blog</a></li>
             <li><a href="#contact">Kontakt</a></li>
-            <li><a href="#test" class="cta-nav">Kostenloses Gespräch</a></li>
+            <li><a href="#test" class="cta-nav">Zum Test</a></li>
         </ul>
         <div class="hamburger">
             <span></span>
@@ -886,162 +1035,324 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
+<!-- HERO SECTION -->
     <section class="hero" id="home">
         <div class="hero-container">
             <div class="hero-content fade-in">
-                <h1>Professionelle Unterstützung für <span class="highlight">Deine psychische Gesundheit</span></h1>
-                <p class="subtitle">Für Erwachsene und Kinder mit psychischen Störungen aller Diagnosegruppen. Gemeinsam machen wir den Unterschied.</p>
+                <h1>Psychische Gesundheit für <span class="highlight">Dich und Deine Familie</span></h1>
+                <p class="subtitle">Professionelle Unterstützung für Erwachsene und Kinder mit psychischen Störungen. Zusammen finden wir den richtigen Weg zur Genesung.</p>
                 <div class="hero-buttons">
                     <a href="#test" class="btn-primary">Zum kostenlosen Test</a>
                     <a href="#services" class="btn-secondary">Unser Angebot entdecken</a>
                 </div>
                 <div class="trust-badges">
-                    <div class="badge">✓ Sichere & vertrauliche Kommunikation</div>
-                    <div class="badge">✓ Zertifizierte Fachleute</div>
-                    <div class="badge">✓ 24/7 Unterstützung</div>
+                    <div class="badge">Sichere & vertrauliche Kommunikation</div>
+                    <div class="badge">Zertifizierte Fachleute</div>
+                    <div class="badge">24/7 Unterstützung</div>
                 </div>
             </div>
             <div class="hero-visual fade-in">
-                <svg viewBox="0 0 403.17 239.34" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                    <defs>
-                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#4E8E82;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#82A3A6;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <!-- Brain Shape -->
-                    <circle cx="200" cy="120" r="80" fill="url(#grad1)" opacity="0.3"/>
-                    <!-- Puzzle Elements -->
-                    <path d="M160 100 Q160 80 180 80 Q200 80 200 100 L200 140 Q200 160 180 160 Q160 160 160 140 Z" fill="#AFD5C1" opacity="0.8"/>
-                    <path d="M200 100 Q200 80 220 80 Q240 80 240 100 L240 140 Q240 160 220 160 Q200 160 200 140 Z" fill="#4E8E82" opacity="0.6"/>
-                    <!-- People Elements -->
-                    <circle cx="120" cy="180" r="12" fill="#AFD5C1"/>
-                    <circle cx="280" cy="180" r="12" fill="#82A3A6"/>
-                    <!-- Connection Lines -->
-                    <line x1="120" y1="192" x2="120" y2="210" stroke="#4E8E82" stroke-width="2"/>
-                    <line x1="280" y1="192" x2="280" y2="210" stroke="#82A3A6" stroke-width="2"/>
-                </svg>
+                <img src="images/wehelp/wehelp_3.jpg" alt="WeHelp Hero Visual" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
         </div>
     </section>
 
-    <!-- ABOUT SECTION -->
+<!-- ABOUT SECTION -->
     <section class="about" id="about">
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-title">Wer wir sind</h2>
-                <p class="section-subtitle">Professionelle und persönliche Begleitung in den wichtigsten Bereichen der psychischen Gesundheit</p>
+                <p class="section-subtitle">WeHelp ist eine führende Plattform für psychische Gesundheit in der Schweiz. Wir verbinden Betroffene mit professioneller Unterstützung und einer unterstützenden Community.</p>
             </div>
-            
+            <div class="about-intro">
+                <p>Unser Anspruch ist es, Menschen in schwierigen Zeiten nicht allein zu lassen. Mit einer Kombination aus professioneller Begleitung, technischer Innovation und einer liebevollen Community schaffen wir einen sicheren Raum für Heilung und Wachstum. Wir verstehen die Herausforderungen, denen sich Menschen mit psychischen Störungen gegenübersehen, und bieten umfassende Lösungen für jeden Schritt ihrer Genesung.</p>
+            </div>
             <div class="about-grid">
                 <div class="about-card fade-in">
                     <h3>Unser Anspruch</h3>
-                    <p>Unser vorrangiges Ziel besteht in der Unterstützung bei psychologischen Störungen sowie die Begleitung der betroffenen und angehörigen Personen in dieser schwierigen Lebenszeit.</p>
+                    <p>Unser vorrangiges Ziel besteht in der Unterstützung bei psychologischen Störungen sowie die Begleitung der betroffenen und angehörigen Personen in dieser wichtigen Lebensphase. Wir setzen auf Empathie, Fachkompetenz und innovative Technologie.</p>
                 </div>
                 <div class="about-card fade-in">
                     <h3>Breites Spektrum</h3>
-                    <p>Wir bieten persönliche und professionelle Begleitung in mehreren Kerngebieten: Depression, Angststörung, Burnout-Syndrom, Essstörungen, Borderline, PTBS und viele weitere.</p>
+                    <p>Wir bieten persönliche und professionelle Begleitung in mehreren Kerngebieten: Depression, Angststörung, Burnout-Syndrom, Essstörungen, Borderline, PTBS und viele weitere. Jeder Fall ist einzigartig, und unsere Experten passen die Behandlung individuell an.</p>
                 </div>
                 <div class="about-card fade-in">
                     <h3>Moderne Technologie</h3>
-                    <p>Durch unsere technisch einwandfreie und sichere App begleiten wir Sie vom ersten Moment bis zur vollständigen Genesung mit allen notwendigen Ressourcen.</p>
+                    <p>Unsere technisch fortschrittliche und sichere App begleitet Sie vom ersten Moment bis zur vollständigen Genesung. Mit benutzerfreundlichen Funktionen, Datensicherheit auf höchstem Niveau und intuitivem Design unterstützen wir Ihren Heilungsprozess täglich.</p>
                 </div>
                 <div class="about-card fade-in">
                     <h3>Vernetzte Begleitung</h3>
-                    <p>Wir helfen mit Informationen, Kliniken und Ärzten aus der ganzen Schweiz. Außerdem bringen wir Sie in Kontakt mit gleich betroffenen Personen in vertrauter Umgebung.</p>
+                    <p>Wir verbinden Sie mit Informationen, zertifizierten Kliniken und Fachleuten aus der ganzen Schweiz. Zusätzlich bringen wir Sie in Kontakt mit Gleichgesinnten in einer vertrauten und geschützten Umgebung, um Ihre Erfahrungen zu teilen.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SERVICES SECTION -->
+<!-- SERVICES SECTION -->
     <section class="services" id="services">
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-title">Unser Angebot</h2>
                 <p class="section-subtitle">Umfassende Lösungen für jeden Schritt Ihrer Genesung</p>
             </div>
-            
+            <div class="services-intro">
+                <p>WeHelp bietet ein integriertes Ökosystem von Dienstleistungen, die speziell darauf ausgerichtet sind, Menschen bei ihrer Genesung zu unterstützen. Von der ersten Diagnose bis zur vollständigen Reintegration – wir sind für Sie da.</p>
+            </div>
             <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon">💬</div>
+                <div class="service-card fade-in" id="forum">
+                    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="35" cy="30" r="12" fill="#4E8E82"/>
+                        <path d="M 20 50 Q 20 45 25 45 L 45 45 Q 50 45 50 50 L 50 70 Q 50 75 45 75 L 25 75 Q 20 75 20 70 Z" fill="#4E8E82" opacity="0.3"/>
+                        <circle cx="85" cy="35" r="12" fill="#AFD5C1"/>
+                        <path d="M 70 55 Q 70 50 75 50 L 95 50 Q 100 50 100 55 L 100 75 Q 100 80 95 80 L 75 80 Q 70 80 70 75 Z" fill="#AFD5C1" opacity="0.3"/>
+                        <circle cx="60" cy="90" r="12" fill="#82A3A6"/>
+                        <path d="M 45 110 Q 45 105 50 105 L 70 105 Q 75 105 75 110 L 75 110" stroke="#82A3A6" stroke-width="2" fill="none"/>
+                    </svg>
                     <h3>Austausch Forum</h3>
-                    <p>Tauschen Sie sich im vertrauten und geschütztem Kreis mit gleich betroffenen Personen aus. Ein Gespräch mit anderen, die Ihre Situation zu 100% verstehen, kann sehr beruhigend und ermutigend sein. Auch für Eltern und Begleitpersonen.</p>
+                    <p>Tauschen Sie sich in einem vertrauten und geschützten Kreis mit Menschen aus, die genau verstehen, was Sie durchmachen. Ein offener Dialog mit anderen, die ähnliche Herausforderungen bewältigen, kann therapeutisch wirken und neue Perspektiven eröffnen. Auch Eltern und Angehörige finden hier Unterstützung und wertvolle Ratschläge.</p>
                 </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">🏥</div>
+                <div class="service-card fade-in" id="clinics">
+                    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="30" y="20" width="60" height="70" rx="8" fill="none" stroke="#4E8E82" stroke-width="3"/>
+                        <path d="M 50 45 L 70 45" stroke="#4E8E82" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M 60 35 L 60 55" stroke="#4E8E82" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="60" cy="80" r="8" fill="#4E8E82"/>
+                        <path d="M 60 90 L 60 105" stroke="#4E8E82" stroke-width="2.5"/>
+                    </svg>
                     <h3>Klinik & Psychologen</h3>
-                    <p>Durch unsere Partner Kliniken und Psychologen finden Sie die richtige Anschlusslösung. Wir arbeiten mit zertifizierten Fachleuten aus der ganzen Schweiz zusammen für den besten Aufenthalt und erfolgreiche Behandlung.</p>
+                    <p>Unser Netzwerk verbindet Sie mit führenden Kliniken und zertifizierten Psychologen aus der ganzen Schweiz. Wir arbeiten nur mit qualifizierten Fachleuten zusammen, die sich auf verschiedene Störungsbilder spezialisiert haben. Wir helfen Ihnen, die optimale Behandlung zu finden, die perfekt zu Ihren individuellen Bedürfnissen passt.</p>
                 </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">🏠</div>
+                <div class="service-card fade-in" id="living">
+                    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="25" y="40" width="70" height="55" rx="5" fill="none" stroke="#4E8E82" stroke-width="3"/>
+                        <path d="M 60 40 L 45 25 L 75 25 Z" stroke="#4E8E82" stroke-width="3" fill="none"/>
+                        <rect x="35" y="50" width="15" height="18" fill="none" stroke="#AFD5C1" stroke-width="2"/>
+                        <rect x="70" y="50" width="15" height="18" fill="none" stroke="#AFD5C1" stroke-width="2"/>
+                        <rect x="52" y="75" width="16" height="20" fill="none" stroke="#82A3A6" stroke-width="2"/>
+                    </svg>
                     <h3>Betreute Wohngruppen</h3>
-                    <p>Noch nicht zurück im normalen Alltag, aber Klinik nicht mehr nötig? Leben Sie mit gleich betroffenen Personen und fachkundigen Begleitpersonen zusammen in unseren Wohngruppen.</p>
+                    <p>Der Schritt zurück ins normale Leben ist oft eine wichtige Phase. Wenn eine Klinik nicht mehr nötig ist, aber die volle Unabhängigkeit noch nicht erreicht wurde, bieten unsere Wohngruppen den perfekten Übergangsspielraum. Hier leben Sie zusammen mit Gleichgesinnten und werden von erfahrenem Fachpersonal unterstützt.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA SECTION -->
+<!-- GALLERY SECTION -->
+    <section class="gallery" id="gallery">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Unser Engagement</h2>
+                <p class="section-subtitle">Einblicke in unsere Arbeit und die positive Wirkung unserer Community</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in" style="grid-column: span 2; grid-row: span 2;">
+                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                        <rect width="400" height="400" fill="url(#grad1)"/>
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#4E8E82;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#AFD5C1;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="200" cy="200" r="80" fill="white" opacity="0.3"/>
+                    </svg>
+                </div>
+                <div class="gallery-item fade-in">
+                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                        <rect width="400" height="400" fill="url(#grad2)"/>
+                        <defs>
+                            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#82A3A6;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#4E8E82;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <text x="50%" y="50%" font-size="120" fill="white" opacity="0.2" text-anchor="middle" dominant-baseline="middle">🤝</text>
+                    </svg>
+                </div>
+                <div class="gallery-item fade-in">
+                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                        <rect width="400" height="400" fill="url(#grad3)"/>
+                        <defs>
+                            <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#AFD5C1;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#82A3A6;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="200" cy="200" r="60" fill="white" opacity="0.25"/>
+                    </svg>
+                </div>
+                <div class="gallery-item fade-in">
+                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                        <rect width="400" height="400" fill="url(#grad4)"/>
+                        <defs>
+                            <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#3B5F74;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#4E8E82;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <rect x="80" y="80" width="240" height="240" fill="white" opacity="0.15" rx="20"/>
+                    </svg>
+                </div>
+                <div class="gallery-item fade-in">
+                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                        <rect width="400" height="400" fill="url(#grad5)"/>
+                        <defs>
+                            <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFE066;stop-opacity:0.3" />
+                                <stop offset="100%" style="stop-color:#4E8E82;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="200,100 300,300 100,300" fill="white" opacity="0.2"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- INSTAGRAM SECTION -->
+    <section class="instagram-section" id="instagram">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="instagram-header">
+                    <h2 class="section-title">Unsere Community</h2>
+                    <a href="https://instagram.com/wehelp_ch" target="_blank" rel="noopener noreferrer" class="instagram-link">
+                        Instagram
+                    </a>
+                </div>
+                <p class="section-subtitle">Folgen Sie uns für tägliche Tipps, Erfolgsgeschichten und Unterstützung von unserer lebendigen Community</p>
+            </div>
+            <div class="instagram-grid">
+                <div class="instagram-post fade-in">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                        <rect width="200" height="200" fill="url(#insta1)"/>
+                        <defs>
+                            <linearGradient id="insta1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#4E8E82;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#82A3A6;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="100" cy="100" r="40" fill="white" opacity="0.3"/>
+                    </svg>
+                </div>
+                <div class="instagram-post fade-in">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                        <rect width="200" height="200" fill="url(#insta2)"/>
+                        <defs>
+                            <linearGradient id="insta2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#AFD5C1;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#4E8E82;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <rect x="50" y="50" width="100" height="100" fill="white" opacity="0.25" rx="10"/>
+                    </svg>
+                </div>
+                <div class="instagram-post fade-in">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                        <rect width="200" height="200" fill="url(#insta3)"/>
+                        <defs>
+                            <linearGradient id="insta3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#3B5F74;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#AFD5C1;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="100,50 150,150 50,150" fill="white" opacity="0.2"/>
+                    </svg>
+                </div>
+                <div class="instagram-post fade-in">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                        <rect width="200" height="200" fill="url(#insta4)"/>
+                        <defs>
+                            <linearGradient id="insta4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#82A3A6;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#3B5F74;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="100" cy="100" r="35" fill="white" opacity="0.2"/>
+                    </svg>
+                </div>
+                <div class="instagram-post fade-in">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                        <rect width="200" height="200" fill="url(#insta5)"/>
+                        <defs>
+                            <linearGradient id="insta5" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFE066;stop-opacity:0.4" />
+                                <stop offset="100%" style="stop-color:#4E8E82;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M 100 50 L 130 120 L 70 120 Z" fill="white" opacity="0.25"/>
+                    </svg>
+                </div>
+                <div class="instagram-post fade-in">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                        <rect width="200" height="200" fill="url(#insta6)"/>
+                        <defs>
+                            <linearGradient id="insta6" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#4E8E82;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#AFD5C1;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="70" cy="70" r="15" fill="white" opacity="0.25"/>
+                        <circle cx="130" cy="90" r="20" fill="white" opacity="0.2"/>
+                        <circle cx="100" cy="150" r="12" fill="white" opacity="0.2"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- CTA SECTION -->
     <section class="cta-section" id="test">
         <div class="cta-container">
             <h2>Starten Sie Ihre Reise zur Genesung</h2>
-            <p>Unser kostenfreier Selbsttest hilft Ihnen, Ihre Symptome zu verstehen und die richtige Unterstützung zu finden. In nur wenigen Minuten erhalten Sie personalisierte Empfehlungen.</p>
-            <button class="btn-primary" style="background: white; color: var(--color-primary); box-shadow: 0 10px 30px rgba(0,0,0,0.2);">Jetzt zum Test</button>
+            <p>Unser kostenfreier Selbsttest hilft Ihnen, Ihre Symptome zu verstehen und die richtige Unterstützung zu finden. Der Test ist anonym, vertraulich und dauert nur wenige Minuten. Sie erhalten unmittelbar personalisierte Empfehlungen und nächste Schritte, die speziell auf Ihre Situation abgestimmt sind.</p>
+            <a href="https://test.wehelp.ch" target="_blank" rel="noopener noreferrer" class="btn-primary">Zum kostenlosen Test</a>
         </div>
     </section>
 
-    <!-- BLOG/NEWS SECTION -->
+<!-- BLOG/NEWS SECTION -->
     <section class="blog" id="blog">
         <div class="section-container">
             <div class="section-header">
-                <h2 class="section-title">Blog & News</h2>
-                <p class="section-subtitle">Aktuelle Beiträge aus unserem Instagram und Expertenratschläge</p>
+                <h2 class="section-title">Blog & Ressourcen</h2>
+                <p class="section-subtitle">Expertentipps, Erfolgsgeschichten und wertvolle Informationen zur psychischen Gesundheit</p>
             </div>
-            
+            <div class="blog-intro">
+                <p>Unser Blog bietet fundierte Informationen, praktische Tipps und inspirierende Geschichten von Menschen, die ihre psychische Gesundheit verbessert haben. Regelmäßig teilen unsere Experten neueste Erkenntnisse und erprobte Strategien zur Bewältigung von psychischen Herausforderungen.</p>
+            </div>
             <div class="blog-grid">
                 <div class="blog-card fade-in">
-                    <div class="blog-image" style="background: linear-gradient(135deg, #4E8E82, #82A3A6); color: white; font-size: 4rem;">
-                        🌟
-                    </div>
+                    <img src="images/wehelp/wehelp_2.jpg" alt="Blog Post 1" class="blog-image" style="width: 100%; height: 250px; object-fit: cover;">
                     <div class="blog-content">
-                        <span class="blog-tag">MOTIVATIONS</span>
+                        <span class="blog-tag">MOTIVATION</span>
                         <h3>Die Kraft der positiven Gedanken</h3>
-                        <p class="blog-excerpt">Wie Ihre Gedanken Ihre psychische Gesundheit beeinflussen und praktische Techniken zur Gedankenkontrolle.</p>
+                        <p class="blog-excerpt">Wie Ihre Gedanken Ihre psychische Gesundheit beeinflussen und praktische Techniken zur Gedankenkontrolle, die wissenschaftlich erwiesen funktionieren.</p>
                         <div class="blog-meta">
                             <span>5 Min Lesezeit</span>
-                            <a href="#" class="read-more">Mehr →</a>
+                            <a href="https://wehelp.ch/blog/positive-gedanken" target="_blank" class="read-more">Mehr lesen →</a>
                         </div>
                     </div>
                 </div>
-
                 <div class="blog-card fade-in">
-                    <div class="blog-image" style="background: linear-gradient(135deg, #AFD5C1, #4E8E82); color: white; font-size: 4rem;">
-                        💪
-                    </div>
+                    <img src="images/wehelp/wehelp_instagram.jpg" alt="Instagram Post" class="blog-image" style="width: 100%; height: 250px; object-fit: cover;">
                     <div class="blog-content">
-                        <span class="blog-tag">SELBSTPFLEGE</span>
+                        <span class="blog-tag">SELBSTFÜRSORGE</span>
                         <h3>Alltägliche Routinen für mentale Gesundheit</h3>
-                        <p class="blog-excerpt">Einfache aber effektive Gewohnheiten, die Sie täglich implementieren können für ein besseres Wohlbefinden.</p>
+                        <p class="blog-excerpt">Einfache aber effektive Gewohnheiten, die Sie täglich implementieren können für ein besseres Wohlbefinden und mehr innere Ruhe.</p>
                         <div class="blog-meta">
                             <span>7 Min Lesezeit</span>
-                            <a href="#" class="read-more">Mehr →</a>
+                            <a href="https://wehelp.ch/blog/routinen" target="_blank" class="read-more">Mehr lesen →</a>
                         </div>
                     </div>
                 </div>
-
                 <div class="blog-card fade-in">
-                    <div class="blog-image" style="background: linear-gradient(135deg, #82A3A6, #AFD5C1); color: white; font-size: 4rem;">
-                        🤝
-                    </div>
+                    <img src="images/wehelp/wehelp_4.jpg" alt="Blog Post 3" class="blog-image" style="width: 100%; height: 250px; object-fit: cover;">
                     <div class="blog-content">
-                        <span class="blog-tag">COMMUNITY</span>
-                        <h3>Erfolgsgeschichten unserer Nutzer</h3>
-                        <p class="blog-excerpt">Inspirierende Geschichten von Menschen, die ihre psychische Gesundheit verbessert haben und jetzt anderen helfen.</p>
+                        <span class="blog-tag">ERFOLGSGESCHICHTEN</span>
+                        <h3>Erfolgsgeschichten unserer Community</h3>
+                        <p class="blog-excerpt">Inspirierende Berichte von Menschen, die ihre psychische Gesundheit verbessert haben und nun anderen auf ihrem Weg helfen.</p>
                         <div class="blog-meta">
                             <span>6 Min Lesezeit</span>
-                            <a href="#" class="read-more">Mehr →</a>
+                            <a href="https://wehelp.ch/blog/erfolgsgeschichten" target="_blank" class="read-more">Mehr lesen →</a>
                         </div>
                     </div>
                 </div>
@@ -1049,59 +1360,59 @@
         </div>
     </section>
 
-    <!-- TESTIMONIALS SECTION -->
+<!-- TESTIMONIALS SECTION -->
     <section class="testimonials">
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-title">Was unsere Nutzer sagen</h2>
-                <p class="section-subtitle">Echte Erfahrungen und Erfolgsgeschichten</p>
+                <p class="section-subtitle">Echte Erfahrungen und transformative Erfolgsgeschichten</p>
             </div>
-            
+            <div class="testimonial-intro">
+                <p>Die Stimmen unserer Nutzer zeigen die echte Wirkung, die WeHelp in ihrem Leben hat. Ihre Geschichten sind ein Beweis dafür, dass Unterstützung und Verständnis den Unterschied machen.</p>
+            </div>
             <div class="testimonial-grid">
                 <div class="testimonial-card fade-in">
-                    <p class="testimonial-text">"WeHelp hat mein Leben verändert. Die Kombination aus professioneller Hilfe und Austausch mit anderen war genau das, was ich brauchte."</p>
+                    <p class="testimonial-text">"WeHelp hat mein Leben verändert. Die Kombination aus professioneller Hilfe und dem Austausch mit anderen Menschen, die dasselbe durchmachen, war genau das, was ich brauchte. Ich fühle mich endlich wieder hoffnungsvoll."</p>
                     <div class="testimonial-author">Sarah M.</div>
-                    <div class="testimonial-role">Patientin seit 2 Jahren</div>
+                    <div class="testimonial-role">Nutzerin seit 2 Jahren</div>
                 </div>
-
                 <div class="testimonial-card fade-in">
-                    <p class="testimonial-text">"Die Unterstützung und Wärme, die ich hier gefunden habe, war unglaublich. Ich fühle mich endlich verstanden und nicht allein."</p>
+                    <p class="testimonial-text">"Die Unterstützung und Wärme, die ich hier gefunden habe, war unglaublich. Das Forum hat mir geholfen zu verstehen, dass ich nicht allein bin. Die Experten sind einfühlsam und wirklich kompetent."</p>
                     <div class="testimonial-author">Marcus L.</div>
-                    <div class="testimonial-role">Patientin seit 1,5 Jahren</div>
+                    <div class="testimonial-role">Nutzerin seit 1,5 Jahren</div>
                 </div>
-
                 <div class="testimonial-card fade-in">
-                    <p class="testimonial-text">"Der Test hat mir geholfen zu verstehen, was mit mir los ist. Die Empfehlungen waren sehr hilfreich und genau zugeschnitten."</p>
+                    <p class="testimonial-text">"Der kostenlose Test hat mir geholfen zu verstehen, was mir wirklich fehlt. Die personalisierten Empfehlungen waren sehr hilfreich und genau auf meine Situation zugeschnitten. Ich fühle mich besser verstanden."</p>
                     <div class="testimonial-author">Julia P.</div>
                     <div class="testimonial-role">Neu bei WeHelp</div>
                 </div>
-
                 <div class="testimonial-card fade-in">
-                    <p class="testimonial-text">"Als Eltern konnten wir unsere Tochter besser unterstützen. Die Ressourcen und das Forum haben uns alles gegeben, was wir brauchten."</p>
+                    <p class="testimonial-text">"Als Eltern konnten wir unsere Tochter endlich besser unterstützen. Die Ressourcen für Angehörige und das Eltern-Forum haben uns alles gegeben, was wir brauchten. Wir sind dankbar für diese Plattform."</p>
                     <div class="testimonial-author">Thomas & Anna K.</div>
-                    <div class="testimonial-role">Eltern von Patientin</div>
+                    <div class="testimonial-role">Eltern einer Nutzerin</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
+<!-- FOOTER -->
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-section">
                 <h4>WeHelp</h4>
-                <p style="margin-bottom: 1rem;">Professionelle Unterstützung für psychische Gesundheit.</p>
+                <p>Professionelle psychische Unterstützung verbunden mit einer unterstützenden Community. Wir sind hier, um Sie auf Ihrem Weg zur Genesung zu begleiten.</p>
             </div>
             <div class="footer-section">
                 <h4>Navigation</h4>
                 <a href="#home">Home</a>
                 <a href="#about">Über uns</a>
                 <a href="#services">Angebot</a>
+                <a href="#instagram">Community</a>
                 <a href="#blog">Blog</a>
             </div>
             <div class="footer-section">
                 <h4>Kontakt</h4>
-                <a href="mailto:info@wehelp.ch">info@wehelp.ch</a>
+                <a href="/cdn-cgi/l/email-protection#721b1c141d3205171a171e025c111a"><span class="__cf_email__" data-cfemail="533a3d353c1324363b363f237d303b">[email&#160;protected]</span></a>
                 <a href="tel:+41800123456">+41 800 123 456</a>
                 <a href="#">Hotline 24/7</a>
             </div>
@@ -1109,134 +1420,131 @@
                 <h4>Rechtliches</h4>
                 <a href="#">Datenschutz</a>
                 <a href="#">Impressum</a>
-                <a href="#">AGB</a>
+                <a href="#">Nutzungsbedingungen</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 WeHelp. Together we can make a difference. Alle Rechte vorbehalten.</p>
+            <p>&copy; 2024 WeHelp. Zusammen können wir den Unterschied machen. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Hamburger Menu
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
+// Hamburger Menu
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
 
-        hamburger.addEventListener('click', () => {
+hamburger.addEventListener('click', () => {
             navMenu.classList.toggle('active');
         });
 
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
+document.querySelectorAll('.nav-menu a').forEach(link => {
+link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('active');
+                }
             });
         });
 
-        // Hero Animations
+// Logo Click to Home
+document.querySelector('.logo').addEventListener('click', (e) => {
+e.preventDefault();
+window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+// Hero Animations
         gsap.from('.hero-content', {
-            duration: 0.8,
-            y: 50,
-            opacity: 0,
-            ease: 'power3.out'
+duration: 0.8,
+y: 50,
+opacity: 0,
+ease: 'power3.out'
         });
-
         gsap.from('.hero-visual', {
-            duration: 0.8,
-            y: 50,
-            opacity: 0,
-            ease: 'power3.out',
-            delay: 0.15
+duration: 0.8,
+y: 50,
+opacity: 0,
+ease: 'power3.out',
+delay: 0.15
         });
 
-        // Fade in on scroll
-        const fadeInElements = document.querySelectorAll('.fade-in');
-
-        fadeInElements.forEach((element, index) => {
+// Fade in on scroll
+const fadeInElements = document.querySelectorAll('.fade-in');
+fadeInElements.forEach((element, index) => {
             gsap.from(element, {
-                scrollTrigger: {
-                    trigger: element,
-                    start: 'top 80%',
-                    end: 'top 50%',
-                    toggleActions: 'play none none reverse'
+scrollTrigger: {
+trigger: element,
+start: 'top 80%',
+end: 'top 50%',
+toggleActions: 'play none none reverse'
                 },
-                duration: 0.7,
-                y: 40,
-                opacity: 0,
-                ease: 'power3.out',
-                delay: index * 0.08
+duration: 0.7,
+y: 40,
+opacity: 0,
+ease: 'power3.out',
+delay: index * 0.08
             });
         });
 
-        // Card Hover Animations
-        document.querySelectorAll('.about-card, .service-card, .blog-card, .testimonial-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
+// Card Hover Animations
+document.querySelectorAll('.about-card, .service-card, .blog-card, .testimonial-card, .instagram-post').forEach(card => {
+card.addEventListener('mouseenter', function() {
                 gsap.to(this, {
-                    duration: 0.3,
-                    y: -12,
-                    ease: 'power2.out'
+duration: 0.3,
+y: -12,
+ease: 'power2.out'
                 });
             });
-
-            card.addEventListener('mouseleave', function() {
+card.addEventListener('mouseleave', function() {
                 gsap.to(this, {
-                    duration: 0.3,
-                    y: 0,
-                    ease: 'power2.out'
-                });
-            });
-        });
-
-        // Button Animations
-        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
-            button.addEventListener('mouseenter', function() {
-                gsap.to(this, {
-                    duration: 0.3,
-                    y: -4,
-                    ease: 'power2.out'
-                });
-            });
-
-            button.addEventListener('mouseleave', function() {
-                gsap.to(this, {
-                    duration: 0.3,
-                    y: 0,
-                    ease: 'power2.out'
+duration: 0.3,
+y: 0,
+ease: 'power2.out'
                 });
             });
         });
 
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
+// Button Animations
+document.querySelectorAll('.btn-primary, .btn-secondary, .cta-nav').forEach(button => {
+button.addEventListener('mouseenter', function() {
+                gsap.to(this, {
+duration: 0.3,
+y: -4,
+ease: 'power2.out'
+                });
+            });
+button.addEventListener('mouseleave', function() {
+                gsap.to(this, {
+duration: 0.3,
+y: 0,
+ease: 'power2.out'
+                });
+            });
+        });
+
+// Smooth Scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+const href = this.getAttribute('href');
+if (href !== '#' && document.querySelector(href)) {
+e.preventDefault();
+const target = document.querySelector(href);
                     gsap.to(window, {
-                        duration: 0.8,
-                        scrollTo: {
-                            y: target,
-                            offsetY: 70
+duration: 0.8,
+scrollTo: {
+y: target,
+offsetY: 80
                         },
-                        ease: 'power2.inOut'
+ease: 'power2.inOut'
                     });
                 }
             });
         });
 
-        // Parallax effect
-        gsap.utils.toArray('section').forEach((section) => {
-            gsap.from(section, {
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top center',
-                    end: 'bottom center',
-                    scrub: 0.5
-                },
-                opacity: 0.8
-            });
-        });
-    </script>
-</body>
-</html>
+// Gallery hover effect
+document.querySelectorAll('.gallery-item').forEach(item => {
+item.addEventListener('mouseenter', function() {
+                gsap.to(this, {
+duration: 0.3,
+scale: 1.05,
+ease: 'power2.out'

@@ -1,183 +1,1352 @@
 <!DOCTYPE html>
-<html lang="de">
-<head>
+<html lang="de" data-theme="dark" data-enhanced="true" data-center="true" data-layers="true" data-stagger="range">
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photography Portfolio | AI Enhanced Editorial</title>
+    <title>Fotografie | Khadija Okbi</title>
+    <meta name="description" content="Erfahre mehr über Khadija Okbi - Mediamatikerin, Creative Director und Full Stack Developer mit Leidenschaft für Design, Marketing und digitale Innovation.">
+    <meta property="og:title" content="Über Khadija Okbi | Creative Director & Developer">
+    <meta property="og:description" content="Mediamatikerin mit Leidenschaft für Design, Marketing und digitale Innovation.">
+    <meta property="og:image" content="https://khadijaokbi.com/assets/images/hero/cutout.png">
+    <meta property="og:url" content="https://khadijaokbi.com/about.html">
+    <meta property="og:type" content="profile">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Über Khadija Okbi">
+    <meta name="twitter:description" content="Creative Director & Developer mit Leidenschaft für Design und Innovation.">
+    <meta name="twitter:image" content="https://khadijaokbi.com/assets/images/hero/cutout.png">
+    <link rel="canonical" href="https://khadijaokbi.com/about.html">
+    <link rel="icon" type="image/png" href="../assets/images/branding/logo_white.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,700&family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- GSAP & Plugins -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B415ZJNKNW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-B415ZJNKNW');
+    </script>
+
     <style>
+      /* ============ normalize (minimal) ============ */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* Layout Components */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-primary);
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-img {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 110%;
-            opacity: 0.5;
-            object-fit: cover;
-        }
+      /* ============ custom fonts ============ */
+      @font-face {
+        font-family: 'Higuen';
+        src: url('../assets/fonts/Higuen.woff2') format('woff2');
+        font-weight: 100 900;
+        font-display: swap;
+      }
 
-        /* Horizontal Section */
-        .horizontal-section {
-            background: #fff;
-            overflow: hidden;
-        }
-        .horizontal-wrapper {
-            display: flex;
-            height: 100vh;
-            align-items: center;
-            padding: 0 10vw;
-            will-change: transform;
-        }
-        .horizontal-item {
-            flex-shrink: 0;
-            width: clamp(300px, 45vw, 800px);
-            margin-right: 15vw;
-        }
-        .horizontal-item img { height: 60vh; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+      /* ============ base ============ */
+      :root {
+        /* Design System Colors */
+        --bg-primary: #000;
+        --bg-secondary: #F5F5F5;
+        --bg-accent: #F5F5F5;
+        --bg-dark: #314A51;
+        --text-primary: #0A0A0A;
+        --text-primary-light: #EBE1D1;
+        --text-secondary: #525252;
+        --text-tertiary: #56686A;
+        --accent-primary: #2D2D2D;
+        --accent-secondary: #56686A;
+        --accent-burgundy: #6E3B49;
+        --border-light: #56686A;
+        --border-default: #6E3B49;
+        --mauve: #B5A19E;
 
-    
+        /* Typography */
+        --font-body: 'Work Sans', sans-serif;
+        --font-display: 'Abril Fatface', serif;
+        --font-higuen: 'Higuen', serif;
 
-        /* Loading */
-        #loader {
-            position: fixed; inset: 0; background: #000; z-index: 9999;
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-family: var(--font-display); font-size: 1.2rem;
-        }
+        /* Spacing */
+        --space-1: 0.5rem;
+        --space-2: 1rem;
+        --space-3: 1.5rem;
+        --space-4: 2rem;
+        --space-6: 3rem;
+        --space-8: 4rem;
 
-        /* Portrait Focus */
-        .portrait-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 100vh;
+        /* Motion */
+        --speed-fast: 150ms;
+        --speed-base: 250ms;
+        --speed-slow: 350ms;
+        --speed-slower: 500ms;
+        --easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        --easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+
+        /* Shadows */
+        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+
+        /* Grid Animation */
+        --font-size-min: 16;
+        --font-size-max: 20;
+        --font-ratio-min: 1.2;
+        --font-ratio-max: 1.33;
+        --font-width-min: 375;
+        --font-width-max: 1500;
+        --container-width: 1600px;
+        --gap: clamp(10px, 7.35vw, 80px);
+        --gutter: 2rem;
+        color-scheme: dark only;
+      }
+      @media (max-width: 600px) {
+        :root { --gutter: 1rem; }
+      }
+
+      :where(.fluid) {
+        --fluid-min: calc(var(--font-size-min) * pow(var(--font-ratio-min), var(--font-level, 0)));
+        --fluid-max: calc(var(--font-size-max) * pow(var(--font-ratio-max), var(--font-level, 0)));
+        --fluid-preferred: calc((var(--fluid-max) - var(--fluid-min)) / (var(--font-width-max) - var(--font-width-min)));
+        --fluid-type: clamp(
+          (var(--fluid-min) / 16) * 1rem,
+          ((var(--fluid-min) / 16) * 1rem) - (((var(--fluid-preferred) * var(--font-width-min)) / 16) * 1rem) + (var(--fluid-preferred) * var(--variable-unit, 100vi)),
+          (var(--fluid-max) / 16) * 1rem
+        );
+        font-size: var(--fluid-type);
+      }
+
+      body {
+        background: var(--bg-primary);
+        color: var(--text-primary-light);
+        display: block;
+        min-height: 100vh;
+        font-family: var(--font-body);
+        font-optical-sizing: auto;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      img { display: block; max-width: 100%; }
+
+      /* ============ hero section ============ */
+      .hero-section {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .hero-canvas-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      .hero-canvas-container canvas {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .hero-title {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .hero-title h1 {
+        --font-level: 8;
+        line-height: 0.6;
+        font-family: var(--font-display);
+        color: var(--mauve);
+        text-shadow: 0 0 20px rgba(110, 59, 73, 0.3);
+        transition: all var(--speed-slow) ease;
+      }
+
+      .hero-title h1:hover {
+        text-shadow: 0 0 40px rgba(110, 59, 73, 0.8);
+        color: var(--accent-burgundy);
+      }
+
+      .hero-instruction {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: var(--text-primary-light);
+        opacity: 0.5;
+        font-family: var(--font-body);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        z-index: 10;
+        animation: fadeInOut 3s ease-in-out infinite;
+      }
+
+      @keyframes fadeInOut {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 0.8; }
+      }
+
+      /* ============ animated background overlay ============ */
+      .bg-animation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: radial-gradient(circle at 20% 50%, rgba(110, 59, 73, 0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(110, 59, 73, 0.02) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: 0;
+        animation: bg-float 15s ease-in-out infinite;
+      }
+
+      @keyframes bg-float {
+        0%, 100% {
+          background: radial-gradient(circle at 20% 50%, rgba(110, 59, 73, 0.03) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 80%, rgba(110, 59, 73, 0.02) 0%, transparent 50%);
         }
-        @media (max-width: 768px) { .portrait-section { grid-template-columns: 1fr; } }
-        
-        .error-message {
-            color: #ff4444;
-            margin-top: 1rem;
-            font-size: 0.9rem;
+        50% {
+          background: radial-gradient(circle at 30% 60%, rgba(110, 59, 73, 0.05) 0%, transparent 50%),
+                      radial-gradient(circle at 70% 70%, rgba(110, 59, 73, 0.03) 0%, transparent 50%);
         }
+      }
+
+      /* ============ content-wrap ============ */
+      .content-wrap {
+        overflow: clip;
+        background: var(--bg-primary);
+        z-index: 2;
+        position: relative;
+      }
+      .content-wrap::before {
+        --size: 45px;
+        --line: color-mix(in lch, canvasText, transparent 70%);
+        content: '';
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        background:
+          linear-gradient(90deg, var(--line) 1px, transparent 1px var(--size)) 50% 50% / var(--size) var(--size),
+          linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% / var(--size) var(--size);
+        mask: linear-gradient(-20deg, transparent 50%, white);
+        top: 0;
+        transform-style: flat;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* ============ header (scroll down hero) - kept for scroll distance ============ */
+      header {
+        min-height: 100vh;
+        display: grid;
+        margin: 0 auto;
+        align-content: center;
+        max-width: calc(100% - (2 * var(--gutter)));
+        padding-left: 48px;
+        text-align: left;
+        position: relative;
+        z-index: 3;
+      }
+      h1 {
+        --font-level: 8;
+        line-height: 0.6;
+        font-family: var(--font-display);
+        color: var(--mauve);
+      }
+      h2 {
+        --font-level: 4;
+        font-family: var(--font-display);
+        color: var(--accent-burgundy);
+      }
+
+      /* ============ sections ============ */
+      main, section { max-width: 100%; }
+      section { min-height: 100vh; }
+      main section:last-of-type { display: grid; place-items: center; }
+
+      /* ============ scroll animation section ============ */
+      [data-enhanced='true'] main section:first-of-type {
+        min-height: 240vh;
+      }
+
+      /* ============ content (sticky) ============ */
+      .content {
+        min-height: 100vh;
+        width: 100vw;
+        display: flex;
+        place-items: center;
+        align-content: center;
+        position: sticky;
+        top: 0;
+        overflow: hidden;
+      }
+
+      /* ============ grid ============ */
+      .grid {
+        --offset: 0;
+        width: 1600px;
+        max-width: calc(100% - (2 * var(--gutter)));
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(3, auto);
+        gap: var(--gap);
+        margin: 0 auto;
+        align-content: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+      }
+      @media (max-width: 600px) {
+        .grid {
+          grid-template-columns: repeat(3, 1fr);
+          --offset: -1;
+        }
+        .grid > div:nth-of-type(1) { display: none; }
+      }
+
+      .grid > .layer {
+        display: grid;
+        grid-column: 1 / -1;
+        grid-row: 1 / -1;
+        grid-template-columns: subgrid;
+        grid-template-rows: subgrid;
+      }
+
+      .grid > div:nth-of-type(1) div:nth-of-type(odd)  { grid-column: 1; }
+      .grid > div:nth-of-type(1) div:nth-of-type(even) { grid-column: -2; }
+      .grid > div:nth-of-type(2) div:nth-of-type(odd)  { grid-column: calc(2 + var(--offset)); }
+      .grid > div:nth-of-type(2) div:nth-of-type(even) { grid-column: calc(-3 - var(--offset)); }
+      .grid > div:nth-of-type(3) div { grid-column: calc(3 + var(--offset)); }
+      .grid > div:nth-of-type(3) div:last-of-type { grid-row: -1; }
+
+      .grid .scaler { position: relative; grid-area: 2 / calc(3 + var(--offset)); }
+
+      .grid img {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        border-radius: 1rem;
+      }
+
+      /* ============ image hover effects (only layer images, NOT scaler) ============ */
+      .grid .layer img {
+        transition: all var(--speed-slow) ease;
+        cursor: pointer;
+      }
+      .grid .layer img:hover {
+        transform: scale(1.05) translateY(-8px);
+        filter: brightness(1.2);
+        box-shadow: 0 20px 40px rgba(110, 59, 73, 0.3);
+      }
+
+      /* ============ scaler ============ */
+      .scaler {
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+      .scaler img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        object-fit: cover;
+        border-radius: 1rem;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+      }
+
+      /* ============ CSS scroll-driven animation (Chrome) ============ */
+      :root {
+        --power-1-out: linear(0 0%,0.0027 3.64%,0.0106 7.29%,0.0425 14.58%,0.0957 21.87%,0.1701 29.16%,0.2477 35.19%,0.3401 41.23%,0.5982 55.18%,0.7044 61.56%,0.7987 68.28%,0.875 75%,0.9297 81.25%,0.9687 87.5%,0.9922 93.75%,1 100%);
+        --power-2-out: linear(0 0%,0.0036 9.62%,0.0185 16.66%,0.0489 23.03%,0.0962 28.86%,0.1705 34.93%,0.269 40.66%,0.3867 45.89%,0.5833 52.95%,0.683 57.05%,0.7829 62.14%,0.8621 67.46%,0.8991 70.68%,0.9299 74.03%,0.9545 77.52%,0.9735 81.21%,0.9865 85%,0.9949 89.15%,1 100%);
+        --power-3-out: linear(0 0%,0.0029 13.8%,0.0184 21.9%,0.0339 25.51%,0.0551 28.81%,0.0827 31.88%,0.1168 34.76%,0.1962 39.57%,0.3005 44.02%,0.4084 47.53%,0.6242 53.45%,0.7493 57.93%,0.8495 62.97%,0.8888 65.67%,0.9213 68.51%,0.9629 73.9%,0.9876 80.16%,0.998 87.5%,1 100%);
+        --power-4-out: linear(0 0%,0.0012 14.95%,0.0089 22.36%,0.0297 28.43%,0.0668 33.43%,0.0979 36.08%,0.1363 38.55%,0.2373 43.07%,0.3675 47.01%,0.5984 52.15%,0.7121 55.23%,0.8192 59.21%,0.898 63.62%,0.9297 66.23%,0.9546 69.06%,0.9733 72.17%,0.9864 75.67%,0.9982 83.73%,1 100%);
+        --sine: linear(0 0%,0.2861 18.47%,0.4829 32.08%,0.6437 44.52%,0.7712 56.07%,0.8722 67.47%,0.9115 73.02%,0.9434 78.49%,0.9682 83.91%,0.9859 89.3%,0.9965 94.66%,1 100%);
+      }
+
+      @keyframes fade    { 0%, 55% { opacity: 0; } }
+      @keyframes reveal  { 0%, 30% { scale: 0; } }
+      @keyframes scale-x { 0%, 10% { width: calc(100vw - (2 * var(--gutter))); } }
+      @keyframes scale-y { 0%, 10% { height: calc(100vh - (2 * var(--gutter))); } }
+
+      @media (prefers-reduced-motion: no-preference) {
+        @supports (animation-timeline: scroll()) and (animation-range: 0 100%) {
+          [data-enhanced='true'] main section:first-of-type {
+            view-timeline: --runner;
+          }
+          [data-enhanced='true'][data-center='true'] .scaler img {
+            animation-name: scale-x, scale-y;
+            animation-fill-mode: both;
+            animation-timing-function: var(--power-2-out), var(--power-1-out);
+            animation-timeline: --runner, --runner;
+            animation-range: entry 100% exit -20%;
+          }
+          [data-enhanced='true'][data-layers='true'] .grid .layer {
+            animation-name: fade, reveal;
+            animation-fill-mode: both;
+            animation-timeline: --runner, --runner;
+            animation-timing-function: var(--sine), var(--power-1-out);
+            animation-range: entry 100% exit 0%;
+          }
+          [data-enhanced='true'][data-stagger='range'] .grid .layer:nth-of-type(1) {
+            animation-range: entry 100% exit 0%;
+          }
+          [data-enhanced='true'][data-stagger='range'] .grid .layer:nth-of-type(2) {
+            animation-range: entry 100% exit -10%;
+          }
+          [data-enhanced='true'][data-stagger='range'] .grid .layer:nth-of-type(3) {
+            animation-range: entry 100% exit -20%;
+          }
+        }
+      }
+
+      /* ============ navbar ============ */
+      .site-header {
+        position: fixed;
+        inset: 0 0 auto 0;
+        z-index: 1000;
+        background: transparent;
+        transition: all var(--speed-base);
+        backdrop-filter: blur(0px);
+      }
+      .site-header.is-solid {
+        background: rgba(49, 74, 81, 0.95);
+        border-bottom: 1px solid var(--border-light);
+        backdrop-filter: blur(10px);
+        box-shadow: var(--shadow-sm);
+      }
+      .nav-bar {
+        padding: 10px 0;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1440px;
+        margin: 0 auto;
+        padding-inline: clamp(1rem, 5vw, 3rem);
+      }
+      .logo {
+        position: relative;
+        width: 38px;
+        height: 38px;
+      }
+      .logo img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: opacity 0.25s;
+        max-width: 100%;
+      }
+      .logo .logo-onscroll { opacity: 0; }
+      .site-header.is-solid .logo .logo-onscroll { opacity: 1; }
+      .site-header.is-solid .logo img:not(.logo-onscroll) { opacity: 0; }
+      .site-nav {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+      }
+      .nav-link {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--text-primary-light);
+        text-decoration: none;
+        position: relative;
+        padding-bottom: var(--space-1);
+        transition: all var(--speed-base);
+      }
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--accent-burgundy);
+        transform: translateX(-50%);
+        transition: width var(--speed-base);
+      }
+      .nav-link:hover { color: var(--accent-burgundy); }
+      .nav-link:hover::after { width: 100%; }
+
+      /* ============ footer ============ */
+      .site-footer {
+        text-align: center;
+        padding: clamp(60px, 7vw, 100px) 0 clamp(40px, 5vw, 60px);
+        border-top: 2px solid rgba(110, 59, 73, 0.3);
+        background: var(--bg-dark);
+        position: relative;
+        overflow: hidden;
+      }
+      .site-footer::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--accent-burgundy), transparent);
+      }
+      .footer-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(2rem, 3vw, 3rem);
+        text-align: center;
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 clamp(1rem, 5vw, 3rem);
+      }
+      .footer-copy {
+        font-size: clamp(0.85rem, 1vw, 1rem);
+        color: var(--text-primary-light);
+        letter-spacing: 0.02em;
+        opacity: 0.9;
+        order: 1;
+      }
+      .footer-socials {
+        display: flex;
+        gap: clamp(2rem, 3vw, 2.5rem);
+        align-items: center;
+        justify-content: center;
+        order: 2;
+      }
+      .social-link {
+        color: var(--text-primary-light);
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border: 2px solid transparent;
+        border-radius: 50%;
+        position: relative;
+        text-decoration: none;
+      }
+      .social-link:hover {
+        color: var(--accent-burgundy);
+        transform: translateY(-6px) rotate(10deg);
+        border-color: var(--accent-burgundy);
+      }
+      .social-link svg { width: 24px; height: 24px; }
+      .footer-links {
+        display: flex;
+        gap: clamp(1rem, 2vw, 2rem);
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        order: 3;
+      }
+      .footer-link {
+        font-size: clamp(0.75rem, 0.9vw, 0.85rem);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-primary-light);
+        text-decoration: none;
+        position: relative;
+        transition: all 0.3s ease;
+        padding: 0.5rem 0;
+      }
+      .footer-link:not(.contact-btn)::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent-burgundy);
+        transition: width 0.3s ease;
+      }
+      .footer-link:not(.contact-btn):hover { color: var(--accent-burgundy); }
+      .footer-link:not(.contact-btn):hover::after { width: 100%; }
+      .footer-link.contact-btn {
+        padding: 1rem 3rem;
+        margin: 0 1rem;
+        border: 2.5px solid var(--accent-burgundy);
+        background: var(--accent-burgundy);
+        color: var(--bg-secondary);
+        border-radius: 0;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        box-shadow: 0 6px 20px rgba(110, 59, 73, 0.5);
+        position: relative;
+        overflow: hidden;
+      }
+      .footer-link.contact-btn span { position: relative; z-index: 1; }
+      .footer-link.contact-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 0; height: 0;
+        background: var(--bg-secondary);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+        z-index: 0;
+      }
+      .footer-link.contact-btn:hover::before { width: 400px; height: 400px; }
+      .footer-link.contact-btn:hover {
+        color: var(--accent-burgundy);
+        border-color: var(--accent-burgundy);
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(110, 59, 73, 0.7);
+      }
+
+      /* ============ sr-only ============ */
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
+      }
     </style>
-</head>
-<body>
-    <header class="hero">
-        <img src="../img/fotografie/slider1.jpg" alt="Hero" class="hero-img" id="heroBg" onerror="this.src='https://images.unsplash.com/photo-1493863641943-9b68992a8d07?auto=format&fit=crop&w=1920&q=80'">
-        <div style="z-index: 10; text-align: center;">
-            <h4 style="color: white; opacity: 0.8;">Edition 2026</h4>
-            <h1>Pure Aesthetics</h1>
-        </div>
-    </header>
+  </head>
 
-    <!-- Horizontal Gallery -->
-    <section class="horizontal-section" id="horizontalTarget">
-        <div class="horizontal-wrapper" id="horizontalWrapper">
-            <div class="horizontal-item">
-                <img src="../img/fotografie/Corona(5 von 10).JPG" alt="C5" onerror="this.src='https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1200&q=80'">
-                <h4 style="margin-top:1rem;">Stille I</h4>
-            </div>
-            <div class="horizontal-item">
-                <img src="../img/fotografie/Corona(6 von 10).JPG" alt="C6" onerror="this.src='https://images.unsplash.com/photo-1449156001931-82992a472695?auto=format&fit=crop&w=1200&q=80'">
-                <h4 style="margin-top:1rem;">Stille II</h4>
-            </div>
-            <div class="horizontal-item">
-                <img src="../img/fotografie/Corona(7 von 10).JPG" alt="C7" onerror="this.src='https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=80'">
-                <h4 style="margin-top:1rem;">Stille III</h4>
-            </div>
-            <div class="horizontal-item">
-                <img src="../img/fotografie/Corona(10 von 10) 2.JPG" alt="C10" onerror="this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80'">
-                <h4 style="margin-top:1rem;">Finale</h4>
-            </div>
+  <body>
+    <!-- Background Animation Layer -->
+    <div class="bg-animation"></div>
+
+    <!-- Navbar -->
+    <nav class="site-header" id="top" aria-label="Seitennavigation">
+      <div class="nav-bar">
+        <a href="../index.html" class="logo">
+          <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi Logo" width="40">
+          <img src="../assets/images/branding/logo_black.png" alt="Khadija Okbi Logo" width="40" class="logo-onscroll">
+        </a>
+        <div class="site-nav" aria-label="Hauptnavigation">
+          <a href="../index.html#hero" class="nav-link">Home</a>
+          <a href="../index.html#projects" class="nav-link">Work</a>
+          <a href="../about.html" class="nav-link">About</a>
+          <a href="../index.html#blog" class="nav-link">Blog</a>
         </div>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION WITH CANVAS -->
+    <section class="hero-section">
+      <div class="hero-canvas-container">
+        <canvas id="plane-canvas"></canvas>
+        <canvas id="main-canvas"></canvas>
+      </div>
+      <div class="hero-title">
+        <h1 class="fluid">scroll<br>down.</h1>
+      </div>
+      <div class="hero-instruction">Hold mouse button</div>
     </section>
 
-    <!-- Portrait Focus -->
-    <section class="portrait-section" style="background: white;">
-        <div style="padding: 10vw; display: flex; flex-direction: column; justify-content: center;">
-            <h4>Focus</h4>
-            <h2>Lia Series</h2>
-            <p>Ein tiefer Blick in das Wesen des Porträts. Minimalismus trifft auf Emotion.</p>
-        </div>
-        <div style="height: 100vh;">
-            <img src="../img/fotografie/Lia 1.jpg" alt="Lia" style="width:100%; height:100%;" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80'">
-        </div>
-    </section>
+    <!-- Content Wrap -->
+    <div class="content-wrap">
+      <header>
+        <h1 class="fluid">scroll<br>down.</h1>
+      </header>
+      <main>
+        <section>
+          <div class="content">
+            <div class="grid">
+              <div class="layer">
+                <div><img src="../assets/images/photography/DSC00922.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/Lia 1.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/DSC00928.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/DSC00936.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/DSC00938.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/DSC00943.jpg" alt="Fotografie"></div>
+              </div>
+              <div class="layer">
+                <div><img src="../assets/images/photography/Lia 2.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/DSC00949.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/Ballet 1.png" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/Corona(5 von 10).JPG" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/Corona(6 von 10).jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/Corona(7 von 10).jpg" alt="Fotografie"></div>
+              </div>
+              <div class="layer">
+                <div><img src="../assets/images/photography/Corona(10 von 10) 2.JPG" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/Lia 1.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/Lia 2.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/Ballet 2.png" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/slider1.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/foto1.jpg" alt="Fotografie"></div>
+              </div>
+              <div class="scaler">
+                <img src="../assets/images/photography/scaler.jpg" alt="Fotografie">
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2 class="fluid">the end.</h2>
+        </section>
+      </main>
+    </div>
 
-    <footer style="padding: var(--space-12) 0; background: #000; color: white; text-align: center;">
-        <h1 style="font-size: 2rem;">Vision.</h1>
-        <p style="opacity: 0.5; margin-top: 1rem;">Photography & AI Fusion</p>
+    <!-- Footer -->
+    <footer class="site-footer" aria-label="Seitenende">
+      <div class="footer-inner">
+        <div class="footer-copy">Design &amp; Development by Khadija Okbi</div>
+        <div class="footer-socials" aria-label="Soziale Netzwerke">
+          <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/></svg>
+          </a>
+          <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="2" fill="currentColor" opacity="0.15"/><rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M6.5 9.5v8.5M6.5 7.5a0.5 0.5 0 1 1 0 1z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="7.5" r="0.8" fill="currentColor"/><path d="M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" fill="currentColor" stroke="currentColor" stroke-width="0.5"/></svg>
+          </a>
+          <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M3.5 7.5l8.5 5 8.5-5" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M12 21.5v-10" stroke="currentColor" stroke-width="1.1" fill="none"/></svg>
+          </a>
+        </div>
+        <div class="footer-links">
+          <a href="../pages/impressum.html" class="footer-link">Impressum</a>
+          <a href="mailto:khadijaokbi@gmail.com" class="footer-link contact-btn"><span>Kontakt</span></a>
+          <a href="../pages/datenschutz.html" class="footer-link">Datenschutz</a>
+        </div>
+      </div>
     </footer>
 
+    <!-- Script -->
     <script>
+      // ============ Advanced Canvas System ============
+      const tools = {
+        drawPath(ctx, fn) {
+          ctx.save();
+          ctx.beginPath();
+          fn();
+          ctx.closePath();
+          ctx.restore();
+        },
+        random(min, max, int) {
+          let result = (min + Math.random() * ((max + (int ? 1 : 0)) - min));
+          return int ? parseInt(result) : result;
+        },
+        getVectorLength(p1, p2) {
+          return Math.sqrt(Math.pow(p1[0] - p2[0], 2) + Math.pow(p1[1] - p2[1], 2));
+        },
+        easing(t, b, c, d, s) {
+          return c * ((t = t / d - 1) * t * t + 1) + b;
+        },
+        cellEasing(t, b, c, d, s) {
+          return c * (t /= d) * t * t * t + b;
+        }
+      };
 
-        // GSAP Initialization
+      const doc = { height: 0, width: 0 };
+      const plane = { xCell: 0, yCell: 0, cells: [] };
+      const context = { plane: null, main: null };
+      const mouse = {
+        x: 0, y: 0,
+        coords: { x: 0, y: 0 },
+        down: { state: false, x: 0, y: 0 }
+      };
+      const cfg = {
+        cell: 35,
+        sectionWidth: 8,
+        sectionHeight: 1,
+        numberOffset: 5,
+        shadowBlur: true,
+        bgColor: '#181818'
+      };
+      const canvasUI = {
+        plane: '#plane-canvas',
+        main: '#main-canvas'
+      };
+
+      class CanvasApp {
+        constructor() {
+          this.state = {
+            area: 0, time: Date.now(), lt: 0,
+            planeProgress: 0, dotsProgress: 0, fadeInProgress: 0,
+            textProgress: 0, stepOffset: 0, textOffset: 0, markupOffset: 0,
+            glitches: [], animLines: [], animNumbers: [],
+            tabIsActive: true, planeIsDrawn: false, mousePower: 0,
+            textPixelData: [], text: {}, delta: 0, dlt: performance.now(),
+            needRedraw: true
+          };
+          this.nodes = {};
+          this.bindNodes();
+          this.getDimensions();
+          mouse.x = doc.width / 2;
+          mouse.y = doc.height / 2;
+          this.start();
+        }
+
+        start() {
+          this.initEvents();
+          this.canvasInit();
+          this.loop();
+          this.initCheckingInterval();
+        }
+
+        getDimensions() {
+          doc.height = document.documentElement.clientHeight;
+          doc.width = document.documentElement.clientWidth;
+        }
+
+        updatePlane() {
+          const { width: w, height: h } = doc;
+          const cell = Math.round(w / cfg.cell);
+          const xPreSize = w / cell;
+          plane.xCell = (w / xPreSize) % 2 !== 0 ? w / ((w / xPreSize) + 1) : xPreSize;
+          const yPreSize = h / Math.round(cell * (h / w));
+          plane.yCell = (h / yPreSize) % 2 !== 0 ? h / ((h / yPreSize) + 1) : yPreSize;
+          plane.cells = [Math.round(w / plane.xCell), Math.round(h / plane.yCell)];
+          plane.xCenter = Math.round((plane.cells[1]) / 2);
+          plane.yCenter = Math.round((plane.cells[0]) / 2);
+          plane.centerCoords = [plane.yCenter * plane.xCell, plane.xCenter * plane.yCell];
+        }
+
+        bindNodes() {
+          for (const selector in canvasUI) {
+            let el = document.querySelectorAll(canvasUI[selector]);
+            this.nodes[selector] = el.length === 1 ? el[0] : el;
+          }
+        }
+
+        canvasInit() {
+          const font = '10px Montserrat';
+          const lineCapAndJoin = 'round';
+          const color = 'rgba(255,255,255,0.1)';
+
+          context.plane = this.nodes.plane.getContext('2d');
+          context.plane.lineCap = lineCapAndJoin;
+          context.plane.lineJoin = lineCapAndJoin;
+          context.plane.font = font;
+          context.plane.fillStyle = color;
+          context.plane.strokeStyle = color;
+
+          context.main = this.nodes.main.getContext('2d');
+          context.main.lineCap = lineCapAndJoin;
+          context.main.lineJoin = lineCapAndJoin;
+          context.main.font = font;
+          context.main.fillStyle = color;
+          context.main.strokeStyle = color;
+        }
+
+        initEvents() {
+          window.addEventListener('resize', (e) => {
+            this.getDimensions();
+            this.resizeHandler(e);
+          });
+          document.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+            mouse.coords = {
+              x: ((mouse.x / doc.width) - 0.5) / 0.5,
+              y: (((mouse.y / doc.height) - 0.5) / 0.5) * -1
+            };
+          });
+          document.addEventListener('mousedown', (e) => {
+            mouse.down = { state: true, x: e.clientX, y: e.clientY };
+          });
+          document.addEventListener('mouseup', (e) => {
+            mouse.down.state = false;
+          });
+          // Touch support for mobile
+          document.addEventListener('touchstart', (e) => {
+            const t = e.touches[0];
+            mouse.x = t.clientX;
+            mouse.y = t.clientY;
+            mouse.down = { state: true, x: t.clientX, y: t.clientY };
+          });
+          document.addEventListener('touchmove', (e) => {
+            const t = e.touches[0];
+            mouse.x = t.clientX;
+            mouse.y = t.clientY;
+            mouse.coords = {
+              x: ((mouse.x / doc.width) - 0.5) / 0.5,
+              y: (((mouse.y / doc.height) - 0.5) / 0.5) * -1
+            };
+          });
+          document.addEventListener('touchend', () => {
+            mouse.down.state = false;
+          });
+          this.resizeHandler();
+        }
+
+        resizeHandler(e) {
+          const state = this.state;
+          state.area = (doc.width * doc.height) / 1000000;
+          this.nodes.main.height = doc.height;
+          this.nodes.main.width = doc.width;
+          this.nodes.plane.height = doc.height;
+          this.nodes.plane.width = doc.width;
+          this.updatePlane();
+          state.needRedraw = true;
+        }
+
+        initCheckingInterval() {
+          const state = this.state;
+          setInterval(() => {
+            state.tabIsActive = state.time <= state.lt ? false : true;
+            state.lt = state.time;
+            state.needRedraw = !state.tabIsActive;
+          }, 100);
+        }
+
+        loop() {
+          const loop = () => {
+            const ctx = context.main;
+            const state = this.state;
+            state.time = Date.now();
+            ctx.clearRect(0, 0, doc.width, doc.height);
+            this.updateState();
+            this.draw();
+            if (state.needRedraw) state.needRedraw = false;
+            this.raf = requestAnimationFrame(loop);
+          };
+          loop();
+        }
+
+        updateState() {
+          const state = this.state;
+          const now = performance.now();
+          state.delta = now - state.dlt;
+          state.dlt = now;
+          const dt = state.delta;
+
+          if (mouse.down.state) {
+            state.mousePower += 0.001 * dt;
+            if (state.mousePower >= 1) state.mousePower = 1;
+          } else {
+            state.mousePower -= 0.001 * dt;
+            if (state.mousePower <= 0) state.mousePower = 0;
+          }
+
+          const mp = tools.cellEasing(state.mousePower, 0, 1, 1);
+
+          if (state.planeProgress >= 0.2) {
+            state.dotsProgress += 0.00035 * dt;
+            if (state.dotsProgress >= 1) state.dotsProgress = 1;
+          }
+
+          state.planeProgress += 0.00035 * dt;
+          if (state.planeProgress >= 1) state.planeProgress = 1;
+
+          if (state.planeIsDrawn) {
+            state.fadeInProgress += 0.00015 * dt;
+            if (state.fadeInProgress >= 1) state.fadeInProgress = 1;
+
+            state.stepOffset += (0.002 * dt) + (mp * (0.0035 * dt));
+            state.textOffset += (0.00005 * dt) + (mp * (0.002 * dt));
+            state.markupOffset += (0.00015 * dt) + (mp * (0.00035 * dt));
+
+            state.textProgress += 0.0005 * dt;
+            if (state.textProgress >= 1) state.textProgress = 1;
+          }
+        }
+
+        draw() {
+          const ctx = context.main;
+          const state = this.state;
+          const { xCell, yCell, xCenter, yCenter, cells } = plane;
+
+          if (this.state.planeProgress >= 1 && !state.planeIsDrawn) {
+            state.planeIsDrawn = true;
+            this.startGeneratingGlitches();
+            this.startGeneratingLines();
+            this.startGeneratingNumbers();
+          }
+
+          if (!state.planeIsDrawn || (state.planeIsDrawn && state.needRedraw)) {
+            this.drawPlane();
+          }
+
+          for (let i = 0; i < cells[0]; i++) {
+            for (let i2 = 0; i2 < cells[1]; i2++) {
+              const x = i * xCell;
+              const y = i2 * yCell;
+              if (state.planeIsDrawn) {
+                this.drawMouseMoveInteraction({ i, i2, x, y });
+              }
+            }
+          }
+
+          if (state.planeIsDrawn) {
+            this.drawGlitches();
+            this.drawAnimLines();
+            this.drawNumbersAnimation();
+          }
+        }
+
+        startGeneratingNumbers() {
+          const state = this.state;
+          const generateItem = () => {
+            const { cells, xCell, yCell } = plane;
+            const mp = state.mousePower;
+            const timeToNewItem = tools.random(
+              (1 + 50 * (1 - mp)),
+              (5 + 100 * (1 - mp))
+            ) / state.area;
+            const item = {
+              p: 0,
+              color: 'rgba(255,255,255,' + tools.random(0.01, 0.3) + ')',
+              blinks: Array(tools.random(0, 3, true)).fill(null).map(() => ({
+                at: tools.random(0, 1),
+                dur: tools.random(0, 0.3)
+              })),
+              pf: tools.random(0.00075, 0.01),
+              x: tools.random(0, cells[0], true) * xCell,
+              y: tools.random(0, cells[1], true) * yCell,
+              value: tools.random(0, 1, true)
+            };
+            if (state.tabIsActive) state.animNumbers.push(item);
+            setTimeout(generateItem, timeToNewItem);
+          };
+          generateItem();
+        }
+
+        drawNumbersAnimation() {
+          const ctx = context.main;
+          const state = this.state;
+          const { yCell, xCell } = plane;
+          state.animNumbers.forEach((item, i) => {
+            item.p += item.pf * state.delta;
+            let show = true;
+            item.blinks.forEach(blink => {
+              if (item.p >= blink.at && item.p <= blink.at + blink.dur) show = false;
+            });
+            if (!show) return;
+            tools.drawPath(ctx, () => {
+              if (cfg.shadowBlur) {
+                ctx.shadowColor = 'white';
+                ctx.shadowBlur = 10;
+              }
+              ctx.globalAlpha = state.fadeInProgress;
+              ctx.textBaseline = 'top';
+              ctx.font = '18px Montserrat';
+              const th = parseInt(ctx.font) || 18;
+              const tw = ctx.measureText(item.value + '').width;
+              ctx.fillStyle = item.color;
+              ctx.fillText(item.value + '', item.x + (xCell / 2) - tw / 2, item.y + (yCell / 2) - th / 2);
+            });
+            if (item.p >= 1) state.animNumbers.splice(i, 1);
+          });
+        }
+
+        startGeneratingLines() {
+          const state = this.state;
+          const generateItem = () => {
+            const { cells, xCell, yCell } = plane;
+            const mp = state.mousePower;
+            const timeToNewItem = tools.random(
+              25 + 80 * (1 - mp),
+              75 + 1200 * (1 - mp)
+            ) / state.area;
+            const item = {
+              p: 0,
+              color: tools.random(0, 0.15),
+              pf: tools.random(0.0005, 0.00125),
+              x: tools.random(0, cells[0], true) * xCell,
+              y: tools.random(0, cells[1], true) * yCell
+            };
+            item.coord = tools.random(0, 1, true) ? 'x' : 'y';
+            item.length = tools.random(xCell * 2, (state.area * xCell) * 5);
+            item.dir = tools.random(0, 1, true) ? 1 : -1;
+            item.distance = item.length * tools.random(1, 2);
+            if (state.tabIsActive) state.animLines.push(item);
+            setTimeout(generateItem, timeToNewItem);
+          };
+          generateItem();
+        }
+
+        drawAnimLines() {
+          const ctx = context.main;
+          const state = this.state;
+          state.animLines.forEach((line, i) => {
+            line.p += line.pf * state.delta;
+            const p = tools.easing(line.p, 0, 1, 1);
+            const p1 = (p / 0.5);
+            const p2 = 1 - ((p - 0.5) / 0.5);
+            const color = 'rgba(255,255,255,' + (0.1 + line.color * (p <= 0.5 ? p1 : p2)) + ')';
+            const length = (p <= 0.5 ? line.length * p1 : line.length * p2);
+            const backwards = line.dir === -1;
+            const isX = line.coord === 'x';
+            const isY = line.coord === 'y';
+            const x = (!isX ? 0 : backwards ? -(length - line.distance * p) : -line.distance * p);
+            const y = (!isY ? 0 : backwards ? -(length - line.distance * p) : -line.distance * p);
+
+            tools.drawPath(ctx, () => {
+              ctx.globalAlpha = state.fadeInProgress;
+              ctx.fillStyle = color;
+              ctx.fillRect(
+                line.x + x + (isX && p <= 0.5 ? (line.length - length) * line.dir : 0),
+                line.y + y + (isY && p <= 0.5 ? (line.length - length) * line.dir : 0),
+                isX ? length : 1,
+                isY ? length : 1
+              );
+            });
+            if (line.p >= 1) state.animLines.splice(i, 1);
+          });
+        }
+
+        startGeneratingGlitches() {
+          const state = this.state;
+          const generateItem = () => {
+            const { cells, xCell, yCell } = plane;
+            const mp = state.mousePower;
+            const timeToNewItem = tools.random(
+              (5 + 100 * (1 - mp)) / state.area,
+              (25 + 1200 * (1 - mp)) / state.area
+            );
+            const item = {
+              p: 0,
+              color: 'rgba(255,255,255,' + tools.random(0.01, 1) + ')',
+              blinks: Array(tools.random(0, 3, true)).fill(null).map(() => ({
+                at: tools.random(0, 1),
+                dur: tools.random(0, 0.3)
+              })),
+              pf: tools.random(0.0015, 0.0035),
+              x: tools.random(0, cells[0], true) * xCell,
+              y: tools.random(0, cells[1], true) * yCell,
+              width: xCell,
+              height: yCell
+            };
+            if (state.tabIsActive) state.glitches.push(item);
+            setTimeout(generateItem, timeToNewItem);
+          };
+          generateItem();
+        }
+
+        drawGlitches() {
+          const ctx = context.main;
+          const state = this.state;
+          state.glitches.forEach((glitch, i) => {
+            glitch.p += glitch.pf * state.delta;
+            let show = true;
+            glitch.blinks.forEach(blink => {
+              if (glitch.p >= blink.at && glitch.p <= blink.at + blink.dur) show = false;
+            });
+            if (!show) return;
+            tools.drawPath(ctx, () => {
+              if (cfg.shadowBlur) {
+                ctx.shadowColor = 'white';
+                ctx.shadowBlur = 30;
+              }
+              ctx.globalAlpha = state.fadeInProgress;
+              ctx.fillStyle = glitch.color;
+              ctx.fillRect(glitch.x, glitch.y, glitch.width, glitch.height);
+            });
+            if (glitch.p >= 1) state.glitches.splice(i, 1);
+          });
+        }
+
+        drawMouseMoveInteraction(props) {
+          const ctx = context.main;
+          const state = this.state;
+          const fp = state.fadeInProgress;
+          const sp = state.stepOffset;
+          const mp = state.mousePower;
+          const { xCenter, yCenter } = plane;
+          const { i, i2, x, y } = props;
+          const position = [Math.abs(i2 - xCenter), Math.abs(i - yCenter)];
+          const mouseRange = (200 + 50 * mp) * ((i * i2) % 2) * (Math.sin((position[0] - position[1])));
+          if (mouseRange <= 100) return;
+
+          const vector = tools.getVectorLength([x, y], [mouse.x, mouse.y]);
+
+          if (vector <= mouseRange) {
+            const percent = (1 - (vector / mouseRange)) * fp;
+            const spinRadius = 50 * (1 - percent);
+            const xOffset = ((Math.sin(sp + (i)) * spinRadius) * ((Math.PI * 2) / 4)) * (((i + i2) % 4) === 0 ? -1 : 1);
+            const yOffset = ((Math.cos(sp + (i2)) * spinRadius) * ((Math.PI * 2) / 4));
+
+            const sx = x + xOffset;
+            const sy = y + yOffset;
+
+            const radius = 25 * (1 - percent);
+            const lineWidth = 3 + 10 * percent;
+
+            const vector2 = tools.getVectorLength([sx, sy], [mouse.x, mouse.y]);
+            const p2 = (1 - (vector2 / (mouseRange + spinRadius * 2)));
+
+            const color = 'rgba(255,255,255,' + (0.3 * percent) + ')';
+            const color2 = 'rgba(255,255,255,' + (0.7 * p2 * percent) + ')';
+
+            tools.drawPath(ctx, () => {
+              ctx.strokeStyle = color2;
+              ctx.moveTo(sx, sy);
+              ctx.lineTo(mouse.x, mouse.y);
+              ctx.stroke();
+            });
+            tools.drawPath(ctx, () => {
+              ctx.strokeStyle = color2;
+              ctx.moveTo(x, y);
+              ctx.lineTo(sx, sy);
+              ctx.stroke();
+            });
+            tools.drawPath(ctx, () => {
+              ctx.fillStyle = color;
+              ctx.arc(x, y, 1, 0, 2 * Math.PI);
+              ctx.fill();
+            });
+            tools.drawPath(ctx, () => {
+              ctx.strokeStyle = 'rgba(255,255,255,' + (0.5 * percent) + ')';
+              ctx.lineWidth = 1 + (2 * (1 - percent));
+              ctx.arc(x, y, 3 + 10 * (1 - percent), 0, 2 * Math.PI);
+              ctx.stroke();
+            });
+            tools.drawPath(ctx, () => {
+              ctx.fillStyle = 'rgba(255,255,255,' + percent + ')';
+              ctx.arc(sx, sy, 1, 0, 2 * Math.PI);
+              ctx.fill();
+            });
+            tools.drawPath(ctx, () => {
+              if (cfg.shadowBlur) {
+                ctx.shadowColor = 'white';
+                ctx.shadowBlur = radius;
+              }
+              ctx.lineWidth = lineWidth;
+              ctx.strokeStyle = 'rgba(255,255,255,' + (0.75 * percent) + ')';
+              ctx.arc(sx, sy, radius, 0, 2 * Math.PI);
+              ctx.stroke();
+            });
+          }
+        }
+
+        drawPlaneCenterLines(props) {
+          const { p } = props;
+          const ctx = context.plane;
+          const { centerCoords } = plane;
+          tools.drawPath(ctx, () => {
+            ctx.fillStyle = 'rgba(255,255,255,' + (0.2 + ((1 - p) * 1)) + ')';
+            ctx.fillRect(centerCoords[0], 0 + ((doc.height / 2) * (1 - p)), 1, doc.height * p);
+            ctx.fillRect(0 + ((doc.width / 2) * (1 - p)), centerCoords[1], doc.width * p, 1);
+          });
+        }
+
+        drawPlaneDotsAnimation(props) {
+          const ctx = context.plane;
+          const { dp, i, i2, x, y } = props;
+          const { xCenter, yCenter } = plane;
+          const position = [Math.abs(i2 - xCenter), Math.abs(i - yCenter)];
+          const index = position[0] * position[1];
+          const maxIndex = xCenter * yCenter;
+          const percent = 1 / maxIndex;
+          const point = percent * index;
+          let f = dp * (dp / point);
+          if (f >= 1) f = 1;
+          const mf = f >= 0.5 ? (1 - f) / 0.5 : f / 0.5;
+          const size = 3;
+          if (!mf) return;
+          tools.drawPath(ctx, () => {
+            ctx.fillStyle = 'rgba(255,255,255,' + (mf * 0.15) + ')';
+            ctx.fillRect(x - 1, y - 1, size, size);
+          });
+        }
+
+        drawPlane() {
+          const state = this.state;
+          const ctx = context.plane;
+          ctx.clearRect(0, 0, doc.width, doc.height);
+          const { xCell, yCell, xCenter, yCenter, cells } = plane;
+          const p = tools.easing(state.planeProgress, 0, 1, 1);
+          const dp = state.dotsProgress;
+
+          this.drawPlaneCenterLines({ p });
+
+          for (let i = 0; i < cells[0]; i++) {
+            for (let i2 = 0; i2 < cells[1]; i2++) {
+              const x = i * xCell;
+              const y = i2 * yCell;
+              if (i !== yCenter && i2 !== xCenter) {
+                this.drawPlaneDotsAnimation({ dp, i, i2, x, y });
+              }
+            }
+          }
+        }
+      }
+
+      // Initialize canvas app only when page loads
+      window.addEventListener('load', () => {
+        new CanvasApp();
+      });
+
+      // ============ Sticky navbar ============
+      const header = document.querySelector('.site-header');
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('is-solid', window.scrollY > 100);
+      });
+
+      // ============ GSAP fallback for browsers without scroll-driven animations (Safari, Firefox) ============
+      const hasScrollSupport = CSS.supports(
+        '(animation-timeline: view()) and (animation-range: 0 100%)'
+      );
+
+      if (!hasScrollSupport) {
         gsap.registerPlugin(ScrollTrigger);
 
-        window.onload = () => {
-            gsap.to("#loader", { opacity: 0, duration: 1, onComplete: () => document.getElementById('loader').style.display='none' });
-            
-            // Hero Animation
-            gsap.from("#heroBg", { scale: 1.4, duration: 3, ease: "power2.out" });
-            
-            // Horizontal Scroll
-            const wrapper = document.getElementById("horizontalWrapper");
-            const totalWidth = wrapper.scrollWidth - window.innerWidth + (window.innerWidth * 0.1);
+        window.addEventListener('load', () => {
+          requestAnimationFrame(() => {
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: 'main section:first-of-type',
+                start: 'top -10%',
+                end: 'bottom 80%',
+                scrub: true,
+              },
+            })
+            .from('.scaler img', { height: window.innerHeight - 32, ease: 'power1.inOut' }, 0)
+            .from('.scaler img', { width: window.innerWidth - 32, ease: 'power2.inOut' }, 0);
 
-            gsap.to(wrapper, {
-                x: -totalWidth,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: "#horizontalTarget",
-                    pin: true,
-                    scrub: 1,
-                    start: "top top",
-                    end: () => "+=" + totalWidth,
-                    invalidateOnRefresh: true
-                }
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: 'main section:first-of-type',
+                start: 'top -40%',
+                end: 'bottom bottom',
+                scrub: true,
+              },
+            })
+            .from('.layer:nth-of-type(1)', { opacity: 0, ease: 'sine.out' }, 0)
+            .from('.layer:nth-of-type(1)', { scale: 0, ease: 'power1.inOut' }, 0)
+            .from('.layer:nth-of-type(2)', { opacity: 0, ease: 'sine.out' }, 0)
+            .from('.layer:nth-of-type(2)', { scale: 0, ease: 'power3.inOut' }, 0)
+            .from('.layer:nth-of-type(3)', { opacity: 0, ease: 'sine.out' }, 0)
+            .from('.layer:nth-of-type(3)', { scale: 0, ease: 'power4.inOut' }, 0);
+
+            ScrollTrigger.refresh();
+          });
+        });
+      }
+
+      // ============ Extra hover animations via GSAP ============
+      window.addEventListener('load', () => {
+        gsap.utils.toArray('.grid .layer img').forEach((img) => {
+          img.addEventListener('mouseenter', function() {
+            gsap.to(this, {
+              duration: 0.4,
+              scale: 1.05,
+              y: -8,
+              overwrite: 'auto'
             });
-
-            // AI Integration UI Logic
-            const aiBtn = document.getElementById('aiBtn');
-            const aiText = document.getElementById('aiText');
-            const aiLoading = document.getElementById('aiLoading');
-            const aiError = document.getElementById('aiError');
-
-            aiBtn.onclick = async () => {
-                aiBtn.style.display = 'none';
-                aiLoading.style.display = 'block';
-                aiText.style.opacity = '0';
-                aiError.innerText = '';
-
-                try {
-                    const prompt = "Schreibe eine luxuriöse, editorial-artige Bildunterschrift für eine Fotostrecke namens 'Corona Stille' und 'Lia Portraits', die Einsamkeit und zeitlose Schönheit thematisiert.";
-                    const narrative = await callGemini(prompt);
-                    aiText.innerText = narrative;
-                    aiText.style.opacity = '1';
-                } catch (err) {
-                    aiError.innerText = "Fehler: Die KI ist gerade nicht verfügbar. Bitte versuchen Sie es später erneut.";
-                    aiBtn.style.display = 'inline-block';
-                } finally {
-                    aiLoading.style.display = 'none';
-                }
-            };
-        };
-
-        // Resize Refresh
-        window.addEventListener('resize', () => ScrollTrigger.refresh());
+          });
+          img.addEventListener('mouseleave', function() {
+            gsap.to(this, {
+              duration: 0.4,
+              scale: 1,
+              y: 0,
+              overwrite: 'auto'
+            });
+          });
+        });
+      });
     </script>
-</body>
+  </body>
 </html>

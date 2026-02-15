@@ -136,39 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // ========================================= 
-    // 6. HERO PARALLAX EFFECT (if GSAP available)
-    // ========================================= 
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-        gsap.registerPlugin(ScrollTrigger);
-        
-        // Hero background parallax
-        gsap.to('.blog-hero-bg', {
-            y: 300,
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".blog-hero",
-                start: "top top",
-                end: "bottom top",
-                scrub: true
-            }
-        });
-        
-        // Image zoom on scroll
-        const articleImages = document.querySelectorAll('.article-image img');
-        articleImages.forEach(img => {
-            gsap.from(img, {
-                scale: 1.2,
-                scrollTrigger: {
-                    trigger: img,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true
-                }
-            });
-        });
-    }
-    
-    // ========================================= 
     // 7. SMOOTH ANCHOR LINKS
     // ========================================= 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
