@@ -50,10 +50,12 @@
 - Not currently referenced in any HTML file
 - Contains MBTI, work experience, and personality animations
 - Appears to be a standalone version or backup
+- **Fixed**: Removed duplicate basic accordion code (lines 614-636) to prevent conflicts with the GSAP accordion implementation (initAccordion function)
 
 ### oldmain.js
 - Backup/old version of main.js
 - Not referenced in any HTML file
+- **Fixed**: Removed duplicate accordion code to match current main.js pattern
 - Can be safely removed
 
 ### oldabout.js
@@ -63,7 +65,12 @@
 
 ## Important Notes
 
-1. **Accordion Functionality**: Only animations.js should handle accordion functionality. The duplicate code in main.js has been removed to prevent conflicts.
+1. **Accordion Functionality**: Only animations.js should handle accordion functionality. Duplicate code has been removed from:
+   - main.js (original fix)
+   - uhh.js (adapted fix)
+   - oldmain.js (adapted fix)
+   
+   All files now either use the GSAP-enhanced accordion or have comments explaining where the functionality is handled.
 
 2. **GSAP Dependency**: animations.js requires GSAP and ScrollTrigger to be loaded before it.
 

@@ -55,27 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================
   // 4. ACCORDION
   // =========================================
-  const accordionItems = document.querySelectorAll('.accordion-item');
-
-  accordionItems.forEach(item => {
-    const trigger = item.querySelector('.accordion-trigger');
-    if (!trigger) return;
-
-    trigger.addEventListener('click', () => {
-      const active = item.classList.contains('active');
-
-      accordionItems.forEach(i => {
-        i.classList.remove('active');
-        i.querySelector('.accordion-trigger')
-          ?.setAttribute('aria-expanded', 'false');
-      });
-
-      if (!active) {
-        item.classList.add('active');
-        trigger.setAttribute('aria-expanded', 'true');
-      }
-    });
-  });
+  // Note: This is an old version. Current implementation uses GSAP animations
+  // in animations.js for enhanced accordion functionality. See main.js for reference.
 
   // =========================================
   // 5. PROJECT FILTER
