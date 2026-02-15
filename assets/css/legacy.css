@@ -10,7 +10,7 @@
   /* ========================================= 5. HERO SECTION ========================================= */
   .hero-section {
     position: relative;
-    height: 100vh;
+    height: 80vh;
     overflow: hidden;
     background: #000;
     color:  var(--mauve);
@@ -44,11 +44,51 @@
     margin: 0;
     overflow: hidden;
     display: block;
+    will-change: transform;
   }
+  
+  /* Line Reveal Animation */
+  .hero-top span, .hero-middle span, .hero-bottom span {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: none;
+    opacity: 1;
+  }
+  
+  /* Scroll Trigger Animation Classes */
+  .hero-top.in-view span,
+  .hero-middle.in-view span,
+  .hero-bottom.in-view span {
+    animation: lineRevealUp 0.8s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  }
+  
+  .hero-top span:nth-child(1) { animation-delay: 0s; }
+  .hero-top span:nth-child(2) { animation-delay: 0.1s; }
+  .hero-top span:nth-child(3) { animation-delay: 0.2s; }
+  
+  .hero-middle span:nth-child(1) { animation-delay: 0.3s; }
+  .hero-middle span:nth-child(2) { animation-delay: 0.4s; }
+  
+  .hero-bottom span:nth-child(1) { animation-delay: 0.5s; }
+  .hero-bottom span:nth-child(2) { animation-delay: 0.6s; }
+  .hero-bottom span:nth-child(3) { animation-delay: 0.7s; }
+  
+  @keyframes lineRevealUp {
+    from {
+      transform: translateY(110%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
   .hero-top {
     font-size: 18vw;
     top: 25%;
-    z-index: 3;
+    z-index: 2;
+    transform: translateX(-50%) translateY(var(--parallax-top, 0px));
   }
   .hero-middle {
     font-family: "Playfair Display", serif;
@@ -58,24 +98,27 @@
     z-index: 3;
     color: var(--accent-warm);
     letter-spacing: 0.05em;
+    transform: translateX(-50%) translateY(var(--parallax-middle, 0px));
   }
   .hero-bottom {
     font-size: 18vw;
     bottom: 5%;
     top: auto;
     z-index: 5;
+    transform: translateX(-50%) translateY(var(--parallax-bottom, 0px));
   }
   /* Portrait-Bilder Positionierung - Mobile First */
   .hero-bilder {
     position: absolute;
     top: 30%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(var(--parallax-images, 0px));
     width: 70vw;
     bottom: 0;
     display: flex;
     align-items: flex-start;
     justify-content: center;
+    will-change: transform;
   }
   .hero-portrait-bg, .hero-portrait {
     position: absolute;
@@ -87,7 +130,7 @@
     pointer-events: none;
   }
   .hero-portrait-bg {
-    z-index: 2;
+    z-index: 1;
   }
   .hero-portrait {
     z-index: 4;
@@ -111,10 +154,10 @@
     .hero-bilder,
     .hero-portrait-bg,
     .hero-portrait {
-      width: 50vw;
+      width: 45vw;
     }
     .hero-bilder {
-      top: 28%;
+      top: 20%;
     }
   }
 
@@ -741,15 +784,21 @@
 @media (max-width: 480px) {
  /* Hero Section */
   .hero-section {
-      height: 100vh;
+      height: 70vh;
+    
  }
-  .hero-claim {
-      font-size: clamp(2.5rem, 10vw, 6rem);
+
+   .hero-bilder {
+      top: 25%;
  }
-  .hero-circle-element {
-      display: none;
-     /* Hide on very small screens */
- }
+ .hero-bottom {
+    font-size: 16vw;
+    top: 68%;
+}
+.hero-top {
+    font-size: 16vw;
+    top: 30%;
+}
  /* Accordion */
   .accordion-trigger {
       padding: clamp(20px, 5vw, 35px) 0;
@@ -920,37 +969,5 @@
   .blog-grid {
       grid-template-columns: 1fr;
       gap: 3rem;
-  }
-}
-@media (max-width: 480px) {
- /* Hero Section */
-  .hero-section {
-      height: 100vh;
- }
-  .hero-claim {
-      font-size: clamp(2.5rem, 10vw, 6rem);
- }
-  .hero-circle-element {
-      display: none;
-     /* Hide on very small screens */
- }
- /* Accordion */
-  .accordion-trigger {
-      padding: clamp(20px, 5vw, 35px) 0;
- }
-  .trigger-left {
-      gap: clamp(12px, 4vw, 25px);
- }
-  .skills-table {
-      padding: clamp(15px, 3vw, 30px) 0 0 clamp(20px, 4vw, 50px);
- }
-  .filter-bar {
-      gap: 0.5rem;
-  }
-  .filter-btn {
-      padding: 0.6rem 1rem;
-      font-size: 0.7rem;
-      flex: 1 1 auto;
-      text-align: center;
   }
 }
