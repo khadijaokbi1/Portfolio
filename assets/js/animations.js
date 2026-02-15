@@ -48,6 +48,7 @@ const initHeroParallax = () => {
       scrub: 1
     }
   });
+};
 
 // =========================================
 // ACCORDION
@@ -202,27 +203,24 @@ const initProjectCards = () => {
                 start: 'top 85%',
                 once: true,
                 toggleActions: 'play none none none'
-            }, // <-- Hier endet das scrollTrigger-Objekt
-
-            // Hier kommt onComplete hin:
+            },
             onComplete: () => {
                 gsap.set(cards, { clearProps: 'transform' });
             }
         }
     );
-};
     
     // Nur Hover Effect
     cards.forEach(card => {
       card.addEventListener('mouseenter', () => {
-        gsap.to(card, { y: -8, duration: 0.5, ease: 'power1.out' }); // Sanfteres Heben
+        gsap.to(card, { y: -8, duration: 0.5, ease: 'power1.out' });
       });
       
       card.addEventListener('mouseleave', () => {
-        gsap.to(card, { y: 0, duration: 0.5, ease: 'power1.out' }); // Sanfteres Zurücksetzen
+        gsap.to(card, { y: 0, duration: 0.5, ease: 'power1.out' });
       });
     });
-  };
+};
 // =========================================
 // PARALLAX IMAGES
 // =========================================
