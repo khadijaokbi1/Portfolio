@@ -17,7 +17,7 @@
 
 ### animations.js
 - **Purpose**: Advanced GSAP animations for the main index page
-- **Used in**: index.html and a few other pages
+- **Used in**: index.html, work/foto.html, work/template.html
 - **Features**:
   - Hero parallax effects
   - **Accordion with smooth GSAP animations** (PRIMARY ACCORDION HANDLER)

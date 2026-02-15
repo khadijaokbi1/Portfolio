@@ -282,10 +282,10 @@
   height: 0;
   overflow: hidden;
   opacity: 0;
-  /* GSAP handles animations - no CSS transitions needed */
+  /* GSAP handles all animations including height and opacity - no CSS transitions needed */
 }
 .accordion-item.active .accordion-content {
-  /* GSAP sets height dynamically */
+  /* GSAP sets height and opacity dynamically during animation */
   width: 100%;
   padding-bottom: clamp(30px, 4vw, 50px);
 }
