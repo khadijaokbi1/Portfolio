@@ -1,264 +1,196 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Khadija Okbi | Portfolio</title>
-    <meta name="description" content="Khadija Okbi | Mediamatikerin Design, Marketing, Social Media, Full Stack & Animation />
-		<link rel="icon" type="image/png" href="../assets/images/branding/logo_white.png" />
-    <!-- Fonts-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport Marketing Portfolio | Motion Roots</title>
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- GSAP-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollSmoother.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/SplitText.min.js"></script>
-    <!-- Styles -->
-     <link rel="stylesheet" href="../assets/css/main.css">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B415ZJNKNW"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Work+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP & Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'G-B415ZJNKNW');
-    </script>
+    <!-- AUSKOMMENTIERT - CSS wird bereits über Tailwind CSS geladen -->
+     <style>
+        :root {
+            --bg-primary: #000;
+            --bg-secondary: #F5F5F5;
+            --bg-accent: #F5F5F5;
+            --bg-dark: #314A51;
+            --text-primary: #0A0A0A;
+            --text-primary-light: #EBE1D1;
+            --text-secondary: #525252;
+            --text-tertiary: #56686A;
+            --accent-primary: #2D2D2D;
+            --accent-secondary: #56686A;
+            --accent-warm: #6E3B49;
+            --accent-burgundy: #6E3B49;
+            --border-light: #56686A;
+            --border-default: #6E3B49;
+            --font-body: 'Work Sans', sans-serif;
+            --font-display: 'Playfair Display', serif;
+        }
 
-    <style>
-        body { background-color: var(--bg-primary); color: white; font-family: var(--font-body); margin: 0; }
+        body {
+            background-color: var(--bg-primary);
+            color: white;
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            margin: 0;
+        }
+
         .font-display { font-family: var(--font-display); }
-        .text-outline { -webkit-text-stroke: 1px #EBE1D1; color: transparent; }
-        
-        /* Back Button & Project Nav */
-        .back-nav { position: fixed; top: 120px; left: 3rem; z-index: 100; }
-        .back-link { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: #EBE1D1; display: flex; align-items: center; gap: 10px; opacity: 0.6; transition: 0.3s; }
-        .back-link:hover { opacity: 1; }
-        .project-pagination { border-top: 1px solid rgba(235, 225, 209, 0.1); background: #000; }
-        .pagination-link { padding: 60px 40px; display: block; transition: 0.4s; }
-        .pagination-link:hover { background: #111; }
 
-        /* Marquee */
-        .marquee { display: flex; overflow: hidden; gap: 2rem; }
-        .marquee-content { display: flex; gap: 2rem; animation: scroll 40s linear infinite; }
-        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+        /* --- WAVES --- */
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 23vh;
+            background-color: var(--bg-secondary);
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
+            mask-size: 100% 100%;
+            -webkit-mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            z-index: 4;
+            pointer-events: none;
+        }
 
-.section-carousel {
-  background: var(--bg-dark);
-  min-height: 100vh;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(60px, 8vw, 120px) 0;
-}
-.carousel {
-  margin: 0 auto;
-  width: 100%;
-  height: 70vh;
-  display: flex;
-  overflow: hidden;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-}
-.carousel-item {
-  visibility: visible;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: flex-end;
-  -webkit-align-items: center;
-  -webkit-justify-content: flex-end;
-  position: absolute;
-  background-color: #fff;
-  flex-shrink: 0;
-  -webkit-flex-shrink: 0;
-  z-index: 0;
-  transition: 0.6s all linear;
-}
-.carousel-item__info {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  -webkit-flex-direction: column;
-  order: 1;
-  left: 0;
-  margin: auto;
-  padding: 0 40px;
-  width: 40%;
-}
-.carousel-item__image {
-  width: 60%;
-  height: 100%;
-  order: 2;
-  align-self: flex-end;
-  flex-basis: 60%;
-  -webkit-order: 2;
-  -webkit-align-self: flex-end;
-  -webkit-flex-basis: 60%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  transform: translateX(100%);
-  transition: 0.6s all ease-in-out;
-}
-.carousel-item__subtitle {
-  font-family: var(--font-body);
-  letter-spacing: 3px;
-  font-size: 10px;
-  text-transform: uppercase;
-  margin: 0;
-  color: #7E7E7E;
-  font-weight: 700;
-  transform: translateY(25%);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.4s all ease-in-out;
-}
-.carousel-item__title {
-  margin: 15px 0 0 0;
-  font-family: 'Playfair Display', serif;
-  font-size: 44px;
-  line-height: 45px;
-  letter-spacing: 3px;
-  font-weight: 700;
-  color: #2C2C2C;
-  transform: translateY(25%);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.6s all ease-in-out;
-}
-.carousel-item__description {
-  transform: translateY(25%);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.6s all ease-in-out;
-  margin-top: 35px;
-  font-family: var(--font-body);
-  font-size: 13px;
-  color: #7e7e7e;
-  line-height: 22px;
-  margin-bottom: 35px;
-}
-.carousel-item--1 .carousel-item__image {
-  background-image: url('../assets/images/fotografie/slider1.jpg');
-}
-.carousel-item--2 .carousel-item__image {
-  background-image: url('../assets/images/fotografie/slider2.JPG');
-}
-.carousel-item--3 .carousel-item__image {
-  background-image: url('../assets/images/fotografie/slider3.jpg');
-}
-.carousel-item--4 .carousel-item__image {
-  background-image: url('../assets/images/fotografie/slider1.jpg');
-}
-.carousel-item--5 .carousel-item__image {
-  background-image: url('../assets/images/fotografie/slider2.jpg');
-}
-.carousel-item__btn {
-  width: 35%;
-  color: #2C2C2C;
-  font-family: var(--font-body);
-  letter-spacing: 3px;
-  font-size: 11px;
-  text-transform: uppercase;
-  margin: 0;
-  font-weight: 700;
-  text-decoration: none;
-  transform: translateY(25%);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.6s all ease-in-out;
-}
-.carousel__nav {
-  position: absolute;
-  right: 0;
-  z-index: 2;
-  background-color: #fff;
-  bottom: 0;
-}
-.carousel__icon {
-  display: inline-block;
-  vertical-align: middle;
-  width: 16px;
-  fill: #5d5d5d;
-}
-.carousel__arrow {
-  cursor: pointer;
-  display: inline-block;
-  padding: 11px 15px;
-  position: relative;
-}
-.carousel__arrow:nth-child(1):after {
-  content: '';
-  right: -3px;
-  position: absolute;
-  width: 1px;
-  background-color: #b0b0b0;
-  height: 14px;
-  top: 50%;
-  margin-top: -7px;
-}
-.carousel-item.active {
-  z-index: 1;
-  display: flex;
-  visibility: visible;
-}
-.active .carousel-item__subtitle, .active .carousel-item__title, .active .carousel-item__description, .active .carousel-item__btn {
-  transform: translateY(0);
-  opacity: 1;
-  transition: 0.6s all ease-in-out;
-  visibility: visible;
-}
-.active .carousel-item__image {
-  transition: 0.6s all ease-in-out;
-  transform: translateX(0);
-}
-    </style>
+        .section-about::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 25vh;
+            background-color: var(--accent-burgundy);
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            mask-size: 100% 100%;
+            -webkit-mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* --- ANIMATIONS --- */
+        .marquee {
+            display: flex;
+            overflow: hidden;
+            user-select: none;
+            gap: 2rem;
+        }
+
+        .marquee-content {
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-around;
+            min-width: 100%;
+            gap: 2rem;
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+
+        .bande-container {
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .pfadi-slide {
+            display: none;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .pfadi-slide.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(1.05); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .text-outline {
+            -webkit-text-stroke: 1px #EBE1D1;
+            color: transparent;
+        }
+    </style> -->
 </head>
-  <body>
-    <div id="smooth-wrapper">
-    <div id="smooth-content">
-    <!-- Header / Navbar -->
-    <header class="site-header" id="top" aria-label="Seitennavigation">
-       <div class="container nav-bar">
-          <a href="index.html" class="logo">
-          <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi Logo" width="45">
-          <img src="../assets/images/branding/logo_black.png" alt="Khadija Okbi Logo" width="45" class="logo-onscroll">
-          </a>
-          <nav class="nav" aria-label="Hauptnavigation">
-             <a href="index.html#hero" class="nav-link">Home</a>
-             <a href="index.html#projects" class="nav-link">Work</a>
-             <a href="about.html" class="nav-link">About</a>
-             <a href="index.html#blog" class="nav-link">Blog</a>
-          </nav>
-       </div>
-    </header>
-    <div class="back-nav hidden md:block">
-        <a href="index.html" class="back-link group">
-            <span class="w-8 h-px bg-[#EBE1D1] transition-all group-hover:w-12"></span>
-            Zurück
-        </a>
-    </div>
+<body>
 
-    <section class="relative h-[100vh] flex items-center justify-center overflow-hidden">
-        <div class="hero-section"></div>
+    <!-- HERO SECTION -->
+    <section class="hero-section relative h-[110vh] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="../assets/images/projects/next-game-st-omar.jpg" class="w-full h-full object-cover opacity-50" alt="Hero">
-            <div class="absolute inset-0 bg-black/40"></div>
+            <img src="../assets/images/win4/WIN4_2.jpg" 
+                 class="w-full h-full object-cover grayscale-[0.4] parallax-bg" alt="Hero Background">
+            <div class="absolute inset-0 bg-black/50"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <p class="reveal-text font-mono text-sm tracking-[0.4em] uppercase mb-6 text-[#EBE1D1] opacity-70">Sportmarketing roots</p>
+            <h1 class="reveal-text font-display italic text-6xl md:text-[10rem] font-bold leading-none tracking-tighter mb-10">
+                Motion <span class="text-outline">Impact</span>
+            </h1>
+            <div class="reveal-text flex justify-center items-center gap-6">
+                <div class="h-px w-12 bg-[#EBE1D1]/30"></div>
+                <p class="text-lg md:text-xl text-[#EBE1D1]/70 max-w-xl font-light italic">
+                    Die Ära der Screens: High-Speed Animationen und Branding-Systeme für den Schweizer Sport.
+                </p>
+                <div class="h-px w-12 bg-[#EBE1D1]/30"></div>
+            </div>
         </div>
     </section>
 
+    <!-- PFADI SLIDER SECTION -->
+    <section class="py-40 bg-[#314A51] text-[#EBE1D1]">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-20 items-center">
+                <div class="lg:w-1/3">
+                    <h2 class="font-display italic text-7xl font-bold mb-8 leading-tight">Events & <br/>Kunden</h2>
+                    <p class="text-[#EBE1D1]/70 text-xl mb-12 font-light leading-relaxed italic">
+                        "Die AXA Arena als Leinwand für großformatige Sport-Visuals."
+                    </p>
+                    <div class="flex gap-4">
+                        <button onclick="changeSlide(-1)" class="p-6 border border-white/20 rounded-full hover:bg-[#6E3B49] transition-all">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+                        </button>
+                        <button onclick="changeSlide(1)" class="p-6 border border-white/20 rounded-full hover:bg-[#6E3B49] transition-all">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="lg:w-2/3 relative aspect-video w-full rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl group">
+                    <div id="pfadi-slider">
+                        <div class="pfadi-slide active">
+                            <img src="../assets/images/win4/WIN4_busplakat.jpg" class="w-full h-full object-cover">
+                            <div class="absolute bottom-12 left-12 text-3xl font-display italic font-bold uppercase">Matchday Screen A</div>
+                        </div>
+                        <div class="pfadi-slide">
+                            <img src="../assets/images/win4/WIN4_nextgame.jpg" class="w-full h-full object-cover">
+                            <div class="absolute bottom-12 left-12 text-3xl font-display italic font-bold uppercase">Player Stats Overlay</div>
+                        </div>
+                        <div class="pfadi-slide">
+                            <img src="../assets/images/win4/WIN4_smkutu.png" class="w-full h-full object-cover">
+                            <div class="absolute bottom-12 left-12 text-3xl font-display italic font-bold uppercase">Sponsor Billboard Simulation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- BANDEN SECTION (Burgundy) -->
     <section class="py-24 bg-[#FFFFFF] text-[#EBE1D1]">
         <div class="container mx-auto px-6 mb-12 text-center">
             <h2 class="font-display italic text-5xl md:text-8xl mb-4">Sponsoring</h2>
@@ -291,74 +223,53 @@
         </div>
     </section>
 
-	<section class="section-carousel" id="carousel" aria-label="Carousel">
-        <div class="container">
-<h2 style="color: white; padding-bottom: 0rem;">Fotografie</h2>
-            <div class="carousel">
-                <div class="carousel__nav">
-                    <span id="moveLeft" class="carousel__arrow">
-                        <svg class="carousel__icon" width="24" height="24" viewBox="0 0 24 24">
-                            <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path>
-                        </svg>
-                    </span>
-                    <span id="moveRight" class="carousel__arrow">
-                        <svg class="carousel__icon" width="24" height="24" viewBox="0 0 24 24">
-                            <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
-                        </svg>
-                    </span>
-                </div>
-                <div class="carousel-item carousel-item--1">
-                    <div class="carousel-item__image"></div>
-                    <div class="carousel-item__info">
-                        <div class="carousel-item__container">
-                            <h2 class="carousel-item__subtitle">Street photography </h2>
-                            <h1 class="carousel-item__title">Le tour</h1>
-                            <p class="carousel-item__description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                            <a href="#" class="carousel-item__btn">Explore the tour</a>
+
+    <!-- TOOLS & FOCUS -->
+    <section class="py-40 bg-[#F5F5F5] text-black">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                <div class="reveal-up">
+                    <h2 class="font-display text-6xl mb-12">Creative <span class="italic text-[#6E3B49]">Arsenal</span></h2>
+                    <div class="space-y-8">
+                        <div class="p-8 border-b border-gray-200 hover:bg-[#EBE1D1] transition-all duration-500 group">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-3xl font-display italic font-bold">After Effects</h4>
+                                <span class="font-mono text-xs opacity-40">ANIMATION</span>
+                            </div>
+                        </div>
+                        <div class="p-8 border-b border-gray-200 hover:bg-[#EBE1D1] transition-all duration-500 group">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-3xl font-display italic font-bold">Premiere Pro</h4>
+                                <span class="font-mono text-xs opacity-40">EDITING</span>
+                            </div>
+                        </div>
+                        <div class="p-8 border-b border-gray-200 hover:bg-[#EBE1D1] transition-all duration-500 group">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-3xl font-display italic font-bold">Photoshop</h4>
+                                <span class="font-mono text-xs opacity-40">SCREEN DESIGN</span>
+                            </div>
+                        </div>
+                        <div class="p-8 border-b border-gray-200 hover:bg-[#EBE1D1] transition-all duration-500 group">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-3xl font-display italic font-bold">InDesign</h4>
+                                <span class="font-mono text-xs opacity-40">PRINT MEDIA</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item carousel-item--2">
-                    <div class="carousel-item__image"></div>
-                    <div class="carousel-item__info">
-                        <div class="carousel-item__container">
-                            <h2 class="carousel-item__subtitle">Konstanz im lockdown </h2>
-                            <h1 class="carousel-item__title">Minimal window</h1>
-                            <p class="carousel-item__description">Clear Glass Window With Brown and White Wooden Frame iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-                            <a href="#" class="carousel-item__btn">Read the article</a>
+                
+                <div class="bg-[#0A0A0A] text-white p-12 rounded-[3rem] flex flex-col justify-center">
+                    <h3 class="font-display italic text-4xl mb-8">Interne Events</h3>
+                    <div class="space-y-12">
+                        <div class="group cursor-pointer">
+                            <p class="font-mono text-[10px] text-orange-500 mb-2 uppercase">Main Event</p>
+                            <h4 class="text-4xl font-bold mb-4 tracking-tighter group-hover:italic transition-all">Gamedays Winterthur</h4>
+                            <p class="text-gray-500 leading-relaxed">Komplette visuelle Bespielung der Spieltage für Pfadi Winterthur.</p>
                         </div>
-                    </div>
-                </div>
-                <div class="carousel-item carousel-item--3">
-                    <div class="carousel-item__image"></div>
-                    <div class="carousel-item__info">
-                        <div class="carousel-item__container">
-                            <h2 class="carousel-item__subtitle">Movement & Light </h2>
-                            <h1 class="carousel-item__title">Palms</h1>
-                            <p class="carousel-item__description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                            <a href="#" class="carousel-item__btn">Explore the palms</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item carousel-item--4">
-                    <div class="carousel-item__image"></div>
-                    <div class="carousel-item__info">
-                        <div class="carousel-item__container">
-                            <h2 class="carousel-item__subtitle">Beach </h2>
-                            <h1 class="carousel-item__title">The beach </h1>
-                            <p class="carousel-item__description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                            <a href="#" class="carousel-item__btn">Explore the beach</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item carousel-item--5">
-                    <div class="carousel-item__image"></div>
-                    <div class="carousel-item__info">
-                        <div class="carousel-item__container">
-                            <h2 class="carousel-item__subtitle">The white building </h2>
-                            <h1 class="carousel-item__title">White building</h1>
-                            <p class="carousel-item__description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                            <a href="#" class="carousel-item__btn">Read the article</a>
+                        <div class="group cursor-pointer">
+                            <p class="font-mono text-[10px] text-orange-500 mb-2 uppercase">National Event</p>
+                            <h4 class="text-4xl font-bold mb-4 tracking-tighter group-hover:italic transition-all">SM Kunstturnen</h4>
+                            <p class="text-gray-500 leading-relaxed">Medienplatz-Management und visuelle Ausspielung der Schweizer Meisterschaften.</p>
                         </div>
                     </div>
                 </div>
@@ -366,150 +277,13 @@
         </div>
     </section>
 
-    <div class="project-pagination">
-        <div class="grid grid-cols-1 md:grid-cols-2">
-            <a href="sbw.html" class="pagination-link border-r border-white/10 group">
-                <p class="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-2">Previous Project</p>
-                <h3 class="font-display italic text-4xl text-[#EBE1D1] group-hover:pl-4 transition-all">SBW Neue Medien</h3>
-            </a>
-            <a href="komthur.html" class="pagination-link text-right group">
-                <p class="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-2">Next Project</p>
-                <h3 class="font-display italic text-4xl text-[#EBE1D1] group-hover:pr-4 transition-all">IPA</h3>
-            </a>
+    <!-- FOOTER -->
+    <footer class="py-60 bg-black text-[#EBE1D1] text-center relative">
+        <div class="container mx-auto px-6">
+            <h2 class="font-display italic text-7xl md:text-[14rem] font-bold leading-none tracking-tighter mb-24 reveal-text">Work <br/>Together.</h2>
+            <a href="mailto:hello@motionroots.com" class="inline-block text-2xl md:text-5xl font-display italic hover:text-[#6E3B49] transition-all border-b-2 border-[#6E3B49]">Sag Hallo.</a>
         </div>
-    </div>
- <!-- Footer -->
- <footer class="site-footer" aria-label="Seitenende">
-	<div class="container footer-inner">
-	   <div class="footer-copy">© 2026 Design & Development by Khadija Okbi</div>
-	   <div class="footer-socials" aria-label="Soziale Netzwerke">
-		  <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
-			<!-- GitHub Icon -->
-			<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-			  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/>
-			</svg>
-		  </a>
-		  <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn">
-			<!-- LinkedIn Icon -->
-			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-			  <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/>
-			  <path d="M6.5 9.5v8.5M6.5 7.5v.01M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-			</svg>
-		  </a>
-		  <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok">
-			<!-- TikTok Icon (stylized note) -->
-			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-			  <path d="M16 7.5c.5 0 .9.04 1.3.12v3.38a4.2 4.2 0 0 1-2.3-.64v5.64A4.86 4.86 0 0 1 11 20a4.86 4.86 0 0 1-4.86-4.86 4.86 4.86 0 0 1 4.86-4.86c.28 0 .55.03.81.08V7.5h.19c1.14 0 2.09.37 2.99 1.03V7.5z" fill="currentColor"/>
-			</svg>
-		  </a>
-		  <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen">
-			<!-- CodePen Icon -->
-			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-			  <path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.1" fill="none"/>
-			  <path d="M3.5 7.5l8.5 5 8.5-5" stroke="currentColor" stroke-width="1.1" fill="none"/>
-			  <path d="M12 21.5v-10" stroke="currentColor" stroke-width="1.1" fill="none"/>
-			</svg>
-		  </a>
-	   </div>
-	</div>
- </footer>
-    </div>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const track = document.getElementById('carouselTrack');
-            const videos = document.querySelectorAll('.video-bg');
-            const numDisplay = document.getElementById('currentNum');
-            let currentIndex = 0;
-            const slideDuration = 1.2; // Sekunden für GSAP
-            const autoPlayDelay = 8000; // 8 Sekunden pro Video
-
-            function updateSlider(direction = 1) {
-                // 1. Alle Videos resetten
-                videos.forEach(v => { v.pause(); v.currentTime = 0; });
-
-                // 2. Bewegung mit GSAP (zuverlässiger als CSS transition)
-                gsap.to(track, {
-                    xPercent: -100 * currentIndex,
-                    duration: slideDuration,
-                    ease: "expo.inOut",
-                    onComplete: () => {
-                        // 3. Video nach Slide-Ende starten
-                        videos[currentIndex].play().catch(() => {});
-                    }
-                });
-
-                // 4. Counter Update
-                numDisplay.innerText = (currentIndex + 1).toString().padStart(2, '0');
-                resetTimer();
-            }
-
-            // Navigation Events
-            document.getElementById('bandeNext').addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % videos.length;
-                updateSlider(1);
-            });
-
-            document.getElementById('bandePrev').addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + videos.length) % videos.length;
-                updateSlider(-1);
-            });
-
-            // Auto-Loop Timer
-            let timer = setInterval(() => {
-                currentIndex = (currentIndex + 1) % videos.length;
-                updateSlider(1);
-            }, autoPlayDelay);
-
-            function resetTimer() {
-                clearInterval(timer);
-                timer = setInterval(() => {
-                    currentIndex = (currentIndex + 1) % videos.length;
-                    updateSlider(1);
-                }, autoPlayDelay);
-            }
-
-            // Start
-            window.addEventListener('load', () => { if(videos[0]) videos[0].play(); });
-        });
-
-if (typeof $ !== 'undefined') {
-  $(function() {
-    var $carousel = $('.carousel');
-    if ($carousel.length === 0) return;
-
-    var $slides = $('.carousel-item');
-    var total = $slides.length;
-    var current = 0;
-
-    // Initialisierung: Erstes Element aktivieren
-    $slides.eq(0).addClass('active');
-
-    function setSlide(index) {
-      // Alten Slide merken
-      var prev = current;
-      current = index;
-
-      // Endlos-Schleife Logik
-      if (current >= total) current = 0;
-      if (current < 0) current = total - 1;
-
-      // Klassen wechseln
-      $slides.eq(prev).removeClass('active');
-      $slides.eq(current).addClass('active');
-      
-      console.log("Wechsel von " + prev + " zu " + current);
-    }
-
-    $('#moveRight').on('click', function() {
-      setSlide(current + 1);
-    });
-
-    $('#moveLeft').on('click', function() {
-      setSlide(current - 1);
-    });
-  });
-}
-    </script>
+    </footer>
+    <script src="work-header.js"></script>
 </body>
 </html>
