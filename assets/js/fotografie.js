@@ -1,5 +1,5 @@
-import gsap from 'https://cdn.skypack.dev/gsap@3.12.0'
-import ScrollTrigger from 'https://cdn.skypack.dev/gsap@3.12.0/ScrollTrigger'
+import gsap from 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/+esm'
+import ScrollTrigger from 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger/+esm'
 
 const hasScrollSupport = CSS.supports(
   '(animation-timeline: view()) and (animation-range: 0 100%)'
