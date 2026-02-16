@@ -98,19 +98,20 @@
        ============================ */
     .hero-section {
       position: relative;
-      height: 100vh;
+      height: 80vh;
       overflow: hidden;
       background: #000;
       color: var(--mauve);
     }
 
-    .hero-bg-img {
+    .hero-bg-image {
       position: absolute;
       inset: 0;
       z-index: 1;
-      background-image: url('assets/images/about/hero-bg-2.jpg');
+      background-image: url('assets/images/hero/hintergrund.jpg');
       background-size: cover;
-      background-position: center;
+      background-repeat: no-repeat;
+      background-position: center center;
     }
 
     .hero-header {
@@ -121,7 +122,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: var(--space-6);
     }
 
     .hero-top, .hero-bottom {
@@ -134,27 +134,70 @@
       white-space: nowrap;
       margin: 0;
       overflow: hidden;
-      font-size: 11vw;
+      display: block;
+      will-change: transform;
     }
 
-    .hero-top { top: 0%; z-index: 3; }
-    .hero-bottom { top: 60%; z-index: 5; }
+    .hero-top {
+      font-size: 11vw;
+      top: 24%;
+      z-index: 2;
+    }
 
-    .hero-portrait-bg,
-    .hero-portrait {
+    .hero-bottom {
+      font-size: 11vw;
+      bottom: 5%;
+      top: auto;
+      z-index: 5;
+    }
+
+    .hero-bilder {
       position: absolute;
-      top: 70%;
+      top: 25%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      width: 40vw;
+      transform: translateX(-50%);
+      width: 32vw;
+      bottom: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      will-change: transform;
+    }
+
+    .hero-portrait-bg, .hero-portrait {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32vw;
+      height: auto;
       pointer-events: none;
     }
 
-    .hero-portrait-bg { z-index: 2; }
+    .hero-portrait-bg { z-index: 1; }
     .hero-portrait { z-index: 4; }
-    .hero-portrait-bg img,
-    .hero-portrait img { width: 100%; height: auto; display: block; }
-   
+    .hero-portrait-bg img, .hero-portrait img { width: 100%; height: auto; display: block; }
+
+    /* Media Queries for Hero */
+    @media (max-width: 1024px) {
+      .hero-bilder, .hero-portrait-bg, .hero-portrait { width: 32vw; }
+      .hero-bilder { top: 25%; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-top { font-size: 14vw; top: 26%; }
+      .hero-bottom { font-size: 14vw; bottom: 8%; }
+      .hero-bilder, .hero-portrait-bg, .hero-portrait { width: 45vw; }
+      .hero-bilder { top: 20%; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-top { font-size: 18vw; top: 25%; }
+      .hero-bottom { font-size: 18vw; bottom: 5%; }
+      .hero-bilder, .hero-portrait-bg, .hero-portrait { width: 70vw; }
+      .hero-bilder { top: 30%; }
+    }
+
     .container {
     max-width: 85vw;
     margin: 0 auto;
@@ -515,16 +558,19 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            align-items: center; /* Zentriert die Items vertikal zueinander */
             gap: clamp(2rem, 5vw, 4rem);
         }
 
         .book-item-main {
             width: clamp(200px, 90vw, 280px);
-            min-height: 400px;
-            display: inline-block;
+            min-height: 450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Zentriert Buch und Text horizontal im Item */
+            justify-content: center; /* Zentriert den Inhalt vertikal im Item */
             margin: 0;
             padding: 0;
-            vertical-align: top;
             opacity: 0;
             animation: slideInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
@@ -546,14 +592,15 @@
 
         /* ==================== HARDCOVER 3D ==================== */
         .book-3d {
-          position: relative;
-    width: clamp(160px, 20vw, 220px); 
-    height: clamp(240px, 30vw, 330px); /* Höher als breit für Buch-Look */
-    perspective: 1000px;
+            position: relative;
+            width: clamp(160px, 20vw, 220px); 
+            height: clamp(240px, 30vw, 330px); 
+            perspective: 1000px;
             -webkit-perspective: 1000px;
             -webkit-transform-style: preserve-3d;
             transform-style: preserve-3d;
             cursor: pointer;
+            margin-bottom: 2rem;
         }
         /* Diese Klassen brauchen die volle Größe des .book-3d Containers */
 .hardcover-front,
@@ -1035,16 +1082,16 @@
 
     <!-- ======================== HERO ======================== -->
     <div class="hero-section" id="hero">
-      <div class="hero-bg-img"></div>
+      <div class="hero-bg-image"></div>
       <div class="hero-header">
-        <h1 class="hero-top">The Visionary</h1>
-        <h1 class="hero-bottom">& The Strategist</h1>
-        <div>
+        <h1 class="hero-top">CREATIVE</h1>
+        <h1 class="hero-bottom">DIRECTOR</h1>
+        <div class="hero-bilder">
           <div class="hero-portrait-bg">
-            <img src="assets/images/about/pb-about.png" alt="Hintergrund Portrait">
+            <img src="assets/images/hero/cutout_bg.png" alt="Hintergrund des Portraits">
           </div>
           <div class="hero-portrait">
-            <img src="assets/images/about/pb-about.png" alt="Portrait von Khadija Okbi">
+            <img src="assets/images/hero/cutout.png" alt="Portrait von Khadija Okbi">
           </div>
         </div>
       </div>

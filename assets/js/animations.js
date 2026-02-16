@@ -1,7 +1,5 @@
 'use strict';
 
-gsap.registerPlugin(ScrollTrigger);
-
 // =========================================
 // HERO PARALLAX
 // =========================================

@@ -5,16 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.getElementById('workMobileMenu');
 
     // Header scroll effect
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            workHeader.classList.add('is-solid');
-        } else {
-            workHeader.classList.remove('is-solid');
-        }
-    });
+    if (workHeader) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                workHeader.classList.add('is-solid');
+            } else {
+                workHeader.classList.remove('is-solid');
+            }
+        });
+    }
 
     // Mobile menu toggle
-    if (navToggle) {
+    if (navToggle && mobileMenu) {
         navToggle.addEventListener('click', () => {
             mobileMenu.classList.toggle('open');
             navToggle.textContent = mobileMenu.classList.contains('open') ? '✕' : '☰';
@@ -22,12 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Close menu when clicking a link
-    document.querySelectorAll('.work-nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            if (mobileMenu) mobileMenu.classList.remove('open');
-            if (navToggle) navToggle.textContent = '☰';
+    if (mobileMenu && navToggle) {
+        document.querySelectorAll('.work-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                navToggle.textContent = '☰';
+            });
         });
-    });
+    }
 
     // --- INTEGRATED PROJECT SCRIPTS ---
 
@@ -38,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Parallax Hero (About, SBW, Hillsong, Win4)
-        const parallaxElems = document.querySelectorAll('#heroParallax, .parallax-bg, .parallax-video, .parallax-item');
+        const parallaxElems = document.querySelectorAll('.parallax-bg, .parallax-video, .parallax-item');
         parallaxElems.forEach(el => {
             const speed = el.getAttribute('data-speed') || 0.25;
             gsap.to(el, {
@@ -249,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const video = slide.querySelector('video');
             if (video) {
                 if (index === currentSlide) {
-                    video.play();
+                    video.play().catch(e => console.log('Video play interrupted:', e));
                 } else {
                     video.pause();
                     video.currentTime = 0;

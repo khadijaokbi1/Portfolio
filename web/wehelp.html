@@ -850,7 +850,7 @@ grid-template-columns: 1fr;
         }
 .gallery-grid {
 grid-template-columns: repeat(2, 1fr);
-grid-template-rows: auto;
+grid-template-rows: repeat(auto-fill, 250px);
         }
 .gallery-item:first-child {
 grid-column: span 1;
@@ -941,7 +941,7 @@ text-align: center;
 .instagram-grid,
 .gallery-grid {
 grid-template-columns: 1fr;
-grid-template-rows: auto;
+grid-template-rows: repeat(auto-fill, 250px);
             }
 .gallery-item:first-child {
 grid-column: span 1;
@@ -990,9 +990,6 @@ gap: 2rem;
             }
         }
 /* ========== ANIMATIONS ========== */
-.fade-in {
-opacity: 0;
-        }
 @keyframes slideUp {
 from {
 opacity: 0;
@@ -1038,7 +1035,7 @@ transform: translateY(0);
 <!-- HERO SECTION -->
     <section class="hero" id="home">
         <div class="hero-container">
-            <div class="hero-content fade-in">
+            <div class="hero-content reveal">
                 <h1>Psychische Gesundheit für <span class="highlight">Dich und Deine Familie</span></h1>
                 <p class="subtitle">Professionelle Unterstützung für Erwachsene und Kinder mit psychischen Störungen. Zusammen finden wir den richtigen Weg zur Genesung.</p>
                 <div class="hero-buttons">
@@ -1051,7 +1048,7 @@ transform: translateY(0);
                     <div class="badge">24/7 Unterstützung</div>
                 </div>
             </div>
-            <div class="hero-visual fade-in">
+            <div class="hero-visual reveal">
                 <img src="images/wehelp/wehelp_3.jpg" alt="WeHelp Hero Visual" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
         </div>
@@ -1068,19 +1065,19 @@ transform: translateY(0);
                 <p>Unser Anspruch ist es, Menschen in schwierigen Zeiten nicht allein zu lassen. Mit einer Kombination aus professioneller Begleitung, technischer Innovation und einer liebevollen Community schaffen wir einen sicheren Raum für Heilung und Wachstum. Wir verstehen die Herausforderungen, denen sich Menschen mit psychischen Störungen gegenübersehen, und bieten umfassende Lösungen für jeden Schritt ihrer Genesung.</p>
             </div>
             <div class="about-grid">
-                <div class="about-card fade-in">
+                <div class="about-card reveal">
                     <h3>Unser Anspruch</h3>
                     <p>Unser vorrangiges Ziel besteht in der Unterstützung bei psychologischen Störungen sowie die Begleitung der betroffenen und angehörigen Personen in dieser wichtigen Lebensphase. Wir setzen auf Empathie, Fachkompetenz und innovative Technologie.</p>
                 </div>
-                <div class="about-card fade-in">
+                <div class="about-card reveal">
                     <h3>Breites Spektrum</h3>
                     <p>Wir bieten persönliche und professionelle Begleitung in mehreren Kerngebieten: Depression, Angststörung, Burnout-Syndrom, Essstörungen, Borderline, PTBS und viele weitere. Jeder Fall ist einzigartig, und unsere Experten passen die Behandlung individuell an.</p>
                 </div>
-                <div class="about-card fade-in">
+                <div class="about-card reveal">
                     <h3>Moderne Technologie</h3>
                     <p>Unsere technisch fortschrittliche und sichere App begleitet Sie vom ersten Moment bis zur vollständigen Genesung. Mit benutzerfreundlichen Funktionen, Datensicherheit auf höchstem Niveau und intuitivem Design unterstützen wir Ihren Heilungsprozess täglich.</p>
                 </div>
-                <div class="about-card fade-in">
+                <div class="about-card reveal">
                     <h3>Vernetzte Begleitung</h3>
                     <p>Wir verbinden Sie mit Informationen, zertifizierten Kliniken und Fachleuten aus der ganzen Schweiz. Zusätzlich bringen wir Sie in Kontakt mit Gleichgesinnten in einer vertrauten und geschützten Umgebung, um Ihre Erfahrungen zu teilen.</p>
                 </div>
@@ -1099,7 +1096,7 @@ transform: translateY(0);
                 <p>WeHelp bietet ein integriertes Ökosystem von Dienstleistungen, die speziell darauf ausgerichtet sind, Menschen bei ihrer Genesung zu unterstützen. Von der ersten Diagnose bis zur vollständigen Reintegration – wir sind für Sie da.</p>
             </div>
             <div class="services-grid">
-                <div class="service-card fade-in" id="forum">
+                <div class="service-card reveal" id="forum">
                     <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="35" cy="30" r="12" fill="#4E8E82"/>
                         <path d="M 20 50 Q 20 45 25 45 L 45 45 Q 50 45 50 50 L 50 70 Q 50 75 45 75 L 25 75 Q 20 75 20 70 Z" fill="#4E8E82" opacity="0.3"/>
@@ -1111,7 +1108,7 @@ transform: translateY(0);
                     <h3>Austausch Forum</h3>
                     <p>Tauschen Sie sich in einem vertrauten und geschützten Kreis mit Menschen aus, die genau verstehen, was Sie durchmachen. Ein offener Dialog mit anderen, die ähnliche Herausforderungen bewältigen, kann therapeutisch wirken und neue Perspektiven eröffnen. Auch Eltern und Angehörige finden hier Unterstützung und wertvolle Ratschläge.</p>
                 </div>
-                <div class="service-card fade-in" id="clinics">
+                <div class="service-card reveal" id="clinics">
                     <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
                         <rect x="30" y="20" width="60" height="70" rx="8" fill="none" stroke="#4E8E82" stroke-width="3"/>
                         <path d="M 50 45 L 70 45" stroke="#4E8E82" stroke-width="3" stroke-linecap="round"/>
@@ -1122,7 +1119,7 @@ transform: translateY(0);
                     <h3>Klinik & Psychologen</h3>
                     <p>Unser Netzwerk verbindet Sie mit führenden Kliniken und zertifizierten Psychologen aus der ganzen Schweiz. Wir arbeiten nur mit qualifizierten Fachleuten zusammen, die sich auf verschiedene Störungsbilder spezialisiert haben. Wir helfen Ihnen, die optimale Behandlung zu finden, die perfekt zu Ihren individuellen Bedürfnissen passt.</p>
                 </div>
-                <div class="service-card fade-in" id="living">
+                <div class="service-card reveal" id="living">
                     <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
                         <rect x="25" y="40" width="70" height="55" rx="5" fill="none" stroke="#4E8E82" stroke-width="3"/>
                         <path d="M 60 40 L 45 25 L 75 25 Z" stroke="#4E8E82" stroke-width="3" fill="none"/>
@@ -1145,7 +1142,7 @@ transform: translateY(0);
                 <p class="section-subtitle">Einblicke in unsere Arbeit und die positive Wirkung unserer Community</p>
             </div>
             <div class="gallery-grid">
-                <div class="gallery-item fade-in" style="grid-column: span 2; grid-row: span 2;">
+                <div class="gallery-item reveal" style="grid-column: span 2; grid-row: span 2;">
                     <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
                         <rect width="400" height="400" fill="url(#grad1)"/>
                         <defs>
@@ -1157,7 +1154,7 @@ transform: translateY(0);
                         <circle cx="200" cy="200" r="80" fill="white" opacity="0.3"/>
                     </svg>
                 </div>
-                <div class="gallery-item fade-in">
+                <div class="gallery-item reveal">
                     <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
                         <rect width="400" height="400" fill="url(#grad2)"/>
                         <defs>
@@ -1169,7 +1166,7 @@ transform: translateY(0);
                         <text x="50%" y="50%" font-size="120" fill="white" opacity="0.2" text-anchor="middle" dominant-baseline="middle">🤝</text>
                     </svg>
                 </div>
-                <div class="gallery-item fade-in">
+                <div class="gallery-item reveal">
                     <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
                         <rect width="400" height="400" fill="url(#grad3)"/>
                         <defs>
@@ -1181,7 +1178,7 @@ transform: translateY(0);
                         <circle cx="200" cy="200" r="60" fill="white" opacity="0.25"/>
                     </svg>
                 </div>
-                <div class="gallery-item fade-in">
+                <div class="gallery-item reveal">
                     <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
                         <rect width="400" height="400" fill="url(#grad4)"/>
                         <defs>
@@ -1193,7 +1190,7 @@ transform: translateY(0);
                         <rect x="80" y="80" width="240" height="240" fill="white" opacity="0.15" rx="20"/>
                     </svg>
                 </div>
-                <div class="gallery-item fade-in">
+                <div class="gallery-item reveal">
                     <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
                         <rect width="400" height="400" fill="url(#grad5)"/>
                         <defs>
@@ -1222,7 +1219,7 @@ transform: translateY(0);
                 <p class="section-subtitle">Folgen Sie uns für tägliche Tipps, Erfolgsgeschichten und Unterstützung von unserer lebendigen Community</p>
             </div>
             <div class="instagram-grid">
-                <div class="instagram-post fade-in">
+                <div class="instagram-post reveal">
                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
                         <rect width="200" height="200" fill="url(#insta1)"/>
                         <defs>
@@ -1234,7 +1231,7 @@ transform: translateY(0);
                         <circle cx="100" cy="100" r="40" fill="white" opacity="0.3"/>
                     </svg>
                 </div>
-                <div class="instagram-post fade-in">
+                <div class="instagram-post reveal">
                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
                         <rect width="200" height="200" fill="url(#insta2)"/>
                         <defs>
@@ -1246,7 +1243,7 @@ transform: translateY(0);
                         <rect x="50" y="50" width="100" height="100" fill="white" opacity="0.25" rx="10"/>
                     </svg>
                 </div>
-                <div class="instagram-post fade-in">
+                <div class="instagram-post reveal">
                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
                         <rect width="200" height="200" fill="url(#insta3)"/>
                         <defs>
@@ -1258,7 +1255,7 @@ transform: translateY(0);
                         <polygon points="100,50 150,150 50,150" fill="white" opacity="0.2"/>
                     </svg>
                 </div>
-                <div class="instagram-post fade-in">
+                <div class="instagram-post reveal">
                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
                         <rect width="200" height="200" fill="url(#insta4)"/>
                         <defs>
@@ -1270,7 +1267,7 @@ transform: translateY(0);
                         <circle cx="100" cy="100" r="35" fill="white" opacity="0.2"/>
                     </svg>
                 </div>
-                <div class="instagram-post fade-in">
+                <div class="instagram-post reveal">
                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
                         <rect width="200" height="200" fill="url(#insta5)"/>
                         <defs>
@@ -1282,7 +1279,7 @@ transform: translateY(0);
                         <path d="M 100 50 L 130 120 L 70 120 Z" fill="white" opacity="0.25"/>
                     </svg>
                 </div>
-                <div class="instagram-post fade-in">
+                <div class="instagram-post reveal">
                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
                         <rect width="200" height="200" fill="url(#insta6)"/>
                         <defs>
@@ -1320,7 +1317,7 @@ transform: translateY(0);
                 <p>Unser Blog bietet fundierte Informationen, praktische Tipps und inspirierende Geschichten von Menschen, die ihre psychische Gesundheit verbessert haben. Regelmäßig teilen unsere Experten neueste Erkenntnisse und erprobte Strategien zur Bewältigung von psychischen Herausforderungen.</p>
             </div>
             <div class="blog-grid">
-                <div class="blog-card fade-in">
+                <div class="blog-card reveal">
                     <img src="images/wehelp/wehelp_2.jpg" alt="Blog Post 1" class="blog-image" style="width: 100%; height: 250px; object-fit: cover;">
                     <div class="blog-content">
                         <span class="blog-tag">MOTIVATION</span>
@@ -1332,7 +1329,7 @@ transform: translateY(0);
                         </div>
                     </div>
                 </div>
-                <div class="blog-card fade-in">
+                <div class="blog-card reveal">
                     <img src="images/wehelp/wehelp_instagram.jpg" alt="Instagram Post" class="blog-image" style="width: 100%; height: 250px; object-fit: cover;">
                     <div class="blog-content">
                         <span class="blog-tag">SELBSTFÜRSORGE</span>
@@ -1344,7 +1341,7 @@ transform: translateY(0);
                         </div>
                     </div>
                 </div>
-                <div class="blog-card fade-in">
+                <div class="blog-card reveal">
                     <img src="images/wehelp/wehelp_4.jpg" alt="Blog Post 3" class="blog-image" style="width: 100%; height: 250px; object-fit: cover;">
                     <div class="blog-content">
                         <span class="blog-tag">ERFOLGSGESCHICHTEN</span>
@@ -1371,22 +1368,22 @@ transform: translateY(0);
                 <p>Die Stimmen unserer Nutzer zeigen die echte Wirkung, die WeHelp in ihrem Leben hat. Ihre Geschichten sind ein Beweis dafür, dass Unterstützung und Verständnis den Unterschied machen.</p>
             </div>
             <div class="testimonial-grid">
-                <div class="testimonial-card fade-in">
+                <div class="testimonial-card reveal">
                     <p class="testimonial-text">"WeHelp hat mein Leben verändert. Die Kombination aus professioneller Hilfe und dem Austausch mit anderen Menschen, die dasselbe durchmachen, war genau das, was ich brauchte. Ich fühle mich endlich wieder hoffnungsvoll."</p>
                     <div class="testimonial-author">Sarah M.</div>
                     <div class="testimonial-role">Nutzerin seit 2 Jahren</div>
                 </div>
-                <div class="testimonial-card fade-in">
+                <div class="testimonial-card reveal">
                     <p class="testimonial-text">"Die Unterstützung und Wärme, die ich hier gefunden habe, war unglaublich. Das Forum hat mir geholfen zu verstehen, dass ich nicht allein bin. Die Experten sind einfühlsam und wirklich kompetent."</p>
                     <div class="testimonial-author">Marcus L.</div>
                     <div class="testimonial-role">Nutzerin seit 1,5 Jahren</div>
                 </div>
-                <div class="testimonial-card fade-in">
+                <div class="testimonial-card reveal">
                     <p class="testimonial-text">"Der kostenlose Test hat mir geholfen zu verstehen, was mir wirklich fehlt. Die personalisierten Empfehlungen waren sehr hilfreich und genau auf meine Situation zugeschnitten. Ich fühle mich besser verstanden."</p>
                     <div class="testimonial-author">Julia P.</div>
                     <div class="testimonial-role">Neu bei WeHelp</div>
                 </div>
-                <div class="testimonial-card fade-in">
+                <div class="testimonial-card reveal">
                     <p class="testimonial-text">"Als Eltern konnten wir unsere Tochter endlich besser unterstützen. Die Ressourcen für Angehörige und das Eltern-Forum haben uns alles gegeben, was wir brauchten. Wir sind dankbar für diese Plattform."</p>
                     <div class="testimonial-author">Thomas & Anna K.</div>
                     <div class="testimonial-role">Eltern einer Nutzerin</div>
@@ -1468,24 +1465,6 @@ ease: 'power3.out',
 delay: 0.15
         });
 
-// Fade in on scroll
-const fadeInElements = document.querySelectorAll('.fade-in');
-fadeInElements.forEach((element, index) => {
-            gsap.from(element, {
-scrollTrigger: {
-trigger: element,
-start: 'top 80%',
-end: 'top 50%',
-toggleActions: 'play none none reverse'
-                },
-duration: 0.7,
-y: 40,
-opacity: 0,
-ease: 'power3.out',
-delay: index * 0.08
-            });
-        });
-
 // Card Hover Animations
 document.querySelectorAll('.about-card, .service-card, .blog-card, .testimonial-card, .instagram-post').forEach(card => {
 card.addEventListener('mouseenter', function() {
@@ -1551,3 +1530,18 @@ ease: 'power2.out'
                 });
             });
         });
+
+// GSAP Scroll Reveal
+gsap.registerPlugin(ScrollTrigger);
+gsap.utils.toArray('.reveal').forEach(function(elem) {
+  gsap.from(elem, {
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    scrollTrigger: {
+      trigger: elem,
+      start: 'top 80%',
+      toggleActions: 'play none none reverse'
+    }
+  });
+});
