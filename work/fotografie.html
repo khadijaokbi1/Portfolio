@@ -251,13 +251,13 @@
 
       /* ============ header (scroll down hero) - kept for scroll distance ============ */
       header {
-        min-height: 100vh;
+        min-height: 50vh;
         display: grid;
         margin: 0 auto;
         align-content: center;
         max-width: calc(100% - (2 * var(--gutter)));
-        padding-left: 48px;
-        text-align: left;
+        padding: 0;
+        text-align: center;
         position: relative;
         z-index: 3;
       }
@@ -271,16 +271,17 @@
         --font-level: 4;
         font-family: var(--font-display);
         color: var(--accent-burgundy);
+        text-align: center;
       }
 
       /* ============ sections ============ */
       main, section { max-width: 100%; }
-      section { min-height: 100vh; }
+      section { min-height: 50vh; }
       main section:last-of-type { display: grid; place-items: center; }
 
       /* ============ scroll animation section ============ */
       [data-enhanced='true'] main section:first-of-type {
-        min-height: 240vh;
+        min-height: 140vh;
       }
 
       /* ============ content (sticky) ============ */
@@ -1280,8 +1281,8 @@
           gsap.timeline({
             scrollTrigger: {
               trigger: 'main section:first-of-type',
-              start: 'top -10%',
-              end: 'bottom 80%',
+              start: 'top top',
+              end: 'bottom 60%',
               scrub: true,
             },
           })
@@ -1291,8 +1292,8 @@
           gsap.timeline({
             scrollTrigger: {
               trigger: 'main section:first-of-type',
-              start: 'top -40%',
-              end: 'bottom bottom',
+              start: 'top top',
+              end: 'bottom 80%',
               scrub: true,
             },
           })

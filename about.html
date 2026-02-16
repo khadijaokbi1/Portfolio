@@ -114,89 +114,183 @@
       background-position: center center;
     }
 
-    .hero-header {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  .hero-header {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-top, .hero-middle, .hero-bottom {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    margin: 0;
+    overflow: hidden;
+    display: block;
+    will-change: transform;
+  }
+  
+  /* Line Reveal Animation */
+  .hero-top span, .hero-middle span, .hero-bottom span {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: none;
+    opacity: 1;
+  }
+  
+  /* Scroll Trigger Animation Classes */
+  .hero-top.in-view span,
+  .hero-middle.in-view span,
+  .hero-bottom.in-view span {
+    animation: lineRevealUp 0.8s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  }
+  
+  .hero-top span:nth-child(1) { animation-delay: 0s; }
+  .hero-top span:nth-child(2) { animation-delay: 0.1s; }
+  .hero-top span:nth-child(3) { animation-delay: 0.2s; }
+  
+  .hero-middle span:nth-child(1) { animation-delay: 0.3s; }
+  .hero-middle span:nth-child(2) { animation-delay: 0.4s; }
+  
+  .hero-bottom span:nth-child(1) { animation-delay: 0.5s; }
+  .hero-bottom span:nth-child(2) { animation-delay: 0.6s; }
+  .hero-bottom span:nth-child(3) { animation-delay: 0.7s; }
+  
+  @keyframes lineRevealUp {
+    from {
+      transform: translateY(110%);
+      opacity: 0;
     }
-
-    .hero-top, .hero-bottom {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-weight: 400;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      white-space: nowrap;
-      margin: 0;
-      overflow: hidden;
-      display: block;
-      will-change: transform;
+    to {
+      transform: translateY(0);
+      opacity: 1;
     }
+  }
+  
+  .hero-top {
+    font-size: 18vw;
+    top: 25%;
+    z-index: 2;
+    transform: translateX(-50%) translateY(var(--parallax-top, 0px));
+  }
+  .hero-middle {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 6vw;
+    top: 50%;
+    z-index: 3;
+    color: var(--accent-warm);
+    letter-spacing: 0.05em;
+    transform: translateX(-50%) translateY(var(--parallax-middle, 0px));
+  }
+  .hero-bottom {
+    font-size: 18vw;
+    bottom: 5%;
+    top: auto;
+    z-index: 5;
+    transform: translateX(-50%) translateY(var(--parallax-bottom, 0px));
+  }
+  /* Portrait-Bilder Positionierung - Mobile First */
+  .hero-bilder {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%) translateY(var(--parallax-images, 0px));
+    width: 70vw;
+    bottom: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    will-change: transform;
+  }
+  .hero-portrait-bg, .hero-portrait {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70vw;
+    height: auto;
+    pointer-events: none;
+  }
+  .hero-portrait-bg {
+    z-index: 1;
+  }
+  .hero-portrait {
+    z-index: 4;
+  }
+  .hero-portrait-bg img, .hero-portrait img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
 
+  /* Tablet */
+  @media (min-width: 481px) and (max-width: 768px) {
+    .hero-top {
+      font-size: 14vw;
+      top: 26%;
+    }
+    .hero-bottom {
+      font-size: 14vw;
+      bottom: 8%;
+    }
+    .hero-bilder,
+    .hero-portrait-bg,
+    .hero-portrait {
+      width: 45vw;
+    }
+    .hero-bilder {
+      top: 20%;
+    }
+  }
+
+  /* Desktop */
+  @media (min-width: 769px) {
     .hero-top {
       font-size: 11vw;
       top: 24%;
-      z-index: 2;
     }
-
     .hero-bottom {
       font-size: 11vw;
       bottom: 5%;
-      top: auto;
-      z-index: 5;
     }
-
+    .hero-bilder,
+    .hero-portrait-bg,
+    .hero-portrait {
+      width: 32vw;
+    }
     .hero-bilder {
-      position: absolute;
       top: 25%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 32vw;
-      bottom: 0;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      will-change: transform;
     }
+  }
 
-    .hero-portrait-bg, .hero-portrait {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 32vw;
-      height: auto;
-      pointer-events: none;
+  /* Large Desktop */
+  @media (min-width: 1200px) {
+    .hero-bilder,
+    .hero-portrait-bg,
+    .hero-portrait {
+      width: 26vw;
     }
-
-    .hero-portrait-bg { z-index: 1; }
-    .hero-portrait { z-index: 4; }
-    .hero-portrait-bg img, .hero-portrait img { width: 100%; height: auto; display: block; }
-
-    /* Media Queries for Hero */
-    @media (max-width: 1024px) {
-      .hero-bilder, .hero-portrait-bg, .hero-portrait { width: 32vw; }
-      .hero-bilder { top: 25%; }
+    .hero-bilder {
+      top: 22%;
     }
-
-    @media (max-width: 768px) {
-      .hero-top { font-size: 14vw; top: 26%; }
-      .hero-bottom { font-size: 14vw; bottom: 8%; }
-      .hero-bilder, .hero-portrait-bg, .hero-portrait { width: 45vw; }
-      .hero-bilder { top: 20%; }
+    .hero-top {
+      font-size: 9vw;
+      top: 22%;
     }
-
-    @media (max-width: 480px) {
-      .hero-top { font-size: 18vw; top: 25%; }
-      .hero-bottom { font-size: 18vw; bottom: 5%; }
-      .hero-bilder, .hero-portrait-bg, .hero-portrait { width: 70vw; }
-      .hero-bilder { top: 30%; }
+    .hero-bottom {
+      font-size: 9vw;
+      bottom: 4%;
     }
+  }
+
 
     .container {
     max-width: 85vw;
@@ -1134,7 +1228,7 @@
           <!-- Right Column: Content -->
           <div class="lg:col-span-7 pt-4">
             <header class="mb-12">
-              <p class="uppercase-label tracking-[0.3em] text-mauve mb-4">About Me</p>
+              <p class="uppercase-label tracking-[0.3em] text-mauve mb-4">About</p>
               <h2 class="visionary-title leading-[0.9] mb-8">
                 The Visionary<br>
                 <span class="italic font-light">&</span> The <span class="text-accent-burgundy">Strategist.</span>
@@ -1590,7 +1684,7 @@
   <!-- ======================== FOOTER ======================== -->
   <footer class="site-footer" aria-label="Seitenende">
     <div class="container footer-inner">
-      <div class="footer-copy">© 2025 Design & Development by Khadija Okbi</div>
+      <div class="footer-copy">© 2026 Design & Development by Khadija Okbi</div>
       <div class="footer-socials" aria-label="Soziale Netzwerke">
         <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
           <svg width="24" height="24" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/></svg>
