@@ -61,7 +61,7 @@ body {
     position: absolute;
     inset: 0;
     z-index: 1;
-    background-image: url('../images/hero/hintergrund.jpg');
+    background-image: url('../images/hero/hero-background.jpg');
     background-size: cover;
     background-position: center;
     opacity: 0.7;

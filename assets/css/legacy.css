@@ -19,7 +19,7 @@
     position: absolute;
     inset: 0;
     z-index: 1;
-    background-image: url('../images/hero/hintergrund.jpg');
+    background-image: url('../images/hero/hero-background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
