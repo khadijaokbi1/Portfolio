@@ -253,10 +253,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const video = slide.querySelector('video');
             if (video) {
                 if (index === currentSlide) {
+                    video.currentTime = 0;
                     video.play().catch(e => console.log('Video play interrupted:', e));
+                    
+                    // Auto-advance when video ends
+                    video.onended = () => {
+                        nextSlide();
+                    };
                 } else {
                     video.pause();
                     video.currentTime = 0;
+                    video.onended = null;
                 }
             }
         });
@@ -274,11 +281,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (prevBtn) prevBtn.addEventListener('click', prevSlide);
     if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-
-    // Auto slide every 5 seconds
-    if (totalSlides > 0) {
-        setInterval(nextSlide, 5000);
-    }
 
     // Initial update
     updateSlide();

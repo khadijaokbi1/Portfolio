@@ -297,8 +297,8 @@ h2 {
 /* ========== TABS SECTION ========== */
 .tabs-container {
     display: grid;
-    grid-template-columns: 4fr 1fr;
-    gap: 3rem;
+    grid-template-columns: 1fr 4fr;
+    gap: 2rem;
     margin-top: 2rem;
     padding-bottom: 10em;
 }
@@ -355,11 +355,13 @@ h2 {
     margin-bottom: 1rem;
 }
 
-.tab-panel p {
-    max-width: 65ch;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-}
+
+    .tab-panel p {
+        max-width: 100%;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+    }
+
 
 .keywords {
     color: #666;
@@ -1138,6 +1140,35 @@ h2 {
 
     .stat-grid {
         grid-template-columns: 1fr;
+    }
+
+    .tab-btn {
+        font-size: 0.9rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .comparison-table thead {
+        display: none;
+    }
+
+    .comparison-table tbody, .comparison-table tr, .comparison-table td {
+        display: block;
+    }
+
+    .comparison-table tr {
+        margin-bottom: 1rem;
+        border: 1px solid var(--border-default);
+        padding: 1rem;
+        background: white;
+    }
+
+    .comparison-table td {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .comparison-table td:last-child {
+        border-bottom: none;
     }
 }
 @media (max-width: 1024px) {

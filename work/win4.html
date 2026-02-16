@@ -1,289 +1,247 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sport Marketing Portfolio | Motion Roots</title>
-    
-    <!-- Fonts -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WIN4 | Sportmarketing</title>
+    <meta name="description" content="WIN4 | Sportmarketing Premium Design & Sportevents" />
+		<link rel="icon" type="image/png" href="../assets/images/branding/logo_white.png" />
+    <!-- Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Work+Sans:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- GSAP & Plugins -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <!-- AUSKOMMENTIERT - CSS wird bereits über Tailwind CSS geladen -->
-     <style>
-        :root {
-            --bg-primary: #000;
-            --bg-secondary: #F5F5F5;
-            --bg-accent: #F5F5F5;
-            --bg-dark: #314A51;
-            --text-primary: #0A0A0A;
-            --text-primary-light: #EBE1D1;
-            --text-secondary: #525252;
-            --text-tertiary: #56686A;
-            --accent-primary: #2D2D2D;
-            --accent-secondary: #56686A;
-            --accent-warm: #6E3B49;
-            --accent-burgundy: #6E3B49;
-            --border-light: #56686A;
-            --border-default: #6E3B49;
-            --font-body: 'Work Sans', sans-serif;
-            --font-display: 'Playfair Display', serif;
-        }
-
-        body {
-            background-color: var(--bg-primary);
-            color: white;
-            font-family: var(--font-body);
-            overflow-x: hidden;
-            margin: 0;
-        }
-
-        .font-display { font-family: var(--font-display); }
-
-        /* --- WAVES --- */
-        .hero-section::after {
-            content: "";
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 23vh;
-            background-color: var(--bg-secondary);
-            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
-            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
-            mask-size: 100% 100%;
-            -webkit-mask-size: 100% 100%;
-            mask-repeat: no-repeat;
-            z-index: 4;
-            pointer-events: none;
-        }
-
-        .section-about::after {
-            content: "";
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 25vh;
-            background-color: var(--accent-burgundy);
-            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-            mask-size: 100% 100%;
-            -webkit-mask-size: 100% 100%;
-            mask-repeat: no-repeat;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        /* --- ANIMATIONS --- */
-        .marquee {
-            display: flex;
-            overflow: hidden;
-            user-select: none;
-            gap: 2rem;
-        }
-
-        .marquee-content {
-            flex-shrink: 0;
-            display: flex;
-            justify-content: space-around;
-            min-width: 100%;
-            gap: 2rem;
-            animation: scroll 30s linear infinite;
-        }
-
-        @keyframes scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-100%); }
-        }
-
-        .bande-container {
-            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .pfadi-slide {
-            display: none;
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        .pfadi-slide.active { display: block; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(1.05); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .text-outline {
-            -webkit-text-stroke: 1px #EBE1D1;
-            color: transparent;
-        }
-    </style> -->
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- GSAP-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollSmoother.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/SplitText.min.js"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="style/win4.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B415ZJNKNW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-B415ZJNKNW');
+    </script>
 </head>
 <body>
-
-    <!-- HERO SECTION -->
-    <section class="hero-section relative h-[110vh] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="../assets/images/win4/WIN4_2.jpg" 
-                 class="w-full h-full object-cover grayscale-[0.4] parallax-bg" alt="Hero Background">
-            <div class="absolute inset-0 bg-black/50"></div>
+    <!-- HEADER -->
+    <header class="site-header" id="top">
+        <div class="container nav-bar">
+            <a href="../index.html" class="logo">
+                <img src="../assets/images/branding/logo_black.png" alt="Khadija Okbi Logo" width="45">
+                <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi Logo" width="45" class="logo-onscroll">
+            </a>
+            <nav class="nav">
+                <a href="../index.html#hero" class="nav-link">Home</a>
+                <a href="../index.html#expertise" class="nav-link">What I do</a>
+                <a href="../index.html#blog" class="nav-link">Blog</a>
+                <a href="../about.html" class="nav-link">About me</a>
+            </nav>
         </div>
-        
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            <p class="reveal-text font-mono text-sm tracking-[0.4em] uppercase mb-6 text-[#EBE1D1] opacity-70">Sportmarketing roots</p>
-            <h1 class="reveal-text font-display italic text-6xl md:text-[10rem] font-bold leading-none tracking-tighter mb-10">
-                Motion <span class="text-outline">Impact</span>
-            </h1>
-            <div class="reveal-text flex justify-center items-center gap-6">
-                <div class="h-px w-12 bg-[#EBE1D1]/30"></div>
-                <p class="text-lg md:text-xl text-[#EBE1D1]/70 max-w-xl font-light italic">
-                    Die Ära der Screens: High-Speed Animationen und Branding-Systeme für den Schweizer Sport.
-                </p>
-                <div class="h-px w-12 bg-[#EBE1D1]/30"></div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="section-hero">
+            <img src="../assets/images/win4/WIN4_2.jpg" class="hero-image" alt="WIN4 Sportmarketing">
+            <div class="hero-overlay">
+                <div class="hero-badge uppercase-label">Sportmarketing & Event Design</div>
+                <h1 class="hero-title-large">
+                    WIN4<span>Sportmarketing.</span>
+                </h1>
+                <p class="hero-subtitle">Von Screendesigns über Festführer bis zu innovativen Sponsoring-Animationen — visuelle Exzellenz für den Schweizer Spitzensport.</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- PFADI SLIDER SECTION -->
-    <section class="py-40 bg-[#314A51] text-[#EBE1D1]">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row gap-20 items-center">
-                <div class="lg:w-1/3">
-                    <h2 class="font-display italic text-7xl font-bold mb-8 leading-tight">Events & <br/>Kunden</h2>
-                    <p class="text-[#EBE1D1]/70 text-xl mb-12 font-light leading-relaxed italic">
-                        "Die AXA Arena als Leinwand für großformatige Sport-Visuals."
-                    </p>
-                    <div class="flex gap-4">
-                        <button onclick="changeSlide(-1)" class="p-6 border border-white/20 rounded-full hover:bg-[#6E3B49] transition-all">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
-                        </button>
-                        <button onclick="changeSlide(1)" class="p-6 border border-white/20 rounded-full hover:bg-[#6E3B49] transition-all">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-                        </button>
+        <!-- EVENTS & KUNDEN SLIDER SECTION -->
+        <section class="editorial-section bg-dark">
+            <div class="container">
+                <div class="slider-section">
+                    <div class="slider-content">
+                        <h2>Events &<br/>Kunden</h2>
+                        <p>Von Screendesigns für Pfadi Winterthur, Festführer für die Schweizer Meisterschaften im Kunstturnen, bis hin zu Gamedays-Busplakaten.</p>
+                        <div class="slider-controls">
+                            <button onclick="changeSlide(-1)" class="slider-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m15 18-6-6 6-6"/>
+                                </svg>
+                            </button>
+                            <button onclick="changeSlide(1)" class="slider-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m9 18 6-6-6-6"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-viewer">
+                        <div id="pfadi-slider">
+                            <div class="pfadi-slide active">
+                                <img src="../assets/images/win4/WIN4_busplakat.jpg" alt="Busplakat">
+                                <div class="slide-caption">Busplakat Gamedays</div>
+                            </div>
+                            <div class="pfadi-slide">
+                                <img src="../assets/images/win4/WIN4_nextgame.jpg" alt="Next Game Screen">
+                                <div class="slide-caption">Next Game Display</div>
+                            </div>
+                            <div class="pfadi-slide">
+                                <img src="../assets/images/win4/WIN4_smkutu_1.jpg" alt="SM Kunstturnen">
+                                <div class="slide-caption">SM Kunstturnen</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- SPONSORING SECTION -->
+        <section class="editorial-section sponsoring-section bg-cream">
+            <div class="sponsoring-header">
+                <h2>Sponsoring</h2>
+                <p class="label uppercase-label">Banden-Animationen für Sport-Events</p>
+            </div>
+
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="slide-item">
+                        <video muted playsinline>
+                            <source src="../video/sponsoren/RLC.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="slide-item">
+                        <video muted playsinline>
+                            <source src="../video/sponsoren/Schiess.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="slide-item">
+                        <video muted playsinline>
+                            <source src="../video/sponsoren/Schroeckel.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="slide-item">
+                        <video muted playsinline>
+                            <source src="../video/sponsoren/GM.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="carousel-controls">
+                    <button id="bandePrev" class="carousel-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m15 18-6-6 6-6"/>
+                        </svg>
+                    </button>
+                    <button id="bandeNext" class="carousel-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m9 18 6-6-6-6"/>
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- KOMPETENZBEREICHE SECTION -->
+        <section class="editorial-section bg-cream">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Kompetenz<span class="highlight-burgundy">bereiche</span></h2>
+                </div>
+                <p class="section-intro">Professionelle Tools und strategische Expertise für visuelle Kommunikation im Sport.</p>
+
+                <div class="competence-grid">
+                    <div class="competence-column">
+                        <h3>Software &<br/>Skills</h3>
+                        <div class="competence-list">
+                            <div class="competence-item">
+                                <h4>After Effects</h4>
+                                <span class="label">Animation</span>
+                            </div>
+                            <div class="competence-item">
+                                <h4>Premiere Pro</h4>
+                                <span class="label">Editing</span>
+                            </div>
+                            <div class="competence-item">
+                                <h4>Photoshop</h4>
+                                <span class="label">Screen Design</span>
+                            </div>
+                            <div class="competence-item">
+                                <h4>InDesign</h4>
+                                <span class="label">Print Media</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="events-box">
+                        <h3>Interne Events</h3>
+                        <div class="event-item">
+                            <p class="label">Main Event</p>
+                            <h4>Gamedays Winterthur</h4>
+                            <p>Komplette visuelle Bespielung der Spieltage für Pfadi Winterthur.</p>
+                        </div>
+                        <div class="event-item">
+                            <p class="label">National Event</p>
+                            <h4>SM Kunstturnen</h4>
+                            <p>Erstellung von Print sowie digitalen Medien für die Schweizer Meisterschaften im Kunstturnen.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="site-footer" aria-label="Seitenende">
+            <div class="container footer-inner">
+                <div class="footer-copy">©Design & Development by Khadija Okbi</div>
                 
-                <div class="lg:w-2/3 relative aspect-video w-full rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl group">
-                    <div id="pfadi-slider">
-                        <div class="pfadi-slide active">
-                            <img src="../assets/images/win4/WIN4_busplakat.jpg" class="w-full h-full object-cover">
-                            <div class="absolute bottom-12 left-12 text-3xl font-display italic font-bold uppercase">Matchday Screen A</div>
-                        </div>
-                        <div class="pfadi-slide">
-                            <img src="../assets/images/win4/WIN4_nextgame.jpg" class="w-full h-full object-cover">
-                            <div class="absolute bottom-12 left-12 text-3xl font-display italic font-bold uppercase">Player Stats Overlay</div>
-                        </div>
-                        <div class="pfadi-slide">
-                            <img src="../assets/images/win4/WIN4_smkutu_1.jpg" class="w-full h-full object-cover">
-                            <div class="absolute bottom-12 left-12 text-3xl font-display italic font-bold uppercase">Sponsor Billboard Simulation</div>
-                        </div>
-                    </div>
+                <div class="footer-socials" aria-label="Soziale Netzwerke">
+                    <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/>
+                        </svg>
+                    </a>
+                    <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="2" y="2" width="20" height="20" rx="2" fill="currentColor" opacity="0.15"/>
+                            <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <path d="M6.5 9.5v8.5M6.5 7.5a0.5 0.5 0 1 1 0 1z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="6.5" cy="7.5" r="0.8" fill="currentColor"/>
+                            <path d="M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" fill="currentColor" stroke="currentColor" stroke-width="0.5"/>
+                        </svg>
+                    </a>
+                    <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.1" fill="none"/>
+                            <path d="M3.5 7.5l8.5 5 8.5-5" stroke="currentColor" stroke-width="1.1" fill="none"/>
+                            <path d="M12 21.5v-10" stroke="currentColor" stroke-width="1.1" fill="none"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="footer-links">
+                    <a href="pages/impressum.html" class="footer-link">Impressum</a>
+                    <a href="mailto:khadijaokbi@gmail.com" class="footer-link contact-btn">
+                        <span>Kontakt</span>
+                    </a>
+                    <a href="pages/datenschutz.html" class="footer-link">Datenschutz</a>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- BANDEN SECTION (Burgundy) -->
-    <section class="py-24 bg-[#FFFFFF] text-[#EBE1D1]">
-        <div class="container mx-auto px-6 mb-12 text-center">
-            <h2 class="font-display italic text-5xl md:text-8xl mb-4">Sponsoring</h2>
-            <p class="font-mono text-[10px] uppercase tracking-[0.5em] opacity-60">Banden Animationen für Sport-Events</p>
-        </div>
-
-        <div class="relative w-full bg-black overflow-hidden" id="motionCarousel">
-            <div class="flex" id="carouselTrack">
-                <div class="slide-item min-w-full h-[120px] md:h-[180px] bg-zinc-900 flex items-center justify-center">
-                    <video muted playsinline class="video-bg h-full w-auto"><source src="../video/sponsoren/RLC.mp4" type="video/mp4"></video>
-                </div>
-                <div class="slide-item min-w-full h-[120px] md:h-[180px] bg-zinc-900 flex items-center justify-center">
-                    <video muted playsinline class="video-bg h-full w-auto"><source src="../video/sponsoren/Schiess.mp4" type="video/mp4"></video>
-                </div>
-                <div class="slide-item min-w-full h-[120px] md:h-[180px] bg-zinc-900 flex items-center justify-center">
-                    <video muted playsinline class="video-bg h-full w-auto"><source src="../video/sponsoren/Schroeckel.mp4" type="video/mp4"></video>
-                </div>
-                <div class="slide-item min-w-full h-[120px] md:h-[180px] bg-zinc-900 flex items-center justify-center">
-                    <video muted playsinline class="video-bg h-full w-auto"><source src="../video/sponsoren/GM.mp4" type="video/mp4"></video>
-                </div>
-            </div>
-
-            <button id="bandePrev" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black z-30 transition-all">❮</button>
-            <button id="bandeNext" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black z-30 transition-all">❯</button>
-
-            <div class="absolute bottom-4 right-10 flex items-baseline gap-2 text-[#EBE1D1]">
-                <span id="currentNum" class="font-display italic text-5xl">01</span>
-                <span class="opacity-30 text-xl">/ 04</span>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- TOOLS & FOCUS -->
-    <section class="py-40 bg-[#F5F5F5] text-black">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
-                <div class="reveal-up">
-                    <h2 class="font-display text-6xl mb-12">Creative <span class="italic text-[#6E3B49]">Arsenal</span></h2>
-                    <div class="space-y-8">
-                        <div class="p-8 border-b border-gray-200 hover:bg-[#EBE1D1] transition-all duration-500 group">
-                            <div class="flex justify-between items-center">
-                                <h4 class="text-3xl font-display italic font-bold">After Effects</h4>
-                                <span class="font-mono text-xs opacity-40">ANIMATION</span>
-                            </div>
-                        </div>
-                        <div class="p-8 border-b border-gray-200 hover:bg-[#EBE1D1] transition-all duration-500 group">
-                            <div class="flex justify-between items-center">
-                                <h4 class="text-3xl font-display italic font-bold">Premiere Pro</h4>
-                                <span class="font-mono text-xs opacity-40">EDITING</span>
-                            </div>
-                        </div>
-                        <div class="p-8 border-b border-gray-200 hover:bg-[#EBE1D1] transition-all duration-500 group">
-                            <div class="flex justify-between items-center">
-                                <h4 class="text-3xl font-display italic font-bold">Photoshop</h4>
-                                <span class="font-mono text-xs opacity-40">SCREEN DESIGN</span>
-                            </div>
-                        </div>
-                        <div class="p-8 border-b border-gray-200 hover:bg-[#EBE1D1] transition-all duration-500 group">
-                            <div class="flex justify-between items-center">
-                                <h4 class="text-3xl font-display italic font-bold">InDesign</h4>
-                                <span class="font-mono text-xs opacity-40">PRINT MEDIA</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-[#0A0A0A] text-white p-12 rounded-[3rem] flex flex-col justify-center">
-                    <h3 class="font-display italic text-4xl mb-8">Interne Events</h3>
-                    <div class="space-y-12">
-                        <div class="group cursor-pointer">
-                            <p class="font-mono text-[10px] text-orange-500 mb-2 uppercase">Main Event</p>
-                            <h4 class="text-4xl font-bold mb-4 tracking-tighter group-hover:italic transition-all">Gamedays Winterthur</h4>
-                            <p class="text-gray-500 leading-relaxed">Komplette visuelle Bespielung der Spieltage für Pfadi Winterthur.</p>
-                        </div>
-                        <div class="group cursor-pointer">
-                            <p class="font-mono text-[10px] text-orange-500 mb-2 uppercase">National Event</p>
-                            <h4 class="text-4xl font-bold mb-4 tracking-tighter group-hover:italic transition-all">SM Kunstturnen</h4>
-                            <p class="text-gray-500 leading-relaxed">Medienplatz-Management und visuelle Ausspielung der Schweizer Meisterschaften.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="py-60 bg-black text-[#EBE1D1] text-center relative">
-        <div class="container mx-auto px-6">
-            <h2 class="font-display italic text-7xl md:text-[14rem] font-bold leading-none tracking-tighter mb-24 reveal-text">Work <br/>Together.</h2>
-            <a href="mailto:hello@motionroots.com" class="inline-block text-2xl md:text-5xl font-display italic hover:text-[#6E3B49] transition-all border-b-2 border-[#6E3B49]">Sag Hallo.</a>
-        </div>
-    </footer>
+        </footer>
+    </main>
+    
     <script src="work-header.js"></script>
 </body>
 </html>

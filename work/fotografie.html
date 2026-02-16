@@ -638,21 +638,8 @@
         </div>
       </div>
     </nav>
-
-    <!-- HERO SECTION WITH CANVAS -->
-    <section class="hero-section">
-      <div class="hero-canvas-container">
-        <canvas id="plane-canvas"></canvas>
-        <canvas id="main-canvas"></canvas>
-      </div>
-      <div class="hero-title">
-        <h1 class="fluid">scroll<br>down.</h1>
-      </div>
-      <div class="hero-instruction">Hold mouse button</div>
-    </section>
-
-    <!-- Content Wrap -->
-    <div class="content-wrap">
+      <div class="content-wrap">
+    <canvas id="main-canvas"></canvas>
       <header>
         <h1 class="fluid">scroll<br>down.</h1>
       </header>
@@ -661,31 +648,27 @@
           <div class="content">
             <div class="grid">
               <div class="layer">
-                <div><img src="../assets/images/photography/DSC00922.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/Lia 1.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/DSC00928.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/DSC00936.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/DSC00938.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/DSC00943.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/gallery_shooting_2.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/gallery_corona_1.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/gallery_ballet_1.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/gallery_projector_3.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/gallery_corona_8.jpg" alt="Fotografie"></div>
               </div>
               <div class="layer">
-                <div><img src="../assets/images/photography/Lia 2.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/DSC00949.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/Ballet 1.png" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/Corona(5 von 10).JPG" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/Corona(6 von 10).jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/Corona(7 von 10).jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/gallery_shooting_4.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/gallery_corona_3.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/gallery_ballet_2.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/gallery_projector_1.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/gallery_shooting_3.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/gallery_corona_6.jpg" alt="Fotografie"></div>
               </div>
               <div class="layer">
-                <div><img src="../assets/images/photography/Corona(10 von 10) 2.JPG" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/Lia 1.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/Lia 2.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/Ballet 2.png" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/slider1.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/foto1.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/gallery_projector_2.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/gallery_shooting_5.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/gallery_corona_2.jpg" alt="Fotografie"></div>
               </div>
               <div class="scaler">
-                <img src="../assets/images/photography/scaler.jpg" alt="Fotografie">
+                <img src="../assets/images/photography/gallery_shooting_1.jpg" alt="Fotografie">
               </div>
             </div>
           </div>
@@ -1290,41 +1273,39 @@
         '(animation-timeline: view()) and (animation-range: 0 100%)'
       );
 
-      if (!hasScrollSupport) {
-        gsap.registerPlugin(ScrollTrigger);
+      gsap.registerPlugin(ScrollTrigger);
 
-        window.addEventListener('load', () => {
-          requestAnimationFrame(() => {
-            gsap.timeline({
-              scrollTrigger: {
-                trigger: 'main section:first-of-type',
-                start: 'top -10%',
-                end: 'bottom 80%',
-                scrub: true,
-              },
-            })
-            .from('.scaler img', { height: window.innerHeight - 32, ease: 'power1.inOut' }, 0)
-            .from('.scaler img', { width: window.innerWidth - 32, ease: 'power2.inOut' }, 0);
+      window.addEventListener('load', () => {
+        requestAnimationFrame(() => {
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: 'main section:first-of-type',
+              start: 'top -10%',
+              end: 'bottom 80%',
+              scrub: true,
+            },
+          })
+          .from('.scaler img', { height: window.innerHeight - 32, ease: 'power1.inOut' }, 0)
+          .from('.scaler img', { width: window.innerWidth - 32, ease: 'power2.inOut' }, 0);
 
-            gsap.timeline({
-              scrollTrigger: {
-                trigger: 'main section:first-of-type',
-                start: 'top -40%',
-                end: 'bottom bottom',
-                scrub: true,
-              },
-            })
-            .from('.layer:nth-of-type(1)', { opacity: 0, ease: 'sine.out' }, 0)
-            .from('.layer:nth-of-type(1)', { scale: 0, ease: 'power1.inOut' }, 0)
-            .from('.layer:nth-of-type(2)', { opacity: 0, ease: 'sine.out' }, 0)
-            .from('.layer:nth-of-type(2)', { scale: 0, ease: 'power3.inOut' }, 0)
-            .from('.layer:nth-of-type(3)', { opacity: 0, ease: 'sine.out' }, 0)
-            .from('.layer:nth-of-type(3)', { scale: 0, ease: 'power4.inOut' }, 0);
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: 'main section:first-of-type',
+              start: 'top -40%',
+              end: 'bottom bottom',
+              scrub: true,
+            },
+          })
+          .from('.layer:nth-of-type(1)', { opacity: 0, ease: 'sine.out' }, 0)
+          .from('.layer:nth-of-type(1)', { scale: 0, ease: 'power1.inOut' }, 0)
+          .from('.layer:nth-of-type(2)', { opacity: 0, ease: 'sine.out' }, 0)
+          .from('.layer:nth-of-type(2)', { scale: 0, ease: 'power3.inOut' }, 0)
+          .from('.layer:nth-of-type(3)', { opacity: 0, ease: 'sine.out' }, 0)
+          .from('.layer:nth-of-type(3)', { scale: 0, ease: 'power4.inOut' }, 0);
 
-            ScrollTrigger.refresh();
-          });
+          ScrollTrigger.refresh();
         });
-      }
+      });
 
       // ============ Extra hover animations via GSAP ============
       window.addEventListener('load', () => {
