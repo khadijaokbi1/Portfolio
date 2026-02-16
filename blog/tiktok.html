@@ -20,234 +20,568 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Tenor+Sans:wght@400&display=swap" rel="stylesheet">
     
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Styles -->
-    <link rel="stylesheet" href="../assets/css/legacy.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/blog.css">
+    <!-- GSAP & Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+    
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    
+<style>
+        :root {
+            --bg-primary: #000;
+            --bg-secondary: #F8F7F4;
+            --text-dark: #121212;
+            --accent-burgundy: #6E3B49;
+            --text-gray: #666666;
+            --font-body: 'Outfit', sans-serif;
+            --font-display: 'Playfair Display', serif;
+        }
+
+        body {
+            background-color: var(--bg-secondary);
+            color: var(--text-dark);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            padding-top: 72px;
+        }
+
+        /* Reading Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            height: 3px;
+            background: rgba(0,0,0,0.05);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--accent-burgundy);
+            width: 0%;
+        }
+
+        /* Grid Layout */
+        .editorial-container {
+            max-width: 140rem;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            padding: 0 4rem;
+        }
+
+        /* Navigation */
+        .nav-header {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4rem 0;
+            z-index: 100;
+        }
+
+        .back-btn {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: var(--accent-burgundy);
+        }
+
+        /* Typography Styles */
+        .title-large {
+            font-family: var(--font-display);
+            font-size: clamp(6rem, 12vw, 16rem);
+            font-weight: 900;
+            line-height: 0.85;
+            letter-spacing: -0.04em;
+            margin-bottom: 6rem;
+            position: relative;
+        }
+
+        .title-italic {
+            font-style: italic;
+            font-weight: 400;
+            display: block;
+            margin-left: 10vw;
+            color: var(--accent-burgundy);
+        }
+
+        .meta-info {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        /* Content Blocks */
+        .article-main {
+            grid-column: 2 / 8;
+            padding-bottom: 20rem;
+        }
+
+        .article-sidebar {
+            grid-column: 9 / 13;
+            position: sticky;
+            top: 15rem;
+            height: fit-content;
+        }
+
+        .text-lead {
+            font-size: 1.8rem;
+            line-height: 1.4;
+            font-family: var(--font-body);
+            margin-bottom: 6rem;
+            font-weight: 400;
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+            text-align-last: left;
+        }
+
+        .text-body {
+            font-size: 1.8rem;
+            line-height: 1.8;
+            color: #222;
+        }
+
+        .text-body p {
+            margin-bottom: 3.5rem;
+            position: relative;
+        }
+
+        .text-body h2 {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-top: 8rem;
+            margin-bottom: 3rem;
+            line-height: 1.2;
+            color: var(--text-dark);
+        }
+
+        .text-body h3 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-top: 5rem;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+            color: var(--text-dark);
+        }
+
+        .text-body ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 3rem 0;
+        }
+
+        .text-body ul li {
+            margin-bottom: 2rem;
+            padding-left: 3rem;
+            position: relative;
+            font-size: 1.7rem;
+            line-height: 1.6;
+        }
+
+        .text-body ul li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent-burgundy);
+            font-weight: 700;
+        }
+
+        .text-body strong {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .drop-cap::first-letter {
+            font-family: var(--font-display);
+            font-size: 8rem;
+            float: left;
+            line-height: 0.7;
+            padding-right: 1.5rem;
+            margin-top: 1rem;
+            color: var(--accent-burgundy);
+            font-style: italic;
+        }
+
+        /* Pull Quote */
+        .pull-quote {
+            margin: 8rem 0;
+            padding: 4rem 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-style: italic;
+            line-height: 1.3;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .pull-quote-author {
+            display: block;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-top: 2rem;
+            font-style: normal;
+            font-family: var(--font-body);
+            font-weight: 600;
+        }
+
+        /* Media Elements */
+        .img-reveal-wrapper {
+            overflow: hidden;
+            border-radius: 0.4rem;
+            margin: 6rem 0;
+            background: #eee;
+        }
+
+        .img-reveal-wrapper img {
+            width: 100%;
+            height: auto;
+            transform: scale(1.1);
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Sidebar */
+        .sidebar-item {
+            margin-bottom: 4rem;
+        }
+
+        .sidebar-item h5 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .sidebar-item p {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: var(--text-gray);
+        }
+
+        /* Mobile Layout */
+        @media (max-width: 1024px) {
+            .editorial-container {
+                padding: 0 2rem;
+            }
+            .article-main { 
+                grid-column: 1 / -1; 
+            }
+            .article-sidebar { 
+                display: none; 
+            }
+            .title-large { 
+                font-size: 8rem; 
+            }
+            .back-btn {
+                font-size: 1rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-burgundy); }
+
+    </style>
 </head>
 <body>
     <!-- Reading Progress Bar -->
-    <div class="reading-progress">
-        <div class="reading-progress-bar"></div>
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
     </div>
 
     <!-- Header -->
-    <header class="site-header is-solid" aria-label="Navigation">
+    <header class="site-header" id="top">
         <div class="container nav-bar">
             <a href="../home.html" class="logo">
-                <img src="../assets/images/branding/logo_black.png" alt="Khadija Okbi Logo" width="40">
-                <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi Logo" width="40" class="logo-onscroll">
+                <img src="../assets/images/branding/logo_black.png" alt="Khadija Okbi Logo" width="45">
+                <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi Logo" width="45" class="logo-onscroll">
             </a>
-            <nav class="nav" aria-label="Hauptnavigation">
+            <nav class="nav">
                 <a href="../home.html#hero" class="nav-link">Home</a>
-                <a href="../home.html#expertise" class="nav-link">Work</a>
+                <a href="../home.html#expertise" class="nav-link">What I do</a>
                 <a href="../home.html#blog" class="nav-link">Blog</a>
-                <a href="../pages/about.html" class="nav-link">About</a>
+                <a href="../about.html" class="nav-link">About me</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="blog-hero">
-        <div class="blog-hero-bg"></div>
-        <div class="blog-hero-content">
-            <h1 class="blog-hero-title">10k Follower in 30 Tagen</h1>
-            <p class="blog-hero-subtitle">Meine Faceless TikTok Strategie</p>
-            <div class="blog-hero-meta">
-                <span>📖 5 Min Lesezeit</span>
-                <span>📱 Social Media</span>
-                <span>📅 Januar 2026</span>
-            </div>
+    <div class="editorial-container">
+        <!-- Navigation Header -->
+        <div class="nav-header">
+            <a href="../home.html#blog" class="back-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Zurück
+            </a>
         </div>
-    </section>
 
-    <!-- Article Content -->
-    <article class="article-container">
-        <div class="article-body">
-            <p class="drop-cap reveal-on-scroll">
+        <!-- Hero Header -->
+        <div class="grid col-span-12 py-20">
+            <span class="meta-info stagger-item">Lesezeit: 5 Minuten // Social Media</span>
+            <h1 class="title-large stagger-item">
+                10k Follower <br>
+                <span class="title-italic">in 30 Tagen</span>
+            </h1>
+        </div>
+
+        <!-- Main Article Content -->
+        <main class="article-main">
+            <p class="text-lead reveal-item drop-cap">
                 Als ich mein Faceless TikTok-Projekt startete, hatte ich ein klares Ziel: Beweisen, dass man auch ohne Gesicht zu zeigen eine engagierte Community aufbauen kann. Das Ergebnis? 10.000 Follower in nur 30 Tagen – komplett organisch, ohne einen einzigen Cent in Werbung zu investieren.
             </p>
 
-            <h2 class="reveal-on-scroll">🎯 Die Strategie: Weniger ist mehr</h2>
-            
-            <p class="reveal-on-scroll">
-                Der größte Fehler, den die meisten Content Creator machen: Sie versuchen, perfekt zu sein. Stundenlange Bearbeitung, teure Ausrüstung, komplizierte Setups. Dabei ist das Gegenteil der Fall – TikTok belohnt Authentizität und Konsistenz, nicht Perfektion.
-            </p>
+            <div class="text-body">
+                <h2 class="reveal-item">Die Strategie: Weniger ist mehr</h2>
+                
+                <p class="reveal-item">
+                    Der größte Fehler, den die meisten Content Creator machen: Sie versuchen, perfekt zu sein. Stundenlange Bearbeitung, teure Ausrüstung, komplizierte Setups. Dabei ist das Gegenteil der Fall – TikTok belohnt Authentizität und Konsistenz, nicht Perfektion.
+                </p>
 
-            <figure class="article-image reveal-on-scroll">
-                <img src="../assets/images/blog/tiktok.png" alt="TikTok Analytics Dashboard" loading="lazy">
-                <figcaption>Organisches Wachstum: Von 0 auf 10k in 30 Tagen</figcaption>
-            </figure>
+                <div class="img-reveal-wrapper reveal-item">
+                    <img src="../assets/images/blog/tiktok.png" alt="TikTok Analytics Dashboard">
+                </div>
 
-            <h2 class="reveal-on-scroll">📊 Die 3 Säulen meiner Strategie</h2>
+                <h2 class="reveal-item">Die 3 Säulen meiner Strategie</h2>
 
-            <h3 class="reveal-on-scroll">1. Nischen-Fokus: Trading & Finanzen</h3>
-            <p class="reveal-on-scroll">
-                Anstatt breit zu streuen, fokussierte ich mich auf eine klare Nische: Trading-Psychologie und finanzielle Bildung. Der Vorteil? Eine hochengagierte Zielgruppe, die aktiv nach genau diesem Content sucht.
-            </p>
+                <h3 class="reveal-item">1. Nischen-Fokus: Trading & Finanzen</h3>
+                <p class="reveal-item">
+                    Anstatt breit zu streuen, fokussierte ich mich auf eine klare Nische: Trading-Psychologie und finanzielle Bildung. Der Vorteil? Eine hochengagierte Zielgruppe, die aktiv nach genau diesem Content sucht.
+                </p>
 
-            <h3 class="reveal-on-scroll">2. Hook-Format: Die ersten 3 Sekunden entscheiden</h3>
-            <p class="reveal-on-scroll">
-                TikTok-Nutzer scrollen schnell. Sehr schnell. Deshalb beginnt jedes meiner Videos mit einem starken Hook:
-            </p>
-            <blockquote class="pull-quote reveal-on-scroll">
-                "95% der Trader verlieren Geld. Hier ist warum..."
-                <span class="pull-quote-author">— Typischer Video-Hook</span>
-            </blockquote>
+                <h3 class="reveal-item">2. Hook-Format: Die ersten 3 Sekunden entscheiden</h3>
+                <p class="reveal-item">
+                    TikTok-Nutzer scrollen schnell. Sehr schnell. Deshalb beginnt jedes meiner Videos mit einem starken Hook:
+                </p>
 
-            <h3 class="reveal-on-scroll">3. Konsistenz schlägt Qualität</h3>
-            <p class="reveal-on-scroll">
-                Ich postete 3-4 Videos pro Tag. Nicht alle waren perfekt. Aber sie waren konsistent. TikTok's Algorithmus liebt Accounts, die regelmäßig Content liefern. Das Ergebnis? Mehr Reichweite, mehr Follower, mehr Engagement.
-            </p>
+                <blockquote class="pull-quote reveal-item">
+                    "95% der Trader verlieren Geld. Hier ist warum..."
+                    <span class="pull-quote-author">— Typischer Video-Hook</span>
+                </blockquote>
 
-            <h2 class="reveal-on-scroll">🛠️ Das Setup: Simpel & Effektiv</h2>
+                <h3 class="reveal-item">3. Konsistenz schlägt Qualität</h3>
+                <p class="reveal-item">
+                    Ich postete 3-4 Videos pro Tag. Nicht alle waren perfekt. Aber sie waren konsistent. TikTok's Algorithmus liebt Accounts, die regelmäßig Content liefern. Das Ergebnis? Mehr Reichweite, mehr Follower, mehr Engagement.
+                </p>
 
-            <p class="reveal-on-scroll">
-                Mein Equipment war bewusst minimal gehalten:
-            </p>
-            <ul style="list-style: none; padding-left: 0; margin: 2rem 0;">
-                <li class="reveal-on-scroll" style="margin-bottom: 1rem;">✅ <strong>Smartphone</strong> – Keine teure Kamera nötig</li>
-                <li class="reveal-on-scroll" style="margin-bottom: 1rem;">✅ <strong>CapCut</strong> – Kostenlose Editing-App</li>
-                <li class="reveal-on-scroll" style="margin-bottom: 1rem;">✅ <strong>Stock-Footage</strong> – Kostenlose B-Roll Videos</li>
-                <li class="reveal-on-scroll" style="margin-bottom: 1rem;">✅ <strong>AI-Voiceover</strong> – Text-to-Speech für anonyme Videos</li>
-            </ul>
+                <h2 class="reveal-item">Das Setup: Simpel & Effektiv</h2>
 
-            <h2 class="reveal-on-scroll">📈 Die Ergebnisse: Zahlen sprechen für sich</h2>
+                <p class="reveal-item">
+                    Mein Equipment war bewusst minimal gehalten:
+                </p>
 
-            <p class="reveal-on-scroll">
-                Nach 30 Tagen hatte ich erreicht:
-            </p>
-            <ul style="list-style: none; padding-left: 0; margin: 2rem 0;">
-                <li class="reveal-on-scroll" style="margin-bottom: 1rem;">📊 <strong>10.247 Follower</strong> – Organisches Wachstum</li>
-                <li class="reveal-on-scroll" style="margin-bottom: 1rem;">👁️ <strong>2,3M Views</strong> – Durchschnittlich 20k pro Video</li>
-                <li class="reveal-on-scroll" style="margin-bottom: 1rem;">💬 <strong>15% Engagement-Rate</strong> – Hochaktive Community</li>
-                <li class="reveal-on-scroll" style="margin-bottom: 1rem;">🎯 <strong>0€ Ad-Spend</strong> – Komplett organisch</li>
-            </ul>
+                <ul>
+                    <li class="reveal-item"><strong>Smartphone</strong> – Keine teure Kamera nötig</li>
+                    <li class="reveal-item"><strong>CapCut</strong> – Kostenlose Editing-App</li>
+                    <li class="reveal-item"><strong>Stock-Footage</strong> – Kostenlose B-Roll Videos</li>
+                    <li class="reveal-item"><strong>AI-Voiceover</strong> – Text-to-Speech für anonyme Videos</li>
+                </ul>
 
-            <h2 class="reveal-on-scroll">💡 Die wichtigsten Learnings</h2>
+                <h2 class="reveal-item">Die Ergebnisse: Zahlen sprechen für sich</h2>
 
-            <p class="reveal-on-scroll">
-                <strong>1. Algorithmus verstehen:</strong> TikTok belohnt Watch-Time und Engagement, nicht Follower-Zahlen. Ein Video mit 100% Watch-Time und 50 Views ist wertvoller als eines mit 10.000 Views und 20% Watch-Time.
-            </p>
+                <p class="reveal-item">
+                    Nach 30 Tagen hatte ich erreicht:
+                </p>
 
-            <p class="reveal-on-scroll">
-                <strong>2. Trends nutzen, aber nicht kopieren:</strong> Ich beobachtete Trends in meiner Nische und adaptierte sie auf meine Art. So blieb ich relevant, ohne meine Authentizität zu verlieren.
-            </p>
+                <ul>
+                    <li class="reveal-item"><strong>10.247 Follower</strong> – Organisches Wachstum</li>
+                    <li class="reveal-item"><strong>2,3M Views</strong> – Durchschnittlich 20k pro Video</li>
+                    <li class="reveal-item"><strong>15% Engagement-Rate</strong> – Hochaktive Community</li>
+                    <li class="reveal-item"><strong>0€ Ad-Spend</strong> – Komplett organisch</li>
+                </ul>
 
-            <p class="reveal-on-scroll">
-                <strong>3. Community first:</strong> Ich antwortete auf jeden Kommentar in den ersten 30 Minuten nach Upload. Das signalisiert dem Algorithmus: "Dieses Video ist relevant!"
-            </p>
+                <h2 class="reveal-item">Die wichtigsten Learnings</h2>
 
-            <h2 class="reveal-on-scroll">🚀 Fazit: Du brauchst kein Gesicht für Erfolg</h2>
+                <p class="reveal-item">
+                    <strong>1. Algorithmus verstehen:</strong> TikTok belohnt Watch-Time und Engagement, nicht Follower-Zahlen. Ein Video mit 100% Watch-Time und 50 Views ist wertvoller als eines mit 10.000 Views und 20% Watch-Time.
+                </p>
 
-            <p class="reveal-on-scroll">
-                Die größte Erkenntnis aus diesem Experiment? Man braucht kein Gesicht, keine teure Ausrüstung und kein Werbebudget, um auf TikTok erfolgreich zu sein. Was man braucht, ist eine klare Strategie, Konsistenz und das Verständnis für den Algorithmus.
-            </p>
+                <p class="reveal-item">
+                    <strong>2. Trends nutzen, aber nicht kopieren:</strong> Ich beobachtete Trends in meiner Nische und adaptierte sie auf meine Art. So blieb ich relevant, ohne meine Authentizität zu verlieren.
+                </p>
 
-            <p class="reveal-on-scroll">
-                Wenn du auch eine Faceless-Strategie aufbauen willst, starte heute. Nicht morgen. Nicht nächste Woche. Der beste Zeitpunkt ist jetzt.
-            </p>
+                <p class="reveal-item">
+                    <strong>3. Community first:</strong> Ich antwortete auf jeden Kommentar in den ersten 30 Minuten nach Upload. Das signalisiert dem Algorithmus: "Dieses Video ist relevant!"
+                </p>
 
-            <!-- Share Buttons -->
-            <div class="share-buttons reveal-on-scroll">
-                <button class="share-btn" data-platform="twitter" aria-label="Auf Twitter teilen">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
-                    </svg>
-                </button>
-                <button class="share-btn" data-platform="linkedin" aria-label="Auf LinkedIn teilen">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
-                        <circle cx="4" cy="4" r="2"/>
-                    </svg>
-                </button>
-                <button class="share-btn" data-platform="facebook" aria-label="Auf Facebook teilen">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
-                    </svg>
-                </button>
-                <button class="share-btn" data-platform="copy" aria-label="Link kopieren">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                    </svg>
-                </button>
+                <h2 class="reveal-item">Fazit: Du brauchst kein Gesicht für Erfolg</h2>
+
+                <p class="reveal-item">
+                    Die größte Erkenntnis aus diesem Experiment? Man braucht kein Gesicht, keine teure Ausrüstung und kein Werbebudget, um auf TikTok erfolgreich zu sein. Was man braucht, ist eine klare Strategie, Konsistenz und das Verständnis für den Algorithmus.
+                </p>
+
+                <p class="reveal-item">
+                    Wenn du auch eine Faceless-Strategie aufbauen willst, starte heute. Nicht morgen. Nicht nächste Woche. Der beste Zeitpunkt ist jetzt.
+                </p>
             </div>
-        </div>
+        </main>
 
-        <!-- Article Navigation -->
-        <nav class="article-navigation" aria-label="Weitere Artikel">
-            <a href="threads.html" class="nav-article prev">
-                <div class="nav-label">← Vorheriger Artikel</div>
-                <div class="nav-title">Trending on Threads</div>
-            </a>
-            <a href="idpa.html" class="nav-article next">
-                <div class="nav-label">Nächster Artikel →</div>
-                <div class="nav-title">Die Illusion der freien Meinung</div>
-            </a>
-        </nav>
-    </article>
+        <!-- Sidebar -->
+        <aside class="article-sidebar">
+            <div class="border-l border-black/10 pl-8 space-y-12">
+                <div class="sidebar-item reveal-item">
+                    <h5>Über das Projekt</h5>
+                    <p style="font-style: italic;">30-Tage Challenge zum Aufbau einer organischen TikTok-Community ohne Gesicht zu zeigen.</p>
+                </div>
+                
+                <div class="sidebar-item reveal-item">
+                    <h5>Strategie</h5>
+                    <p style="line-height: 1.6;">Fokus auf Nische, starke Hooks und tägliche Konsistenz als Erfolgsfaktoren.</p>
+                </div>
 
-    <!-- Reading Time Indicator -->
-    <div class="reading-time">5 Min</div>
-
-    <!-- Back to Top Button -->
-    <button class="back-to-top" aria-label="Zurück nach oben">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 15l-6-6-6 6"/>
-        </svg>
-    </button>
+                <div class="sidebar-item reveal-item">
+                    <h5>Ergebnis</h5>
+                    <p style="line-height: 1.6;">10.247 Follower und 2,3M Views in nur 30 Tagen – komplett organisch.</p>
+                </div>
+            </div>
+        </aside>
+    </div>
 
     <!-- Footer -->
-    <footer class="site-footer blog-footer" aria-label="Seitenende">
+    <footer class="site-footer" aria-label="Seitenende">
         <div class="container footer-inner">
-            <div class="footer-copy">Design & Development by Khadija Okbi</div>
-            
+            <div class="footer-copy">© 2026 Design & Development by Khadija Okbi</div>
             <div class="footer-socials" aria-label="Soziale Netzwerke">
                 <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/>
                     </svg>
                 </a>
                 <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <rect x="2" y="2" width="20" height="20" rx="2" fill="currentColor" opacity="0.15"/>
-                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                        <path d="M6.5 9.5v8.5M6.5 7.5a0.5 0.5 0 1 1 0 1z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <circle cx="6.5" cy="7.5" r="0.8" fill="currentColor"/>
-                        <path d="M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/>
+                        <path d="M6.5 9.5v8.5M6.5 7.5v.01M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </a>
                 <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" fill="currentColor" stroke="currentColor" stroke-width="0.5"/>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M16 7.5c.5 0 .9.04 1.3.12v3.38a4.2 4.2 0 0 1-2.3-.64v5.64A4.86 4.86 0 0 1 11 20a4.86 4.86 0 0 1-4.86-4.86 4.86 4.86 0 0 1 4.86-4.86c.28 0 .55.03.81.08V7.5h.19c1.14 0 2.09.37 2.99 1.03V7.5z" fill="currentColor"/>
                     </svg>
                 </a>
                 <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.1" fill="none"/>
                         <path d="M3.5 7.5l8.5 5 8.5-5" stroke="currentColor" stroke-width="1.1" fill="none"/>
                         <path d="M12 21.5v-10" stroke="currentColor" stroke-width="1.1" fill="none"/>
                     </svg>
                 </a>
             </div>
-
-            <div class="footer-links">
-                <a href="../pages/impressum.html" class="footer-link">Impressum</a>
-                <a href="mailto:khadijaokbi@gmail.com" class="footer-link contact-btn">
-                    <span>Kontakt</span>
-                </a>
-                <a href="../pages/datenschutz.html" class="footer-link">Datenschutz</a>
-            </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/blog.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Progress Bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            if(document.getElementById("myBar")) {
+                document.getElementById("myBar").style.width = scrolled + "%";
+            }
+        };
+
+        // Hero Stagger
+        gsap.from(".stagger-item", {
+            y: 60,
+            opacity: 0,
+            duration: 1.4,
+            stagger: 0.2,
+            ease: "power4.out"
+        });
+
+        // Content Reveal on Scroll
+        gsap.utils.toArray(".reveal-item").forEach((item) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                },
+                y: 40,
+                opacity: 0,
+                duration: 1.2,
+                ease: "power2.out"
+            });
+        });
+
+        // Image Zoom in Wrapper
+        gsap.utils.toArray(".img-reveal-wrapper img").forEach((img) => {
+            gsap.to(img, {
+                scrollTrigger: {
+                    trigger: img,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                },
+                scale: 1,
+                ease: "none"
+            });
+        });
+
+        // Sidebar smooth sticky logic
+        gsap.from(".article-sidebar", {
+            scrollTrigger: {
+                trigger: ".article-main",
+                start: "top center",
+                toggleActions: "play none none none"
+            },
+            opacity: 0,
+            x: 20,
+            duration: 1.5,
+            ease: "power3.out"
+        });
+
+        // Smooth anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', e => {
+                const target = document.querySelector(link.getAttribute('href'));
+                if (!target) return;
+                e.preventDefault();
+                window.scrollTo({
+                    top: target.offsetTop - 64,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Sticky Header
+        const header = document.querySelector('.site-header');
+        const updateHeader = () =>
+            header?.classList.toggle('is-solid', window.scrollY > 100);
+
+        window.addEventListener('scroll', updateHeader);
+        updateHeader();
+    </script>
 </body>
 </html>
