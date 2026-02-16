@@ -9,6 +9,13 @@
     <priority>1.0</priority>
   </url>
   
+  <url>
+    <loc>https://khadijaokbi.com/home.html</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
   <!-- About -->
   <url>
     <loc>https://khadijaokbi.com/about.html</loc>
