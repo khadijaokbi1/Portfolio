@@ -77,6 +77,8 @@ document.querySelectorAll('.event-toggle').forEach(toggle => {
 const mbtiItems = document.querySelectorAll('.mbti-item');
 const mbtiInfo = document.getElementById('mbtiInfo');
 
+const mbtiInfo = document.getElementById('mbtiInfo');
+
 // MBTI data for info box
 const mbtiData = {
   'Introvertiert': {
@@ -106,41 +108,49 @@ const mbtiData = {
 };
 
 // Animate MBTI circles on load
-mbtiItems.forEach((item, index) => {
-  const percent = parseInt(item.dataset.percent);
-  const circle = item.querySelector('.mbti-circle-progress');
-  const circumference = 283;
-  const offset = circumference - (percent / 100) * circumference;
-  
-  setTimeout(() => {
-    circle.style.strokeDashoffset = offset;
-  }, 300 + (index * 150));
-  
-  // Click handler for info update
-  item.addEventListener('click', () => {
-    const aspect = item.dataset.aspect;
-    updateMBTIInfo(aspect);
+if (mbtiItems.length > 0 && mbtiInfo) {
+  mbtiItems.forEach((item, index) => {
+    const percent = parseInt(item.dataset.percent);
+    const circle = item.querySelector('.mbti-circle-progress');
+    const circumference = 283;
+    const offset = circumference - (percent / 100) * circumference;
     
-    // Visual feedback
-    mbtiItems.forEach(i => i.style.opacity = '0.5');
-    item.style.opacity = '1';
+    setTimeout(() => {
+      circle.style.strokeDashoffset = offset;
+    }, 300 + (index * 150));
+    
+    // Click handler for info update
+    item.addEventListener('click', () => {
+      const aspect = item.dataset.aspect;
+      updateMBTIInfo(aspect);
+      
+      // Visual feedback
+      mbtiItems.forEach(i => i.style.opacity = '0.5');
+      item.style.opacity = '1';
+    });
+    
+    item.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        item.click();
+      }
+    });
   });
-  
-  item.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      item.click();
-    }
-  });
-});
+}
 
 function updateMBTIInfo(aspect) {
+  if (!mbtiInfo) return;
+  
   const data = mbtiData[aspect];
   if (!data) return;
   
-  mbtiInfo.querySelector('.mbti-info-title').textContent = data.title;
-  mbtiInfo.querySelector('.mbti-info-text').textContent = data.description;
-  mbtiInfo.querySelectorAll('.mbti-info-desc')[0].textContent = data.thinking;
-  mbtiInfo.querySelectorAll('.mbti-info-desc')[1].textContent = data.similar;
+  const titleEl = mbtiInfo.querySelector('.mbti-info-title');
+  const textEl = mbtiInfo.querySelector('.mbti-info-text');
+  const descEls = mbtiInfo.querySelectorAll('.mbti-info-desc');
+  
+  if (titleEl) titleEl.textContent = data.title;
+  if (textEl) textEl.textContent = data.description;
+  if (descEls[0]) descEls[0].textContent = data.thinking;
+  if (descEls[1]) descEls[1].textContent = data.similar;
   
   // Animate update
   gsap.fromTo(mbtiInfo, 
@@ -275,14 +285,17 @@ const logoLinks = document.querySelectorAll('.logo');
 
 logoLinks.forEach(link => {
   link.addEventListener('click', (e) => {
-    if (link.getAttribute('href') === 'index.html') return;
-    
-    e.preventDefault();
-    if (smoother) {
-      smoother.scrollTo(0, true);
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    const href = link.getAttribute('href');
+    // Only prevent default and smooth scroll if we're staying on the same page
+    if (!href || href === '#' || href === 'about.html') {
+      e.preventDefault();
+      if (smoother) {
+        smoother.scrollTo(0, true);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
+    // Allow normal navigation for other hrefs (like 'index.html')
   });
 });
 

@@ -12,6 +12,9 @@
   --spacing-lg: calc(var(--spacing-unit) * var(--golden-ratio));
   --spacing-xl: calc(var(--spacing-unit) * var(--golden-ratio) * var(--golden-ratio));
   --spacing-2xl: calc(var(--spacing-unit) * var(--golden-ratio) * var(--golden-ratio) * var(--golden-ratio));
+  
+  /* Image paths */
+  --hero-bg-image: url('../images/about/hero-bg-2.jpg');
 }
 
 /* ===== BASE STYLES ===== */
@@ -46,7 +49,7 @@ html {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background-image: url('../images/about/hero-bg-2.jpg');
+  background-image: var(--hero-bg-image);
   background-size: cover;
   background-position: center;
 }
