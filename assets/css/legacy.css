@@ -201,6 +201,32 @@
     }
   }
 
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+  }
+  .hero-content-wrapper {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 8vw;
+  }
+  .hero-claim {
+    font-size: clamp(3rem, 7vw, 8rem);
+    line-height: 0.95;
+    font-style: italic;
+    font-weight: 700;
+    color: #fff;
+    font-family: var(--font-higuen);
+  }
+  .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(40px);
+  }
 /* ========================================= 7. SKILLS SECTION - NEW ACCORDION SYSTEM ========================================= */
 .section-skills {
   padding: clamp(60px, 8vw, 120px) 0;
@@ -297,13 +323,11 @@
 }
 .accordion-content {
   overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease-out 0.1s, padding 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  /* Initial state and animations handled by GSAP in animations.js */
 }
 .accordion-item.active .accordion-content {
-  max-height: 2000px;
+  /* max-height and opacity animated by GSAP - only set padding here */
   width: 100%;
-  opacity: 1;
   padding-bottom: clamp(30px, 4vw, 50px);
 }
 /* Skills Table */
@@ -601,7 +625,7 @@
   transform: translateY(10px);
   animation: blogReveal 0.8s ease-out forwards;
   height: 40vh;
-  width: 15vw;
+  width: 22vw;
 }
 
 .blog-card:nth-child(1) {
@@ -629,14 +653,24 @@
 }
 
 .blog-thumb {
-  height: 30vh;
+  height: 20vh;
   background-size: cover;
   background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: transform 0.6s var(--easing-standard);
   position: relative;
   overflow: hidden;
+}
+
+.blog-thumb::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(110, 59, 73, 0) 0%, rgba(110, 59, 73, 0.2) 100%);
+  transition: background 0.4s var(--easing-standard);
+}
+
+.blog-card:hover .blog-thumb {
+  transform: scale(1.08);
 }
 
 .blog-content {
