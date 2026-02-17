@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Über mich | Khadija Okbi</title>
+  <meta name="description" content="Erfahre mehr über Khadija Okbi — Mediamatikerin, Creative Director und strategische Visionärin.">
+  <meta property="og:title" content="Über Khadija Okbi | Creative Director & Developer">
+  <meta property="og:image" content="https://khadijaokbi.com/assets/images/hero/cutout.png">
+  <link rel="canonical" href="https://khadijaokbi.com/about.html">
+  <link rel="icon" type="image/png" href="assets/images/branding/logo_white.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Tenor+Sans&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/SplitText.min.js"></script>
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <style>
+  /* ==============================
+     DESIGN SYSTEM TOKENS
+     ============================== */
+  @font-face {
+    font-family: 'Higuen';
+    src: url('../fonts/Higuen.woff2') format('woff2');
+    font-weight: 100 900;
+    font-display: swap;
+  }
+
+  :root {
+    --bg-primary:         #000;
+    --bg-secondary:       #F5F5F5;
+    --bg-accent:          #F5F5F5;
+    --bg-dark:            #314A51;
+    --text-primary:       #0A0A0A;
+    --text-primary-light: #EBE1D1;
+    --text-secondary:     #525252;
+    --text-tertiary:      #56686A;
+    --accent-primary:     #2D2D2D;
+    --accent-secondary:   #56686A;
+    --accent-burgundy:    #6E3B49;
+    --accent-warm:        #B5A19E;
+    --border-light:       #56686A;
+    --border-default:     #6E3B49;
+    --mauve:              #B5A19E;
+
+    --font-body:     'Outfit', sans-serif;
+    --font-display:  'Playfair Display', serif;
+    --font-higuen:   'Higuen', serif;
+    --font-subtitel: 'Outfit', sans-serif;
+    --font-titel:    'Tenor Sans', sans-serif;
+
+    --space-1: 0.5rem;  --space-2: 1rem;   --space-3: 1.5rem;
+    --space-4: 2rem;    --space-6: 3rem;   --space-8: 4rem;
+    --space-12: 6rem;
+
+    --speed-fast:   150ms;
+    --speed-base:   250ms;
+    --speed-slow:   350ms;
+    --speed-slower: 500ms;
+
+    --easing-bounce:     cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+    --easing-spring:     cubic-bezier(0.34, 1.56, 0.64, 1);
+    --easing-expo:       cubic-bezier(0.16, 1, 0.3, 1);
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 40px -8px rgb(0 0 0 / 0.18);
+  }
+
+  /* ==============================
+     RESET & BASE
+     ============================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-family: var(--font-body); background: var(--bg-primary); color: var(--text-primary); overflow-x: hidden; line-height: 1.6; }
+  body { overflow-x: hidden; }
+  img { display: block; max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  ul, ol { list-style: none; }
+
+  /* ==============================
+     GRAIN
+     ============================== */
+  .grain-overlay {
+    position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.028;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ==============================
+     CONTAINER
+     ============================== */
+  .container {
+    max-width: 85vw;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 5vw, 3rem);
+  }
+
+  /* ==============================
+     TYPOGRAPHY UTILITIES
+     ============================== */
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent-burgundy);
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .section--dark .eyebrow,
+  .eyebrow--light { color: var(--mauve); }
+
+  .display-serif {
+    font-family: var(--font-higuen);
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+  }
+  .display-italic {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* ==============================
+     SECTION SHARED + PADDING
+     ============================== */
+  .work-section {
+    padding: clamp(5rem, 12vh, 8rem) 0;
+    position: relative;
+  }
+  .bg-cream   { background: var(--bg-secondary); color: var(--text-primary); }
+  .bg-darkbg  { background: var(--bg-primary);   color: var(--text-primary-light); }
+  .bg-teal    { background: var(--bg-dark);       color: var(--text-primary-light); }
+  .bg-burg    { background: var(--accent-burgundy); color: var(--text-primary-light); }
+
+  /* ==============================
+     WAVE TRANSITIONS (your exact system)
+     ============================== */
+
+  /* Hero → cream */
+  .hero-section::after {
+    content: ""; position: absolute; bottom: -1px; left: 0;
+    width: 100%; height: 18vh;
+    background-color: var(--bg-secondary);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: 100% 100%; -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat;
+    z-index: 4; pointer-events: none;
+  }
+
+  /* cream → teal */
+  .work-section.bg-cream::after {
+    content: ""; position: absolute; bottom: -1px; left: 0;
+    width: 100%; height: 20vh;
+    background-color: var(--bg-dark);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: 100% 100%; -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat;
+    z-index: 4; pointer-events: none;
+  }
+
+  /* teal → cream */
+  .work-section.bg-teal::after {
+    content: ""; position: absolute; bottom: -1px; left: 0;
+    width: 100%; height: 23vh;
+    background-color: var(--bg-secondary);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: 100% 100%; -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat;
+    z-index: 4; pointer-events: none;
+  }
+
+  /* cream → burgundy */
+  .work-section.bg-cream--to-burg::after {
+    content: ""; position: absolute; bottom: -1px; left: 0;
+    width: 100%; height: 22vh;
+    background-color: var(--accent-burgundy);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: 100% 100%; -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat;
+    z-index: 4; pointer-events: none;
+  }
+
+  /* burgundy → teal */
+  .work-section.bg-burg::after {
+    content: ""; position: absolute; bottom: -1px; left: 0;
+    width: 100%; height: 20vh;
+    background-color: var(--bg-dark);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: 100% 100%; -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat;
+    z-index: 4; pointer-events: none;
+  }
+
+  /* ==============================
+     HERO
+     ============================== */
+  .hero-section {
+    position: relative; height: 100vh; overflow: hidden;
+    background: var(--bg-primary);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-bg-img {
+    position: absolute; inset: 0;
+    background-image: url('assets/images/about/about_hero_collage.jpg');
+    background-size: cover; background-position: center;
+    opacity: 0.4; z-index: 1; will-change: transform;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0; z-index: 2;
+    background: radial-gradient(ellipse at center 70%, rgba(110,59,73,0.2) 0%, transparent 65%),
+                linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 40%, rgba(0,0,0,0.6) 100%);
+  }
+  .hero-header {
+    position: relative; z-index: 3; width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-top, .hero-bottom {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    font-family: var(--font-higuen);
+    font-size: clamp(4.5rem, 12vw, 10.5rem);
+    font-weight: 400;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-primary-light); white-space: nowrap; overflow: hidden;
+    will-change: transform;
+  }
+  .hero-top span, .hero-bottom span { display: inline-block; transform: translateY(110%); }
+  .hero-top    { top: 20%; }
+  .hero-bottom { bottom: 7%; top: auto; }
+  .hero-middle {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    font-family: var(--font-display); font-style: italic; font-weight: 400;
+    font-size: clamp(1.2rem, 3vw, 2.2rem);
+    color: var(--mauve); letter-spacing: 0.18em; white-space: nowrap;
+    overflow: hidden; top: 50%;
+  }
+  .hero-middle span { display: inline-block; transform: translateY(110%); }
+
+  /* portrait */
+  .hero-portrait-bg, .hero-portrait {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: clamp(200px, 28vw, 400px); pointer-events: none;
+  }
+  .hero-portrait-bg { z-index: 0; opacity: 0.3; filter: blur(3px); }
+  .hero-portrait    { z-index: 4; }
+
+  /* scroll hint */
+  .hero-scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    z-index: 6; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    opacity: 0;
+  }
+  .hero-scroll-hint span {
+    font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase;
+    color: rgba(235,225,209,0.4); font-family: var(--font-body);
+  }
+  .scroll-line {
+    width: 1px; height: 36px;
+    background: linear-gradient(180deg, transparent, var(--mauve), transparent);
+    animation: scrollPulse 2.2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100%{ opacity:0.3; transform:scaleY(1); } 50%{ opacity:1; transform:scaleY(1.15); } }
+
+  /* ==============================
+     ABOUT ME  (bg-cream)
+     ============================== */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: start;
+  }
+  @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } }
+
+  /* arch image */
+  .arch-wrap {
+    border-radius: 500px 500px 0 0;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    border: 1px solid rgba(110,59,73,0.12);
+  }
+  .arch-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(0.15);
+    transition: transform 0.8s var(--easing-expo), filter 0.8s ease;
+  }
+  .arch-wrap:hover img { transform: scale(1.03); filter: grayscale(0); }
+
+  /* decorative corner */
+  .arch-frame { position: relative; }
+  .arch-frame::before, .arch-frame::after {
+    content: ''; position: absolute;
+    width: 48px; height: 48px;
+    border-color: var(--accent-burgundy); border-style: solid; opacity: 0.5;
+  }
+  .arch-frame::before { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+  .arch-frame::after  { bottom: 0; right:0; border-width: 0 1px 1px 0; }
+
+  /* identity card */
+  .identity-card {
+    margin-top: var(--space-4); padding: var(--space-4) var(--space-6);
+    background: rgba(255,255,255,0.7); backdrop-filter: blur(8px);
+    border: 1px solid rgba(110,59,73,0.1);
+    box-shadow: var(--shadow-md);
+  }
+  .id-row { display: flex; flex-direction: column; gap: var(--space-3); }
+  .id-sep  { width: 100%; height: 1px; background: rgba(110,59,73,0.1); }
+  .id-label { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-burgundy); font-weight: 600; margin-bottom: 0.3rem; font-family: var(--font-body); }
+  .id-value  { font-family: var(--font-display); font-style: italic; font-size: 1.15rem; color: var(--text-primary); line-height: 1.4; }
+
+  /* right col */
+  .about-lead {
+    font-family: var(--font-higuen);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 400;
+    color: var(--text-primary);
+    line-height: 1.0;
+    margin-bottom: var(--space-6);
+  }
+  .about-lead em {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent-burgundy);
+  }
+  .about-body { font-size: clamp(0.9rem, 1.5vw, 1rem); color: var(--text-secondary); line-height: 1.8; font-weight: 300; }
+  .about-body + .about-body { margin-top: var(--space-3); }
+
+  /* profile mini cards */
+  .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4) var(--space-6); margin-top: var(--space-8); }
+  @media (max-width: 500px) { .profile-grid { grid-template-columns: 1fr; } }
+  .profile-card { border-top: 1px solid rgba(110,59,73,0.2); padding-top: var(--space-3); transition: transform var(--speed-slow) var(--easing-spring); }
+  .profile-card:hover { transform: translateY(-3px); }
+  .profile-card-title { font-family: var(--font-display); font-style: italic; font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0.5rem; }
+  .profile-card p { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.65; font-weight: 300; }
+
+  /* ==============================
+     TIMELINE  (bg-teal)
+     ============================== */
+  .timeline-section { overflow: hidden; }
+
+  .tl-section-header { margin-bottom: clamp(3rem, 8vh, 5rem); }
+  .tl-section-title {
+    font-family: var(--font-higuen);
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 400;
+    color: var(--text-primary-light);
+    margin-bottom: 0.75rem;
+  }
+  .tl-section-sub {
+    font-size: 0.88rem; color: rgba(235,225,209,0.5);
+    font-weight: 300; max-width: 420px;
+  }
+
+  /* vertical two-column timeline */
+  .tl-wrapper { position: relative; padding: 0.5rem 0; }
+
+  /* centre spine */
+  .tl-spine {
+    position: absolute;
+    left: 50%; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(181,161,158,0.25) 8%, rgba(181,161,158,0.25) 92%, transparent);
+    transform: translateX(-50%);
+    z-index: 0;
+  }
+  @media (max-width: 768px) { .tl-spine { left: 20px; } }
+
+  .tl-item {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    gap: 0;
+    margin-bottom: clamp(2rem, 5vh, 3.5rem);
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s var(--easing-expo), transform 0.8s var(--easing-expo);
+  }
+  .tl-item.in-view { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    .tl-item {
+      grid-template-columns: 40px 1fr;
+      grid-template-areas: "dot card";
+    }
+    .tl-spacer { display: none; }
+    .tl-card[data-side="left"] { grid-area: card; margin-left: 0; margin-right: 0; }
+  }
+
+  /* dot */
+  .tl-dot-col {
+    display: flex; justify-content: center; padding-top: 1.6rem;
+  }
+  .tl-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--bg-secondary);
+    border: 2px solid var(--accent-burgundy);
+    box-shadow: 0 0 0 5px rgba(110,59,73,0.15);
+    flex-shrink: 0; position: relative; z-index: 2;
+    transition: transform var(--speed-slow) var(--easing-spring), box-shadow var(--speed-slow) ease;
+  }
+  .tl-item:hover .tl-dot {
+    transform: scale(1.5);
+    box-shadow: 0 0 0 10px rgba(110,59,73,0.2);
+  }
+
+  /* card */
+  .tl-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(181,161,158,0.15);
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    transition: background var(--speed-slow) ease, border-color var(--speed-slow) ease, transform var(--speed-slow) var(--easing-expo), box-shadow var(--speed-slow) ease;
+    cursor: default;
+  }
+  .tl-card:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(110,59,73,0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+  }
+
+  /* left card aligns right */
+  .tl-item--left .tl-card { text-align: right; }
+  .tl-item--left .tl-spacer { order: 3; }
+  .tl-item--left .tl-dot-col { order: 2; }
+  .tl-item--left .tl-card   { order: 1; }
+  .tl-item--right .tl-card  { order: 3; }
+  .tl-item--right .tl-dot-col { order: 2; }
+  .tl-item--right .tl-spacer { order: 1; }
+
+  @media (max-width: 768px) {
+    .tl-item--left .tl-card, .tl-item--right .tl-card { text-align: left; order: 2; }
+    .tl-item--left .tl-spacer, .tl-item--right .tl-spacer { display: none; }
+    .tl-item--left .tl-dot-col, .tl-item--right .tl-dot-col { order: 1; }
+  }
+
+  .tl-year {
+    font-family: var(--font-higuen);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 400;
+    color: var(--accent-burgundy);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .tl-role {
+    font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--mauve); font-weight: 600; margin-bottom: 0.6rem; font-family: var(--font-body);
+  }
+  .tl-title {
+    font-family: var(--font-display); font-style: italic;
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    color: var(--text-primary-light); margin-bottom: var(--space-2); line-height: 1.3;
+  }
+  .tl-org {
+    font-size: 0.72rem; color: rgba(235,225,209,0.6);
+    font-style: italic; margin-top: 0.6rem; display: block;
+  }
+  .tl-desc {
+    font-size: 0.84rem; line-height: 1.78; color: rgba(235,225,209,0.75);
+    font-weight: 300; max-height: 0; overflow: hidden;
+    transition: max-height 0.6s var(--easing-expo), opacity 0.4s ease;
+    opacity: 0; margin-top: 0;
+  }
+  .tl-desc.open { max-height: 400px; opacity: 1; margin-top: var(--space-2); }
+  .tl-toggle {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--mauve); background: none; border: none; cursor: pointer;
+    font-family: var(--font-body); font-weight: 600; margin-top: 0.75rem;
+    padding: 0; opacity: 0.7; transition: opacity var(--speed-base);
+  }
+  .tl-toggle:hover { opacity: 1; }
+  .tl-toggle svg { transition: transform var(--speed-base) ease; }
+  .tl-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+  /* ── skills burg grid now defined below ── */
+
+  .mbti-item {
+    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+    cursor: default; transition: transform var(--speed-slow) var(--easing-spring);
+  }
+  .mbti-item:hover { transform: translateY(-6px); }
+  .mbti-item:hover .mbti-svg-el { filter: drop-shadow(0 4px 10px rgba(110,59,73,0.4)); }
+
+  /* SVG ring */
+  .mbti-svg-el { transform: rotate(-90deg); overflow: visible; }
+  .mbti-track  { fill: none; stroke: rgba(255,255,255,0.1); stroke-width: 5; }
+  .mbti-fill   {
+    fill: none; stroke: var(--accent-burgundy); stroke-width: 5; stroke-linecap: round;
+    transition: stroke-dashoffset 2.6s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  /* percent in centre */
+  .mbti-num-wrap { position: relative; }
+  .mbti-num {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-style: italic;
+    font-size: 0.92rem; color: var(--text-primary-light); font-weight: 400;
+    pointer-events: none;
+  }
+  .mbti-label {
+    font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(235,225,209,0.55); font-family: var(--font-body); text-align: center;
+  }
+
+  /* MBTI info */
+  .mbti-info-box {
+    padding: var(--space-4);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(181,161,158,0.15);
+    margin-top: var(--space-4);
+    transition: background var(--speed-slow) ease, border-color var(--speed-slow) ease;
+  }
+  .mbti-info-box:hover { background: rgba(255,255,255,0.07); border-color: rgba(181,161,158,0.3); }
+  .mbti-info-title {
+    font-family: var(--font-display); font-style: italic;
+    font-size: 1.2rem; color: var(--mauve); margin-bottom: 0.6rem;
+  }
+  .mbti-info-box p { font-size: 0.82rem; color: rgba(235,225,209,0.45); line-height: 1.72; font-weight: 300; }
+
+  /* skill bars */
+  .skill-section-title {
+    font-family: var(--font-display); font-style: italic;
+    font-size: 1.4rem; color: var(--text-primary-light); margin-bottom: var(--space-4); display: block;
+  }
+  .skills-burg-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 6vw, 6rem); align-items: start;
+  }
+  @media (max-width: 700px) { .skills-burg-grid { grid-template-columns: 1fr; } }
+  .skills-list { display: flex; flex-direction: column; gap: var(--space-3); }
+  .skill-row span {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 0.5rem;
+  }
+  .skill-name { font-size: 0.82rem; color: var(--text-primary-light); font-weight: 400; letter-spacing: 0.03em; }
+  .skill-pct-label {
+    font-family: var(--font-display); font-style: italic;
+    font-size: 0.9rem; color: var(--mauve); min-width: 2.5rem; text-align: right;
+  }
+  .skill-track {
+    height: 3px; background: rgba(235,225,209,0.15); position: relative; overflow: visible;
+    border-radius: 2px;
+  }
+  .skill-fill {
+    height: 3px; width: 0; background: linear-gradient(90deg, var(--accent-burgundy), var(--mauve));
+    transition: width 2.8s cubic-bezier(0.19, 1, 0.22, 1);
+    position: relative; border-radius: 2px;
+  }
+  .skill-fill::after {
+    content: ''; position: absolute; right: -5px; top: -4px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--mauve);
+    box-shadow: 0 0 12px rgba(181,161,158,0.7);
+  }
+
+  /* ── MBTI in about section ── */
+  .about-mbti-block {
+    margin-top: var(--space-8);
+    padding-top: var(--space-6);
+    border-top: 1px solid rgba(110,59,73,0.15);
+  }
+  .about-mbti-header {
+    display: grid; grid-template-columns: auto 1fr; gap: var(--space-6);
+    align-items: start; margin-bottom: var(--space-6);
+  }
+  @media (max-width: 600px) { .about-mbti-header { grid-template-columns: 1fr; } }
+  .about-mbti-type {
+    font-family: var(--font-higuen);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 400;
+    color: var(--accent-burgundy);
+    line-height: 1; margin-bottom: 0.2rem;
+  }
+  .about-mbti-name {
+    font-family: var(--font-display); font-size: 1.2rem; font-weight: 400;
+    color: var(--text-secondary);
+  }
+  .about-mbti-name em { font-style: italic; color: var(--accent-burgundy); }
+  .about-mbti-desc p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.75; font-weight: 300; padding-top: 0.6rem; }
+  .about-mbti-circles {
+    display: grid; grid-template-columns: repeat(4,1fr); gap: var(--space-3);
+  }
+  @media (max-width: 500px) { .about-mbti-circles { grid-template-columns: repeat(2,1fr); } }
+  /* circles on light bg */
+  .about-mbti-block .mbti-track  { stroke: rgba(110,59,73,0.12); }
+  .about-mbti-block .mbti-fill   { stroke: var(--accent-burgundy); }
+  .about-mbti-block .mbti-num    { color: var(--accent-burgundy); font-size: 0.9rem; }
+  .about-mbti-block .mbti-label  { color: var(--text-secondary); }
+  .about-mbti-block .mbti-item:hover .mbti-svg-el { filter: drop-shadow(0 4px 10px rgba(110,59,73,0.25)); }
+
+  /* ==============================
+     CREATIVE FUEL – MUSIC  (bg-cream)
+     ============================== */
+  .fuel-title {
+    font-family: var(--font-higuen);
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+  .fuel-title em { font-family: var(--font-display); font-style: italic; color: var(--accent-burgundy); }
+
+  .music-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  @media (max-width: 700px) { .music-grid { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 380px) { .music-grid { grid-template-columns: 1fr 1fr; gap: 1rem; } }
+
+  .record-item { display: flex; flex-direction: column; align-items: center; gap: 1rem; cursor: pointer; }
+
+  .record-container { position: relative; width: 150px; height: 150px; filter: grayscale(0.25); transition: filter 0.5s ease; }
+  .record-container:hover { filter: grayscale(0); }
+
+  .album-cover {
+    position: absolute; inset: 0; border-radius: 6px; overflow: hidden; z-index: 10;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.18);
+    transition: transform 0.6s var(--easing-spring), box-shadow 0.6s ease;
+  }
+  .album-cover img { width: 100%; height: 100%; object-fit: cover; }
+  .record-vinyl {
+    position: absolute; width: 100px; height: 100px;
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 50%, #222 0%, #111 28%, #1c1c1c 30%, #111 32%, #1a1a1a 55%, #0e0e0e 100%);
+    z-index: 5; box-shadow: 0 4px 18px rgba(0,0,0,0.45);
+    transition: transform 0.85s var(--easing-expo);
+  }
+  .record-vinyl::after {
+    content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--accent-burgundy);
+    box-shadow: 0 0 0 3px rgba(110,59,73,0.3);
+  }
+  .record-container:hover .album-cover { transform: rotate(-9deg) translateX(-18px); box-shadow: 0 18px 45px rgba(0,0,0,0.3); }
+  .record-container:hover .record-vinyl { transform: translate(-50%,-50%) translateX(16px) rotate(360deg); }
+  .record-info { text-align: center; }
+  .record-title  { font-family: var(--font-display); font-style: italic; font-size: 0.95rem; color: var(--text-primary); margin-bottom: 0.2rem; }
+  .record-artist { font-size: 0.7rem; color: var(--text-secondary); letter-spacing: 0.08em; font-weight: 300; }
+
+  /* ==============================
+     BOOKS  (bg-teal)
+     ============================== */
+  .books-stats { display: flex; gap: 3rem; align-items: flex-end; margin-bottom: clamp(3rem, 8vh, 5rem); flex-wrap: wrap; }
+  
+  
+   { }
+  .stat-num {
+    font-family: var(--font-higuen);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 400;
+    color: var(--text-primary-light); line-height: 1; letter-spacing: -0.02em;
+    display: block;
+  }
+  .stat-denom {
+    font-family: var(--font-display); font-style: italic; font-size: 1rem;
+    color: var(--mauve); display: block;
+  }
+  .stat-sep { width: 1px; height: 55px; background: rgba(181,161,158,0.2); align-self: center; }
+
+  /* book grid - 4 columns */
+  .books-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: clamp(2rem, 4vw, 3rem) clamp(1rem, 2vw, 2rem); }
+  @media (max-width: 960px) { .books-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .books-grid { grid-template-columns: 1fr; } }
+
+  .book-item {
+    opacity: 0; transform: translateY(50px);
+    transition: opacity 0.8s var(--easing-expo), transform 0.8s var(--easing-expo);
+  }
+  .book-item.in-view { opacity: 1; transform: none; }
+
+  /* 3D book */
+  .book-3d {
+    position: relative;
+    width: clamp(140px, 17vw, 185px);
+    height: clamp(210px, 27vw, 280px);
+    perspective: 800px;
+    transform-style: preserve-3d;
+    cursor: pointer; margin: 0 auto var(--space-4);
+  }
+  .hardcover-front, .hardcover-back, .book-spine, .page {
+    position: absolute; inset: 0; width: 100%; height: 100%; list-style: none;
+  }
+  .hardcover-front {
+    transform: rotateY(-28deg) translateZ(6px);
+    transform-origin: left;
+    transition: transform 0.9s var(--easing-expo);
+    z-index: 100; transform-style: preserve-3d;
+  }
+  .hardcover-front li { position: absolute; inset: 0; border-radius: 2px; }
+  .hardcover-front li:first-child { background: #fff; backface-visibility: hidden; overflow: hidden; z-index: 2; transform: translateZ(2px); }
+  .hardcover-front li:first-child img { width: 100%; height: 100%; object-fit: cover; }
+  .hardcover-front li:last-child { background: #f0ebe4; transform: rotateY(180deg) translateZ(2px); backface-visibility: hidden; }
+  .hardcover-back { transform: rotateY(-10deg) translateZ(-6px); }
+  .hardcover-back li { position: absolute; inset: 0; background: #ede8e1; border-radius: 2px; }
+  .book-spine { transform: rotateY(62deg) translateX(-5px) translateZ(-10px); width: 14px; z-index: 0; }
+  .book-spine li { position: absolute; inset: 0; }
+  .book-spine li:first-child { background: linear-gradient(90deg, rgba(110,59,73,0.55), rgba(110,59,73,0.2)); box-shadow: inset -2px 0 8px rgba(0,0,0,0.35); }
+  .book-spine li:last-child { background: #1a1a1a; }
+  .page { top: 1%; left: 3%; height: 98%; z-index: 10; transform-style: preserve-3d; }
+  .page li {
+    position: absolute; inset: 0; border-radius: 0 3px 3px 0;
+    background: linear-gradient(to right, #e0dbd4, #faf7f3);
+    box-shadow: inset 0 -1px 2px rgba(50,50,50,0.08);
+    transform-origin: left center; transform-style: preserve-3d;
+    transition: transform 0.9s var(--easing-expo);
+    padding: clamp(0.7rem, 2vw, 1.1rem);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .page-text { font-family: var(--font-display); font-size: 0.6rem; line-height: 1.65; color: #444; font-style: italic; opacity: 0.82; }
+  .page li:nth-child(1) { transform: rotateY(-26deg); }
+  .page li:nth-child(2) { transform: rotateY(-28deg); }
+  .page li:nth-child(3) { transform: rotateY(-30deg); }
+  .book-3d:hover .hardcover-front { transform: rotateY(-142deg) translateZ(0); z-index: 0; }
+  .book-3d:hover .page li:nth-child(1) { transform: rotateY(-28deg); transition-duration: 1.4s; }
+  .book-3d:hover .page li:nth-child(2) { transform: rotateY(-34deg); transition-duration: 1.7s; }
+  .book-3d:hover .page li:nth-child(3) { transform: rotateY(-112deg); transition-duration: 1.5s; }
+
+  /* book info */
+  .book-info { text-align: center; }
+  .book-num  { font-family: var(--font-body); font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--mauve); margin-bottom: 0.35rem; font-weight: 600; }
+  .book-title{ font-family: var(--font-display); font-style: italic; font-size: 1.1rem; font-weight: 400; color: var(--text-primary-light); margin-bottom: 0.2rem; line-height: 1.25; }
+  .book-author{ font-size: 0.7rem; color: rgba(235,225,209,0.55); letter-spacing: 0.06em; margin-bottom: 0.6rem; }
+  .book-stars { display: flex; justify-content: center; gap: 3px; margin-bottom: 0.75rem; }
+  .book-stars i { font-size: 0.6rem; color: var(--mauve); }
+  .book-review {
+    font-size: 0.82rem; line-height: 1.8; color: rgba(235,225,209,0.78);
+    font-weight: 300; text-align: left;
+    max-height: 0; overflow: hidden; opacity: 0;
+    transition: max-height 0.7s var(--easing-expo), opacity 0.4s ease;
+    margin-top: 0;
+  }
+  .book-item.expanded .book-review { max-height: 350px; opacity: 1; margin-top: var(--space-2); }
+  .book-expand {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--mauve); background: none; border: none; cursor: pointer;
+    font-family: var(--font-body); font-weight: 600; padding: 0;
+    transition: opacity var(--speed-base) ease; opacity: 0.7;
+  }
+  .book-expand:hover { opacity: 1; }
+  .book-expand svg { transition: transform var(--speed-base) ease; }
+  .book-item.expanded .book-expand svg { transform: rotate(180deg); }
+
+  /* goodreads */
+  .goodreads-row {
+    margin-top: clamp(3rem, 8vh, 5rem);
+    padding-top: clamp(2rem, 5vh, 3rem);
+    border-top: 1px solid rgba(181,161,158,0.15);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem;
+  }
+  .goodreads-text h3 {
+    font-family: var(--font-higuen); font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 400; color: var(--text-primary-light); margin-bottom: 0.4rem;
+  }
+  .goodreads-text p { font-size: 0.84rem; color: rgba(235,225,209,0.62); font-weight: 300; max-width: 460px; }
+  .btn-goodreads {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    padding: 0.9rem 2rem;
+    border: 1px solid rgba(181,161,158,0.35);
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+    font-family: var(--font-body); color: var(--text-primary-light);
+    transition: background var(--speed-slower) var(--easing-expo), color var(--speed-slow) ease,
+                border-color var(--speed-slow) ease, transform var(--speed-base) ease;
+    position: relative; overflow: hidden;
+  }
+  .btn-goodreads::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--accent-burgundy);
+    transform: scaleX(0); transform-origin: right;
+    transition: transform 0.5s var(--easing-expo);
+    z-index: 0;
+  }
+  .btn-goodreads span, .btn-goodreads svg { position: relative; z-index: 1; }
+  .btn-goodreads:hover::before { transform: scaleX(1); transform-origin: left; }
+  .btn-goodreads:hover { border-color: var(--accent-burgundy); transform: translateY(-2px); }
+
+  /* ==============================
+     FOOTER
+     ============================== */
+  .site-footer {
+    background: var(--bg-dark);
+    padding: clamp(2rem, 5vh, 3rem) 0;
+    border-top: 1px solid rgba(181,161,158,0.1);
+  }
+  .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-copy { font-size: 0.72rem; color: rgba(235,225,209,0.35); letter-spacing: 0.04em; }
+  .footer-socials { display: flex; gap: 1.5rem; }
+  .social-link { color: rgba(235,225,209,0.3); transition: color var(--speed-base) ease, transform var(--speed-base) ease; }
+  .social-link:hover { color: var(--mauve); transform: translateY(-2px); }
+
+  /* ==============================
+     REVEAL UTILITY
+     ============================== */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.9s var(--easing-expo), transform 0.9s var(--easing-expo); }
+  .reveal.in-view { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: 0.08s; }
+  .reveal-d2 { transition-delay: 0.18s; }
+  .reveal-d3 { transition-delay: 0.3s;  }
+
+  /* ==============================
+     RESPONSIVE MOBILE POLISH
+     ============================== */
+  @media (max-width: 768px) {
+    .hero-top, .hero-bottom { font-size: clamp(3.5rem, 16vw, 7rem); }
+    .hero-middle { font-size: clamp(1rem, 5vw, 1.8rem); }
+    .books-stats { gap: 1.5rem; }
+    .goodreads-row { flex-direction: column; }
+    .tl-spine { left: 16px; }
+    .music-grid { justify-content: center; }
+  }
+  @media (max-width: 480px) {
+    .mbti-circles-grid { grid-template-columns: repeat(2,1fr); }
+    .record-container { width: 130px; height: 130px; }
+    .record-vinyl { width: 86px; height: 86px; }
+  }
+  </style>
+</head>
+
+<body>
+  <div class="grain-overlay"></div>
+
+  <!-- HEADER -->
+  <header class="site-header" id="top">
+    <div class="container nav-bar">
+      <a href="index.html" class="logo">
+        <img src="assets/images/branding/logo_white.png" alt="Khadija Okbi" width="38">
+        <img src="assets/images/branding/logo_black.png" alt="Khadija Okbi" width="38" class="logo-onscroll">
+      </a>
+      <nav class="nav">
+        <a href="index.html#hero"     class="nav-link">Home</a>
+        <a href="index.html#projects" class="nav-link">Work</a>
+        <a href="index.html#blog"     class="nav-link">Blog</a>
+        <a href="about.html"          class="nav-link">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- ══════════════════════════════
+       HERO
+       ══════════════════════════════ -->
+  <div class="hero-section" id="hero">
+    <div class="hero-bg-img"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-header">
+      <h1 class="hero-top"><span>ABOUT</span></h1>
+      <div class="hero-portrait-bg"><img src="assets/images/about/pb-about.png" alt=""></div>
+      <div class="hero-portrait"><img src="assets/images/about/pb-about.png" alt="Portrait Khadija Okbi"></div>
+      <h2 class="hero-middle"><span>The</span><span>&nbsp;</span><span>Visionary</span></h2>
+      <h1 class="hero-bottom"><span>ME</span></h1>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       ABOUT ME  ·  bg-cream
+       ══════════════════════════════ -->
+  <section class="work-section bg-cream" id="about-vision">
+    <div class="container">
+      <div class="about-grid">
+
+        <!-- Left: image + identity -->
+        <div>
+          <div class="arch-frame reveal">
+            <div class="arch-wrap">
+              <img src="assets/images/about/portrait-about.png" alt="Khadija Okbi Portrait">
+            </div>
+          </div>
+          <div class="identity-card reveal reveal-d1">
+            <div class="id-row">
+              <div>
+                <p class="id-label">Like Minds</p>
+                <p class="id-value">Steve Jobs · Napoleon Bonaparte · Coco Chanel</p>
+              </div>
+              <div class="id-sep"></div>
+              <div>
+                <p class="id-label">Traits</p>
+                <p class="id-value">Emotional Intelligence · Strategic Depth · High-End Creativity</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: text -->
+        <div>
+          <div class="reveal">
+            <span class="eyebrow">About me</span>
+            <h2 class="about-lead">
+              The Visionary<br>
+              <em>&amp; The Strategist.</em>
+            </h2>
+          </div>
+          <p class="about-body reveal reveal-d1">
+            Kreativität zieht sich durch mein ganzes Leben. Meine Lösungswege sind oft unkonventionell —
+            Effizienz trifft auf kreatives Chaos, ein laufendes Paradox. Mein Durst nach Wissen ist unstillbar
+            und ich nehme jede Gelegenheit mit, etwas Neues zu lernen.
+          </p>
+          <p class="about-body reveal reveal-d2">
+            Was mich seit Jahren besonders fasziniert, ist die menschliche Psyche — unsere Triebe, Anlagen und
+            Muster. Warum wir Dinge tun, die wir rational längst durchschaut haben, und wo die Bruchstellen liegen.
+            True Crime ist für mich kein billiger Thrill — es ist der Blick in den Extremfall, in den Moment,
+            wo alles kippt. Ich will nicht nur wissen, was passiert ist. Ich will verstehen, <em>warum.</em>
+          </p>
+          <!-- MBTI inline in about section -->
+          <div class="about-mbti-block reveal reveal-d3">
+            <div class="about-mbti-header">
+              <div>
+                <span class="eyebrow">Persönlichkeit · MBTI</span>
+                <p class="about-mbti-type">INTP-A</p>
+                <p class="about-mbti-name">Der <em>Logiker.</em></p>
+              </div>
+              <div class="about-mbti-desc">
+                <p>Neugierig. Unabhängig. Analytisch. INTPs analysieren komplexe Systeme und finden kreative Lösungen — Pioniere neuer Ideen, die Strukturen sehen, wo andere nur Rauschen wahrnehmen.</p>
+              </div>
+            </div>
+            <div class="about-mbti-circles" id="mbtiList">
+              <div class="mbti-item" data-percent="51">
+                <div class="mbti-num-wrap">
+                  <svg class="mbti-svg-el" viewBox="0 0 100 100" width="82" height="82">
+                    <circle class="mbti-track" cx="50" cy="50" r="42"/>
+                    <circle class="mbti-fill"  cx="50" cy="50" r="42"/>
+                  </svg>
+                  <div class="mbti-num"><span class="mbti-counter" data-target="51">0</span>%</div>
+                </div>
+                <span class="mbti-label">Introvertiert</span>
+              </div>
+              <div class="mbti-item" data-percent="95">
+                <div class="mbti-num-wrap">
+                  <svg class="mbti-svg-el" viewBox="0 0 100 100" width="82" height="82">
+                    <circle class="mbti-track" cx="50" cy="50" r="42"/>
+                    <circle class="mbti-fill"  cx="50" cy="50" r="42"/>
+                  </svg>
+                  <div class="mbti-num"><span class="mbti-counter" data-target="95">0</span>%</div>
+                </div>
+                <span class="mbti-label">Intuitiv</span>
+              </div>
+              <div class="mbti-item" data-percent="74">
+                <div class="mbti-num-wrap">
+                  <svg class="mbti-svg-el" viewBox="0 0 100 100" width="82" height="82">
+                    <circle class="mbti-track" cx="50" cy="50" r="42"/>
+                    <circle class="mbti-fill"  cx="50" cy="50" r="42"/>
+                  </svg>
+                  <div class="mbti-num"><span class="mbti-counter" data-target="74">0</span>%</div>
+                </div>
+                <span class="mbti-label">Analytisch</span>
+              </div>
+              <div class="mbti-item" data-percent="100">
+                <div class="mbti-num-wrap">
+                  <svg class="mbti-svg-el" viewBox="0 0 100 100" width="82" height="82">
+                    <circle class="mbti-track" cx="50" cy="50" r="42"/>
+                    <circle class="mbti-fill"  cx="50" cy="50" r="42"/>
+                  </svg>
+                  <div class="mbti-num"><span class="mbti-counter" data-target="100">0</span>%</div>
+                </div>
+                <span class="mbti-label">Kreativ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       TIMELINE  ·  bg-teal
+       ══════════════════════════════ -->
+  <section class="work-section bg-teal timeline-section">
+    <div class="container">
+      <div class="tl-section-header reveal">
+        <span class="eyebrow eyebrow--light">Journey</span>
+        <h2 class="tl-section-title">Bildung <span style="font-family:var(--font-display);font-style:italic;font-weight:400;">&amp; Erfahrung.</span></h2>
+        <p class="tl-section-sub">Von der ersten Leidenschaft für Animation bis zur Berufsmaturität — jede Station hat mich geformt.</p>
+      </div>
+
+      <div class="tl-wrapper">
+        <div class="tl-spine"></div>
+
+        <!-- 2025 -->
+        <div class="tl-item tl-item--left">
+          <div class="tl-card">
+            <p class="tl-role">Abschluss</p>
+            <p class="tl-year">2025</p>
+            <p class="tl-title">Technische Berufsmaturität</p>
+            <button class="tl-toggle" aria-expanded="false">
+              Lesen <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="tl-desc">
+              Interdisziplinäre Arbeit: «Die Illusion der freien Meinung» — Analyse der biologischen und
+              psychologischen Ursprünge der Meinungsbildung sowie neurowissenschaftliche Faktoren, soziale
+              Einflüsse und die Gefährdung demokratischer Prozesse durch KI und Social Media.
+            </div>
+            <span class="tl-org">Oktober 2025</span>
+          </div>
+          <div class="tl-dot-col"><div class="tl-dot"></div></div>
+          <div class="tl-spacer"></div>
+        </div>
+
+        <!-- 2023 -->
+        <div class="tl-item tl-item--right">
+          <div class="tl-spacer"></div>
+          <div class="tl-dot-col"><div class="tl-dot"></div></div>
+          <div class="tl-card">
+            <p class="tl-role">Abschluss</p>
+            <p class="tl-year">2023</p>
+            <p class="tl-title">Mediamatikerin EFZ</p>
+            <button class="tl-toggle" aria-expanded="false">
+              Lesen <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="tl-desc">
+              IPA für Komthur AG: vollständiges Online-Marketing-Konzept mit strategischer Marktanalyse,
+              UI/UX-Redesign, SEO/SEA-Strategie, budgetierter Mediaplanung und halbjährigem Social-Media-Plan.
+            </div>
+            <span class="tl-org">Juli 2023 · SBW Neue Medien</span>
+          </div>
+        </div>
+
+        <!-- 2022 -->
+        <div class="tl-item tl-item--left">
+          <div class="tl-card">
+            <p class="tl-role">2. Lehrjahr</p>
+            <p class="tl-year">2022</p>
+            <p class="tl-title">Social Media Management</p>
+            <button class="tl-toggle" aria-expanded="false">
+              Lesen <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="tl-desc">
+              Konzeption und Umsetzung zielgruppengerechter Inhalte für Instagram und TikTok.
+              Vertiefung in Design und Animation für interne und externe Projekte.
+            </div>
+            <span class="tl-org">SBW Neue Medien, Romanshorn</span>
+          </div>
+          <div class="tl-dot-col"><div class="tl-dot"></div></div>
+          <div class="tl-spacer"></div>
+        </div>
+
+        <!-- 2021 -->
+        <div class="tl-item tl-item--right">
+          <div class="tl-spacer"></div>
+          <div class="tl-dot-col"><div class="tl-dot"></div></div>
+          <div class="tl-card">
+            <p class="tl-role">Praktikum</p>
+            <p class="tl-year">2021</p>
+            <p class="tl-title">Sportmarketing</p>
+            <button class="tl-toggle" aria-expanded="false">
+              Lesen <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="tl-desc">
+              Festführer, Sponsoring-Materialien und Bandenanimationen für Grossevents wie die
+              Schweizermeisterschaft im Kunstturnen.
+            </div>
+            <span class="tl-org">Win-4 Winterthur</span>
+          </div>
+        </div>
+
+        <!-- 2019 -->
+        <div class="tl-item tl-item--left">
+          <div class="tl-card">
+            <p class="tl-role">Ausbildungsstart</p>
+            <p class="tl-year">2019</p>
+            <p class="tl-title">Ausbildung zur Mediamatikerin</p>
+            <button class="tl-toggle" aria-expanded="false">
+              Lesen <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="tl-desc">
+              Beginn der zweijährigen schulischen Ausbildung — Grundstein für Design, Marketing und digitale Kommunikation.
+            </div>
+            <span class="tl-org">SBW Neue Medien</span>
+          </div>
+          <div class="tl-dot-col"><div class="tl-dot"></div></div>
+          <div class="tl-spacer"></div>
+        </div>
+
+        <!-- 2018 -->
+        <div class="tl-item tl-item--right">
+          <div class="tl-spacer"></div>
+          <div class="tl-dot-col"><div class="tl-dot"></div></div>
+          <div class="tl-card">
+            <p class="tl-role">Erstes Praktikum</p>
+            <p class="tl-year">2018</p>
+            <p class="tl-title">Praktikum Social Media</p>
+            <button class="tl-toggle" aria-expanded="false">
+              Lesen <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="tl-desc">
+              Mediaverantwortung für den Young &amp; Free-Bereich bei Hillsong Germany. Event-Trailer,
+              Screen-Designs, Foto- und Videoproduktion. Erste Schritte in Premiere, Photoshop, InDesign —
+              der Grundstein für alles.
+            </div>
+            <span class="tl-org">Hillsong, Konstanz</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       SKILLS  ·  bg-burg
+       ══════════════════════════════ -->
+  <section class="work-section bg-burg">
+    <div class="container">
+      <div class="reveal" style="margin-bottom: clamp(2.5rem,6vh,4rem);">
+        <span class="eyebrow eyebrow--light">Expertise</span>
+        <h2 style="font-family:var(--font-higuen);font-size:clamp(2rem,5vw,3.8rem);font-weight:400;color:var(--text-primary-light);">
+          Skills &amp; <span style="font-family:var(--font-display);font-style:italic;">Werkzeuge.</span>
+        </h2>
+      </div>
+
+      <div class="skills-burg-grid">
+        <!-- Technical -->
+        <div class="reveal reveal-d1">
+          <span class="skill-section-title">Technical Skills</span>
+          <ul class="skills-list" id="techSkills">
+            <li class="skill-row" data-percent="95"><span><span class="skill-name">Adobe InDesign</span><span class="skill-pct-label">0%</span></span><div class="skill-track"><div class="skill-fill"></div></div></li>
+            <li class="skill-row" data-percent="98"><span><span class="skill-name">Photoshop</span><span class="skill-pct-label">0%</span></span><div class="skill-track"><div class="skill-fill"></div></div></li>
+            <li class="skill-row" data-percent="92"><span><span class="skill-name">Premiere Pro</span><span class="skill-pct-label">0%</span></span><div class="skill-track"><div class="skill-fill"></div></div></li>
+            <li class="skill-row" data-percent="90"><span><span class="skill-name">After Effects</span><span class="skill-pct-label">0%</span></span><div class="skill-track"><div class="skill-fill"></div></div></li>
+            <li class="skill-row" data-percent="85"><span><span class="skill-name">Frontend (HTML, CSS, JS)</span><span class="skill-pct-label">0%</span></span><div class="skill-track"><div class="skill-fill"></div></div></li>
+            <li class="skill-row" data-percent="75"><span><span class="skill-name">Backend (NodeJS, PHP)</span><span class="skill-pct-label">0%</span></span><div class="skill-track"><div class="skill-fill"></div></div></li>
+          </ul>
+        </div>
+        <!-- Soft -->
+        <div class="reveal reveal-d2">
+          <span class="skill-section-title">Soft Skills</span>
+          <ul class="skills-list" id="softSkills">
+            <li class="skill-row" data-percent="95"><span><span class="skill-name">Strategisch</span><span class="skill-pct-label">0%</span></span><div class="skill-track"><div class="skill-fill"></div></div></li>
+            <li class="skill-row" data-percent="90"><span><span class="skill-name">Entschlossen</span><span class="skill-pct-label">0%</span></span><div class="skill-track"><div class="skill-fill"></div></div></li>
+            <li class="skill-row" data-percent="92"><span><span class="skill-name">Effizient</span><span class="skill-pct-label">0%</span></span><div class="skill-track"><div class="skill-fill"></div></div></li>
+            <li class="skill-row" data-percent="88"><span><span class="skill-name">Perfektionistisch</span><span class="skill-pct-label">0%</span></span><div class="skill-track"><div class="skill-fill"></div></div></li>
+            <li class="skill-row" data-percent="80"><span><span class="skill-name">Selbstreflektiert</span><span class="skill-pct-label">0%</span></span><div class="skill-track"><div class="skill-fill"></div></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       MUSIK  ·  bg-cream bg-cream--to-burg
+       ══════════════════════════════ -->
+  <section class="work-section bg-cream bg-cream--to-burg">
+    <div class="container">
+      <div class="reveal" style="margin-bottom:clamp(3rem,8vh,5rem);">
+        <span class="eyebrow">Creative Fuel</span>
+        <h2 class="fuel-title">Musik, die <em>formt.</em></h2>
+        <p style="font-size:0.9rem;color:var(--text-secondary);font-weight:300;margin-top:0.5rem;max-width:500px;">Die Alben, die meine Kreativität und Stimmung nachhaltig beeinflusst haben.</p>
+      </div>
+
+      <div class="music-grid">
+        <div class="record-item gsap-record">
+          <div class="record-container">
+            <div class="album-cover"><img src="assets/images/about/album1.jpg" alt="SZA – SOS"></div>
+            <div class="record-vinyl"></div>
+          </div>
+          <div class="record-info"><p class="record-title">SZA</p><p class="record-artist">SOS</p></div>
+        </div>
+        <div class="record-item gsap-record">
+          <div class="record-container">
+            <div class="album-cover"><img src="assets/images/about/album2.jpg" alt="The Weeknd"></div>
+            <div class="record-vinyl"></div>
+          </div>
+          <div class="record-info"><p class="record-title">The Weeknd</p><p class="record-artist">After Hours</p></div>
+        </div>
+        <div class="record-item gsap-record">
+          <div class="record-container">
+            <div class="album-cover"><img src="assets/images/about/album3.jpg" alt="Lana Del Rey"></div>
+            <div class="record-vinyl"></div>
+          </div>
+          <div class="record-info"><p class="record-title">Lana Del Rey</p><p class="record-artist">Norman Fucking Rockwell</p></div>
+        </div>
+        <div class="record-item gsap-record">
+          <div class="record-container">
+            <div class="album-cover"><img src="assets/images/about/album4.jpg" alt="Frank Ocean"></div>
+            <div class="record-vinyl"></div>
+          </div>
+          <div class="record-info"><p class="record-title">Frank Ocean</p><p class="record-artist">Blonde</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       BÜCHER  ·  bg-burg
+       ══════════════════════════════ -->
+  <section class="work-section bg-burg" style="padding-top:clamp(6rem,14vh,10rem);">
+    <div class="container">
+      <!-- Stats + header -->
+      <div class="reveal" style="margin-bottom:clamp(3rem,7vh,5rem);">
+        <span class="eyebrow eyebrow--light">Bücher · 2025</span>
+        <div class="books-stats">
+          <div class="stat-block">
+            <span class="stat-num"><span class="counter" data-target="104">0</span></span>
+            <span class="stat-denom">Bücher gelesen</span>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat-block">
+            <span class="stat-num"><span class="counter" data-target="3">0</span></span>
+            <span class="stat-denom">Top Favoriten</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div class="books-grid">
+
+        <!-- Book 1 -->
+        <div class="book-item" id="book1" style="transition-delay:0s;">
+          <div class="book-3d">
+            <ul class="hardcover-front"><li><img src="assets/images/about/agggtm-cover.jpg" alt="A Good Girl's Guide to Murder"></li><li></li></ul>
+            <ul class="page">
+              <li><span class="page-text">Pip Fitz-Amobi war fünf Jahre alt, als Andie Bell ermordet wurde. Alle wissen: Sal Singh hat es getan. Doch Pip zweifelt…</span></li>
+              <li><span class="page-text">Für ihr Schulprojekt beginnt sie, den Fall erneut aufzurollen — und kommt einer gefährlichen Wahrheit näher.</span></li>
+              <li><span class="page-text">Eine Reihe, die mich in ihren Bann zog — spannend, klug und emotional brillant.</span></li>
+            </ul>
+            <ul class="hardcover-back"><li></li><li></li></ul>
+            <ul class="book-spine"><li></li><li></li></ul>
+          </div>
+          <div class="book-info">
+            <p class="book-num">Favorit № 01</p>
+            <p class="book-title">A Good Girl's Guide to Murder</p>
+            <p class="book-author">Holly Jackson</p>
+            <div class="book-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <button class="book-expand" onclick="toggleBook('book1')">
+              Rezension <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <p class="book-review">
+              Auch A Good Girl's Guide to Murder ist Teil einer dreiteiligen Young Adult Mystery-Reihe und hätte es alleinstehend wahrscheinlich nicht in meine Top 3 geschafft. Die Entwicklung der Hauptprotagonistin war so unerwartet, dass Band drei einen Flair verleiht, dem ich bisher noch nie so begegnet bin. Besonders einprägend fand ich Jacksons Fähigkeit, komplexe Charaktere aufzubauen, Einblicke in die Psyche dieser zu vermitteln und die anschliessende Kapitulation dieser anzubahnen.
+            </p>
+          </div>
+        </div>
+
+        <!-- Book 2 -->
+        <div class="book-item" id="book2" style="transition-delay:0.15s;">
+          <div class="book-3d">
+            <ul class="hardcover-front"><li><img src="assets/images/about/roh-cover.jpg" alt="Reminders of Him"></li><li></li></ul>
+            <ul class="page">
+              <li><span class="page-text">Nach fünf Jahren kehrt Kenna Rowan in eine Stadt zurück, die ihr nie verziehen hat. Ihr einziges Ziel: ihre Tochter.</span></li>
+              <li><span class="page-text">Der einzige, der hinter ihre Fehler blickt, ist Ledger Ward. Zwischen Loyalität und wachsender Nähe ein innerer Konflikt.</span></li>
+              <li><span class="page-text">Schuld, Verantwortung und die Frage: Darf ein einziger Fehler ein ganzes Leben definieren?</span></li>
+            </ul>
+            <ul class="hardcover-back"><li></li><li></li></ul>
+            <ul class="book-spine"><li></li><li></li></ul>
+          </div>
+          <div class="book-info">
+            <p class="book-num">Favorit № 02</p>
+            <p class="book-title">Reminders of Him</p>
+            <p class="book-author">Colleen Hoover</p>
+            <div class="book-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <button class="book-expand" onclick="toggleBook('book2')">
+              Rezension <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <p class="book-review">
+              Die Bücher, die mich zu Tränen gerührt haben, kann ich an einer Hand abzählen — Reminders of Him ist eines davon. Was mich so berührt hat, war nicht nur die tragische Ausgangslage, sondern die schonungslose Ehrlichkeit, mit der dieser schmale Grat zwischen Schicksal und Schuld gezeichnet wird. Der innere Kampf zwischen Hoffnung und Selbstverurteilung war intensiv und bewegend. Eine emotionale Achterbahnfahrt, die noch lange nachhallt.
+            </p>
+          </div>
+        </div>
+
+        <!-- Book 3 -->
+        <div class="book-item" id="book3">
+          <div class="book-3d">
+            <ul class="hardcover-front"><li><img src="assets/images/about/book3-cover.jpg" alt="Drittes Buch"></li><li></li></ul>
+            <ul class="page">
+              <li><span class="page-text">Manche Bücher öffnen Türen, die man vorher nicht einmal als Türen erkannt hatte…</span></li>
+              <li><span class="page-text">Es ist die Art Geschichte, die man nicht liest, sondern erlebt — Satz für Satz.</span></li>
+              <li><span class="page-text">Eine Lektüre, die das Denken verändert.</span></li>
+            </ul>
+            <ul class="hardcover-back"><li></li><li></li></ul>
+            <ul class="book-spine"><li></li><li></li></ul>
+          </div>
+          <div class="book-info">
+            <p class="book-num">Favorit № 03</p>
+            <p class="book-title">Lieblingsbuch #3</p>
+            <p class="book-author">Autor · 2025</p>
+            <div class="book-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <button class="book-expand" onclick="toggleBook('book3')">
+              Rezension <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <p class="book-review">Platzhalter für das dritte Lieblingsbuch des Jahres 2025. Auch die stärksten Bücher brauchen manchmal Zeit, bis man in Worte fassen kann, was sie einem gegeben haben.</p>
+          </div>
+        </div>
+
+        <!-- Book 4 -->
+        <div class="book-item" id="book4">
+          <div class="book-3d">
+            <ul class="hardcover-front"><li><img src="assets/images/about/book4-cover.jpg" alt="Viertes Buch"></li><li></li></ul>
+            <ul class="page">
+              <li><span class="page-text">Manchmal braucht es nur eine einzige Geschichte, um zu verstehen, was man schon immer gewusst hat…</span></li>
+              <li><span class="page-text">Dieses Buch war genau das — eine Spiegelung.</span></li>
+              <li><span class="page-text">Jede Seite ein Erkenntnismoment.</span></li>
+            </ul>
+            <ul class="hardcover-back"><li></li><li></li></ul>
+            <ul class="book-spine"><li></li><li></li></ul>
+          </div>
+          <div class="book-info">
+            <p class="book-num">Favorit № 04</p>
+            <p class="book-title">Lieblingsbuch #4</p>
+            <p class="book-author">Autor · 2025</p>
+            <div class="book-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <button class="book-expand" onclick="toggleBook('book4')">
+              Rezension <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <p class="book-review">Platzhalter für das vierte Lieblingsbuch des Jahres 2025 — ein Buch, das sich tief in das Gedächtnis eingebrannt hat und noch Monate später nachhallt.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Goodreads CTA -->
+      <div class="goodreads-row reveal">
+        <div class="goodreads-text">
+          <h3>Goodreads Wrapped 2025</h3>
+          <p>Tauche ein in meine vollständige Lesereise 2025. Alle 104 Bücher — von literarischen Meisterwerken bis zu geliebten Guilty Pleasures.</p>
+        </div>
+        <a href="https://www.goodreads.com/user/year_in_books/2025/86919904" target="_blank" rel="noopener" class="btn-goodreads">
+          <span>Goodreads öffnen</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-copy">© 2026 Design &amp; Development by Khadija Okbi</p>
+      <div class="footer-socials">
+        <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" aria-label="GitHub">
+          <svg width="18" height="18" viewBox="0 0 30 30" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/></svg>
+        </a>
+        <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M6.5 9.5v8.5M6.5 7.5v.01M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" aria-label="TikTok">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M16 7.5c.5 0 .9.04 1.3.12v3.38a4.2 4.2 0 0 1-2.3-.64v5.64A4.86 4.86 0 0 1 11 20a4.86 4.86 0 0 1-4.86-4.86 4.86 4.86 0 0 1 4.86-4.86c.28 0 .55.03.81.08V7.5h.19c1.14 0 2.09.37 2.99 1.03V7.5z" fill="currentColor"/></svg>
+        </a>
+        <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" aria-label="CodePen">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M3.5 7.5l8.5 5 8.5-5" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M12 21.5v-10" stroke="currentColor" stroke-width="1.1" fill="none"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════
+       JAVASCRIPT
+       ══════════════════════════════ -->
+  <script>
+  'use strict';
+
+  /* ── Sticky header ── */
+  const header = document.querySelector('.site-header');
+  if (header) {
+    window.addEventListener('scroll', () => header.classList.toggle('is-solid', window.scrollY > 80), { passive: true });
+  }
+
+  /* ── Counter helper ── */
+  function animCounter(el, target, duration, suffix) {
+    suffix = suffix || '';
+    let start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      const p    = Math.min((ts - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 4);
+      el.textContent = Math.floor(target * ease) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = target + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ── Timeline toggle ── */
+  document.querySelectorAll('.tl-toggle').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const desc = this.closest('.tl-card').querySelector('.tl-desc');
+      const open = desc.classList.toggle('open');
+      this.setAttribute('aria-expanded', String(open));
+    });
+  });
+
+  /* ── Book expand ── */
+  function toggleBook(id) {
+    const item = document.getElementById(id);
+    if (item) item.classList.toggle('expanded');
+  }
+
+  /* ── GSAP ── */
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ─ Hero text line reveals ─ */
+    gsap.to('.hero-top span',    { y: 0, duration: 1.2, ease: 'power4.out', delay: 0.3 });
+    gsap.to('.hero-middle span', { y: 0, stagger: 0.07, duration: 1.1, ease: 'power4.out', delay: 0.6 });
+    gsap.to('.hero-bottom span', { y: 0, duration: 1.2, ease: 'power4.out', delay: 0.85 });
+    gsap.to('.hero-scroll-hint', { opacity: 1, duration: 1.0, delay: 2.1, ease: 'power2.out' });
+
+    /* ─ Hero parallax ─ */
+    gsap.to('.hero-bg-img',  { yPercent: 22, ease: 'none', scrollTrigger: { trigger: '.hero-section', start: 'top top', end: 'bottom top', scrub: 1.5 } });
+    gsap.to('.hero-top',     { y: -65, ease: 'none',       scrollTrigger: { trigger: '.hero-section', start: 'top top', end: 'bottom top', scrub: 1.2 } });
+    gsap.to('.hero-bottom',  { y: -85, ease: 'none',       scrollTrigger: { trigger: '.hero-section', start: 'top top', end: 'bottom top', scrub: 1.2 } });
+    gsap.to('.hero-portrait',{ y: -22, ease: 'none',       scrollTrigger: { trigger: '.hero-section', start: 'top top', end: 'bottom top', scrub: 1.0 } });
+
+    /* ─ Generic .reveal — one-line scroll reveal ─ */
+    gsap.utils.toArray('.reveal').forEach(el => {
+      const delay = el.classList.contains('reveal-d3') ? 0.28 :
+                    el.classList.contains('reveal-d2') ? 0.16 :
+                    el.classList.contains('reveal-d1') ? 0.07 : 0;
+      gsap.fromTo(el,
+        { y: 38, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.15, ease: 'power3.out', delay,
+          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+        }
+      );
+    });
+
+    /* ─ Arch image subtle parallax ─ */
+    gsap.to('.arch-wrap img', {
+      yPercent: -6, ease: 'none',
+      scrollTrigger: { trigger: '.arch-wrap', start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+    });
+
+    /* ─ Timeline — left cards slide from left, right from right ─ */
+    gsap.utils.toArray('.tl-item--left').forEach(el => {
+      gsap.fromTo(el, { x: -50, opacity: 0 }, {
+        x: 0, opacity: 1, duration: 1.05, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 87%', toggleActions: 'play none none none' }
+      });
+    });
+    gsap.utils.toArray('.tl-item--right').forEach(el => {
+      gsap.fromTo(el, { x: 50, opacity: 0 }, {
+        x: 0, opacity: 1, duration: 1.05, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 87%', toggleActions: 'play none none none' }
+      });
+    });
+
+    /* ─ MBTI rings + in-ring number — scroll triggered, staggered, slow ─ */
+    gsap.utils.toArray('.mbti-item').forEach((item, i) => {
+      ScrollTrigger.create({
+        trigger: item, start: 'top 87%', once: true,
+        onEnter: () => {
+          const pct  = parseFloat(item.dataset.percent);
+          const ring = item.querySelector('.mbti-fill');
+          const num  = item.querySelector('.mbti-counter');
+          if (ring) {
+            const circ = 2 * Math.PI * 42;
+            ring.style.strokeDasharray  = circ.toFixed(3);
+            ring.style.strokeDashoffset = circ.toFixed(3);
+            setTimeout(() => { ring.style.strokeDashoffset = (circ * (1 - pct / 100)).toFixed(3); }, i * 140);
+          }
+          if (num) setTimeout(() => animCounter(num, parseInt(num.dataset.target), 2600), i * 140);
+        }
+      });
+    });
+
+    /* ─ Skill bars — each row triggers individually, staggered label+fill ─ */
+    gsap.utils.toArray('.skill-row').forEach((row, i) => {
+      ScrollTrigger.create({
+        trigger: row, start: 'top 92%', once: true,
+        onEnter: () => {
+          const pct   = parseInt(row.dataset.percent);
+          const fill  = row.querySelector('.skill-fill');
+          const label = row.querySelector('.skill-pct-label');
+          const delay = i * 90;
+          setTimeout(() => {
+            if (fill)  fill.style.width = pct + '%';
+            if (label) animCounter(label, pct, 2200, '%');
+          }, delay);
+        }
+      });
+    });
+
+    /* ─ Music records — individual staggered reveal ─ */
+    gsap.utils.toArray('.gsap-record').forEach((el, i) => {
+      gsap.fromTo(el, { y: 40, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 1.0, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' },
+        delay: i * 0.09
+      });
+    });
+
+    /* ─ Book items — individual staggered reveal ─ */
+    gsap.utils.toArray('.book-item').forEach((el, i) => {
+      gsap.fromTo(el, { y: 55, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 1.05, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
+        delay: i * 0.11
+      });
+    });
+
+    /* ─ Stat counters (books) ─ */
+    gsap.utils.toArray('.counter').forEach(el => {
+      ScrollTrigger.create({
+        trigger: el, start: 'top 85%', once: true,
+        onEnter: () => animCounter(el, parseInt(el.dataset.target), 2200)
+      });
+    });
+
+    ScrollTrigger.refresh();
+  }
+  </script>
+</body>
+</html>

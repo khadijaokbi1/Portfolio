@@ -74,6 +74,13 @@
   </script>
 
   <style>
+    :root {
+      --hero-fig-top: clamp(15%, 16.6vh, 20.2%);
+      --hero-fig-width: clamp(387px, 67.6vw, 902px);
+      --hero-fig-top-mobile: clamp(18%, 20vh, 25%);
+      --hero-fig-width-mobile: clamp(320px, 84vw, 612px);
+    }
+    
     html {
       font-family: var(--font-body);
       background: var(--bg-primary);
@@ -81,6 +88,52 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
+    
+    /* TYPOGRAPHY */
+    h1 {
+      font-family: var(--font-higuen);
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      font-weight: 600;
+      color: var(--mauve);
+    }
+    h2 {
+      font-family: var(--font-higuen);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--accent-burgundy);
+    }
+    h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 700;
+      font-style: italic;
+    }
+    h4 {
+      font-family: var(--font-subtitel);
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    p {
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: var(--space-3);
+      font-family: var(--font-body);
+    }
+    
+    /* BACKGROUND CLASSES */
+    .bg-cream {
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+    
+    .work-section {
+      padding: clamp(4rem, 12vh, 8rem) 0;
+      position: relative;
+    }
+    
     /* ============================
        Grain Overlay
        ============================ */
@@ -96,25 +149,29 @@
     /* ============================
        Hero Section
        ============================ */
-    .hero-section {
+    .hero-section, .about-hero-section {
       position: relative;
       height: 80vh;
       overflow: hidden;
       background: #000;
       color: var(--mauve);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(2rem, 6vw, 4rem) 0;
     }
 
-    .hero-bg-image {
+    .hero-bg-img, .about-hero-bg-img {
       position: absolute;
       inset: 0;
       z-index: 1;
-      background-image: url('assets/images/hero/hintergrund.jpg');
+      background-image: url('assets/images/about/about_hero_collage.jpg');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
 
-  .hero-header {
+  .hero-header, .about-hero-header {
     position: relative;
     z-index: 2;
     width: 100%;
@@ -123,109 +180,64 @@
     align-items: center;
     justify-content: center;
   }
-  .hero-top, .hero-middle, .hero-bottom {
+  .hero-top, .hero-bottom, .about-hero-top, .about-hero-bottom {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.22em;
     white-space: nowrap;
     margin: 0;
     overflow: hidden;
     display: block;
     will-change: transform;
+    text-rendering: optimizeLegibility;
   }
   
-  /* Line Reveal Animation */
-  .hero-top span, .hero-middle span, .hero-bottom span {
-    display: inline-block;
-    transform: translateY(110%);
-    transition: none;
-    opacity: 1;
-  }
-  
-  /* Scroll Trigger Animation Classes */
-  .hero-top.in-view span,
-  .hero-middle.in-view span,
-  .hero-bottom.in-view span {
-    animation: lineRevealUp 0.8s cubic-bezier(0.33, 1, 0.68, 1) forwards;
-  }
-  
-  .hero-top span:nth-child(1) { animation-delay: 0s; }
-  .hero-top span:nth-child(2) { animation-delay: 0.1s; }
-  .hero-top span:nth-child(3) { animation-delay: 0.2s; }
-  
-  .hero-middle span:nth-child(1) { animation-delay: 0.3s; }
-  .hero-middle span:nth-child(2) { animation-delay: 0.4s; }
-  
-  .hero-bottom span:nth-child(1) { animation-delay: 0.5s; }
-  .hero-bottom span:nth-child(2) { animation-delay: 0.6s; }
-  .hero-bottom span:nth-child(3) { animation-delay: 0.7s; }
-  
-  @keyframes lineRevealUp {
-    from {
-      transform: translateY(110%);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  
-  .hero-top {
-    font-size: 18vw;
+  .hero-top, .about-hero-top {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 12vw, 11rem);
     top: 25%;
     z-index: 2;
     transform: translateX(-50%) translateY(var(--parallax-top, 0px));
   }
-  .hero-middle {
-    font-family: "Playfair Display", serif;
-    font-style: italic;
-    font-size: 6vw;
-    top: 50%;
-    z-index: 3;
-    color: var(--accent-warm);
-    letter-spacing: 0.05em;
-    transform: translateX(-50%) translateY(var(--parallax-middle, 0px));
-  }
-  .hero-bottom {
-    font-size: 18vw;
+  .hero-bottom, .about-hero-bottom {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 12vw, 11rem);
     bottom: 5%;
     top: auto;
     z-index: 5;
     transform: translateX(-50%) translateY(var(--parallax-bottom, 0px));
   }
-  /* Portrait-Bilder Positionierung - Mobile First */
-  .hero-bilder {
+  /* Portrait-Bilder Positionierung */
+  .hero-fig {
     position: absolute;
-    top: 30%;
+    top: var(--hero-fig-top);
     left: 50%;
     transform: translateX(-50%) translateY(var(--parallax-images, 0px));
-    width: 70vw;
-    bottom: 0;
+    width: var(--hero-fig-width);
     display: flex;
     align-items: flex-start;
     justify-content: center;
     will-change: transform;
   }
-  .hero-portrait-bg, .hero-portrait {
+  .hero-fig-bg, .hero-fig-img {
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 70vw;
+    width: 100%;
     height: auto;
     pointer-events: none;
   }
-  .hero-portrait-bg {
+  .hero-fig-bg {
     z-index: 1;
   }
-  .hero-portrait {
+  .hero-fig-img {
     z-index: 4;
   }
-  .hero-portrait-bg img, .hero-portrait img {
+  .hero-fig-bg img, .hero-fig-img img {
     width: 100%;
     height: auto;
     display: block;
@@ -233,60 +245,40 @@
 
   /* Tablet */
   @media (min-width: 481px) and (max-width: 768px) {
-    .hero-top {
-      font-size: 14vw;
+    .hero-top, .about-hero-top {
+      font-size: clamp(3rem, 14vw, 9rem);
       top: 26%;
     }
-    .hero-bottom {
-      font-size: 14vw;
+    .hero-bottom, .about-hero-bottom {
+      font-size: clamp(3rem, 14vw, 9rem);
       bottom: 8%;
     }
-    .hero-bilder,
-    .hero-portrait-bg,
-    .hero-portrait {
-      width: 45vw;
-    }
-    .hero-bilder {
-      top: 20%;
+    .hero-fig {
+      top: var(--hero-fig-top-mobile);
+      width: var(--hero-fig-width-mobile);
     }
   }
 
   /* Desktop */
   @media (min-width: 769px) {
-    .hero-top {
-      font-size: 11vw;
+    .hero-top, .about-hero-top {
+      font-size: clamp(4rem, 9vw, 10rem);
       top: 24%;
     }
-    .hero-bottom {
-      font-size: 11vw;
+    .hero-bottom, .about-hero-bottom {
+      font-size: clamp(4rem, 9vw, 10rem);
       bottom: 5%;
-    }
-    .hero-bilder,
-    .hero-portrait-bg,
-    .hero-portrait {
-      width: 32vw;
-    }
-    .hero-bilder {
-      top: 25%;
     }
   }
 
   /* Large Desktop */
   @media (min-width: 1200px) {
-    .hero-bilder,
-    .hero-portrait-bg,
-    .hero-portrait {
-      width: 26vw;
-    }
-    .hero-bilder {
+    .hero-top, .about-hero-top {
+      font-size: clamp(5rem, 8vw, 9rem);
       top: 22%;
     }
-    .hero-top {
-      font-size: 9vw;
-      top: 22%;
-    }
-    .hero-bottom {
-      font-size: 9vw;
+    .hero-bottom, .about-hero-bottom {
+      font-size: clamp(5rem, 8vw, 9rem);
       bottom: 4%;
     }
   }
@@ -301,7 +293,29 @@
     /* ============================
        Timeline
        ============================ */
-    .timeline-wrapper { position: relative; padding: 1rem 0; }
+    .work-section.bg-dark {
+      position: relative;
+      padding: clamp(5rem, 12vh, 8rem) 0;
+    }
+
+    .work-section.bg-dark::before {
+      content: '';
+      position: absolute;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(110, 59, 73, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .timeline-wrapper { 
+      position: relative; 
+      padding: 1rem 0;
+      margin-top: 3rem;
+    }
 
     .timeline-line {
       position: absolute;
@@ -469,7 +483,7 @@
       height: 100%;
       width: 0%;
       border-radius: 3px;
-      transition: width 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+      transition: width 2.5s cubic-bezier(0.19, 1, 0.22, 1); /* Langsamer */
       box-shadow: 0 0 10px rgba(110, 59, 73, 0.3);
     }
 
@@ -517,27 +531,117 @@
     }
 
     /* ============================
+       Creative Fuel Section
+       ============================ */
+    .creative-fuel-section {
+      background: linear-gradient(135deg, #f7f4f2 0%, #f1eeeb 100%);
+      padding: clamp(5rem, 13vh, 9rem) 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px 28px 0 0;
+      margin-top: -2rem;
+      box-shadow: 0 -18px 40px rgba(0,0,0,0.12);
+    }
+
+    .creative-fuel-section::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: 0;
+      width: 100%;
+      height: calc(100% + 60px);
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(110, 59, 73, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(181, 161, 158, 0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .creative-fuel-section::after {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: linear-gradient(180deg, rgba(14,14,14,0.55) 0%, rgba(14,14,14,0) 100%);
+      pointer-events: none;
+    }
+
+    .creative-fuel-header {
+      text-align: center;
+      margin-bottom: clamp(4rem, 10vh, 7rem);
+      position: relative;
+      z-index: 2;
+    }
+
+    .fuel-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--accent-burgundy);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .fuel-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--text-secondary);
+      font-weight: 300;
+      max-width: 700px;
+      margin: 0 auto;
+      font-style: italic;
+    }
+
+    .fuel-subsection {
+      margin-bottom: clamp(5rem, 12vh, 8rem);
+      position: relative;
+    }
+
+    .subsection-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      color: var(--text-primary);
+      text-align: center;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .subsection-desc {
+      text-align: center;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    .fuel-divider {
+      width: 100%;
+      max-width: 300px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-burgundy), transparent);
+      margin: clamp(4rem, 10vh, 6rem) auto;
+      opacity: 0.3;
+    }
+
+    /* ============================
        3D Books
        ============================ */
  /* ==================== SECTION ==================== */
  .section-books-2025 {
             position: relative;
-            padding: clamp(4rem, 12vh, 8rem) 0;
-            background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
-            overflow: hidden;
+            padding: 0; /* Kein Padding, da es innerhalb fuel-subsection ist */
+            background: transparent; /* Transparent, da Hintergrund von creative-fuel-section kommt */
+            overflow: visible;
         }
 
         .section-books-2025::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(110, 59, 73, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
+            display: none; /* Kein zusätzlicher Effekt da bereits im Parent */
         }
 
         .books-container-main {
@@ -550,42 +654,7 @@
 
         /* ==================== HEADER ==================== */
         .books-header-main {
-            text-align: center;
-            margin-bottom: clamp(3rem, 8vh, 5rem);
-        }
-
-        .books-header-main h2 {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            font-weight: 800;
-            text-transform: uppercase;
-            color: var(--accent-burgundy);
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: revealDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
-        }
-
-        .books-header-main p {
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
-            color: var(--text-secondary);
-            font-weight: 300;
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0;
-            animation: revealDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
-        }
-
-        @keyframes revealDown {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            display: none; /* Versteckt, da wir bereits subsection-title haben */
         }
 
         /* ==================== STATS ==================== */
@@ -666,22 +735,13 @@
             margin: 0;
             padding: 0;
             opacity: 0;
-            animation: slideInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            transform: translateY(80px);
+            transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .book-item-main:nth-child(1) { animation-delay: 0.4s; }
-        .book-item-main:nth-child(2) { animation-delay: 0.6s; }
-        .book-item-main:nth-child(3) { animation-delay: 0.8s; }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .book-item-main.in-view {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ==================== HARDCOVER 3D ==================== */
@@ -846,6 +906,21 @@
             -webkit-transform-style: preserve-3d;
             transform-style: preserve-3d;
             transition: transform 0.8s ease;
+            padding: clamp(0.8rem, 3vw, 1.5rem);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(0.5rem, 1.2vw, 0.75rem);
+            line-height: 1.6;
+            color: #333;
+            text-align: left;
+            opacity: 0.8;
+            font-style: italic;
+            max-width: 90%;
         }
 
         .page li:nth-child(1) {
@@ -987,10 +1062,29 @@
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
             overflow: hidden;
+            z-index: 1;
+        }
+
+        .goodreads-btn-main::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: #382110;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: -1;
+        }
+
+        .goodreads-btn-main:hover::before {
+            width: 300%;
+            height: 300%;
         }
 
         .goodreads-btn-main:hover {
-            background: #382110;
             color: #F3F1E8;
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(56, 33, 16, 0.2);
@@ -1040,11 +1134,28 @@
             }
 
             .book-3d {
-                height: 310px;
+                height: 280px;
             }
 
             .stats-main {
                 grid-template-columns: 1fr;
+            }
+
+            .figcaption-main h1 {
+                font-size: clamp(1rem, 4vw, 1.2rem);
+                line-height: 1.3;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+
+            .figcaption-main {
+                max-width: 100%;
+                padding: 1rem 0.5rem 0;
+            }
+
+            .books-header-main h2 {
+                font-size: clamp(2rem, 10vw, 3rem);
             }
         }
 
@@ -1085,12 +1196,28 @@
        Responsive Timeline
        ============================ */
     @media (max-width: 768px) {
-      .hero-section { height: 60vh; }
-      .hero-top, .hero-bottom { font-size: 14vw; }
-      .hero-portrait-bg, .hero-portrait { width: 70vw; }
+      .hero-section, .about-hero-section { height: 60vh; }
+      .hero-top, .hero-bottom, .about-hero-top, .about-hero-bottom { font-size: 14vw; }
+      .hero-fig {
+        width: var(--hero-fig-width-mobile);
+        top: clamp(19%, 22vh, 30%);
+      }
 
-      .timeline-line { left: 20px; }
-      .event-marker { left: 20px; }
+      .timeline-wrapper {
+        padding: 0.5rem 0;
+      }
+
+      .timeline-line { 
+        left: 20px;
+        width: 2px;
+      }
+
+      .event-marker { 
+        left: 20px;
+        width: 16px;
+        height: 16px;
+        border-width: 3px;
+      }
 
       .event-content,
       .timeline-event[data-side="left"] .event-content,
@@ -1103,8 +1230,33 @@
         padding-right: 0;
       }
 
-      .books-align { gap: 2rem; }
-      .book-3d { width: 160px; height: 220px; }
+      .event-card {
+        padding: 0.8rem;
+      }
+
+      .books-align { 
+        gap: 2rem; 
+      }
+
+      .book-3d { 
+        width: 160px; 
+        height: 220px; 
+      }
+
+      .fuel-title {
+        font-size: clamp(2rem, 9vw, 3rem);
+      }
+
+      .subsection-title {
+        font-size: clamp(1.5rem, 7vw, 2rem);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-fig {
+        width: clamp(300px, 92vw, 520px);
+        top: clamp(20%, 23vh, 31%);
+      }
     }
 
 .section-about-me {
@@ -1123,6 +1275,16 @@
 .arch-mask {
   border-radius: 500px 500px 0 0;
   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.arch-mask img {
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.arch-mask:hover img {
+  transform: scale(1.02);
 }
 
 .uppercase-label {
@@ -1146,6 +1308,288 @@
 @media (max-width: 1024px) {
   .visionary-title {
     font-size: 4rem;
+  }
+}
+
+/* ============================
+   Section Transitions & Polish
+   ============================ */
+section {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Section Dividers for Visual Flow */
+.work-section + .work-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent-burgundy), transparent);
+  opacity: 0.3;
+}
+
+/* Hover Effects for Interactive Cards */
+.profile-card {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.profile-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(110, 59, 73, 0.1);
+}
+
+/* MBTI Item Hover */
+.mbti-item {
+  transition: all 0.3s ease;
+}
+
+.mbti-item:hover {
+  transform: translateY(-8px);
+}
+
+.mbti-item:hover .mbti-svg {
+  filter: drop-shadow(0 4px 8px rgba(110, 59, 73, 0.2));
+}
+
+/* Traits Box Enhancement */
+.traits-box {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.traits-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(110, 59, 73, 0.05), transparent);
+  transition: left 0.6s ease;
+}
+
+.traits-box:hover::before {
+  left: 100%;
+}
+
+.traits-box:hover {
+  transform: translateX(8px);
+  border-color: var(--accent-burgundy);
+}
+
+/* Smooth Section Entry Animation */
+section {
+  animation: sectionFadeIn 0.8s ease-out;
+}
+
+@keyframes sectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Record Container Enhancement */
+.record-container {
+  filter: grayscale(0.2);
+  transition: filter 0.4s ease;
+}
+
+.record-container:hover {
+  filter: grayscale(0);
+}
+
+/* =========================================
+   PERSÖNLICHKEITSTYP SEKTION
+   ========================================= */
+.personality-section {
+  padding: clamp(4rem, 12vh, 8rem) 0;
+  background: var(--bg-secondary);
+  position: relative;
+}
+
+.personality-title {
+  font-family: var(--font-higuen);
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin: 0 0 2rem 0;
+  position: relative;
+  color: var(--accent-burgundy);
+  opacity: 0;
+  transform: translateY(60px) skewY(2deg);
+  animation: titleReveal 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
+}
+
+.personality-intro {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.personality-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.personality-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(110, 59, 73, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.personality-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-burgundy), var(--mauve));
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.personality-card:hover::before {
+  transform: scaleX(1);
+}
+
+.personality-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(110, 59, 73, 0.15);
+  border-color: rgba(110, 59, 73, 0.2);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.card-header h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--accent-burgundy);
+  margin: 0;
+}
+
+.card-header i {
+  font-size: 1.5rem;
+  color: var(--mauve);
+  opacity: 0.7;
+}
+
+.card-content {
+  color: var(--text-primary);
+}
+
+.card-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+}
+
+.traits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.traits-list li {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  position: relative;
+  color: var(--text-primary);
+}
+
+.traits-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--accent-burgundy);
+  font-weight: bold;
+}
+
+.traits-list li strong {
+  color: var(--accent-burgundy);
+  font-weight: 600;
+}
+
+/* GSAP Animation für Karten */
+.personality-card[data-type="basic"] {
+  animation: cardReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards;
+}
+
+.personality-card[data-type="assertive"] {
+  animation: cardReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s forwards;
+}
+
+.personality-card[data-type="typical"] {
+  animation: cardReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s forwards;
+}
+
+.personality-card[data-type="comparison"] {
+  animation: cardReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 1.1s forwards;
+}
+
+@keyframes cardReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .personality-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .personality-card {
+    padding: 1.5rem;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .card-header i {
+    align-self: flex-end;
   }
 }
   </style>
@@ -1175,16 +1619,16 @@
   <main>
 
     <!-- ======================== HERO ======================== -->
-    <div class="hero-section" id="hero">
-      <div class="hero-bg-img"></div>
-      <div class="hero-header">
-        <h1 class="hero-top">The Visionary</h1>
-        <h1 class="hero-bottom">& The Strategist</h1>
-        <div>
-          <div class="hero-portrait-bg">
+    <div class="hero-section about-hero-section" id="hero">
+      <div class="hero-bg-img about-hero-bg-img"></div>
+      <div class="hero-header about-hero-header">
+        <h1 class="hero-top about-hero-top">ABOUT</h1>
+        <h1 class="hero-bottom about-hero-bottom">ME</h1>
+        <div class="hero-fig">
+          <div class="hero-fig-bg">
             <img src="assets/images/about/pb-about.png" alt="Hintergrund Portrait">
           </div>
-          <div class="hero-portrait">
+          <div class="hero-fig-img">
             <img src="assets/images/about/pb-about.png" alt="Portrait von Khadija Okbi">
           </div>
         </div>
@@ -1234,7 +1678,9 @@
                 <span class="italic font-light">&</span> The <span class="text-accent-burgundy">Strategist.</span>
               </h2>
               <p class="text-xl leading-relaxed text-secondary max-w-2xl">
-                Ich bin kein typisches Studio. Ich bin das Bindeglied zwischen kühler Analyse und brennender Kreativität. Mein Weg führte mich von der technischen Präzision der Mediamatik zur emotionalen Wucht des Brandings.
+              <p>Kreativität zieht sich durch mein ganzes Leben. Meine Lösungswege sind oft unkonventionell. Effizienz trifft auf kreatives Chaos, ein laufendes Paradox. Mein Mantra: Wo ein Wille ist, ist auch ein Weg. Mein Durst nach Wissen ist unstillbar und ich nehme jede Gelegenheit mit, etwas neues zu lernen. Ob im Baumarkt in der Holzabteilung oder vom Elektriker in der Waschküche, welche Gelegenheit eignet sich bitte besser als diese, um von Experten zu lernen.
+                 Was mich schon seit Jahren besonders fasziniert, ist die menschliche Psyche. Unsere Triebe, Veranlagerungen und Triebe. warum wir Dinge tun, die wir rational längst durchschaut haben, und wo die Bruchstellen liegen. True Crime ist für mich kein billiger Thrill – es ist der Blick in den Extremfall, in den Moment, wo alles kippt. Ich will nicht nur wissen, was passiert ist. Ich will verstehen, warum.
+              Deshalb verschlinge ich alles zu Psychologie, Neurologie, Philosophie und True Crime. 
               </p>
             </header>
     
@@ -1244,7 +1690,7 @@
               <!-- Personality -->
               <div class="profile-card border-t border-mauve/30 pt-6">
                 <p class="uppercase-label text-accent-burgundy mb-4">Personality Type</p>
-                <h3 class="font-display text-2xl mb-4 italic">ENTJ — The Commander</h3>
+                <h3 class="font-display text-2xl mb-4 italic"><ENTJ-A></ENTJ-A> — The Commander</h3>
                 <p class="text-secondary text-sm leading-relaxed">
                   Strategisch, entschlossen, effizient. Ich sehe Strukturen, wo andere Chaos sehen. Mein Antrieb ist Fortschritt und Perfektion.
                 </p>
@@ -1255,7 +1701,7 @@
                 <p class="uppercase-label text-accent-burgundy mb-4">Zodiac Sign</p>
                 <div class="flex items-center gap-3 mb-4">
                    <h3 class="font-display text-2xl italic mb-0 text-primary">Cancer — The Intuitive</h3>
-                   <span class="text-2xl text-accent-burgundy opacity-60">♋</span>
+                   <i class="fas fa-moon text-2xl text-accent-burgundy opacity-60"></i>
                 </div>
                 <p class="text-secondary text-sm leading-relaxed">
                   Tiefgründig, intuitiv, beschützend. Ich fühle die Stimmung eines Raumes (oder einer Brand) sofort. Das emotionale Gegengewicht zu meiner Strategie.
@@ -1399,9 +1845,10 @@
           <!-- MBTI Widget -->
           <div>
             <div class="flex items-center justify-between mb-6">
-              <h3 class="text-[var(--mauve)] mb-0">Persönlichkeit</h3>
+              <h3 class="text-[var(--mauve)] mb-0">MBTI Persönlichkeit</h3>
               <span class="text-xs font-bold uppercase tracking-widest text-[var(--accent-burgundy)] border border-[var(--accent-burgundy)] rounded-full px-3 py-1">INTP‑A</span>
             </div>
+            <h4>INTP-A</h4>
 
             <ul class="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8 list-none p-0" id="mbtiList">
               <li class="mbti-item flex flex-col items-center gap-2 cursor-pointer" data-aspect="Introvertiert" data-percent="51" tabindex="0">
@@ -1443,18 +1890,55 @@
             </ul>
 
             <!-- MBTI Info Box -->
-            <div class="bg-white/5 border border-white/10 rounded-lg p-6" id="mbtiInfo">
-              <div class="flex items-center justify-between mb-3">
-                <h5 class="text-lg font-bold text-[var(--mauve)]">Der Logiker</h5>
-              </div>
-              <p class="text-sm text-[var(--text-primary-light)] leading-relaxed mb-4">Neugierig. Unabhängig. Analytisch. INTPs analysieren komplexe Systeme und finden kreative Lösungen—Pioniere neuer Ideen.</p>
-              <div class="mb-3">
-                <h6 class="text-xs font-bold uppercase tracking-wider text-[var(--accent-burgundy)] mb-1">Wie ich denke</h6>
-                <p class="text-sm text-[var(--text-primary-light)] leading-relaxed">Konzeptuell und logisch. Ich hinterfrage Annahmen und bevorzuge intellektuelle Freiheit.</p>
-              </div>
-              <div>
-                <h6 class="text-xs font-bold uppercase tracking-wider text-[var(--accent-burgundy)] mb-1">Ähnliche Denker</h6>
-                <p class="text-sm text-[var(--text-primary-light)]">Albert Einstein · Nikola Tesla</p>
+            <div class="bg-white/5 border border-white/10 rounded-lg p-6 hover:bg-white/8 transition-all duration-500 group relative overflow-hidden" id="mbtiInfo">
+              <div class="absolute inset-0 bg-gradient-to-r from-[var(--accent-burgundy)]/5 to-[var(--mauve)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div class="relative z-10">
+                <div class="flex items-center justify-between mb-4">
+                  <h5 class="text-lg font-bold text-[var(--mauve)] group-hover:text-[var(--accent-burgundy)] transition-colors duration-300">Der Logiker</h5>
+                  <div class="w-2 h-2 bg-[var(--accent-burgundy)] rounded-full animate-pulse"></div>
+                </div>
+                <p class="text-sm text-[var(--text-primary-light)] leading-relaxed mb-6 group-hover:text-white transition-colors duration-300">Neugierig. Unabhängig. Analytisch. INTPs analysieren komplexe Systeme und finden kreative Lösungen—Pioniere neuer Ideen.</p>
+                
+                <div class="mb-4">
+                  <h6 class="text-xs font-bold uppercase tracking-wider text-[var(--accent-burgundy)] mb-3 flex items-center gap-2">
+                    <i class="fas fa-brain text-sm"></i>
+                    Charaktereigenschaften
+                  </h6>
+                  <ul class="space-y-3">
+                    <li class="trait-item flex items-start gap-3 p-2 rounded hover:bg-white/5 transition-all duration-300 cursor-pointer group/item">
+                      <div class="w-1.5 h-1.5 bg-[var(--accent-burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
+                      <span class="text-sm text-[var(--text-primary-light)] group-hover/item:text-white transition-colors duration-300">Analytisch und logisch denkend</span>
+                    </li>
+                    <li class="trait-item flex items-start gap-3 p-2 rounded hover:bg-white/5 transition-all duration-300 cursor-pointer group/item">
+                      <div class="w-1.5 h-1.5 bg-[var(--accent-burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
+                      <span class="text-sm text-[var(--text-primary-light)] group-hover/item:text-white transition-colors duration-300">Neugierig und an tiefem Verständnis interessiert</span>
+                    </li>
+                    <li class="trait-item flex items-start gap-3 p-2 rounded hover:bg-white/5 transition-all duration-300 cursor-pointer group/item">
+                      <div class="w-1.5 h-1.5 bg-[var(--accent-burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
+                      <span class="text-sm text-[var(--text-primary-light)] group-hover/item:text-white transition-colors duration-300">Unabhängig und eigenständig in ihren Ideen</span>
+                    </li>
+                    <li class="trait-item flex items-start gap-3 p-2 rounded hover:bg-white/5 transition-all duration-300 cursor-pointer group/item">
+                      <div class="w-1.5 h-1.5 bg-[var(--accent-burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
+                      <span class="text-sm text-[var(--text-primary-light)] group-hover/item:text-white transition-colors duration-300">Manchmal abwesend oder unpraktisch im Alltag</span>
+                    </li>
+                    <li class="trait-item flex items-start gap-3 p-2 rounded hover:bg-white/5 transition-all duration-300 cursor-pointer group/item">
+                      <div class="w-1.5 h-1.5 bg-[var(--accent-burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
+                      <span class="text-sm text-[var(--text-primary-light)] group-hover/item:text-white transition-colors duration-300">Können mit sozialen Konventionen Schwierigkeiten haben</span>
+                    </li>
+                    <li class="trait-item flex items-start gap-3 p-2 rounded hover:bg-white/5 transition-all duration-300 cursor-pointer group/item">
+                      <div class="w-1.5 h-1.5 bg-[var(--accent-burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
+                      <span class="text-sm text-[var(--text-primary-light)] group-hover/item:text-white transition-colors duration-300">Lieben intellektuelle Herausforderungen und Problemlösen</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div class="border-t border-white/10 pt-3 mt-4">
+                  <h6 class="text-xs font-bold uppercase tracking-wider text-[var(--accent-burgundy)] mb-2 flex items-center gap-2">
+                    <i class="fas fa-lightbulb text-sm"></i>
+                    Like minds
+                  </h6>
+                  <p class="text-sm text-[var(--text-primary-light)] group-hover:text-white transition-colors duration-300">Albert Einstein · Nikola Tesla · Marie Curie</p>
+                </div>
               </div>
             </div>
           </div>
@@ -1493,42 +1977,113 @@
       </div>
     </section>
 
-    <!-- ======================== SPOTIFY WRAPPED ======================== -->
-    <section class="work-section bg-cream" id="favorites">
+    <!-- ======================== PERSÖNLICHKEITSTYP: INTP-A ======================== -->
+    <section class="work-section bg-cream personality-section">
       <div class="container">
-        <h3 class="text-[var(--accent-burgundy)] mb-8">Mein Spotify Wrapped</h3>
-        <div class="flex flex-wrap justify-center gap-8">
+        <h2 class="personality-title">Persönlichkeitstyp: INTP-A</h2>
+        <p class="personality-intro">Eine INTP-A Persönlichkeit hat folgende charakteristische Merkmale:</p>
 
-          <div class="record-container">
-            <div class="album"><img src="assets/images/branding/runaway.jpeg" alt="Runaway Album"></div>
-            <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
+        <div class="personality-grid">
+          <!-- Grundlegende Eigenschaften -->
+          <div class="personality-card" data-type="basic">
+            <div class="card-header">
+              <h3>Grundlegende Eigenschaften</h3>
+              <i class="fas fa-brain"></i>
+            </div>
+            <div class="card-content">
+              <ul class="traits-list">
+                <li><strong>Introvertiert (I):</strong> Zieht Energie aus innerer Reflexion und konzentriert sich auf die eigene Gedankenwelt</li>
+                <li><strong>Intuition (N):</strong> Fokussiert auf Muster, Möglichkeiten und zukünftige Potenziale statt auf konkrete Details</li>
+                <li><strong>Denken (T):</strong> Trifft Entscheidungen eher logisch und rational als emotional</li>
+                <li><strong>Wahrnehmend (P):</strong> Bevorzugt Flexibilität und Offenheit statt strukturierte Planung</li>
+              </ul>
+            </div>
           </div>
 
-          <div class="record-container">
-            <div class="album"><img src="assets/images/branding/fear.jpeg" alt="Fear Album"></div>
-            <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
+          <!-- Assertiv Merkmale -->
+          <div class="personality-card" data-type="assertive">
+            <div class="card-header">
+              <h3>Das "-A" bedeutet "Assertiv"</h3>
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="card-content">
+              <p class="card-desc">Das unterscheidet sie von INTP-T (Turbulent). INTP-A Personen sind:</p>
+              <ul class="traits-list">
+                <li><strong>Selbstbewusster und weniger emotional reaktiv:</strong> Sie lassen sich von Kritik oder Fehlschlägen weniger aus der Bahn werfen</li>
+                <li><strong>Entspannter und gelassener:</strong> Weniger anfällig für Stress und Angst</li>
+                <li><strong>Zielorientierter:</strong> Verfolgen ihre Ziele konsistenter, ohne sich von Selbstzweifeln ablenken zu lassen</li>
+                <li><strong>Weniger anfällig für Impostor-Syndrom:</strong> Haben mehr Vertrauen in ihre Fähigkeiten</li>
+              </ul>
+            </div>
           </div>
 
-          <div class="record-container">
-            <div class="album"><img src="assets/images/branding/millionyears.jpeg" alt="Million Years Album"></div>
-            <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
+          <!-- Typische Charakterzüge -->
+          <div class="personality-card" data-type="typical">
+            <div class="card-header">
+              <h3>Typische INTP-Charakterzüge</h3>
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <div class="card-content">
+              <ul class="traits-list">
+                <li>Analytisch und logisch denkend</li>
+                <li>Neugierig und an tiefem Verständnis interessiert</li>
+                <li>Unabhängig und eigenständig in ihren Ideen</li>
+                <li>Manchmal abwesend oder unpraktisch im Alltag</li>
+                <li>Können mit sozialen Konventionen Schwierigkeiten haben</li>
+                <li>Lieben intellektuelle Herausforderungen und Problemlösen</li>
+              </ul>
+            </div>
           </div>
 
+          <!-- Vergleich zu INTP-T -->
+          <div class="personality-card" data-type="comparison">
+            <div class="card-header">
+              <h3>Im Vergleich zu INTP-T</h3>
+              <i class="fas fa-balance-scale"></i>
+            </div>
+            <div class="card-content">
+              <p class="card-desc">INTP-T Personen sind perfektionistischer, zweifeln mehr an sich selbst und reagieren emotionaler auf externe Kritik, während INTP-A entspannter und selbstsicherer agiert.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ======================== BOOKS 2025 ======================== -->
-    <section class="work-section bg-burgundy">
+    <!-- ======================== NAHRUNG FÜR DEN KREATIVEN GEIST ======================== -->
+    <section class="work-section creative-fuel-section" id="favorites">
       <div class="container">
-        
+        <!-- Section Header -->
+        <div class="creative-fuel-header">
+          <h2 class="fuel-title">Meine Favoriten</h2>
+        </div>
+
+        <!-- Spotify Wrapped -->
+        <div class="fuel-subsection vinyl-section">
+          <h3 class="subsection-title">2025 Spotify Wrapped</h3>
+          <div class="flex flex-wrap justify-center gap-8 mt-8">
+            <div class="record-container">
+              <div class="album"><img src="assets/images/branding/runaway.jpeg" alt="Runaway Album"></div>
+              <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
+            </div>
+            <div class="record-container">
+              <div class="album"><img src="assets/images/branding/fear.jpeg" alt="Fear Album"></div>
+              <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
+            </div>
+            <div class="record-container">
+              <div class="album"><img src="assets/images/branding/millionyears.jpeg" alt="Million Years Album"></div>
+              <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="fuel-divider"></div>
+
+        <!-- Books Section -->
+        <div class="fuel-subsection books-section">
+          <h3 class="subsection-title">Mein Jahr in Büchern</h3>
 <div class="section-books-2025">
    <div class="books-container-main">
-       <!-- Header -->
-       <div class="books-header-main">
-           <h2>Reading 2025</h2>
-           <p>My three most beloved books of 2025. Hover to flip and explore each story.</p>
-       </div>
 
        <!-- Stats -->
        <div class="stats-main">
@@ -1541,7 +2096,7 @@
                <span class="stat-label-main">2025</span>
            </div>
        </div>
-
+  <p class="subsection-desc">Aus 104 gelesenen Büchern im Jahr 2025 meine Favoriten nach Genre zu selektieren war tatsächlich einfacher als erwartet. Es gibt nur wenige Bücher die einen bleibenden Eindruck hinterlassen und nachhaltig beschäftigen, diese drei haben es definitiv geschafft:</p>
  <!-- 3D Books Gallery -->
  <ul class="books-align">
    <!-- Book 1: Fourth Wing -->
@@ -1556,11 +2111,89 @@
            </ul>
            
            <!-- Pages -->
-           <ul class="page">
-               <li></li>
+       <ul class="page">
+    <li>
+        <span class="page-text">
+        Violet Sorrengail sollte ein ruhiges Leben unter Büchern führen – doch auf Befehl ihrer Mutter wird sie an das Basgiath War College geschickt, wo Drachenreiter ausgebildet werden. 
+        Schwäche bedeutet hier den Tod, und Violet gilt als körperlich unterlegen.
+        </span>
+    </li>
+    <li>
+        <span class="page-text">
+        Zwischen brutalen Prüfungen, tödlicher Konkurrenz und politischen Intrigen muss sie beweisen, dass Intelligenz ebenso mächtig sein kann wie rohe Stärke. 
+        Jeder Kadett kämpft ums Überleben – nicht nur gegen Drachen, sondern gegeneinander.
+        </span>
+    </li>
+    <li>
+        <span class="page-text">
+        Während sich gefährliche Allianzen und verbotene Gefühle entwickeln, erkennt Violet, dass die wahre Bedrohung nicht nur auf dem Schlachtfeld lauert. 
+        Es geht um Macht, Loyalität – und die Frage, wem man in einem System trauen kann, das auf Kontrolle aufgebaut ist.
+        </span>
+    </li>
+</ul> 
+           <!-- Back Cover -->
+           <ul class="hardcover-back">
                <li></li>
                <li></li>
            </ul>
+           
+           <!-- Spine -->
+           <ul class="book-spine">
+               <li></li>
+               <li></li>
+           </ul>
+       </div>
+
+       <!-- Info -->
+       <figcaption class="figcaption-main">
+           <h3>Fourth Wing</h3>
+           <span>von Rebecca Yarros</span>
+           <div class="rating-main flex gap-1 justify-center items-center mt-2">
+               <i class="fas fa-star text-accent-burgundy"></i>
+               <i class="fas fa-star text-accent-burgundy"></i>
+               <i class="fas fa-star text-accent-burgundy"></i>
+               <i class="fas fa-star text-accent-burgundy"></i>
+               <i class="fas fa-star text-accent-burgundy"></i>
+           </div>
+           <p>Mein erstes Buch im Jahr 2025 hat die Messlatte unschlagbar hoch gelegt. Von der ersten Seite an zog mich die drei teilige Empyrean-Reihe in ihren Bann. Obwohl Fantasy nicht meinem üblichen Genre entspricht, mangelte es diesem Buch keinesfalls an Spannung. Fourth Wing hat mein Herz erobert und mich in ganz neue fantastische Welten katapultiert.  </p>
+       </figcaption>
+   </li>
+  <!-- Book 3: A Good Girl's Guide to Murder -->
+   <li class="book-item-main">
+       <div class="book-3d">
+           <!-- Front Cover -->
+           <ul class="hardcover-front">
+               <li>
+                   <img src="assets/images/about/agggtm-cover.webp" alt="A Good Girl's Guide to Murder"/>
+               </li>
+               <li></li>
+           </ul>
+           
+           <!-- Pages -->
+        <ul class="page">
+    <li>
+        <span class="page-text">
+        Fünf Jahre nach einem vermeintlich gelösten Mordfall beschliesst die Schülerin Pip Fitz-Amobi, die Geschichte für ihr Abschlussprojekt neu aufzurollen. 
+        Offiziell gilt der Fall als abgeschlossen – der Täter soll sich nach der Tat selbst das Leben genommen haben.
+        </span>
+    </li>
+
+    <li>
+        <span class="page-text">
+        Doch je tiefer Pip recherchiert, desto mehr Widersprüche entdeckt sie. 
+        Gerüchte, verdrängte Wahrheiten und verborgene Motive kommen ans Licht. 
+        Schnell wird klar: Nicht jeder in der Kleinstadt will, dass die Vergangenheit erneut aufgedeckt wird.
+        </span>
+    </li>
+
+    <li>
+        <span class="page-text">
+        Was als Schulprojekt beginnt, entwickelt sich zu einer gefährlichen Suche nach Wahrheit. 
+        Die Geschichte zeigt, wie leicht ein Narrativ akzeptiert wird – und wie riskant es ist, es infrage zu stellen.
+        </span>
+    </li>
+</ul>
+
            
            <!-- Back Cover -->
            <ul class="hardcover-back">
@@ -1577,13 +2210,19 @@
 
        <!-- Info -->
        <figcaption class="figcaption-main">
-           <h1>Fourth Wing</h1>
-           <span>by Rebecca Yarros</span>
-           <span class="rating-main">⭐⭐⭐⭐⭐</span>
-           <p>A breathtaking dragon fantasy that captured my heart completely. Yarros weaves romance, danger, and magic into an utterly captivating experience.</p>
+           <h3>A Good Girl's Guide to Murder</h3>
+           <span>von Holly Jackson</span>
+            <div class="rating-main flex gap-1 justify-center items-center mt-2">
+                <i class="fas fa-star text-accent-burgundy"></i>
+                <i class="fas fa-star text-accent-burgundy"></i>
+                <i class="fas fa-star text-accent-burgundy"></i>
+                <i class="fas fa-star text-accent-burgundy"></i>
+                <i class="fas fa-star text-accent-burgundy"></i>
+            </div>
+           <p>Auch A Good Girl's Guide to Murder ist Teil einer drei teiligen Young Adult Mysterie Reihe und hätte es alleinstehend wahrscheinlich nicht in meine Top 3 geschafft. Die Entwiklung der Hauptprotagonistin war so unerwartet, dass Band drei dieser Reihe einen Flair verleiht, dem ich bisher noch nie so begegnet bin. Besonders einprägend fand ich Jacksons Fähigkeit, komplexe Charaktere aufzubauen, Einblicke in die Psyche dieser zu vermitteln und die anschliessende Kapitulation dieser anzubahnen. </p>
        </figcaption>
-   </li>
-
+  <figcaption/>
+ </li>
    <!-- Book 2: Reminders of Him -->
    <li class="book-item-main">
        <div class="book-3d">
@@ -1596,11 +2235,31 @@
            </ul>
            
            <!-- Pages -->
-           <ul class="page">
-               <li></li>
-               <li></li>
-               <li></li>
-           </ul>
+    <ul class="page">
+    <li>
+        <span class="page-text">
+        Nach fünf Jahren im Gefängnis kehrt Kenna Rowan in eine Stadt zurück, die ihr nie verziehen hat. 
+        Ihr einziges Ziel: ihre Tochter wiedersehen, die sie als Baby zurücklassen musste. 
+        Doch für die Menschen dort ist sie nicht eine Mutter mit Reue – sondern die Frau, die ein unverzeihliches Unglück verursacht hat.
+        </span>
+    </li>
+
+    <li>
+        <span class="page-text">
+        Der einzige, der hinter ihre Fehler blickt, ist Ledger Ward. 
+        Zwischen Loyalität zur Vergangenheit und wachsender Nähe zu Kenna gerät er in einen inneren Konflikt. 
+        Gefühle entstehen dort, wo sie eigentlich keinen Platz haben dürften.
+        </span>
+    </li>
+
+    <li>
+        <span class="page-text">
+        Die Geschichte handelt von Schuld, Verantwortung und der Frage, ob ein einziger Fehler ein ganzes Leben definieren darf. 
+        Es geht um Vergebung – die der anderen, aber vor allem die eigene.
+        </span>
+    </li>
+</ul>
+
            
            <!-- Back Cover -->
            <ul class="hardcover-back">
@@ -1617,66 +2276,38 @@
 
        <!-- Info -->
        <figcaption class="figcaption-main">
-           <h1>Reminders of Him</h1>
-           <span>by Colleen Hoover</span>
-           <span class="rating-main">⭐⭐⭐⭐⭐</span>
-           <p>Raw emotional depth with masterful storytelling about redemption and second chances. Hoover's ability to make you feel every heartbreak is unmatched.</p>
+           <h3>Reminders of Him</h3>
+           <span>von Colleen Hoover</span>
+           <div class="rating-main flex gap-1 justify-center items-center mt-2">
+               <i class="fas fa-star text-accent-burgundy"></i>
+               <i class="fas fa-star text-accent-burgundy"></i>
+               <i class="fas fa-star text-accent-burgundy"></i>
+               <i class="fas fa-star text-accent-burgundy"></i>
+               <i class="fas fa-star text-accent-burgundy"></i>
+           </div>
+        <p>Die Bücher, die mich zu Tränen gerührt haben, kann ich an einer Hand abzählen, Reminders of Him ist eines davon. Was mich so berührt hat, war nicht nur die tragische Ausgangslage, sondern die schonungslose Ehrlichkeit, mit der dieser schmale Grat zwischen Schicksal und Schuld gezeichnet wird.
+            Der innere Kampf zwischen Hoffnung und Selbstverurteilung, war intensiv und bewegend. Eine emotionale Achterbahnfahrt, die tief unter die Haut geht und noch lange nachhallt.</p>
        </figcaption>
    </li>
 
-   <!-- Book 3: A Good Girl's Guide to Murder -->
-   <li class="book-item-main">
-       <div class="book-3d">
-           <!-- Front Cover -->
-           <ul class="hardcover-front">
-               <li>
-                   <img src="assets/images/about/agggtm-cover.webp" alt="A Good Girl's Guide to Murder"/>
-               </li>
-               <li></li>
-           </ul>
-           
-           <!-- Pages -->
-           <ul class="page">
-               <li></li>
-               <li></li>
-               <li></li>
-           </ul>
-           
-           <!-- Back Cover -->
-           <ul class="hardcover-back">
-               <li></li>
-               <li></li>
-           </ul>
-           
-           <!-- Spine -->
-           <ul class="book-spine">
-               <li></li>
-               <li></li>
-           </ul>
-       </div>
-
-       <!-- Info -->
-       <figcaption class="figcaption-main">
-           <h1>A Good Girl's Guide to Murder</h1>
-           <span>by Holly Jackson</span>
-           <span class="rating-main">⭐⭐⭐⭐⭐</span>
-           <p>An intricate mystery that challenges everything you believe. Jackson's puzzle-craft is exceptional and utterly unputdownable.</p>
-       </figcaption>
-   </li>
+ 
 </ul>
 
 <!-- Goodreads CTA -->
 <div class="goodreads-section">
-   <h3>Discover More on Goodreads</h3>
-   <p>Explore my complete reading journey of 2025. All 104 books I've read, from literary masterpieces to beloved guilty pleasure reads.</p>
+   <h3>Goodreads wrapped 2025</h3>
+   <p>Tauche ein in meine vollständige Lesereise 2025. Alle 104 Bücher – von literarischen Meisterwerken bis zu geliebten Guilty Pleasures.</p>
    <a href="https://www.goodreads.com/user/year_in_books/2025/86919904" target="_blank" rel="noopener noreferrer" class="goodreads-btn-main">
-       Visit My Goodreads Profile →
+       Besuche mein Goodreads-Profil →
            </a>
        </div>
    </div>
 </div>
-
+        </div>
+        <!-- End Books Section -->
+      </div>
     </section>
+    <!-- ======================== END CREATIVE FUEL ======================== -->
   </div>
 </div>
   </main>
@@ -1740,6 +2371,12 @@
     document.querySelectorAll('.timeline-event').forEach((ev, i) => {
       ev.style.transitionDelay = `${i * 0.1}s`;
       scrollObserver.observe(ev);
+    });
+
+    // Book Items - On Scroll Animation
+    document.querySelectorAll('.book-item-main').forEach((book, i) => {
+      book.style.transitionDelay = `${i * 0.2}s`;
+      scrollObserver.observe(book);
     });
 
     // ── Timeline Toggle ──
@@ -1860,15 +2497,35 @@ class CounterAnimator {
 
       const heroTrigger = { trigger: '.hero-section', start: 'top top', end: 'bottom top', scrub: 1 };
 
-      gsap.to('.hero-top', { y: 100, scrollTrigger: heroTrigger });
-      gsap.to('.hero-bottom', { y: 120, scrollTrigger: heroTrigger });
-      gsap.to('.hero-portrait', { y: -20, scrollTrigger: heroTrigger });
-      gsap.to('.hero-portrait-bg', { y: -20, scrollTrigger: heroTrigger });
+      gsap.to('.about-hero-top', { y: 100, scrollTrigger: heroTrigger });
+      gsap.to('.about-hero-bottom', { y: 120, scrollTrigger: heroTrigger });
+      gsap.to('.hero-fig-img', { y: -20, scrollTrigger: heroTrigger });
+      gsap.to('.hero-fig-bg', { y: -20, scrollTrigger: heroTrigger });
+
+      // ── Personality Cards Animation ──
+      gsap.utils.toArray('.personality-card').forEach((card, index) => {
+        gsap.fromTo(card, 
+          { opacity: 0, y: 50, scale: 0.9 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            scale: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 80%",
+              end: "bottom 20%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        );
+      });
 
       ScrollTrigger.refresh();
     }
 
-    console.log('✨ About page initialized!');
+    console.log('🎯 About page initialized!');
   });
   </script>
 

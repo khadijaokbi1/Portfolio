@@ -6,6 +6,7 @@
     <title>WeHelp - Psychische Gesundheit für Erwachsene und Kinder</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
 * {
@@ -22,6 +23,11 @@ box-sizing: border-box;
 --color-white: #FFFFFF;
 --color-text: #2D3E45;
 --color-text-light: #666F75;
+--color-yellow: #FFE066;
+--glass-bg: rgba(255, 255, 255, 0.25);
+--glass-border: rgba(255, 255, 255, 0.18);
+--glass-shadow: 0 8px 32px 0 rgba(78, 142, 130, 0.37);
+--blur-strength: 20px;
         }
 html {
 scroll-behavior: smooth;
@@ -31,32 +37,85 @@ font-family: 'Poppins', sans-serif;
 color: var(--color-text);
 line-height: 1.6;
 overflow-x: hidden;
-background: var(--color-white);
+background: linear-gradient(135deg, 
+    rgba(78, 142, 130, 0.03) 0%, 
+    rgba(175, 213, 193, 0.05) 25%,
+    rgba(255, 224, 102, 0.03) 50%,
+    rgba(130, 163, 166, 0.04) 75%,
+    rgba(245, 247, 246, 0.8) 100%);
+background-attachment: fixed;
+position: relative;
         }
+
+body::before {
+content: '';
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: 
+        radial-gradient(40% 50% at 15% 70%, rgba(78, 142, 130, 0.14) 0%, transparent 55%),
+        radial-gradient(45% 55% at 85% 20%, rgba(255, 224, 102, 0.12) 0%, transparent 55%),
+        radial-gradient(30% 40% at 40% 30%, rgba(175, 213, 193, 0.12) 0%, transparent 55%);
+pointer-events: none;
+z-index: -2;
+animation: backgroundFloat 16s ease-in-out infinite;
+        }
+
+@keyframes backgroundFloat {
+0%, 100% { transform: translateY(0px) rotate(0deg); }
+50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+/* Floating blob background (glass only in backdrop) */
+.floating-blobs {
+position: fixed;
+inset: 0;
+pointer-events: none;
+z-index: -1;
+overflow: hidden;
+        }
+.floating-blobs .blob {
+position: absolute;
+filter: blur(18px);
+opacity: 0.55;
+mix-blend-mode: screen;
+border-radius: 45% 55% 50% 60% / 55% 45% 60% 50%;
+background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.35), rgba(78, 142, 130, 0.28));
+        }
+.floating-blobs .b1 { width: 380px; height: 360px; top: 10%; left: 8%; background: radial-gradient(circle at 20% 30%, rgba(78, 142, 130, 0.35), rgba(175, 213, 193, 0.25)); }
+.floating-blobs .b2 { width: 320px; height: 340px; top: 55%; left: 18%; background: radial-gradient(circle at 70% 60%, rgba(255, 224, 102, 0.3), rgba(130, 163, 166, 0.22)); }
+.floating-blobs .b3 { width: 420px; height: 380px; top: 20%; right: 12%; background: radial-gradient(circle at 60% 40%, rgba(175, 213, 193, 0.32), rgba(255, 224, 102, 0.24)); }
+.floating-blobs .b4 { width: 360px; height: 360px; bottom: 8%; right: 18%; background: radial-gradient(circle at 30% 70%, rgba(130, 163, 166, 0.32), rgba(78, 142, 130, 0.24)); }
 /* ========== TYPOGRAPHY ========== */
 h1, h2 {
 font-family: 'Space Grotesk', sans-serif;
 font-weight: 700;
 letter-spacing: -0.5px;
         }
-h3 {
-font-family: 'Space Grotesk', sans-serif;
-font-weight: 600;
-        }
+
 /* ========== NAVIGATION ========== */
 nav {
 position: fixed;
 top: 0;
 width: 100%;
 z-index: 1000;
-background: rgba(255, 255, 255, 0.97);
-backdrop-filter: blur(20px);
+background: rgba(255, 255, 255, 0.98);
 padding: 1.2rem 2rem;
 display: flex;
 justify-content: space-between;
 align-items: center;
-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-border-bottom: 1px solid rgba(78, 142, 130, 0.1);
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+border: 1px solid rgba(0, 0, 0, 0.04);
+border-top: none;
+transition: all 0.3s ease;
+        }
+
+nav:hover {
+background: rgba(255, 255, 255, 1);
+transform: translateY(-2px);
+box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
         }
 .logo {
 font-size: 1.5rem;
@@ -76,13 +135,13 @@ height: 40px;
 .nav-menu {
 display: flex;
 list-style: none;
-gap: 2.5rem;
+gap: 2.2rem;
 align-items: center;
         }
 .nav-menu a {
 color: var(--color-text);
 text-decoration: none;
-font-size: 0.9rem;
+font-size: 0.95rem;
 font-weight: 500;
 position: relative;
 transition: color 0.3s ease;
@@ -179,6 +238,123 @@ background: var(--color-text);
 border-radius: 2px;
 transition: 0.3s;
         }
+
+/* App UI inside phone */
+.app-ui {
+position: relative;
+padding: 36px 22px 24px;
+height: 100%;
+overflow-y: auto;
+background: linear-gradient(180deg, rgba(12, 27, 24, 0.94) 0%, rgba(15, 40, 35, 0.96) 50%, rgba(17, 53, 45, 0.92) 100%);
+color: var(--color-white);
+display: flex;
+flex-direction: column;
+gap: 14px;
+        }
+
+.app-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 6px;
+        }
+
+.app-title {
+font-size: 1.2rem;
+font-weight: 700;
+letter-spacing: -0.2px;
+        }
+
+.app-chip {
+padding: 0.4rem 0.75rem;
+border-radius: 999px;
+background: rgba(255, 224, 102, 0.18);
+color: #ffe066;
+font-weight: 700;
+font-size: 0.85rem;
+        }
+
+.app-card {
+background: rgba(255, 255, 255, 0.08);
+border: 1px solid rgba(255, 255, 255, 0.08);
+border-radius: 18px;
+padding: 16px;
+box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+        }
+
+.app-card h4 {
+margin-bottom: 6px;
+font-size: 1rem;
+font-weight: 700;
+        }
+
+.app-card p {
+margin: 0;
+font-size: 0.9rem;
+line-height: 1.5;
+color: rgba(255, 255, 255, 0.9);
+        }
+
+.app-row {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 12px;
+margin-top: 10px;
+        }
+
+.app-btn {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+padding: 0.65rem 1rem;
+border-radius: 12px;
+border: none;
+cursor: pointer;
+font-weight: 700;
+font-size: 0.95rem;
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+.app-btn.primary {
+background: var(--color-primary);
+color: var(--color-white);
+box-shadow: 0 10px 24px rgba(78, 142, 130, 0.35);
+        }
+
+.app-btn.secondary {
+background: rgba(255, 255, 255, 0.1);
+color: var(--color-white);
+border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+.app-btn:hover {
+transform: translateY(-1px);
+box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+        }
+
+.slot-list {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 10px;
+margin-top: 10px;
+        }
+
+.slot {
+background: rgba(255, 255, 255, 0.08);
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 12px;
+padding: 10px 12px;
+font-weight: 700;
+text-align: center;
+color: var(--color-white);
+        }
+
+.app-small {
+font-size: 0.85rem;
+color: rgba(255, 255, 255, 0.8);
+        }
 /* ========== HERO SECTION ========== */
 .hero {
 margin-top: 70px;
@@ -253,6 +429,9 @@ font-size: 1.1rem;
 color: rgba(255, 255, 255, 0.95);
 margin-bottom: 2.5rem;
 line-height: 1.8;
+visibility: visible !important;
+opacity: 1 !important;
+display: block !important;
         }
 .hero-buttons {
 display: flex;
@@ -275,8 +454,8 @@ box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 display: inline-block;
         }
 .btn-primary:hover {
-transform: translateY(-4px);
-box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+transform: translateY(-2px);
+box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
 background: var(--color-light);
         }
 .btn-secondary {
@@ -295,7 +474,8 @@ display: inline-block;
 .btn-secondary:hover {
 background: var(--color-white);
 color: var(--color-primary);
-transform: translateY(-4px);
+transform: translateY(-2px);
+box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
         }
 .hero-visual {
 position: relative;
@@ -381,30 +561,16 @@ margin-top: 3rem;
 padding: 2.8rem;
 background: var(--color-white);
 border-radius: 20px;
-border: 1.5px solid rgba(78, 142, 130, 0.15);
+border: 1px solid rgba(0, 0, 0, 0.05);
 transition: all 0.3s ease;
 position: relative;
+overflow: hidden;
+box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
         }
-.about-card::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 4px;
-background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-border-radius: 20px 20px 0 0;
-transform: scaleX(0);
-transform-origin: left;
-transition: transform 0.3s ease;
-        }
-.about-card:hover::before {
-transform: scaleX(1);
-        }
+
 .about-card:hover {
-transform: translateY(-12px);
-border-color: rgba(78, 142, 130, 0.3);
-box-shadow: 0 20px 40px rgba(78, 142, 130, 0.12);
+transform: translateY(-8px) scale(1.01);
+box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
         }
 .about-card h3 {
 font-size: 1.5rem;
@@ -436,33 +602,19 @@ gap: 3rem;
 margin-top: 3rem;
         }
 .service-card {
-background: linear-gradient(135deg, rgba(78, 142, 130, 0.05) 0%, rgba(175, 213, 193, 0.08) 100%);
+background: var(--color-white);
+border: 1px solid rgba(0, 0, 0, 0.05);
 padding: 3rem;
 border-radius: 20px;
-border: 1px solid rgba(78, 142, 130, 0.15);
 transition: all 0.3s ease;
 position: relative;
 overflow: hidden;
+box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
         }
-.service-card::before {
-content: '';
-position: absolute;
-top: -50%;
-right: -50%;
-width: 200px;
-height: 200px;
-background: radial-gradient(circle, rgba(175, 213, 193, 0.3) 0%, transparent 70%);
-border-radius: 50%;
-transition: all 0.3s ease;
-        }
-.service-card:hover::before {
-top: -30%;
-right: -30%;
-        }
+
 .service-card:hover {
-transform: translateY(-15px);
-border-color: var(--color-primary);
-box-shadow: 0 25px 60px rgba(78, 142, 130, 0.15);
+transform: translateY(-8px) scale(1.01);
+box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
         }
 .service-card > * {
 position: relative;
@@ -553,15 +705,17 @@ overflow: hidden;
 border-radius: 20px;
 cursor: pointer;
 transition: all 0.3s ease;
-box-shadow: 0 10px 30px rgba(78, 142, 130, 0.15);
-background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+background: var(--color-white);
+border: 1px solid rgba(0, 0, 0, 0.05);
 display: flex;
 align-items: center;
 justify-content: center;
         }
+
 .gallery-item:hover {
-transform: scale(1.05);
-box-shadow: 0 15px 40px rgba(78, 142, 130, 0.25);
+transform: scale(1.02) rotateZ(1deg);
+box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
         }
 .gallery-item img {
 width: 100%;
@@ -575,9 +729,143 @@ font-size: 4rem;
 text-align: center;
 opacity: 0.9;
         }
-/* ========== INSTAGRAM SECTION ========== */
+/* ========== INSTAGRAM IPHONE MOCKUP ========== */
 .instagram-section {
-background: linear-gradient(135deg, rgba(78, 142, 130, 0.03) 0%, rgba(175, 213, 193, 0.05) 100%);
+background: linear-gradient(135deg, rgba(78, 142, 130, 0.08) 0%, rgba(175, 213, 193, 0.06) 50%, rgba(255, 224, 102, 0.05) 100%);
+padding: 8rem 2rem;
+position: relative;
+overflow: hidden;
+        }
+
+.instagram-section::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: radial-gradient(circle at 30% 70%, rgba(255, 224, 102, 0.12) 0%, transparent 52%);
+pointer-events: none;
+        }
+
+.instagram-container {
+max-width: 1200px;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+position: relative;
+z-index: 1;
+        }
+
+.iphone-mockup {
+position: relative;
+width: 360px;
+height: 720px;
+background: linear-gradient(145deg, #0f0f0f 0%, #1d1d1f 50%, #0f0f0f 100%);
+border-radius: 52px;
+padding: 18px;
+box-shadow: 
+        0 50px 100px rgba(0, 0, 0, 0.35),
+        inset 0 2px 6px rgba(255, 255, 255, 0.08),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.35);
+transform: perspective(1100px) rotateY(-4deg) rotateX(4deg);
+transition: all 0.35s ease;
+margin: 3rem auto;
+                }
+
+.iphone-mockup:hover {
+transform: perspective(1100px) rotateY(0deg) rotateX(0deg) scale(1.03);
+box-shadow: 
+        0 70px 140px rgba(0, 0, 0, 0.35),
+        inset 0 2px 6px rgba(255, 255, 255, 0.12),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.25);
+                }
+
+.iphone-screen {
+width: 100%;
+height: 100%;
+background: #000;
+border-radius: 40px;
+position: relative;
+overflow: hidden;
+box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.55);
+        }
+
+.iphone-notch {
+position: absolute;
+top: 8px;
+left: 50%;
+transform: translateX(-50%);
+width: 120px;
+height: 25px;
+background: #000;
+border-radius: 15px;
+z-index: 10;
+        }
+
+.iphone-screen-image {
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 32px;
+filter: saturate(1.05) contrast(1.02);
+                }
+
+.insta-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 1rem 1.25rem;
+background: var(--color-white);
+border-radius: 18px;
+border: 1px solid rgba(0, 0, 0, 0.05);
+margin-bottom: 1.25rem;
+box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+        }
+
+.insta-profile {
+display: flex;
+align-items: center;
+gap: 1rem;
+        }
+
+.insta-avatar {
+width: 50px;
+height: 50px;
+background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+border-radius: 14px;
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+font-weight: 700;
+font-size: 1.1rem;
+box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+        }
+
+.insta-username {
+color: var(--color-white);
+font-weight: 600;
+font-size: 0.95rem;
+        }
+
+.insta-follow-btn {
+padding: 0.5rem 1.2rem;
+background: var(--color-yellow);
+color: var(--color-dark);
+border: none;
+border-radius: 20px;
+font-weight: 600;
+font-size: 0.8rem;
+cursor: pointer;
+transition: all 0.3s ease;
+box-shadow: 0 4px 15px rgba(255, 224, 102, 0.3);
+        }
+
+.insta-follow-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(255, 224, 102, 0.5);
         }
 .instagram-header {
 display: flex;
@@ -607,40 +895,79 @@ background: var(--color-dark);
 transform: translateY(-2px);
 box-shadow: 0 8px 20px rgba(78, 142, 130, 0.3);
         }
-.instagram-grid {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 1.5rem;
-margin-top: 2rem;
-        }
-.instagram-post {
-position: relative;
+.insta-post-item {
+width: 100%;
+aspect-ratio: 1;
+border-radius: 16px;
 overflow: hidden;
-border-radius: 15px;
-aspect-ratio: 1 / 1;
-background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+position: relative;
 cursor: pointer;
-transition: all 0.3s ease;
-box-shadow: 0 8px 25px rgba(78, 142, 130, 0.12);
-display: flex;
-align-items: center;
-justify-content: center;
+transition: all 0.25s ease;
+box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
         }
-.instagram-post:hover {
-transform: translateY(-8px);
-box-shadow: 0 15px 40px rgba(78, 142, 130, 0.2);
+
+.insta-post-item:hover {
+transform: scale(1.02);
+box-shadow: 0 16px 36px rgba(0, 0, 0, 0.16);
         }
-.instagram-post img {
+        }
+
+.insta-post-item:hover {
+transform: scale(1.05);
+box-shadow: 0 8px 25px rgba(78, 142, 130, 0.4);
+        }
+
+.insta-post-item img {
 width: 100%;
 height: 100%;
 object-fit: cover;
-opacity: 1 !important;
         }
-.instagram-placeholder {
-font-size: 3.5rem;
-color: var(--color-white);
-opacity: 0.8;
+
+.insta-post-overlay {
+position: absolute;
+inset: 0;
+background: linear-gradient(45deg, rgba(78, 142, 130, 0.8), rgba(255, 224, 102, 0.3));
+transition: opacity 0.3s ease;
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+font-weight: 600;
+        }
+
+.insta-post-item:hover .insta-post-overlay {
+opacity: 1;
+        }
+
+.instagram-stats {
+display: flex;
+justify-content: space-around;
+padding: 1.5rem;
+background: var(--glass-bg);
+border-radius: 20px;
+border: 1px solid var(--glass-border);
+backdrop-filter: blur(var(--blur-strength));
+-webkit-backdrop-filter: blur(var(--blur-strength));
+margin-top: 1rem;
+box-shadow: var(--glass-shadow);
+        }
+
+.stat-item {
 text-align: center;
+        }
+
+.stat-number {
+font-size: 1.2rem;
+font-weight: 700;
+color: var(--color-white);
+display: block;
+        }
+
+.stat-label {
+font-size: 0.7rem;
+color: rgba(255, 255, 255, 0.8);
+text-transform: uppercase;
+letter-spacing: 0.5px;
         }
 /* ========== BLOG/NEWS SECTION ========== */
 .blog {
@@ -661,16 +988,21 @@ gap: 2.5rem;
 margin-top: 3rem;
         }
 .blog-card {
-background: var(--color-white);
+background: var(--glass-bg);
+border: 1px solid var(--glass-border);
+backdrop-filter: blur(var(--blur-strength));
+-webkit-backdrop-filter: blur(var(--blur-strength));
 border-radius: 18px;
 overflow: hidden;
-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-transition: all 0.3s ease;
+box-shadow: var(--glass-shadow);
+transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 cursor: pointer;
         }
+
 .blog-card:hover {
-transform: translateY(-12px);
-box-shadow: 0 15px 40px rgba(78, 142, 130, 0.15);
+transform: translateY(-15px) scale(1.02);
+box-shadow: 0 25px 60px rgba(78, 142, 130, 0.2);
+background: rgba(255, 255, 255, 0.4);
         }
 .blog-image {
 width: 100%;
@@ -989,10 +1321,327 @@ height: 200px;
 gap: 2rem;
             }
         }
-/* ========== ANIMATIONS ========== */
+/* ========== SVG ANIMATIONS ========== */
+.animated-svg {
+transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+transform-origin: center;
+        }
+
+.logo-svg {
+animation: logoFloat 4s ease-in-out infinite;
+        }
+
+@keyframes logoFloat {
+0%, 100% { 
+    transform: translateY(0px) rotate(0deg) scale(1); 
+}
+25% { 
+    transform: translateY(-3px) rotate(1deg) scale(1.03); 
+}
+50% { 
+    transform: translateY(-5px) rotate(0deg) scale(1.05); 
+}
+75% { 
+    transform: translateY(-3px) rotate(-1deg) scale(1.03); 
+}
+        }
+
+.hero-logo {
+animation: heroSpin 8s linear infinite;
+        }
+
+@keyframes heroSpin {
+0% { 
+    transform: rotate(0deg) scale(1); 
+}
+50% { 
+    transform: rotate(180deg) scale(1.1); 
+}
+100% { 
+    transform: rotate(360deg) scale(1); 
+}
+        }
+
+.gallery-item .animated-svg {
+animation: galleryFloat 6s ease-in-out infinite;
+animation-delay: calc(var(--index, 0) * 0.5s);
+        }
+
+.gallery-item:hover .animated-svg {
+animation-play-state: paused;
+transform: scale(1.15) rotate(10deg);
+        }
+
+@keyframes galleryFloat {
+0%, 100% { 
+    transform: translateY(0px) rotate(0deg) scale(1); 
+}
+33% { 
+    transform: translateY(-8px) rotate(2deg) scale(1.05); 
+}
+66% { 
+    transform: translateY(-4px) rotate(-1deg) scale(1.02); 
+}
+        }
+
+.service-card svg {
+animation: serviceGlow 4s ease-in-out infinite alternate;
+        }
+
+@keyframes serviceGlow {
+0% { 
+    filter: drop-shadow(0 0 10px rgba(78, 142, 130, 0.3)); 
+}
+100% { 
+    filter: drop-shadow(0 0 25px rgba(78, 142, 130, 0.6)); 
+}
+        }
+
+.instagram-post svg path,
+.instagram-post svg circle,
+.instagram-post svg polygon {
+animation: svgElementPulse 3s ease-in-out infinite;
+animation-delay: calc(var(--element-index, 0) * 0.2s);
+        }
+
+@keyframes svgElementPulse {
+0%, 100% { 
+    opacity: 0.2; 
+    transform: scale(1); 
+}
+50% { 
+    opacity: 0.4; 
+    transform: scale(1.1); 
+}
+        }
+
+/* ========== ADVANCED HOVER EFFECTS ========== */
+.btn-primary {
+position: relative;
+overflow: hidden;
+z-index: 1;
+        }
+
+.btn-primary::before {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(45deg, var(--color-yellow), var(--color-accent));
+transition: opacity 0.3s ease;
+z-index: -1;
+        }
+
+.btn-primary:hover::before {
+opacity: 1;
+        }
+
+.btn-secondary {
+position: relative;
+overflow: hidden;
+        }
+
+.btn-secondary::after {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(135deg, rgba(255, 224, 102, 0.2), rgba(78, 142, 130, 0.2));
+transition: all 0.3s ease;
+        }
+
+.btn-secondary:hover::after {
+opacity: 1;
+        }
+
+.nav-menu a {
+position: relative;
+overflow: hidden;
+        }
+
+.nav-menu a::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(78, 142, 130, 0.1), transparent);
+transition: left 0.5s ease;
+        }
+
+.nav-menu a:hover::before {
+left: 100%;
+        }
+
+/* Tilt Effect for Cards */
+.about-card,
+.service-card,
+.blog-card {
+transform-style: preserve-3d;
+        }
+
+.about-card:hover,
+.service-card:hover {
+animation: tiltHover 0.6s ease-out forwards;
+        }
+
+@keyframes tiltHover {
+0% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) scale(1); }
+50% { transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateY(-10px) scale(1.02); }
+100% { 
+    transform: perspective(1000px) rotateX(2deg) rotateY(2deg) translateY(-20px) scale(1.02);
+    box-shadow: 0 40px 80px rgba(78, 142, 130, 0.3);
+}
+        }
+
+/* Gallery Advanced Effects */
+.gallery-item {
+position: relative;
+        }
+
+.gallery-item::before {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(45deg, 
+    rgba(78, 142, 130, 0.8), 
+    rgba(255, 224, 102, 0.3), 
+    rgba(175, 213, 193, 0.7));
+transition: all 0.3s ease;
+border-radius: inherit;
+z-index: 2;
+        }
+
+.gallery-item:hover::before {
+opacity: 0.4;
+        }
+
+.gallery-item:hover {
+animation: galleryLevitate 0.5s ease-out forwards;
+        }
+
+@keyframes galleryLevitate {
+0% { 
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px) scale(1); 
+}
+100% { 
+    transform: perspective(1000px) rotateX(-10deg) rotateY(10deg) translateZ(50px) scale(1.08);
+    filter: brightness(1.1);
+}
+        }
+
+/* Interactive Cursor Effects */
+.btn-primary,
+.btn-secondary,
+.gallery-item,
+.about-card,
+.service-card {
+cursor: none;
+        }
+
+/* Particle Effect on Hover */
+.hero-visual:hover {
+animation: particleFloat 2s ease-in-out infinite;
+        }
+
+@keyframes particleFloat {
+0%, 100% { filter: hue-rotate(0deg) saturate(1) brightness(1); }
+25% { filter: hue-rotate(10deg) saturate(1.1) brightness(1.05); }
+50% { filter: hue-rotate(20deg) saturate(1.2) brightness(1.1); }
+75% { filter: hue-rotate(10deg) saturate(1.1) brightness(1.05); }
+        }
+
+/* Magnetic Button Effect */
+.cta-nav:hover {
+animation: magneticPulse 0.4s ease-out;
+        }
+
+@keyframes magneticPulse {
+0% { transform: scale(1); }
+50% { transform: scale(1.05); }
+100% { transform: scale(1.02); }
+        }
+
+/* Logo Hover Enhancement */
+.logo:hover .logo-svg {
+animation: logoExcite 0.8s ease-out;
+        }
+
+/* ========== PARALLAX & INTERACTIVE EFFECTS ========== */
+.hero {
+position: relative;
+        }
+
+.hero::before {
+animation: heroParallax 15s ease-in-out infinite, backgroundFloat 20s ease-in-out infinite;
+        }
+
+.hero::after {
+animation: heroParallax 18s ease-in-out infinite reverse, backgroundFloat 25s ease-in-out infinite reverse;
+        }
+
+@keyframes heroParallax {
+0%, 100% { transform: translateX(0px) translateY(0px) scale(1); }
+25% { transform: translateX(20px) translateY(-10px) scale(1.02); }
+50% { transform: translateX(-15px) translateY(-20px) scale(1.05); }
+75% { transform: translateX(10px) translateY(-5px) scale(1.02); }
+        }
+
+/* Interactive Section Reveals */
+.reveal {
+transform: translateY(50px) scale(0.95);
+transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+.reveal.active {
+opacity: 1;
+transform: translateY(0) scale(1);
+        }
+
+/* Smooth Scrolling Enhancements */
+html {
+scroll-behavior: smooth;
+        }
+
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 768px) {
+.iphone-mockup {
+    width: 280px;
+    height: 560px;
+    transform: none;
+}
+
+.iphone-mockup:hover {
+    transform: scale(1.02);
+}
+
+.gallery-item:hover {
+    animation: none;
+    transform: scale(1.05);
+}
+
+.about-card:hover,
+.service-card:hover {
+    animation: none;
+    transform: translateY(-10px) scale(1.02);
+}
+        }
+
+/* Custom Cursor for Interactive Elements */
+@media (min-width: 768px) {
+body {
+    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="%23rgba(78,142,130,0.6)" stroke="%23ffffff" stroke-width="1"/></svg>'), auto;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.gallery-item:hover,
+.about-card:hover,
+.service-card:hover {
+    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="%23rgba(255,224,102,0.8)" stroke="%23ffffff" stroke-width="2"/></svg>'), pointer;
+}
+        }
 @keyframes slideUp {
 from {
-opacity: 0;
 transform: translateY(30px);
         }
 to {
@@ -1003,10 +1652,16 @@ transform: translateY(0);
     </style>
 </head>
 <body>
+<div class="floating-blobs">
+        <span class="blob b1"></span>
+        <span class="blob b2"></span>
+        <span class="blob b3"></span>
+        <span class="blob b4"></span>
+</div>
 <!-- NAVIGATION -->
     <nav>
         <a href="#home" class="logo">
-            <img src="images/wehelp/wehelp_logo_2.svg" alt="WeHelp Logo" style="height: 35px; width: 35px; display: inline-block;">
+            <img src="images/wehelp/wehelp_logo_2.svg" alt="WeHelp Logo" class="logo-svg animated-svg" style="height: 35px; width: 35px; display: inline-block;">
             WeHelp
         </a>
         <ul class="nav-menu">
@@ -1033,57 +1688,57 @@ transform: translateY(0);
     </nav>
 
 <!-- HERO SECTION -->
-    <section class="hero" id="home">
-        <div class="hero-container">
-            <div class="hero-content reveal">
-                <h1>Psychische Gesundheit für <span class="highlight">Dich und Deine Familie</span></h1>
-                <p class="subtitle">Professionelle Unterstützung für Erwachsene und Kinder mit psychischen Störungen. Zusammen finden wir den richtigen Weg zur Genesung.</p>
-                <div class="hero-buttons">
-                    <a href="#test" class="btn-primary">Zum kostenlosen Test</a>
-                    <a href="#services" class="btn-secondary">Unser Angebot entdecken</a>
+        <section class="hero" id="home">
+                <div class="hero-container">
+                        <div class="hero-content">
+                                <h1>Psychische Gesundheit für <span class="highlight">Dich und Deine Familie</span></h1>
+                                <p class="subtitle">Professionelle Unterstützung für Erwachsene und Kinder mit psychischen Störungen. Zusammen finden wir den richtigen Weg zur Genesung.</p>
+                                <div class="hero-buttons">
+                                        <a href="#test" class="btn-primary">Zum kostenlosen Test</a>
+                                        <a href="#services" class="btn-secondary">Unser Angebot entdecken</a>
+                                </div>
+                                <div class="trust-badges">
+                                        <div class="badge">Sichere & vertrauliche Kommunikation</div>
+                                        <div class="badge">Zertifizierte Fachleute</div>
+                                        <div class="badge">24/7 Unterstützung</div>
+                                </div>
+                        </div>
+                        <div class="hero-visual">
+                                <img src="images/wehelp/wehelp_logo_3.svg" alt="WeHelp Hero Visual" class="hero-logo animated-svg" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.2));">
+                        </div>
                 </div>
-                <div class="trust-badges">
-                    <div class="badge">Sichere & vertrauliche Kommunikation</div>
-                    <div class="badge">Zertifizierte Fachleute</div>
-                    <div class="badge">24/7 Unterstützung</div>
-                </div>
-            </div>
-            <div class="hero-visual reveal">
-                <img src="images/wehelp/wehelp_3.svg" alt="WeHelp Hero Visual" style="width: 100%; height: 100%; object-fit: contain;">
-            </div>
-        </div>
-    </section>
+        </section>
 
 <!-- ABOUT SECTION -->
-    <section class="about" id="about">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">Wer wir sind</h2>
-                <p class="section-subtitle">WeHelp ist eine führende Plattform für psychische Gesundheit in der Schweiz. Wir verbinden Betroffene mit professioneller Unterstützung und einer unterstützenden Community.</p>
-            </div>
-            <div class="about-intro">
-                <p>Unser Anspruch ist es, Menschen in schwierigen Zeiten nicht allein zu lassen. Mit einer Kombination aus professioneller Begleitung, technischer Innovation und einer liebevollen Community schaffen wir einen sicheren Raum für Heilung und Wachstum. Wir verstehen die Herausforderungen, denen sich Menschen mit psychischen Störungen gegenübersehen, und bieten umfassende Lösungen für jeden Schritt ihrer Genesung.</p>
-            </div>
-            <div class="about-grid">
-                <div class="about-card reveal">
-                    <h3>Unser Anspruch</h3>
-                    <p>Unser vorrangiges Ziel besteht in der Unterstützung bei psychologischen Störungen sowie die Begleitung der betroffenen und angehörigen Personen in dieser wichtigen Lebensphase. Wir setzen auf Empathie, Fachkompetenz und innovative Technologie.</p>
+        <section class="about" id="about">
+                <div class="section-container">
+                        <div class="section-header">
+                                <h2 class="section-title">Wer wir sind</h2>
+                                <p class="section-subtitle">WeHelp ist eine führende Plattform für psychische Gesundheit in der Schweiz. Wir verbinden Betroffene mit professioneller Unterstützung und einer unterstützenden Community.</p>
+                        </div>
+                        <div class="about-intro">
+                                <p>Unser Anspruch ist es, Menschen in schwierigen Zeiten nicht allein zu lassen. Mit einer Kombination aus professioneller Begleitung, technischer Innovation und einer liebevollen Community schaffen wir einen sicheren Raum für Heilung und Wachstum. Wir verstehen die Herausforderungen, denen sich Menschen mit psychischen Störungen gegenübersehen, und bieten umfassende Lösungen für jeden Schritt ihrer Genesung.</p>
+                        </div>
+                        <div class="about-grid">
+                                <div class="about-card reveal">
+                                        <h3>Unser Anspruch</h3>
+                                        <p>Unser vorrangiges Ziel besteht in der Unterstützung bei psychologischen Störungen sowie die Begleitung der betroffenen und angehörigen Personen in dieser wichtigen Lebensphase. Wir setzen auf Empathie, Fachkompetenz und innovative Technologie.</p>
+                                </div>
+                                <div class="about-card reveal">
+                                        <h3>Breites Spektrum</h3>
+                                        <p>Wir bieten persönliche und professionelle Begleitung in mehreren Kerngebieten: Depression, Angststörung, Burnout-Syndrom, Essstörungen, Borderline, PTBS und viele weitere. Jeder Fall ist einzigartig, und unsere Experten passen die Behandlung individuell an.</p>
+                                </div>
+                                <div class="about-card reveal">
+                                        <h3>Moderne Technologie</h3>
+                                        <p>Unsere technisch fortschrittliche und sichere App begleitet Sie vom ersten Moment bis zur vollständigen Genesung. Mit benutzerfreundlichen Funktionen, Datensicherheit auf höchstem Niveau und intuitivem Design unterstützen wir Ihren Heilungsprozess täglich.</p>
+                                </div>
+                                <div class="about-card reveal">
+                                        <h3>Vernetzte Begleitung</h3>
+                                        <p>Wir verbinden Sie mit Informationen, zertifizierten Kliniken und Fachleuten aus der ganzen Schweiz. Zusätzlich bringen wir Sie in Kontakt mit Gleichgesinnten in einer vertrauten und geschützten Umgebung, um Ihre Erfahrungen zu teilen.</p>
+                                </div>
+                        </div>
                 </div>
-                <div class="about-card reveal">
-                    <h3>Breites Spektrum</h3>
-                    <p>Wir bieten persönliche und professionelle Begleitung in mehreren Kerngebieten: Depression, Angststörung, Burnout-Syndrom, Essstörungen, Borderline, PTBS und viele weitere. Jeder Fall ist einzigartig, und unsere Experten passen die Behandlung individuell an.</p>
-                </div>
-                <div class="about-card reveal">
-                    <h3>Moderne Technologie</h3>
-                    <p>Unsere technisch fortschrittliche und sichere App begleitet Sie vom ersten Moment bis zur vollständigen Genesung. Mit benutzerfreundlichen Funktionen, Datensicherheit auf höchstem Niveau und intuitivem Design unterstützen wir Ihren Heilungsprozess täglich.</p>
-                </div>
-                <div class="about-card reveal">
-                    <h3>Vernetzte Begleitung</h3>
-                    <p>Wir verbinden Sie mit Informationen, zertifizierten Kliniken und Fachleuten aus der ganzen Schweiz. Zusätzlich bringen wir Sie in Kontakt mit Gleichgesinnten in einer vertrauten und geschützten Umgebung, um Ihre Erfahrungen zu teilen.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
 <!-- SERVICES SECTION -->
     <section class="services" id="services">
@@ -1143,64 +1798,19 @@ transform: translateY(0);
             </div>
             <div class="gallery-grid">
                 <div class="gallery-item reveal" style="grid-column: span 2; grid-row: span 2;">
-                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                        <rect width="400" height="400" fill="url(#grad1)"/>
-                        <defs>
-                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#4E8E82;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#AFD5C1;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <circle cx="200" cy="200" r="80" fill="white" opacity="0.3"/>
-                    </svg>
+                    <img src="images/wehelp/wehelp_1.jpg" alt="WeHelp Hauptvisualisierung" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div class="gallery-item reveal">
-                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                        <rect width="400" height="400" fill="url(#grad2)"/>
-                        <defs>
-                            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#82A3A6;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#4E8E82;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <text x="50%" y="50%" font-size="120" fill="white" opacity="0.2" text-anchor="middle" dominant-baseline="middle">🤝</text>
-                    </svg>
+                    <img src="images/wehelp/wehelp_logo_1.svg" alt="WeHelp Logo Variante 1" class="animated-svg" style="width: 80%; height: 80%; object-fit: contain;">
                 </div>
                 <div class="gallery-item reveal">
-                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                        <rect width="400" height="400" fill="url(#grad3)"/>
-                        <defs>
-                            <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#AFD5C1;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#82A3A6;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <circle cx="200" cy="200" r="60" fill="white" opacity="0.25"/>
-                    </svg>
+                    <img src="images/wehelp/wehelp_3.svg" alt="WeHelp Grafik 3" class="animated-svg" style="width: 90%; height: 90%; object-fit: contain;">
                 </div>
                 <div class="gallery-item reveal">
-                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                        <rect width="400" height="400" fill="url(#grad4)"/>
-                        <defs>
-                            <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#3B5F74;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#4E8E82;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <rect x="80" y="80" width="240" height="240" fill="white" opacity="0.15" rx="20"/>
-                    </svg>
+                    <img src="images/wehelp/wehelp_4.svg" alt="WeHelp Grafik 4" class="animated-svg" style="width: 85%; height: 85%; object-fit: contain;">
                 </div>
                 <div class="gallery-item reveal">
-                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                        <rect width="400" height="400" fill="url(#grad5)"/>
-                        <defs>
-                            <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#FFE066;stop-opacity:0.3" />
-                                <stop offset="100%" style="stop-color:#4E8E82;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <polygon points="200,100 300,300 100,300" fill="white" opacity="0.2"/>
-                    </svg>
+                    <img src="images/wehelp/wehelp-1.svg" alt="WeHelp Hauptgrafik" class="animated-svg" style="width: 90%; height: 90%; object-fit: contain;">
                 </div>
             </div>
         </div>
@@ -1208,92 +1818,69 @@ transform: translateY(0);
 
 <!-- INSTAGRAM SECTION -->
     <section class="instagram-section" id="instagram">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="instagram-header">
-                    <h2 class="section-title">Unsere Community</h2>
-                    <a href="https://instagram.com/wehelp_ch" target="_blank" rel="noopener noreferrer" class="instagram-link">
-                        Instagram
-                    </a>
-                </div>
-                <p class="section-subtitle">Folgen Sie uns für tägliche Tipps, Erfolgsgeschichten und Unterstützung von unserer lebendigen Community</p>
+        <div class="instagram-container">
+            <div class="section-header" style="margin-bottom: 3rem;">
+                <h2 class="section-title" style="color: var(--color-white);">Unsere Community</h2>
+                                <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.9);">Buchen Sie sichere Online-Termine oder starten Sie direkt einen Zoom-Call mit unserem Team.</p>
             </div>
-            <div class="instagram-grid">
-                <div class="instagram-post reveal">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                        <rect width="200" height="200" fill="url(#insta1)"/>
-                        <defs>
-                            <linearGradient id="insta1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#4E8E82;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#82A3A6;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <circle cx="100" cy="100" r="40" fill="white" opacity="0.3"/>
-                    </svg>
-                </div>
-                <div class="instagram-post reveal">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                        <rect width="200" height="200" fill="url(#insta2)"/>
-                        <defs>
-                            <linearGradient id="insta2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#AFD5C1;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#4E8E82;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <rect x="50" y="50" width="100" height="100" fill="white" opacity="0.25" rx="10"/>
-                    </svg>
-                </div>
-                <div class="instagram-post reveal">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                        <rect width="200" height="200" fill="url(#insta3)"/>
-                        <defs>
-                            <linearGradient id="insta3" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#3B5F74;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#AFD5C1;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <polygon points="100,50 150,150 50,150" fill="white" opacity="0.2"/>
-                    </svg>
-                </div>
-                <div class="instagram-post reveal">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                        <rect width="200" height="200" fill="url(#insta4)"/>
-                        <defs>
-                            <linearGradient id="insta4" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#82A3A6;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#3B5F74;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <circle cx="100" cy="100" r="35" fill="white" opacity="0.2"/>
-                    </svg>
-                </div>
-                <div class="instagram-post reveal">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                        <rect width="200" height="200" fill="url(#insta5)"/>
-                        <defs>
-                            <linearGradient id="insta5" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#FFE066;stop-opacity:0.4" />
-                                <stop offset="100%" style="stop-color:#4E8E82;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <path d="M 100 50 L 130 120 L 70 120 Z" fill="white" opacity="0.25"/>
-                    </svg>
-                </div>
-                <div class="instagram-post reveal">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                        <rect width="200" height="200" fill="url(#insta6)"/>
-                        <defs>
-                            <linearGradient id="insta6" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#4E8E82;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#AFD5C1;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <circle cx="70" cy="70" r="15" fill="white" opacity="0.25"/>
-                        <circle cx="130" cy="90" r="20" fill="white" opacity="0.2"/>
-                        <circle cx="100" cy="150" r="12" fill="white" opacity="0.2"/>
-                    </svg>
+            
+            <div class="iphone-mockup">
+                <div class="iphone-screen">
+                    <div class="iphone-notch"></div>
+                                        <div class="app-ui">
+                                                <div class="app-header">
+                                                        <div>
+                                                                <div class="app-title">WeHelp Termine</div>
+                                                                <div class="app-small">Sichere Online-Sprechstunde</div>
+                                                        </div>
+                                                        <span class="app-chip">24/7</span>
+                                                </div>
+
+                                                <div class="app-card">
+                                                        <h4>Nächster Termin</h4>
+                                                        <p>Videocall mit Dr. Keller • Heute 18:30</p>
+                                                        <div class="app-row">
+                                                                <span class="app-small">Zoom-Link bereit</span>
+                                                                <button class="app-btn primary">Zoom beitreten</button>
+                                                        </div>
+                                                </div>
+
+                                                <div class="app-card">
+                                                        <h4>Online-Termin buchen</h4>
+                                                        <p>Wählen Sie ein Zeitfenster und Kanal (Zoom / Telefon / Chat).</p>
+                                                        <div class="slot-list">
+                                                                <div class="slot">Heute • 20:00</div>
+                                                                <div class="slot">Morgen • 09:30</div>
+                                                                <div class="slot">Morgen • 14:00</div>
+                                                                <div class="slot">Fr • 11:30</div>
+                                                        </div>
+                                                        <div class="app-row">
+                                                                <button class="app-btn secondary">Telefon</button>
+                                                                <button class="app-btn secondary">Chat</button>
+                                                                <button class="app-btn primary" style="flex:1; justify-content:center;">Zoom buchen</button>
+                                                        </div>
+                                                </div>
+
+                                                <div class="app-card">
+                                                        <h4>Notfall?</h4>
+                                                        <p>Erreichen Sie unser Team sofort. Wir antworten innerhalb von Minuten.</p>
+                                                        <div class="app-row">
+                                                                <button class="app-btn primary" style="width:100%;">Schnellkontakt starten</button>
+                                                        </div>
+                                                </div>
+                                        </div>
                 </div>
             </div>
+
+                        <div style="text-align: center; margin-top: 2rem;">
+                                <a href="#contact" 
+                                   style="display: inline-flex; align-items: center; gap: 0.8rem; padding: 1rem 2rem; 
+                                                  background: var(--color-primary); border: none; 
+                                                  border-radius: 30px; color: var(--color-white); text-decoration: none; 
+                                                  font-weight: 700; transition: all 0.2s ease; box-shadow: 0 14px 32px rgba(0,0,0,0.2);">
+                                        📅 Termin anfragen
+                                </a>
+                        </div>
         </div>
     </section>
 
@@ -1325,7 +1912,7 @@ transform: translateY(0);
                         <p class="blog-excerpt">Wie Ihre Gedanken Ihre psychische Gesundheit beeinflussen und praktische Techniken zur Gedankenkontrolle, die wissenschaftlich erwiesen funktionieren.</p>
                         <div class="blog-meta">
                             <span>5 Min Lesezeit</span>
-                            <a href="https://wehelp.ch/blog/positive-gedanken" target="_blank" class="read-more">Mehr lesen →</a>
+                            <span class="read-more" style="color: var(--color-primary); font-weight: 600; cursor: default;">WeHelp Blog →</span>
                         </div>
                     </div>
                 </div>
@@ -1337,7 +1924,7 @@ transform: translateY(0);
                         <p class="blog-excerpt">Einfache aber effektive Gewohnheiten, die Sie täglich implementieren können für ein besseres Wohlbefinden und mehr innere Ruhe.</p>
                         <div class="blog-meta">
                             <span>7 Min Lesezeit</span>
-                            <a href="https://wehelp.ch/blog/routinen" target="_blank" class="read-more">Mehr lesen →</a>
+                            <span class="read-more" style="color: var(--color-primary); font-weight: 600; cursor: default;">WeHelp Blog →</span>
                         </div>
                     </div>
                 </div>
@@ -1349,7 +1936,7 @@ transform: translateY(0);
                         <p class="blog-excerpt">Inspirierende Berichte von Menschen, die ihre psychische Gesundheit verbessert haben und nun anderen auf ihrem Weg helfen.</p>
                         <div class="blog-meta">
                             <span>6 Min Lesezeit</span>
-                            <a href="https://wehelp.ch/blog/erfolgsgeschichten" target="_blank" class="read-more">Mehr lesen →</a>
+                            <span class="read-more" style="color: var(--color-primary); font-weight: 600; cursor: default;">WeHelp Blog →</span>
                         </div>
                     </div>
                 </div>
@@ -1409,15 +1996,15 @@ transform: translateY(0);
             </div>
             <div class="footer-section">
                 <h4>Kontakt</h4>
-                <a href="/cdn-cgi/l/email-protection#721b1c141d3205171a171e025c111a"><span class="__cf_email__" data-cfemail="533a3d353c1324363b363f237d303b">[email&#160;protected]</span></a>
+                <a href="mailto:info@wehelp.ch">info@wehelp.ch</a>
                 <a href="tel:+41800123456">+41 800 123 456</a>
-                <a href="#">Hotline 24/7</a>
+                <span style="color: var(--color-text-light); font-size: 0.9rem;">Hotline 24/7</span>
             </div>
             <div class="footer-section">
                 <h4>Rechtliches</h4>
-                <a href="#">Datenschutz</a>
-                <a href="#">Impressum</a>
-                <a href="#">Nutzungsbedingungen</a>
+                <span style="color: var(--color-text-light); font-size: 0.9rem; display: block; margin-bottom: 0.5rem;">Datenschutz</span>
+                <span style="color: var(--color-text-light); font-size: 0.9rem; display: block; margin-bottom: 0.5rem;">Impressum</span>
+                <span style="color: var(--color-text-light); font-size: 0.9rem; display: block;">Nutzungsbedingungen</span>
             </div>
         </div>
         <div class="footer-bottom">
@@ -1425,8 +2012,8 @@ transform: translateY(0);
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        gsap.registerPlugin(ScrollTrigger);
+    <script>
+        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 // Hamburger Menu
 const hamburger = document.querySelector('.hamburger');
@@ -1454,13 +2041,11 @@ window.scrollTo({ top: 0, behavior: 'smooth' });
         gsap.from('.hero-content', {
 duration: 0.8,
 y: 50,
-opacity: 0,
 ease: 'power3.out'
         });
         gsap.from('.hero-visual', {
 duration: 0.8,
 y: 50,
-opacity: 0,
 ease: 'power3.out',
 delay: 0.15
         });
@@ -1531,13 +2116,13 @@ ease: 'power2.out'
             });
         });
 
-// GSAP Scroll Reveal
+// GSAP Scroll Reveal with enhanced effects
 gsap.registerPlugin(ScrollTrigger);
-gsap.utils.toArray('.reveal').forEach(function(elem) {
+gsap.utils.toArray('.reveal').forEach(function(elem, index) {
   gsap.from(elem, {
-    opacity: 0,
     y: 50,
     duration: 1,
+    delay: index * 0.05,
     scrollTrigger: {
       trigger: elem,
       start: 'top 80%',
@@ -1545,3 +2130,83 @@ gsap.utils.toArray('.reveal').forEach(function(elem) {
     }
   });
 });
+
+// Floating blobs subtle motion + scroll parallax
+const blobs = gsap.utils.toArray('.floating-blobs .blob');
+blobs.forEach(function(blob, i) {
+                gsap.to(blob, {
+                                x: i % 2 === 0 ? 28 : -32,
+                                y: i % 2 === 0 ? -22 : 24,
+                                scale: 1.06,
+                                duration: 8 + i * 1.5,
+                                repeat: -1,
+                                yoyo: true,
+                                ease: 'sine.inOut'
+                });
+
+                gsap.to(blob, {
+                                scrollTrigger: {
+                                                trigger: blob,
+                                                start: 'top bottom',
+                                                scrub: true
+                                },
+                                x: i % 2 === 0 ? 120 : -120,
+                                y: i % 2 === 0 ? -90 : 90,
+                                rotation: i % 2 === 0 ? 6 : -6,
+                                ease: 'sine.out'
+                });
+});
+
+// Enhanced Gallery Effects
+document.querySelectorAll('.gallery-item').forEach((item, index) => {
+    item.style.setProperty('--index', index);
+    
+    item.addEventListener('mouseenter', function() {
+        gsap.to(this, {
+            duration: 0.4,
+            scale: 1.08,
+            rotateZ: Math.random() * 10 - 5,
+            ease: 'power2.out'
+        });
+    });
+    
+    item.addEventListener('mouseleave', function() {
+        gsap.to(this, {
+            duration: 0.4,
+            scale: 1,
+            rotateZ: 0,
+            ease: 'power2.out'
+        });
+    });
+});
+
+// Interactive iPhone Mockup
+const iphone = document.querySelector('.iphone-mockup');
+if (iphone) {
+    iphone.addEventListener('mouseenter', function() {
+        gsap.to(this, {
+            duration: 0.6,
+            rotateY: 0,
+            rotateX: 0,
+            scale: 1.05,
+            ease: 'power2.out'
+        });
+    });
+
+    iphone.addEventListener('mouseleave', function() {
+        gsap.to(this, {
+            duration: 0.6,
+            rotateY: -5,
+            rotateX: 5,
+            scale: 1,
+            ease: 'power2.out'
+        });
+    });
+}
+
+// Hero background elements animation (using CSS instead of GSAP for pseudo-elements)
+// The hero background animations are handled by CSS keyframes: heroParallax and backgroundFloat
+
+    </script>
+</body>
+</html>
