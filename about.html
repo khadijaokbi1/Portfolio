@@ -271,6 +271,14 @@
     }
   }
 
+  /* Laptop */
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    .hero-fig {
+      width: clamp(560px, 58vw, 860px);
+      top: clamp(20%, 22vh, 25%);
+    }
+  }
+
   /* Large Desktop */
   @media (min-width: 1200px) {
     .hero-top, .about-hero-top {
@@ -1256,6 +1264,13 @@
       .hero-fig {
         width: clamp(300px, 92vw, 520px);
         top: clamp(20%, 23vh, 31%);
+      }
+    }
+
+    @media (min-width: 390px) and (max-width: 430px) {
+      .hero-fig {
+        width: clamp(340px, 88vw, 390px);
+        top: clamp(17%, 19.5vh, 22%);
       }
     }
 
