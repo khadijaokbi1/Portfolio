@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Permissions-Policy" content="picture-in-picture=*">
     <title>Lehre | SBW Neuen Medien</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Work+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Work+Sans:wght@300;400;500;700&family=Outfit:wght@300;400;600&family=Tenor+Sans&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,8 +23,12 @@
             --bg-primary: #000;
             --bg-secondary: #F5F5F5;
             --accent-burgundy: #6E3B49;
-            --font-body: 'Outfit', sans-serif;
+            --cream: #EBE1D1;
+            --font-body: 'Work Sans', sans-serif;
             --font-display: 'Playfair Display', serif;
+            --font-higuen: 'Higuen', serif;
+            --font-subtitel: 'Outfit', sans-serif;
+            --font-titel: 'Tenor Sans', sans-serif;
         }
 
         body {
@@ -134,6 +139,1411 @@
             to { transform: translateX(-50%); }
         }
 
+        /* ─── VIDEO SECTION ─── */
+        .section-films {
+            background: var(--bg-dark);
+            padding: clamp(5rem, 14vh, 10rem) 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .section-films::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(110,59,73,0.6), transparent);
+        }
+        .films-label {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: rgba(235,225,209,0.35);
+            margin-bottom: 1.5rem;
+        }
+        .films-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 400;
+            font-style: italic;
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            color: #EBE1D1;
+            margin-bottom: clamp(3rem, 8vh, 6rem);
+        }
+        .films-title em {
+            color: #6E3B49;
+            font-style: normal;
+        }
+        .films-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+        }
+        @media (max-width: 768px) {
+            .films-grid { grid-template-columns: 1fr; }
+        }
+
+        .film-panel {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            cursor: pointer;
+            background: #111;
+        }
+        .film-panel iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: none;
+            z-index: 5;
+        }
+        .film-panel.playing iframe { display: block; }
+        .film-panel.playing .film-overlay { opacity: 0; pointer-events: none; }
+
+        .film-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            background: linear-gradient(160deg, rgba(5,5,5,0.6) 0%, rgba(5,5,5,0.25) 40%, rgba(5,5,5,0.7) 100%);
+            transition: background 0.5s ease, opacity 0.6s ease;
+        }
+        .film-panel:hover .film-overlay {
+            background: linear-gradient(160deg, rgba(5,5,5,0.45) 0%, rgba(5,5,5,0.1) 40%, rgba(5,5,5,0.55) 100%);
+        }
+        .film-overlay-thumb {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: grayscale(60%) brightness(0.6);
+            transition: filter 0.7s ease, transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .film-panel:hover .film-overlay-thumb {
+            filter: grayscale(20%) brightness(0.75);
+            transform: scale(1.04);
+        }
+        .film-index {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(5rem, 12vw, 9rem);
+            font-style: italic;
+            color: rgba(235,225,209,0.05);
+            line-height: 1;
+            position: absolute;
+            top: -0.15em;
+            right: 0.1em;
+            pointer-events: none;
+            user-select: none;
+        }
+        .film-meta {
+            position: relative;
+            z-index: 2;
+        }
+        .film-meta-tag {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.55rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: rgba(235,225,209,0.4);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .film-meta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+            font-style: italic;
+            color: #EBE1D1;
+            line-height: 1.2;
+            display: block;
+        }
+        .film-play-area {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+        .film-play-btn {
+            width: clamp(52px, 8vw, 72px);
+            height: clamp(52px, 8vw, 72px);
+            border-radius: 50%;
+            border: 1px solid rgba(235,225,209,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.35s, background 0.35s, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+            flex-shrink: 0;
+        }
+        .film-play-btn svg {
+            width: clamp(14px, 2.5vw, 20px);
+            height: clamp(14px, 2.5vw, 20px);
+            fill: #EBE1D1;
+            margin-left: 3px;
+            transition: fill 0.3s;
+        }
+        .film-panel:hover .film-play-btn {
+            border-color: rgba(110,59,73,0.9);
+            background: rgba(110,59,73,0.2);
+            transform: scale(1.12);
+        }
+        .film-bottom-label {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.5rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: rgba(235,225,209,0.25);
+            text-align: right;
+            line-height: 1.6;
+        }
+        .film-divider {
+            margin-top: clamp(2.5rem, 6vh, 4rem);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .film-divider-line { flex: 1; height: 1px; background: rgba(235,225,209,0.06); }
+        .film-divider-text {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.52rem;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            color: rgba(235,225,209,0.2);
+            white-space: nowrap;
+        }
+
+/* ═══════════════════════════════════════════════
+   STRATEGY SECTION — Editorial Luxury Redesign
+════════════════════════════════════════════════ */
+.section-strategy {
+    background: var(--accent-burgundy);
+    padding: clamp(6rem, 16vh, 12rem) 0;
+    position: relative;
+    overflow: hidden;
+}
+/* Subtle texture overlay */
+.section-strategy::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 60% at 100% 0%, rgba(0,0,0,0.25) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 0% 100%, rgba(0,0,0,0.18) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+}
+/* Wave transition to Films section (Dark = #000) */
+.section-strategy::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 20vh;
+    background-color: var(--bg-dark);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    z-index: 10;
+    pointer-events: none;
+}
+.section-strategy > .container { position: relative; z-index: 1; }
+
+/* ─── Header ─── */
+.strategy-header {
+    margin-bottom: clamp(4rem, 10vh, 7rem);
+}
+.strategy-eyebrow {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.6em;
+    text-transform: uppercase;
+    color: rgba(235,225,209,0.5);
+    display: block;
+    margin-bottom: 2rem;
+}
+.strategy-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.2rem, 8.5vw, 7rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 0.9;
+    letter-spacing: -0.025em;
+    color: var(--cream);
+    margin-bottom: 2.4rem;
+}
+.strategy-headline em {
+    font-family: 'Tenor Sans', sans-serif;
+    font-style: normal;
+    font-size: 0.92em;
+    color: rgba(235,225,209,0.55);
+    letter-spacing: 0.04em;
+}
+.strategy-description {
+    font-family: 'Work Sans', sans-serif;
+    font-size: clamp(0.88rem, 1.4vw, 1rem);
+    font-weight: 300;
+    line-height: 1.85;
+    color: rgba(235,225,209,0.6);
+    max-width: 540px;
+}
+
+/* ─── Accordion ─── */
+.strategy-accordion {
+    border-top: 1px solid rgba(235,225,209,0.15);
+}
+.strategy-item {
+    border-bottom: 1px solid rgba(235,225,209,0.15);
+    position: relative;
+    transition: background 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: visible;
+}
+/* Active state: dark tint on top of burgundy */
+.strategy-item.active {
+    background: rgba(0,0,0,0.18);
+}
+
+/* ─── Number column — editorial oversize ─── */
+.strategy-trigger-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100px 1fr 52px;
+    align-items: center;
+    gap: 2.5rem;
+    padding: clamp(1.8rem, 4vh, 3rem) clamp(2rem, 5vw, 4rem) clamp(1.8rem, 4vh, 3rem) clamp(1.5rem, 4vw, 3rem);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    position: relative;
+    z-index: 1;
+}
+@media (max-width: 640px) {
+    .strategy-trigger-row { grid-template-columns: 64px 1fr 40px; gap: 1.4rem; padding: 1.8rem 1.2rem; }
+}
+
+/* Number: huge, italic Playfair, overflows upward for editorial offset */
+.st-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 9vw, 7rem);
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(235,225,209,0.13);
+    line-height: 1;
+    transition: color 0.45s ease, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    user-select: none;
+    /* editorial vertical offset */
+    transform: translateY(0.18em);
+    display: block;
+}
+.strategy-item:hover .st-number {
+    color: rgba(235,225,209,0.3);
+    transform: translateY(0.1em) scale(1.04);
+}
+.strategy-item.active .st-number {
+    color: rgba(235,225,209,0.6);
+    transform: translateY(0.1em);
+}
+
+.st-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+.st-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.52rem;
+    font-weight: 400;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: rgba(235,225,209,0.4);
+    transition: color 0.4s;
+}
+.strategy-item.active .st-label {
+    color: rgba(235,225,209,0.7);
+}
+.strategy-item:hover .st-label {
+    color: rgba(235,225,209,0.55);
+}
+.st-title {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: clamp(1.1rem, 2.3vw, 1.6rem);
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.25;
+    margin: 0;
+    letter-spacing: 0.01em;
+    transition: letter-spacing 0.4s ease, color 0.3s;
+}
+.strategy-item:hover .st-title {
+    letter-spacing: 0.025em;
+}
+.strategy-item.active .st-title {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+}
+
+.st-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(235,225,209,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color 0.4s, background 0.4s;
+    justify-self: end;
+}
+.strategy-item:hover .st-icon {
+    border-color: rgba(235,225,209,0.5);
+}
+.strategy-item.active .st-icon {
+    border-color: var(--cream);
+    background: rgba(235,225,209,0.12);
+}
+.st-icon svg {
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    stroke: rgba(235,225,209,0.45);
+}
+.strategy-item:hover .st-icon svg {
+    stroke: rgba(235,225,209,0.75);
+}
+.strategy-item.active .st-icon svg {
+    transform: rotate(45deg);
+    stroke: var(--cream);
+}
+
+/* ─── Content Panel ─── */
+.strategy-content {
+    height: 0;
+    overflow: hidden;
+}
+.strategy-content-inner {
+    padding: 0 clamp(2rem, 5vw, 4rem) clamp(2rem, 4.5vh, 3rem) clamp(1.5rem, 4vw, 3rem);
+    /* align with title column */
+    padding-left: calc(100px + clamp(1.5rem, 4vw, 3rem) + 2.5rem);
+}
+@media (max-width: 640px) {
+    .strategy-content-inner {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+    }
+}
+
+.sc-body {
+    font-family: 'Work Sans', sans-serif;
+    font-size: clamp(0.85rem, 1.4vw, 0.96rem);
+    font-weight: 300;
+    line-height: 1.95;
+    color: rgba(235,225,209,0.75);
+    margin-bottom: 1.5rem;
+}
+
+.sc-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.4rem;
+}
+.sc-tag {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.52rem;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(235,225,209,0.55);
+    border: 1px solid rgba(235,225,209,0.2);
+    padding: 0.45rem 1rem;
+    transition: border-color 0.3s, color 0.3s, background 0.3s;
+}
+.sc-tag:hover {
+    border-color: rgba(235,225,209,0.5);
+    color: var(--cream);
+    background: rgba(235,225,209,0.06);
+}
+
+.sc-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+}
+.sc-pill {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.5rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(235,225,209,0.45);
+    border: 1px solid rgba(235,225,209,0.15);
+    padding: 0.35rem 0.75rem;
+}
+
+.sc-status-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin-top: 1.4rem;
+}
+.sc-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.5rem;
+    font-weight: 500;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    padding: 0.75rem 1rem;
+    border-left: 2px solid rgba(235,225,209,0.3);
+    color: rgba(235,225,209,0.55);
+    background: rgba(0,0,0,0.12);
+}
+.sc-status span:last-child {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: var(--cream);
+    text-transform: none;
+}
+
+/* ═══════════════════════════════════════
+   SBW HERO — 80vh, kein Text, Scroll-CTA
+═══════════════════════════════════════ */
+.sbw-hero-section {
+    height: 80vh;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+.sbw-hero-section .video-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+.sbw-hero-section .video-container video {
+    width: 100%; height: 100%; object-fit: cover;
+}
+.sbw-hero-cta {
+    position: absolute;
+    bottom: clamp(3rem, 8vh, 5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+}
+.sbw-scroll-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+.sbw-scroll-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.52rem;
+    letter-spacing: 0.55em;
+    text-transform: uppercase;
+    color: rgba(235,225,209,0.35);
+    transition: color 0.3s;
+}
+.sbw-scroll-btn:hover .sbw-scroll-label { color: rgba(235,225,209,0.7); }
+.sbw-scroll-arrow {
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(235,225,209,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: sbw-bounce 2.2s ease-in-out infinite;
+    transition: border-color 0.3s, background 0.3s;
+}
+.sbw-scroll-btn:hover .sbw-scroll-arrow {
+    border-color: rgba(235,225,209,0.5);
+    background: rgba(235,225,209,0.04);
+}
+@keyframes sbw-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(9px); }
+}
+/* Wave transition to Intro section (#F5F5F5) */
+.sbw-hero-section::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 18vh;
+    background-color: #F5F5F5;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    z-index: 4;
+    pointer-events: none;
+}
+
+/* ═══════════════════════════════════════
+   SBW INTRO — Titel unter Hero
+═══════════════════════════════════════ */
+.sbw-intro {
+    background: #F5F5F5;
+    padding: clamp(5rem, 14vh, 10rem) 0 clamp(4rem, 10vh, 8rem);
+    position: relative;
+}
+/* Wave transition to Showcase section (#56686A) */
+.sbw-intro::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 18vh;
+    background-color: #56686A;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    z-index: 4;
+    pointer-events: none;
+}
+.sbw-intro-badge {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: #6E3B49;
+    border: 1px solid rgba(110,59,73,0.3);
+    display: inline-block;
+    padding: 0.5rem 1.6rem;
+    border-radius: 50px;
+    margin-bottom: 3rem;
+}
+.sbw-intro-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 11vw, 9rem);
+    font-weight: 400;
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+    color: #314A51;
+    margin-bottom: 3rem;
+}
+.sbw-intro-title em {
+    display: block;
+    color: #6E3B49;
+    font-style: italic;
+}
+.sbw-intro-text {
+    font-family: 'Work Sans', sans-serif;
+    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+    font-weight: 300;
+    line-height: 1.9;
+    color: #525252;
+    max-width: 600px;
+    margin-bottom: 4rem;
+}
+.sbw-section-nav {
+    display: flex;
+    gap: clamp(2rem, 6vw, 5rem);
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(110,59,73,0.12);
+    padding-top: 2.5rem;
+}
+.sbw-nav-anchor {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.sbw-nav-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.7rem;
+    font-style: italic;
+    color: rgba(110,59,73,0.4);
+    transition: color 0.3s;
+}
+.sbw-nav-label {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #314A51;
+    position: relative;
+    padding-bottom: 0.3rem;
+    transition: color 0.3s;
+}
+.sbw-nav-label::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 1px;
+    background: #6E3B49;
+    transition: width 0.35s ease;
+}
+.sbw-nav-anchor:hover .sbw-nav-num  { color: #6E3B49; }
+.sbw-nav-anchor:hover .sbw-nav-label { color: #6E3B49; }
+.sbw-nav-anchor:hover .sbw-nav-label::after { width: 100%; }
+
+/* ═══════════════════════════════════════
+   SHOWCASE SECTION — iPhone Project Slider
+═══════════════════════════════════════ */
+.section-showcase {
+    background: #56686A;
+    padding: clamp(6rem, 16vh, 11rem) 0;
+    position: relative;
+    overflow: hidden;
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+}
+.section-showcase::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 70% 60% at 100% 0%, rgba(0,0,0,0.2) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 70% at 0% 100%, rgba(0,0,0,0.15) 0%, transparent 60%);
+    pointer-events: none;
+}
+/* Wave transition to Gallery section (same color) - subtle blend */
+.section-showcase::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 18vh;
+    background-color: #56686A;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0.3;
+}
+/* Giant editorial number */
+.sc-bg-num {
+    position: absolute;
+    right: -0.02em;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16rem, 32vw, 30rem);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1;
+    color: rgba(0,0,0,0.07);
+    user-select: none;
+    pointer-events: none;
+    z-index: 0;
+}
+.sc-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: clamp(2.5rem, 6vw, 6rem);
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 85vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: clamp(3rem, 6vh, 5rem);
+}
+@media (max-width: 1024px) {
+    .sc-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        margin-bottom: 2.5rem;
+    }
+}
+@media (max-width: 640px) {
+    .sc-inner {
+        gap: 2.5rem;
+        margin-bottom: 2rem;
+    }
+}
+/* ─ Left panel ─ */
+.sc-left { align-self: center; }
+.sc-left-content { min-height: auto; display: flex; flex-direction: column; justify-content: center; }
+@media (max-width: 640px) {
+    .sc-left-content { min-height: auto; }
+}
+.sc-eyebrow-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    margin-bottom: 2.6rem;
+}
+@media (max-width: 1024px) {
+    .sc-eyebrow-row {
+        gap: 1.2rem;
+        margin-bottom: 2rem;
+    }
+}
+@media (max-width: 640px) {
+    .sc-eyebrow-row {
+        gap: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+}
+.sc-eyebrow-block { display: flex; flex-direction: column; gap: 0.2rem; }
+.sc-eyebrow-key {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.46rem;
+    letter-spacing: 0.52em;
+    text-transform: uppercase;
+    color: rgba(235,225,209,0.35);
+}
+.sc-eyebrow-val {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: clamp(0.75rem, 1.3vw, 0.9rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(235,225,209,0.85);
+}
+.sc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    color: #EBE1D1;
+    margin-bottom: 0.7rem !important;
+    padding-top: 0 !important;
+    text-transform: none !important;
+}
+@media (max-width: 640px) {
+    .sc-title {
+        margin-bottom: 0.5rem !important;
+    }
+}
+.sc-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    font-weight: 400;
+    color: rgba(235,225,209,0.5);
+    margin-bottom: 1.8rem;
+    display: block;
+}
+.sc-body-txt {
+    font-family: 'Work Sans', sans-serif;
+    font-size: clamp(0.82rem, 1.3vw, 0.92rem);
+    font-weight: 300;
+    line-height: 1.95;
+    color: rgba(235,225,209,0.62);
+    max-width: 380px;
+    margin-bottom: 2.5rem;
+}
+.sc-btns { display: flex; flex-direction: column; gap: 0.55rem; }
+.sc-btn-row { display: flex; flex-direction: column; gap: 0.15rem; }
+.sc-btn-eyebrow {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.42rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: rgba(235,225,209,0.28);
+}
+.sc-btn {
+    background: rgba(0,0,0,0.14);
+    border: 1px solid rgba(235,225,209,0.12);
+    color: rgba(235,225,209,0.75);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.56rem;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    padding: 0.8rem 1.4rem;
+    transition: background 0.3s, border-color 0.3s, color 0.3s;
+    text-align: left;
+    cursor: default;
+}
+.sc-btn:hover {
+    background: rgba(0,0,0,0.24);
+    border-color: rgba(235,225,209,0.28);
+    color: #EBE1D1;
+}
+@media (max-width: 1024px) {
+    .sc-body-txt {
+        font-size: 0.8rem;
+        max-width: 100%;
+    }
+    .sc-btn {
+        font-size: 0.52rem;
+        padding: 0.7rem 1.2rem;
+    }
+    .sc-btns { gap: 0.48rem; }
+}
+@media (max-width: 640px) {
+    .sc-body-txt {
+        font-size: 0.75rem;
+        margin-bottom: 1.8rem;
+    }
+    .sc-btn {
+        font-size: 0.48rem;
+        padding: 0.6rem 1rem;
+    }
+    .sc-btns { gap: 0.4rem; }
+    .sc-btn-row { gap: 0.12rem; }
+}
+/* ─ iPhone mockup ─ */
+.sc-center { display: flex; justify-content: center; width: 100%; }
+.iphone-frame {
+    width: clamp(190px, 21vw, 275px);
+    aspect-ratio: 393 / 852;
+    background: linear-gradient(160deg, #2a2a2c, #1c1c1e);
+    border-radius: clamp(2.5rem, 4.5vw, 3.8rem);
+    position: relative;
+    box-shadow:
+        0 0 0 9px #2C2C2E,
+        0 0 0 11px rgba(255,255,255,0.08),
+        0 60px 120px rgba(0,0,0,0.65),
+        0 20px 40px rgba(0,0,0,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+/* Navigation — unter iPhone */
+.sc-nav-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+.sc-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    flex-wrap: wrap;
+}
+@media (max-width: 640px) {
+    .sc-nav {
+        gap: 0.8rem;
+    }
+}
+.iphone-notch {
+    position: absolute;
+    top: 13px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 33%;
+    height: 30px;
+    background: #000;
+    border-radius: 18px;
+    z-index: 20;
+}
+.iphone-screen {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    overflow: hidden;
+}
+.iphone-homeind {
+    position: absolute;
+    bottom: 9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36%;
+    height: 4px;
+    background: rgba(255,255,255,0.28);
+    border-radius: 3px;
+    z-index: 20;
+}
+/* Story inside phone */
+.phone-story {
+    width: 100%; height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.phone-story-bg {
+    position: absolute;
+    inset: 0;
+    transition: background 0.6s ease;
+}
+.phone-story-stripe {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        -45deg,
+        rgba(0,0,0,0.75) 0px,
+        rgba(0,0,0,0.75) 18px,
+        rgba(255,255,255,0.85) 18px,
+        rgba(255,255,255,0.85) 36px
+    );
+    mix-blend-mode: overlay;
+    opacity: 0.28;
+}
+.phone-story-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, transparent 35%, rgba(0,0,0,0.6) 100%);
+}
+.phone-story-progress {
+    display: flex;
+    gap: 3px;
+    position: absolute;
+    top: 16px;
+    left: 12px;
+    right: 12px;
+    z-index: 10;
+}
+.phone-story-bar {
+    flex: 1;
+    height: 2px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 1px;
+    overflow: hidden;
+}
+.phone-story-bar.filled { background: rgba(255,255,255,0.88); }
+.phone-story-bar.active-bar { position: relative; background: rgba(255,255,255,0.3); }
+.phone-story-bar.active-bar::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    background: rgba(255,255,255,0.88);
+    animation: story-fill 5s linear forwards;
+    width: 0;
+}
+@keyframes story-fill { to { width: 100%; } }
+.phone-story-header {
+    position: relative;
+    z-index: 10;
+    padding: 44px 12px 10px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.phone-avatar {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6E3B49, #314A51);
+    border: 2px solid #fff;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8px; color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+}
+.phone-username-row {
+    display: flex; flex-direction: column; gap: 1px;
+}
+.phone-username {
+    font-size: 8.5px; color: #fff;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600; letter-spacing: 0.02em;
+    display: flex; align-items: center; gap: 2px;
+}
+.phone-verified { color: #1D9BF0; font-size: 8px; }
+.phone-story-tag {
+    font-size: 6.5px; color: rgba(255,255,255,0.5);
+    font-family: 'Work Sans', sans-serif;
+    text-transform: uppercase; letter-spacing: 0.1em;
+}
+.phone-story-body {
+    position: relative; z-index: 10;
+    flex: 1;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 0 14px; gap: 7px;
+}
+.phone-story-label {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 6px; letter-spacing: 0.35em;
+    text-transform: uppercase; color: rgba(255,255,255,0.55);
+}
+.phone-story-word {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 5.5vw, 30px);
+    font-weight: 900; font-style: italic;
+    color: #fff;
+    text-shadow: 0 2px 24px rgba(0,0,0,0.6);
+    text-align: center; line-height: 1;
+}
+.phone-story-foot {
+    position: relative; z-index: 10;
+    padding: 0 12px 26px;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.phone-story-likes {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 7.5px; color: rgba(255,255,255,0.55);
+    display: flex; align-items: center; gap: 3px;
+}
+.phone-story-icons { display: flex; gap: 7px; }
+.phone-icon { width: 16px; height: 16px; color: rgba(255,255,255,0.7); }
+/* ─ Right / Navigation ─ */
+.sc-right {
+    display: flex; flex-direction: column;
+    align-items: flex-end; justify-content: center; gap: 2rem;
+}
+.sc-nav {
+    display: flex; align-items: center; gap: 1.4rem;
+}
+.sc-arrow {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: 1px solid rgba(235,225,209,0.2);
+    background: rgba(0,0,0,0.1);
+    color: rgba(235,225,209,0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    flex-shrink: 0;
+}
+.sc-arrow:hover {
+    border-color: rgba(235,225,209,0.55);
+    background: rgba(0,0,0,0.22);
+    color: #EBE1D1;
+    transform: scale(1.1);
+}
+.sc-arrow:active {
+    transform: scale(0.94);
+}
+@media (max-width: 640px) {
+    .sc-arrow {
+        width: 48px;
+        height: 48px;
+    }
+}
+.sc-counter {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+    color: rgba(235,225,209,0.35);
+    user-select: none;
+    white-space: nowrap;
+    text-align: center;
+}
+.sc-counter #sc-cur {
+    color: rgba(235,225,209,0.85);
+    font-size: 1.3em;
+}
+
+/* ═══════════════════════════════════════
+   GALLERY SECTION — Projekte & Arbeiten
+═══════════════════════════════════════ */
+.section-gallery {
+    background: #56686A;
+    padding: clamp(8rem, 18vh, 14rem) 0;
+    position: relative;
+    overflow: hidden;
+}
+.section-gallery::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 70% 60% at 100% 0%, rgba(0,0,0,0.2) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 70% at 0% 100%, rgba(0,0,0,0.15) 0%, transparent 60%);
+    pointer-events: none;
+}
+/* Wave transition to next section (Strategy = #080304) */
+.section-gallery::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 20vh;
+    background-color: #080304;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.gallery-header {
+    margin-bottom: clamp(4rem, 10vh, 8rem);
+    position: relative;
+    z-index: 2;
+    max-width: 85vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+.gallery-eyebrow {
+    display: inline-block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.6em;
+    text-transform: uppercase;
+    color: rgba(110, 59, 73, 0.8);
+    margin-bottom: 1.2rem;
+}
+.gallery-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.2rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #EBE1D1;
+    margin-bottom: 1.5rem;
+}
+.gallery-title em {
+    font-style: italic;
+    color: #6E3B49;
+}
+.gallery-desc {
+    font-family: 'Work Sans', sans-serif;
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(235, 225, 209, 0.55);
+    max-width: 520px;
+}
+
+/* Featured Image Area */
+.gallery-featured {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(3rem, 8vw, 6rem);
+    align-items: center;
+    margin-bottom: clamp(6rem, 14vh, 10rem);
+    position: relative;
+    z-index: 2;
+    max-width: 85vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+.featured-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: clamp(1rem, 2vw, 1.5rem);
+    aspect-ratio: 4 / 5;
+    background: linear-gradient(135deg, rgba(110, 59, 73, 0.2), rgba(86, 104, 106, 0.1));
+}
+.featured-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.featured-image-wrapper:hover img {
+    transform: scale(1.05);
+}
+.featured-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 100%);
+    pointer-events: none;
+}
+
+.featured-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+.featured-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.8rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(235, 225, 209, 0.15);
+}
+.meta-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+.meta-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.48rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: rgba(235, 225, 209, 0.3);
+}
+.meta-value {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(235, 225, 209, 0.8);
+}
+.featured-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1;
+    color: #EBE1D1;
+    margin-bottom: 1rem;
+}
+.featured-text p {
+    font-family: 'Work Sans', sans-serif;
+    font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+    font-weight: 300;
+    line-height: 1.85;
+    color: rgba(235, 225, 209, 0.5);
+}
+
+/* Thumbnail Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(120px, 22vw, 180px), 1fr));
+    gap: clamp(1.2rem, 3vw, 2rem);
+    position: relative;
+    z-index: 2;
+    max-width: 85vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+.gallery-item {
+    position: relative;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+}
+.gallery-item.revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: all 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.gallery-thumb {
+    position: relative;
+    overflow: hidden;
+    border-radius: clamp(0.8rem, 1.5vw, 1.2rem);
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, rgba(110, 59, 73, 0.15), rgba(86, 104, 106, 0.08));
+}
+.gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: transform;
+}
+/* Awwwards-style 3D tilt + magnetic effect */
+.gallery-item:hover .gallery-thumb img {
+    transform: scale(1.08);
+}
+.gallery-item:hover {
+    z-index: 10;
+}
+@media (hover: hover) {
+    .gallery-thumb {
+        transform-style: preserve-3d;
+        perspective: 1000px;
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .gallery-item.active-hover .gallery-thumb {
+        transform: translateY(-8px);
+    }
+}
+.gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(110, 59, 73, 0.25) 0%, rgba(0,0,0,0.2) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+.gallery-label {
+    margin-top: 0.9rem;
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(235, 225, 209, 0.65);
+    transition: color 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.gallery-item:hover .gallery-label {
+    color: #EBE1D1;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .gallery-featured {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    .featured-image-wrapper {
+        aspect-ratio: 3 / 4;
+    }
+    .featured-meta {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .gallery-title {
+        font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+        margin-bottom: 1rem;
+    }
+    .gallery-desc {
+        font-size: 0.9rem;
+    }
+    .gallery-featured {
+        margin-bottom: 3rem;
+        gap: 1.5rem;
+    }
+    .featured-image-wrapper {
+        aspect-ratio: 2 / 3;
+    }
+    .featured-meta {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        padding-bottom: 1.5rem;
+    }
+    .featured-text h3 {
+        font-size: clamp(1.4rem, 3vw, 1.8rem);
+        margin-bottom: 0.8rem;
+    }
+    .featured-text p {
+        font-size: 0.85rem;
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 1rem;
+    }
+    .gallery-label {
+        font-size: 0.65rem;
+        margin-top: 0.6rem;
+    }
+}
+
     </style> 
 </head>
 <body>
@@ -146,196 +1556,422 @@
                 </a>
                 <nav class="nav">
                     <a href="../index.html#hero" class="nav-link">Home</a>
-                    <a href="../index.html#expertise" class="nav-link">Work</a>
+                    <a href="../index.html#expertise" class="nav-link">What I do</a>
                     <a href="../index.html#blog" class="nav-link">Blog</a>
-                    <a href="../about.html" class="nav-link">About</a>
+                    <a href="../about.html" class="nav-link">About me</a>
                 </nav>
             </div>
         </header>
 
-        <!-- HERO SECTION WITH DYNAMIC VIDEO -->
-        <section class="hero-section relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-            <div class="video-container parallax-video z-0 opacity-50">
-                <!-- Desktop Video -->
+        <!-- HERO SECTION — 80vh, kein Text -->
+        <section class="hero-section sbw-hero-section">
+            <div class="video-container opacity-50">
                 <video class="hidden md:block" autoplay muted loop playsinline>
                     <source src="../video/petrichor_hero.mp4" type="video/mp4">
                 </video>
-                <!-- Mobile Video (Story Format) -->
                 <video class="md:hidden" autoplay muted loop playsinline>
-                    <source src="../video/promo.MP4" type="video/mp4">
+                    <source src="video/promo.MP4" type="video/mp4">
                 </video>
-                <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/40"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70"></div>
             </div>
-            
-            <div class="container mx-auto px-6 relative z-10 text-center">
-                <p class="reveal-text font-mono text-sm tracking-[0.5em] uppercase mb-6 text-[#EBE1D1]">4 Jahre Lehre // 2020 - 2024</p>
-                <h1 class="reveal-text font-display italic text-6xl md:text-[8rem] lg:text-[11rem] font-bold leading-none tracking-tighter mb-10">
-                    SBW <span class="text-outline">Medien</span>
+            <!-- Scroll CTA -->
+            <div class="sbw-hero-cta">
+                <a href="#sbw-intro" class="sbw-scroll-btn">
+                    <span class="sbw-scroll-label">Entdecken</span>
+                    <div class="sbw-scroll-arrow">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M8 2V14M8 14L3 9M8 14L13 9" stroke="#EBE1D1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- INTRO SEKTION — Titel & Navigation -->
+        <section class="sbw-intro" id="sbw-intro">
+            <div class="container mx-auto">
+                <span class="sbw-intro-badge">4 Jahre Lehre // 2020 – 2024</span>
+                <h1 class="sbw-intro-title">
+                    SBW<br><em>Neuen Medien.</em>
                 </h1>
-                <div class="reveal-text flex justify-center items-center gap-6">
-                    <div class="h-px w-12 bg-[#EBE1D1]/30"></div>
-                    <p class="text-lg md:text-xl text-[#EBE1D1]/70 max-w-2xl font-light italic">
-                        Die Grundsteine meiner kreativen Reise. Von Modulen bis hin zu echten Kundenprojekten.
-                    </p>
-                    <div class="h-px w-12 bg-[#EBE1D1]/30"></div>
+                <p class="sbw-intro-text">
+                    Die Grundsteine meiner kreativen Reise. Von Modulen bis hin zu echten Kundenprojekten — vier Jahre, in denen Design, Code und Strategie zur zweiten Sprache wurden.
+                </p>
+                <nav class="sbw-section-nav" aria-label="Sektionen">
+                    <a href="#showcase" class="sbw-nav-anchor">
+                        <span class="sbw-nav-num">01</span>
+                        <span class="sbw-nav-label">Projekte</span>
+                    </a>
+                    <a href="#tiktok-strategy" class="sbw-nav-anchor">
+                        <span class="sbw-nav-num">02</span>
+                        <span class="sbw-nav-label">TikTok Strategie</span>
+                    </a>
+                    <a href="#films" class="sbw-nav-anchor">
+                        <span class="sbw-nav-num">03</span>
+                        <span class="sbw-nav-label">Film &amp; Video</span>
+                    </a>
+                </nav>
+            </div>
+        </section>
+
+        <!-- SHOWCASE SEKTION — Interaktiver Projekt-Slider -->
+        <section class="section-showcase" id="showcase">
+            <!-- Riesen-Hintergrundzahl -->
+            <div class="sc-bg-num" aria-hidden="true"><span id="sc-bg-num-text">01</span></div>
+
+            <div class="container mx-auto sc-inner">
+
+                <!-- Links: Text & Buttons -->
+                <div class="sc-left">
+                    <div class="sc-left-content" id="sc-content">
+                        <!-- wird per JS befüllt -->
+                    </div>
+                </div>
+
+                <!-- Mitte: iPhone Mockup -->
+                <div class="sc-center">
+                    <div class="iphone-frame">
+                        <div class="iphone-notch"></div>
+                        <div class="iphone-screen" id="sc-phone-screen">
+                            <!-- wird per JS befüllt -->
+                        </div>
+                        <div class="iphone-homeind"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Navigation — unter iPhone -->
+            <div class="sc-nav-wrapper">
+                <div class="sc-nav">
+                    <button class="sc-arrow sc-prev" id="sc-prev" aria-label="Vorheriges Projekt">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <path d="M12 3.5L6 9L12 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="sc-counter">
+                        <span id="sc-cur">1</span>
+                        <span style="color:rgba(235,225,209,0.2)"> / </span>
+                        <span id="sc-total">4</span>
+                    </div>
+                    <button class="sc-arrow sc-next" id="sc-next" aria-label="Nächstes Projekt">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <path d="M6 3.5L12 9L6 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </section>
 
-        <!-- MODULE SECTION (2x4 Grid) -->
-        <section class="section-modules py-40 bg-[#F5F5F5] text-[#0A0A0A] relative">
-            <div class="container mx-auto px-6 relative z-20">
-                <div class="mb-24">
-                    <h2 class="font-display text-5xl md:text-8xl mb-8">Ausbildungs <br/><span class="italic text-[#6E3B49]">Module</span></h2>
-                    <div class="h-1 w-24 bg-[#6E3B49]"></div>
-                </div>
+<!-- ═══════════════════════════════════════
+     GALLERY SECTION — Projekte & Arbeiten
+═══════════════════════════════════════ -->
+<section class="section-gallery" id="gallery">
+    <div class="container mx-auto px-6">
+        
+        <!-- Header -->
+        <div class="gallery-header">
+            <span class="gallery-eyebrow">Portfolio Highlights</span>
+            <h2 class="gallery-title">Projekte &amp; <em>Arbeiten.</em></h2>
+            <p class="gallery-desc">Eine Auswahl meiner vielfältigsten und kreativsten Projekte aus verschiedenen Medienformaten und Plattformen.</p>
+        </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-300 border border-gray-300 reveal-grid">
-                    <!-- Module 1-8 -->
-                    <div class="bg-[#F5F5F5] p-12 hover:bg-[#EBE1D1] transition-all duration-700 min-h-[320px] flex flex-col justify-between group">
-                        <div>
-                            <h3 class="font-display italic text-3xl font-bold mb-4 group-hover:text-[#6E3B49]">Grafikdesign</h3>
-                            <p class="text-[#525252] leading-relaxed">Grundlagen der Typografie, Layouting und Markenbildung von Beginn an.</p>
-                        </div>
-                        <span class="font-mono text-[10px] opacity-30">M01 / BASICS</span>
-                    </div>
-                    <div class="bg-[#F5F5F5] p-12 hover:bg-[#EBE1D1] transition-all duration-700 min-h-[320px] flex flex-col justify-between group">
-                        <div>
-                            <h3 class="font-display italic text-3xl font-bold mb-4 group-hover:text-[#6E3B49]">Motion Design</h3>
-                            <p class="text-[#525252] leading-relaxed">Keyframes, Transitions und dynamisches Storytelling in After Effects.</p>
-                        </div>
-                        <span class="font-mono text-[10px] opacity-30">M02 / MOTION</span>
-                    </div>
-                    <div class="bg-[#F5F5F5] p-12 hover:bg-[#EBE1D1] transition-all duration-700 min-h-[320px] flex flex-col justify-between group">
-                        <div>
-                            <h3 class="font-display italic text-3xl font-bold mb-4 group-hover:text-[#6E3B49]">Web Development</h3>
-                            <p class="text-[#525252] leading-relaxed">Struktur und Ästhetik im Web – Verständnis für Code und Design-Systeme.</p>
-                        </div>
-                        <span class="font-mono text-[10px] opacity-30">M03 / TECH</span>
-                    </div>
-                    <div class="bg-[#F5F5F5] p-12 hover:bg-[#EBE1D1] transition-all duration-700 min-h-[320px] flex flex-col justify-between group">
-                        <div>
-                            <h3 class="font-display italic text-3xl font-bold mb-4 group-hover:text-[#6E3B49]">Video Editing</h3>
-                            <p class="text-[#525252] leading-relaxed">Schnittrhythmus und Color Grading für professionelle Video-Produktionen.</p>
-                        </div>
-                        <span class="font-mono text-[10px] opacity-30">M04 / POST</span>
-                    </div>
-                    <div class="bg-[#F5F5F5] p-12 hover:bg-[#EBE1D1] transition-all duration-700 min-h-[320px] flex flex-col justify-between group">
-                        <div>
-                            <h3 class="font-display italic text-3xl font-bold mb-4 group-hover:text-[#6E3B49]">Fotografie</h3>
-                            <p class="text-[#525252] leading-relaxed">Lichtführung und Komposition – Die Welt durch die Linse sehen.</p>
-                        </div>
-                        <span class="font-mono text-[10px] opacity-30">M05 / VISUALS</span>
-                    </div>
-                    <div class="bg-[#F5F5F5] p-12 hover:bg-[#EBE1D1] transition-all duration-700 min-h-[320px] flex flex-col justify-between group">
-                        <div>
-                            <h3 class="font-display italic text-3xl font-bold mb-4 group-hover:text-[#6E3B49]">Konzeption</h3>
-                            <p class="text-[#525252] leading-relaxed">Vom ersten Brainstorming bis zum fertigen Kampagnen-Konzept.</p>
-                        </div>
-                        <span class="font-mono text-[10px] opacity-30">M06 / BRAIN</span>
-                    </div>
-                    <div class="bg-[#F5F5F5] p-12 hover:bg-[#EBE1D1] transition-all duration-700 min-h-[320px] flex flex-col justify-between group">
-                        <div>
-                            <h3 class="font-display italic text-3xl font-bold mb-4 group-hover:text-[#6E3B49]">3D Animation</h3>
-                            <p class="text-[#525252] leading-relaxed">Eintauchen in dreidimensionale Welten und Objekterstellung.</p>
-                        </div>
-                        <span class="font-mono text-[10px] opacity-30">M07 / DIMENSION</span>
-                    </div>
-                    <div class="bg-[#F5F5F5] p-12 hover:bg-[#EBE1D1] transition-all duration-700 min-h-[320px] flex flex-col justify-between group">
-                        <div>
-                            <h3 class="font-display italic text-3xl font-bold mb-4 group-hover:text-[#6E3B49]">Lehrabschluss</h3>
-                            <p class="text-[#525252] leading-relaxed">Bündelung aller Kompetenzen im großen Abschlussprojekt.</p>
-                        </div>
-                        <span class="font-mono text-[10px] opacity-30">M08 / FINALE</span>
-                    </div>
-                </div>
+        <!-- Featured Image Area -->
+        <div class="gallery-featured">
+            <div class="featured-image-wrapper">
+                <img id="featured-image" src="../assets/images/sbw/showcase_sbw_filmplakat.jpg" alt="Featured Project">
+                <div class="featured-overlay"></div>
             </div>
-        </section>
-
-        <!-- KUNDENPROJEKTE (Burgundy Section) -->
-        <section class="py-40 bg-[#6E3B49] text-[#EBE1D1]">
-            <div class="container mx-auto px-6">
-                <h2 class="font-display italic text-5xl md:text-9xl mb-20 text-center">Reale <br/><span class="text-white">Projekte</span></h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
-                    <div class="group reveal-up">
-                        <div class="relative aspect-square overflow-hidden rounded-3xl mb-8">
-                            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110" alt="Projekt 1">
-                        </div>
-                        <h3 class="font-display text-4xl font-bold italic mb-4">Corporate Identity Case</h3>
-                        <p class="text-[#EBE1D1]/60 font-light leading-relaxed">Entwicklung eines kompletten Brandings für ein Start-up während des 3. Lehrjahres.</p>
+            <div class="featured-info">
+                <div class="featured-meta">
+                    <div class="meta-block">
+                        <span class="meta-label">Modul</span>
+                        <span class="meta-value" id="featured-modul">Video Production</span>
                     </div>
-                    <div class="group reveal-up" style="margin-top: 10vh;">
-                        <div class="relative aspect-square overflow-hidden rounded-3xl mb-8">
-                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110" alt="Projekt 2">
-                        </div>
-                        <h3 class="font-display text-4xl font-bold italic mb-4">Web Design Redesign</h3>
-                        <p class="text-[#EBE1D1]/60 font-light leading-relaxed">Konzeption und User Experience Optimierung für eine regionale Web-Plattform.</p>
+                    <div class="meta-block">
+                        <span class="meta-label">Kunde</span>
+                        <span class="meta-value" id="featured-kunde">SBW Neuen Medien</span>
+                    </div>
+                    <div class="meta-block">
+                        <span class="meta-label">Fach</span>
+                        <span class="meta-value" id="featured-fach">Filmgestaltung</span>
+                    </div>
+                    <div class="meta-block">
+                        <span class="meta-label">Jahr</span>
+                        <span class="meta-value" id="featured-jahr">2023</span>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- MARQUEE (Kunden Logos) -->
-        <div class="client-marquee border-y border-gray-100">
-            <div class="marquee-content font-display italic text-4xl md:text-6xl text-gray-200">
-                <span>SBW NEUEN MEDIEN</span>
-                <span>PROJEKT X</span>
-                <span>KUNDE Y</span>
-                <span>STARTUP Z</span>
-                <span>EVENT AGENCY</span>
-                <span>DESIGN STUDIO</span>
-                <!-- Repeat for loop -->
-                <span>SBW NEUEN MEDIEN</span>
-                <span>PROJEKT X</span>
-                <span>KUNDE Y</span>
-                <span>STARTUP Z</span>
-                <span>EVENT AGENCY</span>
-                <span>DESIGN STUDIO</span>
+                <div class="featured-text">
+                    <h3 id="featured-title">Filmplakat</h3>
+                    <p id="featured-desc">Ein visuell starkes Filmplakat, das die Essenz des Projekts einfängt.</p>
+                </div>
             </div>
         </div>
 
-        <!-- SOCIAL MEDIA & INSTA STORIES -->
-        <section class="py-40 bg-[#314A51] text-[#EBE1D1]">
-            <div class="container mx-auto px-6">
-                <div class="flex flex-col md:flex-row justify-between items-baseline mb-20 gap-8">
-                    <h2 class="font-display italic text-5xl md:text-8xl">Social <br/>Content</h2>
-                    <p class="text-[#EBE1D1]/50 font-mono text-sm tracking-widest uppercase">Video / Story / Reel</p>
+        <!-- Thumbnail Grid -->
+        <div class="gallery-grid">
+            <div class="gallery-item" data-image="../assets/images/sbw/showcase_sbw_filmplakat.jpg" data-modul="Video Production" data-kunde="SBW Neuen Medien" data-fach="Filmgestaltung" data-jahr="2023" data-title="Filmplakat" data-desc="Ein visuell starkes Filmplakat, das die Essenz des Projekts einfängt.">
+                <div class="gallery-thumb">
+                    <img src="../assets/images/sbw/showcase_sbw_filmplakat.jpg" alt="Filmplakat">
+                    <div class="gallery-overlay"></div>
                 </div>
-
-                <div class="story-gallery reveal-up">
-                    <!-- Insta Story Video Cards -->
-                    <div class="story-card">
-                        <video autoplay muted loop playsinline>
-                            <source src="https://assets.mixkit.co/videos/preview/mixkit-fashion-girl-walking-in-a-studio-34442-large.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute bottom-6 left-6 text-white text-xs font-mono uppercase opacity-70">Insta Story 01</div>
-                    </div>
-                    <div class="story-card">
-                        <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800" alt="Insta Story 2">
-                        <div class="absolute bottom-6 left-6 text-white text-xs font-mono uppercase opacity-70">Branding Reel</div>
-                    </div>
-                    <div class="story-card">
-                        <video autoplay muted loop playsinline>
-                            <source src="https://assets.mixkit.co/videos/preview/mixkit-young-woman-dancing-in-a-pink-light-34439-large.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute bottom-6 left-6 text-white text-xs font-mono uppercase opacity-70">Insta Story 03</div>
-                    </div>
-                    <div class="story-card">
-                        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&q=80&w=800" alt="Insta Story 4">
-                        <div class="absolute bottom-6 left-6 text-white text-xs font-mono uppercase opacity-70">Project Reveal</div>
-                    </div>
-                    <div class="story-card">
-                        <video autoplay muted loop playsinline>
-                            <source src="https://assets.mixkit.co/videos/preview/mixkit-dancing-woman-in-neon-light-34438-large.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute bottom-6 left-6 text-white text-xs font-mono uppercase opacity-70">Insta Story 05</div>
-                    </div>
-                </div>
-                
-                <p class="mt-12 text-center font-mono text-xs uppercase tracking-[0.5em] opacity-30 animate-pulse">Scroll sideways for more content</p>
+                <div class="gallery-label">Filmplakat</div>
             </div>
-        </section>
+
+            <div class="gallery-item" data-image="../assets/images/sbw/showcase_sbw_geister.png" data-modul="Motion Graphics" data-kunde="Eigeninitiative" data-fach="Animation" data-jahr="2023" data-title="Geister" data-desc="Experimentelle Motion-Grafik Exploration mit surrealen visuellen Elementen.">
+                <div class="gallery-thumb">
+                    <img src="../assets/images/sbw/showcase_sbw_geister.png" alt="Geister">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-label">Geister</div>
+            </div>
+
+            <div class="gallery-item" data-image="../assets/images/sbw/showcase_sbw_jumpin.jpg" data-modul="Event Design" data-kunde="SBW Neuen Medien" data-fach="Grafikdesign" data-jahr="2023" data-title="Jumpin Event" data-desc="Corporate Design und visuelle Kommunikation für ein Live-Event.">
+                <div class="gallery-thumb">
+                    <img src="../assets/images/sbw/showcase_sbw_jumpin.jpg" alt="Jumpin Event">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-label">Jumpin</div>
+            </div>
+
+            <div class="gallery-item" data-image="../assets/images/sbw/showcase_sbw_parasit.jpg" data-modul="Film Regie" data-kunde="Schulprojekt" data-fach="Direktregie" data-jahr="2023" data-title="Parasit" data-desc="Ein cineastisches Kurzfilm-Projekt mit professioneller Produktion.">
+                <div class="gallery-thumb">
+                    <img src="../assets/images/sbw/showcase_sbw_parasit.jpg" alt="Parasit">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-label">Parasit</div>
+            </div>
+
+            <div class="gallery-item" data-image="../assets/images/sbw/showcase_sbw_petrichor.JPG" data-modul="Film" data-kunde="Eigeninitiative" data-fach="Cinematography" data-jahr="2024" data-title="Petrichor" data-desc="Eine visuell poetische Erkundung von Natur und Fotografie.">
+                <div class="gallery-thumb">
+                    <img src="../assets/images/sbw/showcase_sbw_petrichor.JPG" alt="Petrichor">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-label">Petrichor</div>
+            </div>
+
+            <div class="gallery-item" data-image="../assets/images/sbw/showcase_sbw_trailerpark.jpg" data-modul="Video Series" data-kunde="YouTube" data-fach="Content Production" data-jahr="2023" data-title="Trailer Park" data-desc="Eine Sammlung von Trailer-Designs und Motion-Sequenzen.">
+                <div class="gallery-thumb">
+                    <img src="../assets/images/sbw/showcase_sbw_trailerpark.jpg" alt="Trailer Park">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-label">Trailer Park</div>
+            </div>
+
+            <div class="gallery-item" data-image="../assets/images/sbw/showcase_sbw_wehelp.png" data-modul="Web Design" data-kunde="NGO Wehelp" data-fach="UI/UX" data-jahr="2023" data-title="Wehelp Platform" data-desc="Eine digitale Plattform für globale Netzwerk-Zusammenarbeit.">
+                <div class="gallery-thumb">
+                    <img src="../assets/images/sbw/showcase_sbw_wehelp.png" alt="Wehelp">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-label">Wehelp</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<section class="section-strategy" id="tiktok-strategy">
+  <div class="container mx-auto px-6">
+
+    <!-- Header -->
+    <div class="strategy-header" data-gsap="fade-up">
+      <span class="strategy-eyebrow">Social Media Management</span>
+      <h2>TikTok <em>Strategie.</em></h2>
+      <p class="strategy-description">
+        Vom passiven Konsumenten zum strategischen Content Producer — ein strukturierter, datengestützter Prozess, der kreative Visionen in messbaren Erfolg verwandelt.
+      </p>
+    </div>
+
+    <!-- Accordion -->
+    <div class="strategy-accordion" id="strategyAccordion">
+
+      <!-- 01 -->
+      <div class="strategy-item" data-gsap="fade-left">
+        <button class="strategy-trigger-row">
+          <span class="st-number">01</span>
+          <div class="st-text">
+            <span class="st-label">Analyse &amp; Vorbereitung</span>
+            <h3 class="st-title">Nischen-Identifikation</h3>
+          </div>
+          <div class="st-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1V11M1 6H11" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </button>
+        <div class="strategy-content">
+          <div class="strategy-content-inner">
+            <p class="sc-body">
+              Bevor der erste Frame gedreht wird, definieren wir das Spielfeld. In intensiver Analyse identifizieren wir die präzise Nische, in der du dich als unverwechselbare Stimme positionierst.
+            </p>
+            <div class="sc-tags">
+              <span class="sc-tag">Zielgruppen-Profiling</span>
+              <span class="sc-tag">Konkurrenz-Audit</span>
+              <span class="sc-tag">USP Definition</span>
+              <span class="sc-tag">Trend-Forecasting</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="strategy-item" data-gsap="fade-left" data-gsap-delay="100">
+        <button class="strategy-trigger-row">
+          <span class="st-number">02</span>
+          <div class="st-text">
+            <span class="st-label">Strategie &amp; Planung</span>
+            <h3 class="st-title">Content-Architektur</h3>
+          </div>
+          <div class="st-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1V11M1 6H11" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </button>
+        <div class="strategy-content">
+          <div class="strategy-content-inner">
+            <p class="sc-body">
+              Ein Deep Dive in die Planung. Wir entwickeln ein vollständiges Social-Media-Konzept, das visuelle Ästhetik mit psychologischem Hook-Design vereint — Struktur trifft Kreativität.
+            </p>
+            <div class="sc-stack">
+              <span class="sc-pill">ChatGPT 4o</span>
+              <span class="sc-pill">Canva Pro</span>
+              <span class="sc-pill">Notion</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="strategy-item" data-gsap="fade-left" data-gsap-delay="200">
+        <button class="strategy-trigger-row">
+          <span class="st-number">03</span>
+          <div class="st-text">
+            <span class="st-label">Umsetzung &amp; Erstellung</span>
+            <h3 class="st-title">Produktion &amp; Rollout</h3>
+          </div>
+          <div class="st-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1V11M1 6H11" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </button>
+        <div class="strategy-content">
+          <div class="strategy-content-inner">
+            <p class="sc-body">
+              High-End Produktion im Batch-Verfahren. Täglich ein Beitrag, der durch Qualität und Relevanz besticht — Technik und Storytelling in perfekter Symbiose.
+            </p>
+            <div class="sc-status-row">
+              <div class="sc-status"><span>Batch Production</span><span>In Progress</span></div>
+              <div class="sc-status"><span>Daily Posting</span><span>1 Month Cycle</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 -->
+      <div class="strategy-item" data-gsap="fade-left" data-gsap-delay="300">
+        <button class="strategy-trigger-row">
+          <span class="st-number">04</span>
+          <div class="st-text">
+            <span class="st-label">Performance &amp; Optimierung</span>
+            <h3 class="st-title">Analytics &amp; Growth</h3>
+          </div>
+          <div class="st-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1V11M1 6H11" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </button>
+        <div class="strategy-content">
+          <div class="strategy-content-inner">
+            <p class="sc-body">
+              Wahre Stärke liegt in konstanter Reflexion. Im Check-Zyklus analysieren wir Performance-Daten und leiten präzise Handlungsempfehlungen ab — Iteration als Wettbewerbs­vorteil.
+            </p>
+            <div class="sc-tags">
+              <span class="sc-tag">PDCA-Zyklus</span>
+              <span class="sc-tag">KPI-Tracking</span>
+              <span class="sc-tag">A/B Testing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+ <!-- FILMS / YOUTUBE SECTION -->
+ <section class="section-films" id="films">
+    <div class="container mx-auto px-6">
+
+        <p class="films-label">In Bewegung — Film & Produktion</p>
+        <h2>Zwei <em>Films.</em></h2>
+
+        <div class="films-grid">
+
+            <!-- Video 1 -->
+            <div class="film-panel" data-vid="WT0xxpXWebc">
+                <img
+                    class="film-overlay-thumb"
+                    src="https://i.ytimg.com/vi/WT0xxpXWebc/maxresdefault.jpg"
+                    alt="Film 01 Thumbnail"
+                    onerror="this.src='https://i.ytimg.com/vi/WT0xxpXWebc/hqdefault.jpg'"
+                >
+                <span class="film-index">01</span>
+                <div class="film-overlay">
+                    <div class="film-meta">
+                        <span class="film-meta-tag">Film · 01</span>
+                        <span class="film-meta-title">Lehrabschluss<br>Produktion</span>
+                    </div>
+                    <div class="film-play-area">
+                        <button class="film-play-btn" aria-label="Play Video 1">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                        <span class="film-bottom-label">Click to<br>watch</span>
+                    </div>
+                </div>
+           <iframe width="560" height="315" src="https://www.youtube.com/embed/WT0xxpXWebc?si=IKnQmoO9VfjPXH4e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="film-panel" data-vid="byE_WHPkp-Y">
+                <img
+                    class="film-overlay-thumb"
+                    src="https://i.ytimg.com/vi/byE_WHPkp-Y/maxresdefault.jpg"
+                    alt="Film 02 Thumbnail"
+                    onerror="this.src='https://i.ytimg.com/vi/byE_WHPkp-Y/hqdefault.jpg'"
+                >
+                <span class="film-index">02</span>
+                <div class="film-overlay">
+                    <div class="film-meta">
+                        <span class="film-meta-tag">Film · 02</span>
+                        <span class="film-meta-title">SBW<br>Schulprojekt</span>
+                    </div>
+                    <div class="film-play-area">
+                        <button class="film-play-btn" aria-label="Play Video 2">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                        <span class="film-bottom-label">Click to<br>watch</span>
+                    </div>
+                </div>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/byE_WHPkp-Y?si=qtcDAR0JYuP4e-Gn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+        </div>
+
+        <div class="film-divider">
+            <div class="film-divider-line"></div>
+            <span class="film-divider-text">SBW Neuen Medien — 2020 – 2024</span>
+            <div class="film-divider-line"></div>
+        </div>
+
+    </div>
+ </section>
 
  <!-- Footer -->
  <footer class="site-footer" aria-label="Seitenende">
@@ -373,5 +2009,449 @@
 	</div>
  </footer>
     <script src="work-header.js"></script>
+    <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // ─── Showcase Slider ───
+    const scProjects = [
+        {
+            num: '01',
+            kunde:    { label: 'Kunde',     value: 'SBW Neuen Medien' },
+            programm: { label: 'Programm',  value: 'After Effects' },
+            plattform:{ label: 'Plattform', value: 'Instagram' },
+            title: 'Content Modul',
+            subtitle: 'Visual Storytelling',
+            body: 'Im Rahmen des Lehrjahres entwickelte ich eigenständige Instagram-Inhalte — von der Konzeption über die Produktion bis zur Veröffentlichung. Design meets Strategy.',
+            phoneBg: 'linear-gradient(160deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
+            phoneWord: 'DESIGN',
+            phoneTag: 'SBW Stories',
+            bars: 4, activeBar: 0
+        },
+        {
+            num: '02',
+            kunde:    { label: 'Kunde',     value: 'Eigeninitiative' },
+            programm: { label: 'Programm',  value: 'CapCut / Canva' },
+            plattform:{ label: 'Plattform', value: 'TikTok' },
+            title: 'TikTok Strategie',
+            subtitle: 'Organisches Wachstum',
+            body: 'Von null auf Strategie — ein strukturierter Ansatz für messbares Wachstum. Nischen-Identifikation, Content-Architektur und tägliche Produktion im Batch-Verfahren.',
+            phoneBg: 'linear-gradient(160deg, #0d0d0d 0%, #1a1a1a 50%, #2d1f3d 100%)',
+            phoneWord: 'VIRAL',
+            phoneTag: 'TikTok Content',
+            bars: 4, activeBar: 1
+        },
+        {
+            num: '03',
+            kunde:    { label: 'Kunde',     value: 'Lehrbetrieb' },
+            programm: { label: 'Programm',  value: 'Adobe Suite' },
+            plattform:{ label: 'Plattform', value: 'LinkedIn / Web' },
+            title: 'IPA Konzept',
+            subtitle: 'Online-Marketing',
+            body: 'Die individuelle praktische Arbeit: eine ganzheitliche Neuausrichtung für einen realen Kunden. SWOT-Analyse, Zielgruppenprofiling und messbarer Maßnahmenplan.',
+            phoneBg: 'linear-gradient(160deg, #2d1f3d 0%, #4a1942 50%, #6E3B49 100%)',
+            phoneWord: 'BRAND',
+            phoneTag: 'IPA 2023',
+            bars: 4, activeBar: 2
+        },
+        {
+            num: '04',
+            kunde:    { label: 'Kunde',     value: 'Reales Projekt' },
+            programm: { label: 'Programm',  value: 'Figma / Code' },
+            plattform:{ label: 'Plattform', value: 'Website' },
+            title: 'Web Design',
+            subtitle: 'UI / UX Redesign',
+            body: 'Konzeption und User Experience Optimierung für eine regionale Web-Plattform — von der Wireframe-Phase bis zur finalen Implementierung.',
+            phoneBg: 'linear-gradient(160deg, #1a2a2a 0%, #243838 50%, #314A51 100%)',
+            phoneWord: 'WEB',
+            phoneTag: 'UX Design',
+            bars: 4, activeBar: 3
+        }
+    ];
+
+    let scCurrent = 0;
+
+    function scBuildPhone(p) {
+        const bars = Array.from({ length: p.bars }).map((_, i) => {
+            let cls = 'phone-story-bar';
+            if (i < p.activeBar) cls += ' filled';
+            else if (i === p.activeBar) cls += ' active-bar';
+            return `<div class="${cls}"></div>`;
+        }).join('');
+
+        return `
+        <div class="phone-story">
+            <div class="phone-story-bg" style="background:${p.phoneBg}"></div>
+            <div class="phone-story-stripe"></div>
+            <div class="phone-story-overlay"></div>
+            <div class="phone-story-progress">${bars}</div>
+            <div class="phone-story-header">
+                <div class="phone-avatar">K</div>
+                <div class="phone-username-row">
+                    <div class="phone-username">
+                        khadijaokbi
+                        <span class="phone-verified">
+                            <svg width="9" height="9" viewBox="0 0 24 24" fill="#1D9BF0"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </span>
+                    </div>
+                    <div class="phone-story-tag">${p.phoneTag}</div>
+                </div>
+            </div>
+            <div class="phone-story-body">
+                <span class="phone-story-label">${p.programm.value}</span>
+                <span class="phone-story-word">${p.phoneWord}</span>
+            </div>
+            <div class="phone-story-foot">
+                <div class="phone-story-likes">
+                    <svg class="phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l7.78 7.78 7.78-7.78a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    12.4k
+                </div>
+                <div class="phone-story-icons">
+                    <svg class="phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <svg class="phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                </div>
+            </div>
+        </div>`;
+    }
+
+    function scBuildContent(p) {
+        return `
+        <div class="sc-eyebrow-row">
+            <div class="sc-eyebrow-block">
+                <span class="sc-eyebrow-key">${p.kunde.label}</span>
+                <span class="sc-eyebrow-val">${p.kunde.value}</span>
+            </div>
+            <div class="sc-eyebrow-block">
+                <span class="sc-eyebrow-key">${p.programm.label}</span>
+                <span class="sc-eyebrow-val">${p.programm.value}</span>
+            </div>
+            <div class="sc-eyebrow-block">
+                <span class="sc-eyebrow-key">${p.plattform.label}</span>
+                <span class="sc-eyebrow-val">${p.plattform.value}</span>
+            </div>
+        </div>
+        <h2 class="sc-title">${p.title}</h2>
+        <span class="sc-subtitle">${p.subtitle}</span>
+        <p class="sc-body-txt">${p.body}</p>
+        <div class="sc-btns">
+            <div class="sc-btn-row">
+                <span class="sc-btn-eyebrow">Lehrjahr</span>
+                <div class="sc-btn">Modul</div>
+            </div>
+            <div class="sc-btn-row">
+                <span class="sc-btn-eyebrow">${p.programm.label}</span>
+                <div class="sc-btn">${p.programm.value}</div>
+            </div>
+            <div class="sc-btn-row">
+                <span class="sc-btn-eyebrow">${p.plattform.label}</span>
+                <div class="sc-btn">${p.plattform.value}</div>
+            </div>
+        </div>`;
+    }
+
+    function scRender(idx, dir) {
+        const p = scProjects[idx];
+        const contentEl  = document.getElementById('sc-content');
+        const phoneEl    = document.getElementById('sc-phone-screen');
+        const bgNumEl    = document.getElementById('sc-bg-num-text');
+        const curEl      = document.getElementById('sc-cur');
+
+        if (!contentEl || !phoneEl) return;
+
+        curEl.textContent = idx + 1;
+
+        // Background number animation
+        if (bgNumEl && typeof gsap !== 'undefined') {
+            gsap.to('.sc-bg-num', { opacity: 0, y: 20, duration: 0.25, ease: 'power2.in', onComplete: () => {
+                bgNumEl.textContent = p.num;
+                gsap.to('.sc-bg-num', { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' });
+            }});
+        } else if (bgNumEl) {
+            bgNumEl.textContent = p.num;
+        }
+
+        // Phone — fade + scale
+        if (typeof gsap !== 'undefined') {
+            gsap.to(phoneEl, { opacity: 0, scale: 0.96, duration: 0.28, ease: 'power2.in', onComplete: () => {
+                phoneEl.innerHTML = scBuildPhone(p);
+                gsap.fromTo(phoneEl, { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' });
+            }});
+
+            const xOut = dir > 0 ? -45 : 45;
+            const xIn  = dir > 0 ?  45 : -45;
+            gsap.to(contentEl, { opacity: 0, x: xOut, duration: 0.3, ease: 'power2.in', onComplete: () => {
+                contentEl.innerHTML = scBuildContent(p);
+                gsap.fromTo(contentEl, { opacity: 0, x: xIn }, { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out' });
+            }});
+        } else {
+            phoneEl.innerHTML = scBuildPhone(p);
+            contentEl.innerHTML = scBuildContent(p);
+        }
+    }
+
+    function scNext() { scCurrent = (scCurrent + 1) % scProjects.length; scRender(scCurrent, 1); }
+    function scPrev() { scCurrent = (scCurrent - 1 + scProjects.length) % scProjects.length; scRender(scCurrent, -1); }
+
+    document.getElementById('sc-next')?.addEventListener('click', scNext);
+    document.getElementById('sc-prev')?.addEventListener('click', scPrev);
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') scNext();
+        if (e.key === 'ArrowLeft')  scPrev();
+    });
+
+    // Init
+    document.getElementById('sc-total').textContent = scProjects.length;
+    scRender(0, 1);
+
+    // ─── Strategy Accordion ───
+    const accordionItems = document.querySelectorAll('.strategy-item');
+
+    accordionItems.forEach(item => {
+        const trigger  = item.querySelector('.strategy-trigger-row');
+        const content  = item.querySelector('.strategy-content');
+
+        trigger.addEventListener('click', () => {
+            const isOpen = item.classList.contains('active');
+
+            // Close all others
+            accordionItems.forEach(other => {
+                if (other === item) return;
+                other.classList.remove('active');
+                gsap.to(other.querySelector('.strategy-content'), {
+                    height: 0,
+                    duration: 0.5,
+                    ease: 'power3.inOut'
+                });
+            });
+
+            if (isOpen) {
+                item.classList.remove('active');
+                gsap.to(content, { height: 0, duration: 0.5, ease: 'power3.inOut' });
+            } else {
+                item.classList.add('active');
+                gsap.fromTo(content,
+                    { height: 0 },
+                    { height: 'auto', duration: 0.65, ease: 'power3.out' }
+                );
+                // Subtle number pop on open
+                gsap.fromTo(item.querySelector('.st-number'),
+                    { opacity: 0.12 },
+                    { opacity: 0.7, duration: 0.5, ease: 'power2.out' }
+                );
+            }
+        });
+    });
+
+    // ─── GSAP Scroll Animations ───
+    if (typeof gsap !== 'undefined') {
+        gsap.utils.toArray('[data-gsap="fade-left"]').forEach((el, i) => {
+            gsap.from(el, {
+                x: 60,
+                opacity: 0,
+                duration: 0.9,
+                ease: 'power3.out',
+                scrollTrigger: { trigger: el, start: 'top 90%' },
+                delay: i * 0.08
+            });
+        });
+        gsap.from('.strategy-headline', {
+            y: 40,
+            opacity: 0,
+            duration: 1.2,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: '.section-strategy', start: 'top 80%' }
+        });
+        gsap.from('.strategy-description', {
+            y: 20,
+            opacity: 0,
+            duration: 1,
+            delay: 0.2,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: '.section-strategy', start: 'top 80%' }
+        });
+    }
+});
+        // ─── Gallery Interactivity ───
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const featuredImage = document.getElementById('featured-image');
+        const featuredModul = document.getElementById('featured-modul');
+        const featuredKunde = document.getElementById('featured-kunde');
+        const featuredFach = document.getElementById('featured-fach');
+        const featuredJahr = document.getElementById('featured-jahr');
+        const featuredTitle = document.getElementById('featured-title');
+        const featuredDesc = document.getElementById('featured-desc');
+
+        function updateFeatured(item) {
+            const image = item.dataset.image;
+            const modul = item.dataset.modul;
+            const kunde = item.dataset.kunde;
+            const fach = item.dataset.fach;
+            const jahr = item.dataset.jahr;
+            const title = item.dataset.title;
+            const desc = item.dataset.desc;
+
+            // Fade out
+            gsap.to(featuredImage, {
+                opacity: 0.7,
+                duration: 0.3,
+                ease: 'power2.inOut',
+                onComplete: () => {
+                    featuredImage.src = image;
+                    // Fade in
+                    gsap.to(featuredImage, {
+                        opacity: 1,
+                        duration: 0.4,
+                        ease: 'power2.out'
+                    });
+                }
+            });
+
+            // Update metadata with animation
+            [
+                { el: featuredModul, val: modul },
+                { el: featuredKunde, val: kunde },
+                { el: featuredFach, val: fach },
+                { el: featuredJahr, val: jahr }
+            ].forEach(({ el, val }) => {
+                gsap.to(el, {
+                    duration: 0.2,
+                    ease: 'power2.inOut',
+                    onComplete: () => {
+                        el.textContent = val;
+                        gsap.from(el, { opacity: 0, duration: 0.3 });
+                    }
+                });
+            });
+
+            // Update title and description
+            gsap.to(featuredTitle, {
+                opacity: 0,
+                duration: 0.2,
+                ease: 'power2.inOut',
+                onComplete: () => {
+                    featuredTitle.textContent = title;
+                    gsap.to(featuredTitle, { opacity: 1, duration: 0.3 });
+                }
+            });
+
+            gsap.to(featuredDesc, {
+                opacity: 0,
+                duration: 0.2,
+                ease: 'power2.inOut',
+                onComplete: () => {
+                    featuredDesc.textContent = desc;
+                    gsap.to(featuredDesc, { opacity: 1, duration: 0.3 });
+                }
+            });
+        }
+
+        // Gallery item click handlers
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                updateFeatured(item);
+                // Visual feedback
+                galleryItems.forEach(el => {
+                    el.style.opacity = '0.5';
+                });
+                item.style.opacity = '1';
+            });
+
+            // Awwwards-style magnetic hover effect
+            const thumb = item.querySelector('.gallery-thumb');
+            if (thumb) {
+                item.addEventListener('mouseenter', () => {
+                    item.classList.add('active-hover');
+                });
+                item.addEventListener('mouseleave', () => {
+                    item.classList.remove('active-hover');
+                    gsap.to(thumb, { x: 0, y: 0, duration: 0.4, ease: 'power2.out' });
+                });
+                
+                item.addEventListener('mousemove', (e) => {
+                    const rect = item.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    
+                    gsap.to(thumb, {
+                        x: x * 0.1,
+                        y: y * 0.1,
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                });
+            }
+        });
+
+        // On Scroll Reveal Animation für Gallery Items — Gestaffelt
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Featured area stagger animation
+            gsap.fromTo('.gallery-featured',
+                { opacity: 0, y: 60 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.9,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: '.section-gallery',
+                        start: 'top 80%'
+                    }
+                }
+            );
+
+            // Gallery Grid Items - Staggered reveal ONE BY ONE (Awwwards style)
+            ScrollTrigger.create({
+                trigger: '.gallery-grid',
+                start: 'top 85%',
+                onEnter: () => {
+                    galleryItems.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.classList.add('revealed');
+                        }, index * 120); // 120ms delay zwischen jedem Item
+                    });
+                },
+                once: true
+            });
+
+            // Gallery header fade-up
+            gsap.from('.gallery-header',
+                {
+                    opacity: 0,
+                    y: 40,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: '.section-gallery',
+                        start: 'top 90%'
+                    }
+                }
+            );
+        }
+
+        // ─── Film panel play / pause ───
+        document.querySelectorAll('.film-panel').forEach(panel => {
+            const iframe = panel.querySelector('iframe');
+            const vid    = panel.dataset.vid;
+
+            panel.addEventListener('click', () => {
+                if (panel.classList.contains('playing')) return;
+
+                // Close any other open panel first
+                document.querySelectorAll('.film-panel.playing').forEach(other => {
+                    other.classList.remove('playing');
+                    const otherIframe = other.querySelector('iframe');
+                    otherIframe.src = '';
+                });
+
+                // Load video with clean params (no related, no branding)
+                iframe.src = `https://www.youtube-nocookie.com/embed/${vid}?autoplay=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&color=white&playsinline=1`;
+                panel.classList.add('playing');
+            });
+        });
+    </script>
 </body>
 </html>
