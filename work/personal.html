@@ -163,6 +163,152 @@
         -webkit-text-stroke: 1px #EBE1D1;
         color: transparent;
     }
+
+    .hero-eyebrow {
+        font-family: var(--font-subtitel);
+        letter-spacing: 0.65em;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        color: var(--text-primary-light);
+    }
+
+    .hero-lede a {
+        color: inherit;
+        text-decoration: underline;
+    }
+
+    .hero-pill {
+        border: 1px solid rgba(235, 225, 209, 0.4);
+        padding: 0.5rem 1.25rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--text-primary-light);
+        transition: border-color 0.4s ease, transform 0.4s ease;
+    }
+
+    .hero-pill:hover {
+        border-color: var(--accent-burgundy);
+        transform: translateY(-2px);
+    }
+
+    .hero-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.85rem 2.5rem;
+        border-radius: 999px;
+        background: linear-gradient(120deg, #EBE1D1, #ffffff);
+        color: #0A0A0A;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .hero-btn:hover {
+        transform: translateY(-4px);
+    }
+
+    .personal-intro {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .personal-intro::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 20% 20%, rgba(235, 225, 209, 0.08), transparent 45%),
+                    radial-gradient(circle at 80% 50%, rgba(110, 59, 73, 0.12), transparent 45%);
+        pointer-events: none;
+        mix-blend-mode: screen;
+        z-index: 0;
+    }
+
+    .personal-intro > .container > .grid {
+        position: relative;
+        z-index: 1;
+    }
+
+    .intro-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(235, 225, 209, 0.25);
+        border-radius: 24px;
+        padding: 1.75rem;
+        box-shadow: 0 25px 45px rgba(0,0,0,0.55);
+        transition: transform 0.4s ease, border-color 0.4s ease;
+    }
+
+    .intro-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--accent-burgundy);
+    }
+
+    .story-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .story-card {
+        position: relative;
+        padding: 2rem;
+        border-radius: 24px;
+        border: 1px solid rgba(235, 225, 209, 0.3);
+        background: radial-gradient(circle at top left, rgba(110, 59, 73, 0.25), rgba(0,0,0,0.6)), #050505;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.55);
+        overflow: hidden;
+    }
+
+    .story-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, rgba(255,255,255,0.05), transparent 60%);
+        opacity: 0;
+        transition: opacity 0.6s ease;
+    }
+
+    .story-card:hover::after {
+        opacity: 1;
+    }
+
+    .story-card h3 {
+        margin-top: 0.25rem;
+        font-family: var(--font-display);
+        font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    }
+
+    .story-card p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: rgba(235,225,209,0.7);
+    }
+
+    .story-year {
+        font-family: var(--font-higuen);
+        font-size: 2.5rem;
+        color: #EBE1D1;
+        letter-spacing: 0.2em;
+    }
+
+    .story-labels {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .story-labels span {
+        border: 1px solid rgba(235, 225, 209, 0.4);
+        padding: 0.25rem 0.9rem;
+        border-radius: 999px;
+        font-size: 0.65rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+    }
 </style> 
 	</head>
 	<body>
@@ -174,9 +320,9 @@
 			   </a>
 			   <nav class="nav" aria-label="Hauptnavigation">
 				  <a href="../index.html#hero" class="nav-link">Home</a>
-				  <a href="../index.html#expertise" class="nav-link">What I do</a>
+				  <a href="../index.html#expertise" class="nav-link">Work</a>
 				  <a href="../index.html#blog" class="nav-link">Blog</a>
-				  <a href="../about.html" class="nav-link">About me</a>
+				  <a href="../about.html" class="nav-link">About</a>
 
 			   </nav>
 			</div>
@@ -186,16 +332,22 @@
             <div class="hero-parallax parallax-item" data-speed="0.1"></div>
             
             <div class="container mx-auto px-6 relative z-10 text-center">
-                <p class="reveal-text font-mono text-sm tracking-[0.4em] uppercase mb-6 text-[#EBE1D1] opacity-90">Personal Projects & Vision</p>
-                <h1 class="reveal-text font-display italic text-6xl md:text-[9rem] font-bold leading-none tracking-tighter mb-10">
-                    Creative <span class="text-outline">Spirit</span>
+                <p class="hero-eyebrow">Creative Director · Mediamatikerin EFZ · Story Architect</p>
+                <h1 class="reveal-text font-display italic text-5xl md:text-[8rem] font-bold leading-none tracking-tighter mb-8">
+                    Khadija Okbi
                 </h1>
-                <div class="reveal-text flex justify-center items-center gap-6">
-                    <div class="h-px w-12 bg-[#EBE1D1]/30"></div>
-                    <p class="text-lg md:text-xl text-[#EBE1D1]/70 max-w-xl font-light italic">
-                        Ein Spielplatz für Design, Ästhetik und die Schönheit des Andersseins.
-                    </p>
-                    <div class="h-px w-12 bg-[#EBE1D1]/30"></div>
+                <p class="hero-lede text-lg md:text-xl text-[#EBE1D1]/80 max-w-3xl mx-auto font-light italic">
+                    Ich verknüpfe mediamatikerische Präzision aus der Ausbildung an der SBW Neue Medien mit der Spielfreude aus dem Sportmarketing bei WIN4 und den digitalen Markenstrategien, die ich während meiner IPA für Komthur entwickelte.<br>
+                    Editoriale Interfaces, lebendige Motion-Experimente und strategische Kampagnen entstehen dort, wo Story und System zusammentreffen.
+                </p>
+                <div class="hero-meta mt-12 flex flex-wrap gap-4 justify-center">
+                    <span class="hero-pill">SBW Neue Medien · Mediamatikerin EFZ</span>
+                    <span class="hero-pill">WIN4 Winterthur · Sportmarketing</span>
+                    <span class="hero-pill">Komthur IPA · Digitalstrategie</span>
+                </div>
+                <div class="hero-cta mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a class="hero-btn" href="mailto:khadijaokbi@gmail.com">Projekt anfragen</a>
+                    <span class="hero-cta-note text-xs tracking-[0.4em] uppercase text-[#EBE1D1]/60">Available for Zürich · Berlin · Remote</span>
                 </div>
             </div>
         </section>
@@ -207,30 +359,61 @@
             </svg>
         </div>
 
+        <section class="personal-intro bg-black text-[#EBE1D1]">
+            <div class="container mx-auto px-6 py-20">
+                <div class="grid md:grid-cols-[1.1fr,0.9fr] gap-12 items-center">
+                    <div>
+                        <p class="section-label text-xs uppercase tracking-[0.5em] text-[#EBE1D1]/60 mb-3">Über mich</p>
+                        <h2 class="text-4xl md:text-5xl font-display font-semibold mb-6">Editorial storytelling mit strategischem Tiefgang</h2>
+                        <p class="max-w-2xl text-[#EBE1D1]/70 mb-4">
+                            Die duale Ausbildung zur Mediamatikerin EFZ an der SBW Neue Medien hat mich gelehrt, Code, Content und Motion aus einem Guss zu denken. Research, Personas, Kampagnenplanung und Interaction-Design verschmelzen dort zu einer Arbeitsweise, die gerne zwischen Print, Screen und Live-Kommunikation pendelt.
+                        </p>
+                        <p class="max-w-2xl text-[#EBE1D1]/70">
+                            Das Praktikum im Sportmarketing bei WIN4 Winterthur vertiefte mein Gefühl für Events, Festführer und Sponsoring-Gestaltung. Parallel entstand meine IPA-Arbeit für Komthur, in der ich Online-Marketing, Branding und UI/UX-Redesign zu einem orchestrierten Konzept verband. Zwischen diesen Kundenprojekten entstehen persönliche Interfaces, kinetische Typografie-Experimente und digitale Editorials.
+                        </p>
+                    </div>
+                    <div class="intro-tiles grid gap-6">
+                        <article class="intro-card">
+                            <h3 class="text-xl font-semibold mb-2">Methoden</h3>
+                            <p class="text-sm text-[#EBE1D1]/70">Strategische Research-Sprints, Storyboardings, Workshop-Prototypen und iterative Testing-Runden bringen Klarheit in komplexe Briefings.</p>
+                        </article>
+                        <article class="intro-card">
+                            <h3 class="text-xl font-semibold mb-2">Tools</h3>
+                            <p class="text-sm text-[#EBE1D1]/70">Figma, Webflow, After Effects, Premiere Pro und GSAP bilden die Toolbox für responsive Geschichten und animierte Interfaces.</p>
+                        </article>
+                        <article class="intro-card">
+                            <h3 class="text-xl font-semibold mb-2">Vision</h3>
+                            <p class="text-sm text-[#EBE1D1]/70">Ich suche nach dem sweet spot zwischen analoger Wärme und digitaler Präzision und bette diese DNA in neue Marken- und Medienräume.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- SECTION 1: DESIGN PROJECTS (Wide Slider) -->
         <section class="white-space bg-[#F5F5F5]">
             <div class="container mx-auto px-6">
                 <div class="section-title-wrapper">
                     <h2 class="text-[#0A0A0A]">Design <br/><span class="italic text-[#6E3B49]">Excellence</span></h2>
-                    <p class="max-w-md text-gray-500 mt-4">Kuration meiner besten Grafik- und Branding-Konzepte.</p>
+                    <p class="max-w-md text-gray-500 mt-4">Markenarbeit, Editorials und UI-Experimente für Komthur, WIN4 und freie Projekte – stets getragen von einer Hybrid-Ästhetik zwischen analoger Wärme und digitaler Klarheit.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                     <!-- Project Item -->
                     <div class="group cursor-pointer">
                         <div class="overflow-hidden rounded-lg bg-gray-200 aspect-[4/3]">
-                            <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1000" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Design 1">
+                            <img src="../assets/images/projects/IPA.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Komthur IPA">
                         </div>
-                        <h3 class="font-display text-2xl mt-6 font-bold italic">Brand Identity "Lace"</h3>
-                        <p class="text-gray-400 font-light">Minimalistisches Branding für High-Fashion.</p>
+                        <h3 class="font-display text-2xl mt-6 font-bold italic">Komthur IPA &amp; Digitalstrategie</h3>
+                        <p class="text-gray-400 font-light">Ganzheitliches Konzept: Marktanalyse, Personas, UI/UX-Redesign sowie SEO-/SEA-Planung für die Agentur.</p>
                     </div>
                     <!-- Project Item -->
                     <div class="group cursor-pointer pt-20">
                         <div class="overflow-hidden rounded-lg bg-gray-200 aspect-[4/3]">
-                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Design 2">
+                            <img src="../assets/images/projects/idpa.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Design 2">
                         </div>
-                        <h3 class="font-display text-2xl mt-6 font-bold italic">Abstract Forms</h3>
-                        <p class="text-gray-400 font-light">Exploration von Farben und Vektoren.</p>
+                        <h3 class="font-display text-2xl mt-6 font-bold italic">WIN4 Sportmarketing Visuals</h3>
+                        <p class="text-gray-400 font-light">Festführer, Screen-Designs und Sponsoring-Assets für Schweizer Meisterschaften.</p>
                     </div>
                 </div>
             </div>
@@ -254,21 +437,63 @@
                 <div class="logo-track py-20" id="logoTrack">
                     <!-- Logos -->
                     <div class="logo-item">
-                        <img src="../assets/images/personal/logo.PNG" alt="OKBI STUDIO Logo" class="max-h-20 w-auto object-contain mx-auto">
+                        <img src="../assets/images/personal/showcase_personal_logo_1.PNG" alt="OKBI STUDIO Logo" class="max-h-20 w-auto object-contain mx-auto">
                         <p class="text-xs mt-2 uppercase tracking-widest">Minimal Branding</p>
                     </div>
                     <div class="logo-item">
-                        <img src="../assets/images/personal/logo2.PNG" alt="KYOTO NOIR Logo" class="max-h-20 w-auto object-contain mx-auto">
+                        <img src="../assets/images/personal/showcase_personal_logo_2.png" alt="KYOTO NOIR Logo" class="max-h-20 w-auto object-contain mx-auto">
                         <p class="text-xs mt-2 uppercase tracking-widest">Fashion Label</p>
                     </div>
                     <div class="logo-item">
-                        <img src="../assets/images/personal/logo_black.png" alt="AESTHETICA Logo" class="max-h-20 w-auto object-contain mx-auto">
+                        <img src="../assets/images/personal/showcase_personal_logo_3.png" alt="AESTHETICA Logo" class="max-h-20 w-auto object-contain mx-auto">
                         <p class="text-xs mt-2 uppercase tracking-widest">Editorial Mag</p>
                     </div>
                      <div class="logo-item">
-                        <img src="../assets/images/personal/logo_white.png" alt="FLUID FORM Logo" class="max-h-20 w-auto object-contain mx-auto">
+                        <img src="../assets/images/personal/showcase_personal_logo_4.PNG" alt="FLUID FORM Logo" class="max-h-20 w-auto object-contain mx-auto">
                         <p class="text-xs mt-2 uppercase tracking-widest">Motion Studio</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-section bg-black text-[#EBE1D1]">
+            <div class="container mx-auto px-6 py-20">
+                <div class="section-title-wrapper text-left mb-12">
+                    <h2 class="text-white">Erfahrungen<br/><span class="italic text-[#6E3B49]">Timeline</span></h2>
+                    <p class="text-sm text-[#EBE1D1]/60 max-w-2xl">Ein Blick auf entscheidende Stationen, die meine Handschrift zwischen Editorial und digitalen Räumen definiert haben.</p>
+                </div>
+                <div class="story-grid">
+                    <article class="story-card">
+                        <span class="story-year">2023</span>
+                        <h3>Komthur IPA & Digitalstrategie</h3>
+                        <p>Für Komthur entwickelte ich ein Online-Marketing-Manifest mit Marktanalyse, Personas, UI/UX-Redesign, SEO-/SEA-Optimierungen und kanalübergreifender Content-Planung. Motion-Assets in After Effects und Canva bündelten die Botschaft.</p>
+                        <div class="story-labels">
+                            <span>Strategie</span>
+                            <span>SEO · SEA</span>
+                            <span>Motion Assets</span>
+                        </div>
+                    </article>
+                    <article class="story-card">
+                        <span class="story-year">2022</span>
+                        <h3>SBW Neue Medien · Social Media</h3>
+                        <p>Im zweiten Lehrjahr verantwortete ich die Planung und Produktion für Instagram und TikTok und vertiefte dort meine Skills in Design, Animation und Storytelling für Kampagnen.</p>
+                        <div class="story-labels">
+                            <span>Instagram · TikTok</span>
+                            <span>Animation</span>
+                        </div>
+                    </article>
+                    <article class="story-card">
+                        <span class="story-year">2021</span>
+                        <h3>WIN4 Sportmarketing</h3>
+                        <p>Festführer, Sponsoring-Materialien und Bandenanimationen für die Schweizer Meisterschaften im Kunstturnen und weitere Events ließen mich spüren, wie visuelle Dramaturgie die Arena antreibt.</p>
+                        <div class="story-labels">
+                            <span>Event Design</span>
+                            <span>Sponsoring</span>
+                        </div>
+                    </article>
+                </div>
+                <div class="mt-12 text-right">
+                    <span class="text-xs uppercase tracking-[0.4em] text-[#EBE1D1]/50">Scroll für weitere Arbeitseinblicke →</span>
                 </div>
             </div>
         </section>
@@ -287,19 +512,19 @@
             </div>
             
             <div class="stack-slider" id="photoSlider">
-                <div class="stack-item active" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000')">
+                <div class="stack-item active" style="background-image: url('../assets/images/photography/gallery_shooting_1.jpg')">
                     <div class="stack-content">
                         <h3 class="text-5xl font-display italic">Essence of Light</h3>
                         <p class="max-w-xs mt-4">Porträtstudie über natürlichen Schattenfall.</p>
                     </div>
                 </div>
-                <div class="stack-item" style="background-image: url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000'); transform: translate(300px, 50px) rotate(5deg);">
+                <div class="stack-item" style="background-image: url('../assets/images/photography/gallery_ballet_1.jpg'); transform: translate(300px, 50px) rotate(5deg);">
                     <div class="stack-content">
                         <h3 class="text-5xl font-display italic">Editorial Pink</h3>
                         <p class="max-w-xs mt-4">Fashion-Fotografie für das Manifest.</p>
                     </div>
                 </div>
-                <div class="stack-item" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000'); transform: translate(600px, -30px) rotate(-3deg);">
+                <div class="stack-item" style="background-image: url('../assets/images/photography/gallery_corona_3.jpg'); transform: translate(600px, -30px) rotate(-3deg);">
                     <div class="stack-content">
                         <h3 class="text-5xl font-display italic">Urban Soul</h3>
                         <p class="max-w-xs mt-4">Street Photography in Paris.</p>
@@ -322,7 +547,7 @@
                 <div class="mockup-container">
                     <!-- Platzhalter für dein Video -->
                     <video autoplay muted loop playsinline>
-                        <source src="https://player.vimeo.com/external/494298132.hd.mp4?s=53474039866897284880c1071987D70d8a57630a&profile_id=175" type="video/mp4">
+                        <source src="../assets/images/personal/showcase_personal_web.mp4" type="video/mp4">
                     </video>
                     
                     <!-- Overlay für Beschreibung -->
@@ -407,6 +632,38 @@
         // --- GSAP ANIMATIONS ---
         gsap.registerPlugin(ScrollTrigger);
 
+        const heroIntro = gsap.timeline();
+        heroIntro.from('.hero-eyebrow', {
+            y: 20,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power3.out'
+        });
+        heroIntro.from('.hero-lede', {
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out'
+        }, '-=0.4');
+        heroIntro.from('.hero-pill', {
+            y: 20,
+            opacity: 0,
+            stagger: 0.12,
+            duration: 0.6,
+            ease: 'power3.out'
+        }, '-=0.6');
+
+        gsap.to('.hero-parallax', {
+            yPercent: -10,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.hero-section',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true
+            }
+        });
+
         // Reveal Titles
         gsap.utils.toArray('h2').forEach(title => {
             gsap.from(title, {
@@ -429,6 +686,19 @@
                 trigger: "#logoTrack",
                 scrub: 1,
             }
+        });
+
+        // Story cards emerge
+        gsap.from(".story-card", {
+            scrollTrigger: {
+                trigger: ".story-section",
+                start: "top 85%",
+            },
+            y: 60,
+            opacity: 0,
+            stagger: 0.2,
+            duration: 0.9,
+            ease: "power3.out"
         });
     </script>
 </body>
