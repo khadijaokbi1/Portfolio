@@ -48,87 +48,6 @@ const initHeroParallax = () => {
   });
 };
 
-// =========================================
-// ACCORDION
-// =========================================
-const initAccordion = () => {
-  const accordionItems = document.querySelectorAll('.accordion-item');
-  
-  accordionItems.forEach(item => {
-    const trigger = item.querySelector('.accordion-trigger');
-    const content = item.querySelector('.accordion-content');
-    if (!trigger || !content) return;
-
-    // Initial: Alle Contents auf 0 setzen
-    gsap.set(content, { height: 0, opacity: 0 });
-
-    trigger.addEventListener('click', () => {
-      const isActive = item.classList.contains('active');
-      
-      // Alle anderen schließen
-      accordionItems.forEach(otherItem => {
-        if (otherItem !== item) {
-          const otherContent = otherItem.querySelector('.accordion-content');
-          otherItem.classList.remove('active');
-          otherItem.querySelector('.accordion-trigger')?.setAttribute('aria-expanded', 'false');
-          
-          gsap.to(otherContent, {
-            height: 0,
-            opacity: 0,
-            duration: 0.5,
-            ease: 'power2.inOut'
-          });
-        }
-      });
-
-      // Toggle current item
-      if (!isActive) {
-        item.classList.add('active');
-        trigger.setAttribute('aria-expanded', 'true');
-        
-        // Measure real height
-        gsap.set(content, { height: 'auto', opacity: 0 });
-        const fullHeight = content.offsetHeight;
-        gsap.set(content, { height: 0, opacity: 0 });
-        
-        // Animate open
-        gsap.to(content, {
-          height: fullHeight,
-          opacity: 1,
-          duration: 0.6,
-          ease: 'power2.out',
-          onComplete: () => {
-            gsap.set(content, { height: 'auto' });
-          }
-        });
-        
-        // Animate content inside
-        const items = content.querySelectorAll('.table-cell, .tool-item');
-        gsap.from(items, {
-          y: 20,
-          opacity: 0,
-          stagger: 0.03,
-          duration: 0.4,
-          delay: 0.2,
-          ease: 'power2.out'
-        });
-        
-      } else {
-        item.classList.remove('active');
-        trigger.setAttribute('aria-expanded', 'false');
-        
-        gsap.to(content, {
-          height: 0,
-          opacity: 0,
-          duration: 0.5,
-          ease: 'power2.inOut'
-        });
-      }
-      
-      setTimeout(() => ScrollTrigger.refresh(), 700);
-    });
-  });
-};
 
 // =========================================
 // PROJECT FILTER
@@ -220,23 +139,10 @@ const initProjectCards = () => {
     });
 };
 // =========================================
-// PARALLAX IMAGES
+// PARALLAX IMAGES – deaktiviert: Blog-Thumbnails sind statische <img>-Tags (kein Parallax gewünscht)
 // =========================================
 const initParallaxImages = () => {
-  // NUR Parallax für Blog Thumbnails
-  const blogThumbs = document.querySelectorAll('.blog-thumb');
-  blogThumbs.forEach(thumb => {
-    gsap.to(thumb, {
-      yPercent: 15,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: thumb.closest('.blog-card'),
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 1
-      }
-    });
-  });
+  // intentionally empty – no parallax on blog thumbnails
 };
 
 // =========================================
@@ -397,18 +303,270 @@ const initAlbumCovers = () => {
 // INIT ALL INDEX ANIMATIONS
 // =========================================
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('🚀 DOMContentLoaded - Initializing animations');
+  console.log('📦 GSAP available:', typeof gsap !== 'undefined');
+  console.log('📦 ScrollTrigger available:', typeof ScrollTrigger !== 'undefined');
+  
+  // Direct test without setTimeout
+  const testItems = document.querySelectorAll('.accordion-item');
+  console.log('🧪 Direct test - Found accordion items:', testItems.length);
+  testItems.forEach((item, i) => {
+    const btn = item.querySelector('.accordion-trigger');
+    if (btn) {
+      console.log(`🧪 Adding direct test handler to item ${i + 1}`);
+      btn.addEventListener('click', function(e) {
+        console.log(`🎯 DIRECT CLICK DETECTED on item ${i + 1}!`);
+        alert(`Accordion ${i + 1} clicked!`);
+      });
+    }
+  });
+  
   setTimeout(() => {
-    initHeroParallax();
-    initAccordion();
-    initProjectFilter();
-    initProjectCards();
-    initParallaxImages();
-    initBlogFilter();
-    initBlogModals();
-    initSkillBars();
-    initCarousel();
-    initAlbumCovers();
+    try {
+      console.log('Initializing initHeroParallax...');
+      initHeroParallax();
+    } catch (e) {
+      console.error('❌ Error in initHeroParallax:', e);
+    }
     
-    ScrollTrigger.refresh();
+    try {
+      console.log('Initializing initAccordion...');
+      initAccordion();
+    } catch (e) {
+      console.error('❌ Error in initAccordion:', e);
+    }
+    
+    try {
+      console.log('Initializing initProjectFilter...');
+      initProjectFilter();
+    } catch (e) {
+      console.error('❌ Error in initProjectFilter:', e);
+    }
+    
+    try {
+      initProjectCards();
+      initParallaxImages();
+      initBlogFilter();
+      initBlogModals();
+      initSkillBars();
+      initCarousel();
+      initAlbumCovers();
+    } catch (e) {
+      console.error('❌ Error in other inits:', e);
+    }
+    
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.refresh();
+    }
   }, 100);
+});
+
+function buildGrid() {
+  const rightEl = document.querySelector('.photo-right');
+  const grid    = document.getElementById('main-grid');
+
+  // Target grid size: smaller of 500px or 42vw
+  const G = Math.min(500, window.innerWidth * 0.42);
+  const GAP  = 16;
+  const CELL = G / 3 - GAP * 2 / 3;   // one cell size
+  const STEP = G / 3;                  // one grid step
+
+  grid.style.width  = G + 'px';
+  grid.style.height = G + 'px';
+
+  // Responsive: on narrow viewports use 80vw
+  const finalG = window.innerWidth < 900 ? Math.min(420, window.innerWidth * 0.78) : G;
+  const finalCell = finalG / 3 - GAP * 2 / 3;
+  const finalStep = finalG / 3;
+
+  grid.style.width  = finalG + 'px';
+  grid.style.height = finalG + 'px';
+
+  const S  = finalStep;   // alias
+  const C  = finalCell;
+  const W  = finalG;      // full width (for "pill" wide state)
+
+  // Starting positions for each box (col, row) in grid steps
+  const starts = {
+    1: [0, 0],       // row1 col1
+    2: [S, 0],       // row1 col2
+    3: [S*2, 0],     // row1 col3
+    4: [0, S],       // row2 col1
+    5: [S*2, S],     // row2 col3  (middle col is the empty slot)
+    6: [0, S*2],     // row3 col1
+    7: [S, S*2],     // row3 col2
+    8: [S*2, S*2],   // row3 col3
+  };
+
+  // Apply starting positions & sizes
+  const boxes = grid.querySelectorAll('.box');
+  boxes.forEach(box => {
+    const n = parseInt(box.dataset.n);
+    const [l, t] = starts[n];
+    box.style.left   = l + 'px';
+    box.style.top    = t + 'px';
+    box.style.width  = C + 'px';
+    box.style.height = C + 'px';
+    box.style.animationName = 'box-' + n;
+  });
+
+  // Fix label text positions (outside the pill)
+  const b1span = grid.querySelector('[data-n="1"] > span');
+  const b3span = grid.querySelector('[data-n="3"] > span');
+  const b4span = grid.querySelector('[data-n="4"] > span');
+  const b8span = grid.querySelector('[data-n="8"] > span');
+  if (b1span) { b1span.style.top = '50%'; b1span.style.left = '50%'; b1span.style.transform = 'translate(-50%,-50%)'; }
+  if (b3span) { b3span.style.top = '50%'; b3span.style.left = '50%'; b3span.style.transform = 'translate(-50%,-50%)'; b3span.style.bottom = ''; }
+  if (b4span) { b4span.style.top = '50%'; b4span.style.left = '50%'; b4span.style.transform = 'translate(-50%,-50%)'; }
+  if (b8span) { b8span.style.top = '50%'; b8span.style.left = '50%'; b8span.style.transform = 'translate(-50%,-50%)'; }
+
+  /* --- Inject pixel-based @keyframes into a <style> tag --- */
+  const WIDE = C * 2 + GAP; // wide pill = 2 cells + 1 gap
+
+  const css = `
+    @keyframes box-1 {
+      0%,90%,100% { left:0;      top:0;    width:${C}px; }
+      2.5%,12.5%  { left:${S}px; top:0;    width:${C}px; }
+      15%,25%     { left:${S*2}px; top:0;  width:${C}px; }
+      27.5%       { left:${S*2}px; top:${S}px; width:${C}px; }
+      29.5%       { left:${S*2}px; top:${S}px; width:${C}px; }
+      31.5%,33.5% { left:${S}px; top:${S}px;   width:${WIDE}px; }
+      35.5%,37.5% { left:${S*2}px; top:${S}px; width:${C}px; }
+      40%,50%     { left:${S*2}px; top:${S*2}px; width:${C}px; }
+      52.5%,62.5% { left:${S}px; top:${S*2}px; width:${C}px; }
+      65%,75%     { left:0;      top:${S*2}px; width:${C}px; }
+      77.5%,87.5% { left:0;      top:${S}px;   width:${C}px; }
+    }
+    @keyframes box-2 {
+      0%,90%,100% { left:${S}px;   top:0;      width:${C}px; }
+      2.5%,12.5%  { left:${S*2}px; top:0;      width:${C}px; }
+      15%,17%     { left:${S*2}px; top:${S}px; width:${C}px; }
+      19%,21%     { left:${S}px;   top:${S}px; width:${WIDE}px; }
+      23%,25%     { left:${S*2}px; top:${S}px; width:${C}px; }
+      27.5%,37.5% { left:${S*2}px; top:${S*2}px; width:${C}px; }
+      40%,50%     { left:${S}px;   top:${S*2}px; width:${C}px; }
+      52.5%,62.5% { left:0;        top:${S*2}px; width:${C}px; }
+      65%,75%     { left:0;        top:${S}px;   width:${C}px; }
+      77.5%,87.5% { left:0;        top:0;        width:${C}px; }
+    }
+    @keyframes box-3 {
+      0%,90%,100% { left:${S*2}px; top:0;       width:${C}px; }
+      2.5%,12.5%  { left:${S*2}px; top:${S}px;  width:${C}px; }
+      4.5%,10.5%  { left:${S*2}px; top:${S}px;  width:${C}px; }
+      6.5%,8.5%   { left:${S}px;   top:${S}px;  width:${WIDE}px; }
+      15%,25%     { left:${S*2}px; top:${S*2}px; width:${C}px; }
+      27.5%,37.5% { left:${S}px;   top:${S*2}px; width:${C}px; }
+      40%,50%     { left:0;        top:${S*2}px; width:${C}px; }
+      52.5%,62.5% { left:0;        top:${S}px;   width:${C}px; }
+      65%,75%     { left:0;        top:0;        width:${C}px; }
+      77.5%,87.5% { left:${S}px;   top:0;        width:${C}px; }
+    }
+    @keyframes box-4 {
+      0%,90%,100%      { left:0;        top:${S}px;   width:${C}px; }
+      2.5%,12.5%       { left:0;        top:0;        width:${C}px; }
+      15%,25%          { left:${S}px;   top:0;        width:${C}px; }
+      27.5%,37.5%      { left:${S*2}px; top:0;        width:${C}px; }
+      40%,42%,48%,50%  { left:${S*2}px; top:${S}px;   width:${C}px; }
+      44%,46%          { left:${S}px;   top:${S}px;   width:${WIDE}px; }
+      52.5%,62.5%      { left:${S*2}px; top:${S*2}px; width:${C}px; }
+      65%,75%          { left:${S}px;   top:${S*2}px; width:${C}px; }
+      77.5%,87.5%      { left:0;        top:${S*2}px; width:${C}px; }
+    }
+    @keyframes box-5 {
+      0%,90%,92%,98%,100% { left:${S*2}px; top:${S}px;   width:${C}px; }
+      2.5%,12.5%           { left:${S*2}px; top:${S*2}px; width:${C}px; }
+      15%,25%              { left:${S}px;   top:${S*2}px; width:${C}px; }
+      27.5%,37.5%          { left:0;        top:${S*2}px; width:${C}px; }
+      40%,50%              { left:0;        top:${S}px;   width:${C}px; }
+      52.5%,62.5%          { left:0;        top:0;        width:${C}px; }
+      65%,75%              { left:${S}px;   top:0;        width:${C}px; }
+      77.5%,87.5%          { left:${S*2}px; top:0;        width:${C}px; }
+      94%,96%              { left:${S}px;   top:${S}px;   width:${WIDE}px; }
+    }
+    @keyframes box-6 {
+      0%,90%,100%                   { left:0;        top:${S*2}px; width:${C}px; }
+      2.5%,12.5%                    { left:0;        top:${S}px;   width:${C}px; }
+      15%,25%                       { left:0;        top:0;        width:${C}px; }
+      27.5%,37.5%                   { left:${S}px;   top:0;        width:${C}px; }
+      40%,50%                       { left:${S*2}px; top:0;        width:${C}px; }
+      52.5%,54.5%,60.5%,62.5%       { left:${S*2}px; top:${S}px;   width:${C}px; }
+      56.5%,58.5%                   { left:${S}px;   top:${S}px;   width:${WIDE}px; }
+      65%,75%                       { left:${S*2}px; top:${S*2}px; width:${C}px; }
+      77.5%,87.5%                   { left:${S}px;   top:${S*2}px; width:${C}px; }
+    }
+    @keyframes box-7 {
+      0%,90%,100%          { left:${S}px;   top:${S*2}px; width:${C}px; }
+      2.5%,12.5%           { left:0;        top:${S*2}px; width:${C}px; }
+      15%,25%              { left:0;        top:${S}px;   width:${C}px; }
+      27.5%,37.5%          { left:0;        top:0;        width:${C}px; }
+      40%,50%              { left:${S}px;   top:0;        width:${C}px; }
+      52.5%,62.5%          { left:${S*2}px; top:0;        width:${C}px; }
+      65%,67%,73%,75%      { left:${S*2}px; top:${S}px;   width:${C}px; }
+      69%,71%              { left:${S}px;   top:${S}px;   width:${WIDE}px; }
+      77.5%,87.5%          { left:${S*2}px; top:${S*2}px; width:${C}px; }
+    }
+    @keyframes box-8 {
+      0%,90%,100%                    { left:${S*2}px; top:${S*2}px; width:${C}px; border-radius:9999px; }
+      2.5%,12.5%                     { left:${S}px;   top:${S*2}px; width:${C}px; }
+      15%,25%                        { left:0;        top:${S*2}px; width:${C}px; }
+      27.5%,37.5%                    { left:0;        top:${S}px;   width:${C}px; }
+      40%,50%                        { left:0;        top:0;        width:${C}px; }
+      52.5%,62.5%                    { left:${S}px;   top:0;        width:${C}px; }
+      65%,75%                        { left:${S*2}px; top:0;        width:${C}px; }
+      77.5%,79.5%,85.5%,87.5%        { left:${S*2}px; top:${S}px;   width:${C}px; border-radius:50%; }
+      81.5%,83.5%                    { left:${S}px;   top:${S}px;   width:${WIDE}px; border-radius:9999px; }
+    }
+  `;
+
+  let styleTag = document.getElementById('grid-keyframes');
+  if (!styleTag) {
+    styleTag = document.createElement('style');
+    styleTag.id = 'grid-keyframes';
+    document.head.appendChild(styleTag);
+  }
+  styleTag.textContent = css;
+}
+
+buildGrid();
+window.addEventListener('resize', buildGrid);
+
+/* ── GSAP & Typed ── */
+gsap.registerPlugin(ScrollTrigger);
+
+new Typed('.typed-text-display', {
+  strings: ['', 'visuals.', 'campaigns.', 'motion.', 'brands.'],
+  typeSpeed: 100, backSpeed: 42, loop: true
+});
+
+const section = document.querySelector('.section-photography');
+const eyebrow  = section.querySelector('.photo-eyebrow');
+const weMake   = section.querySelector('.we-make');
+const typedW   = section.querySelector('.typed-line-wrap');
+const bodyTxt  = section.querySelector('.photo-left p');
+const cta      = section.querySelector('.photo-cta');
+
+gsap.timeline({ scrollTrigger: { trigger: section, start: 'top 70%', once: true } })
+  .to(eyebrow,  { opacity: 1, x: 0, duration: 0.65, ease: 'power3.out' })
+  .to(weMake,   { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' }, '-=0.3')
+  .to(typedW,   { opacity: 1,       duration: 0.5,  ease: 'power2.out' }, '-=0.4')
+  .to(bodyTxt,  { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' }, '-=0.35')
+  .to(cta,      { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, '-=0.35');
+
+const split = new SplitType(weMake, { types: 'chars' });
+gsap.from(split.chars, {
+  y: 40, opacity: 0, stagger: 0.04, duration: 0.55, ease: 'power3.out',
+  scrollTrigger: { trigger: weMake, start: 'top 82%', once: true }
+});
+
+const boxes = section.querySelectorAll('.main-grid .box');
+gsap.from(boxes, {
+  opacity: 0, scale: 0.78,
+  stagger: { each: 0.07, from: 'center' },
+  duration: 0.7, ease: 'back.out(1.8)',
+  scrollTrigger: { trigger: '.main-grid', start: 'top 78%', once: true }
+});
+
+gsap.to('.bg-dash-circle', {
+  rotation: 30, y: -20,
+  scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: 2 }
 });

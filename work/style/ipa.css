@@ -297,10 +297,10 @@ h2 {
 /* ========== TABS SECTION ========== */
 .tabs-container {
     display: grid;
-    grid-template-columns: 1fr 4fr;
-    gap: 2rem;
+    grid-template-columns: 4fr 1fr;
+    gap: 1rem;
     margin-top: 2rem;
-    padding-bottom: 10em;
+    padding-bottom: 2rem;
 }
 
 .tabs-nav {
@@ -355,13 +355,11 @@ h2 {
     margin-bottom: 1rem;
 }
 
-
-    .tab-panel p {
-        max-width: 100%;
-        line-height: 1.8;
-        margin-bottom: 1.5rem;
-    }
-
+.tab-panel p {
+    max-width: 60%;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
 
 .keywords {
     color: #666;
@@ -1071,13 +1069,13 @@ h2 {
     }
 
     .tabs-nav {
-        flex-direction: row;
-        border-right: none;
-        border-bottom: 1px solid var(--border-default);
-        padding-right: 0;
-        padding-bottom: 1rem;
-        margin-bottom: 1.5rem;
-        overflow-x: auto;
+        flex-direction: column;
+        border-right: 1px solid var(--border-default);
+        border-bottom: none;
+        padding-right: 1.5rem;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        overflow-x: visible;
     }
 
     .tab-btn {
@@ -1089,8 +1087,8 @@ h2 {
     }
 
     .tab-btn.active {
-        border-right: none;
-        border-bottom-color: var(--accent-burgundy);
+        border-right: 2px solid var(--accent-burgundy);
+        border-bottom: none;
     }
 
     .results-grid {
@@ -1140,35 +1138,6 @@ h2 {
 
     .stat-grid {
         grid-template-columns: 1fr;
-    }
-
-    .tab-btn {
-        font-size: 0.9rem;
-        padding: 0.75rem 1rem;
-    }
-
-    .comparison-table thead {
-        display: none;
-    }
-
-    .comparison-table tbody, .comparison-table tr, .comparison-table td {
-        display: block;
-    }
-
-    .comparison-table tr {
-        margin-bottom: 1rem;
-        border: 1px solid var(--border-default);
-        padding: 1rem;
-        background: white;
-    }
-
-    .comparison-table td {
-        padding: 0.5rem 0;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    .comparison-table td:last-child {
-        border-bottom: none;
     }
 }
 @media (max-width: 1024px) {

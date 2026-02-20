@@ -26,7 +26,7 @@
   --border-default: #6E3B49;
   --mauve: #B5A19E;
  /* Typography */
-  --font-body: 'Outfit', sans-serif;
+  --font-body: 'Work Sans', sans-serif;
   --font-display: 'Playfair Display', serif;
   --font-higuen: 'Higuen', serif;
   --font-subtitel: 'Outfit', sans-serif;
@@ -105,7 +105,7 @@ h1 {
   color: var(--mauve);
 }
 h2 {
-  font-family: var(--font-display);
+  font-family: var(--font-higuen);
   font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 800;
   text-transform: uppercase;
