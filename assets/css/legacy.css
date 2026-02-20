@@ -10,7 +10,7 @@
   /* ========================================= 5. HERO SECTION ========================================= */
   .hero-section {
     position: relative;
-    height: 80vh;
+    height: 100vh;
     overflow: hidden;
     background: #000;
     color:  var(--mauve);
@@ -38,57 +38,17 @@
     left: 50%;
     transform: translateX(-50%);
     font-weight: 400;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     letter-spacing: 0.1em;
     white-space: nowrap;
     margin: 0;
     overflow: hidden;
     display: block;
-    will-change: transform;
   }
-  
-  /* Line Reveal Animation */
-  .hero-top span, .hero-middle span, .hero-bottom span {
-    display: inline-block;
-    transform: translateY(110%);
-    transition: none;
-    opacity: 1;
-  }
-  
-  /* Scroll Trigger Animation Classes */
-  .hero-top.in-view span,
-  .hero-middle.in-view span,
-  .hero-bottom.in-view span {
-    animation: lineRevealUp 0.8s cubic-bezier(0.33, 1, 0.68, 1) forwards;
-  }
-  
-  .hero-top span:nth-child(1) { animation-delay: 0s; }
-  .hero-top span:nth-child(2) { animation-delay: 0.1s; }
-  .hero-top span:nth-child(3) { animation-delay: 0.2s; }
-  
-  .hero-middle span:nth-child(1) { animation-delay: 0.3s; }
-  .hero-middle span:nth-child(2) { animation-delay: 0.4s; }
-  
-  .hero-bottom span:nth-child(1) { animation-delay: 0.5s; }
-  .hero-bottom span:nth-child(2) { animation-delay: 0.6s; }
-  .hero-bottom span:nth-child(3) { animation-delay: 0.7s; }
-  
-  @keyframes lineRevealUp {
-    from {
-      transform: translateY(110%);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  
   .hero-top {
     font-size: 18vw;
     top: 25%;
-    z-index: 2;
-    transform: translateX(-50%) translateY(var(--parallax-top, 0px));
+    z-index: 3;
   }
   .hero-middle {
     font-family: "Playfair Display", serif;
@@ -98,27 +58,24 @@
     z-index: 3;
     color: var(--accent-warm);
     letter-spacing: 0.05em;
-    transform: translateX(-50%) translateY(var(--parallax-middle, 0px));
   }
   .hero-bottom {
     font-size: 18vw;
     bottom: 5%;
     top: auto;
     z-index: 5;
-    transform: translateX(-50%) translateY(var(--parallax-bottom, 0px));
   }
   /* Portrait-Bilder Positionierung - Mobile First */
   .hero-bilder {
     position: absolute;
     top: 30%;
     left: 50%;
-    transform: translateX(-50%) translateY(var(--parallax-images, 0px));
+    transform: translateX(-50%);
     width: 70vw;
     bottom: 0;
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    will-change: transform;
   }
   .hero-portrait-bg, .hero-portrait {
     position: absolute;
@@ -130,7 +87,7 @@
     pointer-events: none;
   }
   .hero-portrait-bg {
-    z-index: 1;
+    z-index: 2;
   }
   .hero-portrait {
     z-index: 4;
@@ -154,10 +111,10 @@
     .hero-bilder,
     .hero-portrait-bg,
     .hero-portrait {
-      width: 45vw;
+      width: 50vw;
     }
     .hero-bilder {
-      top: 20%;
+      top: 28%;
     }
   }
 
@@ -220,7 +177,7 @@
     font-style: italic;
     font-weight: 700;
     color: #fff;
-    font-family: var(--font-higuen);
+    font-family: var(--font-subtitle);
   }
   .word {
     display: inline-block;
@@ -294,7 +251,7 @@
   font-weight: 600;
 }
 .trigger-title {
-  font-family: var(--font-higuen);
+  font-family: var(--font-subtitle);
   font-size: clamp(1.5rem, 3vw, 2.8rem);
   text-transform: uppercase;
   margin: 0;
@@ -322,12 +279,15 @@
   transform: rotate(180deg);
 }
 .accordion-content {
+  max-height: 0;
   overflow: hidden;
-  /* Initial state and animations handled by GSAP in animations.js */
+  opacity: 0;
+  transition: max-height 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease-out 0.1s, padding 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .accordion-item.active .accordion-content {
-  /* max-height and opacity animated by GSAP - only set padding here */
+  max-height: 2000px;
   width: 100%;
+  opacity: 1;
   padding-bottom: clamp(30px, 4vw, 50px);
 }
 /* Skills Table */
@@ -781,21 +741,15 @@
 @media (max-width: 480px) {
  /* Hero Section */
   .hero-section {
-      height: 70vh;
-    
+      height: 100vh;
  }
-
-   .hero-bilder {
-      top: 25%;
+  .hero-claim {
+      font-size: clamp(2.5rem, 10vw, 6rem);
  }
- .hero-bottom {
-    font-size: 16vw;
-    top: 68%;
-}
-.hero-top {
-    font-size: 16vw;
-    top: 30%;
-}
+  .hero-circle-element {
+      display: none;
+     /* Hide on very small screens */
+ }
  /* Accordion */
   .accordion-trigger {
       padding: clamp(20px, 5vw, 35px) 0;
@@ -961,10 +915,43 @@
       grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
  }
   .trigger-title {
+    font-family: var(--font-subtitle);
       font-size: clamp(1.25rem, 5vw, 2rem);
  }
   .blog-grid {
       grid-template-columns: 1fr;
       gap: 3rem;
+  }
+}
+@media (max-width: 480px) {
+ /* Hero Section */
+  .hero-section {
+      height: 100vh;
+ }
+  .hero-claim {
+      font-size: clamp(2.5rem, 10vw, 6rem);
+ }
+  .hero-circle-element {
+      display: none;
+     /* Hide on very small screens */
+ }
+ /* Accordion */
+  .accordion-trigger {
+      padding: clamp(20px, 5vw, 35px) 0;
+ }
+  .trigger-left {
+      gap: clamp(12px, 4vw, 25px);
+ }
+  .skills-table {
+      padding: clamp(15px, 3vw, 30px) 0 0 clamp(20px, 4vw, 50px);
+ }
+  .filter-bar {
+      gap: 0.5rem;
+  }
+  .filter-btn {
+      padding: 0.6rem 1rem;
+      font-size: 0.7rem;
+      flex: 1 1 auto;
+      text-align: center;
   }
 }

@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
             left: 0;
             width: 0%;
             height: 4px;
-            background: linear-gradient(90deg, var(--accent-burgundy), #5a2f3b);
+            background: linear-gradient(90deg, var(--burgundy), #5a2f3b);
             z-index: 9999;
             transition: width 0.1s ease;
         `;

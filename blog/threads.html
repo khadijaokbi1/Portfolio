@@ -1,875 +1,312 @@
 <!DOCTYPE html>
-<html lang="de" data-replace="all">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Von 0 auf 500.000 | Threads & Telegram Case Study</title>
+    <title>Trending on Threads: Trading Community aufbauen | Khadija Okbi Blog</title>
+    <meta name="description" content="Wie ich auf Threads eine eigene Trading Community aufgebaut habe - Strategie, Engagement und authentischer Content für organisches Wachstum.">
+    <meta name="keywords" content="Threads, Trading Community, Social Media Strategy, Community Building, Content Marketing">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Trending on Threads: Trading Community aufbauen">
+    <meta property="og:description" content="Case Study: Aufbau einer Trading Community auf Threads mit authentischem Content und strategischem Engagement.">
+    <meta property="og:image" content="https://khadijaokbi.com/assets/images/blog/threads.webp">
+    <meta property="og:url" content="https://khadijaokbi.com/blog/threads.html">
+    <meta property="og:type" content="article">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Trending on Threads: Trading Community aufbauen">
+    <meta name="twitter:description" content="Case Study über den Aufbau einer Trading Community auf Threads.">
+    <meta name="twitter:image" content="https://khadijaokbi.com/assets/images/blog/threads.webp">
+    
+    <link rel="canonical" href="https://khadijaokbi.com/blog/threads.html">
+    <link rel="icon" type="image/png" href="../assets/images/branding/logo_white.png">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Tenor+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Tenor+Sans:wght@400&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollSmoother.min.js"></script>
     
-    <!-- GSAP & Plugins -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-       <!-- Main Styles -->
-       <link rel="stylesheet" href="../assets/css/main.css" />
-<style>
-        :root {
-            --bg-primary: #000;
-            --bg-secondary: #F8F7F4; /* Etwas wärmeres Editorial-Weiß */
-            --text-dark: #121212;
-            --accent-burgundy: #6E3B49;
-            --text-gray: #666666;
-            --font-body: 'Outfit', sans-serif;
-            --font-display: 'Playfair Display', serif;
-        }
-
-        body {
-            background-color: var(--bg-secondary);
-            color: var(--text-dark);
-            font-family: var(--font-body);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            padding-top: 72px;
-        }
-
-        /* Reading Progress Bar */
-        .progress-container {
-            position: fixed;
-            top: 0;
-            z-index: 1000;
-            width: 100%;
-            height: 3px;
-            background: rgba(0,0,0,0.05);
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: var(--accent-burgundy);
-            width: 0%;
-        }
-
-        /* Grid Layout */
-        .editorial-container {
-            max-width: 140rem;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            padding: 0 4rem;
-        }
-
-        /* Navigation */
-        .nav-header {
-            grid-column: 1 / -1;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 4rem 0;
-            z-index: 100;
-        }
-
-        .back-btn {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-        /* Typography Styles */
-        .title-large {
-            font-family: var(--font-display);
-            font-size: clamp(6rem, 12vw, 16rem);
-            font-weight: 900;
-            line-height: 0.85;
-            letter-spacing: -0.04em;
-            margin-bottom: 6rem;
-            position: relative;
-        }
-
-        .title-italic {
-            font-style: italic;
-            font-weight: 400;
-            display: block;
-            margin-left: 10vw;
-            color: var(--accent-burgundy);
-        }
-
-        /* Mobile Optimization */
-        @media (max-width: 768px) {
-            .title-large {
-                font-size: clamp(3rem, 10vw, 6rem);
-                margin-bottom: 3rem;
-            }
-
-            .title-italic {
-                margin-left: 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .title-large {
-                font-size: clamp(2rem, 8vw, 4rem);
-                margin-bottom: 2rem;
-                letter-spacing: -0.02em;
-            }
-
-            .editorial-container {
-                padding: 0 1.5rem;
-            }
-
-            .article-main {
-                grid-column: 1 / -1;
-            }
-
-            .text-lead {
-                font-size: 1.2rem;
-            }
-
-            .text-body {
-                font-size: 1rem;
-            }
-
-            .pull-quote {
-                font-size: 2rem;
-                padding: 2rem 0;
-                margin: 4rem 0;
-            }
-        }
-
-        .meta-info {
-            font-family: var(--font-body);
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            color: var(--text-gray);
-            margin-bottom: 2rem;
-            display: block;
-        }
-
-        /* Content Blocks */
-        .article-main {
-            grid-column: 2 / 8;
-            padding-bottom: 20rem;
-        }
-
-        .article-sidebar {
-            grid-column: 9 / 13;
-            position: sticky;
-            top: 15rem;
-            height: fit-content;
-        }
-
-        .text-lead {
-            font-size: 1.8rem;
-            line-height: 1.4;
-            font-family: var(--font-body);
-            margin-bottom: 6rem;
-            font-weight: 400;
-            text-align: justify;
-            text-justify: inter-word;
-            hyphens: auto;
-            text-align-last: left;
-        }
-
-        .text-body {
-            font-size: 1.8rem;
-            line-height: 1.8;
-            color: #222;
-        }
-
-        .text-body p {
-            margin-bottom: 3.5rem;
-            position: relative;
-        }
-.p {
-            font-size: 1.4rem !important;
-        }
-        .drop-cap::first-letter {
-            font-family: var(--font-display);
-            font-size: 8rem;
-            float: left;
-            line-height: 0.7;
-            padding-right: 1.5rem;
-            margin-top: 1rem;
-            color: var(--accent-burgundy);
-            font-style: italic;
-        }
-
-        /* Pull Quote */
-        .pull-quote {
-            margin: 8rem 0;
-            padding: 4rem 0;
-            border-top: 1px solid rgba(0,0,0,0.1);
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            font-family: var(--font-display);
-            font-size: 4rem;
-            font-style: italic;
-            line-height: 1.2;
-            color: var (--text-dark);
-            text-align: center;
-        }
-
-        /* Media Elements */
-        .img-reveal-wrapper {
-            overflow: hidden;
-            border-radius: 0.4rem;
-            margin-bottom: 4rem;
-            background: #eee;
-        }
-
-        .img-reveal-wrapper img {
-            width: 100%;
-            height: auto;
-            transform: scale(1.1);
-            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        /* Mobile Layout */
-        @media (max-width: 1024px) {
-            .article-main { grid-column: 1 / -1; }
-            .article-sidebar { display: none; }
-            .title-large { font-size: 8rem; }
-        }
-
-        /* ── SCROLLBAR ── */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
-        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent-burgundy); }
-
-        /* ── STAT CARDS ── */
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0;
-            margin: 5rem 0;
-            border: 1px solid rgba(0,0,0,0.1);
-        }
-
-        .stat-card {
-            padding: 3.5rem 2.5rem;
-            text-align: center;
-            border-right: 1px solid rgba(0,0,0,0.1);
-            background: var(--bg-secondary);
-        }
-
-        .stat-card:last-child { border-right: none; }
-
-        .stat-card:nth-child(2) {
-            background: var(--text-dark);
-        }
-
-        .stat-card:nth-child(2) .stat-number { color: #fff; }
-        .stat-card:nth-child(2) .stat-label { color: rgba(255,255,255,0.6); }
-        .stat-card:nth-child(2) .stat-sub { color: rgba(255,255,255,0.4); }
-
-        .stat-number {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 5vw, 5.5rem);
-            font-weight: 900;
-            line-height: 1;
-            color: var(--accent-burgundy);
-            letter-spacing: -0.03em;
-        }
-
-        .stat-label {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-top: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .stat-sub {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            margin-top: 0.4rem;
-        }
-
-        /* ── CALLOUT BOX ── */
-        .callout {
-            margin: 5rem 0;
-            padding: 3rem 3.5rem;
-            border-left: 3px solid var(--accent-burgundy);
-            background: rgba(110, 59, 73, 0.04);
-        }
-
-        .callout p {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-style: italic;
-            line-height: 1.4;
-            color: var(--text-dark);
-            margin-bottom: 0 !important;
-        }
-
-        /* ── SECTION HEADING ── */
-        .section-heading {
-            font-family: var(--font-display);
-            font-size: clamp(2.8rem, 4vw, 4.5rem);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 3rem;
-            margin-top: 6rem;
-            letter-spacing: -0.02em;
-        }
-
-        .section-heading em {
-            font-style: italic;
-            font-weight: 400;
-            color: var(--accent-burgundy);
-        }
-
-        /* ── TABLE ── */
-        .editorial-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 4rem 0;
-            font-size: 1.35rem;
-        }
-
-        .editorial-table thead tr {
-            border-bottom: 2px solid var(--text-dark);
-        }
-
-        .editorial-table th {
-            padding: 1.4rem 1.8rem;
-            text-align: left;
-            font-family: var(--font-body);
-            font-weight: 600;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--text-gray);
-        }
-
-        .editorial-table th:first-child { padding-left: 0; }
-
-        .editorial-table td {
-            padding: 1.6rem 1.8rem;
-            border-bottom: 1px solid rgba(0,0,0,0.07);
-            vertical-align: top;
-            line-height: 1.55;
-            color: #333;
-        }
-
-        .editorial-table td:first-child {
-            padding-left: 0;
-            font-weight: 600;
-            color: var(--text-dark);
-            white-space: nowrap;
-        }
-
-        .editorial-table .row-index {
-            font-family: var(--font-display);
-            font-style: italic;
-            font-size: 1.6rem;
-            color: var(--accent-burgundy);
-            width: 3rem;
-        }
-
-        .editorial-table tbody tr:last-child td {
-            border-bottom: 2px solid var(--text-dark);
-        }
-
-        /* ── FLOW DIAGRAM ── */
-        .flow-diagram {
-            display: flex;
-            align-items: center;
-            gap: 0;
-            margin: 4rem 0;
-            border: 1px solid rgba(0,0,0,0.1);
-        }
-
-        .flow-node {
-            flex: 1;
-            padding: 3rem 2.5rem;
-            text-align: center;
-        }
-
-        .flow-node.dark {
-            background: var(--text-dark);
-            color: #fff;
-        }
-
-        .flow-node.accent {
-            background: var(--accent-burgundy);
-            color: #fff;
-        }
-
-        .flow-node.light {
-            background: var(--bg-secondary);
-        }
-
-        .flow-node-icon {
-            font-size: 2.4rem;
-            margin-bottom: 1.2rem;
-            opacity: 0.7;
-        }
-
-        .flow-node.dark .flow-node-icon,
-        .flow-node.accent .flow-node-icon { opacity: 0.6; }
-
-        .flow-node-title {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.6rem;
-        }
-
-        .flow-node-sub {
-            font-size: 1.2rem;
-            opacity: 0.6;
-        }
-
-        .flow-arrow {
-            font-size: 2rem;
-            color: var(--accent-burgundy);
-            padding: 0 0.5rem;
-            flex-shrink: 0;
-        }
-
-        /* ── TAKEAWAY LIST ── */
-        .takeaway-list {
-            margin: 4rem 0;
-            border-top: 1px solid rgba(0,0,0,0.1);
-        }
-
-        .takeaway-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 2.5rem;
-            padding: 2.2rem 0;
-            border-bottom: 1px solid rgba(0,0,0,0.07);
-        }
-
-        .takeaway-index {
-            font-family: var(--font-display);
-            font-style: italic;
-            font-size: 2.2rem;
-            color: var(--accent-burgundy);
-            line-height: 1;
-            min-width: 3rem;
-            padding-top: 0.2rem;
-        }
-
-        .takeaway-text {
-            font-size: 1.45rem;
-            line-height: 1.55;
-            color: #333;
-            padding-top: 0.3rem;
-        }
-
-        .takeaway-text strong {
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        /* ── SECTION DIVIDER ── */
-        .section-rule {
-            border: none;
-            border-top: 1px solid rgba(0,0,0,0.12);
-            margin: 6rem 0;
-        }
-
-        .img-caption {
-            padding: 1.2rem 0 0;
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            font-style: italic;
-            letter-spacing: 0.02em;
-        }
-
-        /* ── BACK TO TOP ── */
-        .back-to-top {
-            position: fixed;
-            bottom: 3rem;
-            right: 3rem;
-            width: 5rem;
-            height: 5rem;
-            background: var(--text-dark);
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
-            z-index: 200;
-            font-size: 1.6rem;
-            border: none;
-        }
-        .back-to-top.visible { opacity: 1; transform: translateY(0); }
-        .back-to-top:hover { background: var(--accent-burgundy); }
-
-    </style>
+    <!-- Styles -->
+    <link rel="stylesheet" href="../assets/css/legacy.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/blog.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B415ZJNKNW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-B415ZJNKNW');
+    </script>
 </head>
 <body>
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <!-- Header -->
+            <header class="site-header is-solid" aria-label="Seitennavigation">
+                <div class="container nav-bar">
+                    <a href="../index.html" class="logo">
+                        <img src="../assets/images/branding/logo_black.png" alt="Khadija Okbi Logo" width="40">
+                        <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi Logo" width="40" class="logo-onscroll">
+                    </a>
+                    <nav class="nav" aria-label="Hauptnavigation">
+                        <a href="../index.html#hero" class="nav-link">Home</a>
+                        <a href="../index.html#expertise" class="nav-link">Work</a>
+                        <a href="../index.html#blog" class="nav-link">Blog</a>
+                        <a href="../pages/about.html" class="nav-link">About</a>
+                    </nav>
+                </div>
+            </header>
 
-    <!-- Progress Bar -->
-    <div class="progress-container">
-        <div class="progress-bar" id="myBar"></div>
-    </div>
+            <main>
+                <!-- Hero Section -->
+                <section class="blog-hero">
+                    <div class="blog-hero-bg parallax-bg"></div>
+                    <div class="blog-hero-overlay"></div>
+                    <div class="blog-hero-content">
+                        <div class="blog-category-badge">Social Media</div>
+                        <h1 class="blog-hero-title">Trending on Threads</h1>
+                        <p class="blog-hero-subtitle">Wie ich auf Threads meine eigene Trading Community aufgebaut habe</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Februar 2026</span>
+                            <span class="blog-reading-time">8 Min. Lesezeit</span>
+                        </div>
+                    </div>
+                    <div class="scroll-indicator">
+                        <span>Scrollen</span>
+                        <div class="scroll-arrow"></div>
+                    </div>
+                </section>
 
-    <!-- Back to Top -->
-    <button class="back-to-top" id="backToTop" aria-label="Zurück nach oben">
-        <i class="fa-solid fa-arrow-up"></i>
-    </button>
+                <!-- Blog Content -->
+                <article class="blog-content-wrapper">
+                    <div class="blog-container">
+                        <!-- Intro -->
+                        <section class="blog-section intro-section">
+                            <div class="content-card fade-in">
+                                <h2>Von Null zur Community</h2>
+                                <p class="lead">
+                                    Threads, Metas neue Plattform, hat sich schnell als idealer Ort für authentische Conversations und Community Building etabliert. 
+                                    Hier ist meine Story, wie ich eine engagierte Trading Community aufgebaut habe.
+                                </p>
+                            </div>
+                        </section>
 
-    <!-- Header -->
-        <header class="site-header" id="top">
-            <div class="container nav-bar">
-                <a href="../index.html" class="logo">
-                    <img src="../assets/images/branding/logo_black.png" alt="Khadija Okbi Logo" width="45">
-                    <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi Logo" width="45" class="logo-onscroll">
-                </a>
-                <nav class="nav">
-                    <a href="../index.html#hero" class="nav-link">Home</a>
-                    <a href="../index.html#expertise" class="nav-link">Work</a>
-                    <a href="../index.html#blog" class="nav-link">Blog</a>
-                    <a href="../about.html" class="nav-link">About</a>
+                        <!-- Challenge -->
+                        <section class="blog-section">
+                            <div class="content-card fade-in">
+                                <h2>Die Herausforderung</h2>
+                                <div class="highlight-box">
+                                    <h3>🎯 Ziel</h3>
+                                    <p>
+                                        Eine authentische Community aufbauen, die sich für Trading interessiert - ohne aggressive Sales-Taktiken 
+                                        oder unrealistische Versprechungen.
+                                    </p>
+                                </div>
+                                
+                                <p>
+                                    Die Trading-Nische ist übersättigt mit "Get Rich Quick"-Scams und unseriösen Gurus. 
+                                    Ich wollte einen anderen Weg gehen: <strong>Transparenz, Education und echten Value</strong>.
+                                </p>
+                            </div>
+                        </section>
+
+                        <!-- Strategy -->
+                        <section class="blog-section">
+                            <div class="content-card fade-in">
+                                <h2>Die Strategie</h2>
+                                
+                                <div class="strategy-grid">
+                                    <div class="strategy-item">
+                                        <div class="strategy-number">01</div>
+                                        <h3>Authentischer Content</h3>
+                                        <p>
+                                            Echte Trades teilen - mit Gewinnen UND Verlusten. 
+                                            Keine gefälschten Screenshots, sondern real verifiable Resultate.
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="strategy-item">
+                                        <div class="strategy-number">02</div>
+                                        <h3>Educational Focus</h3>
+                                        <p>
+                                            Regelmäßige Posts über Trading-Basics, Risikomanagement und Marktanalyse. 
+                                            Wissensvermittlung statt reiner Promotion.
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="strategy-item">
+                                        <div class="strategy-number">03</div>
+                                        <h3>Engagement & Interaktion</h3>
+                                        <p>
+                                            Aktive Teilnahme in Diskussionen, beantworten von Fragen und Aufbau echter Beziehungen.
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="strategy-item">
+                                        <div class="strategy-number">04</div>
+                                        <h3>Konsistenz</h3>
+                                        <p>
+                                            Täglich präsent sein mit wertvollen Updates, Market Insights und Community-Interaktion.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Results -->
+                        <section class="blog-section">
+                            <div class="content-card fade-in">
+                                <h2>Die Resultate</h2>
+                                
+                                <div class="stats-grid">
+                                    <div class="stat-card">
+                                        <div class="stat-number">2.5K+</div>
+                                        <div class="stat-label">Follower in 3 Monaten</div>
+                                    </div>
+                                    <div class="stat-card">
+                                        <div class="stat-number">500+</div>
+                                        <div class="stat-label">Tägliche Interaktionen</div>
+                                    </div>
+                                    <div class="stat-card">
+                                        <div class="stat-number">15%</div>
+                                        <div class="stat-label">Durchschn. Engagement Rate</div>
+                                    </div>
+                                    <div class="stat-card">
+                                        <div class="stat-number">50+</div>
+                                        <div class="stat-label">Community Members</div>
+                                    </div>
+                                </div>
+                                
+                                <p>
+                                    Was begann als Experiment, entwickelte sich zu einer lebendigen Community von Gleichgesinnten, 
+                                    die sich gegenseitig unterstützen und voneinander lernen.
+                                </p>
+                            </div>
+                        </section>
+
+                        <!-- Learnings -->
+                        <section class="blog-section">
+                            <div class="content-card fade-in">
+                                <h2>Key Learnings</h2>
+                                
+                                <div class="learning-item">
+                                    <div class="learning-icon">💡</div>
+                                    <div class="learning-content">
+                                        <h3>Authentizität schlägt Perfektion</h3>
+                                        <p>
+                                            Menschen folgen echten Personen, nicht polierten Facades. Verluste zu teilen war einer der 
+                                            wichtigsten Trust-Builder.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="learning-item">
+                                    <div class="learning-icon">🎯</div>
+                                    <div class="learning-content">
+                                        <h3>Value First, Monetisierung Second</h3>
+                                        <p>
+                                            Fokus auf echten Mehrwert führte zu organischem Wachstum. 
+                                            Die Community wuchs, weil Menschen wirklich profitieren konnten.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="learning-item">
+                                    <div class="learning-icon">🤝</div>
+                                    <div class="learning-content">
+                                        <h3>Community > Audience</h3>
+                                        <p>
+                                            Der Unterschied zwischen Followern und einer echten Community ist Interaktion. 
+                                            Jede Frage beantworten, jede Meinung wertschätzen.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- CTA Section -->
+                        <section class="blog-section cta-section">
+                            <div class="cta-card">
+                                <h2>Interessiert an Social Media Strategy?</h2>
+                                <p>
+                                    Ich helfe dir beim Aufbau deiner eigenen Community - authentisch, strategisch und nachhaltig.
+                                </p>
+                                <a href="mailto:khadijaokbi@gmail.com" class="cta-button">Kontakt aufnehmen</a>
+                            </div>
+                        </section>
+                    </div>
+                </article>
+
+                <!-- Article Navigation -->
+                <nav class="article-navigation" aria-label="Weitere Artikel">
+                    <a href="tiktok.html" class="nav-article prev-article">
+                        <span class="nav-label">← Vorheriger Artikel</span>
+                        <span class="nav-title">10k Follower in 30 Tagen auf TikTok</span>
+                    </a>
+                    <a href="idpa.html" class="nav-article next-article">
+                        <span class="nav-label">Nächster Artikel →</span>
+                        <span class="nav-title">Die Illusion der freien Meinung</span>
+                    </a>
                 </nav>
-            </div>
-        </header>
- 
-        <div class="editorial-container">
-            <!-- HERO HEADER -->
-            <div class="grid col-span-12" style="grid-column: 1 / -1; padding: 8rem 0 6rem;">
-                <span class="meta-info stagger-item">Lesezeit: 7 Minuten &nbsp;//&nbsp; Social Media &nbsp;&bull;&nbsp; Strategie</span>
-                <h1 class="title-large stagger-item">
-                    Von 0 auf<br>
-                    <span class="title-italic">500.000</span>
-                </h1>
-                <div style="font-size: 2.2rem; line-height: 1.35; color: #666; margin: 3rem 0; font-weight: 300;">
-                    Wie ich Threads & Telegram genutzt habe, um eine <strong style="color: #F7931A;">Krypto-Community</strong> von Grund auf aufzubauen
-                </div>
-                <span class="meta-info" style="font-size: 0.9rem; color: #aaa;">Stand: Februar 2024 &nbsp;|&nbsp; @kiikuush</span>
-            </div>
-
-            <!-- MAIN ARTICLE CONTENT -->
-            <main class="article-main">
-                <p class="text-lead reveal-item drop-cap">
-                    Mit dem Start von Threads im Juli 2023 erkannte ich eine Chance. Die neue Plattform von Meta war ein unbeschriebenes Blatt — kein etablierter Algorithmus, keine Konkurrenz. In nur zwei Monaten intensiver Arbeit entstanden über 500.000 Impressionen, 700 neue Follower und eine aktive Telegram-Gruppe mit 100+ Mitgliedern. Fokus, Relevanz und echte Mehrwerte sind die Formel hinter diesem Erfolg.
-                </p>
-
-                <!-- Stats -->
-                <div class="stat-grid reveal-item">
-                    <div class="stat-card">
-                        <div class="stat-number">500k<span style="font-size:0.5em;color:var(--accent-burgundy)">+</span></div>
-                        <div class="stat-label">Impressionen</div>
-                        <div class="stat-sub">in 2 Monaten</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">700<span style="font-size:0.5em;color:rgba(255,255,255,0.4)">+</span></div>
-                        <div class="stat-label" style="color:rgba(255,255,255,0.6);">neue Follower</div>
-                        <div class="stat-sub">auf Threads</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">100<span style="font-size:0.5em;color:var(--accent-burgundy)">+</span></div>
-                        <div class="stat-label">Mitglieder</div>
-                        <div class="stat-sub">Telegram-Gruppe</div>
-                    </div>
-                </div>
-
-                <div class="text-body">
-                    <h2 class="section-heading reveal-item">1. Der <em>Ausgangspunkt</em></h2>
-                    <p class="reveal-item">
-                        Als ich Threads im Dezember 2023 installierte, war die Plattform noch jung. Der Algorithmus war hungrig nach Content, aber wählerisch. Mein Ziel war nicht, einfach nur "dabei zu sein", sondern zu verstehen, wie man organische Reichweite aufbaut, ohne Geld für Ads auszugeben.
-                    </p>
-                    <p class="reveal-item">
-                        Ich entschied mich für eine Nische, die polarisiert, aber eine extrem hohe Engagement-Rate hat: <strong>Crypto & Trading</strong>.
-                    </p>
-
-                    <div class="img-reveal-wrapper reveal-item">
-                        <img src="../assets/images/blog/threads_1.jpg" alt="Threads Feed Screenshot">
-                        <div class="img-caption">Der Feed: Schnelle, textbasierte Inhalte dominieren.</div>
-                    </div>
-
-                    <h2 class="section-heading reveal-item">2. Die <em>Strategie</em></h2>
-                    <p class="reveal-item">
-                        Threads ist textbasiert. Anders als auf Instagram oder TikTok zählt hier nicht das perfekte Bild oder der aufwendige Videoschnitt, sondern die <strong>Hook</strong>. Die ersten zwei Zeilen entscheiden.
-                    </p>
-
-                    <table class="editorial-table reveal-item">
-                        <thead>
-                            <tr>
-                                <th>Phase</th>
-                                <th>Fokus</th>
-                                <th>Taktik</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Phase 1</td>
-                                <td>Reichweite</td>
-                                <td>Kontroverse Statements, Fragen, "Hot Takes" zum Markt</td>
-                            </tr>
-                            <tr>
-                                <td>Phase 2</td>
-                                <td>Vertrauen</td>
-                                <td>Sharing von Gewinnen/Verlusten (Transparenz), Analysen</td>
-                            </tr>
-                            <tr>
-                                <td>Phase 3</td>
-                                <td>Konvertierung</td>
-                                <td>Soft-Selling der Telegram-Gruppe durch Exklusivität</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <p class="reveal-item">
-                        Ich postete 3-5 Mal täglich. Wichtig war dabei die Interaktion. Ich antwortete auf fast jeden Kommentar, was den Algorithmus weiter befeuerte. Threads belohnt "Gespräche", keine Monologe.
-                    </p>
-
-                    <blockquote class="pull-quote reveal-item">
-                        "Reichweite ist wertlos, wenn sie nicht konvertiert."
-                    </blockquote>
-
-                    <h2 class="section-heading reveal-item">3. Die <em>Telegram-Gruppe</em></h2>
-                    <p class="reveal-item">
-                        Threads war der Trichter (Funnel), Telegram das Ziel. Warum Telegram? Weil es unzensiert ist, direkt und schnell. Perfekt für Trading-Signale.
-                    </p>
-                    <p class="reveal-item">
-                        Ich nutzte die "Link-in-Bio"-Strategie, erwähnte den Link aber nur selten direkt in Posts (um den Algorithmus nicht zu drosseln). Stattdessen postete ich Screenshots aus der Gruppe: <em>"Gestern im VIP-Chat: +40% mit Solana."</em> Das erzeugte FOMO (Fear Of Missing Out).
-                    </p>
-
-                    <div class="flow-diagram reveal-item">
-                        <div class="flow-node dark">
-                            <i class="fa-brands fa-threads flow-node-icon"></i>
-                            <div class="flow-node-title">Threads</div>
-                            <div class="flow-node-sub">Traffic & Aufmerksamkeit</div>
-                        </div>
-                        <div class="flow-arrow">→</div>
-                        <div class="flow-node accent">
-                            <i class="fa-solid fa-link flow-node-icon"></i>
-                            <div class="flow-node-title">Bio-Link</div>
-                            <div class="flow-node-sub">Filterung</div>
-                        </div>
-                        <div class="flow-arrow">→</div>
-                        <div class="flow-node light">
-                            <i class="fa-brands fa-telegram flow-node-icon"></i>
-                            <div class="flow-node-title">Telegram</div>
-                            <div class="flow-node-sub">Community & Retention</div>
-                        </div>
-                    </div>
-
-                    <h2 class="section-heading reveal-item">4. Multi-Plattform-<em>Synergie</em></h2>
-                    <p class="reveal-item">
-                        Ein entscheidender Hebel war Cross-Promotion. Ich teilte meine besten Threads-Posts in Instagram Stories und auf Twitter. Das schuf einen Kreislauf: Instagram-Follower kamen zu Threads, Threads-Nutzer zu Telegram.
-                    </p>
-                    
-                    <div class="callout reveal-item">
-                        <p>Wichtig: Jeder Kanal braucht eine eigene "Sprache". Copy-Paste funktioniert selten. Auf Threads war ich frecher, auf Telegram analytischer.</p>
-                    </div>
-
-                    <h2 class="section-heading reveal-item">5. <em>Monetarisierung</em></h2>
-                    <p class="reveal-item">
-                        Die Gruppe startete kostenlos. Ab 50 Mitgliedern führte ich Affiliate-Links für Trading-Plattformen ein. Das ist passives Einkommen, das mit der Community wächst. Vertrauen ist hier die Währung: Ich empfahl nur, was ich nutzte.
-                    </p>
-
-                    <div class="section-rule reveal-item"></div>
-
-                    <h2 class="section-heading reveal-item">Key <em>Takeaways</em></h2>
-                    <div class="takeaway-list reveal-item">
-                        <div class="takeaway-item">
-                            <div class="takeaway-index">01</div>
-                            <div class="takeaway-text"><strong>Konsistenz schlägt Perfektion.</strong> Lieber 5 unperfekte Posts am Tag als einer pro Woche. Der Algorithmus braucht Futter.</div>
-                        </div>
-                        <div class="takeaway-item">
-                            <div class="takeaway-index">02</div>
-                            <div class="takeaway-text"><strong>Authentizität gewinnt.</strong> Im Krypto-Bereich gibt es viele Scammer. Wer transparent ist (auch Verluste zeigt), gewinnt langfristig.</div>
-                        </div>
-                        <div class="takeaway-item">
-                            <div class="takeaway-index">03</div>
-                            <div class="takeaway-text"><strong>Community Management ist Arbeit.</strong> Die 100 Mitglieder kamen nicht von allein. Man muss präsent sein, Fragen beantworten und Moderation betreiben.</div>
-                        </div>
-                        <div class="takeaway-item">
-                            <div class="takeaway-index">04</div>
-                            <div class="takeaway-text"><strong>Plattform-Risiko minimieren.</strong> Baue nie dein Haus auf gemietetem Grund. Threads könnte meinen Account sperren – die Telegram-Kontakte gehören mir.</div>
-                        </div>
-                    </div>
-
-                    <h2 class="section-heading reveal-item"><em>Fazit</em></h2>
-                    <p class="reveal-item">
-                        500.000 Impressionen in zwei Monaten sind kein Zufall, sondern das Ergebnis von Verständnis für die Plattform-Dynamik und konsequenter Umsetzung. Threads bietet aktuell (noch) eine organische Reichweite, wie man sie zuletzt 2015 auf Instagram sah. Wer jetzt startet, hat den First-Mover-Advantage.
-                    </p>
-                    <p class="reveal-item">
-                        Die Kombination aus viraler Reichweite (Threads) und enger Community-Bindung (Telegram) ist ein mächtiges Tool für jeden Creator oder Marketer.
-                    </p>
-
-                </div>
             </main>
 
-            <!-- SIDEBAR -->
-            <aside class="article-sidebar">
-                <div class="border-l border-black/10 pl-8 space-y-12">
-                    <div class="sidebar-item reveal-item">
-                        <h5 class="font-bold text-[1.2rem] uppercase tracking-widest mb-4">Case Study</h5>
-                        <p class="text-[1.4rem] text-gray-500 italic">
-                            Analyse von organischem Wachstum auf neuen Social-Media-Plattformen und Community-Building-Strategien.
-                        </p>
-                    </div>
+            <!-- Footer with Wave -->
+            <div class="footer-wave"></div>
+            <footer class="site-footer" aria-label="Seitenende">
+                <div class="container footer-inner">
+                    <div class="footer-copy">Design & Development by Khadija Okbi</div>
                     
-                    <div class="sidebar-item reveal-item">
-                        <h5 class="font-bold text-[1.2rem] uppercase tracking-widest mb-4">Tools</h5>
-                        <ul class="text-[1.4rem] text-gray-500 leading-relaxed list-disc list-inside">
-                            <li>Threads (Traffic)</li>
-                            <li>Telegram (Community)</li>
-                            <li>Canva (Visuals)</li>
-                        </ul>
+                    <div class="footer-socials" aria-label="Soziale Netzwerke">
+                        <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect x="2" y="2" width="20" height="20" rx="2" fill="currentColor" opacity="0.15"/>
+                                <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                <path d="M6.5 9.5v8.5M6.5 7.5a0.5 0.5 0 1 1 0 1z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="6.5" cy="7.5" r="0.8" fill="currentColor"/>
+                                <path d="M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" fill="currentColor" stroke="currentColor" stroke-width="0.5"/>
+                            </svg>
+                        </a>
+                        <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.1" fill="none"/>
+                                <path d="M3.5 7.5l8.5 5 8.5-5" stroke="currentColor" stroke-width="1.1" fill="none"/>
+                                <path d="M12 21.5v-10" stroke="currentColor" stroke-width="1.1" fill="none"/>
+                            </svg>
+                        </a>
                     </div>
 
-                    <div class="sidebar-item reveal-item">
-                        <h5 class="font-bold text-[1.2rem] uppercase tracking-widest mb-4">Prinzip</h5>
-                        <p class="text-[1.4rem] text-gray-500 leading-relaxed">
-                            "Value First": Erst Mehrwert liefern, dann nach Commitment (Beitritt zur Gruppe) fragen.
-                        </p>
+                    <div class="footer-links">
+                        <a href="../pages/impressum.html" class="footer-link">Impressum</a>
+                        <a href="mailto:khadijaokbi@gmail.com" class="footer-link contact-btn">
+                            <span>Kontakt</span>
+                        </a>
+                        <a href="../pages/datenschutz.html" class="footer-link">Datenschutz</a>
                     </div>
                 </div>
-            </aside>
+            </footer>
         </div>
+    </div>
 
-<!-- Footer -->
-<footer class="site-footer" aria-label="Seitenende">
-	<div class="container footer-inner">
-	   <div class="footer-copy">© 2026 Design & Development by Khadija Okbi</div>
-	   <div class="footer-socials" aria-label="Soziale Netzwerke">
-		  <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
-			<!-- GitHub Icon -->
-			<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-			  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/>
-			</svg>
-		  </a>
-		  <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn">
-			<!-- LinkedIn Icon -->
-			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-			  <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/>
-			  <path d="M6.5 9.5v8.5M6.5 7.5v.01M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-			</svg>
-		  </a>
-		  <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok">
-			<!-- TikTok Icon (stylized note) -->
-			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-			  <path d="M16 7.5c.5 0 .9.04 1.3.12v3.38a4.2 4.2 0 0 1-2.3-.64v5.64A4.86 4.86 0 0 1 11 20a4.86 4.86 0 0 1-4.86-4.86 4.86 4.86 0 0 1 4.86-4.86c.28 0 .55.03.81.08V7.5h.19c1.14 0 2.09.37 2.99 1.03V7.5z" fill="currentColor"/>
-			</svg>
-		  </a>
-		  <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen">
-			<!-- CodePen Icon -->
-			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-			  <path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.1" fill="none"/>
-			  <path d="M3.5 7.5l8.5 5 8.5-5" stroke="currentColor" stroke-width="1.1" fill="none"/>
-			  <path d="M12 21.5v-10" stroke="currentColor" stroke-width="1.1" fill="none"/>
-			</svg>
-		  </a>
-	   </div>
-	</div>
-
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Progress Bar
-        window.onscroll = function() {
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrolled = (winScroll / height) * 100;
-            if(document.getElementById("myBar")) {
-                document.getElementById("myBar").style.width = scrolled + "%";
-            }
-        };
-
-        // Hero Stagger
-        gsap.from(".stagger-item", {
-            y: 60,
-            opacity: 0,
-            duration: 1.4,
-            stagger: 0.2,
-            ease: "power4.out"
-        });
-
-        // Content Reveal on Scroll
-        gsap.utils.toArray(".reveal-item").forEach((item) => {
-            gsap.from(item, {
-                scrollTrigger: {
-                    trigger: item,
-                    start: "top 85%",
-                    toggleActions: "play none none none"
-                },
-                y: 40,
-                opacity: 0,
-                duration: 1.2,
-                ease: "power2.out"
-            });
-        });
-
-        // Image Zoom in Wrapper
-        gsap.utils.toArray(".img-reveal-wrapper img").forEach((img) => {
-            gsap.to(img, {
-                scrollTrigger: {
-                    trigger: img,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true
-                },
-                scale: 1,
-                ease: "none"
-            });
-        });
-
-        // Sidebar smooth sticky logic (handled by CSS, but we can add fade)
-        gsap.from(".article-sidebar", {
-            scrollTrigger: {
-                trigger: ".article-main",
-                start: "top center",
-                toggleActions: "play none none none"
-            },
-            opacity: 0,
-            x: 20,
-            duration: 1.5,
-            ease: "power3.out"
-        });
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-      const target = document.querySelector(link.getAttribute('href'));
-      if (!target) return;
-      e.preventDefault();
-      window.scrollTo({
-        top: target.offsetTop - 64,
-        behavior: 'smooth'
-      });
-      document.getElementById('mobileMenu')?.classList.remove('open');
-    });
-  });
-
-  // =========================================
-  // 2. STICKY HEADER
-  // =========================================
-  const header = document.querySelector('.site-header');
-  const updateHeader = () =>
-    header?.classList.toggle('is-solid', window.scrollY > 100);
-
-  window.addEventListener('scroll', updateHeader);
-  updateHeader();
-
-  // =========================================
-  // 3. MOBILE MENU
-  // =========================================
-  document.getElementById('navToggle')
-    ?.addEventListener('click', () =>
-      document.getElementById('mobileMenu')?.classList.toggle('open')
-    );
-
-    </script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/blog.js"></script>
 </body>
 </html>

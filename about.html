@@ -1607,6 +1607,360 @@ section {
     align-self: flex-end;
   }
 }
+
+/* ============================
+   FAVORITES — 40 | 60 Grid
+   ============================ */
+.fav-grid {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.fav-col-header {
+  margin-bottom: clamp(2rem, 4vh, 3.5rem);
+}
+
+.fav-eyebrow {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--accent-burgundy);
+  border: 1px solid rgba(110,59,73,0.5);
+  padding: 0.28em 0.9em;
+  border-radius: 100px;
+  margin-bottom: 1rem;
+}
+
+.fav-col-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.15;
+  margin: 0 0 0.75rem 0;
+}
+
+.fav-col-title em {
+  font-style: italic;
+  color: var(--accent-burgundy);
+  font-weight: 400;
+}
+
+.fav-col-desc {
+  font-size: 0.87rem;
+  color: var(--text-secondary);
+  line-height: 1.72;
+  font-weight: 300;
+  max-width: 44ch;
+}
+
+/* ── Vinyl cards ── */
+.vinyl-display {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.vinyl-card {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(110,59,73,0.12);
+  transition: background 0.25s ease;
+}
+
+.vinyl-card:last-child {
+  border-bottom: none;
+}
+
+.vinyl-card .record-container {
+  flex-shrink: 0;
+}
+
+.vinyl-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.vinyl-genre {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent-burgundy);
+  opacity: 0.75;
+  margin-bottom: 0.25rem;
+}
+
+.vinyl-title {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.2rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vinyl-artist {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* ── Reading stats inline ── */
+.reading-stats-inline {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 0.75rem 0 1.25rem;
+}
+
+.rs-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+}
+
+.rs-num {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 700;
+  color: var(--text-secondary);
+  line-height: 1;
+}
+
+.rs-item--highlight .rs-num {
+  color: var(--accent-burgundy);
+}
+
+.rs-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+.rs-sep {
+  font-size: 1.4rem;
+  color: var(--accent-burgundy);
+  opacity: 0.35;
+  font-weight: 300;
+  padding-bottom: 0.8rem;
+}
+
+/* ── Book list ── */
+.book-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 clamp(2.5rem, 5vh, 4rem);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Book entry: horizontal layout ── */
+.book-entry {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+  padding: clamp(1.75rem, 3.5vh, 2.75rem) 0;
+  border-bottom: 1px solid rgba(110,59,73,0.1);
+  opacity: 0;
+  transform: translateX(28px);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+
+.book-entry:first-child { padding-top: 0; }
+.book-entry:last-child  { border-bottom: none; }
+
+.book-entry.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.book-entry:nth-child(1) { transition-delay: 0.05s; }
+.book-entry:nth-child(2) { transition-delay: 0.2s; }
+.book-entry:nth-child(3) { transition-delay: 0.35s; }
+
+.book-entry__cover {
+  flex-shrink: 0;
+  filter: drop-shadow(0 16px 28px rgba(0,0,0,0.26));
+}
+
+/* ── Book entry metadata ── */
+.book-entry__meta {
+  padding-top: 0.4rem;
+}
+
+.book-genre-tag {
+  display: inline-block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--accent-burgundy);
+  border: 1px solid rgba(110,59,73,0.35);
+  padding: 0.22em 0.8em;
+  border-radius: 100px;
+  margin-bottom: 0.7rem;
+}
+
+.book-title-main {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 2.2vw, 1.45rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.2rem 0;
+  line-height: 1.2;
+}
+
+.book-author-main {
+  font-size: 0.7rem;
+  color: var(--accent-burgundy);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0 0 0.65rem 0;
+}
+
+.book-rating {
+  display: flex;
+  gap: 0.22rem;
+  margin-bottom: 0.75rem;
+}
+
+.book-rating i {
+  font-size: 0.68rem;
+  color: var(--accent-burgundy);
+}
+
+.book-blurb {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.68;
+  font-weight: 300;
+  margin: 0 0 1rem 0;
+  max-width: 48ch;
+}
+
+/* ── Review accordion ── */
+.review-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: none;
+  border: 1px solid rgba(110,59,73,0.4);
+  color: var(--accent-burgundy);
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.45em 1.1em;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.review-btn:hover,
+.review-btn[aria-expanded="true"] {
+  background: var(--accent-burgundy);
+  color: #fff;
+  border-color: var(--accent-burgundy);
+}
+
+.review-chevron {
+  width: 13px;
+  height: 13px;
+  transition: transform 0.3s ease-in-out;
+  flex-shrink: 0;
+}
+
+.review-btn[aria-expanded="true"] .review-chevron {
+  transform: rotate(180deg);
+}
+
+.review-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out, padding-top 0.3s ease;
+  opacity: 0;
+}
+
+.review-body.is-open {
+  max-height: 600px;
+  opacity: 1;
+  padding-top: 1rem;
+}
+
+.review-body p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.78;
+  font-weight: 300;
+  font-style: italic;
+  border-left: 2px solid rgba(110,59,73,0.22);
+  padding-left: 1rem;
+  margin: 0;
+}
+
+/* ── Responsive: favorites grid ── */
+@media (max-width: 900px) {
+  .fav-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(2.5rem, 6vh, 4rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .vinyl-card .record-container {
+    width: 100px;
+    height: 100px;
+  }
+  .vinyl-card .record-container .record {
+    width: 66px;
+    height: 66px;
+    margin: 17px;
+  }
+  .book-entry {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .book-entry__cover {
+    display: flex;
+    justify-content: center;
+  }
+  .book-entry__meta {
+    padding-top: 0;
+  }
+  .book-genre-tag,
+  .book-author-main {
+    display: block;
+  }
+  .book-blurb {
+    max-width: 100%;
+  }
+  .book-rating {
+    justify-content: flex-start;
+  }
+  .reading-stats-inline {
+    justify-content: flex-start;
+  }
+  .fav-col-desc {
+    max-width: 100%;
+  }
+}
   </style>
 </head>
 
@@ -2069,257 +2423,205 @@ section {
       <div class="container">
         <!-- Section Header -->
         <div class="creative-fuel-header">
+          <p class="fav-eyebrow" style="margin-bottom:1.2rem">Persönliche Favoriten 2025</p>
           <h2 class="fuel-title">Meine Favoriten</h2>
         </div>
 
-        <!-- Spotify Wrapped -->
-        <div class="fuel-subsection vinyl-section">
-          <h3 class="subsection-title">2025 Spotify Wrapped</h3>
-          <div class="flex flex-wrap justify-center gap-8 mt-8">
-            <div class="record-container">
-              <div class="album"><img src="assets/images/branding/runaway.jpeg" alt="Runaway Album"></div>
-              <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
+        <!-- ===== 40 | 60 FAVORITES GRID ===== -->
+        <div class="fav-grid">
+
+          <!-- ─── LEFT COLUMN: Music (40%) ─── -->
+          <div class="fav-col fav-col--music">
+            <div class="fav-col-header">
+              <span class="fav-eyebrow">Spotify Wrapped 2025</span>
+              <h3 class="fav-col-title">Klänge, <em>die prägen.</em></h3>
+              <p class="fav-col-desc">Drei Alben, die 2025 auf Repeat liefen – jedes davon ein eigenes Universum.</p>
             </div>
-            <div class="record-container">
-              <div class="album"><img src="assets/images/branding/fear.jpeg" alt="Fear Album"></div>
-              <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
-            </div>
-            <div class="record-container">
-              <div class="album"><img src="assets/images/branding/millionyears.jpeg" alt="Million Years Album"></div>
-              <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
+
+            <div class="vinyl-display">
+              <!-- Record 1 -->
+              <div class="vinyl-card">
+                <div class="record-container">
+                  <div class="album"><img src="assets/images/branding/runaway.jpeg" alt="Runaway Album"></div>
+                  <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
+                </div>
+                <div class="vinyl-meta">
+                  <span class="vinyl-genre">Hip-Hop / Soul</span>
+                  <p class="vinyl-title">Runaway</p>
+                  <span class="vinyl-artist">Kanye West</span>
+                </div>
+              </div>
+              <!-- Record 2 -->
+              <div class="vinyl-card">
+                <div class="record-container">
+                  <div class="album"><img src="assets/images/branding/fear.jpeg" alt="Fear Album"></div>
+                  <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
+                </div>
+                <div class="vinyl-meta">
+                  <span class="vinyl-genre">R&amp;B / Gospel</span>
+                  <p class="vinyl-title">FEAR.</p>
+                  <span class="vinyl-artist">Kendrick Lamar</span>
+                </div>
+              </div>
+              <!-- Record 3 -->
+              <div class="vinyl-card">
+                <div class="record-container">
+                  <div class="album"><img src="assets/images/branding/millionyears.jpeg" alt="Million Years Album"></div>
+                  <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
+                </div>
+                <div class="vinyl-meta">
+                  <span class="vinyl-genre">Pop</span>
+                  <p class="vinyl-title">A Million Years</p>
+                  <span class="vinyl-artist">Westlife</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+          <!-- ─── END LEFT COLUMN ─── -->
 
-        <!-- Divider -->
-        <div class="fuel-divider"></div>
-
-        <!-- Books Section -->
-        <div class="fuel-subsection books-section">
-          <h3 class="subsection-title">Mein Jahr in Büchern</h3>
-<div class="section-books-2025">
-   <div class="books-container-main">
-
-       <!-- Stats -->
-       <div class="stats-main">
-           <div class="stat-main">
-               <span class="stat-number-main counter" data-target="54">54</span>
-               <span class="stat-label-main">2024</span>
-           </div>
-           <div class="stat-main">
-               <span class="stat-number-main counter" data-target="104">104</span>
-               <span class="stat-label-main">2025</span>
-           </div>
-       </div>
-  <p class="subsection-desc">Aus 104 gelesenen Büchern im Jahr 2025 meine Favoriten nach Genre zu selektieren war tatsächlich einfacher als erwartet. Es gibt nur wenige Bücher die einen bleibenden Eindruck hinterlassen und nachhaltig beschäftigen, diese drei haben es definitiv geschafft:</p>
- <!-- 3D Books Gallery -->
- <ul class="books-align">
-   <!-- Book 1: Fourth Wing -->
-   <li class="book-item-main">
-       <div class="book-3d">
-           <!-- Front Cover -->
-           <ul class="hardcover-front">
-               <li>
-                   <img src="assets/images/about/fw-cover.webp" alt="Fourth Wing" />
-               </li>
-               <li></li>
-           </ul>
-           
-           <!-- Pages -->
-       <ul class="page">
-    <li>
-        <span class="page-text">
-        Violet Sorrengail sollte ein ruhiges Leben unter Büchern führen – doch auf Befehl ihrer Mutter wird sie an das Basgiath War College geschickt, wo Drachenreiter ausgebildet werden. 
-        Schwäche bedeutet hier den Tod, und Violet gilt als körperlich unterlegen.
-        </span>
-    </li>
-    <li>
-        <span class="page-text">
-        Zwischen brutalen Prüfungen, tödlicher Konkurrenz und politischen Intrigen muss sie beweisen, dass Intelligenz ebenso mächtig sein kann wie rohe Stärke. 
-        Jeder Kadett kämpft ums Überleben – nicht nur gegen Drachen, sondern gegeneinander.
-        </span>
-    </li>
-    <li>
-        <span class="page-text">
-        Während sich gefährliche Allianzen und verbotene Gefühle entwickeln, erkennt Violet, dass die wahre Bedrohung nicht nur auf dem Schlachtfeld lauert. 
-        Es geht um Macht, Loyalität – und die Frage, wem man in einem System trauen kann, das auf Kontrolle aufgebaut ist.
-        </span>
-    </li>
-</ul> 
-           <!-- Back Cover -->
-           <ul class="hardcover-back">
-               <li></li>
-               <li></li>
-           </ul>
-           
-           <!-- Spine -->
-           <ul class="book-spine">
-               <li></li>
-               <li></li>
-           </ul>
-       </div>
-
-       <!-- Info -->
-       <figcaption class="figcaption-main">
-           <h3>Fourth Wing</h3>
-           <span>von Rebecca Yarros</span>
-           <div class="rating-main flex gap-1 justify-center items-center mt-2">
-               <i class="fas fa-star text-accent-burgundy"></i>
-               <i class="fas fa-star text-accent-burgundy"></i>
-               <i class="fas fa-star text-accent-burgundy"></i>
-               <i class="fas fa-star text-accent-burgundy"></i>
-               <i class="fas fa-star text-accent-burgundy"></i>
-           </div>
-           <p>Mein erstes Buch im Jahr 2025 hat die Messlatte unschlagbar hoch gelegt. Von der ersten Seite an zog mich die drei teilige Empyrean-Reihe in ihren Bann. Obwohl Fantasy nicht meinem üblichen Genre entspricht, mangelte es diesem Buch keinesfalls an Spannung. Fourth Wing hat mein Herz erobert und mich in ganz neue fantastische Welten katapultiert.  </p>
-       </figcaption>
-   </li>
-  <!-- Book 3: A Good Girl's Guide to Murder -->
-   <li class="book-item-main">
-       <div class="book-3d">
-           <!-- Front Cover -->
-           <ul class="hardcover-front">
-               <li>
-                   <img src="assets/images/about/agggtm-cover.webp" alt="A Good Girl's Guide to Murder"/>
-               </li>
-               <li></li>
-           </ul>
-           
-           <!-- Pages -->
-        <ul class="page">
-    <li>
-        <span class="page-text">
-        Fünf Jahre nach einem vermeintlich gelösten Mordfall beschliesst die Schülerin Pip Fitz-Amobi, die Geschichte für ihr Abschlussprojekt neu aufzurollen. 
-        Offiziell gilt der Fall als abgeschlossen – der Täter soll sich nach der Tat selbst das Leben genommen haben.
-        </span>
-    </li>
-
-    <li>
-        <span class="page-text">
-        Doch je tiefer Pip recherchiert, desto mehr Widersprüche entdeckt sie. 
-        Gerüchte, verdrängte Wahrheiten und verborgene Motive kommen ans Licht. 
-        Schnell wird klar: Nicht jeder in der Kleinstadt will, dass die Vergangenheit erneut aufgedeckt wird.
-        </span>
-    </li>
-
-    <li>
-        <span class="page-text">
-        Was als Schulprojekt beginnt, entwickelt sich zu einer gefährlichen Suche nach Wahrheit. 
-        Die Geschichte zeigt, wie leicht ein Narrativ akzeptiert wird – und wie riskant es ist, es infrage zu stellen.
-        </span>
-    </li>
-</ul>
-
-           
-           <!-- Back Cover -->
-           <ul class="hardcover-back">
-               <li></li>
-               <li></li>
-           </ul>
-           
-           <!-- Spine -->
-           <ul class="book-spine">
-               <li></li>
-               <li></li>
-           </ul>
-       </div>
-
-       <!-- Info -->
-       <figcaption class="figcaption-main">
-           <h3>A Good Girl's Guide to Murder</h3>
-           <span>von Holly Jackson</span>
-            <div class="rating-main flex gap-1 justify-center items-center mt-2">
-                <i class="fas fa-star text-accent-burgundy"></i>
-                <i class="fas fa-star text-accent-burgundy"></i>
-                <i class="fas fa-star text-accent-burgundy"></i>
-                <i class="fas fa-star text-accent-burgundy"></i>
-                <i class="fas fa-star text-accent-burgundy"></i>
+          <!-- ─── RIGHT COLUMN: Books (60%) ─── -->
+          <div class="fav-col fav-col--books">
+            <div class="fav-col-header">
+              <span class="fav-eyebrow">Lesejahr 2025</span>
+              <h3 class="fav-col-title">104 Bücher. <em>Drei bleiben.</em></h3>
+              <div class="reading-stats-inline">
+                <div class="rs-item">
+                  <span class="rs-num counter" data-target="54">54</span>
+                  <span class="rs-label">Bücher 2024</span>
+                </div>
+                <div class="rs-sep">→</div>
+                <div class="rs-item rs-item--highlight">
+                  <span class="rs-num counter" data-target="104">104</span>
+                  <span class="rs-label">Bücher 2025</span>
+                </div>
+              </div>
+              <p class="fav-col-desc">Aus 104 gelesenen Büchern meine Favoriten nach Genre zu selektieren war einfacher als erwartet. Nur wenige hinterlassen einen bleibenden Eindruck – diese drei haben es definitiv geschafft.</p>
             </div>
-           <p>Auch A Good Girl's Guide to Murder ist Teil einer drei teiligen Young Adult Mysterie Reihe und hätte es alleinstehend wahrscheinlich nicht in meine Top 3 geschafft. Die Entwiklung der Hauptprotagonistin war so unerwartet, dass Band drei dieser Reihe einen Flair verleiht, dem ich bisher noch nie so begegnet bin. Besonders einprägend fand ich Jacksons Fähigkeit, komplexe Charaktere aufzubauen, Einblicke in die Psyche dieser zu vermitteln und die anschliessende Kapitulation dieser anzubahnen. </p>
-       </figcaption>
-  <figcaption/>
- </li>
-   <!-- Book 2: Reminders of Him -->
-   <li class="book-item-main">
-       <div class="book-3d">
-           <!-- Front Cover -->
-           <ul class="hardcover-front">
-               <li>
-                   <img src="assets/images/about/roh-cover.jpg" alt="Reminders of Him">
-               </li>
-               <li></li>
-           </ul>
-           
-           <!-- Pages -->
-    <ul class="page">
-    <li>
-        <span class="page-text">
-        Nach fünf Jahren im Gefängnis kehrt Kenna Rowan in eine Stadt zurück, die ihr nie verziehen hat. 
-        Ihr einziges Ziel: ihre Tochter wiedersehen, die sie als Baby zurücklassen musste. 
-        Doch für die Menschen dort ist sie nicht eine Mutter mit Reue – sondern die Frau, die ein unverzeihliches Unglück verursacht hat.
-        </span>
-    </li>
 
-    <li>
-        <span class="page-text">
-        Der einzige, der hinter ihre Fehler blickt, ist Ledger Ward. 
-        Zwischen Loyalität zur Vergangenheit und wachsender Nähe zu Kenna gerät er in einen inneren Konflikt. 
-        Gefühle entstehen dort, wo sie eigentlich keinen Platz haben dürften.
-        </span>
-    </li>
+            <ul class="book-list">
 
-    <li>
-        <span class="page-text">
-        Die Geschichte handelt von Schuld, Verantwortung und der Frage, ob ein einziger Fehler ein ganzes Leben definieren darf. 
-        Es geht um Vergebung – die der anderen, aber vor allem die eigene.
-        </span>
-    </li>
-</ul>
+              <!-- Book 1: Fourth Wing -->
+              <li class="book-entry">
+                <div class="book-entry__cover">
+                  <div class="book-3d">
+                    <ul class="hardcover-front">
+                      <li><img src="assets/images/about/fw-cover.webp" alt="Fourth Wing" /></li>
+                      <li></li>
+                    </ul>
+                    <ul class="page">
+                      <li><span class="page-text">Violet Sorrengail sollte ein ruhiges Leben unter Büchern führen – doch auf Befehl ihrer Mutter wird sie ans Basgiath War College geschickt, wo Drachenreiter ausgebildet werden.</span></li>
+                      <li><span class="page-text">Zwischen brutalen Prüfungen, tödlicher Konkurrenz und politischen Intrigen muss sie beweisen, dass Intelligenz ebenso mächtig sein kann wie rohe Stärke.</span></li>
+                      <li><span class="page-text">Es geht um Macht, Loyalität – und die Frage, wem man in einem System trauen kann, das auf Kontrolle aufgebaut ist.</span></li>
+                    </ul>
+                    <ul class="hardcover-back"><li></li><li></li></ul>
+                    <ul class="book-spine"><li></li><li></li></ul>
+                  </div>
+                </div>
+                <div class="book-entry__meta">
+                  <span class="book-genre-tag">Fantasy · Empyrean-Reihe</span>
+                  <h4 class="book-title-main">Fourth Wing</h4>
+                  <p class="book-author-main">von Rebecca Yarros</p>
+                  <div class="book-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  </div>
+                  <p class="book-blurb">Mein erstes Buch im Jahr 2025 hat die Messlatte unschlagbar hoch gelegt – eine Welt, die in den Bann zieht und so schnell nicht loslässt.</p>
+                  <button class="review-btn" aria-expanded="false">
+                    Rezension lesen
+                    <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                  <div class="review-body">
+                    <p>Von der ersten Seite an zog mich die dreiteilige Empyrean-Reihe in ihren Bann. Obwohl Fantasy nicht meinem üblichen Genre entspricht, mangelte es diesem Buch keinesfalls an Spannung. Die Welt des Basgiath War College ist komplex und fesselnd aufgebaut – die Dynamik zwischen den Charakteren, die ständige Bedrohung und die überraschenden Wendungen haben mich bis zur letzten Seite nicht losgelassen. Fourth Wing hat mein Herz erobert und mich in ganz neue fantastische Welten katapultiert.</p>
+                  </div>
+                </div>
+              </li>
 
-           
-           <!-- Back Cover -->
-           <ul class="hardcover-back">
-               <li></li>
-               <li></li>
-           </ul>
-           
-           <!-- Spine -->
-           <ul class="book-spine">
-               <li></li>
-               <li></li>
-           </ul>
-       </div>
+              <!-- Book 2: A Good Girl's Guide to Murder -->
+              <li class="book-entry">
+                <div class="book-entry__cover">
+                  <div class="book-3d">
+                    <ul class="hardcover-front">
+                      <li><img src="assets/images/about/agggtm-cover.webp" alt="A Good Girl's Guide to Murder" /></li>
+                      <li></li>
+                    </ul>
+                    <ul class="page">
+                      <li><span class="page-text">Fünf Jahre nach einem vermeintlich gelösten Mordfall beschliesst Pip Fitz-Amobi, die Geschichte für ihr Abschluss­projekt neu aufzurollen.</span></li>
+                      <li><span class="page-text">Je tiefer Pip recherchiert, desto mehr Widersprüche entdeckt sie – nicht jeder will, dass die Vergangenheit erneut aufgedeckt wird.</span></li>
+                      <li><span class="page-text">Was als Schulprojekt beginnt, entwickelt sich zu einer gefährlichen Suche nach Wahrheit.</span></li>
+                    </ul>
+                    <ul class="hardcover-back"><li></li><li></li></ul>
+                    <ul class="book-spine"><li></li><li></li></ul>
+                  </div>
+                </div>
+                <div class="book-entry__meta">
+                  <span class="book-genre-tag">Young Adult · Mystery</span>
+                  <h4 class="book-title-main">A Good Girl's Guide to Murder</h4>
+                  <p class="book-author-main">von Holly Jackson</p>
+                  <div class="book-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  </div>
+                  <p class="book-blurb">Die Reihe hätte es alleinstehend wohl nicht in meine Top&nbsp;3 geschafft – doch Band drei verleiht ihr einen Flair, dem ich so noch nie begegnet bin.</p>
+                  <button class="review-btn" aria-expanded="false">
+                    Rezension lesen
+                    <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                  <div class="review-body">
+                    <p>Besonders einprägend fand ich Jacksons Fähigkeit, komplexe Charaktere aufzubauen, Einblicke in die Psyche dieser zu vermitteln und die anschliessende Kapitulation anzubahnen. Die Entwicklung der Hauptprotagonistin war so unerwartet, dass sie einen bleibenden Eindruck hinterlassen hat – und mich dazu gebracht hat, alle drei Bände in einem Zug zu lesen.</p>
+                  </div>
+                </div>
+              </li>
 
-       <!-- Info -->
-       <figcaption class="figcaption-main">
-           <h3>Reminders of Him</h3>
-           <span>von Colleen Hoover</span>
-           <div class="rating-main flex gap-1 justify-center items-center mt-2">
-               <i class="fas fa-star text-accent-burgundy"></i>
-               <i class="fas fa-star text-accent-burgundy"></i>
-               <i class="fas fa-star text-accent-burgundy"></i>
-               <i class="fas fa-star text-accent-burgundy"></i>
-               <i class="fas fa-star text-accent-burgundy"></i>
-           </div>
-        <p>Die Bücher, die mich zu Tränen gerührt haben, kann ich an einer Hand abzählen, Reminders of Him ist eines davon. Was mich so berührt hat, war nicht nur die tragische Ausgangslage, sondern die schonungslose Ehrlichkeit, mit der dieser schmale Grat zwischen Schicksal und Schuld gezeichnet wird.
-            Der innere Kampf zwischen Hoffnung und Selbstverurteilung, war intensiv und bewegend. Eine emotionale Achterbahnfahrt, die tief unter die Haut geht und noch lange nachhallt.</p>
-       </figcaption>
-   </li>
+              <!-- Book 3: Reminders of Him -->
+              <li class="book-entry">
+                <div class="book-entry__cover">
+                  <div class="book-3d">
+                    <ul class="hardcover-front">
+                      <li><img src="assets/images/about/roh-cover.jpg" alt="Reminders of Him" /></li>
+                      <li></li>
+                    </ul>
+                    <ul class="page">
+                      <li><span class="page-text">Nach fünf Jahren im Gefängnis kehrt Kenna Rowan in eine Stadt zurück, die ihr nie verziehen hat.</span></li>
+                      <li><span class="page-text">Gefühle entstehen dort, wo sie eigentlich keinen Platz haben dürften.</span></li>
+                      <li><span class="page-text">Die Geschichte handelt von Schuld und der Frage, ob ein einziger Fehler ein ganzes Leben definieren darf.</span></li>
+                    </ul>
+                    <ul class="hardcover-back"><li></li><li></li></ul>
+                    <ul class="book-spine"><li></li><li></li></ul>
+                  </div>
+                </div>
+                <div class="book-entry__meta">
+                  <span class="book-genre-tag">Contemporary Romance</span>
+                  <h4 class="book-title-main">Reminders of Him</h4>
+                  <p class="book-author-main">von Colleen Hoover</p>
+                  <div class="book-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  </div>
+                  <p class="book-blurb">Die Bücher, die mich zu Tränen gerührt haben, kann ich an einer Hand abzählen – dieses ist eines davon.</p>
+                  <button class="review-btn" aria-expanded="false">
+                    Rezension lesen
+                    <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                  <div class="review-body">
+                    <p>Was mich so berührt hat, war nicht nur die tragische Ausgangslage, sondern die schonungslose Ehrlichkeit, mit der dieser schmale Grat zwischen Schicksal und Schuld gezeichnet wird. Der innere Kampf zwischen Hoffnung und Selbstverurteilung war intensiv und bewegend. Eine emotionale Achterbahnfahrt, die tief unter die Haut geht und noch lange nachhallt.</p>
+                  </div>
+                </div>
+              </li>
 
- 
-</ul>
+            </ul>
+            <!-- End book-list -->
 
-<!-- Goodreads CTA -->
-<div class="goodreads-section">
-   <h3>Goodreads wrapped 2025</h3>
-   <p>Tauche ein in meine vollständige Lesereise 2025. Alle 104 Bücher – von literarischen Meisterwerken bis zu geliebten Guilty Pleasures.</p>
-   <a href="https://www.goodreads.com/user/year_in_books/2025/86919904" target="_blank" rel="noopener noreferrer" class="goodreads-btn-main">
-       Besuche mein Goodreads-Profil →
-           </a>
-       </div>
-   </div>
-</div>
+            <!-- Goodreads CTA -->
+            <div class="goodreads-section">
+              <h3>Goodreads Wrapped 2025</h3>
+              <p>Tauche ein in meine vollständige Lesereise 2025. Alle 104 Bücher – von literarischen Meisterwerken bis zu geliebten Guilty Pleasures.</p>
+              <a href="https://www.goodreads.com/user/year_in_books/2025/86919904" target="_blank" rel="noopener noreferrer" class="goodreads-btn-main">
+                Besuche mein Goodreads-Profil →
+              </a>
+            </div>
+          </div>
+          <!-- ─── END RIGHT COLUMN ─── -->
+
         </div>
-        <!-- End Books Section -->
+        <!-- ===== END FAVORITES GRID ===== -->
+
       </div>
     </section>
     <!-- ======================== END CREATIVE FUEL ======================== -->
@@ -2388,10 +2690,27 @@ section {
       scrollObserver.observe(ev);
     });
 
-    // Book Items - On Scroll Animation
-    document.querySelectorAll('.book-item-main').forEach((book, i) => {
-      book.style.transitionDelay = `${i * 0.2}s`;
+    // Book Entries - On Scroll Animation (staggered reveal)
+    document.querySelectorAll('.book-entry').forEach((book, i) => {
       scrollObserver.observe(book);
+    });
+
+    // ── Review Accordion ──
+    document.querySelectorAll('.review-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const body = this.nextElementSibling;
+        const isOpen = body.classList.contains('is-open');
+        // Close all others
+        document.querySelectorAll('.review-body.is-open').forEach(b => {
+          b.classList.remove('is-open');
+          b.previousElementSibling.setAttribute('aria-expanded', 'false');
+        });
+        // Toggle current
+        if (!isOpen) {
+          body.classList.add('is-open');
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
     });
 
     // ── Timeline Toggle ──

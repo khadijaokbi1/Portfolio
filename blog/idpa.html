@@ -83,6 +83,7 @@
             font-weight: 600;
             color: var(--text-dark);
         }
+
         /* Typography Styles */
         .title-large {
             font-family: var(--font-display);
@@ -100,48 +101,6 @@
             display: block;
             margin-left: 10vw;
             color: var(--accent-burgundy);
-        }
-
-        /* Mobile Optimization */
-        @media (max-width: 768px) {
-            .title-large {
-                font-size: clamp(3rem, 10vw, 6rem);
-                margin-bottom: 3rem;
-            }
-
-            .title-italic {
-                margin-left: 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .title-large {
-                font-size: clamp(2rem, 8vw, 4rem);
-                margin-bottom: 2rem;
-                letter-spacing: -0.02em;
-            }
-
-            .editorial-container {
-                padding: 0 1.5rem;
-            }
-
-            .article-main {
-                grid-column: 1 / -1;
-            }
-
-            .text-lead {
-                font-size: 1.2rem;
-            }
-
-            .text-body {
-                font-size: 1rem;
-            }
-
-            .pull-quote {
-                font-size: 2rem;
-                padding: 2rem 0;
-                margin: 4rem 0;
-            }
         }
 
         .meta-info {
@@ -257,9 +216,9 @@
                 </a>
                 <nav class="nav">
                     <a href="../index.html#hero" class="nav-link">Home</a>
-                    <a href="../index.html#expertise" class="nav-link">Work</a>
+                    <a href="../index.html#expertise" class="nav-link">What I do</a>
                     <a href="../index.html#blog" class="nav-link">Blog</a>
-                    <a href="../about.html" class="nav-link">About</a>
+                    <a href="../about.html" class="nav-link">About me</a>
                 </nav>
             </div>
         </header>
@@ -277,20 +236,22 @@
             <!-- MAIN ARTICLE CONTENT -->
             <main class="article-main">
                 <p class="text-lead reveal-item drop-cap">
-                    Meine interdisziplinäre Abschlussarbeit untersucht eine fundamentale Frage: Inwiefern sind unsere Meinungen tatsächlich frei oder werden sie durch unbewusste Mechanismen bestimmt? Schon bevor wir bewusst denken, sind unsere Präferenzen, Ängste und Entscheidungen von biologischen, psychologischen und sozialen Faktoren geprägt.
+                    Meine IDPA entstand aus einer intensiven Beschäftigung mit der menschlichen Psyche. 
+                    Damals war das Ziel klar: Ich wollte die psychologischen, biologischen und sozialen Mechanismen verstehen, 
+                    die unser Denken prägen. Doch je tiefer ich einstieg, desto mehr offenbarte sich eine unbequeme Wahrheit.
                 </p>
 
                 <div class="text-body">
                     <p class="reveal-item">
-                        Neurowissenschaftliche Erkenntnisse zeigen eindrücklich, wie Hormone und Neurotransmitter wie Testosteron, Cortisol, Dopamin oder Oxytocin direkt unser Verhalten steuern – unsere Risikobereitschaft, Bindungsfähigkeit und Gruppenzugehörigkeit. Politische oder persönliche Entscheidungen aktivieren meist emotionale Gehirnregionen, insbesondere die Amygdala, wodurch rationale Abwägungen häufig unterdrückt werden. Auch biologische Determinanten der Partnerwahl und transgenerationale Traumata beeinflussen unbewusst unsere Überzeugungen. Studien mit eineiigen Zwillingen belegen zudem, dass genetische Faktoren politische Präferenzen und Persönlichkeit erheblich prägen.
+                        Schon seit einiger Zeit befasse ich mich intensiv mit der menschlichen Psyche. Was mit dem Ziel begann, mir Wissen anzueignen, um zu verstehen, endete in der Akzeptanz, dass wir als Menschen eigentlich alle machtlos unserer selbst sind. Wir machen uns vor, eine freie Meinung zu besitzen, während sie lediglich ein Ergebnis von Prägung, Erfahrung und Umfeld ist. Lange bevor wir ein bewusstes Wort sprechen, ist die Weiche bereits gestellt – unsere Meinungen werden nicht im Kopf, sondern im Bauch, oder genauer gesagt, in den Drüsen gemacht.
                     </p>
 
                     <div class="img-reveal-wrapper reveal-item">
-                        <img src="assets/images/blog/idpa.jpg" alt="Neurologische Prozesse">
+                        <img src="../assets/images/idpa.jpg" alt="Neurologische Prozesse">
                     </div>
 
                     <p class="reveal-item">
-                        Soziologisch gesehen formt Gruppenzwang massgeblich unsere Meinungen. Wir passen uns den Überzeugungen der Eltern, Freunde und sozialen Schichten an – oft unbewusst, um Zugehörigkeit und Sicherheit zu gewährleisten. Religion dient hier zusätzlich als emotionales und politisches Steuerungsinstrument: Sie stabilisiert Moralvorstellungen, Gemeinschaft und Vertrauen, was politische Manipulation erleichtert.
+                        Gene wie das COMT-Gen bestimmen schon bei unserer Geburt, wie risikofreudig oder neugierig wir sind und damit, ob wir eher zu progressiven oder konservativen politischen Ansichten neigen. Die Epigenetik zeigt uns, dass sogar Traumata unserer Vorfahren wie Hungersnöte, Kriege und Verfolgung über Generationen hinweg unsere Ängstlichkeit und unser Sicherheitsbedürfnis prägen. Hinzu kommt ein komplexer Hormon-Cocktail: Neurotransmitter wie Oxytocin steuern nicht nur die Bindung, sondern auch unsere politische Loyalität und das Vertrauen gegenüber Anführern.
                     </p>
 
                     <blockquote class="pull-quote reveal-item">
@@ -299,19 +260,15 @@
                     </blockquote>
 
                     <p class="reveal-item">
-                        Historische und philosophische Analysen ergänzen dieses Bild: Sokrates' Methode des Hinterfragens zeigt die Notwendigkeit, eigene Annahmen zu prüfen, während Platons Höhlengleichnis die menschliche Tendenz illustriert, an vertrauten Illusionen festzuhalten. Machiavelli demonstriert, dass Macht durch gezielte Manipulation von Meinungen gesichert wird, unabhängig von moralischen Massstäben. Nietzsche zeigt, dass Moral und Werte oft Instrumente der Selbsttäuschung und Kontrolle sind, und Robert Greene analysiert moderne Manipulationstechniken, die auf narzisstische, irrationale und unbewusste menschliche Bedürfnisse abzielen.
+                        Doch Biologie allein erzählt nicht die ganze Geschichte. Weltgeschehen und technischer Fortschritt bekamen aus dieser Perspektive eine ganz andere Bedeutung. Wir sind tiefgreifend soziale Wesen, und unser tiefstes Bedürfnis ist die Zugehörigkeit – ein evolutionäres Überlebensmuster, das systematisch von unseren sozialen Strukturen genutzt wird. Religionen funktionieren als hocheffiziente "kulturelle Technologien", die Verhaltensregeln durch Belohnung und Bestrafung festlegen und so Kooperation in großem Maßstab ermöglichen.
                     </p>
 
                     <p class="reveal-item">
-                        Psychologisch prägen unbewusste Triebe unser Denken: Freuds Modell von Es, Ich und Über-Ich erklärt, warum rationale Überzeugungen oft erst nachträglich konstruiert werden. Gruppenaktivität entbindet vom individuellen Verantwortungsgefühl, wie Milgram- und Stanford-Experimente zeigen. Gehorsam gegenüber Autorität kann sogar moralische Hemmungen überlagern.
+                        Das 21. Jahrhundert hat alle Mechanismen der psychischen und sozialen Konditionierung perfektioniert und globalisiert. Social-Media-Algorithmen sind darauf optimiert, uns möglichst lange zu binden und fördern dafür emotional aufgeladene, polarisierende Inhalte – Wut und Empörung verbreiten sich sechsmal schneller als Fakten und schaffen so digitale Echokammern. Empfehlungsalgorithmen auf Plattformen wie YouTube führen Nutzer systematisch zu extremeren Inhalten.
                     </p>
 
                     <p class="reveal-item">
-                        Digitale Medien und künstliche Intelligenz verstärken diese Effekte exponentiell: Algorithmen sammeln Verhalten, verstärken bestehende Ansichten und schaffen Filterblasen. Soziale Medien manipulieren Emotionen subtil, wodurch vermeintliche Mehrheiten entstehen und politische Entscheidungen beeinflusst werden. Deepfakes, Bots und algorithmische Infiltration untergraben nach und nach objektive Wahrnehmung und kritisches Denken. Ereignisse wie die US-Präsidentschaftswahlen 2024, der 12-Tage-Twitterkrieg oder die RKI-Files zeigen, wie digitale Informationskontrolle politische Realität formen kann. Gesetzgebungen wie das ‚Demokratiefördergesetz“ oder elitäre Netzwerke wie das WEF verdeutlichen, dass Kontrolle über Narrative nach wie vor ein zentrales Machtinstrument ist.
-                    </p>
-
-                    <p class="reveal-item">
-                        Das Fazit ist paradox: Freiheit existiert nur, wenn wir die Illusion der freien Meinung erkennen. Wirkliche geistige Autonomie beginnt mit der Einsicht, wie stark Prägung, Biologie, Gruppendruck, Psychologie und digitale Mechanismen unser Denken lenken. Freiheit ist kein Zustand, sondern ein aktiver Widerstand gegen diese Einflüsse. Wer frei denken will, muss radikale Selbstreflexion üben, eigene Überzeugungen hinterfragen, die Rolle von Emotionen erkennen und die Manipulationsmechanismen in Politik, Medien und sozialen Strukturen verstehen. Nur wer die eigenen Filter und unbewussten Prägungen kennt, kann sich Schritt für Schritt von der massenhaften Beeinflussung lösen und ein eigenständiges Urteilsvermögen entwickeln.
+                        Wenn unsere Meinungen biologisch vorcodiert, neurochemisch gesteuert und technologisch konditioniert sind, bleibt die Frage: Was ist dann noch echt? Philosophen wie Nietzsche erkannten: Der freie Wille ist eine Illusion, aber eine notwendige. Die einzige verbleibende Freiheit liegt in der Selbsterkenntnis. Wahre geistige Autonomie erfordert kritische Distanz – das Erkennen der eigenen biologischen und psychischen Prägungen – sowie algorithmische Aufklärung.
                     </p>
                 </div>
             </main>
@@ -330,11 +287,7 @@
                     </div>
 
                     <div class="img-reveal-wrapper reveal-item">
-                        <img src="assets/images/blog/idpa.jpg" alt="Abstraktes Netz">
-                    </div>
-
-                    <div class="img-reveal-wrapper reveal-item">
-                        <img src="assets/images/blog/idpa_thumb.jpg" alt="IDPA Thumbnail">
+                        <img src="../assets/images/idpa.jpg" alt="Abstraktes Netz">
                     </div>
                 </div>
             </aside>

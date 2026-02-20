@@ -3,18 +3,18 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fotografie Portfolio | Khadija Okbi</title>
-    <meta name="description" content="Entdecke meine Fotografie - von Porträts über Event-Fotografie bis hin zu künstlerischen Projekten. Eine Sammlung meiner besten fotografischen Arbeiten.">
-    <meta property="og:title" content="Fotografie Portfolio | Khadija Okbi">
-    <meta property="og:description" content="Eine Sammlung meiner besten fotografischen Arbeiten - Porträts, Events und künstlerische Projekte.">
-    <meta property="og:image" content="https://khadijaokbi.com/assets/images/photography/gallery_shooting_1.jpg">
-    <meta property="og:url" content="https://khadijaokbi.com/work/fotografie.html">
-    <meta property="og:type" content="website">
+    <title>Fotografie | Khadija Okbi</title>
+    <meta name="description" content="Erfahre mehr über Khadija Okbi - Mediamatikerin, Creative Director und Full Stack Developer mit Leidenschaft für Design, Marketing und digitale Innovation.">
+    <meta property="og:title" content="Über Khadija Okbi | Creative Director & Developer">
+    <meta property="og:description" content="Mediamatikerin mit Leidenschaft für Design, Marketing und digitale Innovation.">
+    <meta property="og:image" content="https://khadijaokbi.com/assets/images/hero/cutout.png">
+    <meta property="og:url" content="https://khadijaokbi.com/about.html">
+    <meta property="og:type" content="profile">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Fotografie Portfolio | Khadija Okbi">
-    <meta name="twitter:description" content="Eine Sammlung meiner besten fotografischen Arbeiten - Porträts, Events und künstlerische Projekte.">
-    <meta name="twitter:image" content="https://khadijaokbi.com/assets/images/photography/gallery_shooting_1.jpg">
-    <link rel="canonical" href="https://khadijaokbi.com/work/fotografie.html">
+    <meta name="twitter:title" content="Über Khadija Okbi">
+    <meta name="twitter:description" content="Creative Director & Developer mit Leidenschaft für Design und Innovation.">
+    <meta name="twitter:image" content="https://khadijaokbi.com/assets/images/hero/cutout.png">
+    <link rel="canonical" href="https://khadijaokbi.com/about.html">
     <link rel="icon" type="image/png" href="../assets/images/branding/logo_white.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +33,7 @@
       gtag('js', new Date());
       gtag('config', 'G-B415ZJNKNW');
     </script>
-stylesheet assets/css/main.css
+
     <style>
       /* ============ normalize (minimal) ============ */
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -135,7 +135,7 @@ stylesheet assets/css/main.css
       /* ============ hero section ============ */
       .hero-section {
         position: relative;
-        min-height: 40vh;
+        min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -179,13 +179,50 @@ stylesheet assets/css/main.css
         color: var(--accent-burgundy);
       }
 
-      .hero-subtitle {
-        font-size: clamp(1rem, 2vw, 1.25rem);
+      .hero-instruction {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
         color: var(--text-primary-light);
-        opacity: 0.7;
-        margin-top: 1rem;
-        font-weight: 400;
-        letter-spacing: 0.05em;
+        opacity: 0.5;
+        font-family: var(--font-body);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        z-index: 10;
+        animation: fadeInOut 3s ease-in-out infinite;
+      }
+
+      @keyframes fadeInOut {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 0.8; }
+      }
+
+      /* ============ animated background overlay ============ */
+      .bg-animation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: radial-gradient(circle at 20% 50%, rgba(110, 59, 73, 0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(110, 59, 73, 0.02) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: 0;
+        animation: bg-float 15s ease-in-out infinite;
+      }
+
+      @keyframes bg-float {
+        0%, 100% {
+          background: radial-gradient(circle at 20% 50%, rgba(110, 59, 73, 0.03) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 80%, rgba(110, 59, 73, 0.02) 0%, transparent 50%);
+        }
+        50% {
+          background: radial-gradient(circle at 30% 60%, rgba(110, 59, 73, 0.05) 0%, transparent 50%),
+                      radial-gradient(circle at 70% 70%, rgba(110, 59, 73, 0.03) 0%, transparent 50%);
+        }
       }
 
       /* ============ content-wrap ============ */
@@ -212,7 +249,18 @@ stylesheet assets/css/main.css
         z-index: 1;
       }
 
-
+      /* ============ header (scroll down hero) - kept for scroll distance ============ */
+      header {
+        min-height: 100vh;
+        display: grid;
+        margin: 0 auto;
+        align-content: center;
+        max-width: calc(100% - (2 * var(--gutter)));
+        padding-left: 48px;
+        text-align: left;
+        position: relative;
+        z-index: 3;
+      }
       h1 {
         --font-level: 8;
         line-height: 0.6;
@@ -223,256 +271,16 @@ stylesheet assets/css/main.css
         --font-level: 4;
         font-family: var(--font-display);
         color: var(--accent-burgundy);
-        text-align: center;
       }
 
-      /* ============ breadcrumbs ============ */
-      .breadcrumbs {
-        padding: 1rem 0;
-        font-size: 0.875rem;
-        color: var(--text-secondary);
-        max-width: 1440px;
-        margin: 0 auto;
-        padding-inline: clamp(1rem, 5vw, 3rem);
-      }
-      .breadcrumbs a {
-        color: var(--text-primary-light);
-        text-decoration: none;
-        transition: color var(--speed-base);
-      }
-      .breadcrumbs a:hover { color: var(--accent-burgundy); }
-      .breadcrumb-separator { margin: 0 0.5rem; opacity: 0.6; }
-
-      /* ============ hero section content ============ */
-      .hero-content {
-        position: relative;
-        z-index: 10;
-        text-align: center;
-        max-width: 800px;
-        padding: 0 2rem;
-      }
-      .hero-subtitle {
-        font-size: clamp(1rem, 2vw, 1.25rem);
-        color: var(--text-primary-light);
-        opacity: 0.8;
-        margin-bottom: 1rem;
-        font-weight: 400;
-        letter-spacing: 0.05em;
-      }
-      .hero-description {
-        font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-        color: var(--text-primary-light);
-        line-height: 1.6;
-        margin-top: 2rem;
-        font-weight: 300;
-      }
-
-      .hero-instruction {
-        position: absolute;
-        bottom: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: var(--text-primary-light);
-        opacity: 0.6;
-        font-family: var(--font-body);
-        font-size: 0.75rem;
-        font-weight: 600;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        z-index: 10;
-        text-align: center;
-        animation: fadeInOut 3s ease-in-out infinite;
-      }
-
-      .hero-instruction::after {
-        content: '';
-        display: block;
-        width: 24px;
-        height: 24px;
-        margin: 0.75rem auto 0;
-        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="%23EBE1D1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l3 3 3-3"/><path d="M7 6l3 3 3-3"/></svg>') center no-repeat;
-        background-size: contain;
-        opacity: 0.7;
-        animation: bounce 2s ease-in-out infinite;
-      }
-
-      @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-        40% { transform: translateY(-6px); }
-        60% { transform: translateY(-3px); }
-      }
-
-      @keyframes fadeInOut {
-        0%, 100% { opacity: 0.3; }
-        50% { opacity: 0.8; }
-      }
-
-      /* ============ breadcrumbs ============ */
-      .breadcrumbs {
-        padding: 1rem 0;
-        font-size: 0.875rem;
-        color: var(--text-secondary);
-        max-width: 1440px;
-        margin: 0 auto;
-        padding-inline: clamp(1rem, 5vw, 3rem);
-      }
-      .breadcrumbs a {
-        color: var(--text-primary-light);
-        text-decoration: none;
-        transition: color var(--speed-base);
-      }
-      .breadcrumbs a:hover { color: var(--accent-burgundy); }
-      .breadcrumb-separator { margin: 0 0.5rem; opacity: 0.6; }
-
-      /* ============ hero section content ============ */
-      .hero-content {
-        position: relative;
-        z-index: 10;
-        text-align: center;
-        max-width: 800px;
-        padding: 0 2rem;
-      }
-      .hero-subtitle {
-        font-size: clamp(1rem, 2vw, 1.25rem);
-        color: var(--text-primary-light);
-        opacity: 0.8;
-        margin-bottom: 1rem;
-        font-weight: 400;
-        letter-spacing: 0.05em;
-      }
-      .hero-description {
-        font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-        color: var(--text-primary-light);
-        line-height: 1.6;
-        margin-top: 2rem;
-        font-weight: 300;
-      }
-
-      /* ============ cta section ============ */
-      .cta-section {
-        text-align: center;
-        padding: clamp(4rem, 8vw, 6rem) clamp(1rem, 5vw, 3rem);
-        max-width: 1440px;
-        margin: 0 auto;
-      }
-      .cta-section h2 {
-        --font-level: 4;
-        font-family: var(--font-display);
-        color: var(--accent-burgundy);
-        margin-bottom: 2rem;
-      }
-      .cta-buttons {
-        display: flex;
-        gap: 2rem;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        margin-top: 3rem;
-      }
-      .cta-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 1.25rem 3rem;
-        font-size: 1rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        text-decoration: none;
-        border: 2px solid var(--accent-burgundy);
-        background: var(--accent-burgundy);
-        color: var(--bg-secondary);
-        border-radius: 0;
-        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        position: relative;
-        overflow: hidden;
-      }
-      .cta-btn.secondary {
-        background: transparent;
-        color: var(--accent-burgundy);
-      }
-      .cta-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 25px rgba(110, 59, 73, 0.4);
-      }
-      .cta-btn.secondary:hover {
-        background: var(--accent-burgundy);
-        color: var(--bg-secondary);
-      }
-      .section-intro {
-        text-align: center;
-        max-width: 1440px;
-        margin: 0 auto;
-        padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 5vw, 3rem) clamp(2rem, 5vw, 4rem);
-      }
-      .section-intro h2 {
-        --font-level: 3;
-        font-family: var(--font-display);
-        color: var(--mauve);
-        margin-bottom: 1.5rem;
-      }
-      .section-intro p {
-        font-size: clamp(1rem, 2vw, 1.25rem);
-        color: var(--text-primary-light);
-        opacity: 0.9;
-        line-height: 1.7;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-      .cta-section {
-        text-align: center;
-        padding: clamp(4rem, 8vw, 6rem) clamp(1rem, 5vw, 3rem);
-        max-width: 1440px;
-        margin: 0 auto;
-      }
-      .cta-section h2 {
-        --font-level: 4;
-        font-family: var(--font-display);
-        color: var(--accent-burgundy);
-        margin-bottom: 2rem;
-      }
-      .cta-buttons {
-        display: flex;
-        gap: 2rem;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        margin-top: 3rem;
-      }
-      .cta-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 1.25rem 3rem;
-        font-size: 1rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        text-decoration: none;
-        border: 2px solid var(--accent-burgundy);
-        background: var(--accent-burgundy);
-        color: var(--bg-secondary);
-        border-radius: 0;
-        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        position: relative;
-        overflow: hidden;
-      }
-      .cta-btn.secondary {
-        background: transparent;
-        color: var(--accent-burgundy);
-      }
-      .cta-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 25px rgba(110, 59, 73, 0.4);
-      }
-      .cta-btn.secondary:hover {
-        background: var(--accent-burgundy);
-        color: var(--bg-secondary);
-      }
+      /* ============ sections ============ */
+      main, section { max-width: 100%; }
+      section { min-height: 100vh; }
+      main section:last-of-type { display: grid; place-items: center; }
 
       /* ============ scroll animation section ============ */
       [data-enhanced='true'] main section:first-of-type {
-        min-height: 140vh;
+        min-height: 240vh;
       }
 
       /* ============ content (sticky) ============ */
@@ -535,28 +343,15 @@ stylesheet assets/css/main.css
         border-radius: 1rem;
       }
 
-      /* ============ image hover effects (optimized, only layer images) ============ */
+      /* ============ image hover effects (only layer images, NOT scaler) ============ */
       .grid .layer img {
-        transition: transform var(--speed-slow) cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                    filter var(--speed-slow) ease,
-                    box-shadow var(--speed-slow) ease;
+        transition: all var(--speed-slow) ease;
         cursor: pointer;
-        will-change: transform;
       }
-      
       .grid .layer img:hover {
         transform: scale(1.05) translateY(-8px);
         filter: brightness(1.2);
         box-shadow: 0 20px 40px rgba(110, 59, 73, 0.3);
-      }
-
-      /* Disable hover effects on touch devices to prevent glitches */
-      @media (hover: none) {
-        .grid .layer img:hover {
-          transform: none;
-          filter: none;
-          box-shadow: none;
-        }
       }
 
       /* ============ scaler ============ */
@@ -629,17 +424,15 @@ stylesheet assets/css/main.css
         inset: 0 0 auto 0;
         z-index: 1000;
         background: transparent;
-        transition: all var(--speed-base) var(--easing-decelerate);
+        transition: all var(--speed-base);
         backdrop-filter: blur(0px);
       }
-      
       .site-header.is-solid {
         background: rgba(49, 74, 81, 0.95);
         border-bottom: 1px solid var(--border-light);
         backdrop-filter: blur(10px);
         box-shadow: var(--shadow-sm);
       }
-      
       .nav-bar {
         padding: 10px 0;
         height: 72px;
@@ -650,39 +443,26 @@ stylesheet assets/css/main.css
         margin: 0 auto;
         padding-inline: clamp(1rem, 5vw, 3rem);
       }
-      
       .logo {
         position: relative;
         width: 38px;
         height: 38px;
       }
-      
       .logo img {
         position: absolute;
         top: 0;
         left: 0;
-        transition: opacity var(--speed-base);
+        transition: opacity 0.25s;
         max-width: 100%;
       }
-      
-      .logo .logo-onscroll {
-        opacity: 0;
-      }
-      
-      .site-header.is-solid .logo .logo-onscroll {
-        opacity: 1;
-      }
-      
-      .site-header.is-solid .logo img:not(.logo-onscroll) {
-        opacity: 0;
-      }
-      
+      .logo .logo-onscroll { opacity: 0; }
+      .site-header.is-solid .logo .logo-onscroll { opacity: 1; }
+      .site-header.is-solid .logo img:not(.logo-onscroll) { opacity: 0; }
       .site-nav {
         display: flex;
         gap: 2rem;
         align-items: center;
       }
-      
       .nav-link {
         font-size: 0.75rem;
         font-weight: 600;
@@ -694,7 +474,6 @@ stylesheet assets/css/main.css
         padding-bottom: var(--space-1);
         transition: all var(--speed-base);
       }
-      
       .nav-link::after {
         content: '';
         position: absolute;
@@ -706,14 +485,8 @@ stylesheet assets/css/main.css
         transform: translateX(-50%);
         transition: width var(--speed-base);
       }
-      
-      .nav-link:hover {
-        color: var(--accent-burgundy);
-      }
-      
-      .nav-link:hover::after {
-        width: 100%;
-      }
+      .nav-link:hover { color: var(--accent-burgundy); }
+      .nav-link:hover::after { width: 100%; }
 
       /* ============ footer ============ */
       .site-footer {
@@ -847,6 +620,8 @@ stylesheet assets/css/main.css
   </head>
 
   <body>
+    <!-- Background Animation Layer -->
+    <div class="bg-animation"></div>
 
     <!-- Navbar -->
     <nav class="site-header" id="top" aria-label="Seitennavigation">
@@ -864,45 +639,59 @@ stylesheet assets/css/main.css
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <div class="hero-section">
-      <div class="hero-title">
-        <h1 class="fluid">Fotografie</h1>
+    <!-- HERO SECTION WITH CANVAS -->
+    <section class="hero-section">
+      <div class="hero-canvas-container">
+        <canvas id="plane-canvas"></canvas>
+        <canvas id="main-canvas"></canvas>
       </div>
-      <div class="hero-instruction">Scroll um die Galerie zu entdecken</div>
-    </div>
+      <div class="hero-title">
+        <h1 class="fluid">scroll<br>down.</h1>
+      </div>
+      <div class="hero-instruction">Hold mouse button</div>
+    </section>
 
+    <!-- Content Wrap -->
     <div class="content-wrap">
-    <canvas id="main-canvas"></canvas>
+      <header>
+        <h1 class="fluid">scroll<br>down.</h1>
+      </header>
       <main>
         <section>
           <div class="content">
             <div class="grid">
               <div class="layer">
-                <div><img src="../assets/images/photography/gallery_shooting_2.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/gallery_corona_1.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/gallery_ballet_1.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/gallery_projector_3.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/gallery_corona_8.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/DSC00922.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/Lia 1.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/DSC00928.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/DSC00936.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/DSC00938.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/DSC00943.jpg" alt="Fotografie"></div>
               </div>
               <div class="layer">
-                <div><img src="../assets/images/photography/gallery_shooting_4.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/gallery_corona_3.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/gallery_ballet_2.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/gallery_projector_1.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/gallery_shooting_3.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/gallery_corona_6.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/Lia 2.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/DSC00949.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/Ballet 1.png" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/Corona(5 von 10).JPG" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/Corona(6 von 10).jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/Corona(7 von 10).jpg" alt="Fotografie"></div>
               </div>
               <div class="layer">
-                <div><img src="../assets/images/photography/gallery_projector_2.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/gallery_shooting_5.jpg" alt="Fotografie"></div>
-                <div><img src="../assets/images/photography/gallery_corona_2.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/Corona(10 von 10) 2.JPG" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/Lia 1.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/Lia 2.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/Ballet 2.png" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/slider1.jpg" alt="Fotografie"></div>
+                <div><img src="../assets/images/photography/foto1.jpg" alt="Fotografie"></div>
               </div>
               <div class="scaler">
-                <img src="../assets/images/photography/gallery_shooting_1.jpg" alt="Fotografie">
+                <img src="../assets/images/photography/scaler.jpg" alt="Fotografie">
               </div>
             </div>
           </div>
+        </section>
+        <section>
+          <h2 class="fluid">the end.</h2>
         </section>
       </main>
     </div>
@@ -1052,67 +841,43 @@ stylesheet assets/css/main.css
         }
 
         initEvents() {
-          let resizeTimeout;
           window.addEventListener('resize', (e) => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-              this.getDimensions();
-              this.resizeHandler(e);
-            }, 100);
+            this.getDimensions();
+            this.resizeHandler(e);
           });
-
-          // Throttled mouse events for better performance
-          let mouseMoveTimeout;
           document.addEventListener('mousemove', (e) => {
-            if (mouseMoveTimeout) return;
-            mouseMoveTimeout = setTimeout(() => {
-              mouse.x = e.clientX;
-              mouse.y = e.clientY;
-              mouse.coords = {
-                x: ((mouse.x / doc.width) - 0.5) / 0.5,
-                y: (((mouse.y / doc.height) - 0.5) / 0.5) * -1
-              };
-              mouseMoveTimeout = null;
-            }, 16); // ~60fps
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+            mouse.coords = {
+              x: ((mouse.x / doc.width) - 0.5) / 0.5,
+              y: (((mouse.y / doc.height) - 0.5) / 0.5) * -1
+            };
           });
-
           document.addEventListener('mousedown', (e) => {
             mouse.down = { state: true, x: e.clientX, y: e.clientY };
           });
-          
           document.addEventListener('mouseup', (e) => {
             mouse.down.state = false;
           });
-
-          // Optimized touch events
-          let touchMoveTimeout;
+          // Touch support for mobile
           document.addEventListener('touchstart', (e) => {
-            e.preventDefault();
             const t = e.touches[0];
             mouse.x = t.clientX;
             mouse.y = t.clientY;
             mouse.down = { state: true, x: t.clientX, y: t.clientY };
-          }, { passive: false });
-
+          });
           document.addEventListener('touchmove', (e) => {
-            if (touchMoveTimeout) return;
-            touchMoveTimeout = setTimeout(() => {
-              const t = e.touches[0];
-              if (!t) return;
-              mouse.x = t.clientX;
-              mouse.y = t.clientY;
-              mouse.coords = {
-                x: ((mouse.x / doc.width) - 0.5) / 0.5,
-                y: (((mouse.y / doc.height) - 0.5) / 0.5) * -1
-              };
-              touchMoveTimeout = null;
-            }, 16);
-          }, { passive: true });
-
+            const t = e.touches[0];
+            mouse.x = t.clientX;
+            mouse.y = t.clientY;
+            mouse.coords = {
+              x: ((mouse.x / doc.width) - 0.5) / 0.5,
+              y: (((mouse.y / doc.height) - 0.5) / 0.5) * -1
+            };
+          });
           document.addEventListener('touchend', () => {
             mouse.down.state = false;
           });
-
           this.resizeHandler();
         }
 
@@ -1129,33 +894,11 @@ stylesheet assets/css/main.css
 
         initCheckingInterval() {
           const state = this.state;
-          
-          // Use Page Visibility API for better performance
-          document.addEventListener('visibilitychange', () => {
-            state.tabIsActive = !document.hidden;
-          });
-
-          // Fallback interval check
           setInterval(() => {
-            if (document.hidden !== undefined) return; // Use visibility API if available
             state.tabIsActive = state.time <= state.lt ? false : true;
             state.lt = state.time;
             state.needRedraw = !state.tabIsActive;
-          }, 200); // Reduced frequency
-        }
-
-        // Add method to pause/resume animations
-        pauseAnimations() {
-          if (this.raf) {
-            cancelAnimationFrame(this.raf);
-            this.raf = null;
-          }
-        }
-
-        resumeAnimations() {
-          if (!this.raf && this.state.tabIsActive) {
-            this.loop();
-          }
+          }, 100);
         }
 
         loop() {
@@ -1163,23 +906,11 @@ stylesheet assets/css/main.css
             const ctx = context.main;
             const state = this.state;
             state.time = Date.now();
-            
-            // Only animate if tab is active and visible
-            if (!state.tabIsActive) {
-              this.raf = requestAnimationFrame(loop);
-              return;
-            }
-
             ctx.clearRect(0, 0, doc.width, doc.height);
             this.updateState();
             this.draw();
-            
             if (state.needRedraw) state.needRedraw = false;
-            
-            // Throttle animation frame rate for better performance
-            setTimeout(() => {
-              this.raf = requestAnimationFrame(loop);
-            }, 16); // ~60fps
+            this.raf = requestAnimationFrame(loop);
           };
           loop();
         }
@@ -1189,7 +920,7 @@ stylesheet assets/css/main.css
           const now = performance.now();
           state.delta = now - state.dlt;
           state.dlt = now;
-          const dt = Math.min(state.delta, 16); // Cap delta for stability
+          const dt = state.delta;
 
           if (mouse.down.state) {
             state.mousePower += 0.001 * dt;
@@ -1198,6 +929,8 @@ stylesheet assets/css/main.css
             state.mousePower -= 0.001 * dt;
             if (state.mousePower <= 0) state.mousePower = 0;
           }
+
+          const mp = tools.cellEasing(state.mousePower, 0, 1, 1);
 
           if (state.planeProgress >= 0.2) {
             state.dotsProgress += 0.00035 * dt;
@@ -1211,24 +944,12 @@ stylesheet assets/css/main.css
             state.fadeInProgress += 0.00015 * dt;
             if (state.fadeInProgress >= 1) state.fadeInProgress = 1;
 
-            const mp = tools.cellEasing(state.mousePower, 0, 1, 1);
             state.stepOffset += (0.002 * dt) + (mp * (0.0035 * dt));
             state.textOffset += (0.00005 * dt) + (mp * (0.002 * dt));
             state.markupOffset += (0.00015 * dt) + (mp * (0.00035 * dt));
 
             state.textProgress += 0.0005 * dt;
             if (state.textProgress >= 1) state.textProgress = 1;
-          }
-
-          // Cleanup arrays to prevent memory leaks
-          if (state.animNumbers.length > 50) {
-            state.animNumbers = state.animNumbers.slice(-25);
-          }
-          if (state.animLines.length > 30) {
-            state.animLines = state.animLines.slice(-15);
-          }
-          if (state.glitches.length > 20) {
-            state.glitches = state.glitches.slice(-10);
           }
         }
 
@@ -1553,138 +1274,79 @@ stylesheet assets/css/main.css
         }
       }
 
-      // ============ Optimized initialization ============
-      let canvasApp = null;
-      let isInitialized = false;
+      // Initialize canvas app only when page loads
+      window.addEventListener('load', () => {
+        new CanvasApp();
+      });
 
-      function initPage() {
-        if (isInitialized) return;
-        isInitialized = true;
+      // ============ Sticky navbar ============
+      const header = document.querySelector('.site-header');
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('is-solid', window.scrollY > 100);
+      });
 
-        // Initialize canvas only in hero section
-        if (document.querySelector('.hero-section')) {
-          canvasApp = new CanvasApp();
-        }
+      // ============ GSAP fallback for browsers without scroll-driven animations (Safari, Firefox) ============
+      const hasScrollSupport = CSS.supports(
+        '(animation-timeline: view()) and (animation-range: 0 100%)'
+      );
 
-        // Sticky navbar with throttling
-        const header = document.querySelector('.site-header');
-        let ticking = false;
-        
-        function updateNavbar() {
-          header.classList.toggle('is-solid', window.scrollY > 100);
-          ticking = false;
-        }
-        
-        window.addEventListener('scroll', () => {
-          if (!ticking) {
-            requestAnimationFrame(updateNavbar);
-            ticking = true;
-          }
-        }, { passive: true });
-
-        // ============ Optimized GSAP animations ============
+      if (!hasScrollSupport) {
         gsap.registerPlugin(ScrollTrigger);
 
-        // Check for scroll-driven animation support
-        const hasScrollSupport = CSS.supports(
-          '(animation-timeline: view()) and (animation-range: 0 100%)'
-        );
+        window.addEventListener('load', () => {
+          requestAnimationFrame(() => {
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: 'main section:first-of-type',
+                start: 'top -10%',
+                end: 'bottom 80%',
+                scrub: true,
+              },
+            })
+            .from('.scaler img', { height: window.innerHeight - 32, ease: 'power1.inOut' }, 0)
+            .from('.scaler img', { width: window.innerWidth - 32, ease: 'power2.inOut' }, 0);
 
-        // Only use GSAP if browser doesn't support scroll-driven animations
-        if (!hasScrollSupport) {
-          // Scaler animation
-          gsap.timeline({
-            scrollTrigger: {
-              trigger: 'main section:first-of-type',
-              start: 'top top',
-              end: 'bottom 60%',
-              scrub: 1,
-              refreshPriority: -1,
-            },
-          })
-          .from('.scaler img', { 
-            height: window.innerHeight - 32, 
-            width: window.innerWidth - 32, 
-            ease: 'power2.inOut' 
-          }, 0);
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: 'main section:first-of-type',
+                start: 'top -40%',
+                end: 'bottom bottom',
+                scrub: true,
+              },
+            })
+            .from('.layer:nth-of-type(1)', { opacity: 0, ease: 'sine.out' }, 0)
+            .from('.layer:nth-of-type(1)', { scale: 0, ease: 'power1.inOut' }, 0)
+            .from('.layer:nth-of-type(2)', { opacity: 0, ease: 'sine.out' }, 0)
+            .from('.layer:nth-of-type(2)', { scale: 0, ease: 'power3.inOut' }, 0)
+            .from('.layer:nth-of-type(3)', { opacity: 0, ease: 'sine.out' }, 0)
+            .from('.layer:nth-of-type(3)', { scale: 0, ease: 'power4.inOut' }, 0);
 
-          // Layer animations with stagger
-          gsap.timeline({
-            scrollTrigger: {
-              trigger: 'main section:first-of-type',
-              start: 'top top',
-              end: 'bottom 80%',
-              scrub: 1,
-              refreshPriority: -1,
-            },
-          })
-          .from('.layer', { 
-            opacity: 0, 
-            scale: 0, 
-            ease: 'back.out(1.7)',
-            stagger: 0.1
-          }, 0);
-        }
-
-        // Enhanced hover effects for touch devices
-        const images = document.querySelectorAll('.grid .layer img');
-        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-        
-        images.forEach((img) => {
-          if (!isTouchDevice) {
-            // Desktop hover with CSS is sufficient, just ensure no GSAP conflicts
-            img.addEventListener('mouseenter', function() {
-              // Kill any existing GSAP animations to prevent conflicts
-              gsap.killTweensOf(this);
-            });
-          } else {
-            // Touch devices - add tap effect
-            img.addEventListener('touchstart', function() {
-              this.style.transform = 'scale(1.02)';
-            });
-            img.addEventListener('touchend', function() {
-              this.style.transform = '';
-            });
-          }
+            ScrollTrigger.refresh();
+          });
         });
+      }
 
-        // Sticky Header (wie in index.html)
-        const header = document.querySelector('.site-header');
-        const updateHeader = () => {
-          header?.classList.toggle('is-solid', window.scrollY > 100);
-        };
-
-        window.addEventListener('scroll', updateHeader, { passive: true });
-        updateHeader();
-
-        // Pause animations when page is not visible
-        document.addEventListener('visibilitychange', () => {
-          if (canvasApp) {
-            if (document.hidden) {
-              canvasApp.pauseAnimations();
-            } else {
-              canvasApp.resumeAnimations();
-            }
-          }
+      // ============ Extra hover animations via GSAP ============
+      window.addEventListener('load', () => {
+        gsap.utils.toArray('.grid .layer img').forEach((img) => {
+          img.addEventListener('mouseenter', function() {
+            gsap.to(this, {
+              duration: 0.4,
+              scale: 1.05,
+              y: -8,
+              overwrite: 'auto'
+            });
+          });
+          img.addEventListener('mouseleave', function() {
+            gsap.to(this, {
+              duration: 0.4,
+              scale: 1,
+              y: 0,
+              overwrite: 'auto'
+            });
+          });
         });
-
-        // Cleanup on page unload
-        window.addEventListener('beforeunload', cleanup);
-      }
-
-      function cleanup() {
-        if (canvasApp && canvasApp.raf) {
-          cancelAnimationFrame(canvasApp.raf);
-        }
-        ScrollTrigger.killAll();
-      }
-
-      // Initialize when DOM is ready
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initPage);
-      } else {
-        initPage();
-      }
+      });
     </script>
   </body>
 </html>
