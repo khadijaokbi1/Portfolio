@@ -339,6 +339,24 @@
     pointer-events: none;
     z-index: 0;
 }
+/* Wave transition to Films section (Dark = #000) */
+.section-strategy::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 20vh;
+    background-color: var(--bg-dark);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    z-index: 10;
+    pointer-events: none;
+}
 .section-strategy > .container { position: relative; z-index: 1; }
 
 /* ─── Header ─── */
@@ -666,6 +684,24 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(9px); }
 }
+/* Wave transition to Intro section (#F5F5F5) */
+.sbw-hero-section::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 18vh;
+    background-color: #F5F5F5;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    z-index: 4;
+    pointer-events: none;
+}
 
 /* ═══════════════════════════════════════
    SBW INTRO — Titel unter Hero
@@ -673,6 +709,25 @@
 .sbw-intro {
     background: #F5F5F5;
     padding: clamp(5rem, 14vh, 10rem) 0 clamp(4rem, 10vh, 8rem);
+    position: relative;
+}
+/* Wave transition to Showcase section (#56686A) */
+.sbw-intro::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 18vh;
+    background-color: #56686A;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    z-index: 4;
+    pointer-events: none;
 }
 .sbw-intro-badge {
     font-family: 'Outfit', sans-serif;
@@ -773,6 +828,25 @@
         radial-gradient(ellipse 50% 70% at 0% 100%, rgba(0,0,0,0.15) 0%, transparent 60%);
     pointer-events: none;
 }
+/* Wave transition to Gallery section (same color) - subtle blend */
+.section-showcase::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 18vh;
+    background-color: #56686A;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0.3;
+}
 /* Giant editorial number */
 .sc-bg-num {
     position: absolute;
@@ -797,6 +871,9 @@
     position: relative;
     z-index: 2;
     width: 100%;
+    max-width: 85vw;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: clamp(3rem, 6vh, 5rem);
 }
 @media (max-width: 1024px) {
@@ -1181,7 +1258,7 @@
    GALLERY SECTION — Projekte & Arbeiten
 ═══════════════════════════════════════ */
 .section-gallery {
-    background: #080304;
+    background: #56686A;
     padding: clamp(8rem, 18vh, 14rem) 0;
     position: relative;
     overflow: hidden;
@@ -1191,8 +1268,26 @@
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(110, 59, 73, 0.1) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 80% at 100% 100%, rgba(0,0,0,0.3) 0%, transparent 60%);
+        radial-gradient(ellipse 70% 60% at 100% 0%, rgba(0,0,0,0.2) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 70% at 0% 100%, rgba(0,0,0,0.15) 0%, transparent 60%);
+    pointer-events: none;
+}
+/* Wave transition to next section (Strategy = #080304) */
+.section-gallery::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 20vh;
+    background-color: #080304;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    z-index: 10;
     pointer-events: none;
 }
 
@@ -1200,6 +1295,9 @@
     margin-bottom: clamp(4rem, 10vh, 8rem);
     position: relative;
     z-index: 2;
+    max-width: 85vw;
+    margin-left: auto;
+    margin-right: auto;
 }
 .gallery-eyebrow {
     display: inline-block;
@@ -1241,6 +1339,9 @@
     margin-bottom: clamp(6rem, 14vh, 10rem);
     position: relative;
     z-index: 2;
+    max-width: 85vw;
+    margin-left: auto;
+    margin-right: auto;
 }
 .featured-image-wrapper {
     position: relative;
@@ -1319,10 +1420,20 @@
     gap: clamp(1.2rem, 3vw, 2rem);
     position: relative;
     z-index: 2;
+    max-width: 85vw;
+    margin-left: auto;
+    margin-right: auto;
 }
 .gallery-item {
     position: relative;
     cursor: pointer;
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+}
+.gallery-item.revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: all 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .gallery-thumb {
     position: relative;
@@ -1336,9 +1447,24 @@
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: transform;
 }
+/* Awwwards-style 3D tilt + magnetic effect */
 .gallery-item:hover .gallery-thumb img {
     transform: scale(1.08);
+}
+.gallery-item:hover {
+    z-index: 10;
+}
+@media (hover: hover) {
+    .gallery-thumb {
+        transform-style: preserve-3d;
+        perspective: 1000px;
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .gallery-item.active-hover .gallery-thumb {
+        transform: translateY(-8px);
+    }
 }
 .gallery-overlay {
     position: absolute;
@@ -1553,7 +1679,7 @@
         <!-- Featured Image Area -->
         <div class="gallery-featured">
             <div class="featured-image-wrapper">
-                <img id="featured-image" src="assets/images/sbw/showcase_sbw_filmplakat.jpg" alt="Featured Project">
+                <img id="featured-image" src="../assets/images/sbw/showcase_sbw_filmplakat.jpg" alt="Featured Project">
                 <div class="featured-overlay"></div>
             </div>
             <div class="featured-info">
@@ -1584,57 +1710,57 @@
 
         <!-- Thumbnail Grid -->
         <div class="gallery-grid">
-            <div class="gallery-item" data-image="assets/images/sbw/showcase_sbw_filmplakat.jpg" data-modul="Video Production" data-kunde="SBW Neuen Medien" data-fach="Filmgestaltung" data-jahr="2023" data-title="Filmplakat" data-desc="Ein visuell starkes Filmplakat, das die Essenz des Projekts einfängt.">
+            <div class="gallery-item" data-image="../assets/images/sbw/showcase_sbw_filmplakat.jpg" data-modul="Video Production" data-kunde="SBW Neuen Medien" data-fach="Filmgestaltung" data-jahr="2023" data-title="Filmplakat" data-desc="Ein visuell starkes Filmplakat, das die Essenz des Projekts einfängt.">
                 <div class="gallery-thumb">
-                    <img src="assets/images/sbw/showcase_sbw_filmplakat.jpg" alt="Filmplakat">
+                    <img src="../assets/images/sbw/showcase_sbw_filmplakat.jpg" alt="Filmplakat">
                     <div class="gallery-overlay"></div>
                 </div>
                 <div class="gallery-label">Filmplakat</div>
             </div>
 
-            <div class="gallery-item" data-image="assets/images/sbw/showcase_sbw_geister.png" data-modul="Motion Graphics" data-kunde="Eigeninitiative" data-fach="Animation" data-jahr="2023" data-title="Geister" data-desc="Experimentelle Motion-Grafik Exploration mit surrealen visuellen Elementen.">
+            <div class="gallery-item" data-image="../assets/images/sbw/showcase_sbw_geister.png" data-modul="Motion Graphics" data-kunde="Eigeninitiative" data-fach="Animation" data-jahr="2023" data-title="Geister" data-desc="Experimentelle Motion-Grafik Exploration mit surrealen visuellen Elementen.">
                 <div class="gallery-thumb">
-                    <img src="assets/images/sbw/showcase_sbw_geister.png" alt="Geister">
+                    <img src="../assets/images/sbw/showcase_sbw_geister.png" alt="Geister">
                     <div class="gallery-overlay"></div>
                 </div>
                 <div class="gallery-label">Geister</div>
             </div>
 
-            <div class="gallery-item" data-image="assets/images/sbw/showcase_sbw_jumpin.jpg" data-modul="Event Design" data-kunde="SBW Neuen Medien" data-fach="Grafikdesign" data-jahr="2023" data-title="Jumpin Event" data-desc="Corporate Design und visuelle Kommunikation für ein Live-Event.">
+            <div class="gallery-item" data-image="../assets/images/sbw/showcase_sbw_jumpin.jpg" data-modul="Event Design" data-kunde="SBW Neuen Medien" data-fach="Grafikdesign" data-jahr="2023" data-title="Jumpin Event" data-desc="Corporate Design und visuelle Kommunikation für ein Live-Event.">
                 <div class="gallery-thumb">
-                    <img src="assets/images/sbw/showcase_sbw_jumpin.jpg" alt="Jumpin Event">
+                    <img src="../assets/images/sbw/showcase_sbw_jumpin.jpg" alt="Jumpin Event">
                     <div class="gallery-overlay"></div>
                 </div>
                 <div class="gallery-label">Jumpin</div>
             </div>
 
-            <div class="gallery-item" data-image="assets/images/sbw/showcase_sbw_parasit.jpg" data-modul="Film Regie" data-kunde="Schulprojekt" data-fach="Direktregie" data-jahr="2023" data-title="Parasit" data-desc="Ein cineastisches Kurzfilm-Projekt mit professioneller Produktion.">
+            <div class="gallery-item" data-image="../assets/images/sbw/showcase_sbw_parasit.jpg" data-modul="Film Regie" data-kunde="Schulprojekt" data-fach="Direktregie" data-jahr="2023" data-title="Parasit" data-desc="Ein cineastisches Kurzfilm-Projekt mit professioneller Produktion.">
                 <div class="gallery-thumb">
-                    <img src="assets/images/sbw/showcase_sbw_parasit.jpg" alt="Parasit">
+                    <img src="../assets/images/sbw/showcase_sbw_parasit.jpg" alt="Parasit">
                     <div class="gallery-overlay"></div>
                 </div>
                 <div class="gallery-label">Parasit</div>
             </div>
 
-            <div class="gallery-item" data-image="assets/images/sbw/showcase_sbw_petrichor.JPG" data-modul="Film" data-kunde="Eigeninitiative" data-fach="Cinematography" data-jahr="2024" data-title="Petrichor" data-desc="Eine visuell poetische Erkundung von Natur und Fotografie.">
+            <div class="gallery-item" data-image="../assets/images/sbw/showcase_sbw_petrichor.JPG" data-modul="Film" data-kunde="Eigeninitiative" data-fach="Cinematography" data-jahr="2024" data-title="Petrichor" data-desc="Eine visuell poetische Erkundung von Natur und Fotografie.">
                 <div class="gallery-thumb">
-                    <img src="assets/images/sbw/showcase_sbw_petrichor.JPG" alt="Petrichor">
+                    <img src="../assets/images/sbw/showcase_sbw_petrichor.JPG" alt="Petrichor">
                     <div class="gallery-overlay"></div>
                 </div>
                 <div class="gallery-label">Petrichor</div>
             </div>
 
-            <div class="gallery-item" data-image="assets/images/sbw/showcase_sbw_trailerpark.jpg" data-modul="Video Series" data-kunde="YouTube" data-fach="Content Production" data-jahr="2023" data-title="Trailer Park" data-desc="Eine Sammlung von Trailer-Designs und Motion-Sequenzen.">
+            <div class="gallery-item" data-image="../assets/images/sbw/showcase_sbw_trailerpark.jpg" data-modul="Video Series" data-kunde="YouTube" data-fach="Content Production" data-jahr="2023" data-title="Trailer Park" data-desc="Eine Sammlung von Trailer-Designs und Motion-Sequenzen.">
                 <div class="gallery-thumb">
-                    <img src="assets/images/sbw/showcase_sbw_trailerpark.jpg" alt="Trailer Park">
+                    <img src="../assets/images/sbw/showcase_sbw_trailerpark.jpg" alt="Trailer Park">
                     <div class="gallery-overlay"></div>
                 </div>
                 <div class="gallery-label">Trailer Park</div>
             </div>
 
-            <div class="gallery-item" data-image="assets/images/sbw/showcase_sbw_wehelp.png" data-modul="Web Design" data-kunde="NGO Wehelp" data-fach="UI/UX" data-jahr="2023" data-title="Wehelp Platform" data-desc="Eine digitale Plattform für globale Netzwerk-Zusammenarbeit.">
+            <div class="gallery-item" data-image="../assets/images/sbw/showcase_sbw_wehelp.png" data-modul="Web Design" data-kunde="NGO Wehelp" data-fach="UI/UX" data-jahr="2023" data-title="Wehelp Platform" data-desc="Eine digitale Plattform für globale Netzwerk-Zusammenarbeit.">
                 <div class="gallery-thumb">
-                    <img src="assets/images/sbw/showcase_sbw_wehelp.png" alt="Wehelp">
+                    <img src="../assets/images/sbw/showcase_sbw_wehelp.png" alt="Wehelp">
                     <div class="gallery-overlay"></div>
                 </div>
                 <div class="gallery-label">Wehelp</div>
@@ -2226,12 +2352,39 @@ document.addEventListener('DOMContentLoaded', () => {
             item.addEventListener('click', () => {
                 updateFeatured(item);
                 // Visual feedback
-                galleryItems.forEach(el => el.style.opacity = '0.5');
+                galleryItems.forEach(el => {
+                    el.style.opacity = '0.5';
+                });
                 item.style.opacity = '1';
             });
+
+            // Awwwards-style magnetic hover effect
+            const thumb = item.querySelector('.gallery-thumb');
+            if (thumb) {
+                item.addEventListener('mouseenter', () => {
+                    item.classList.add('active-hover');
+                });
+                item.addEventListener('mouseleave', () => {
+                    item.classList.remove('active-hover');
+                    gsap.to(thumb, { x: 0, y: 0, duration: 0.4, ease: 'power2.out' });
+                });
+                
+                item.addEventListener('mousemove', (e) => {
+                    const rect = item.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    
+                    gsap.to(thumb, {
+                        x: x * 0.1,
+                        y: y * 0.1,
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                });
+            }
         });
 
-        // On Scroll Reveal Animation für Gallery Items
+        // On Scroll Reveal Animation für Gallery Items — Gestaffelt
         if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             gsap.registerPlugin(ScrollTrigger);
 
@@ -2250,27 +2403,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             );
 
-            // Gallery Grid Items - Staggered reveal
-            galleryItems.forEach((item, index) => {
-                gsap.fromTo(item,
-                    { 
-                        opacity: 0,
-                        y: 40,
-                        scale: 0.95
-                    },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        scale: 1,
-                        duration: 0.65,
-                        ease: 'power3.out',
-                        scrollTrigger: {
-                            trigger: '.gallery-grid',
-                            start: 'top 85%'
-                        },
-                        delay: index * 0.08
-                    }
-                );
+            // Gallery Grid Items - Staggered reveal ONE BY ONE (Awwwards style)
+            ScrollTrigger.create({
+                trigger: '.gallery-grid',
+                start: 'top 85%',
+                onEnter: () => {
+                    galleryItems.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.classList.add('revealed');
+                        }, index * 120); // 120ms delay zwischen jedem Item
+                    });
+                },
+                once: true
             });
 
             // Gallery header fade-up
