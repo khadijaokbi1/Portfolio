@@ -142,6 +142,24 @@
         overflow: hidden;
       }
 
+      .hero-section::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 18vh;
+        background-color: var(--bg-dark);
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320,240,320,120,320,60,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+        mask-size: 100% 100%;
+        -webkit-mask-size: 100% 100%;
+        mask-repeat: no-repeat;
+        -webkit-mask-repeat: no-repeat;
+        z-index: 4;
+        pointer-events: none;
+      }
+
       .hero-canvas-container {
         position: absolute;
         top: 0;
@@ -458,7 +476,8 @@
       .logo .logo-onscroll { opacity: 0; }
       .site-header.is-solid .logo .logo-onscroll { opacity: 1; }
       .site-header.is-solid .logo img:not(.logo-onscroll) { opacity: 0; }
-      .site-nav {
+      .site-nav,
+      .nav {
         display: flex;
         gap: 2rem;
         align-items: center;
@@ -624,20 +643,20 @@
     <div class="bg-animation"></div>
 
     <!-- Navbar -->
-    <nav class="site-header" id="top" aria-label="Seitennavigation">
+    <header class="site-header" id="top" aria-label="Seitennavigation">
       <div class="nav-bar">
         <a href="../index.html" class="logo">
           <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi Logo" width="40">
           <img src="../assets/images/branding/logo_black.png" alt="Khadija Okbi Logo" width="40" class="logo-onscroll">
         </a>
-        <div class="site-nav" aria-label="Hauptnavigation">
+        <nav class="nav site-nav" aria-label="Hauptnavigation">
           <a href="../index.html#hero" class="nav-link">Home</a>
           <a href="../index.html#projects" class="nav-link">Work</a>
           <a href="../about.html" class="nav-link">About</a>
           <a href="../index.html#blog" class="nav-link">Blog</a>
-        </div>
+        </nav>
       </div>
-    </nav>
+    </header>
 
     <!-- HERO SECTION WITH CANVAS -->
     <section class="hero-section">

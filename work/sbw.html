@@ -1290,6 +1290,24 @@
     z-index: 10;
     pointer-events: none;
 }
+/* Wave transition to Strategy section (#6E3B49) */
+.section-gallery::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 22vh;
+    background-color: #6E3B49;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    z-index: 10;
+    pointer-events: none;
+}
 
 .gallery-header {
     margin-bottom: clamp(4rem, 10vh, 8rem);
@@ -1413,20 +1431,42 @@
     color: rgba(235, 225, 209, 0.5);
 }
 
-/* Thumbnail Grid */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(clamp(120px, 22vw, 180px), 1fr));
-    gap: clamp(1.2rem, 3vw, 2rem);
+/* Gallery Carousel - 5 Items Visible */
+.gallery-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    margin-top: clamp(2.5rem, 5vh, 4rem);
     position: relative;
+    z-index: 3;
     z-index: 2;
     max-width: 85vw;
     margin-left: auto;
     margin-right: auto;
 }
-.gallery-item {
+.gallery-carousel-wrapper {
+    flex: 1;
+    max-width: 75vw;
+    overflow: hidden;
     position: relative;
+    padding: 1rem 0;
+}
+.gallery-carousel-track {
+    display: flex;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    transition: transform 0.8s cubic-bezier(0.34, 1, 0.68, 1);
+    will-change: transform;
+}
+.gallery-item {
+    flex: 0 0 clamp(110px, 16vw, 160px);
     cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+}
+.gallery-item.center {
+    flex: 0 0 clamp(160px, 24vw, 240px);
+    transform: translateY(-12px);
     opacity: 0;
     transform: translateY(40px) scale(0.95);
 }
@@ -1441,6 +1481,12 @@
     border-radius: clamp(0.8rem, 1.5vw, 1.2rem);
     aspect-ratio: 1;
     background: linear-gradient(135deg, rgba(110, 59, 73, 0.15), rgba(86, 104, 106, 0.08));
+    border: 2px solid transparent;
+    transition: all 0.4s ease;
+}
+.gallery-item.center .gallery-thumb {
+    border-color: rgba(110, 59, 73, 0.5);
+    box-shadow: 0 12px 40px rgba(110, 59, 73, 0.3), 0 0 0 1px rgba(235, 225, 209, 0.1);
 }
 .gallery-thumb img {
     width: 100%;
@@ -1473,24 +1519,76 @@
     opacity: 0;
     transition: opacity 0.4s ease;
     z-index: 1;
+    pointer-events: none;
 }
 .gallery-item:hover .gallery-overlay {
-    opacity: 1;
+    opacity: 0.6;
+}
+.gallery-item.center .gallery-overlay {
+    opacity: 0;
 }
 .gallery-label {
     margin-top: 0.9rem;
     font-family: 'Tenor Sans', sans-serif;
-    font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+    font-size: clamp(0.6rem, 1.2vw, 0.75rem);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(235, 225, 209, 0.65);
+    color: rgba(235, 225, 209, 0.4);
     transition: color 0.3s ease;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: center;
+    opacity: 0;
 }
-.gallery-item:hover .gallery-label {
+.gallery-item.center .gallery-label {
+    opacity: 1;
+    color: rgba(235, 225, 209, 0.85);
+}
+.gallery-nav-btn {
+    width: clamp(50px, 5.5vw, 60px);
+    height: clamp(50px, 5.5vw, 60px);
+    border-radius: 50%;
+    border: 1.5px solid rgba(110, 59, 73, 0.3);
+    background: rgba(110, 59, 73, 0.08);
+    color: rgba(235, 225, 209, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    flex-shrink: 0;
+}
+.gallery-nav-btn:hover {
+    border-color: rgba(110, 59, 73, 0.7);
+    background: rgba(110, 59, 73, 0.2);
     color: #EBE1D1;
+    transform: scale(1.1);
+}
+.gallery-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: scale(1);
+}
+.gallery-scroll-hint {
+    text-align: center;
+    margin-top: 2rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(235, 225, 209, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+.gallery-scroll-hint::before,
+.gallery-scroll-hint::after {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(235, 225, 209, 0.15), transparent);
 }
 
 /* Responsive */
@@ -1504,6 +1602,18 @@
     }
     .featured-meta {
         grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 1024px) {
+    .gallery-carousel-wrapper {
+        max-width: 85vw;
+    }
+    .gallery-item {
+        flex: 0 0 clamp(90px, 18vw, 140px);
+    }
+    .gallery-item.center {
+        flex: 0 0 clamp(140px, 28vw, 200px);
     }
 }
 
@@ -1534,13 +1644,23 @@
     .featured-text p {
         font-size: 0.85rem;
     }
-    .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        gap: 1rem;
+    .gallery-carousel-wrapper {
+        max-width: 90vw;
     }
-    .gallery-label {
-        font-size: 0.65rem;
-        margin-top: 0.6rem;
+    .gallery-item {
+        flex: 0 0 80px;
+    }
+    .gallery-item.center {
+        flex: 0 0 130px;
+        transform: translateY(-8px);
+    }
+    .gallery-nav-btn {
+        width: 45px;
+        height: 45px;
+    }
+    .gallery-scroll-hint {
+        font-size: 0.45rem;
+        margin-top: 1.5rem;
     }
 }
 
@@ -1708,6 +1828,71 @@
             </div>
         </div>
 
+        <!-- Carousel mit 5 sichtbaren Items -->
+        <div class="gallery-controls">
+            <button class="gallery-nav-btn gallery-nav-prev" aria-label="Vorheriges Projekt" id="gallery-prev">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M11.5 4L6.5 9L11.5 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            
+            <div class="gallery-carousel-wrapper">
+                <div class="gallery-carousel-track" id="gallery-track">
+                    <div class="gallery-item" data-index="0" data-image="../assets/images/sbw/showcase_sbw_filmplakat.jpg" data-modul="Video Production" data-kunde="SBW Neuen Medien" data-fach="Filmgestaltung" data-jahr="2023" data-title="Filmplakat" data-desc="Ein visuell starkes Filmplakat das die Essenz des Projekts einfängt.">
+                        <div class="gallery-thumb">
+                            <img src="../assets/images/sbw/showcase_sbw_filmplakat.jpg" alt="Filmplakat">
+                            <div class="gallery-overlay"></div>
+                        </div>
+                        <div class="gallery-label">Filmplakat</div>
+                    </div>
+
+                    <div class="gallery-item" data-index="1" data-image="../assets/images/sbw/showcase_sbw_geister.png" data-modul="Motion Graphics" data-kunde="Eigeninitiative" data-fach="Animation" data-jahr="2023" data-title="Geister" data-desc="Experimentelle Motion-Grafik Exploration mit surrealen visuellen Elementen.">
+                        <div class="gallery-thumb">
+                            <img src="../assets/images/sbw/showcase_sbw_geister.png" alt="Geister">
+                            <div class="gallery-overlay"></div>
+                        </div>
+                        <div class="gallery-label">Geister</div>
+                    </div>
+
+                    <div class="gallery-item" data-index="2" data-image="../assets/images/sbw/showcase_sbw_jumpin.jpg" data-modul="Event Design" data-kunde="SBW Neuen Medien" data-fach="Grafikdesign" data-jahr="2023" data-title="Jumpin Event" data-desc="Corporate Design und visuelle Kommunikation für ein Live-Event.">
+                        <div class="gallery-thumb">
+                            <img src="../assets/images/sbw/showcase_sbw_jumpin.jpg" alt="Jumpin Event">
+                            <div class="gallery-overlay"></div>
+                        </div>
+                        <div class="gallery-label">Jumpin</div>
+                    </div>
+
+                    <div class="gallery-item" data-index="3" data-image="../assets/images/sbw/showcase_sbw_parasit.jpg" data-modul="Film Regie" data-kunde="Schulprojekt" data-fach="Direktregie" data-jahr="2023" data-title="Parasit" data-desc="Ein cineastisches Kurzfilm-Projekt mit professioneller Produktion.">
+                        <div class="gallery-thumb">
+                            <img src="../assets/images/sbw/showcase_sbw_parasit.jpg" alt="Parasit">
+                            <div class="gallery-overlay"></div>
+                        </div>
+                        <div class="gallery-label">Parasit</div>
+                    </div>
+
+                    <div class="gallery-item" data-index="4" data-image="../assets/images/sbw/showcase_sbw_petrichor.JPG" data-modul="Film" data-kunde="Eigeninitiative" data-fach="Cinematography" data-jahr="2024" data-title="Petrichor" data-desc="Eine visuell poetische Erkundung von Natur und Fotografie.">
+                        <div class="gallery-thumb">
+                            <img src="../assets/images/sbw/showcase_sbw_petrichor.JPG" alt="Petrichor">
+                            <div class="gallery-overlay"></div>
+                        </div>
+                        <div class="gallery-label">Petrichor</div>
+                    </div>
+
+                    <div class="gallery-item" data-index="5" data-image="../assets/images/sbw/showcase_sbw_trailerpark.jpg" data-modul="Video Series" data-kunde="YouTube" data-fach="Content Production" data-jahr="2023" data-title="Trailer Park" data-desc="Eine Sammlung von Trailer-Designs und Motion-Sequenzen.">
+                        <div class="gallery-thumb">
+                            <img src="../assets/images/sbw/showcase_sbw_trailerpark.jpg" alt="Trailer Park">
+                            <div class="gallery-overlay"></div>
+                        </div>
+                        <div class="gallery-label">Trailer Park</div>
+                    </div>
+
+                    <div class="gallery-item" data-index="6" data-image="../assets/images/sbw/showcase_sbw_wehelp.png" data-modul="Web Design" data-kunde="NGO Wehelp" data-fach="UI/UX" data-jahr="2023" data-title="Wehelp Platform" data-desc="Eine digitale Plattform für globale Netzwerk-Zusammenarbeit.">
+                        <div class="gallery-thumb">
+                            <img src="../assets/images/sbw/showcase_sbw_wehelp.png" alt="Wehelp">
+                            <div class="gallery-overlay"></div>
+                        </div>
+                        <div class="gallery-label">Wehelp</div>
+                    </div>
         <!-- Thumbnail Grid -->
         <div class="gallery-grid">
             <div class="gallery-item" data-image="../assets/images/sbw/showcase_sbw_filmplakat.jpg" data-modul="Video Production" data-kunde="SBW Neuen Medien" data-fach="Filmgestaltung" data-jahr="2023" data-title="Filmplakat" data-desc="Ein visuell starkes Filmplakat, das die Essenz des Projekts einfängt.">
@@ -1763,8 +1948,17 @@
                     <img src="../assets/images/sbw/showcase_sbw_wehelp.png" alt="Wehelp">
                     <div class="gallery-overlay"></div>
                 </div>
-                <div class="gallery-label">Wehelp</div>
             </div>
+
+            <button class="gallery-nav-btn gallery-nav-next" aria-label="Nächstes Projekt" id="gallery-next">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M6.5 4L11.5 9L6.5 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="gallery-scroll-hint">
+            Klicken oder scrollen
         </div>
 
     </div>
@@ -2273,8 +2467,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-        // ─── Gallery Interactivity ───
+        // ─── Gallery Carousel (5 Items visible, center highlighted) ───
         const galleryItems = document.querySelectorAll('.gallery-item');
+        const galleryTrack = document.getElementById('gallery-track');
+        const galleryPrev = document.getElementById('gallery-prev');
+        const galleryNext = document.getElementById('gallery-next');
         const featuredImage = document.getElementById('featured-image');
         const featuredModul = document.getElementById('featured-modul');
         const featuredKunde = document.getElementById('featured-kunde');
@@ -2283,7 +2480,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const featuredTitle = document.getElementById('featured-title');
         const featuredDesc = document.getElementById('featured-desc');
 
-        function updateFeatured(item) {
+        let currentIndex = 2; // Start mit Item 2 als center (0,1,2,3,4 sichtbar)
+        let isAnimating = false;
+        let scrollTriggerInstance = null;
+
+        // Update featured image
+        function updateFeatured(index) {
+            if (!galleryItems[index]) return;
+            
+            const item = galleryItems[index];
             const image = item.dataset.image;
             const modul = item.dataset.modul;
             const kunde = item.dataset.kunde;
@@ -2292,64 +2497,136 @@ document.addEventListener('DOMContentLoaded', () => {
             const title = item.dataset.title;
             const desc = item.dataset.desc;
 
-            // Fade out
+            // Image fade transition
             gsap.to(featuredImage, {
-                opacity: 0.7,
-                duration: 0.3,
+                opacity: 0.6,
+                scale: 0.95,
+                duration: 0.4,
                 ease: 'power2.inOut',
                 onComplete: () => {
                     featuredImage.src = image;
-                    // Fade in
                     gsap.to(featuredImage, {
                         opacity: 1,
-                        duration: 0.4,
+                        scale: 1,
+                        duration: 0.5,
                         ease: 'power2.out'
                     });
                 }
             });
 
-            // Update metadata with animation
+            // Update metadata
             [
                 { el: featuredModul, val: modul },
                 { el: featuredKunde, val: kunde },
                 { el: featuredFach, val: fach },
                 { el: featuredJahr, val: jahr }
-            ].forEach(({ el, val }) => {
+            ].forEach(({ el, val }, i) => {
                 gsap.to(el, {
-                    duration: 0.2,
-                    ease: 'power2.inOut',
+                    y: -8,
+                    opacity: 0,
+                    duration: 0.25,
+                    delay: i * 0.04,
+                    ease: 'power2.in',
                     onComplete: () => {
                         el.textContent = val;
-                        gsap.from(el, { opacity: 0, duration: 0.3 });
+                        gsap.fromTo(el,
+                            { y: 8, opacity: 0 },
+                            { y: 0, opacity: 1, duration: 0.3, ease: 'power2.out' }
+                        );
                     }
                 });
             });
 
             // Update title and description
-            gsap.to(featuredTitle, {
+            gsap.to([featuredTitle, featuredDesc], {
+                x: -20,
                 opacity: 0,
-                duration: 0.2,
-                ease: 'power2.inOut',
+                duration: 0.25,
+                stagger: 0.05,
+                ease: 'power2.in',
                 onComplete: () => {
                     featuredTitle.textContent = title;
-                    gsap.to(featuredTitle, { opacity: 1, duration: 0.3 });
-                }
-            });
-
-            gsap.to(featuredDesc, {
-                opacity: 0,
-                duration: 0.2,
-                ease: 'power2.inOut',
-                onComplete: () => {
                     featuredDesc.textContent = desc;
-                    gsap.to(featuredDesc, { opacity: 1, duration: 0.3 });
+                    gsap.fromTo([featuredTitle, featuredDesc],
+                        { x: 20, opacity: 0 },
+                        { x: 0, opacity: 1, duration: 0.4, stagger: 0.05, ease: 'power2.out' }
+                    );
                 }
             });
         }
 
-        // Gallery item click handlers
+        // Slide carousel to show specific index as center
+        function slideToIndex(targetIndex, smooth = true) {
+            if (isAnimating) return;
+            if (targetIndex < 0 || targetIndex >= galleryItems.length) return;
+
+            isAnimating = true;
+            currentIndex = targetIndex;
+
+            // Update center class
+            galleryItems.forEach((item, i) => {
+                item.classList.toggle('center', i === currentIndex);
+            });
+
+            // Calculate offset - center the current item
+            const itemWidth = galleryItems[0].offsetWidth;
+            const gap = parseFloat(getComputedStyle(galleryTrack).gap) || 24;
+            const containerWidth = galleryTrack.parentElement.offsetWidth;
+            
+            // Calculate position to center the current item
+            let offset = 0;
+            for (let i = 0; i < currentIndex; i++) {
+                offset += galleryItems[i].offsetWidth + gap;
+            }
+            // Add half of current item width and subtract half container width
+            offset += galleryItems[currentIndex].offsetWidth / 2 - containerWidth / 2;
+
+            gsap.to(galleryTrack, {
+                x: -offset,
+                duration: smooth ? 0.8 : 0.3,
+                ease: 'expo.out',
+                onComplete: () => {
+                    isAnimating = false;
+                }
+            });
+
+            updateFeatured(currentIndex);
+            updateNavButtons();
+        }
+
+        // Update nav button states
+        function updateNavButtons() {
+            if (galleryPrev) {
+                galleryPrev.disabled = currentIndex === 0;
+            }
+            if (galleryNext) {
+                galleryNext.disabled = currentIndex === galleryItems.length - 1;
+            }
+        }
+
+        // Button navigation
+        if (galleryPrev) {
+            galleryPrev.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    slideToIndex(currentIndex - 1);
+                }
+            });
+        }
+
+        if (galleryNext) {
+            galleryNext.addEventListener('click', () => {
+                if (currentIndex < galleryItems.length - 1) {
+                    slideToIndex(currentIndex + 1);
+                }
+            });
+        }
+
+        // Click on items
         galleryItems.forEach((item, index) => {
             item.addEventListener('click', () => {
+                if (index !== currentIndex && !isAnimating) {
+                    slideToIndex(index);
+                }
                 updateFeatured(item);
                 // Visual feedback
                 galleryItems.forEach(el => {
@@ -2384,11 +2661,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // ScrollTrigger auto-advance
         // On Scroll Reveal Animation für Gallery Items — Gestaffelt
         if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             gsap.registerPlugin(ScrollTrigger);
 
-            // Featured area stagger animation
+            // Featured area animation
             gsap.fromTo('.gallery-featured',
                 { opacity: 0, y: 60 },
                 {
@@ -2403,6 +2681,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             );
 
+            // Gallery header animation
             // Gallery Grid Items - Staggered reveal ONE BY ONE (Awwwards style)
             ScrollTrigger.create({
                 trigger: '.gallery-grid',
@@ -2430,6 +2709,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             );
+
+            // Carousel auto-scroll based on section scroll progress
+            scrollTriggerInstance = ScrollTrigger.create({
+                trigger: '.gallery-controls',
+                start: 'top center',
+                end: 'bottom center',
+                onUpdate: (self) => {
+                    const progress = self.progress;
+                    const targetIndex = Math.round(progress * (galleryItems.length - 1));
+                    
+                    if (targetIndex !== currentIndex && !isAnimating) {
+                        slideToIndex(targetIndex, false);
+                    }
+                }
+            });
+
+            // Initial setup
+            setTimeout(() => {
+                slideToIndex(currentIndex, false);
+            }, 100);
         }
 
         // ─── Film panel play / pause ───
