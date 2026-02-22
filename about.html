@@ -83,8 +83,8 @@
     
     html {
       font-family: var(--font-body);
-      background: var(--bg-primary);
-      color: var(--text-primary);
+      background: var(--black);
+      color: var(--off-white);
       line-height: 1.6;
       overflow-x: hidden;
     }
@@ -101,7 +101,7 @@
       font-size: clamp(2.5rem, 6vw, 5rem);
       font-weight: 800;
       text-transform: uppercase;
-      color: var(--accent-burgundy);
+      color: var(--burgundy);
     }
     h3 {
       font-family: var(--font-display);
@@ -122,30 +122,25 @@
       margin-bottom: var(--space-3);
       font-family: var(--font-body);
     }
+
+    /* Details/Summary Reset */
+    summary {
+      list-style: none;
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
     
     /* BACKGROUND CLASSES */
     .bg-cream {
-      background-color: var(--bg-secondary);
-      color: var(--text-primary);
+      background-color:  var(--off-black);
+      color: var(--off-white);
     }
     
     .work-section {
       padding: clamp(4rem, 12vh, 8rem) 0;
       position: relative;
     }
-    
-    /* ============================
-       Grain Overlay
-       ============================ */
-    .grain-overlay {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.03;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-
     /* ============================
        Hero Section
        ============================ */
@@ -301,12 +296,13 @@
     /* ============================
        Timeline
        ============================ */
-    .work-section.bg-dark {
+    .work-section.mint {
       position: relative;
-      padding: clamp(5rem, 12vh, 8rem) 0;
+      padding: clamp(5rem, 12vh, 8rem);
+      background: #56686A;
     }
 
-    .work-section.bg-dark::before {
+    .work-section.mint::before {
       content: '';
       position: absolute;
       top: -150px;
@@ -321,8 +317,8 @@
 
     .timeline-wrapper { 
       position: relative; 
-      padding: 1rem 0;
-      margin-top: 3rem;
+      padding: 3rem 0;
+      margin-top: 4rem;
     }
 
     .timeline-line {
@@ -330,43 +326,50 @@
       left: 50%;
       top: 0;
       bottom: 0;
-      width: 2px;
-      background: white;
+      width: 1px;
+      background: linear-gradient(180deg, 
+        transparent 0%,
+        rgba(235,225,209,0.2) 10%,
+        rgba(235,225,209,0.4) 50%,
+        rgba(235,225,209,0.2) 90%,
+        transparent 100%);
       transform: translateX(-50%);
       z-index: 1;
     }
 
     .timeline-event {
-      margin-bottom: 3rem;
+      margin-bottom: 4rem;
       position: relative;
       opacity: 0;
-      transform: translateY(60px);
-      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform: translateY(40px) scale(0.97);
+      transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .timeline-event.in-view {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
 
     .event-marker {
       position: absolute;
       left: 50%;
-      top: 30px;
-      width: 20px;
-      height: 20px;
-      background: var(--bg-secondary);
-      border: 4px solid var(--accent-burgundy);
+      top: 35px;
+      width: 14px;
+      height: 14px;
+      background: linear-gradient(135deg, var(--burgundy) 0%, #8B5462 100%);
+      border: 3px solid rgba(235,225,209,0.95);
       border-radius: 50%;
       transform: translateX(-50%);
       z-index: 10;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 0 0 0 8px rgba(110, 59, 73, 0.1);
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 0 0 0 rgba(110, 59, 73, 0),
+                  0 4px 12px rgba(110, 59, 73, 0.3);
     }
 
     .timeline-event:hover .event-marker {
-      transform: translateX(-50%) scale(1.4);
-      box-shadow: 0 0 0 16px rgba(110, 59, 73, 0.15);
+      transform: translateX(-50%) scale(1.5);
+      box-shadow: 0 0 0 12px rgba(110, 59, 73, 0.12),
+                  0 8px 20px rgba(110, 59, 73, 0.4);
     }
 
     .event-content { width: calc(50% - 60px);                 
@@ -385,15 +388,19 @@
     }
 
     .event-card {
-      background: var(--accent-burgundy);
-      border: 1px solid var(--border-light);
-      padding: 1rem;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: var(--shadow-sm);
+      background: linear-gradient(135deg, 
+        rgba(110, 59, 73, 0.95) 0%, 
+        rgba(110, 59, 73, 1) 100%);
+      border: 1px solid rgba(235,225,209,0.15);
+      padding: clamp(1.5rem, 3.5vw, 2.2rem) clamp(1.2rem, 3vw, 1.8rem);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15),
+                  0 2px 8px rgba(0,0,0,0.1);
       position: relative;
       overflow: hidden;
       container-type: inline-size;
       container-name: event-card;
+      backdrop-filter: blur(10px);
     }
 
     .event-card::before {
@@ -402,18 +409,24 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 4px;
+      height: 3px;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(235,225,209,0.6) 50%, 
+        transparent 100%);
       transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform-origin: center;
+      transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .event-card:hover::before { transform: scaleX(1); }
 
     .event-card:hover {
-      border-color: var(--accent-burgundy);
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-lg);
+      border-color: rgba(235,225,209,0.3);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.25),
+                  0 8px 16px rgba(110, 59, 73, 0.2),
+                  inset 0 1px 0 rgba(235,225,209,0.1);
     }
 
     .event-description {
@@ -431,10 +444,14 @@
        ============================ */
        .event-card span:first-child {
         font-family: var(--font-display);
-      font-size: clamp(1.5rem, 8cqi, 2rem);
-      color:#e1ddd8;
-      font-weight: 100;
-      letter-spacing: 0.1em;
+      font-size: clamp(1.8rem, 9cqi, 2.5rem);
+      color: rgba(235,225,209,0.95);
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: -0.02em;
+      display: block;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
     .event-card h4 {
@@ -470,7 +487,7 @@
 
     .mbti-svg .mbti-progress {
       fill: none;
-      stroke: var(--accent-burgundy);
+      stroke: var(--burgundy);
       stroke-width: 6;
       stroke-linecap: round;
       transition: stroke-dashoffset 1.5s cubic-bezier(0.19, 1, 0.22, 1);
@@ -480,19 +497,42 @@
        Skills Bars
        ============================ */
     .skills-bar {
-      background: rgba(255,255,255,0.1);
+      background: rgba(86, 104, 106, 0.15);
       height: 6px;
-      border-radius: 3px;
+      border-radius: 0;
       overflow: hidden;
+      position: relative;
     }
-
+ 
     .skills-bar .bar {
-      background: var(--accent-burgundy);
+      background: var(--burgundy);
       height: 100%;
       width: 0%;
-      border-radius: 3px;
-      transition: width 2.5s cubic-bezier(0.19, 1, 0.22, 1); /* Langsamer */
-      box-shadow: 0 0 10px rgba(110, 59, 73, 0.3);
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .skill-label-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--off-white);
+      letter-spacing: 0.02em;
+    }
+
+    .skill-percent-text {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--burgundy);
+      opacity: 0.8;
     }
 
     /* ============================
@@ -587,7 +627,7 @@
       font-size: clamp(2.5rem, 7vw, 4.5rem);
       font-weight: 400;
       font-style: italic;
-      color: var(--accent-burgundy);
+      color: var(--burgundy);
       margin-bottom: 1.5rem;
       letter-spacing: -0.02em;
       line-height: 1.1;
@@ -610,7 +650,7 @@
     .subsection-title {
       font-family: var(--font-display);
       font-size: clamp(1.8rem, 5vw, 2.5rem);
-      color: var(--text-primary);
+      color: var(--off-white);
       text-align: center;
       margin-bottom: 1rem;
       font-weight: 700;
@@ -632,7 +672,7 @@
       width: 100%;
       max-width: 300px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent-burgundy), transparent);
+      background: linear-gradient(90deg, transparent, var(--burgundy), transparent);
       margin: clamp(4rem, 10vh, 6rem) auto;
       opacity: 0.3;
     }
@@ -700,14 +740,14 @@
         .stat-main:hover {
             transform: translateY(-6px);
             box-shadow: 0 10px 25px rgba(110, 59, 73, 0.15);
-            border-color: var(--accent-burgundy);
+            border-color: var(--burgundy);
         }
 
         .stat-number-main {
             font-family: var(--font-mono);
             font-size: clamp(2.2rem, 6vw, 3rem);
             font-weight: 700;
-            color: var(--accent-burgundy);
+            color: var(--burgundy);
             display: block;
             margin-bottom: 0.5rem;
         }
@@ -984,11 +1024,11 @@
             font-size: clamp(1.1rem, 3vw, 1.4rem);
             margin: 0 0 0.3rem 0;
             font-weight: 700;
-            color: var(--text-primary);
+            color: var(--off-white);
         }
 
         .figcaption-main > span {
-            color: var(--accent-burgundy);
+            color: var(--burgundy);
             padding: 0.4rem 0 0.8rem 0;
             display: block;
             font-size: 0.85rem;
@@ -1008,7 +1048,7 @@
         .rating-main {
             display: inline-block;
             font-size: 0.9rem;
-            color: var(--accent-burgundy);
+            color: var(--burgundy);
             font-weight: 700;
             margin-top: 0.5rem;
         }
@@ -1039,7 +1079,7 @@
         .goodreads-section h3 {
             font-family: var(--font-display);
             font-size: clamp(1.3rem, 4vw, 1.8rem);
-            color: var(--accent-burgundy);
+            color: var(--burgundy);
             margin-bottom: 1rem;
             font-style: normal;
             font-weight: 700;
@@ -1134,70 +1174,108 @@
             transform: rotateY(90deg) translateZ(155px) translateX(2px);
         }
 
-        /* ==================== RESPONSIVE ==================== */
+        /* ==================== RESPONSIVE OVERHAUL (High-End Polish) ==================== */
         @media (max-width: 768px) {
-            .book-item-main {
-                width: clamp(180px, 85vw, 240px);
-                min-height: 360px;
+            /* General Typography */
+            h2 { font-size: clamp(2.2rem, 10vw, 3.2rem) !important; }
+            h3 { font-size: clamp(1.4rem, 6vw, 1.8rem) !important; }
+
+            /* Hero / Intro */
+            .visionary-title {
+                font-size: clamp(2.4rem, 12vw, 3.8rem) !important;
+                margin-top: 1.5rem;
+                text-align: center;
             }
 
-            .book-3d {
-                height: 280px;
+            .intro-text {
+                font-size: 1.1rem !important;
+                line-height: 1.6;
+                text-align: center;
             }
 
-            .stats-main {
+            /* MBTI & Personality */
+            #mbtiInfo {
+                margin-top: 2rem;
+                padding: 1.5rem !important;
+            }
+
+            #mbtiInfo .flex.items-center.gap-6 {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            /* Skill Bars */
+            .skill-name { font-size: 0.85rem; }
+            .skill-percent-text { font-size: 0.75rem; }
+
+            /* Favorites / Books */
+            .reading-counter-boxes {
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            .counter-box {
+                padding: 1.5rem 1rem;
+            }
+
+            .counter-num {
+                font-size: 3rem;
+            }
+
+            .book-list {
                 grid-template-columns: 1fr;
+                gap: 5rem;
             }
 
-            .figcaption-main h1 {
-                font-size: clamp(1rem, 4vw, 1.2rem);
-                line-height: 1.3;
-                word-wrap: break-word;
-                overflow-wrap: break-word;
-                hyphens: auto;
+            .book-entry {
+                transform: none !important; /* Mobile simplified */
+                opacity: 1 !important;
             }
 
-            .figcaption-main {
-                max-width: 100%;
-                padding: 1rem 0.5rem 0;
+            .book-entry__meta {
+                padding: 0 1rem;
             }
 
-            .books-header-main h2 {
-                font-size: clamp(2rem, 10vw, 3rem);
+            /* Timeline Mobile Fixes */
+            .timeline-event[data-side="left"] .event-content,
+            .timeline-event[data-side="right"] .event-content {
+                width: calc(100% - 40px);
+                margin-left: 40px;
+                padding-left: 0.5rem;
             }
         }
 
         @media (max-width: 480px) {
-            .section-books-2025 {
-                padding: 2.5rem 0;
+            .section-about-me { padding: 4rem 1rem !important; }
+            
+            .visionary-title {
+                font-size: 2.2rem !important;
+            }
+
+            .creative-fuel-header h2 {
+                font-size: 2rem !important;
+            }
+
+            .reading-counter-boxes {
+                grid-template-columns: 1fr; /* Stack counters on very small screens */
+            }
+
+            /* Adjust Book 3D Scaling */
+            .book-3d {
+                transform: scale(0.9);
+                margin-bottom: 0;
             }
 
             .book-item-main {
-                width: clamp(160px, 80vw, 220px);
-                min-height: 320px;
+                min-height: 300px;
             }
+        }
 
-            .book-3d {
-                height: 280px;
-            }
-
-            .books-align {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .book-item-main:nth-child(2),
-            .book-item-main:nth-child(3) {
-                margin-top: 1rem;
-            }
-
-            .figcaption-main h1 {
-                font-size: 1rem;
-            }
-
-            .figcaption-main p {
-                font-size: 0.8rem;
-            }
+        /* Prevent long words from breaking layout */
+        h1, h2, h3, .summary-title {
+            hyphens: auto;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
     /* ============================
@@ -1275,8 +1353,9 @@
     }
 
 .section-about-me {
-  --text-primary: #0A0A0A;
-  --accent-burgundy: #6E3B49;
+  background-color: var(--mint);
+  --off-white: #0A0A0A;
+--burgundy: #6E3B49;
   --mauve: #B5A19E;
 }
 
@@ -1284,7 +1363,7 @@
   font-family: var(--font-display);
   font-size: clamp(3rem, 8vw, 6.5rem);
   text-transform: uppercase;
-  color: var(--text-primary);
+  color: var(--off-white);
 }
 
 .arch-mask {
@@ -1343,7 +1422,7 @@ section {
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, transparent, var(--accent-burgundy), transparent);
+  background: linear-gradient(90deg, transparent, var(--burgundy), transparent);
   opacity: 0.3;
 }
 
@@ -1394,7 +1473,7 @@ section {
 
 .traits-box:hover {
   transform: translateX(8px);
-  border-color: var(--accent-burgundy);
+  border-color: var(--burgundy);
 }
 
 /* Smooth Section Entry Animation */
@@ -1428,7 +1507,7 @@ section {
    ========================================= */
 .personality-section {
   padding: clamp(4rem, 12vh, 8rem) 0;
-  background: var(--bg-secondary);
+  background:  var(--off-black);
   position: relative;
 }
 
@@ -1439,7 +1518,7 @@ section {
   letter-spacing: -0.02em;
   margin: 0 0 2rem 0;
   position: relative;
-  color: var(--accent-burgundy);
+  color: var(--burgundy);
   opacity: 0;
   transform: translateY(60px) skewY(2deg);
   animation: titleReveal 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
@@ -1486,7 +1565,7 @@ section {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--accent-burgundy), var(--mauve));
+  background: linear-gradient(90deg, var(--burgundy), var(--mauve));
   transform: scaleX(0);
   transition: transform 0.4s ease;
 }
@@ -1513,7 +1592,7 @@ section {
   font-size: 1.25rem;
   font-weight: 700;
   font-style: italic;
-  color: var(--accent-burgundy);
+  color: var(--burgundy);
   margin: 0;
 }
 
@@ -1524,7 +1603,7 @@ section {
 }
 
 .card-content {
-  color: var(--text-primary);
+  color: var(--off-white);
 }
 
 .card-desc {
@@ -1546,19 +1625,19 @@ section {
   margin-bottom: 1rem;
   padding-left: 1rem;
   position: relative;
-  color: var(--text-primary);
+  color: var(--off-white);
 }
 
 .traits-list li::before {
   content: '•';
   position: absolute;
   left: 0;
-  color: var(--accent-burgundy);
+  color: var(--burgundy);
   font-weight: bold;
 }
 
 .traits-list li strong {
-  color: var(--accent-burgundy);
+  color: var(--burgundy);
   font-weight: 600;
 }
 
@@ -1609,17 +1688,20 @@ section {
 }
 
 /* ============================
-   FAVORITES — 40 | 60 Grid
+   FAVORITES — Neue Struktur
    ============================ */
-.fav-grid {
-  display: grid;
-  grid-template-columns: 2fr 3fr;
-  gap: clamp(3rem, 6vw, 6rem);
-  align-items: start;
+
+/* ── Books Section ── */
+.fav-books-section {
+  margin-bottom: clamp(5rem, 12vh, 8rem);
 }
 
 .fav-col-header {
   margin-bottom: clamp(2rem, 4vh, 3.5rem);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .fav-eyebrow {
@@ -1628,7 +1710,7 @@ section {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  color: var(--accent-burgundy);
+  color: var(--burgundy);
   border: 1px solid rgba(110,59,73,0.5);
   padding: 0.28em 0.9em;
   border-radius: 100px;
@@ -1637,7 +1719,7 @@ section {
 
 .fav-col-title {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 700;
   color: #1a1a1a;
   line-height: 1.15;
@@ -1646,7 +1728,7 @@ section {
 
 .fav-col-title em {
   font-style: italic;
-  color: var(--accent-burgundy);
+  color: var(--burgundy);
   font-weight: 400;
 }
 
@@ -1655,152 +1737,104 @@ section {
   color: var(--text-secondary);
   line-height: 1.72;
   font-weight: 300;
-  max-width: 44ch;
+  max-width: 52ch;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* ── Vinyl cards ── */
-.vinyl-display {
+/* ── Reading Counter Boxes ── */
+.reading-counter-boxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  margin: clamp(4rem, 8vh, 7rem) auto clamp(5rem, 10vh, 8rem);
+  max-width: 100%;
+  padding: 0 clamp(1.5rem, 5vw, 3rem);
+}
+
+.counter-box {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 4vw, 2.5rem);
+  text-align: center;
+}
+
+.counter-box:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.counter-box-inner {
   display: flex;
   flex-direction: column;
-  gap: 0;
-}
-
-.vinyl-card {
-  display: flex;
   align-items: center;
-  gap: 1.4rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(110,59,73,0.12);
-  transition: background 0.25s ease;
+  gap: 0.5rem;
 }
 
-.vinyl-card:last-child {
-  border-bottom: none;
-}
-
-.vinyl-card .record-container {
-  flex-shrink: 0;
-}
-
-.vinyl-meta {
-  flex: 1;
-  min-width: 0;
-}
-
-.vinyl-genre {
-  display: block;
-  font-size: 0.6rem;
+.counter-eyebrow {
+  font-size: 0.52rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--accent-burgundy);
-  opacity: 0.75;
-  margin-bottom: 0.25rem;
+  letter-spacing: 0.4em;
+  color: var(--burgundy);
+  opacity: 0.6;
 }
 
-.vinyl-title {
+.counter-num {
   font-family: var(--font-display);
-  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  font-size: clamp(3rem, 8vw, 4.5rem);
   font-weight: 700;
-  color: #1a1a1a;
-  margin: 0 0 0.2rem 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.vinyl-artist {
-  font-size: 0.78rem;
-  color: var(--text-secondary);
   font-style: italic;
-}
-
-/* ── Reading stats inline ── */
-.reading-stats-inline {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  margin: 0.75rem 0 1.25rem;
-}
-
-.rs-item {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.15rem;
-}
-
-.rs-num {
-  font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-  font-weight: 700;
   color: var(--text-secondary);
   line-height: 1;
 }
 
-.rs-item--highlight .rs-num {
-  color: var(--accent-burgundy);
+.counter-box--2025 .counter-num {
+  color: var(--burgundy);
 }
 
-.rs-label {
-  font-size: 0.6rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+.counter-label {
+  font-size: 0.75rem;
   color: var(--text-secondary);
-  opacity: 0.6;
-}
-
-.rs-sep {
-  font-size: 1.4rem;
-  color: var(--accent-burgundy);
-  opacity: 0.35;
-  font-weight: 300;
-  padding-bottom: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 /* ── Book list ── */
 .book-list {
   list-style: none;
-  padding: 0;
-  margin: 0 0 clamp(2.5rem, 5vh, 4rem);
+  padding: clamp(2rem, 6vw, 4rem);
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(3rem, 6vw, 5rem);
+  max-width: 100%;
+}
+
+/* ── Book entry: vertical layout ── */
+.book-entry {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(1.75rem, 3vw, 2.5rem);
 }
 
-/* ── Book entry: horizontal layout ── */
-.book-entry {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  align-items: start;
-  padding: clamp(1.75rem, 3.5vh, 2.75rem) 0;
-  border-bottom: 1px solid rgba(110,59,73,0.1);
-  opacity: 0;
-  transform: translateX(28px);
-  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
-}
-
-.book-entry:first-child { padding-top: 0; }
-.book-entry:last-child  { border-bottom: none; }
-
-.book-entry.in-view {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.book-entry:nth-child(1) { transition-delay: 0.05s; }
-.book-entry:nth-child(2) { transition-delay: 0.2s; }
-.book-entry:nth-child(3) { transition-delay: 0.35s; }
 
 .book-entry__cover {
   flex-shrink: 0;
-  filter: drop-shadow(0 16px 28px rgba(0,0,0,0.26));
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,0.18));
 }
 
 /* ── Book entry metadata ── */
 .book-entry__meta {
-  padding-top: 0.4rem;
+  text-align: center;
+  width: 100%;
 }
 
 .book-genre-tag {
@@ -1809,7 +1843,7 @@ section {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  color: var(--accent-burgundy);
+  color: var(--burgundy);
   border: 1px solid rgba(110,59,73,0.35);
   padding: 0.22em 0.8em;
   border-radius: 100px;
@@ -1823,11 +1857,13 @@ section {
   color: #1a1a1a;
   margin: 0 0 0.2rem 0;
   line-height: 1.2;
+  white-space: normal;
+  text-align: center;
 }
 
 .book-author-main {
   font-size: 0.7rem;
-  color: var(--accent-burgundy);
+  color: var(--burgundy);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -1838,11 +1874,12 @@ section {
   display: flex;
   gap: 0.22rem;
   margin-bottom: 0.75rem;
+  justify-content: center;
 }
 
 .book-rating i {
   font-size: 0.68rem;
-  color: var(--accent-burgundy);
+  color: var(--burgundy);
 }
 
 .book-blurb {
@@ -1861,7 +1898,7 @@ section {
   gap: 0.45rem;
   background: none;
   border: 1px solid rgba(110,59,73,0.4);
-  color: var(--accent-burgundy);
+  color: var(--burgundy);
   font-family: var(--font-body);
   font-size: 0.68rem;
   font-weight: 700;
@@ -1875,9 +1912,9 @@ section {
 
 .review-btn:hover,
 .review-btn[aria-expanded="true"] {
-  background: var(--accent-burgundy);
+  background: var(--burgundy);
   color: #fff;
-  border-color: var(--accent-burgundy);
+  border-color: var(--burgundy);
 }
 
 .review-chevron {
@@ -1915,50 +1952,571 @@ section {
   margin: 0;
 }
 
-/* ── Responsive: favorites grid ── */
-@media (max-width: 900px) {
-  .fav-grid {
-    grid-template-columns: 1fr;
-    gap: clamp(2.5rem, 6vh, 4rem);
+/* ── Reading Counter Boxes ── */
+.reading-counter-boxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin: clamp(3rem, 7vh, 5rem) auto clamp(4rem, 9vh, 6rem);
+  max-width: 700px;
+}
+
+.counter-box {
+  background: linear-gradient(135deg, rgba(110, 59, 73, 0.05) 0%, rgba(181, 161, 158, 0.05) 100%);
+  border: 2px solid rgba(110, 59, 73, 0.1);
+  border-radius: 3px;
+  padding: clamp(2rem, 5vw, 3rem);
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.counter-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(110, 59, 73, 0.18);
+  border-color: var(--burgundy);
+}
+
+.counter-box-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.counter-eyebrow {
+  font-size: 0.52rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: var(--burgundy);
+  opacity: 0.6;
+}
+
+.counter-num {
+  font-family: var(--font-subtitel);
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-weight: 700;
+  color: var(--text-secondary);
+  line-height: 1;
+}
+
+.counter-box--2025 .counter-num {
+  color: var(--burgundy);
+}
+
+.counter-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── Goodreads CTA Section ── */
+.goodreads-cta-section {
+  margin: clamp(5rem, 10vh, 8rem) auto;
+  max-width: 100%;
+  padding: clamp(2rem, 5vw, 4rem);
+}
+
+.goodreads-cta-inner {
+  padding: clamp(3rem, 8vw, 5rem) clamp(2.5rem, 6vw, 4rem);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  text-align: center;
+}
+
+.goodreads-cta-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.2;
+  margin: 1.5rem 0 1.2rem;
+}
+
+.goodreads-cta-title em {
+  font-style: italic;
+  color: var(--burgundy);
+  font-weight: 400;
+}
+
+.goodreads-cta-desc {
+  font-size: clamp(0.88rem, 1.6vw, 1rem);
+  color: var(--text-secondary);
+  line-height: 1.75;
+  font-weight: 300;
+  max-width: 52ch;
+  margin: 0 auto 2rem;
+}
+
+.goodreads-btn-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: clamp(1rem, 2.5vw, 1.3rem) clamp(2rem, 4.5vw, 3rem);
+  background: #F3F1E8;
+  border: 2px solid #382110;
+  color: #382110;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: clamp(0.78rem, 1.4vw, 0.92rem);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border-radius: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.goodreads-btn-main::before {
+  display: none;
+}
+
+.goodreads-btn-main:hover::before {
+  display: none;
+}
+
+.goodreads-btn-main:hover {
+  color: #F3F1E8;
+  background: #382110;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── Vinyl Section ── */
+.fav-vinyl-section {
+  margin-top: clamp(5rem, 12vh, 8rem);
+}
+
+.vinyl-grid-large {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(3rem, 6vw, 5rem);
+  max-width: 100%;
+  padding: clamp(2rem, 6vw, 4rem);
+  margin: 0;
+}
+
+.vinyl-card-large {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.75rem, 3vw, 2.5rem);
+  width: 100%;
+}
+
+.vinyl-card-large .record-container {
+  position: relative;
+  width: min(100%, 320px);
+  height: 0;
+  padding-bottom: min(100%, 320px);
+}
+
+.vinyl-card-large .album {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  z-index: 10;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.vinyl-card-large .album img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+}
+
+.vinyl-card-large .record-container:hover .album {
+  transform: rotate(-8deg) translateX(-15px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+.vinyl-card-large .record {
+  position: absolute;
+  width: 66%;
+  height: 66%;
+  top: 17%;
+  left: 17%;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.vinyl-card-large .record img { 
+  width: 100%; 
+  height: 100%; 
+}
+
+.vinyl-card-large .record-container:hover .record {
+  transform: translateX(30px) rotateZ(360deg);
+}
+
+.vinyl-meta {
+  text-align: center;
+}
+
+.vinyl-genre {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--burgundy);
+  opacity: 0.75;
+  margin-bottom: 0.5rem;
+}
+
+.vinyl-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.3rem 0;
+}
+
+.vinyl-artist {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* ============================
+   TIMELINE TOGGLE
+   ============================ */
+.timeline-toggle-btn {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(181, 161, 158, 0.2);
+  border-radius: 12px;
+  padding: clamp(1.5rem, 4vh, 2.5rem) clamp(1.5rem, 4vw, 3rem);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin-bottom: 3rem;
+  overflow: hidden;
+}
+
+.timeline-toggle-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(110, 59, 73, 0.03), rgba(181, 161, 158, 0.02));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.timeline-toggle-btn:hover::before {
+  opacity: 1;
+}
+
+.timeline-toggle-btn:hover {
+  border-color: rgba(181, 161, 158, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.timeline-toggle-btn[aria-expanded="true"] {
+  border-color: var(--burgundy);
+  background: rgba(110, 59, 73, 0.05);
+}
+
+.timeline-toggle-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-toggle-text {
+  flex: 1;
+}
+
+.timeline-toggle-label {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--mauve);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-toggle-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--off-white);
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.timeline-toggle-title span {
+  color: var(--burgundy);
+  font-style: italic;
+}
+
+.timeline-toggle-btn[aria-expanded="true"] .timeline-toggle-title {
+  color: var(--burgundy);
+}
+
+.timeline-toggle-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(181, 161, 158, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin-left: 2rem;
+}
+
+.timeline-toggle-btn:hover .timeline-toggle-icon {
+  border-color: rgba(181, 161, 158, 0.5);
+  background: rgba(235, 225, 209, 0.05);
+}
+
+.timeline-toggle-btn[aria-expanded="true"] .timeline-toggle-icon {
+  border-color: var(--burgundy);
+  background: rgba(110, 59, 73, 0.12);
+}
+
+.timeline-toggle-icon svg {
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  stroke: rgba(181, 161, 158, 0.6);
+}
+
+.timeline-toggle-btn:hover .timeline-toggle-icon svg {
+  stroke: var(--mauve);
+}
+
+.timeline-toggle-btn[aria-expanded="true"] .timeline-toggle-icon svg {
+  transform: rotate(180deg);
+  stroke: var(--burgundy);
+}
+
+.timeline-collapsible {
+  transition: height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 768px) {
+  .timeline-toggle-btn {
+    padding: 1.5rem 1.2rem;
+  }
+  
+  .timeline-toggle-icon {
+    width: 40px;
+    height: 40px;
+    margin-left: 1rem;
   }
 }
 
-@media (max-width: 767px) {
-  .vinyl-card .record-container {
-    width: 100px;
-    height: 100px;
+/* ── Responsive: favorites ── */
+@media (max-width: 1280px) {
+  .book-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(2.5rem, 4vw, 4rem);
   }
-  .vinyl-card .record-container .record {
-    width: 66px;
-    height: 66px;
-    margin: 17px;
+
+  .vinyl-grid-large {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(2.5rem, 4vw, 4rem);
   }
-  .book-entry {
+}
+
+@media (max-width: 900px) {
+  .reading-counter-boxes {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: none;
   }
-  .book-entry__cover {
-    display: flex;
-    justify-content: center;
+
+  .counter-box {
+    padding: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2rem);
   }
+}
+
+@media (max-width: 768px) {
+  .book-list {
+    grid-template-columns: 1fr;
+    gap: clamp(3rem, 8vw, 5rem);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .book-3d {
+    transform: scale(0.95);
+  }
+
+  .vinyl-grid-large {
+    grid-template-columns: 1fr;
+    gap: clamp(4rem, 10vw, 6rem);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .vinyl-card-large {
+    width: 100%;
+  }
+
+  /* MBTI Fixes */
+  #mbtiList {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .mbti-item {
+    max-width: 100%;
+  }
+
+  #mbtiInfo {
+    padding: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #mbtiInfo h5 {
+    font-size: 1.1rem;
+  }
+
+  #mbtiInfo summary {
+    font-size: 0.72rem;
+  }
+
+  .visionary-title {
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 8vw, 2.8rem) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .book-list {
+    grid-template-columns: 1fr;
+    padding: 1.25rem;
+    gap: 2.5rem;
+  }
+
+  .book-3d {
+    transform: scale(0.9);
+  }
+
+  .reading-counter-boxes {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 3rem auto;
+    padding: 0 1.25rem;
+  }
+
+  .counter-box {
+    padding: 2rem 1rem;
+  }
+
+  .counter-num {
+    font-size: clamp(2.2rem, 7vw, 3.5rem);
+  }
+
+  .vinyl-grid-large {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 1.25rem;
+  }
+
   .book-entry__meta {
-    padding-top: 0;
+    padding: 0;
   }
-  .book-genre-tag,
-  .book-author-main {
-    display: block;
+
+  .book-title-main {
+    font-size: 1.05rem;
   }
+
   .book-blurb {
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
     max-width: 100%;
+    padding: 0 clamp(1rem, 3vw, 1.25rem);
   }
-  .book-rating {
-    justify-content: flex-start;
+
+  .book-list {
+    gap: 2rem;
+    padding: 0.75rem;
   }
-  .reading-stats-inline {
-    justify-content: flex-start;
+
+  .book-3d {
+    transform: scale(0.85);
   }
-  .fav-col-desc {
-    max-width: 100%;
+
+  .reading-counter-boxes {
+    gap: 1.5rem;
+    margin: 2rem auto;
+  }
+
+  .counter-box {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .counter-eyebrow {
+    font-size: 0.48rem;
+  }
+
+  .counter-num {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
+  .counter-label {
+    font-size: 0.7rem;
+  }
+
+  .vinyl-grid-large {
+    gap: 2.5rem;
+    padding: 0.75rem;
+  }
+
+  .vinyl-card-large .record-container {
+    width: min(100%, 280px);
+    padding-bottom: min(100%, 280px);
+  }
+
+  .visionary-title {
+    font-size: clamp(1.75rem, 8vw, 2rem);
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem) !important;
+  }
+
+  .fav-col-header {
+    padding: 0 0.75rem;
+  }
+
+  #mbtiList {
+    gap: 1.25rem;
+  }
+
+  #mbtiInfo {
+    padding: 1rem;
+  }
+
+  #mbtiInfo h5 {
+    font-size: 1rem;
+  }
+
+  #mbtiInfo summary {
+    font-size: 0.65rem;
   }
 }
   </style>
@@ -2005,7 +2563,7 @@ section {
     </div>
 
     <!-- ======================== INTRO / PORTRAIT ======================== -->
-    <section class="section-about-me bg-secondary py-24 relative overflow-hidden" id="about-vision">
+    <section class="section-about-me py-24 relative overflow-hidden" id="about-vision">
       <div class="container relative z-10">
         
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
@@ -2015,26 +2573,36 @@ section {
             <div class="relative mb-12">
               <div class="arch-mask overflow-hidden aspect-[4/5] border border-mauve/20">
                 <!-- Dein Portrait -->
-                <img src="assets/images/about/portrait-about.png" alt="Khadija Okbi Portrait" class="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-700">
+                <img src="assets/images/about/portrait-about.png" alt="Khadija Okbi Portrait" class="object-cover w-full h-full transition-all duration-700 hover:scale-105">
               </div>
               
               <!-- Decorative Element -->
-              <div class="absolute -bottom-4 -left-4 w-24 h-24 border-l-2 border-b-2 border-accent-burgundy opacity-40"></div>
+              <div class="absolute -bottom-4 -left-4 w-24 h-24 border-l-2 border-b-2 border-burgundy opacity-40"></div>
             </div>
     
             <div class="traits-box bg-white/5 p-8 border border-mauve/10 backdrop-blur-sm">
-              <div class="mb-8">
-                <p class="uppercase-label text-accent-burgundy mb-2">Like Minds</p>
-                <p class="font-higuen text-xl text-primary leading-tight">
-                  Steve Jobs — Napoleon Bonaparte — Coco Chanel
-                </p>
-              </div>
-              <div>
-                <p class="uppercase-label text-accent-burgundy mb-2">Traits</p>
-                <p class="font-higuen text-xl text-primary leading-tight">
+              <button class="timeline-toggle-btn mb-8" aria-expanded="false">
+                <div class="timeline-toggle-content">
+                  <div class="timeline-toggle-text">
+                    <p class="timeline-toggle-label">Werdegang</p>
+                    <h3 class="timeline-toggle-title">Bildung <span>&</span> Erfahrung</h3>
+                  </div>
+                  <div class="timeline-toggle-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  </div>
+                </div>
+              </button>
+              <details class="group">
+                <summary class="uppercase-label text-burgundy mb-2 flex items-center justify-between cursor-pointer list-none">
+                  Traits
+                  <i class="fas fa-chevron-down text-xs transition-transform duration-300 group-open:rotate-180"></i>
+                </summary>
+                <p class="font-higuen text-xl text-primary leading-tight pb-2">
                   Emotional Intelligence — High-End Creativity — Strategic Depth
                 </p>
-              </div>
+              </details>
             </div>
           </div>
     
@@ -2044,7 +2612,7 @@ section {
               <p class="uppercase-label tracking-[0.3em] text-mauve mb-4">About</p>
               <h2 class="visionary-title leading-[0.9] mb-8">
                 The Visionary<br>
-                <span class="italic font-light">&</span> The <span class="text-accent-burgundy">Strategist.</span>
+                <span class="italic font-light">&</span> The <span class="text-burgundy">Strategist.</span>
               </h2>
               <p class="text-xl leading-relaxed text-secondary max-w-2xl">
               <p>Kreativität zieht sich durch mein ganzes Leben. Meine Lösungswege sind oft unkonventionell. Effizienz trifft auf kreatives Chaos, ein laufendes Paradox. Mein Mantra: Wo ein Wille ist, ist auch ein Weg. Mein Durst nach Wissen ist unstillbar und ich nehme jede Gelegenheit mit, etwas neues zu lernen. Ob im Baumarkt in der Holzabteilung oder vom Elektriker in der Waschküche, welche Gelegenheit eignet sich bitte besser als diese, um von Experten zu lernen.
@@ -2058,7 +2626,7 @@ section {
               
               <!-- Personality -->
               <div class="profile-card border-t border-mauve/30 pt-6">
-                <p class="uppercase-label text-accent-burgundy mb-4">Personality Type</p>
+                <p class="uppercase-label text-burgundy mb-4">Personality Type</p>
                 <h3 class="font-display text-2xl mb-4 italic"><ENTJ-A></ENTJ-A> — The Commander</h3>
                 <p class="text-secondary text-sm leading-relaxed">
                   Strategisch, entschlossen, effizient. Ich sehe Strukturen, wo andere Chaos sehen. Mein Antrieb ist Fortschritt und Perfektion.
@@ -2067,10 +2635,10 @@ section {
     
               <!-- Zodiac -->
               <div class="profile-card border-t border-mauve/30 pt-6">
-                <p class="uppercase-label text-accent-burgundy mb-4">Zodiac Sign</p>
+                <p class="uppercase-label text-burgundy mb-4">Zodiac Sign</p>
                 <div class="flex items-center gap-3 mb-4">
                    <h3 class="font-display text-2xl italic mb-0 text-primary">Cancer — The Intuitive</h3>
-                   <i class="fas fa-moon text-2xl text-accent-burgundy opacity-60"></i>
+                   <i class="fas fa-moon text-2xl text-burgundy opacity-60"></i>
                 </div>
                 <p class="text-secondary text-sm leading-relaxed">
                   Tiefgründig, intuitiv, beschützend. Ich fühle die Stimmung eines Raumes (oder einer Brand) sofort. Das emotionale Gegengewicht zu meiner Strategie.
@@ -2081,13 +2649,15 @@ section {
           </div>
     
         </div>
+
       </div>
     </section>
     
     <!-- ======================== TIMELINE ======================== -->
-    <section class="work-section bg-dark">
+    <section class="work-section mint">
       <div class="container">
-        <h3 class="text-[var(--mauve)] mb-8">Bildung</h3>
+        <!-- Timeline Content -->
+        <div class="timeline-collapsible" style="height: 0; overflow: hidden;">
 
         <div class="timeline-wrapper max-w-[1200px] mx-auto">
           <div class="timeline-line"></div>
@@ -2098,14 +2668,14 @@ section {
               <div class="event-marker"></div>
               <div class="event-content">
                 <div class="event-card">
-                  <span class="block text-3xl font-bold text-[var(--accent-burgundy)] tracking-tight mb-1">2025</span>
+                  <span class="block text-3xl font-bold text-[var(--burgundy)] tracking-tight mb-1">2025</span>
                   <h4 class="text-base font-semibold mb-3 leading-snug">Technische Berufsmaturität</h4>
-                  <button class="event-toggle inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-white border border-[var(--accent-burgundy)] rounded-full px-3 py-1 hover:bg-[var(--accent-burgundy)] hover:text-white transition-all" aria-expanded="false">
+                  <button class="event-toggle inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-white border border-[var(--burgundy)] rounded-full px-3 py-1 hover:bg-[var(--burgundy)] hover:text-white transition-all" aria-expanded="false">
                     Mehr <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                   </button>
                   <div class="event-description mt-3">
                     <p class="text-sm leading-relaxed text-[var(--text-secondary)]">Mit der Abgabe meiner interdisziplinären Arbeit zum Thema ‚Die Illusion der freien Meinung‘ schloss ich meine Ausbildung ab. Die Arbeit analysiert die biologischen und psychologischen Ursprünge der Meinungsbildung sowie die zentrale Frage nach der Möglichkeit von Demokratie. Untersucht wurden neurowissenschaftliche Faktoren wie hormonelle Steuerung, genetische Präferenzen und transgenerationale Traumata sowie soziologische Einflüsse durch kollektive Glaubenssysteme und unbewusste Triebe. Abschliessend wird die gezielte Beeinflussung durch Social Media und Künstliche Intelligenz auf die individuelle Autonomie und die damit verbundene Gefährdung demokratischer Prozesse beleuchtet.</p>
-                    <span class="block text-xs italic text-[var(--text-tertiary)] pt-2 mt-2 border-t border-[var(--border-light)]">Oktober 2025</span>
+                    <span class="block text-xs italic text-[var(--text-tertiary)] pt-2 mt-2 border-t border-[var(--mint)]">Oktober 2025</span>
                   </div>
                 </div>
               </div>
@@ -2116,14 +2686,14 @@ section {
               <div class="event-marker"></div>
               <div class="event-content">
                 <div class="event-card">
-                  <span class="block text-3xl font-bold text-[var(--accent-burgundy)] tracking-tight mb-1">2023</span>
+                  <span class="block text-3xl font-bold text-[var(--burgundy)] tracking-tight mb-1">2023</span>
                   <h4 class="text-base font-semibold mb-3 leading-snug">Mediamatikerin EFZ</h4>
-                  <button class="event-toggle inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-white border border-[var(--accent-burgundy)] rounded-full px-3 py-1 hover:bg-[var(--accent-burgundy)] hover:text-white transition-all" aria-expanded="false">
+                  <button class="event-toggle inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-white border border-[var(--burgundy)] rounded-full px-3 py-1 hover:bg-[var(--burgundy)] hover:text-white transition-all" aria-expanded="false">
                     Mehr <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                   </button>
                   <div class="event-description mt-3">
                     <p class="text-sm leading-relaxed text-[var(--text-secondary)]">Nach vier Jahren Ausbildung zur Mediamatikerin durfte ich im Rahmen meiner IPA, für die Werbeagentur <a href="https://komthur.ch" target="_blank" rel="noopener noreferrer">Komthur</a> <p class="event-description">Im ein umfassendes Online-Marketing-Konzept entwickeln. Dieses basierte auf einer strategischen Marktanalyse und Zielgruppendefinition mittels Personas sowie einem vollständigen UI/UX-Website-Redesign. Die Performance-Marketing-Strategie kombinierte SEO- und SEA-Optimierungen mit budgetierter Mediaplanung auf Google, LinkedIn und Meta. Ein halbjährlicher Social-Media-Plan strukturierte die Inhalte für alle relevanten Plattformen. Mithilfe von After Effects und Canva wurden Templates und Assets für die kanalübergreifende Content-Strategie erstellt. Das Gesamtkonzept integrierte organische und bezahlte Kanäle zu einer kohärenten Gesamtstrategie.</p>
-                    <span class="block text-xs italic text-[var(--text-tertiary)] pt-2 mt-2 border-t border-[var(--border-light)]">Juli 2023</span>
+                    <span class="block text-xs italic text-[var(--text-tertiary)] pt-2 mt-2 border-t border-[var(--mint)]">Juli 2023</span>
                   </div>
                 </div>
               </div>
@@ -2134,14 +2704,14 @@ section {
               <div class="event-marker"></div>
               <div class="event-content">
                 <div class="event-card">
-                  <span class="block text-3xl font-bold text-[var(--accent-burgundy)] tracking-tight mb-1">2022</span>
+                  <span class="block text-3xl font-bold text-[var(--burgundy)] tracking-tight mb-1">2022</span>
                   <h4 class="text-base font-semibold mb-3 leading-snug">Social Media Management</h4>
-                  <button class="event-toggle inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-white border border-[var(--accent-burgundy)] rounded-full px-3 py-1 hover:bg-[var(--accent-burgundy)] hover:text-white transition-all" aria-expanded="false">
+                  <button class="event-toggle inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-white border border-[var(--burgundy)] rounded-full px-3 py-1 hover:bg-[var(--burgundy)] hover:text-white transition-all" aria-expanded="false">
                     Mehr <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                   </button>
                   <div class="event-description mt-3">
                     <p class="text-sm leading-relaxed text-[var(--text-secondary)]">Im zweiten Lehrjahr der praktischen Ausbildung bei der SBW Neue Medien umfasste mein Aufgabenbereich die Konzeption und Umsetzung zielgruppengerechter Social-Media-Inhalte für Instagram und TikTok. Für interne und externe Projekte durfte ich zudem in den Bereichen Design und Animation mein Wissen vertiefen.</p>
-                    <span class="block text-xs italic text-[var(--text-tertiary)] pt-2 mt-2 border-t border-[var(--border-light)]">SBW Neue Medien, Romanshorn</span>
+                    <span class="block text-xs italic text-[var(--text-tertiary)] pt-2 mt-2 border-t border-[var(--mint)]">SBW Neue Medien, Romanshorn</span>
                   </div>
                 </div>
               </div>
@@ -2152,14 +2722,14 @@ section {
               <div class="event-marker"></div>
               <div class="event-content">
                 <div class="event-card">
-                  <span class="block text-3xl font-bold text-[var(--accent-burgundy)] tracking-tight mb-1">2021</span>
+                  <span class="block text-3xl font-bold text-[var(--burgundy)] tracking-tight mb-1">2021</span>
                   <h4 class="text-base font-semibold mb-3 leading-snug">Sportmarketing</h4>
-                  <button class="event-toggle inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-white border border-[var(--accent-burgundy)] rounded-full px-3 py-1 hover:bg-[var(--accent-burgundy)] hover:text-white transition-all" aria-expanded="false">
+                  <button class="event-toggle inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-white border border-[var(--burgundy)] rounded-full px-3 py-1 hover:bg-[var(--burgundy)] hover:text-white transition-all" aria-expanded="false">
                     Mehr <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                   </button>
                   <div class="event-description mt-3">
                     <p class="text-sm leading-relaxed text-[var(--text-secondary)]">Praktikumsjahr im Bereich Sportmarketing. Erstellen von Festführern, Sponsoring-Materialien und Bandenanimationen für große Sportevents wie die Schweizermeisterschaft im Kunstturnen.</p>
-                    <span class="block text-xs italic text-[var(--text-tertiary)] pt-2 mt-2 border-t border-[var(--border-light)]">Win-4 Winterthur</span>
+                    <span class="block text-xs italic text-[var(--text-tertiary)] pt-2 mt-2 border-t border-[var(--mint)]">Win-4 Winterthur</span>
                   </div>
                 </div>
               </div>
@@ -2170,14 +2740,14 @@ section {
               <div class="event-marker"></div>
               <div class="event-content">
                 <div class="event-card">
-                  <span class="block text-3xl font-bold text-[var(--accent-burgundy)] tracking-tight mb-1">2019</span>
+                  <span class="block text-3xl font-bold text-[var(--burgundy)] tracking-tight mb-1">2019</span>
                   <h4 class="text-base font-semibold mb-3 leading-snug">Ausbildung zur Mediamatikerin</h4>
-                  <button class="event-toggle inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-white border border-[var(--accent-burgundy)] rounded-full px-3 py-1 hover:bg-[var(--accent-burgundy)] hover:text-white transition-all" aria-expanded="false">
+                  <button class="event-toggle inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-white border border-[var(--burgundy)] rounded-full px-3 py-1 hover:bg-[var(--burgundy)] hover:text-white transition-all" aria-expanded="false">
                     Mehr <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                   </button>
                   <div class="event-description mt-3">
                     <p class="text-sm leading-relaxed text-[var(--text-secondary)]">Beginn der zwei Jährigen schulischen Ausbildung.</p>
-                    <span class="block text-xs italic text-[var(--text-tertiary)] pt-2 mt-2 border-t border-[var(--border-light)]">SBW Neue Medien</span>
+                    <span class="block text-xs italic text-[var(--text-tertiary)] pt-2 mt-2 border-t border-[var(--mint)]">SBW Neue Medien</span>
                   </div>
                 </div>
               </div>
@@ -2188,14 +2758,14 @@ section {
               <div class="event-marker"></div>
               <div class="event-content">
                 <div class="event-card">
-                  <span class="block text-3xl font-bold text-[var(--accent-burgundy)] tracking-tight mb-1">2018</span>
+                  <span class="block text-3xl font-bold text-[var(--burgundy)] tracking-tight mb-1">2018</span>
                   <h4 class="text-base font-semibold mb-3 leading-snug">Praktikum Social Media</h4>
-                  <button class="event-toggle inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-white border border-[var(--accent-burgundy)] rounded-full px-3 py-1 hover:bg-[var(--accent-burgundy)] hover:text-white transition-all" aria-expanded="false">
+                  <button class="event-toggle inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-white border border-[var(--burgundy)] rounded-full px-3 py-1 hover:bg-[var(--burgundy)] hover:text-white transition-all" aria-expanded="false">
                     Mehr <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                   </button>
                   <div class="event-description mt-3">
                     <p class="text-sm leading-relaxed text-[var(--text-secondary)]">Bei meinem Praktikum in der Kommunikationsabteilung bei Hillsong Germany durfte ich die Mediaverantwortung für den Young & Free-Bereich übernehmen. Das Aufgabenfeld umfasste Social-Media-Management mit Fokus auf Instagram: Erstellung von Event-Trailern, Screen-Designs, Flyern sowie Foto- und Videoproduktionen für verschiedene Kanäle. Erste Erfahrungen entstanden mit Adobe Premiere, Photoshop, InDesign sowie in Fotografie und Videografie. Dieses Praktikum legte den Grundstein für die Leidenschaft für Animation, Design und Social-Media-Management.</p>
-                    <span class="block text-xs italic text-[var(--text-tertiary)] pt-2 mt-2 border-t border-[var(--border-light)]">Hillsong, Konstanz</span>
+                    <span class="block text-xs italic text-[var(--text-tertiary)] pt-2 mt-2 border-t border-[var(--mint)]">Hillsong, Konstanz</span>
                   </div>
                 </div>
               </div>
@@ -2207,7 +2777,7 @@ section {
     </section>
 
     <!-- ======================== SKILLS & MBTI ======================== -->
-    <section class="work-section bg-dark">
+    <section class="work-section mint">
       <div class="container">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
@@ -2215,7 +2785,7 @@ section {
           <div>
             <div class="flex items-center justify-between mb-6">
               <h3 class="text-[var(--mauve)] mb-0">MBTI Persönlichkeit</h3>
-              <span class="text-xs font-bold uppercase tracking-widest text-[var(--accent-burgundy)] border border-[var(--accent-burgundy)] rounded-full px-3 py-1">INTP‑A</span>
+              <span class="text-xs font-bold uppercase tracking-widest text-[var(--burgundy)] border border-[var(--burgundy)] rounded-full px-3 py-1">INTP‑A</span>
             </div>
             <h4>INTP-A</h4>
 
@@ -2225,7 +2795,7 @@ section {
                   <circle cx="50" cy="50" r="45"></circle>
                   <circle cx="50" cy="50" r="45" class="mbti-progress"></circle>
                 </svg>
-                <span class="text-sm font-semibold text-[var(--text-primary-light)]">51%</span>
+                <span class="text-sm font-semibold text-[var(--off-white)]">51%</span>
                 <span class="text-xs text-[var(--text-tertiary)]">Introvertiert</span>
                </li>
                <!-- Ensure this closing tag corresponds to an opened <li> tag -->
@@ -2235,7 +2805,7 @@ section {
                   <circle cx="50" cy="50" r="45"></circle>
                   <circle cx="50" cy="50" r="45" class="mbti-progress"></circle>
                 </svg>
-                <span class="text-sm font-semibold text-[var(--text-primary-light)]">95%</span>
+                <span class="text-sm font-semibold text-[var(--off-white)]">95%</span>
                 <span class="text-xs text-[var(--text-tertiary)]">Intuitiv</span>
               </li>
 
@@ -2244,7 +2814,7 @@ section {
                   <circle cx="50" cy="50" r="45"></circle>
                   <circle cx="50" cy="50" r="45" class="mbti-progress"></circle>
                 </svg>
-                <span class="text-sm font-semibold text-[var(--text-primary-light)]">74%</span>
+                <span class="text-sm font-semibold text-[var(--off-white)]">74%</span>
                 <span class="text-xs text-[var(--text-tertiary)]">Analytisch</span>
               </li>
 
@@ -2253,61 +2823,67 @@ section {
                   <circle cx="50" cy="50" r="45"></circle>
                   <circle cx="50" cy="50" r="45" class="mbti-progress"></circle>
                 </svg>
-                <span class="text-sm font-semibold text-[var(--text-primary-light)]">100%</span>
+                <span class="text-sm font-semibold text-[var(--off-white)]">100%</span>
                 <span class="text-xs text-[var(--text-tertiary)]">Kreativ</span>
               </li>
             </ul>
 
             <!-- MBTI Info Box -->
             <div class="bg-white/5 border border-white/10 rounded-lg p-6 hover:bg-white/8 transition-all duration-500 group relative overflow-hidden" id="mbtiInfo">
-              <div class="absolute inset-0 bg-gradient-to-r from-[var(--accent-burgundy)]/5 to-[var(--mauve)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div class="absolute inset-0 bg-gradient-to-r from-[var(--burgundy)]/5 to-[var(--mauve)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                  <h5 class="text-lg font-bold text-[var(--mauve)] group-hover:text-[var(--accent-burgundy)] transition-colors duration-300">Der Logiker</h5>
-                  <div class="w-2 h-2 bg-[var(--accent-burgundy)] rounded-full animate-pulse"></div>
+                  <h5 class="text-lg font-bold text-[var(--mauve)] group-hover:text-[var(--burgundy)] transition-colors duration-300">Der Logiker</h5>
+                  <div class="w-2 h-2 bg-[var(--burgundy)] rounded-full animate-pulse"></div>
                 </div>
-                <p class="text-sm text-[var(--text-primary-light)] leading-relaxed mb-6 group-hover:text-white transition-colors duration-300">Neugierig. Unabhängig. Analytisch. INTPs analysieren komplexe Systeme und finden kreative Lösungen—Pioniere neuer Ideen.</p>
+                <p class="text-sm text-[var(--off-white)] leading-relaxed mb-6 group-hover:text-white transition-colors duration-300">Neugierig. Unabhängig. Analytisch. INTPs analysieren komplexe Systeme und finden kreative Lösungen—Pioniere neuer Ideen.</p>
                 
-                <div class="mb-4">
-                  <h6 class="text-xs font-bold uppercase tracking-wider text-[var(--accent-burgundy)] mb-3 flex items-center gap-2">
-                    <i class="fas fa-brain text-sm"></i>
-                    Charaktereigenschaften
-                  </h6>
-                  <ul class="space-y-3">
+                <details class="mb-4 group/mbti-details">
+                  <summary class="text-xs font-bold uppercase tracking-wider text-[var(--burgundy)] mb-3 flex items-center justify-between cursor-pointer list-none">
+                    <div class="flex items-center gap-2">
+                      <i class="fas fa-brain text-sm"></i>
+                      Charaktereigenschaften
+                    </div>
+                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 group-open/mbti-details:rotate-180"></i>
+                  </summary>
+                  <ul class="space-y-3 pb-4">
                     <li class="trait-item flex items-start gap-3 p-2 rounded hover:bg-white/5 transition-all duration-300 cursor-pointer group/item">
-                      <div class="w-1.5 h-1.5 bg-[var(--accent-burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
-                      <span class="text-sm text-[var(--text-primary-light)] group-hover/item:text-white transition-colors duration-300">Analytisch und logisch denkend</span>
+                      <div class="w-1.5 h-1.5 bg-[var(--burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
+                      <span class="text-sm text-[var(--off-white)] group-hover/item:text-white transition-colors duration-300">Analytisch und logisch denkend</span>
                     </li>
                     <li class="trait-item flex items-start gap-3 p-2 rounded hover:bg-white/5 transition-all duration-300 cursor-pointer group/item">
-                      <div class="w-1.5 h-1.5 bg-[var(--accent-burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
-                      <span class="text-sm text-[var(--text-primary-light)] group-hover/item:text-white transition-colors duration-300">Neugierig und an tiefem Verständnis interessiert</span>
+                      <div class="w-1.5 h-1.5 bg-[var(--burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
+                      <span class="text-sm text-[var(--off-white)] group-hover/item:text-white transition-colors duration-300">Neugierig und an tiefem Verständnis interessiert</span>
                     </li>
                     <li class="trait-item flex items-start gap-3 p-2 rounded hover:bg-white/5 transition-all duration-300 cursor-pointer group/item">
-                      <div class="w-1.5 h-1.5 bg-[var(--accent-burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
-                      <span class="text-sm text-[var(--text-primary-light)] group-hover/item:text-white transition-colors duration-300">Unabhängig und eigenständig in ihren Ideen</span>
+                      <div class="w-1.5 h-1.5 bg-[var(--burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
+                      <span class="text-sm text-[var(--off-white)] group-hover/item:text-white transition-colors duration-300">Unabhängig und eigenständig in ihren Ideen</span>
                     </li>
                     <li class="trait-item flex items-start gap-3 p-2 rounded hover:bg-white/5 transition-all duration-300 cursor-pointer group/item">
-                      <div class="w-1.5 h-1.5 bg-[var(--accent-burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
-                      <span class="text-sm text-[var(--text-primary-light)] group-hover/item:text-white transition-colors duration-300">Manchmal abwesend oder unpraktisch im Alltag</span>
+                      <div class="w-1.5 h-1.5 bg-[var(--burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
+                      <span class="text-sm text-[var(--off-white)] group-hover/item:text-white transition-colors duration-300">Manchmal abwesend oder unpraktisch im Alltag</span>
                     </li>
                     <li class="trait-item flex items-start gap-3 p-2 rounded hover:bg-white/5 transition-all duration-300 cursor-pointer group/item">
-                      <div class="w-1.5 h-1.5 bg-[var(--accent-burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
-                      <span class="text-sm text-[var(--text-primary-light)] group-hover/item:text-white transition-colors duration-300">Können mit sozialen Konventionen Schwierigkeiten haben</span>
+                      <div class="w-1.5 h-1.5 bg-[var(--burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
+                      <span class="text-sm text-[var(--off-white)] group-hover/item:text-white transition-colors duration-300">Können mit sozialen Konventionen Schwierigkeiten haben</span>
                     </li>
                     <li class="trait-item flex items-start gap-3 p-2 rounded hover:bg-white/5 transition-all duration-300 cursor-pointer group/item">
-                      <div class="w-1.5 h-1.5 bg-[var(--accent-burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
-                      <span class="text-sm text-[var(--text-primary-light)] group-hover/item:text-white transition-colors duration-300">Lieben intellektuelle Herausforderungen und Problemlösen</span>
+                      <div class="w-1.5 h-1.5 bg-[var(--burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
+                      <span class="text-sm text-[var(--off-white)] group-hover/item:text-white transition-colors duration-300">Lieben intellektuelle Herausforderungen und Problemlösen</span>
                     </li>
                   </ul>
-                </div>
+                </details>
                 
-                <div class="border-t border-white/10 pt-3 mt-4">
-                  <h6 class="text-xs font-bold uppercase tracking-wider text-[var(--accent-burgundy)] mb-2 flex items-center gap-2">
-                    <i class="fas fa-lightbulb text-sm"></i>
-                    Like minds
-                  </h6>
-                  <p class="text-sm text-[var(--text-primary-light)] group-hover:text-white transition-colors duration-300">Albert Einstein · Nikola Tesla · Marie Curie</p>
-                </div>
+                <details class="border-t border-white/10 pt-3 mt-4 group/mbti-details-2">
+                  <summary class="text-xs font-bold uppercase tracking-wider text-[var(--burgundy)] mb-2 flex items-center justify-between cursor-pointer list-none">
+                    <div class="flex items-center gap-2">
+                      <i class="fas fa-lightbulb text-sm"></i>
+                     Like minds
+                    </div>
+                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 group-open/mbti-details-2:rotate-180"></i>
+                  </summary>
+                  <p class="text-sm text-[var(--off-white)] group-hover:text-white transition-colors duration-300 pb-2">Albert Einstein · Nikola Tesla · Marie Curie</p>
+                </details>
               </div>
             </div>
           </div>
@@ -2317,27 +2893,56 @@ section {
             <!-- Technical Skills -->
             <div>
               <h3 class="text-[var(--mauve)] mb-6">Technical Skills</h3>
-              <ul class="space-y-5 list-none p-0" id="techSkills">
-                <li data-percent="95"><span class="block text-sm font-medium text-[var(--text-primary-light)] mb-1">Adobe InDesign</span><div class="skills-bar"><div class="bar"></div></div></li>
-                <li data-percent="98"><span class="block text-sm font-medium text-[var(--text-primary-light)] mb-1">Photoshop</span><div class="skills-bar"><div class="bar"></div></div></li>
-                <li data-percent="92"><span class="block text-sm font-medium text-[var(--text-primary-light)] mb-1">Premiere Pro</span><div class="skills-bar"><div class="bar"></div></div></li>
-                <li data-percent="90"><span class="block text-sm font-medium text-[var(--text-primary-light)] mb-1">After Effects</span><div class="skills-bar"><div class="bar"></div></div></li>
-                <li data-percent="85"><span class="block text-sm font-medium text-[var(--text-primary-light)] mb-1">Frontend (HTML, CSS, JS)</span><div class="skills-bar"><div class="bar"></div></div></li>
-                <li data-percent="75"><span class="block text-sm font-medium text-[var(--text-primary-light)] mb-1">Backend (NodeJS, PHP)</span><div class="skills-bar"><div class="bar"></div></div></li>
-                <li data-percent="80"><span class="block text-sm font-medium text-[var(--text-primary-light)] mb-1">Marketing & Social Media</span><div class="skills-bar"><div class="bar"></div></div></li>
-              </ul>
-            </div>
-
-            <!-- Soft Skills -->
-            <div>
-              <h3 class="text-[var(--mauve)] mb-6">Soft Skills</h3>
-              <ul class="space-y-5 list-none p-0" id="softSkills">
-                <li data-percent="95"><span class="block text-sm font-medium text-[var(--text-primary-light)] mb-1">Strategisch</span><div class="skills-bar"><div class="bar"></div></div></li>
-                <li data-percent="90"><span class="block text-sm font-medium text-[var(--text-primary-light)] mb-1">Entschlossen</span><div class="skills-bar"><div class="bar"></div></div></li>
-                <li data-percent="92"><span class="block text-sm font-medium text-[var(--text-primary-light)] mb-1">Effizient</span><div class="skills-bar"><div class="bar"></div></div></li>
-                <li data-percent="85"><span class="block text-sm font-medium text-[var(--text-primary-light)] mb-1">Kreativ & Analytisch</span><div class="skills-bar"><div class="bar"></div></div></li>
-                <li data-percent="88"><span class="block text-sm font-medium text-[var(--text-primary-light)] mb-1">Perfektionistisch</span><div class="skills-bar"><div class="bar"></div></div></li>
-                <li data-percent="80"><span class="block text-sm font-medium text-[var(--text-primary-light)] mb-1">Selbstreflektiert</span><div class="skills-bar"><div class="bar"></div></div></li>
+              <ul class="space-y-6 list-none p-0" id="techSkills">
+                <li data-percent="95">
+                  <div class="skill-label-wrapper">
+                    <span class="skill-name">Adobe InDesign</span>
+                    <span class="skill-percent-text">95%</span>
+                  </div>
+                  <div class="skills-bar"><div class="bar"></div></div>
+                </li>
+                <li data-percent="98">
+                  <div class="skill-label-wrapper">
+                    <span class="skill-name">Photoshop</span>
+                    <span class="skill-percent-text">98%</span>
+                  </div>
+                  <div class="skills-bar"><div class="bar"></div></div>
+                </li>
+                <li data-percent="92">
+                  <div class="skill-label-wrapper">
+                    <span class="skill-name">Premiere Pro</span>
+                    <span class="skill-percent-text">92%</span>
+                  </div>
+                  <div class="skills-bar"><div class="bar"></div></div>
+                </li>
+                <li data-percent="90">
+                  <div class="skill-label-wrapper">
+                    <span class="skill-name">After Effects</span>
+                    <span class="skill-percent-text">90%</span>
+                  </div>
+                  <div class="skills-bar"><div class="bar"></div></div>
+                </li>
+                <li data-percent="85">
+                  <div class="skill-label-wrapper">
+                    <span class="skill-name">Frontend (HTML, CSS, JS)</span>
+                    <span class="skill-percent-text">85%</span>
+                  </div>
+                  <div class="skills-bar"><div class="bar"></div></div>
+                </li>
+                <li data-percent="75">
+                  <div class="skill-label-wrapper">
+                    <span class="skill-name">Backend (NodeJS, PHP)</span>
+                    <span class="skill-percent-text">75%</span>
+                  </div>
+                  <div class="skills-bar"><div class="bar"></div></div>
+                </li>
+                <li data-percent="80">
+                  <div class="skill-label-wrapper">
+                    <span class="skill-name">Marketing & Social Media</span>
+                    <span class="skill-percent-text">80%</span>
+                  </div>
+                  <div class="skills-bar"><div class="bar"></div></div>
+                </li>
               </ul>
             </div>
           </div>
@@ -2346,159 +2951,44 @@ section {
       </div>
     </section>
 
-    <!-- ======================== PERSÖNLICHKEITSTYP: INTP-A ======================== -->
-    <section class="work-section bg-cream personality-section">
-      <div class="container">
-        <h2 class="personality-title">Persönlichkeitstyp: INTP-A</h2>
-        <p class="personality-intro">Eine INTP-A Persönlichkeit hat folgende charakteristische Merkmale:</p>
-
-        <div class="personality-grid">
-          <!-- Grundlegende Eigenschaften -->
-          <div class="personality-card" data-type="basic">
-            <div class="card-header">
-              <h3>Grundlegende Eigenschaften</h3>
-              <i class="fas fa-brain"></i>
-            </div>
-            <div class="card-content">
-              <ul class="traits-list">
-                <li><strong>Introvertiert (I):</strong> Zieht Energie aus innerer Reflexion und konzentriert sich auf die eigene Gedankenwelt</li>
-                <li><strong>Intuition (N):</strong> Fokussiert auf Muster, Möglichkeiten und zukünftige Potenziale statt auf konkrete Details</li>
-                <li><strong>Denken (T):</strong> Trifft Entscheidungen eher logisch und rational als emotional</li>
-                <li><strong>Wahrnehmend (P):</strong> Bevorzugt Flexibilität und Offenheit statt strukturierte Planung</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Assertiv Merkmale -->
-          <div class="personality-card" data-type="assertive">
-            <div class="card-header">
-              <h3>Das "-A" bedeutet "Assertiv"</h3>
-              <i class="fas fa-shield-alt"></i>
-            </div>
-            <div class="card-content">
-              <p class="card-desc">Das unterscheidet sie von INTP-T (Turbulent). INTP-A Personen sind:</p>
-              <ul class="traits-list">
-                <li><strong>Selbstbewusster und weniger emotional reaktiv:</strong> Sie lassen sich von Kritik oder Fehlschlägen weniger aus der Bahn werfen</li>
-                <li><strong>Entspannter und gelassener:</strong> Weniger anfällig für Stress und Angst</li>
-                <li><strong>Zielorientierter:</strong> Verfolgen ihre Ziele konsistenter, ohne sich von Selbstzweifeln ablenken zu lassen</li>
-                <li><strong>Weniger anfällig für Impostor-Syndrom:</strong> Haben mehr Vertrauen in ihre Fähigkeiten</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Typische Charakterzüge -->
-          <div class="personality-card" data-type="typical">
-            <div class="card-header">
-              <h3>Typische INTP-Charakterzüge</h3>
-              <i class="fas fa-lightbulb"></i>
-            </div>
-            <div class="card-content">
-              <ul class="traits-list">
-                <li>Analytisch und logisch denkend</li>
-                <li>Neugierig und an tiefem Verständnis interessiert</li>
-                <li>Unabhängig und eigenständig in ihren Ideen</li>
-                <li>Manchmal abwesend oder unpraktisch im Alltag</li>
-                <li>Können mit sozialen Konventionen Schwierigkeiten haben</li>
-                <li>Lieben intellektuelle Herausforderungen und Problemlösen</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Vergleich zu INTP-T -->
-          <div class="personality-card" data-type="comparison">
-            <div class="card-header">
-              <h3>Im Vergleich zu INTP-T</h3>
-              <i class="fas fa-balance-scale"></i>
-            </div>
-            <div class="card-content">
-              <p class="card-desc">INTP-T Personen sind perfektionistischer, zweifeln mehr an sich selbst und reagieren emotionaler auf externe Kritik, während INTP-A entspannter und selbstsicherer agiert.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- ======================== NAHRUNG FÜR DEN KREATIVEN GEIST ======================== -->
     <section class="work-section creative-fuel-section" id="favorites">
-      <div class="container">
+      <div class="container px-4">
         <!-- Section Header -->
-        <div class="creative-fuel-header">
-          <p class="fav-eyebrow" style="margin-bottom:1.2rem">Persönliche Favoriten 2025</p>
-          <h2 class="fuel-title">Meine Favoriten</h2>
+        <div class="creative-fuel-header text-center mb-16">
+          <p class="fav-eyebrow mb-4">Reading Journey</p>
+          <h2 class="fav-col-title">Meine <em>Favoriten</em></h2>
+          <p class="fav-col-desc mt-4">Ein Einblick in die Bücher, die mich dieses Jahr besonders geprägt oder einfach nur gut unterhalten haben.</p>
         </div>
 
-        <!-- ===== 40 | 60 FAVORITES GRID ===== -->
-        <div class="fav-grid">
-
-          <!-- ─── LEFT COLUMN: Music (40%) ─── -->
-          <div class="fav-col fav-col--music">
-            <div class="fav-col-header">
-              <span class="fav-eyebrow">Spotify Wrapped 2025</span>
-              <h3 class="fav-col-title">Klänge, <em>die prägen.</em></h3>
-              <p class="fav-col-desc">Drei Alben, die 2025 auf Repeat liefen – jedes davon ein eigenes Universum.</p>
+        <!-- ===== BOOKS FIRST ===== -->
+        <div class="fav-books-section">
+          
+          <!-- ===== READING COUNTER BOXES ===== -->
+          <div class="reading-counter-boxes">
+            <div class="counter-box counter-box--2024">
+              <div class="counter-box-inner">
+   <span class="counter-eyebrow">Lesejahr</span>
+                <span class="counter-num counter" data-target="52">52</span>
+                <span class="counter-label">2024</span>
+              </div>
             </div>
-
-            <div class="vinyl-display">
-              <!-- Record 1 -->
-              <div class="vinyl-card">
-                <div class="record-container">
-                  <div class="album"><img src="assets/images/branding/runaway.jpeg" alt="Runaway Album"></div>
-                  <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
-                </div>
-                <div class="vinyl-meta">
-                  <span class="vinyl-genre">Hip-Hop / Soul</span>
-                  <p class="vinyl-title">Runaway</p>
-                  <span class="vinyl-artist">Kanye West</span>
-                </div>
-              </div>
-              <!-- Record 2 -->
-              <div class="vinyl-card">
-                <div class="record-container">
-                  <div class="album"><img src="assets/images/branding/fear.jpeg" alt="Fear Album"></div>
-                  <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
-                </div>
-                <div class="vinyl-meta">
-                  <span class="vinyl-genre">R&amp;B / Gospel</span>
-                  <p class="vinyl-title">FEAR.</p>
-                  <span class="vinyl-artist">Kendrick Lamar</span>
-                </div>
-              </div>
-              <!-- Record 3 -->
-              <div class="vinyl-card">
-                <div class="record-container">
-                  <div class="album"><img src="assets/images/branding/millionyears.jpeg" alt="Million Years Album"></div>
-                  <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
-                </div>
-                <div class="vinyl-meta">
-                  <span class="vinyl-genre">Pop</span>
-                  <p class="vinyl-title">A Million Years</p>
-                  <span class="vinyl-artist">Westlife</span>
-                </div>
+            <div class="counter-box counter-box--2025">
+              <div class="counter-box-inner">
+                <span class="counter-eyebrow">Lesejahr</span>
+                <span class="counter-num counter" data-target="104">104</span>
+                <span class="counter-label">2025</span>
               </div>
             </div>
           </div>
-          <!-- ─── END LEFT COLUMN ─── -->
 
-          <!-- ─── RIGHT COLUMN: Books (60%) ─── -->
-          <div class="fav-col fav-col--books">
-            <div class="fav-col-header">
-              <span class="fav-eyebrow">Lesejahr 2025</span>
-              <h3 class="fav-col-title">104 Bücher. <em>Drei bleiben.</em></h3>
-              <div class="reading-stats-inline">
-                <div class="rs-item">
-                  <span class="rs-num counter" data-target="54">54</span>
-                  <span class="rs-label">Bücher 2024</span>
-                </div>
-                <div class="rs-sep">→</div>
-                <div class="rs-item rs-item--highlight">
-                  <span class="rs-num counter" data-target="104">104</span>
-                  <span class="rs-label">Bücher 2025</span>
-                </div>
-              </div>
-              <p class="fav-col-desc">Aus 104 gelesenen Büchern meine Favoriten nach Genre zu selektieren war einfacher als erwartet. Nur wenige hinterlassen einen bleibenden Eindruck – diese drei haben es definitiv geschafft.</p>
-            </div>
+          <div class="fav-col-header">
+            <span class="fav-eyebrow" style="margin-bottom:3.2rem">Meine 3 Lieblings Bücher 2025</span>
+            <!-- <p class="fav-col-desc">Aus 104 gelesenen Büchern meine Favoriten nach Genre zu selektieren war einfacher als erwartet. Nur wenige hinterlassen einen bleibenden Eindruck – diese drei haben es definitiv geschafft.</p> -->
+          </div>
 
-            <ul class="book-list">
+          <ul class="book-list">
 
               <!-- Book 1: Fourth Wing -->
               <li class="book-entry">
@@ -2607,20 +3097,69 @@ section {
 
             </ul>
             <!-- End book-list -->
+        </div>
+        <!-- End fav-books-section -->
 
-            <!-- Goodreads CTA -->
-            <div class="goodreads-section">
-              <h3>Goodreads Wrapped 2025</h3>
-              <p>Tauche ein in meine vollständige Lesereise 2025. Alle 104 Bücher – von literarischen Meisterwerken bis zu geliebten Guilty Pleasures.</p>
-              <a href="https://www.goodreads.com/user/year_in_books/2025/86919904" target="_blank" rel="noopener noreferrer" class="goodreads-btn-main">
-                Besuche mein Goodreads-Profil →
-              </a>
+        <!-- ===== GOODREADS CTA ===== -->
+        <div class="goodreads-cta-section">
+          <div class="goodreads-cta-inner">
+            <span class="fav-eyebrow">Goodreads Wrapped 2025</span>
+            <h3 class="goodreads-cta-title">Alle 104 Bücher.<br><em>Die komplette Reise.</em></h3>
+            <p class="goodreads-cta-desc">Tauche ein in meine vollständige Lesereise 2025 – von literarischen Meisterwerken bis zu geliebten Guilty Pleasures.</p>
+            <a href="https://www.goodreads.com/user/year_in_books/2025/86919904" target="_blank" rel="noopener noreferrer" class="goodreads-btn-main">
+              Besuche mein Goodreads-Profil →
+            </a>
+          </div>
+        </div>
+
+        <!-- ===== VINYL SECTION ===== -->
+        <div class="fav-vinyl-section">
+          <div class="fav-col-header" style="text-align: center;">
+            <span class="fav-eyebrow">Spotify Wrapped 2025</span>
+            <h3 class="fav-col-title">Klänge, <em>die prägen.</em></h3>
+            <p class="fav-col-desc" style="margin-left: auto; margin-right: auto;">Drei Alben, die 2025 auf Repeat liefen – jedes davon ein eigenes Universum.</p>
+          </div>
+
+          <div class="vinyl-grid-large">
+            <!-- Record 1 -->
+            <div class="vinyl-card-large">
+              <div class="record-container">
+                <div class="album"><img src="assets/images/branding/runaway.jpeg" alt="Runaway Album"></div>
+                <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
+              </div>
+              <div class="vinyl-meta">
+                <span class="vinyl-genre">Hip-Hop / Soul</span>
+                <p class="vinyl-title">Runaway</p>
+                <span class="vinyl-artist">Kanye West</span>
+              </div>
+            </div>
+            <!-- Record 2 -->
+            <div class="vinyl-card-large">
+              <div class="record-container">
+                <div class="album"><img src="assets/images/branding/fear.jpeg" alt="Fear Album"></div>
+                <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
+              </div>
+              <div class="vinyl-meta">
+                <span class="vinyl-genre">R&amp;B / Gospel</span>
+                <p class="vinyl-title">FEAR.</p>
+                <span class="vinyl-artist">Kendrick Lamar</span>
+              </div>
+            </div>
+            <!-- Record 3 -->
+            <div class="vinyl-card-large">
+              <div class="record-container">
+                <div class="album"><img src="assets/images/branding/millionyears.jpeg" alt="Million Years Album"></div>
+                <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
+              </div>
+              <div class="vinyl-meta">
+                <span class="vinyl-genre">Pop</span>
+                <p class="vinyl-title">A Million Years</p>
+                <span class="vinyl-artist">Westlife</span>
+              </div>
             </div>
           </div>
-          <!-- ─── END RIGHT COLUMN ─── -->
-
         </div>
-        <!-- ===== END FAVORITES GRID ===== -->
+        <!-- End vinyl section -->
 
       </div>
     </section>
@@ -2734,6 +3273,36 @@ section {
         }
       });
     });
+
+    // ── Timeline Section Toggle ──
+    const timelineToggleBtn = document.querySelector('.timeline-toggle-btn');
+    const timelineCollapsible = document.querySelector('.timeline-collapsible');
+    
+    if (timelineToggleBtn && timelineCollapsible) {
+      timelineToggleBtn.addEventListener('click', function() {
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        
+        if (!isExpanded) {
+          // Open timeline
+          this.setAttribute('aria-expanded', 'true');
+          timelineCollapsible.style.height = timelineCollapsible.scrollHeight + 'px';
+          
+          // Remove inline height after transition to allow responsive resizing
+          setTimeout(() => {
+            if (this.getAttribute('aria-expanded') === 'true') {
+              timelineCollapsible.style.height = 'auto';
+            }
+          }, 600);
+        } else {
+          // Close timeline
+          timelineCollapsible.style.height = timelineCollapsible.scrollHeight + 'px';
+          // Force reflow
+          timelineCollapsible.offsetHeight;
+          this.setAttribute('aria-expanded', 'false');
+          timelineCollapsible.style.height = '0';
+        }
+      });
+    }
 
     // ── MBTI Circle Animation ──
     const mbtiObserver = new IntersectionObserver((entries) => {
