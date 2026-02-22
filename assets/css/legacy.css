@@ -184,6 +184,218 @@
     opacity: 0;
     transform: translateY(40px);
   }
+ /* â”€â”€ SECTION â”€â”€ */
+    .section-photography {
+      position: relative;
+      width: 100%;
+      min-height: 60vh;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background-color: #56686A;
+    }
+
+    /* grain */
+    .section-photography::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* edge lines */
+    .edge-top, .edge-bottom {
+      position: absolute; left: 0; width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--mauve), transparent);
+      opacity: 0.3; pointer-events: none; z-index: 1;
+    }
+    .edge-top { top: 0; } .edge-bottom { bottom: 0; }
+
+    /* â”€â”€ INNER LAYOUT â”€â”€ */
+    .photo-inner {
+      max-width: 85vw; width: 85vw;
+      margin: 0 auto; position: relative; z-index: 2;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      gap: clamp(2rem, 5vw, 6rem);
+      padding: clamp(3rem, 6vh, 5rem) 0;
+    }
+
+    /* â”€â”€ LEFT â”€â”€ */
+    .photo-left {
+      flex: 0 0 auto;
+      width: clamp(240px, 28vw, 380px);
+      display: flex; flex-direction: column;
+      gap: clamp(1rem, 1.8vh, 1.8rem);
+    }
+
+    .photo-eyebrow {
+      font-family: var(--font-sub); font-size: 0.65rem;
+      font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--mauve); display: flex; align-items: center; gap: 0.7rem;
+      opacity: 0; transform: translateX(-18px);
+    }
+    .photo-eyebrow::before {
+      content: ''; display: block; width: 24px; height: 1px;
+      background: var(--mauve); flex-shrink: 0;
+    }
+
+    /* WE MAKE */
+    .we-make {
+      font-family: var(--font-display); font-style: italic; font-weight: 700;
+      font-size: clamp(3.8rem, 6.5vw, 8rem); line-height: 0.92;
+      letter-spacing: -0.03em; color: var(--cream);
+      display: block; opacity: 0; transform: translateY(35px);
+    }
+
+    /* TYPED â€” burgundy, same font size */
+    .typed-line-wrap {
+      display: block;
+      min-height: clamp(2.8rem, 5vw, 6rem);
+      line-height: 1;
+    }
+    .typed-text-display {
+      font-family: var(--font-display); font-style: italic; font-weight: 700;
+      font-size: clamp(3rem, 5vw, 6.5rem); letter-spacing: -0.03em;
+      color: var(--burgundy); display: inline-block;
+    }
+    .typed-cursor { display: none !important; }
+
+    .photo-left p {
+      font-size: clamp(0.78rem, 0.88vw, 0.9rem); line-height: 1.9;
+      color: var(--cream-dim); margin: 0;
+      opacity: 0; transform: translateY(18px);
+    }
+
+    /* CTA */
+    .photo-cta {
+      display: inline-flex; align-items: center; gap: 1rem;
+      font-family: var(--font-sub); font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+      font-weight: 300; letter-spacing: 0.05em;
+      color: var(--cream); text-decoration: none;
+      opacity: 0; transform: translateY(18px);
+    }
+    .photo-cta .linktext { position: relative; overflow: hidden; display: inline-block; }
+    .photo-cta .linktext::before {
+      position: absolute; content: ''; left: 0; bottom: 1px;
+      width: 100%; height: 1px; background: var(--cream);
+      transform: scaleX(1); transition: transform 260ms ease-in-out; transform-origin: 0 0;
+    }
+    .photo-cta:hover .linktext::before { transform: scaleX(0); transform-origin: 100% 100%; }
+    .photo-cta .arrow { height: 24px; width: 24px; display: inline-block; position: relative; overflow: hidden; flex-shrink: 0; transform: rotate(90deg); }
+    .photo-cta .arrow::before, .photo-cta .arrow::after {
+      position: absolute; content: ''; background: var(--burgundy);
+      transition: all 0.35s ease-in-out; transform-origin: 0 0; border-radius: 30px;
+    }
+    .photo-cta .arrow::before { height: 1.5px; width: 100%; top: 0; right: 0; }
+    .photo-cta .arrow::after  { width: 1.5px; height: 100%; top: 0; right: 0; }
+    .photo-cta:hover .arrow::before { width: 65%; }
+    .photo-cta:hover .arrow::after  { height: 65%; }
+    .photo-cta .arrow span {
+      background: var(--burgundy); height: 1.5px; width: 100%;
+      display: inline-block; transform: rotate(-45deg) translate(-3px,-1px);
+      transform-origin: right top; border-radius: 30px;
+      position: absolute; top: 0; left: 0; transition: all 0.35s ease-in-out;
+    }
+    .photo-cta .arrow span::before {
+      background: var(--burgundy); content: ''; height: 100%; width: 12px;
+      left: -12px; top: 0; position: absolute;
+    }
+
+    /* â”€â”€ RIGHT â”€â”€ */
+    .photo-right {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+    }
+
+    /* The grid container â€” JS will set exact px size & inject stylesheet */
+    .main-grid {
+      position: relative;
+      flex-shrink: 0;
+      overflow: visible;
+    }
+
+    /* Boxes â€” all sizing done via JS-injected CSS variables */
+    .box {
+      position: absolute;
+      background: transparent;
+      border: 1px solid rgba(181,161,158,0.28);
+      border-radius: 9999px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: visible;
+      animation-duration: 30s;
+      animation-iteration-count: infinite;
+      animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+      transition: border-color 0.4s ease;
+    }
+    .box:hover { border-color: rgba(181,161,158,0.55); }
+
+    /* text labels */
+    .box > span {
+      position: absolute; display: block; z-index: 5;
+      font-family: var(--font-label); text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--mauve); opacity: 0.9;
+      white-space: nowrap; font-size: clamp(8px, 0.65vw, 11px);
+    }
+
+    /* images */
+    .box .bg-img { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; }
+    .box .bg-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: saturate(0.7) brightness(0.82);
+      transition: filter 0.6s ease, transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .box:hover .bg-img img { filter: saturate(1) brightness(1); transform: scale(1.07); }
+
+    /* decorative wave line */
+    .bg-line {
+      position: absolute; top: 0; right: 0;
+      width: 50%; height: 80px; z-index: -1;
+      overflow: hidden; display: flex; white-space: nowrap; opacity: 0.13;
+    }
+    .bg-line img { flex-shrink: 0; animation: 26s linear infinite; filter: invert(1) sepia(1) saturate(0.2); }
+    .bg-line img:nth-child(1) { animation-name: wave-first; }
+    .bg-line img:nth-child(2) { animation-name: wave-second; }
+
+    /* rotating dash circle */
+    .bg-dash-circle { position: absolute; bottom: -35px; right: -13px; z-index: -1; width: 150px; aspect-ratio: 1; }
+    .bg-dash-circle img {
+      width: 100%; height: 100%; object-fit: cover;
+      animation: circle-rotate 18s linear infinite;
+      filter: invert(1) sepia(1) saturate(0.6) hue-rotate(300deg) brightness(0.55); opacity: 0.5;
+    }
+
+    /* floating rings */
+    .bg-circle-h-line { position: absolute; bottom: 42px; left: -68px; z-index: 1; width: 181px; height: 111px; }
+    .bg-circle-h-line img {
+      width: 100%; max-width: 100%; height: auto; position: absolute; left: 0;
+      filter: invert(1) sepia(1) saturate(0.4) hue-rotate(280deg) brightness(0.5); opacity: 0.45;
+    }
+    .bg-circle-h-line img:nth-child(1) { top: 0; animation: ring-top 2.5s linear infinite; }
+    .bg-circle-h-line img:nth-child(2) { top: 50%; transform: translateY(-50%); }
+    .bg-circle-h-line img:nth-child(3) { bottom: 0; animation: ring-bottom 2.5s linear infinite; }
+
+    /* â”€â”€ DECORATIVE KEYFRAMES â”€â”€ */
+    @keyframes wave-first {
+      50% { transform: translateX(-100%); opacity: 1; }
+      50.05% { opacity: 0; }
+      50.1% { transform: translateX(100%); opacity: 1; }
+      100% { transform: translateX(0%); }
+    }
+    @keyframes wave-second {
+      0% { transform: translateX(0%); }
+      50% { transform: translateX(-100%); }
+      100% { transform: translateX(-200%); }
+    }
+    @keyframes circle-rotate { to { transform: rotate(360deg); } }
+    @keyframes ring-top { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+    @keyframes ring-bottom { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+    /* â”€â”€ RESPONSIVE â”€â”€ */
+    @media (max-width: 900px) {
+      .section-photography { min-height: auto; padding: 6rem 0; }
+      .photo-inner { flex-direction: column; gap: 4rem; }
+      .photo-left { width: 100%; max-width: 100%; }
+    }
 /* ========================================= 7. SKILLS SECTION - NEW ACCORDION SYSTEM ========================================= */
 .section-skills {
   padding: clamp(60px, 8vw, 120px) 0;
