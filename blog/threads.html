@@ -8,7 +8,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Tenor+Sans:wght@400&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Tenor+Sans&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,193 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
        <!-- Main Styles -->
        <link rel="stylesheet" href="../assets/css/main.css" />
-<style>
-        :root {
-            --black: #000;
-            --bg-secondary: #F8F7F4; /* Etwas wärmeres Editorial-Weiß */
-            --text-dark: #121212;
-          --burgundy: #6E3B49;
-            --text-gray: #666666;
-            --font-body: 'Outfit', sans-serif;
-            --font-display: 'Playfair Display', serif;
-        }
-
-        body {
-            background-color:  var(--off-black);
-            color: var(--text-dark);
-            font-family: var(--font-body);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            padding-top: 72px;
-        }
-
-        /* Reading Progress Bar */
-        .progress-container {
-            position: fixed;
-            top: 0;
-            z-index: 1000;
-            width: 100%;
-            height: 3px;
-            background: rgba(0,0,0,0.05);
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: var(--burgundy);
-            width: 0%;
-        }
-
-        /* Grid Layout */
-        .editorial-container {
-            max-width: 140rem;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            padding: 0 4rem;
-        }
-
-        /* Navigation */
-        .nav-header {
-            grid-column: 1 / -1;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 4rem 0;
-            z-index: 100;
-        }
-
-        .back-btn {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        /* Typography Styles */
-        .title-large {
-            font-family: var(--font-display);
-            font-size: clamp(6rem, 12vw, 16rem);
-            font-weight: 900;
-            line-height: 0.85;
-            letter-spacing: -0.04em;
-            margin-bottom: 6rem;
-            position: relative;
-        }
-
-        .title-italic {
-            font-style: italic;
-            font-weight: 400;
-            display: block;
-            margin-left: 10vw;
-            color: var(--burgundy);
-        }
-
-        .meta-info {
-            font-family: var(--font-body);
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            color: var(--text-gray);
-            margin-bottom: 2rem;
-            display: block;
-        }
-
-        /* Content Blocks */
-        .article-main {
-            grid-column: 2 / 8;
-            padding-bottom: 20rem;
-        }
-
-        .article-sidebar {
-            grid-column: 9 / 13;
-            position: sticky;
-            top: 15rem;
-            height: fit-content;
-        }
-
-        .text-lead {
-            font-size: 1.8rem;
-            line-height: 1.4;
-            font-family: var(--font-body);
-            margin-bottom: 6rem;
-            font-weight: 400;
-            text-align: justify;
-            text-justify: inter-word;
-            hyphens: auto;
-            text-align-last: left;
-        }
-
-        .text-body {
-            font-size: 1.8rem;
-            line-height: 1.8;
-            color: #222;
-        }
-
-        .text-body p {
-            margin-bottom: 3.5rem;
-            position: relative;
-        }
-.p {
-            font-size: 1.4rem !important;
-        }
-        .drop-cap::first-letter {
-            font-family: var(--font-display);
-            font-size: 8rem;
-            float: left;
-            line-height: 0.7;
-            padding-right: 1.5rem;
-            margin-top: 1rem;
-            color: var(--burgundy);
-            font-style: italic;
-        }
-
-        /* Pull Quote */
-        .pull-quote {
-            margin: 8rem 0;
-            padding: 4rem 0;
-            border-top: 1px solid rgba(0,0,0,0.1);
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            font-family: var(--font-display);
-            font-size: 4rem;
-            font-style: italic;
-            line-height: 1.2;
-            color: var (--text-dark);
-            text-align: center;
-        }
-
-        /* Media Elements */
-        .img-reveal-wrapper {
-            overflow: hidden;
-            border-radius: 0.4rem;
-            margin-bottom: 4rem;
-            background: #eee;
-        }
-
-        .img-reveal-wrapper img {
-            width: 100%;
-            height: auto;
-            transform: scale(1.1);
-            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        /* Mobile Layout */
-        @media (max-width: 1024px) {
-            .article-main { grid-column: 1 / -1; }
-            .article-sidebar { display: none; }
-            .title-large { font-size: 8rem; }
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background:  var(--off-black); }
-        ::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--burgundy); }
-
-    </style> 
+       <link rel="stylesheet" href="../assets/css/blog.css" />
 </head>
 <body>
         <!-- HEADER -->
@@ -216,9 +30,9 @@
                 </a>
                 <nav class="nav">
                     <a href="../index.html#hero" class="nav-link">Home</a>
-                    <a href="../index.html#expertise" class="nav-link">What I do</a>
+                    <a href="../index.html#expertise" class="nav-link">Work</a>
                     <a href="../index.html#blog" class="nav-link">Blog</a>
-                    <a href="../about.html" class="nav-link">About me</a>
+                    <a href="../about.html" class="nav-link">About</a>
                 </nav>
             </div>
         </header>

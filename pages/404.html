@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Seite nicht gefunden | Khadija Okbi</title>
     <meta name="description" content="Die gesuchte Seite existiert leider nicht. Zurück zur Portfolio-Startseite von Khadija Okbi.">
-    <link rel="canonical" href="https://khadijaokbi.com/404.html">
+    <link rel="canonical" href="https://khadijaokbi.com/pages/404.html">
     <link rel="icon" type="image/png" href="../assets/images/branding/logo_white.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="../assets/css/main.css">
     
     <style>
+        html {
+            background-color: var(--mauve);!important;
+        }
         .error-container {
             display: flex;
             flex-direction: column;
@@ -23,7 +26,7 @@
             min-height: 100vh;
             text-align: center;
             padding: 2rem;
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--mauve) 100%);
+            background-color: var(--mauve);;
         }
 
         .error-code {
@@ -104,6 +107,29 @@
             height: auto;
         }
 
+        .error-main {
+            position: relative;
+            background-color: var(--mauve);
+        }
+
+        .error-main::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 20vh;
+            background-color: var(--bg-dark);
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
+            mask-size: 100% 100%;
+            -webkit-mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat;
+            pointer-events: none;
+            z-index: 4;
+        }
+
         @media (max-width: 480px) {
             .error-actions {
                 flex-direction: column;
@@ -118,31 +144,70 @@
     </style>
 </head>
 <body>
-    <div class="error-container">
-        <h1 class="error-code">404</h1>
-        
-        <div class="error-illustration">
-            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <circle cx="100" cy="100" r="80" fill="none" stroke="#6E3B49" stroke-width="3" opacity="0.3"/>
-                <circle cx="100" cy="100" r="60" fill="none" stroke="#6E3B49" stroke-width="2" opacity="0.2"/>
-                <path d="M70 80 Q100 110 130 80" stroke="#6E3B49" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.4"/>
-                <circle cx="75" cy="70" r="5" fill="#6E3B49" opacity="0.4"/>
-                <circle cx="125" cy="70" r="5" fill="#6E3B49" opacity="0.4"/>
-            </svg>
+    <header class="site-header is-solid" aria-label="Seitennavigation">
+        <div class="container nav-bar">
+            <a href="../index.html" class="logo">
+                <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi Logo" width="40">
+            </a>
+            <nav class="nav" aria-label="Hauptnavigation">
+                <a href="../index.html#hero" class="nav-link">Home</a>
+                <a href="../index.html#expertise" class="nav-link">Work</a>
+                <a href="../index.html#blog" class="nav-link">Blog</a>
+                <a href="../about.html" class="nav-link">About</a>
+            </nav>
         </div>
+    </header>
 
-        <h2 class="error-title">Seite nicht gefunden</h2>
-        
-        <p class="error-message">
-            Die Seite, die du suchst, existiert leider nicht oder wurde verschoben. 
-            Vielleicht findest du auf der Startseite, was du suchst?
-        </p>
+    <main class="work-section error-main" style="padding: 0 0 22vh 0; min-height: 100vh;">
+        <div class="error-container">
+            <h1 class="error-code">404</h1>
+            
+            <div class="error-illustration">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="#6E3B49" stroke-width="3" opacity="0.3"/>
+                    <circle cx="100" cy="100" r="60" fill="none" stroke="#6E3B49" stroke-width="2" opacity="0.2"/>
+                    <path d="M70 80 Q100 110 130 80" stroke="#6E3B49" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.4"/>
+                    <circle cx="75" cy="70" r="5" fill="#6E3B49" opacity="0.4"/>
+                    <circle cx="125" cy="70" r="5" fill="#6E3B49" opacity="0.4"/>
+                </svg>
+            </div>
 
-        <div class="error-actions">
-            <a href="../index.html" class="error-btn primary">Zur Startseite</a>
-            <a href="javascript:history.back()" class="error-btn">Zurück</a>
-            <a href="mailto:khadijaokbi@gmail.com" class="error-btn">Kontakt</a>
+            <h2 class="error-title">Seite nicht gefunden</h2>
+            
+            <p class="error-message">
+                Die Seite, die du suchst, existiert leider nicht oder wurde verschoben. 
+                Vielleicht findest du auf der Startseite, was du suchst?
+            </p>
+
+            <div class="error-actions">
+                <a href="../index.html" class="error-btn primary">Zur Startseite</a>
+                <a href="javascript:history.back()" class="error-btn">Zurück</a>
+            </div>
         </div>
-    </div>
+    </main>
+    <footer class="site-footer" aria-label="Seitenende">
+        <div class="container footer-inner">
+            <div class="footer-copy">© 2026 Design & Development by Khadija Okbi</div>
+            <div class="footer-links">
+                <a href="impressum.html" class="footer-link">Impressum</a>
+                <a href="mailto:khadijaokbi@gmail.com" class="footer-link contact-btn">Kontakt</a>
+                <a href="datenschutz.html" class="footer-link">Datenschutz</a>
+
+            </div>
+            <div class="footer-socials" aria-label="Soziale Netzwerke">
+                <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/>
+                    </svg>
+                </a>
+                <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/>
+                        <path d="M6.5 9.5v8.5M6.5 7.5v.01M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

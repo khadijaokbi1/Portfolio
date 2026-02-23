@@ -103,26 +103,22 @@ const initProjectFilter = () => {
 // =========================================
 const initProjectCards = () => {
     const cards = document.querySelectorAll('.project-card');
+    if (!cards.length) return;
 
     gsap.fromTo(cards,
+        { opacity: 0, y: 40 },
         {
-            autoAlpha: 0,
-            y: 40
-        },
-        {
-            autoAlpha: 1,
+            opacity: 1,
             y: 0,
             duration: 1.2,
             ease: 'expo.out',
-            stagger: 0.1,
+            stagger: 0.08,
+            clearProps: 'all',
             scrollTrigger: {
                 trigger: '.projects-grid',
-                start: 'top 85%',
+                start: 'top 90%',
                 once: true,
                 toggleActions: 'play none none none'
-            },
-            onComplete: () => {
-                gsap.set(cards, { clearProps: 'transform' });
             }
         }
     );
@@ -323,21 +319,12 @@ document.addEventListener('DOMContentLoaded', () => {
   
   setTimeout(() => {
     try {
-      console.log('Initializing initHeroParallax...');
       initHeroParallax();
     } catch (e) {
       console.error('❌ Error in initHeroParallax:', e);
     }
     
     try {
-      console.log('Initializing initAccordion...');
-      initAccordion();
-    } catch (e) {
-      console.error('❌ Error in initAccordion:', e);
-    }
-    
-    try {
-      console.log('Initializing initProjectFilter...');
       initProjectFilter();
     } catch (e) {
       console.error('❌ Error in initProjectFilter:', e);
@@ -359,6 +346,60 @@ document.addEventListener('DOMContentLoaded', () => {
       ScrollTrigger.refresh();
     }
   }, 100);
+
+  // ── Grid & Photography Section ──
+  if (document.getElementById('main-grid')) {
+    buildGrid();
+    window.addEventListener('resize', buildGrid);
+  }
+
+  const section = document.querySelector('.section-photography');
+  if (!section) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (document.querySelector('.typed-text-display')) {
+    new Typed('.typed-text-display', {
+      strings: ['', 'visuals.', 'campaigns.', 'motion.', 'brands.'],
+      typeSpeed: 100, backSpeed: 42, loop: true
+    });
+  }
+
+  const eyebrow = section.querySelector('.photo-eyebrow');
+  const weMake  = section.querySelector('.we-make');
+  const typedW  = section.querySelector('.typed-line-wrap');
+  const bodyTxt = section.querySelector('.photo-left p');
+  const cta     = section.querySelector('.photo-cta');
+
+  gsap.timeline({ scrollTrigger: { trigger: section, start: 'top 70%', once: true } })
+    .to(eyebrow,  { opacity: 1, x: 0, duration: 0.65, ease: 'power3.out' })
+    .to(weMake,   { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' }, '-=0.3')
+    .to(typedW,   { opacity: 1,       duration: 0.5,  ease: 'power2.out' }, '-=0.4')
+    .to(bodyTxt,  { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' }, '-=0.35')
+    .to(cta,      { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, '-=0.35');
+
+  if (weMake) {
+    const split = new SplitType(weMake, { types: 'chars' });
+    gsap.from(split.chars, {
+      y: 40, opacity: 0, stagger: 0.04, duration: 0.55, ease: 'power3.out',
+      scrollTrigger: { trigger: weMake, start: 'top 82%', once: true }
+    });
+  }
+
+  const boxes = section.querySelectorAll('.main-grid .box');
+  if (boxes.length) {
+    gsap.from(boxes, {
+      opacity: 0, scale: 0.78,
+      stagger: { each: 0.07, from: 'center' },
+      duration: 0.7, ease: 'back.out(1.8)',
+      scrollTrigger: { trigger: '.main-grid', start: 'top 78%', once: true }
+    });
+  }
+
+  gsap.to('.bg-dash-circle', {
+    rotation: 30, y: -20,
+    scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: 2 }
+  });
 });
 
 function buildGrid() {
@@ -526,47 +567,3 @@ function buildGrid() {
   }
   styleTag.textContent = css;
 }
-
-buildGrid();
-window.addEventListener('resize', buildGrid);
-
-/* ── GSAP & Typed ── */
-gsap.registerPlugin(ScrollTrigger);
-
-new Typed('.typed-text-display', {
-  strings: ['', 'visuals.', 'campaigns.', 'motion.', 'brands.'],
-  typeSpeed: 100, backSpeed: 42, loop: true
-});
-
-const section = document.querySelector('.section-photography');
-const eyebrow  = section.querySelector('.photo-eyebrow');
-const weMake   = section.querySelector('.we-make');
-const typedW   = section.querySelector('.typed-line-wrap');
-const bodyTxt  = section.querySelector('.photo-left p');
-const cta      = section.querySelector('.photo-cta');
-
-gsap.timeline({ scrollTrigger: { trigger: section, start: 'top 70%', once: true } })
-  .to(eyebrow,  { opacity: 1, x: 0, duration: 0.65, ease: 'power3.out' })
-  .to(weMake,   { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' }, '-=0.3')
-  .to(typedW,   { opacity: 1,       duration: 0.5,  ease: 'power2.out' }, '-=0.4')
-  .to(bodyTxt,  { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' }, '-=0.35')
-  .to(cta,      { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, '-=0.35');
-
-const split = new SplitType(weMake, { types: 'chars' });
-gsap.from(split.chars, {
-  y: 40, opacity: 0, stagger: 0.04, duration: 0.55, ease: 'power3.out',
-  scrollTrigger: { trigger: weMake, start: 'top 82%', once: true }
-});
-
-const boxes = section.querySelectorAll('.main-grid .box');
-gsap.from(boxes, {
-  opacity: 0, scale: 0.78,
-  stagger: { each: 0.07, from: 'center' },
-  duration: 0.7, ease: 'back.out(1.8)',
-  scrollTrigger: { trigger: '.main-grid', start: 'top 78%', once: true }
-});
-
-gsap.to('.bg-dash-circle', {
-  rotation: 30, y: -20,
-  scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: 2 }
-});
