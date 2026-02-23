@@ -39,6 +39,7 @@
           colors: {
             'brand-dark':       '#314A51',
             'brand-cream':      '#F5F5F5',
+            'bg-cream':         '#F5F5F5',
             'brand-burgundy':   '#6E3B49',
             'brand-mauve':      '#B5A19E',
             'brand-text-light': '#EBE1D1',
@@ -78,6 +79,7 @@
   <!-- Styles -->
   <link rel="stylesheet" href="assets/css/about.css">
   <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/about-polish.css">
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-B415ZJNKNW"></script>
   <script>
@@ -112,17 +114,7 @@
     <div class="hero-section about-hero-section" id="hero">
       <div class="hero-bg-img about-hero-bg-img"></div>
       <div class="hero-header about-hero-header">
-        <h1 class="hero-top about-hero-top">ABOUT</h1>
-        <h1 class="hero-bottom about-hero-bottom">ME</h1>
-        <div class="hero-fig">
-          <div class="hero-fig-bg">
-            <img src="assets/images/about/pb-about.png" alt="Hintergrund Portrait">
-          </div>
-          <div class="hero-fig-img">
-            <img src="assets/images/about/pb-about.png" alt="Portrait von Khadija Okbi">
-          </div>
-        </div>
-      </div>
+    </div>
     </div>
 
     <!-- ======================== INTRO / PORTRAIT ======================== -->
@@ -142,77 +134,69 @@
               <!-- Decorative Element -->
               <div class="absolute -bottom-4 -left-4 w-24 h-24 border-l-2 border-b-2 border-burgundy opacity-40"></div>
             </div>
-    
-            <div class="traits-box bg-white/5 p-8 border border-mauve/10 backdrop-blur-sm">
-              <button class="timeline-toggle-btn mb-8" aria-expanded="false">
-                <div class="timeline-toggle-content">
-                  <div class="timeline-toggle-text">
-                    <p class="timeline-toggle-label">Werdegang</p>
-                    <h3 class="timeline-toggle-title">Bildung <span>&</span> Erfahrung</h3>
-                  </div>
-                  <div class="timeline-toggle-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                  </div>
-                </div>
-              </button>
-              <details class="group">
-                <summary class="uppercase-label text-burgundy mb-2 flex items-center justify-between cursor-pointer list-none">
-                  Traits
-                  <i class="fas fa-chevron-down text-xs transition-transform duration-300 group-open:rotate-180"></i>
-                </summary>
-                <p class="font-higuen text-xl text-primary leading-tight pb-2">
-                  Emotional Intelligence — High-End Creativity — Strategic Depth
-                </p>
-              </details>
-            </div>
           </div>
     
           <!-- Right Column: Content -->
           <div class="lg:col-span-7 pt-4">
-            <header class="mb-12">
-              <p class="uppercase-label tracking-[0.3em] text-mauve mb-4">About</p>
-              <h2 class="visionary-title leading-[0.9] mb-8">
-                The Visionary<br>
-                <span class="italic font-light">&</span> The <span class="text-burgundy">Strategist.</span>
+            <div class="mb-12">
+                <h2 class="visionary-title leading-[0.9] mb-8 text-[var(--mauve)]">
+             About Me
               </h2>
               <p class="text-xl leading-relaxed text-secondary max-w-2xl">
               <p>Kreativität zieht sich durch mein ganzes Leben. Meine Lösungswege sind oft unkonventionell. Effizienz trifft auf kreatives Chaos, ein laufendes Paradox. Mein Mantra: Wo ein Wille ist, ist auch ein Weg. Mein Durst nach Wissen ist unstillbar und ich nehme jede Gelegenheit mit, etwas neues zu lernen. Ob im Baumarkt in der Holzabteilung oder vom Elektriker in der Waschküche, welche Gelegenheit eignet sich bitte besser als diese, um von Experten zu lernen.
                  Was mich schon seit Jahren besonders fasziniert, ist die menschliche Psyche. Unsere Triebe, Veranlagerungen und Triebe. warum wir Dinge tun, die wir rational längst durchschaut haben, und wo die Bruchstellen liegen. True Crime ist für mich kein billiger Thrill – es ist der Blick in den Extremfall, in den Moment, wo alles kippt. Ich will nicht nur wissen, was passiert ist. Ich will verstehen, warum.
               Deshalb verschlinge ich alles zu Psychologie, Neurologie, Philosophie und True Crime. 
               </p>
-            </header>
+            </div>
     
             <!-- Profile Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 items-stretch">
               
               <!-- Personality -->
-              <div class="profile-card border-t border-mauve/30 pt-6">
-                <p class="uppercase-label text-burgundy mb-4">Personality Type</p>
-                <h3 class="font-display text-2xl mb-4 italic"><ENTJ-A></ENTJ-A> — The Commander</h3>
-                <p class="text-secondary text-sm leading-relaxed">
-                  Strategisch, entschlossen, effizient. Ich sehe Strukturen, wo andere Chaos sehen. Mein Antrieb ist Fortschritt und Perfektion.
-                </p>
+              <div class="h-full">
+                <div class="profile-card px-4">
+                  <p class="uppercase-label text-burgundy mb-4">Personality Type</p>
+                  <h3 class="font-display text-2xl mb-4 italic">ENTJ-A — The Commander</h3>
+                  <p class="text-secondary text-sm leading-relaxed">
+                    Strategisch, entschlossen, effizient. Ich sehe Strukturen, wo andere Chaos sehen. Mein Antrieb ist Fortschritt und Perfektion.
+                  </p>
+                </div>
               </div>
     
               <!-- Zodiac -->
-              <div class="profile-card border-t border-mauve/30 pt-6">
-                <p class="uppercase-label text-burgundy mb-4">Zodiac Sign</p>
-                <div class="flex items-center gap-3 mb-4">
-                   <h3 class="font-display text-2xl italic mb-0 text-primary">Cancer — The Intuitive</h3>
-                   <i class="fas fa-moon text-2xl text-burgundy opacity-60"></i>
+              <div class="h-full">
+                <div class="profile-card">
+                  <p class="uppercase-label text-burgundy mb-4">Zodiac Sign</p>
+                  <div class="flex items-center gap-3 mb-4">
+                    <h3 class="font-display text-2xl italic mb-0 text-primary">Cancer — The Intuitive</h3>
+                    <i class="fas fa-moon text-2xl text-burgundy opacity-60"></i>
+                  </div>
+                  <p class="text-secondary text-sm leading-relaxed">
+                    Tiefgründig, intuitiv, beschützend. Ich fühle die Stimmung eines Raumes (oder einer Brand) sofort. Das emotionale Gegengewicht zu meiner Strategie.
+                  </p>
                 </div>
-                <p class="text-secondary text-sm leading-relaxed">
-                  Tiefgründig, intuitiv, beschützend. Ich fühle die Stimmung eines Raumes (oder einer Brand) sofort. Das emotionale Gegengewicht zu meiner Strategie.
-                </p>
               </div>
     
             </div>
           </div>
     
         </div>
-
+ 
+        <div class="traits-box bg-white/5 p-8 border border-mauve/10 backdrop-blur-sm">
+          <button class="timeline-toggle-btn mb-8" aria-expanded="false">
+            <div class="timeline-toggle-content">
+              <div class="timeline-toggle-text">
+                <p class="timeline-toggle-label">Werdegang</p>
+                <h3 class="timeline-toggle-title">Bildung <span>&</span> Erfahrung</h3>
+              </div>
+              <div class="timeline-toggle-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+            </div>
+          </button>
+        </div>
       </div>
     </section>
     
@@ -337,20 +321,15 @@
           </div>
         </div>
       </div>
-    </section>
-
     <!-- ======================== SKILLS & MBTI ======================== -->
-    <section class="work-section mint">
       <div class="container">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-
           <!-- MBTI Widget -->
           <div>
             <div class="flex items-center justify-between mb-6">
               <h3 class="text-[var(--mauve)] mb-0">MBTI Persönlichkeit</h3>
               <span class="text-xs font-bold uppercase tracking-widest text-[var(--burgundy)] border border-[var(--burgundy)] rounded-full px-3 py-1">INTP‑A</span>
             </div>
-            <h4>INTP-A</h4>
 
             <ul class="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8 list-none p-0" id="mbtiList">
               <li class="mbti-item flex flex-col items-center gap-2 cursor-pointer" data-aspect="Introvertiert" data-percent="51" tabindex="0">
@@ -509,50 +488,44 @@
               </ul>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
 
     <!-- ======================== NAHRUNG FÜR DEN KREATIVEN GEIST ======================== -->
-    <section class="work-section creative-fuel-section" id="favorites">
+    <section class="work-section bg-cream creative-fuel-section" id="favorites">
       <div class="container px-4">
-        <!-- Section Header -->
-        <div class="creative-fuel-header text-center mb-16">
-          <p class="fav-eyebrow mb-4">Reading Journey</p>
+      <!-- Section Header -->
+      <div class="creative-fuel-header text-center mb-16">
+      <div class="fav-col-header">
+        <div class="fav-col-header-text">
+          <span class="fav-eyebrow">Gelesene Bücher</span>
           <h2 class="fav-col-title">Meine <em>Favoriten</em></h2>
-          <p class="fav-col-desc mt-4">Ein Einblick in die Bücher, die mich dieses Jahr besonders geprägt oder einfach nur gut unterhalten haben.</p>
+          <p class="fav-col-desc">Ein Einblick in die Bücher, die mich dieses Jahr besonders geprägt haben.</p>
         </div>
-
-        <!-- ===== BOOKS FIRST ===== -->
-        <div class="fav-books-section">
-          
-          <!-- ===== READING COUNTER BOXES ===== -->
-          <div class="reading-counter-boxes">
-            <div class="counter-box counter-box--2024">
-              <div class="counter-box-inner">
-   <span class="counter-eyebrow">Lesejahr</span>
-                <span class="counter-num counter" data-target="52">52</span>
-                <span class="counter-label">2024</span>
-              </div>
-            </div>
-            <div class="counter-box counter-box--2025">
-              <div class="counter-box-inner">
-                <span class="counter-eyebrow">Lesejahr</span>
-                <span class="counter-num counter" data-target="104">104</span>
-                <span class="counter-label">2025</span>
-              </div>
+        <div class="reading-counter-boxes flex justify-center gap-8">
+          <div class="counter-box counter-box--2024 text-center">
+            <div class="counter-box-inner">
+              <span class="counter-eyebrow block text-sm font-semibold text-gray-600">2024</span>
+              <span class="counter-num counter text-4xl font-bold text-black" data-target="52">52</span>
+              <span class="counter-label block text-sm text-gray-500">Bücher</span>
             </div>
           </div>
-
-          <div class="fav-col-header">
-            <span class="fav-eyebrow" style="margin-bottom:3.2rem">Meine 3 Lieblings Bücher 2025</span>
-            <!-- <p class="fav-col-desc">Aus 104 gelesenen Büchern meine Favoriten nach Genre zu selektieren war einfacher als erwartet. Nur wenige hinterlassen einen bleibenden Eindruck – diese drei haben es definitiv geschafft.</p> -->
+          <div class="counter-box counter-box--2025 text-center">
+            <div class="counter-box-inner">
+              <span class="counter-eyebrow block text-sm font-semibold text-gray-600">2025</span>
+              <span class="counter-num counter text-4xl font-bold text-black" data-target="104">104</span>
+              <span class="counter-label block text-sm text-gray-500">Bücher</span>
+            </div>
           </div>
-
+        </div>
+      </div>
+      </div>
+      <!-- ===== BOOKS FIRST ===== -->
+      <div class="fav-books-section">
+    
           <ul class="book-list">
-
               <!-- Book 1: Fourth Wing -->
               <li class="book-entry">
                 <div class="book-entry__cover">
@@ -622,7 +595,6 @@
                   </div>
                 </div>
               </li>
-
               <!-- Book 3: Reminders of Him -->
               <li class="book-entry">
                 <div class="book-entry__cover">

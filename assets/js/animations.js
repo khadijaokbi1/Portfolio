@@ -1,53 +1,35 @@
 'use strict';
 
+// ScrollTrigger sofort registrieren – muss vor allen Aufrufen passieren
+gsap.registerPlugin(ScrollTrigger);
+
 // =========================================
 // HERO PARALLAX
 // =========================================
 const initHeroParallax = () => {
   const hero = document.querySelector('.hero-section');
   if (!hero) return;
-  
-  gsap.to('.hero-top', {
-    y: 100,
-    scrollTrigger: {
-      trigger: '.hero-section',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 1
-    }
-  });
-  
-  gsap.to('.hero-bottom', {
-    y: 120,
-    scrollTrigger: {
-      trigger: '.hero-section',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 1
-    }
-  });
-  
-  gsap.to('.hero-portrait', {
-    y: -20,
-    scrollTrigger: {
-      trigger: '.hero-section',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 1
-    }
-  });
-  
-  gsap.to('.hero-portrait-bg', {
-    y: -20,
-    scrollTrigger: {
-      trigger: '.hero-section',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 1
-    }
-  });
-};
 
+  // BG: leichter Zoom beim Laden
+  gsap.fromTo('.hero-bg-image',
+    { scale: 1.08 },
+    { scale: 1, duration: 2.2, ease: 'power2.out' }
+  );
+
+  // BG: nach OBEN beim Scrollen → Tiefeneffekt
+  gsap.to('.hero-bg-image', {
+    yPercent: -20,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.hero-section',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1.5
+    }
+  });
+
+  // Bilder + Texte: kein Parallax – bleiben fest
+};
 
 // =========================================
 // PROJECT FILTER
