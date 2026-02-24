@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Preloader Demo — Khadija Okbi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Tenor+Sans&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <style>
+    @font-face {
+      font-family: 'Higuen';
+      src: url('../assets/fonts/Higuen.woff2') format('woff2');
+      font-display: block;
+    }
+
+    /* ── Portfolio Tokens (exakt wie main.css) ── */
+    :root {
+      --black:      #0A0A0A;
+      --off-white:  #EBE1D1;   /* cream */
+      --white:      #F5F5F5;
+      --darkgreen:  #314A51;
+      --mint:       #56686A;
+      --burgundy:   #6E3B49;
+      --mauve:      #B5A19E;
+
+      /* Preloader Rollen */
+      --loader-bg:      var(--off-white);   /* Hintergrund cream */
+      --loader-text:    var(--burgundy);    /* Text burgundy */
+      --loader-wave:    var(--mint);        /* Welle mint */
+      --loader-panel:   var(--mint);        /* Rechteck mint */
+      --loader-bar:     var(--burgundy);    /* Ladebalken burgundy */
+      --loader-subtle:  rgba(110,59,73,0.35);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; overflow-x: hidden; }
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: 'Outfit', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    body.is-loading { overflow: hidden; }
+
+    /* ════════════════════════════════════════════
+       FULLPAGE PRELOADER  (index / erste Seite)
+       Hintergrund: cream  |  Text: burgundy
+       Welle + Panel: mint
+    ════════════════════════════════════════════ */
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: var(--loader-bg);
+      overflow: hidden;
+    }
+
+    /* ── Rahmen-Linien (editorial) ── */
+    .loader__line {
+      position: absolute;
+      left: clamp(2rem, 5vw, 4rem);
+      right: clamp(2rem, 5vw, 4rem);
+      height: 1px;
+      background: var(--loader-subtle);
+      z-index: 2;
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    .loader__line--top    { top: clamp(2rem, 4vw, 3rem); }
+    .loader__line--bottom { bottom: clamp(2rem, 4vw, 3rem); }
+
+    /* ── Eckmarken ── */
+    .loader__corner {
+      position: absolute;
+      width: 16px; height: 16px;
+      z-index: 2; opacity: 0;
+    }
+    .loader__corner::before,
+    .loader__corner::after {
+      content: '';
+      position: absolute;
+      background: var(--loader-subtle);
+    }
+    .loader__corner::before { width: 100%; height: 1px; top: 0; left: 0; }
+    .loader__corner::after  { width: 1px; height: 100%; top: 0; left: 0; }
+    .loader__corner--tl { top: clamp(2rem,4vw,3rem);    left: clamp(2rem,5vw,4rem); }
+    .loader__corner--tr { top: clamp(2rem,4vw,3rem);    right: clamp(2rem,5vw,4rem); transform: rotate(90deg); }
+    .loader__corner--bl { bottom: clamp(2rem,4vw,3rem); left: clamp(2rem,5vw,4rem);  transform: rotate(-90deg); }
+    .loader__corner--br { bottom: clamp(2rem,4vw,3rem); right: clamp(2rem,5vw,4rem); transform: rotate(180deg); }
+
+    /* ── Meta links unten ── */
+    .loader__meta {
+      position: absolute;
+      bottom: clamp(2.2rem, 4.5vw, 3.2rem);
+      left: clamp(2rem, 5vw, 4rem);
+      z-index: 2;
+      display: flex; flex-direction: column; gap: 0.25rem;
+      opacity: 0; transform: translateY(6px);
+    }
+    .loader__meta span {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--loader-subtle);
+    }
+
+    /* ── Edition rechts unten ── */
+    .loader__edition {
+      position: absolute;
+      bottom: clamp(2.2rem, 4.5vw, 3.2rem);
+      right: clamp(2rem, 5vw, 4rem);
+      z-index: 2;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(0.62rem, 1.4vw, 0.72rem);
+      color: var(--loader-subtle);
+      opacity: 0; transform: translateY(6px);
+    }
+
+    /* ── Zentraler Block ── */
+    .loader__center {
+      position: absolute;
+      inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      z-index: 2; pointer-events: none;
+      padding-bottom: 8vh; /* visuell leicht nach oben */
+    }
+
+    .loader__eyebrow {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: clamp(0.52rem, 1.1vw, 0.62rem);
+      letter-spacing: 0.55em;
+      text-transform: uppercase;
+      color: var(--loader-subtle);
+      opacity: 0; transform: translateY(10px);
+      margin-bottom: 1.8rem;
+      display: flex; align-items: center; gap: 0.9rem;
+    }
+    .loader__eyebrow i {
+      display: inline-block;
+      width: 22px; height: 1px;
+      background: var(--loader-subtle);
+    }
+
+    /* Headline — 3 Zeilen, clip-reveal */
+    .loader__headline {
+      text-align: center;
+      line-height: 1.05;
+    }
+    .loader__headline-line {
+      display: block;
+      overflow: hidden;
+    }
+    .loader__headline-line span {
+      display: block;
+      transform: translateY(108%);
+      font-family: 'Higuen', serif;
+      font-size: clamp(2.6rem, 7.5vw, 6rem);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--loader-text);
+    }
+    /* Italic Zeile — Playfair, kleiner */
+    .loader__headline-line.is--italic span {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(2rem, 5.5vw, 4.4rem);
+      color: var(--mauve);
+      letter-spacing: 0.04em;
+      text-transform: none;
+    }
+
+    /* Tagline */
+    .loader__tagline {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(0.58rem, 1.2vw, 0.68rem);
+      font-weight: 300;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: rgba(110,59,73,0.5);
+      margin-top: 2rem;
+      opacity: 0;
+    }
+
+    /* ── Fortschritt-Block ── */
+    .loader__progress-wrap {
+      position: absolute;
+      bottom: clamp(2.2rem, 4.5vw, 3.2rem);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+      opacity: 0;
+      white-space: nowrap;
+    }
+    .loader__percent {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: clamp(0.58rem, 1.2vw, 0.68rem);
+      letter-spacing: 0.42em;
+      color: rgba(110,59,73,0.55);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ── Riser: Welle (Portfolio-Form) + Panel ── */
+    .loader__riser {
+      position: absolute;
+      top: 100%;
+      left: 0; width: 100%;
+      height: calc(100vh + 160px);
+      display: flex; flex-direction: column;
+      z-index: 3;
+    }
+    .loader__wave-svg {
+      width: 100%; height: 160px;
+      flex-shrink: 0; display: block;
+      color: var(--loader-wave);
+    }
+    .loader__wave-path { fill: currentColor; }
+
+    .loader__panel {
+      flex: 1;
+      background: var(--loader-panel);
+      position: relative;
+    }
+    .loader__bg-bar {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 3px;
+      background: rgba(235,225,209,0.15);
+    }
+    .loader__bg-bar-fill {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--off-white), rgba(235,225,209,0.6));
+      transition: width 0.1s linear;
+    }
+
+    /* ════════════════════════════════════════════
+       SUB-PAGE PRELOADER
+       Phase 1: Blank cream Page  (sofort sichtbar)
+       Phase 2: Welle + Panel fahren von unten durch
+       Phase 3: Welle fährt oben raus → Elemente erscheinen
+    ════════════════════════════════════════════ */
+    .loader--sub {
+      /* Cream Hintergrund — gleich wie Fullpage */
+      background: var(--loader-bg);
+      pointer-events: none;
+    }
+
+    /* Riser braucht volle Höhe — fährt komplett durch */
+    .loader--sub .loader__riser {
+      height: calc(100vh + 160px);
+    }
+
+    /* Kein Text im Sub-Loader */
+    .loader--sub .loader__center,
+    .loader--sub .loader__line,
+    .loader--sub .loader__corner,
+    .loader--sub .loader__meta,
+    .loader--sub .loader__edition,
+    .loader--sub .loader__progress-wrap {
+      display: none;
+    }
+
+    /* ════════════════════════════════════════════
+       PAGE CONTENT
+    ════════════════════════════════════════════ */
+    .page-content { opacity: 0; transform: translateY(20px); }
+
+    .back-link {
+      position: fixed;
+      top: 2rem; left: clamp(1.5rem, 5vw, 3rem);
+      z-index: 900;
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.68rem;
+      text-transform: uppercase; letter-spacing: 0.22em;
+      color: var(--burgundy); text-decoration: none;
+      display: flex; align-items: center; gap: 0.5rem;
+      transition: color 0.25s;
+    }
+    .back-link:hover { color: var(--mint); }
+    .back-link svg { width: 16px; height: 16px; }
+
+    /* Hero */
+    .demo-hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center; padding: 2rem;
+      background: var(--white);
+      position: relative;
+    }
+    .demo-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 45% at 15% 25%, rgba(110,59,73,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 55% at 85% 75%, rgba(86,104,106,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .demo-eyebrow {
+      font-size: 0.68rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.4em;
+      color: var(--burgundy); margin-bottom: 1.8rem;
+    }
+    .demo-hero h1 {
+      font-family: 'Higuen', serif;
+      font-size: clamp(3.5rem, 13vw, 9rem);
+      letter-spacing: 0.08em; text-transform: uppercase; line-height: 0.9;
+      color: var(--darkgreen);
+    }
+    .demo-hero h1 em { display: block; font-style: normal; color: var(--mauve); }
+    .demo-hero p {
+      font-size: clamp(0.85rem, 1.8vw, 1rem);
+      color: rgba(49,74,81,0.65); max-width: 440px;
+      margin: 2.2rem auto 0; line-height: 1.85;
+    }
+
+    /* Info */
+    .demo-info {
+      background: var(--mint);
+      padding: clamp(5rem, 12vw, 10rem) clamp(1.5rem, 6vw, 5rem);
+      clip-path: polygon(0 5vw, 100% 0, 100% 100%, 0 100%);
+    }
+    .demo-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: clamp(2rem, 4vw, 3.5rem);
+      max-width: 1060px; margin: 0 auto;
+    }
+    .card-num {
+      font-family: 'Higuen', serif; font-size: 3.5rem;
+      color: rgba(235,225,209,0.15); line-height: 1; margin-bottom: 0.5rem;
+    }
+    .demo-info-card h3 {
+      font-family: 'Tenor Sans', sans-serif; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.26em;
+      color: var(--off-white); margin-bottom: 0.6rem; font-weight: 400;
+    }
+    .demo-info-card p { font-size: 0.88rem; color: rgba(235,225,209,0.6); line-height: 1.78; }
+    .demo-info-card code {
+      display: inline-block; font-size: 0.74rem;
+      background: rgba(110,59,73,0.25); border: 1px solid rgba(110,59,73,0.4);
+      color: var(--off-white); padding: 0.1em 0.45em; border-radius: 3px;
+      margin-top: 0.5rem; font-family: 'Courier New', monospace;
+    }
+
+    /* Sub Demo Section */
+    .demo-sub {
+      background: var(--off-white);
+      padding: clamp(5rem, 10vw, 8rem) clamp(1.5rem, 6vw, 5rem);
+    }
+    .demo-sub h2 {
+      font-family: 'Higuen', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: var(--darkgreen);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .demo-sub h2 em {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; text-transform: none;
+      color: var(--burgundy);
+    }
+    .demo-sub p {
+      font-size: 0.9rem; color: rgba(49,74,81,0.7);
+      max-width: 540px; line-height: 1.8; margin-bottom: 2rem;
+    }
+    .btn-sub-demo {
+      font-family: 'Tenor Sans', sans-serif; font-size: 0.68rem;
+      text-transform: uppercase; letter-spacing: 0.26em;
+      color: var(--off-white); background: var(--burgundy);
+      border: none; padding: 1rem 2.5rem; cursor: pointer;
+      position: relative; overflow: hidden;
+      transition: background 0.35s;
+    }
+    .btn-sub-demo:hover { background: var(--mint); }
+
+    /* Replay */
+    .replay-section {
+      background: var(--white);
+      padding: clamp(5rem, 10vw, 8rem) 2rem;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 1.4rem; text-align: center;
+    }
+    .replay-section p {
+      font-size: 0.68rem; text-transform: uppercase;
+      letter-spacing: 0.32em; color: var(--mint);
+    }
+    .btn-replay {
+      font-family: 'Tenor Sans', sans-serif; font-size: 0.68rem;
+      text-transform: uppercase; letter-spacing: 0.26em;
+      color: var(--burgundy); border: 1px solid var(--burgundy);
+      background: transparent; padding: 1rem 3rem;
+      cursor: pointer; position: relative; overflow: hidden;
+    }
+    .btn-replay::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--burgundy); transform: scaleX(0);
+      transform-origin: left; transition: transform 0.38s cubic-bezier(0.4,0,0.2,1);
+    }
+    .btn-replay:hover { color: var(--off-white); }
+    .btn-replay:hover::before { transform: scaleX(1); }
+    .btn-replay span { position: relative; z-index: 1; }
+
+    /* Footer */
+    .demo-footer {
+      background: var(--darkgreen);
+      border-top: 1px solid rgba(181,161,158,0.1);
+      padding: 2rem; text-align: center; font-size: 0.68rem;
+      letter-spacing: 0.14em; color: rgba(235,225,209,0.4); text-transform: uppercase;
+    }
+    .demo-footer a { color: var(--mauve); text-decoration: none; }
+    .demo-footer a:hover { color: var(--off-white); }
+  </style>
+</head>
+<body class="is-loading">
+
+  <!-- ════════════════════════════════════════
+       FULLPAGE PRELOADER
+  ════════════════════════════════════════ -->
+  <div class="loader" id="loader">
+
+    <div class="loader__line loader__line--top"    id="lineTop"></div>
+    <div class="loader__line loader__line--bottom" id="lineBottom"></div>
+
+    <div class="loader__corner loader__corner--tl" id="cTL"></div>
+    <div class="loader__corner loader__corner--tr" id="cTR"></div>
+    <div class="loader__corner loader__corner--bl" id="cBL"></div>
+    <div class="loader__corner loader__corner--br" id="cBR"></div>
+
+    <div class="loader__meta" id="loaderMeta">
+      <span>Portfolio</span>
+      <span>© 2026</span>
+    </div>
+    <div class="loader__edition" id="loaderEdition">Creative Direction</div>
+
+    <div class="loader__center">
+      <div class="loader__eyebrow" id="loaderEyebrow">
+        <i></i> Loading Experience <i></i>
+      </div>
+
+      <div class="loader__headline">
+        <div class="loader__headline-line">
+          <span id="hLine1">Good things</span>
+        </div>
+        <div class="loader__headline-line is--italic">
+          <span id="hLine2">take time</span>
+        </div>
+        <div class="loader__headline-line">
+          <span id="hLine3">Setting the stage</span>
+        </div>
+      </div>
+
+      <div class="loader__tagline" id="loaderTagline">
+        Crafting animations &mdash; please wait
+      </div>
+    </div>
+
+    <div class="loader__progress-wrap" id="loaderProgressWrap">
+      <span class="loader__percent" id="loaderPercent">0%</span>
+    </div>
+
+    <!-- Welle: Portfolio Hero-Form aus main.css -->
+    <div class="loader__riser" id="loaderRiser">
+      <svg class="loader__wave-svg"
+           viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+        <path class="loader__wave-path"
+          d="M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z"/>
+      </svg>
+      <div class="loader__panel">
+        <div class="loader__bg-bar">
+          <div class="loader__bg-bar-fill" id="loaderBarFill"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ════════════════════════════════════════
+       SUB-PAGE PRELOADER  (versteckt, per JS)
+  ════════════════════════════════════════ -->
+  <div class="loader loader--sub" id="loaderSub" style="display:none;">
+    <div class="loader__riser" id="loaderSubRiser">
+      <svg class="loader__wave-svg"
+           viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+        <path class="loader__wave-path"
+          d="M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z"/>
+      </svg>
+      <div class="loader__panel"></div>
+    </div>
+  </div>
+
+  <!-- Back Link -->
+  <a href="../index.html" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+         stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 12H5M5 12l7-7M5 12l7 7"/>
+    </svg>
+    Portfolio
+  </a>
+
+  <!-- ════════════════════════════════════════
+       PAGE CONTENT
+  ════════════════════════════════════════ -->
+  <div class="page-content" id="pageContent">
+
+    <section class="demo-hero">
+      <div class="demo-eyebrow">Preloader Demo</div>
+      <h1>LUXURY<em>MOTION</em></h1>
+      <p>Editorial Preloader — cream background, burgundy typography, mint wave. Ladedauer passt sich automatisch der Internetgeschwindigkeit an.</p>
+    </section>
+
+    <section class="demo-info">
+      <div class="demo-info-grid">
+        <div class="demo-info-card">
+          <div class="card-num">01</div>
+          <h3>Portfolio-Wellen</h3>
+          <p>Die Wellen-Pfade sind identisch mit denen aus main.css — hero-section, section-photography etc. Konsistentes Design.</p>
+          <code>mask-image path → SVG fill</code>
+        </div>
+        <div class="demo-info-card">
+          <div class="card-num">02</div>
+          <h3>Speed-adaptiv</h3>
+          <p>Vor dem Start wird die Internetgeschwindigkeit gemessen. Langsame Verbindung → längere Mindestladezeit. Schnell → kurz.</p>
+          <code>navigator.connection API</code>
+        </div>
+        <div class="demo-info-card">
+          <div class="card-num">03</div>
+          <h3>Vollseiten-Loader</h3>
+          <p>Cream-Hintergrund, Burgundy-Text, drei Headline-Zeilen mit clip-reveal — Editorial Magazine Ästhetik.</p>
+          <code>clip-path reveal / stagger</code>
+        </div>
+        <div class="demo-info-card">
+          <div class="card-num">04</div>
+          <h3>Unterseiten-Loader</h3>
+          <p>Nur kurze Welle von unten — kein Text. Revealst danach alle Bilder und Elemente der Unterseite gestaffelt.</p>
+          <code>loader--sub / stagger reveal</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- Unterseiten Demo -->
+    <section class="demo-sub">
+      <h2>Unterseiten <em>Transition</em></h2>
+      <p>So sieht der Loader auf Unterseiten aus: Nur die Welle kommt kurz hoch, danach werden alle Elemente der Seite gestaffelt eingeblendet. Klick zum Testen:</p>
+      <button class="btn-sub-demo" id="btnSubDemo" type="button">
+        ↓ &nbsp; Unterseiten-Loader testen
+      </button>
+    </section>
+
+    <!-- Simulated Subpage Content (für den Sub-Loader Demo) -->
+    <section class="demo-info" id="subContent" style="clip-path:none; padding-top: clamp(3rem,6vw,5rem);">
+      <div class="demo-info-grid">
+        <div class="demo-info-card" data-sub-reveal>
+          <div class="card-num" style="color:rgba(235,225,209,0.15);">A</div>
+          <h3>Hero Image</h3>
+          <p>Erscheint als erstes — Bild fährt von unten ein, opacity 0 → 1.</p>
+        </div>
+        <div class="demo-info-card" data-sub-reveal>
+          <div class="card-num" style="color:rgba(235,225,209,0.15);">B</div>
+          <h3>Seitentitel</h3>
+          <p>Zeile für Zeile clip-reveal — gleiche Technik wie der Fullpage-Loader.</p>
+        </div>
+        <div class="demo-info-card" data-sub-reveal>
+          <div class="card-num" style="color:rgba(235,225,209,0.15);">C</div>
+          <h3>Content Grid</h3>
+          <p>Cards erscheinen gestaffelt mit 0.1s Delay — smooth, nicht abrupt.</p>
+        </div>
+        <div class="demo-info-card" data-sub-reveal>
+          <div class="card-num" style="color:rgba(235,225,209,0.15);">D</div>
+          <h3>Footer</h3>
+          <p>Als letztes — Navigation und Footer gleiten sanft herein.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="replay-section">
+      <p>Fullpage-Loader erneut abspielen</p>
+      <button class="btn-replay" id="btnReplay" type="button">
+        <span>↺ &nbsp; Preloader neu starten</span>
+      </button>
+    </section>
+
+    <footer class="demo-footer">
+      Demo — <a href="../index.html">Khadija Okbi Portfolio</a>
+    </footer>
+
+  </div><!-- /page-content -->
+
+  <script>
+  (() => {
+    /* ════════════════════════════════
+       REFERENZEN
+    ════════════════════════════════ */
+    const loaderEl     = document.getElementById('loader');
+    const riser        = document.getElementById('loaderRiser');
+    const barFill      = document.getElementById('loaderBarFill');
+    const percentEl    = document.getElementById('loaderPercent');
+    const progressWrap = document.getElementById('loaderProgressWrap');
+    const pageContent  = document.getElementById('pageContent');
+    const eyebrow      = document.getElementById('loaderEyebrow');
+    const hLine1       = document.getElementById('hLine1');
+    const hLine2       = document.getElementById('hLine2');
+    const hLine3       = document.getElementById('hLine3');
+    const tagline      = document.getElementById('loaderTagline');
+    const lineTop      = document.getElementById('lineTop');
+    const lineBottom   = document.getElementById('lineBottom');
+    const corners      = ['cTL','cTR','cBL','cBR'].map(id => document.getElementById(id));
+    const meta         = document.getElementById('loaderMeta');
+    const edition      = document.getElementById('loaderEdition');
+
+    /* Sub-Loader */
+    const loaderSub    = document.getElementById('loaderSub');
+    const subRiser     = document.getElementById('loaderSubRiser');
+    const subItems     = document.querySelectorAll('[data-sub-reveal]');
+
+    /* ════════════════════════════════
+       SPEED-MESSUNG
+       Gibt minimale Ladedauer in ms zurück:
+       — schnell (>5 Mbps)  → 2200ms
+       — mittel  (1–5 Mbps) → 3200ms
+       — langsam (<1 Mbps)  → 4500ms
+       — kein API           → 2800ms
+    ════════════════════════════════ */
+    function getLoadDuration() {
+      const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      if (!conn) return 2800;
+
+      const downlink = conn.downlink; /* Mbps */
+      const type     = conn.effectiveType; /* 'slow-2g' | '2g' | '3g' | '4g' */
+
+      if (type === 'slow-2g' || type === '2g') return 5000;
+      if (type === '3g' || downlink < 1)       return 3800;
+      if (downlink < 5)                         return 3000;
+      return 2200; /* schnelle Verbindung */
+    }
+
+    /* ════════════════════════════════
+       FORTSCHRITT
+    ════════════════════════════════ */
+    function setProgress(p) {
+      const pct = Math.min(100, Math.round(p * 100));
+      barFill.style.width = pct + '%';
+      percentEl.textContent = pct + '%';
+    }
+
+    function simulateProgress(durationMs) {
+      return new Promise(resolve => {
+        const obj = { val: 0 };
+        /* Easing: erst schnell, dann langsamer (realistischer) */
+        gsap.to(obj, {
+          val: 1,
+          duration: durationMs / 1000,
+          ease: 'power1.inOut',
+          onUpdate() { setProgress(obj.val); },
+          onComplete: resolve
+        });
+      });
+    }
+
+    /* ════════════════════════════════
+       PHASE 1 — Editorial Intro
+    ════════════════════════════════ */
+    function phaseIntro() {
+      return new Promise(resolve => {
+        gsap.timeline({ onComplete: resolve })
+
+          .to([lineTop, lineBottom], {
+            scaleX: 1, duration: 0.9, ease: 'power3.inOut', stagger: 0.1
+          }, 0)
+
+          .to(corners, {
+            opacity: 1, duration: 0.35, stagger: 0.07, ease: 'power2.out'
+          }, 0.25)
+
+          .to([meta, edition], {
+            opacity: 1, y: 0, duration: 0.55, stagger: 0.08, ease: 'power2.out'
+          }, 0.4)
+
+          .to(eyebrow, {
+            opacity: 1, y: 0, duration: 0.5, ease: 'power3.out'
+          }, 0.5)
+
+          /* Headline: Zeile 1 */
+          .to(hLine1, { y: '0%', duration: 0.9, ease: 'power4.out' }, 0.65)
+          /* Zeile 2 — italic */
+          .to(hLine2, { y: '0%', duration: 0.9, ease: 'power4.out' }, 0.82)
+          /* Zeile 3 */
+          .to(hLine3, { y: '0%', duration: 0.9, ease: 'power4.out' }, 0.99)
+
+          .to(tagline, { opacity: 1, duration: 0.55, ease: 'power2.out' }, 1.25);
+      });
+    }
+
+    /* ════════════════════════════════
+       PHASE 2 — Riser rein
+    ════════════════════════════════ */
+    function phaseRiserIn() {
+      gsap.to(progressWrap, { opacity: 1, duration: 0.5, delay: 0.2, ease: 'power2.out' });
+      return new Promise(resolve => {
+        gsap.to(riser, {
+          top: '50%',
+          duration: 1.3,
+          ease: 'power3.out',
+          onComplete: resolve
+        });
+      });
+    }
+
+    /* ════════════════════════════════
+       PHASE 3 — Riser raus
+    ════════════════════════════════ */
+    function phaseRiserOut() {
+      return new Promise(resolve => {
+        gsap.to(riser, {
+          top: '-160px',
+          duration: 1.2,
+          ease: 'power4.inOut',
+          onComplete: resolve
+        });
+      });
+    }
+
+    /* ════════════════════════════════
+       PHASE 4 — Loader exit
+    ════════════════════════════════ */
+    function phaseLoaderExit() {
+      return new Promise(resolve => {
+        gsap.to(loaderEl, {
+          opacity: 0, duration: 0.45, ease: 'power2.in',
+          onComplete: () => {
+            loaderEl.style.display = 'none';
+            document.body.classList.remove('is-loading');
+            resolve();
+          }
+        });
+      });
+    }
+
+    /* ════════════════════════════════
+       SEITE REVEALEN
+    ════════════════════════════════ */
+    function revealPage() {
+      gsap.to(pageContent, {
+        opacity: 1, y: 0, duration: 1, ease: 'power3.out'
+      });
+    }
+
+    /* ════════════════════════════════
+       HAUPTSEQUENZ
+    ════════════════════════════════ */
+    async function runLoader() {
+      const loadMs = getLoadDuration();
+
+      await phaseIntro();
+
+      /* Riser + Fortschritt parallel starten */
+      phaseRiserIn();
+      await simulateProgress(loadMs);
+
+      await new Promise(r => setTimeout(r, 320));
+      await phaseRiserOut();
+      await phaseLoaderExit();
+      revealPage();
+    }
+
+    /* ════════════════════════════════
+       RESET (für Replay)
+    ════════════════════════════════ */
+    function resetLoader() {
+      document.body.classList.add('is-loading');
+      loaderEl.style.display = 'flex';
+      loaderEl.style.opacity = '1';
+
+      gsap.set(riser,        { top: '100%' });
+      gsap.set(progressWrap, { opacity: 0 });
+      gsap.set(eyebrow,      { opacity: 0, y: 10 });
+      gsap.set([hLine1, hLine2, hLine3], { y: '108%' });
+      gsap.set(tagline,      { opacity: 0 });
+      gsap.set([lineTop, lineBottom], { scaleX: 0 });
+      gsap.set(corners,      { opacity: 0 });
+      gsap.set([meta, edition], { opacity: 0, y: 6 });
+      gsap.set(pageContent,  { opacity: 0, y: 20 });
+      setProgress(0);
+    }
+
+    /* ════════════════════════════════
+       SUB-PAGE LOADER
+       Kurze Welle → Seite reveal mit
+       gestaffeltem Element-Einblenden
+    ════════════════════════════════ */
+    async function runSubLoader() {
+      /* 1. Elemente + Seite verstecken */
+      gsap.set(subItems, { opacity: 0, y: 30 });
+
+      /* 2. Blank cream Page sofort einblenden — Riser noch unten */
+      loaderSub.style.display = 'flex';
+      loaderSub.style.opacity = '1';
+      gsap.set(subRiser, { top: '100%' });
+
+      /* 3. kurze Pause — blank page ist sichtbar */
+      await new Promise(r => setTimeout(r, 250));
+
+      /* 4. Welle fährt von unten komplett durch nach oben raus */
+      await new Promise(resolve => {
+        gsap.to(subRiser, {
+          top: '-160px',
+          duration: 1.1,
+          ease: 'power3.inOut',
+          onComplete: resolve
+        });
+      });
+
+      /* 5. Sub-Loader ausblenden */
+      loaderSub.style.display = 'none';
+
+      /* 6. Elemente gestaffelt einblenden */
+      gsap.to(subItems, {
+        opacity: 1, y: 0,
+        duration: 0.7,
+        ease: 'power3.out',
+        stagger: 0.12
+      });
+    }
+
+    /* ════════════════════════════════
+       EVENTS
+    ════════════════════════════════ */
+    document.getElementById('btnReplay').addEventListener('click', async () => {
+      resetLoader();
+      await runLoader();
+    });
+
+    document.getElementById('btnSubDemo').addEventListener('click', async () => {
+      const btn = document.getElementById('btnSubDemo');
+      btn.disabled = true;
+      btn.textContent = '↓   Lädt…';
+      await runSubLoader();
+      btn.disabled = false;
+      btn.textContent = '↓   Nochmal testen';
+    });
+
+    /* ════════════════════════════════
+       START
+    ════════════════════════════════ */
+    runLoader();
+  })();
+  </script>
+</body>
+</html>

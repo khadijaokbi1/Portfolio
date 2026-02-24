@@ -84,12 +84,12 @@ body {
 /* ── Title: Higuen · immer uppercase ── */
 .title-large {
     font-family: var(--font-higuen);  /* war Playfair — jetzt Higuen */
-    font-size: clamp(5rem, 10vw, 13rem);
+    font-size: clamp(2rem, 5vw, 6rem); /* Reduced overall size */
     font-weight: 400;                 /* Higuen braucht kein 900 */
     line-height: 0.9;
     letter-spacing: 0.02em;
     text-transform: uppercase;        /* Higuen → immer uppercase */
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;              /* Reduced margin */
     position: relative;
     color: var(--text-dark);          /* #121212 auf --white ✓ */
 }
@@ -101,8 +101,19 @@ body {
     font-weight: 400;
     text-transform: none;             /* Playfair → nie uppercase */
     display: block;
-    margin-left: 10vw;
+    margin-left: 3vw;                 /*
     color: var(--burgundy);           /* #6E3B49 auf --white ✓ */
+}
+
+@media (max-width: 768px) {
+    .title-large {
+        font-size: clamp(2.5rem, 6vw, 7rem); /* Further scaling for smaller screens */
+        margin-bottom: 3rem;                /* Adjusted margin for smaller screens */
+    }
+
+    .title-italic {
+        margin-left: 3vw;                   /* Adjusted margin for smaller screens */
+    }
 }
 
 .meta-info {

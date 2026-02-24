@@ -6,10 +6,10 @@
     <title>Khadija Okbi | Portfolio</title>
     <meta name="description" content="Khadija Okbi | Mediamatikerin Design, Marketing, Social Media, Full Stack & Animation />
 		<link rel="icon" type="image/png" href="../assets/images/branding/logo_white.png" />
-    <!-- Fonts-->
+    <!-- Fonts — Design System: Playfair Display · Outfit · Tenor Sans · Work Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Tenor+Sans&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- GSAP-->
@@ -42,9 +42,9 @@
             </a>
             <nav class="nav">
                 <a href="../index.html#hero" class="nav-link">Home</a>
-                <a href="../index.html#expertise" class="nav-link">What I do</a>
+                <a href="../index.html#expertise" class="nav-link">work</a>
                 <a href="../index.html#blog" class="nav-link">Blog</a>
-                <a href="../about.html" class="nav-link">About me</a>
+                <a href="../about.html" class="nav-link">about</a>
             </nav>
         </div>
     </header>
@@ -67,134 +67,240 @@
         </section>
 
         <!-- SWOT ANALYSIS SECTION -->
-        <section>
+        <section class="section-analyse">
             <div class="container">
                 <div class="section-header">
-                    <h2>Strategische <span class="highlight-burgundy">Analyse.</span></h2> </div>
-                    <p class="section-intro">SWOT, Customer Journey und Konkurrenzpositionierung — die Fundamente der Strategie.</p>
-               
+                    <h2>Strategische <span class="highlight-burgundy">Analyse.</span></h2>
+                </div>
+                <p class="section-intro">SWOT, Customer Journey und Konkurrenzpositionierung — die Fundamente der Strategie.</p>
 
-                <div class="swot-grid">
-                    <div class="swot-item swot-strengths">
-                        <h4><strong>S</strong>trengths</h4>
-                        <ul>
-                            <li>Langjährige Erfahrung & hohe Fachkompetenz</li>
-                            <li>Authentische, regionale Online-Präsenz</li>
-                            <li>Starke Referenzen & Kundenbeziehungen</li>
-                        </ul>
+                <!-- SWOT Cards -->
+                <div class="swot-grid-new">
+                    <div class="swot-card" data-type="s">
+                        <div class="swot-card-letter">S</div>
+                        <div class="swot-card-body">
+                            <h4>Strengths</h4>
+                            <ul>
+                                <li>Langjährige Erfahrung & hohe Fachkompetenz</li>
+                                <li>Authentische, regionale Online-Präsenz</li>
+                                <li>Starke Referenzen & Kundenbeziehungen</li>
+                            </ul>
+                        </div>
                     </div>
-
-                    <div class="swot-item swot-weaknesses">
-                        <h4><strong>W</strong>eaknesses</h4>
-                        <ul>
-                            <li>Kleine Agentur (2 Mitarbeiter)</li>
-                            <li>Social-Media Präsenz unaktiv</li>
-                            <li>Begrenzte Skalierungsmöglichkeiten</li>
-                        </ul>
+                    <div class="swot-card" data-type="w">
+                        <div class="swot-card-letter">W</div>
+                        <div class="swot-card-body">
+                            <h4>Weaknesses</h4>
+                            <ul>
+                                <li>Kleine Agentur (2 Mitarbeiter)</li>
+                                <li>Social-Media Präsenz unaktiv</li>
+                                <li>Begrenzte Skalierungsmöglichkeiten</li>
+                            </ul>
+                        </div>
                     </div>
-
-                    <div class="swot-item swot-opportunities">
-                        <h4><strong>O</strong>pportunities</h4>
-                        <ul>
-                            <li>Social-Media-Kanal-Expansion für Awareness</li>
-                            <li>National skalierbar über Paid Ads</li>
-                            <li>Content-Marketing für SEO & Authority</li>
-                        </ul>
+                    <div class="swot-card" data-type="o">
+                        <div class="swot-card-letter">O</div>
+                        <div class="swot-card-body">
+                            <h4>Opportunities</h4>
+                            <ul>
+                                <li>Social-Media-Kanal-Expansion für Awareness</li>
+                                <li>National skalierbar über Paid Ads</li>
+                                <li>Content-Marketing für SEO & Authority</li>
+                            </ul>
+                        </div>
                     </div>
-
-                    <div class="swot-item swot-threats">
-                        <h4><strong>T</strong>hreats</h4>
-                        <ul>
-                            <li>Größere Agenturen mit mehr Ressourcen</li>
-                            <li>Fragmentierter Markt & niedriges Vertrauen</li>
-                            <li>Schnelle Technologie-Veränderungen</li>
-                        </ul>
+                    <div class="swot-card" data-type="t">
+                        <div class="swot-card-letter">T</div>
+                        <div class="swot-card-body">
+                            <h4>Threats</h4>
+                            <ul>
+                                <li>Größere Agenturen mit mehr Ressourcen</li>
+                                <li>Fragmentierter Markt & niedriges Vertrauen</li>
+                                <li>Schnelle Technologie-Veränderungen</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Competitor Positioning -->
-                <div class="competitor-section">
-                    <h3> Konkurrenz-Analyse</h3>
-                    <div class="positioning-grid">
-                        <div class="positioning-item">
-                            <span class="label">Komthur</span>
+                <!-- Konkurrenz-Analyse -->
+                <div class="konkurrenz-section">
+                    <span class="uppercase-label">Konkurrenz-Analyse</span>
+
+                    <div class="konkurrenz-split">
+                        <div class="konkurrenz-side side-komthur">
+                            <span class="konkurrenz-name">Komthur</span>
                             <ul>
-                                <li>✓ Authentisch</li>
-                                <li>✓ Regional verankert</li>
-                                <li>✓ Persönliche Note</li>
+                                <li><i class="fa-solid fa-check"></i> Authentisch</li>
+                                <li><i class="fa-solid fa-check"></i> Regional verankert</li>
+                                <li><i class="fa-solid fa-check"></i> Persönliche Note</li>
                             </ul>
                         </div>
-                        <div class="positioning-item">
-                            <span class="label">Konkurrenz</span>
+                        <div class="konkurrenz-divider">
+                            <span>VS</span>
+                        </div>
+                        <div class="konkurrenz-side side-konkurrenz">
+                            <span class="konkurrenz-name">Konkurrenz</span>
                             <ul>
-                                <li>✕ Großagenturen</li>
-                                <li>✕ Generische Lösungen</li>
-                                <li>✕ Wenig Social-Media</li>
+                                <li><i class="fa-solid fa-xmark"></i> Großagenturen</li>
+                                <li><i class="fa-solid fa-xmark"></i> Generische Lösungen</li>
+                                <li><i class="fa-solid fa-xmark"></i> Wenig Social-Media</li>
                             </ul>
                         </div>
                     </div>
-                    <p class="positioning-insight"><strong>Positionierungsvorteil:</strong> "Partner statt Agentur" — individuelle Beratung, direkte Ansprechperson, transparente Abläufe.</p>
+
+                    <div class="positioning-insight-new">
+                        <strong>Positionierungsvorteil:</strong> "Partner statt Agentur" — individuelle Beratung, direkte Ansprechperson, transparente Abläufe.
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- PRODUCTS & STRATEGY SECTION -->
-        <section class="editorial-section bg-cream">
+        <section class="editorial-section bg-cream section-strategie">
             <div class="container">
                 <div class="section-header">
-                    <h2>Produkte & <span class="highlight-burgundy">Strategie.</span></h2>    </div>
-                    <p class="section-intro">Vier umfassende strategische Bereiche, die kombiniert zu messbaren Results führen.</p>
-            
+                    <h2>Produkte & <span class="highlight-burgundy">Strategie.</span></h2>
+                </div>
+                <p class="section-intro">Vier umfassende strategische Bereiche, die kombiniert zu messbaren Results führen.</p>
 
-                <div class="tabs-container">
-                    <div class="tabs-nav">
-                        <button class="tab-btn active" data-tab="seo">SEO</button>
-                        <button class="tab-btn" data-tab="web">Website</button>
-                        <button class="tab-btn" data-tab="social">Social</button>
-                        <button class="tab-btn" data-tab="ads">Paid Ads</button>
-                    </div>
+                <div class="strategie-accordion" id="strategieAccordion">
 
-                    <div class="tabs-content">
-                        <div id="seo" class="tab-panel active">
-                            <h3>Technisches SEO & Suchmaschinenoptimierung</h3>
-                            <p>Durchführung einer umfassenden Google Analytics Analyse zur Identifikation von Traffic-Quellen und User-Verhalten. Keywords mit hohem Suchvolumen und niedriger Konkurrenz für die Region Thurgau wurden identifiziert und strategisch platziert. Technische SEO-Korrektionen: Meta-Tags Optimierung, Alt-Text-Struktur, Mobile-Rendering und Ladegeschwindigkeit.</p>
-                            <p class="keywords"><strong>Zielkeywords:</strong> "Grafikdesign Kreuzlingen", "Werbeagentur Thurgau", "Corporate Design Bodensee", "Digitale Strategie Schweiz"</p>
-                        </div>
-
-                        <div id="web" class="tab-panel">
-                            <h3>Website Design & UX-Neukonzeption</h3>
-                            <p>Vollständige Neukonzeption als responsiver, emotionaler One-Pager. Kern-Elemente: Video-Hero-Section mit Parallax-Effekt, Storytelling zur Markenpositionierung, klare Visual Hierarchy und prominente Call-to-Actions. Desktop-zu-Mobile-Optimierung für nahtlose User Journey. Portfolio-Präsentation mit Case-Study-Links für höhere Conversion-Rates.</p>
-                            <p class="keywords"><strong>Design-Prinzipien:</strong> Minimalistisch, authentisch, schnell-ladend, mobil-first, conversion-fokussiert</p>
-                            <div class="info-box">
-                                <p><strong>Status:</strong> Live Prototype verfügbar via Canva<br><strong>Responsive:</strong> Desktop, Tablet, Mobile<br><strong>Performance-Ziel:</strong> &lt;85 PageSpeed Score</p>
+                    <!-- 01 SEO -->
+                    <div class="strategie-item active">
+                        <button class="strategie-trigger">
+                            <span class="st2-number">01</span>
+                            <div class="st2-text">
+                                <span class="st2-label">Suchmaschinenoptimierung</span>
+                                <h3 class="st2-title">SEO</h3>
                             </div>
-                        </div>
-
-                        <div id="social" class="tab-panel">
-                            <h3>Social Media Content-Strategie</h3>
-                            <p>Entwicklung eines 16-wöchigen Master-Content-Plans mit täglich geplanten Postings. Lancierung der Serie "Design Dienstag" zur Etablierung von Expertenstatus. Fokus auf Instagram und LinkedIn als Primär-Kanäle für B2B-Engagement. Konsistentes Visual Design, Story-telling über „Behind-the-Scenes"-Inhalte und Kundenerfolge.</p>
-                            <p class="keywords"><strong>Content-Säulen:</strong> Design-Tipps, Team-Storys, Referenzen, Brancheninsights, Trendanalysen</p>
-                            <div class="stat-grid">
-                                <div class="stat-box">
-                                    <span class="stat-number">16</span>
-                                    <p>Wochen Content Plan</p>
+                            <div class="st2-icon">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M6 1V11M1 6H11" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                        </button>
+                        <div class="strategie-content">
+                            <div class="strategie-content-inner">
+                                <p class="st2-body">Durchführung einer umfassenden Google Analytics Analyse zur Identifikation von Traffic-Quellen und User-Verhalten. Keywords mit hohem Suchvolumen und niedriger Konkurrenz für die Region Thurgau wurden identifiziert und strategisch platziert. Technische SEO-Korrektionen: Meta-Tags Optimierung, Alt-Text-Struktur, Mobile-Rendering und Ladegeschwindigkeit.</p>
+                                <div class="st2-tags">
+                                    <span class="st2-tag">Google Analytics</span>
+                                    <span class="st2-tag">Keyword Research</span>
+                                    <span class="st2-tag">Meta-Tags</span>
+                                    <span class="st2-tag">Mobile-First</span>
                                 </div>
-                                <div class="stat-box">
-                                    <span class="stat-number">3</span>
-                                    <p>Kanäle</p>
+                                <div class="st2-keywords">
+                                    <span class="uppercase-label">Zielkeywords</span>
+                                    <p>"Grafikdesign Kreuzlingen" · "Werbeagentur Thurgau" · "Corporate Design Bodensee" · "Digitale Strategie Schweiz"</p>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div id="ads" class="tab-panel">
-                            <h3>Paid Advertising & Budget-Optimierung</h3>
-                            <p>Detaillierter Preisvergleich und Performance-Analyse über Google Ads, Meta (Facebook & Instagram) und LinkedIn Campaign Manager. Budget-Allokation von CHF 5'000 Jahresbudget optimiert für maximale lokale Reichweite im B2B-Sektor. ROI-Prognosen und Cost-Per-Lead-Kalkulationen für alle Kanäle.</p>
-                            <p class="keywords"><strong>Prognosticierte KPIs:</strong><br>• Google Ads: 77.248 Impressionen, 8.739 Clicks<br>• LinkedIn: 43.040 Impressionen, 6.230 Clicks<br>• Facebook/Instagram: 40.004 Impressionen, 504 Clicks</p>
-                            <div class="info-box">
-                                <p><strong>Budget-Split:</strong> 60% Google | 25% LinkedIn | 15% Meta<br><strong>Optimization-Ziel:</strong> &lt;5 CHF Cost-Per-Click<br><strong>ROI-Erwartung:</strong> 3:1 bis 5:1</p>
+                    <!-- 02 Website -->
+                    <div class="strategie-item">
+                        <button class="strategie-trigger">
+                            <span class="st2-number">02</span>
+                            <div class="st2-text">
+                                <span class="st2-label">Design & User Experience</span>
+                                <h3 class="st2-title">Website</h3>
+                            </div>
+                            <div class="st2-icon">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M6 1V11M1 6H11" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                        </button>
+                        <div class="strategie-content">
+                            <div class="strategie-content-inner">
+                                <p class="st2-body">Vollständige Neukonzeption als responsiver, emotionaler One-Pager. Kern-Elemente: Video-Hero-Section mit Parallax-Effekt, Storytelling zur Markenpositionierung, klare Visual Hierarchy und prominente Call-to-Actions. Desktop-zu-Mobile-Optimierung für nahtlose User Journey.</p>
+                                <div class="st2-tags">
+                                    <span class="st2-tag">Minimalistisch</span>
+                                    <span class="st2-tag">Mobile-First</span>
+                                    <span class="st2-tag">Conversion-fokussiert</span>
+                                    <span class="st2-tag">Schnell-ladend</span>
+                                </div>
+                                <div class="st2-status-row">
+                                    <div class="st2-status"><span>Status</span><span>Live Prototype · Canva</span></div>
+                                    <div class="st2-status"><span>Responsive</span><span>Desktop · Tablet · Mobile</span></div>
+                                    <div class="st2-status"><span>Performance-Ziel</span><span>&lt;85 PageSpeed Score</span></div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- 03 Social -->
+                    <div class="strategie-item">
+                        <button class="strategie-trigger">
+                            <span class="st2-number">03</span>
+                            <div class="st2-text">
+                                <span class="st2-label">Content & Community</span>
+                                <h3 class="st2-title">Social Media</h3>
+                            </div>
+                            <div class="st2-icon">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M6 1V11M1 6H11" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                        </button>
+                        <div class="strategie-content">
+                            <div class="strategie-content-inner">
+                                <p class="st2-body">Entwicklung eines 16-wöchigen Master-Content-Plans mit täglich geplanten Postings. Lancierung der Serie "Design Dienstag" zur Etablierung von Expertenstatus. Fokus auf Instagram und LinkedIn als Primär-Kanäle für B2B-Engagement.</p>
+                                <div class="st2-tags">
+                                    <span class="st2-tag">Design-Tipps</span>
+                                    <span class="st2-tag">Team-Storys</span>
+                                    <span class="st2-tag">Brancheninsights</span>
+                                    <span class="st2-tag">Trendanalysen</span>
+                                </div>
+                                <div class="st2-stats">
+                                    <div class="st2-stat">
+                                        <span class="st2-stat-num">16</span>
+                                        <span class="st2-stat-label">Wochen Content Plan</span>
+                                    </div>
+                                    <div class="st2-stat">
+                                        <span class="st2-stat-num">3</span>
+                                        <span class="st2-stat-label">Kanäle</span>
+                                    </div>
+                                    <div class="st2-stat">
+                                        <span class="st2-stat-num">7×</span>
+                                        <span class="st2-stat-label">Posts pro Woche</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 04 Paid Ads -->
+                    <div class="strategie-item">
+                        <button class="strategie-trigger">
+                            <span class="st2-number">04</span>
+                            <div class="st2-text">
+                                <span class="st2-label">Performance Marketing</span>
+                                <h3 class="st2-title">Paid Ads</h3>
+                            </div>
+                            <div class="st2-icon">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M6 1V11M1 6H11" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                        </button>
+                        <div class="strategie-content">
+                            <div class="strategie-content-inner">
+                                <p class="st2-body">Detaillierter Preisvergleich und Performance-Analyse über Google Ads, Meta und LinkedIn. Budget-Allokation von CHF 5'000 Jahresbudget optimiert für maximale lokale Reichweite im B2B-Sektor.</p>
+                                <div class="st2-tags">
+                                    <span class="st2-tag">Google Ads</span>
+                                    <span class="st2-tag">Meta Ads</span>
+                                    <span class="st2-tag">LinkedIn Campaign</span>
+                                    <span class="st2-tag">ROI-Prognose</span>
+                                </div>
+                                <div class="st2-status-row">
+                                    <div class="st2-status"><span>Budget-Split</span><span>60% Google · 25% LinkedIn · 15% Meta</span></div>
+                                    <div class="st2-status"><span>Optimization-Ziel</span><span>&lt;5 CHF Cost-Per-Click</span></div>
+                                    <div class="st2-status"><span>ROI-Erwartung</span><span>3:1 bis 5:1</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -203,200 +309,286 @@
         <section class="editorial-section bg-dark">
             <div class="container">
                 <div class="section-header">
-                    <h2>Zielgruppen<br>analyse</h2>      </div>
-                <p class="section-intro">Datengetriebene Segmentierung basierend auf Google Analytics und Marktforschung. Vier strategische Dimensionen zur maximal präzisen Kundenansprache.</p>
+                    <h2>Zielgruppen<span class="highlight-burgundy">analyse.</span></h2>
+                </div>
+                <p class="section-intro">Datengetriebene Segmentierung — vier strategische Dimensionen zur präzisen Kundenansprache.</p>
                 
                 <div class="data-grid">
                     <div class="data-item">
                         <div class="data-number">01</div>
                         <h3>Demografie</h3>
-                        <p>25–50 Jahre, M/W, Entscheidungsträger in KMU und mittleren Unternehmungen. Gehobenes Bildungsniveau, hohe Kaufkraft.</p>
+                        <p>25–50 Jahre, Entscheidungsträger in KMU. Gehobenes Bildungsniveau, hohe Kaufkraft.</p>
                     </div>
-                    
                     <div class="data-item">
                         <div class="data-number">02</div>
                         <h3>Psychografie</h3>
-                        <p>Markenbewusst, designaffin, innovationsfreudig. Bedürfnis nach hoher Qualität, Authentizität, Einzigartigkeit und persönlicher Beratung statt Massenlösungen. </p>
+                        <p>Markenbewusst, designaffin. Bedürfnis nach Qualität, Authentizität und persönlicher Beratung.</p>
                     </div>
-                    
                     <div class="data-item">
                         <div class="data-number">03</div>
                         <h3>Geografie</h3>
-                        <p>Starke Verankerung im Kanton Thurgau. Fokus Kreuzlingen und Bodenseeregion. Regionale Präsenz mit nationaler Reichweite.</p>
+                        <p>Fokus Kreuzlingen & Bodenseeregion. Regionale Präsenz mit nationaler Reichweite.</p>
                     </div>
-
                     <div class="data-item">
                         <div class="data-number">04</div>
                         <h3>Verhalten</h3>
-                        <p>Hochaktiv auf Social Media und Google. Nutzen Empfehlungen und Bewertungen als Entscheidungshilfe. Mobile-First User.</p>
+                        <p>Hochaktiv auf Social Media & Google. Nutzen Empfehlungen als Entscheidungshilfe.</p>
                     </div>
                 </div>
             </div>
+
             <div class="container">
                 <div class="section-header">
-                    <h2>Personas.</h2>      </div>
-          
+                    <h2>Per<span class="highlight-burgundy">sonas.</span></h2>
+                </div>
 
                 <div class="personas-grid">
+
                     <div class="persona-card">
                         <div class="persona-avatar">
                             <img src="../assets/images/komthur/Komthur_Persona_Eva.png" alt="Eva">
                         </div>
                         <div class="persona-content">
-                        <h3>Eva</h3>
-                        <span class="persona-role">Startup-Gründerin • 25 J.</span>
-                        <div class="persona-stat">
-                            <span>Bedürfnisse</span>
-                            <p>Sucht einen kreativen Dienstleister für ein einzigartiges Corporate Design.</p>
-                        </div>
-                        <div class="persona-stat">
-                            <span>Pain Points</span>
-                            <p>Begrenzte Zeit und Budget, gleichzeitig hohe Qualitätsansprüche.</p>
-                        </div>
-                        <div class="persona-stat">
-                            <span>Touchpoint</span>
-                            <p>Instagram, Pinterest, LinkedIn & persönliche Website-Besuche.</p>
+                            <h3>Eva</h3>
+                            <span class="persona-role">Startup-Gründerin · 25 J.</span>
+                            <div class="persona-stat">
+                                <span>Bedürfnisse</span>
+                                <p>Sucht einen kreativen Dienstleister für ein einzigartiges Corporate Design.</p>
+                            </div>
+                            <div class="persona-stat">
+                                <span>Pain Points</span>
+                                <p>Begrenzte Zeit und Budget, gleichzeitig hohe Qualitätsansprüche.</p>
+                            </div>
+                            <div class="persona-stat">
+                                <span>Touchpoint</span>
+                                <p>Instagram, Pinterest, LinkedIn & Website-Besuche.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+
                     <div class="persona-card">
                         <div class="persona-avatar">
                             <img src="../assets/images/komthur/Komthur_Persona_Daniel.png" alt="Daniel">
                         </div>
                         <div class="persona-content">
-                        <h3>Daniel</h3>
-                        <span class="persona-role">Marketingleiter • 37 J.</span>
-                        <div class="persona-stat">
-                            <span>Bedürfnisse</span>
-                            <p>Benötigt eine langfristige Partnerschaft mit hoher Fachkompetenz.</p>
-                        </div>
-                        <div class="persona-stat">
-                            <span>Pain Points</span>
-                            <p>Fluktuierende Agenturen, Missverständnisse bei Briefing-Übergaben.</p>
-                        </div>
-                        <div class="persona-stat">
-                            <span>Touchpoint</span>
-                            <p>LinkedIn, Business-Kontakte & Networking-Events.</p>
+                            <h3>Daniel</h3>
+                            <span class="persona-role">Marketingleiter · 37 J.</span>
+                            <div class="persona-stat">
+                                <span>Bedürfnisse</span>
+                                <p>Benötigt eine langfristige Partnerschaft mit hoher Fachkompetenz.</p>
+                            </div>
+                            <div class="persona-stat">
+                                <span>Pain Points</span>
+                                <p>Fluktuierende Agenturen, Missverständnisse bei Briefing-Übergaben.</p>
+                            </div>
+                            <div class="persona-stat">
+                                <span>Touchpoint</span>
+                                <p>LinkedIn, Business-Kontakte & Networking-Events.</p>
+                            </div>
                         </div>
                     </div>
-                    </div>
+
                     <div class="persona-card">
                         <div class="persona-avatar">
                             <img src="../assets/images/komthur/Komthur_Persona_Maria.png" alt="Maria">
                         </div>
                         <div class="persona-content">
-                        <h3>Maria</h3>
-                        <span class="persona-role">Geschäftsführerin • 48 J.</span>
-                        <div class="persona-stat">
-                            <span>Bedürfnisse</span>
-                            <p>Sucht eine erfahrene Agentur für Design und Rebranding-Projekte.</p>
-                        </div>
-                        <div class="persona-stat">
-                            <span>Pain Points</span>
-                            <p>Unerfahrene oder überbuchte Agenturen. Online-Präsenz wird oft vernachlässigt.</p>
-                        </div>
-                        <div class="persona-stat">
-                            <span>Touchpoint</span>
-                            <p>Google-Suche (SEO&SEA!), Empfehlungen, Telefon.</p>
+                            <h3>Maria</h3>
+                            <span class="persona-role">Geschäftsführerin · 48 J.</span>
+                            <div class="persona-stat">
+                                <span>Bedürfnisse</span>
+                                <p>Sucht eine erfahrene Agentur für Design und Rebranding-Projekte.</p>
+                            </div>
+                            <div class="persona-stat">
+                                <span>Pain Points</span>
+                                <p>Unerfahrene Agenturen. Online-Präsenz wird oft vernachlässigt.</p>
+                            </div>
+                            <div class="persona-stat">
+                                <span>Touchpoint</span>
+                                <p>Google-Suche (SEO & SEA), Empfehlungen, Telefon.</p>
+                            </div>
                         </div>
                     </div>
-                    </div>
+
                 </div>
 
                 <div class="insight-box">
                     <strong>Insight:</strong> Alle drei Personas vereint das Bedürfnis nach <em>Authentizität</em>, <em>Fachkompetenz</em> und <em>persönlicher Betreuung</em>.
                 </div>
+            </div>
+        </section>
+
+        <!-- OPTIMIERUNGSPLAN SECTION -->
+        <section class="section-optim" id="optimierung">
+
+            <!-- Sticky header that stays while scrolling through items -->
+            <div class="optim-sticky-header">
+                <span class="optim-sticky-eyebrow">Optimierungsplan</span>
+                <div class="optim-sticky-progress">
+                    <div class="optim-sticky-bar" id="optimProgressBar"></div>
+                </div>
+                <span class="optim-sticky-counter"><span id="optimCurrent">1</span> / 6</span>
+            </div>
+
+            <!-- Each field is a full-height panel -->
+            <div class="optim-panels" id="optimPanels">
+
+                <!-- 01 -->
+                <div class="optim-panel" data-index="0">
+                    <div class="optim-panel-inner">
+                        <div class="optim-panel-left">
+                            <span class="optim-panel-num">01</span>
+                            <h3 class="optim-panel-field">Sichtbarkeit</h3>
+                        </div>
+                        <div class="optim-panel-right">
+                            <div class="optim-state optim-state-ist">
+                                <span class="optim-state-label">Ist-Zustand</span>
+                                <p class="optim-state-text">Kaum in Suchmaschinen sichtbar — keine Keyword-Strategie</p>
+                            </div>
+                            <div class="optim-divider-line"></div>
+                            <div class="optim-state optim-state-soll">
+                                <span class="optim-state-label">Ziel</span>
+                                <p class="optim-state-text">Top-Rankings für regionale Zielkeywords</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 02 -->
+                <div class="optim-panel" data-index="1">
+                    <div class="optim-panel-inner">
+                        <div class="optim-panel-left">
+                            <span class="optim-panel-num">02</span>
+                            <h3 class="optim-panel-field">Content<br><em>&amp; Story</em></h3>
+                        </div>
+                        <div class="optim-panel-right">
+                            <div class="optim-state optim-state-ist">
+                                <span class="optim-state-label">Ist-Zustand</span>
+                                <p class="optim-state-text">Statische, generische Texte ohne Markencharakter</p>
+                            </div>
+                            <div class="optim-divider-line"></div>
+                            <div class="optim-state optim-state-soll">
+                                <span class="optim-state-label">Ziel</span>
+                                <p class="optim-state-text">Emotionales Storytelling &amp; authentische Markenstimme</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 03 -->
+                <div class="optim-panel" data-index="2">
+                    <div class="optim-panel-inner">
+                        <div class="optim-panel-left">
+                            <span class="optim-panel-num">03</span>
+                            <h3 class="optim-panel-field">User<br><em>Journey</em></h3>
+                        </div>
+                        <div class="optim-panel-right">
+                            <div class="optim-state optim-state-ist">
+                                <span class="optim-state-label">Ist-Zustand</span>
+                                <p class="optim-state-text">Unklare CTAs, hohe Absprungrate</p>
+                            </div>
+                            <div class="optim-divider-line"></div>
+                            <div class="optim-state optim-state-soll">
+                                <span class="optim-state-label">Ziel</span>
+                                <p class="optim-state-text">Gelenkte Journey, optimierte Conversion-Pfade</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 04 -->
+                <div class="optim-panel" data-index="3">
+                    <div class="optim-panel-inner">
+                        <div class="optim-panel-left">
+                            <span class="optim-panel-num">04</span>
+                            <h3 class="optim-panel-field">Mobile<br><em>Experience</em></h3>
+                        </div>
+                        <div class="optim-panel-right">
+                            <div class="optim-state optim-state-ist">
+                                <span class="optim-state-label">Ist-Zustand</span>
+                                <p class="optim-state-text">Darstellungsprobleme, langsame Ladezeit</p>
+                            </div>
+                            <div class="optim-divider-line"></div>
+                            <div class="optim-state optim-state-soll">
+                                <span class="optim-state-label">Ziel</span>
+                                <p class="optim-state-text">100% responsive, unter 3 Sek. Ladezeit</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 05 -->
+                <div class="optim-panel" data-index="4">
+                    <div class="optim-panel-inner">
+                        <div class="optim-panel-left">
+                            <span class="optim-panel-num">05</span>
+                            <h3 class="optim-panel-field">Social<br><em>Presence</em></h3>
+                        </div>
+                        <div class="optim-panel-right">
+                            <div class="optim-state optim-state-ist">
+                                <span class="optim-state-label">Ist-Zustand</span>
+                                <p class="optim-state-text">Unregelmässige Posts, keine Strategie</p>
+                            </div>
+                            <div class="optim-divider-line"></div>
+                            <div class="optim-state optim-state-soll">
+                                <span class="optim-state-label">Ziel</span>
+                                <p class="optim-state-text">Konsistenter 16-Wochen Content-Plan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 06 -->
+                <div class="optim-panel" data-index="5">
+                    <div class="optim-panel-inner">
+                        <div class="optim-panel-left">
+                            <span class="optim-panel-num">06</span>
+                            <h3 class="optim-panel-field">Tech<br><em>Score</em></h3>
+                        </div>
+                        <div class="optim-panel-right">
+                            <div class="optim-state optim-state-ist">
+                                <span class="optim-state-label">Ist-Zustand</span>
+                                <p class="optim-state-text">42 / 100 PageSpeed Score</p>
+                            </div>
+                            <div class="optim-divider-line"></div>
+                            <div class="optim-state optim-state-soll">
+                                <span class="optim-state-label">Ziel</span>
+                                <p class="optim-state-text">75 – 85 / 100 PageSpeed Score</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </section>
 
-        <!-- TRANSFORMATION CHECK SECTION -->
-        <section class="editorial-section bg-cream">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Optimierungs <span class="highlight-burgundy">Plan</span></h2>    </div>
-                    <p class="section-intro">Anhand der umfassenden Marktanalyse werden gezielte Maßnahmen zur Optimierung abgeleitet, um die <em>Wettbewerbsfähigkeit</em> zu steigern und die Zielgruppe so effektiv wie möglich anzusprechen.</p>
-            
-
-                <div class="comparison-table-wrapper">
-                    <table class="comparison-table">
-                        <thead>
-                            <tr>
-                                <th>Bereich</th>
-                                <th>Ist-Zustand</th>
-                                <th>Ziel</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Sichtbarkeit</strong></td>
-                                <td><i class="fa-solid fa-xmark cross-icon"></i> Kaum in Suchmaschinen sichtbar</td>
-                                <td><i class="fa-solid fa-check check-icon"></i> Top-Rankings für Zielkeywords</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Content & Story</strong></td>
-                                <td><i class="fa-solid fa-xmark cross-icon"></i> Statische, generische Texte</td>
-                                <td><i class="fa-solid fa-check check-icon"></i> Emotionales Storytelling, Authentizität</td>
-                            </tr>
-                            <tr>
-                                <td><strong>User Journey</strong></td>
-                                <td><i class="fa-solid fa-xmark cross-icon"></i> Unklare CTAs, hohe Bounce Rate</td>
-                                <td><i class="fa-solid fa-check check-icon"></i> Gelenkte Journey, optimierte Conversions</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Mobile Experience</strong></td>
-                                <td><i class="fa-solid fa-xmark cross-icon"></i> Darstellungsprobleme, Slow Loading</td>
-                                <td><i class="fa-solid fa-check check-icon"></i> 100% responsive, &lt;3s Load Time</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Social Presence</strong></td>
-                                <td><i class="fa-solid fa-xmark cross-icon"></i> Unregelmäßige Posts, keine Strategie</td>
-                                <td><i class="fa-solid fa-check check-icon"></i> Konsistenter Content-Plan, Engagement</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Paid Strategy</strong></td>
-                                <td><i class="fa-solid fa-xmark cross-icon"></i> Kaum Ads-Budget genutzt</td>
-                                <td><i class="fa-solid fa-check check-icon"></i> Datengetriebene Optimierung, Scaling</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Tech Score</strong></td>
-                                <td><i class="fa-solid fa-xmark cross-icon"></i>42/100</td>
-                                <td><i class="fa-solid fa-check check-icon"></i>75–85/100</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
         <!-- ANALYTICS & PERFORMANCE SECTION -->
+        <section class="editorial-section bg-cream section-analytics">
             <div class="container">
                 <div class="section-header">
-                    <h2>SEO & SEA</h2>                </div>
-                    <p class="section-intro">Datengestützte Analyse der Ads-Kanäle mit prognostizierten KPIs und ROI-Potenzial für maximale Effizienz.</p>
-
+                    <h2>SEO <span class="highlight-burgundy">&amp; SEA.</span></h2>
+                </div>
+                <p class="section-intro">Datengestützte Analyse mit prognostizierten KPIs für maximale Effizienz.</p>
 
                 <div class="analytics-grid">
-                    <!-- SEO Score -->
                     <div class="analytics-card">
-                        <h3> SEO Checkbot Score</h3>
+                        <h3>SEO Checkbot Score</h3>
                         <div class="seo-circle-container">
                             <svg viewBox="0 0 200 200" class="seo-circle">
-                                <circle cx="100" cy="100" r="90" fill="none" stroke="#f0f0f0" stroke-width="12" />
-                                <circle class="seo-progress-circle" cx="100" cy="100" r="90" fill="none" stroke="#56686A" stroke-width="12" stroke-dasharray="565.48" stroke-dashoffset="565.48" stroke-linecap="round" transform="rotate(-90 100 100)" />
+                                <circle cx="100" cy="100" r="90" fill="none" stroke="#f0f0f0" stroke-width="12"/>
+                                <circle class="seo-progress-circle" cx="100" cy="100" r="90" fill="none" stroke="#56686A" stroke-width="12" stroke-dasharray="565.48" stroke-dashoffset="565.48" stroke-linecap="round" transform="rotate(-90 100 100)"/>
                                 <text x="100" y="110" font-size="48" font-family="Italiana" text-anchor="middle" fill="#2D2D2D">75%</text>
                             </svg>
                         </div>
-                        <p class="seo-text"><strong> 75/100 SEO-Score</strong></p>
+                        <p class="seo-text"><strong>75 / 100 SEO-Score</strong></p>
                         <div class="info-box">
-                            <p><strong> Optimierung:</strong> <br>URLs & Bilder korrekt verlinkt, SEO Keywords, Meta-Tags optimiert & Mobile-First-Ansatz<br><strong>Zusätzlich:</strong> <br> Integration von Google Analytics, um traffic nachvollziehen und Google Ads schalten zu können.</p>
+                            <p><strong>Optimierung:</strong><br>URLs & Bilder korrekt verlinkt, SEO-Keywords, Meta-Tags & Mobile-First-Ansatz.<br><br><strong>Zusätzlich:</strong><br>Integration von Google Analytics für Traffic-Tracking & Ads-Schaltung.</p>
                         </div>
                     </div>
 
-                    <!-- Paid Ads Bars -->
                     <div class="analytics-card">
-                        <h3> SEA Prognose</h3>
+                        <h3>SEA Prognose</h3>
                         <div class="ads-list">
-                            <!-- Google -->
                             <div class="ads-item">
                                 <div class="ads-header">
                                     <span><i class="fa-brands fa-google"></i> Google Ads</span>
@@ -405,10 +597,8 @@
                                 <div class="progress-bar">
                                     <div class="google-bar ads-bar"></div>
                                 </div>
-                                <p class="ads-meta">2.642 Impressionen • CPL ~0,23 CHF</p>
+                                <p class="ads-meta">2.642 Impressionen · CPL ~0,23 CHF</p>
                             </div>
-
-                            <!-- LinkedIn -->
                             <div class="ads-item">
                                 <div class="ads-header">
                                     <span><i class="fa-brands fa-linkedin"></i> LinkedIn Ads</span>
@@ -417,10 +607,8 @@
                                 <div class="progress-bar">
                                     <div class="linkedin-bar ads-bar"></div>
                                 </div>
-                                <p class="ads-meta">43.040 Impressionen • CPL &lt;5 CHF</p>
+                                <p class="ads-meta">43.040 Impressionen · CPL &lt;5 CHF</p>
                             </div>
-
-                            <!-- Meta -->
                             <div class="ads-item">
                                 <div class="ads-header">
                                     <span><i class="fa-brands fa-meta"></i> Meta (FB/IG)</span>
@@ -429,25 +617,25 @@
                                 <div class="progress-bar">
                                     <div class="meta-bar ads-bar"></div>
                                 </div>
-                                <p class="ads-meta">40.004 Impressionen • CPL ~6 CHF</p>
+                                <p class="ads-meta">40.004 Impressionen · CPL ~6 CHF</p>
                             </div>
                         </div>
                         <div class="info-box">
-                            <p><strong>Budget-Allokation:</strong> <br> 60% Google | 25% LinkedIn | 15% Meta<br>
-                                <strong>ROI-Erwartung:</strong> <br>3:1 bis 5:1</p>
+                            <p><strong>Budget-Split:</strong> 60% Google · 25% LinkedIn · 15% Meta<br><strong>ROI-Erwartung:</strong> 3:1 bis 5:1</p>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="container">
                 <div class="section-header">
-                    <h2>Prognose</h2>                          
+                    <h2>Pro<span class="highlight-burgundy">gnose.</span></h2>
                 </div>
-                <p class="section-intro">Prognostizierte KPIs basierend auf Budgetallokation und Marktanalyse bei vollständiger Strategieumsetzung</p>
+                <p class="section-intro">Prognostizierte KPIs bei vollständiger Strategieumsetzung.</p>
                 <div class="results-grid">
                     <div class="result-item">
                         <span class="big-number">77K</span>
-                        <span class="uppercase-label">Google Ads Impressionen</span>
+                        <span class="uppercase-label">Google Impressionen</span>
                         <p>8.739 erwartete Clicks bei ~0.11 CTR</p>
                     </div>
                     <div class="result-item">
@@ -458,10 +646,9 @@
                     <div class="result-item">
                         <span class="big-number">5K</span>
                         <span class="uppercase-label">Jahresbudget (CHF)</span>
-                        <p>Optimiert über alle Kanäle für Max. ROI</p>
+                        <p>Optimiert über alle Kanäle für max. ROI</p>
                     </div>
                 </div>
-        
             </div>
         </section>
     </main>

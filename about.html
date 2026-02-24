@@ -497,30 +497,36 @@
     <section class="work-section bg-cream creative-fuel-section" id="favorites">
       <div class="container px-4">
       <!-- Section Header -->
-      <div class="creative-fuel-header text-center mb-16">
-      <div class="fav-col-header">
-        <div class="fav-col-header-text">
-          <span class="fav-eyebrow">Gelesene Bücher</span>
-          <h2 class="fav-col-title">Meine <em>Favoriten</em></h2>
-          <p class="fav-col-desc">Ein Einblick in die Bücher, die mich dieses Jahr besonders geprägt haben.</p>
-        </div>
-        <div class="reading-counter-boxes flex justify-center gap-8">
-          <div class="counter-box counter-box--2024 text-center">
-            <div class="counter-box-inner">
-              <span class="counter-eyebrow block text-sm font-semibold text-gray-600">2024</span>
-              <span class="counter-num counter text-4xl font-bold text-black" data-target="52">52</span>
-              <span class="counter-label block text-sm text-gray-500">Bücher</span>
+
+      <div class="creative-fuel-header">
+        <div class="fav-col-header">
+      
+          <!-- Linke Spalte: Text -->
+          <div class="fav-col-header-text">
+            <span class="fav-eyebrow" style="display: block; text-align: center;">Gelesene Bücher</span>
+            <h2 class="fav-col-title" style="text-transform: none;">Meine <em>Favoriten</em></h2>
+            <p class="fav-col-desc">Ein Einblick in die Bücher, die mich dieses Jahr besonders geprägt haben.</p>
+          </div>
+      
+          <!-- Rechte Spalte: Counter -->
+          <div class="reading-counter-boxes">
+            <div class="counter-box counter-box--2024">
+              <div class="counter-box-inner">
+                <span class="counter-eyebrow">2024</span>
+                <span class="counter-num counter" data-target="52">52</span>
+                <span class="counter-label">Bücher</span>
+              </div>
+            </div>
+            <div class="counter-box counter-box--2025">
+              <div class="counter-box-inner">
+                <span class="counter-eyebrow">2025</span>
+                <span class="counter-num counter" data-target="104">104</span>
+                <span class="counter-label">Bücher</span>
+              </div>
             </div>
           </div>
-          <div class="counter-box counter-box--2025 text-center">
-            <div class="counter-box-inner">
-              <span class="counter-eyebrow block text-sm font-semibold text-gray-600">2025</span>
-              <span class="counter-num counter text-4xl font-bold text-black" data-target="104">104</span>
-              <span class="counter-label block text-sm text-gray-500">Bücher</span>
-            </div>
-          </div>
+      
         </div>
-      </div>
       </div>
       <!-- ===== BOOKS FIRST ===== -->
       <div class="fav-books-section">
@@ -635,25 +641,34 @@
         </div>
         <!-- End fav-books-section -->
 
-        <!-- ===== GOODREADS CTA ===== -->
-        <div class="goodreads-cta-section">
-          <div class="goodreads-cta-inner">
-            <span class="fav-eyebrow">Goodreads Wrapped 2025</span>
-            <h3 class="goodreads-cta-title">Alle 104 Bücher.<br><em>Die komplette Reise.</em></h3>
-            <p class="goodreads-cta-desc">Tauche ein in meine vollständige Lesereise 2025 – von literarischen Meisterwerken bis zu geliebten Guilty Pleasures.</p>
-            <a href="https://www.goodreads.com/user/year_in_books/2025/86919904" target="_blank" rel="noopener noreferrer" class="goodreads-btn-main">
-              Besuche mein Goodreads-Profil →
-            </a>
-          </div>
-        </div>
+<div class="goodreads-cta-inner">
+  <div class="goodreads-cta-left">
+    <span class="fav-eyebrow">Goodreads Wrapped 2025</span>
+    <h3 class="goodreads-cta-title">Tops, Flops &amp;<br><em>alles dazwischen.</em></h3>
+    <p style="font-family: var(--font-body); font-size: 0.82rem; color: var(--text-secondary); margin: 0.3rem 0 0; font-weight: 300; line-height: 1.5;">
+      Alle 104 Bücher — unzensiert bewertet.
+    </p>
+  </div>
 
-        <!-- ===== VINYL SECTION ===== -->
-        <div class="fav-vinyl-section">
-          <div class="fav-col-header" style="text-align: center;">
-            <span class="fav-eyebrow">Spotify Wrapped 2025</span>
-            <h3 class="fav-col-title">Klänge, <em>die prägen.</em></h3>
-            <p class="fav-col-desc" style="margin-left: auto; margin-right: auto;">Drei Alben, die 2025 auf Repeat liefen – jedes davon ein eigenes Universum.</p>
-          </div>
+  <div class="goodreads-cta-right">
+    <a href="https://www.goodreads.com/user/year_in_books/2025/86919904"
+       target="_blank" rel="noopener noreferrer"
+       class="goodreads-btn-arrow">
+      <span>Zum Goodreads-Profil</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+</div>
+
+<div class="spotify-section-header">
+  <span class="fav-eyebrow">Spotify Wrapped 2025</span>
+  <h2 class="fav-col-title">Klänge, <em>die prägen.</em></h2>
+  <p class="fav-col-desc">Drei Alben, die 2025 auf Repeat liefen – jedes davon ein eigenes Universum.</p>
+</div>
 
           <div class="vinyl-grid-large">
             <!-- Record 1 -->

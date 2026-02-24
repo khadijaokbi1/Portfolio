@@ -22,10 +22,10 @@
     <link rel="canonical" href="https://khadijaokbi.com/work/projekt-name.html" />
     <link rel="icon" type="image/png" href="../assets/images/branding/logo_white.png" />
     
-    <!-- Fonts -->
+    <!-- Fonts — Design System: Playfair Display · Outfit · Tenor Sans · Work Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Tenor+Sans&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -50,13 +50,12 @@
     </script>
 
     <style>
-        /* Page-specific styles */
         body {
             padding-top: 0;
             overflow-x: hidden;
         }
 
-        /* Hero Section */
+        /* ── Hero ── */
         .hero-section {
             position: relative;
             height: 100vh;
@@ -87,91 +86,128 @@
 
         .hero-portrait-bg {
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 50vw;
-            max-width: 600px;
+            width: 50vw; max-width: 600px;
             height: auto;
             pointer-events: none;
             z-index: 3;
         }
+        .hero-portrait-bg img { width: 100%; height: auto; display: block; object-fit: contain; }
+        .parallax-portrait { will-change: transform; }
 
-        .hero-portrait-bg img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: contain;
-        }
-
-        /* Parallax Effect */
-        .parallax-portrait {
-            will-change: transform;
-        }
-
-        /* Hero Wave */
+        /* Hero wave */
         .hero-section::after {
             content: "";
             position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 23vh;
-            background-color: var(--bg-secondary);
+            bottom: -1px; left: 0;
+            width: 100%; height: 23vh;
+            background-color: var(--white);
             mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
             -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
-            mask-size: 100% 100%;
-            -webkit-mask-size: 100% 100%;
-            mask-repeat: no-repeat;
-            -webkit-mask-repeat: no-repeat;
-            z-index: 4;
-            pointer-events: none;
+            mask-size: 100% 100%; -webkit-mask-size: 100% 100%;
+            mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat;
+            z-index: 4; pointer-events: none;
         }
 
-        /* Content Sections */
+        /* ── Content Sections ── */
         .content-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 2rem; margin-top: 2rem;
         }
-
         .content-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            padding: 2rem; border-radius: 8px;
             transition: all 0.3s ease;
         }
+        .content-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
 
-        .content-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        /* Content card headings — Tenor Sans (Kategorie-Label) */
+        .content-card h4 {
+            font-family: var(--font-titel);
+            font-size: var(--text-sm);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+            color: var(--burgundy);
+        }
+        .content-card p {
+            font-family: var(--font-body);
+            line-height: 1.8;
+            color: var(--off-black);
         }
 
-        /* Image Grid */
+        /* ── Inline Section Headings ── */
+        /* H2 in inline style → Playfair, no uppercase */
+        .work-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 600;
+            text-transform: none;
+            letter-spacing: -0.02em;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+        }
+        .work-section h3 {
+            font-family: var(--font-display);
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            font-style: italic;
+            font-weight: 400;
+            text-transform: none;
+            color: var(--off-black);
+            margin-bottom: 3rem;
+        }
+        /* Stats — Playfair italic */
+        .stat-headline {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 2.5rem;
+            color: var(--burgundy);
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-family: var(--font-subtitel);
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--off-black);
+        }
+
+        /* ── Image Grid ── */
         .image-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            gap: 1.5rem; margin-top: 2rem;
         }
-
         .image-grid img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
+            width: 100%; height: 300px; object-fit: cover;
+            border-radius: 8px; transition: transform 0.3s ease;
         }
+        .image-grid img:hover { transform: scale(1.05); }
 
-        .image-grid img:hover {
-            transform: scale(1.05);
+        /* Back-to-Projects CTA — Outfit */
+        .back-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--burgundy);
+            color: var(--burgundy);
+            font-family: var(--font-subtitel);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            background: var(--burgundy);
+            color: var(--white);
         }
 
         @media (max-width: 768px) {
-            .hero-portrait-bg {
-                width: 70vw;
-            }
+            .hero-portrait-bg { width: 70vw; }
         }
     </style>
 </head>
@@ -212,29 +248,29 @@
                 <!-- Section 1: Cream Background -->
                 <section class="work-section bg-cream">
                     <div class="container">
-                        <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); color: var(--accent-burgundy); margin-bottom: 1rem;">
+                        <h2>
                             Projekt Übersicht
                         </h2>
-                        <h3 style="font-family: var(--font-display); font-size: clamp(1.2rem, 2vw, 1.5rem); color: var(--text-secondary); margin-bottom: 3rem;">
+                        <h3>
                             Einleitung und Kontext
                         </h3>
                         
                         <div class="content-grid">
                             <div class="content-card">
-                                <h4 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--accent-burgundy);">Kunde</h4>
-                                <p style="line-height: 1.8; color: var(--text-secondary);">
+                                <h4>Kunde</h4>
+                                <p>
                                     Beschreibung des Kunden und der Zusammenarbeit.
                                 </p>
                             </div>
                             <div class="content-card">
-                                <h4 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--accent-burgundy);">Aufgabe</h4>
-                                <p style="line-height: 1.8; color: var(--text-secondary);">
+                                <h4>Aufgabe</h4>
+                                <p>
                                     Die Herausforderung und Zielsetzung des Projekts.
                                 </p>
                             </div>
                             <div class="content-card">
-                                <h4 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--accent-burgundy);">Zeitraum</h4>
-                                <p style="line-height: 1.8; color: var(--text-secondary);">
+                                <h4>Zeitraum</h4>
+                                <p>
                                     Projektdauer und wichtige Meilensteine.
                                 </p>
                             </div>
@@ -245,10 +281,10 @@
                 <!-- Section 2: Dark Background -->
                 <section class="work-section bg-dark">
                     <div class="container">
-                        <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); color: var(--accent-burgundy); margin-bottom: 1rem;">
+                        <h2>
                             Konzept & Strategie
                         </h2>
-                        <h3 style="font-family: var(--font-display); font-size: clamp(1.2rem, 2vw, 1.5rem); color: var(--text-primary-light); margin-bottom: 3rem;">
+                        <h3>
                             Der kreative Ansatz
                         </h3>
                         
@@ -284,28 +320,28 @@
                 <!-- Section 3: Burgundy Background -->
                 <section class="work-section" style="background-color: var(--accent-burgundy); color: var(--text-primary-light); padding: clamp(4rem, 12vh, 8rem) 0; position: relative;">
                     <div class="container">
-                        <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); color: white; margin-bottom: 1rem;">
+                        <h2 style="color: white;">
                             Umsetzung
                         </h2>
-                        <h3 style="font-family: var(--font-display); font-size: clamp(1.2rem, 2vw, 1.5rem); color: var(--text-primary-light); margin-bottom: 3rem;">
+                        <h3>
                             Vom Konzept zur Realität
                         </h3>
                         
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
                             <div>
-                                <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: white; font-weight: 600;">Design Phase</h4>
+                                <h4 style="color: white;">Design Phase</h4>
                                 <p style="line-height: 1.6; opacity: 0.9;">
                                     Beschreibung des Design-Prozesses und der visuellen Entwicklung.
                                 </p>
                             </div>
                             <div>
-                                <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: white; font-weight: 600;">Technische Umsetzung</h4>
+                                <h4 style="color: white;">Technische Umsetzung</h4>
                                 <p style="line-height: 1.6; opacity: 0.9;">
                                     Welche Tools und Technologien wurden verwendet?
                                 </p>
                             </div>
                             <div>
-                                <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: white; font-weight: 600;">Herausforderungen</h4>
+                                <h4 style="color: white;">Herausforderungen</h4>
                                 <p style="line-height: 1.6; opacity: 0.9;">
                                     Probleme, die gelöst wurden, und Learnings aus dem Projekt.
                                 </p>
@@ -317,10 +353,10 @@
                 <!-- Section 4: Cream Background -->
                 <section class="work-section bg-cream">
                     <div class="container">
-                        <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); color: var(--accent-burgundy); margin-bottom: 1rem;">
+                        <h2>
                             Ergebnis
                         </h2>
-                        <h3 style="font-family: var(--font-display); font-size: clamp(1.2rem, 2vw, 1.5rem); color: var(--text-secondary); margin-bottom: 3rem;">
+                        <h3>
                             Das finale Produkt
                         </h3>
                         
@@ -349,23 +385,23 @@
                             <!-- Optional: Stats oder Key Results -->
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; margin-top: 3rem; text-align: center;">
                                 <div>
-                                    <h4 style="font-family: var(--font-subtitle); font-size: 2.5rem; color: var(--accent-burgundy); margin-bottom: 0.5rem;">150+</h4>
-                                    <p style="font-size: 0.9rem; color: var(--text-secondary);">Arbeitsstunden</p>
+                                    <h4 class="stat-headline">150+</h4>
+                                    <p class="stat-label">Arbeitsstunden</p>
                                 </div>
                                 <div>
-                                    <h4 style="font-family: var(--font-subtitle); font-size: 2.5rem; color: var(--accent-burgundy); margin-bottom: 0.5rem;">20+</h4>
-                                    <p style="font-size: 0.9rem; color: var (--text-secondary);">Design Iterationen</p>
+                                    <h4 class="stat-headline">20+</h4>
+                                    <p class="stat-label">Design Iterationen</p>
                                 </div>
                                 <div>
-                                    <h4 style="font-family: var(--font-subtitle); font-size: 2.5rem; color: var(--accent-burgundy); margin-bottom: 0.5rem;">100%</h4>
-                                    <p style="font-size: 0.9rem; color: var(--text-secondary);">Kundenzufriedenheit</p>
+                                    <h4 class="stat-headline">100%</h4>
+                                    <p class="stat-label">Kundenzufriedenheit</p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Back to Projects Button -->
                         <div style="text-align: center; margin-top: 4rem;">
-                            <a href="../index.html#projects" style="display: inline-block; padding: 1rem 2.5rem; border: 2px solid var(--accent-burgundy); color: var(--accent-burgundy); text-transform: uppercase; font-weight: 600; letter-spacing: 0.1em; transition: all 0.3s ease; text-decoration: none;">
+                            <a href="../index.html#projects" class="back-btn">
                                 Zurück zu allen Projekten
                             </a>
                         </div>

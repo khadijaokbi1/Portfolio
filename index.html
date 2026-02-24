@@ -127,26 +127,50 @@
                   <div class="box" data-n="1"><span>Fotografie</span></div>
 
                   <div class="box" data-n="2">
-                    <div class="bg-img"><img src="assets/images/photography/gallery_shooting_1.jpg" alt="Fotografie"></div>
+                    <div class="bg-img"><img src="assets/images/hero/hero_foto.jpg" alt="Fotografie"></div>
                   </div>
 
                   <div class="box" data-n="3">
-                    <div class="bg-img"><img src="assets/images/gallery/1_petrichor_dark.jpg" alt="Design"></div>
+                    <div class="bg-img"><img src="assets/images/hero/hero_beauty.jpg" alt="Design"></div>
                     <span>Design</span>
                   </div>
 
                   <div class="box" data-n="4"><span>Marketing</span></div>
 
                   <div class="box" data-n="5">
-                    <div class="bg-img"><img src="assets/images/home/gallery_home_wehelp_14.jpg" alt="Marketing"></div>
+                    <div class="bg-img"><img src="assets/images/hero/sm_konzept.jpg" alt="Marketing"></div>
                   </div>
 
                   <div class="box" data-n="6">
-                    <div class="bg-img"><img src="assets/images/home/gallery_home_wehelp_14.jpg" alt="Web"></div>
+                    <div class="bg-img">
+                      <video autoplay muted loop playsinline>
+                        <source src="assets/images/hero/showcase_personal_web.mp4" type="video/mp4">
+                        <style>
+                          .box[data-n="6"] .bg-img {
+                            position: relative;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            overflow: hidden;
+                            border-radius: 50%;
+                            width: 100%;
+                            height: 100%;
+                          }
+
+                          .box[data-n="6"] video {
+                            position: absolute;
+                            width: 80%;
+                            height: 80%;
+                            object-fit: cover;
+                            
+                          }
+                        </style>
+                      </video>
+                    </div>
                   </div>
 
                   <div class="box" data-n="7">
-                    <div class="bg-img"><img src="assets/images/gallery/21_presentation_dark.jpg" alt="Animation"></div>
+                    <div class="bg-img"><img src="assets/images/hero/hero_ani.jpg" alt="Animation"></div>
                   </div>
 
                   <div class="box" data-n="8"><span>Animation</span></div>
@@ -166,7 +190,7 @@
             </div>
           </section>
 
-            <section class="section-projects" id="projects" aria-label="Projekte & Arbeiten">
+            <section class="section-projects" id="expertise" aria-label="Projekte & Arbeiten">
               <div class="container">
                 <h2 class="selected-projects" style="margin-top: 3rem;">Ausgewählte <em>Projekte</em></h2>
                 <div class="filter-bar" role="toolbar" aria-label="Projektfilter">

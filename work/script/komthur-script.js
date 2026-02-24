@@ -20,6 +20,9 @@
        initTabs();
        initScrollAnimations();
        initAnalyticsAnimations();
+       initStrategieAccordion();
+       initSwotAnimations();
+       initOptimierungsplan();
    });
    
    // =========================================
@@ -155,7 +158,196 @@
    }
    
    // =========================================
-   // 5. SMOOTH SCROLL FOR ANCHORS
+   // 5. STRATEGIE ACCORDION (Produkte & Strategie)
+   // =========================================
+   function initStrategieAccordion() {
+       const items = document.querySelectorAll('.strategie-item');
+       if (!items.length) return;
+
+       // Open the first item immediately
+       const firstContent = items[0].querySelector('.strategie-content');
+       if (firstContent) {
+           firstContent.style.height = 'auto';
+       }
+
+       items.forEach(item => {
+           const trigger  = item.querySelector('.strategie-trigger');
+           const content  = item.querySelector('.strategie-content');
+           if (!trigger || !content) return;
+
+           trigger.addEventListener('click', () => {
+               const isOpen = item.classList.contains('active');
+
+               // Close all
+               items.forEach(other => {
+                   other.classList.remove('active');
+                   const c = other.querySelector('.strategie-content');
+                   if (typeof gsap !== 'undefined') {
+                       gsap.to(c, { height: 0, duration: 0.5, ease: 'power3.inOut' });
+                   } else {
+                       c.style.height = '0';
+                   }
+               });
+
+               if (!isOpen) {
+                   item.classList.add('active');
+                   if (typeof gsap !== 'undefined') {
+                       gsap.fromTo(content,
+                           { height: 0 },
+                           { height: 'auto', duration: 0.6, ease: 'power3.out' }
+                       );
+                       // Animate number colour pop
+                       gsap.fromTo(item.querySelector('.st2-number'),
+                           { opacity: 0.08 },
+                           { opacity: 0.4, duration: 0.4, ease: 'power2.out' }
+                       );
+                   } else {
+                       content.style.height = 'auto';
+                   }
+               }
+           });
+       });
+   }
+
+   // =========================================
+   // 6. SWOT CARD SCROLL ANIMATIONS
+   // =========================================
+   function initSwotAnimations() {
+       if (typeof gsap === 'undefined') return;
+
+       gsap.utils.toArray('.swot-card').forEach((card, i) => {
+           gsap.from(card, {
+               y: 40,
+               opacity: 0,
+               duration: 0.7,
+               ease: 'power3.out',
+               delay: i * 0.08,
+               scrollTrigger: {
+                   trigger: '.swot-grid-new',
+                   start: 'top 85%',
+                   once: true
+               }
+           });
+       });
+
+       gsap.from('.konkurrenz-split', {
+           y: 30,
+           opacity: 0,
+           duration: 0.8,
+           ease: 'power3.out',
+           scrollTrigger: {
+               trigger: '.konkurrenz-section',
+               start: 'top 85%',
+               once: true
+           }
+       });
+
+       gsap.utils.toArray('.strategie-item').forEach((item, i) => {
+           gsap.from(item, {
+               x: -40,
+               opacity: 0,
+               duration: 0.7,
+               ease: 'power3.out',
+               delay: i * 0.07,
+               scrollTrigger: {
+                   trigger: '.strategie-accordion',
+                   start: 'top 85%',
+                   once: true
+               }
+           });
+       });
+   }
+
+   // =========================================
+   // 7. OPTIMIERUNGSPLAN — Scroll-driven reveal
+   // =========================================
+   function initOptimierungsplan() {
+       if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+       const panels      = document.querySelectorAll('.optim-panel');
+       const progressBar = document.getElementById('optimProgressBar');
+       const currentEl   = document.getElementById('optimCurrent');
+       const total       = panels.length;
+       if (!panels.length) return;
+
+       panels.forEach((panel, i) => {
+           // Set the ghost background number via data attribute
+           panel.setAttribute('data-index', String(i + 1).padStart(2, '0'));
+
+           const num        = panel.querySelector('.optim-panel-num');
+           const field      = panel.querySelector('.optim-panel-field');
+           const istLabel   = panel.querySelector('.optim-state-ist .optim-state-label');
+           const istText    = panel.querySelector('.optim-state-ist .optim-state-text');
+           const divider    = panel.querySelector('.optim-divider-line');
+           const sollLabel  = panel.querySelector('.optim-state-soll .optim-state-label');
+           const sollText   = panel.querySelector('.optim-state-soll .optim-state-text');
+
+           // Timeline for this panel
+           const tl = gsap.timeline({
+               scrollTrigger: {
+                   trigger: panel,
+                   start: 'top 72%',
+                   end: 'bottom 20%',
+                   toggleActions: 'play none none reverse',
+                   onEnter: () => {
+                       // Update sticky counter + progress bar
+                       if (currentEl) currentEl.textContent = i + 1;
+                       if (progressBar) progressBar.style.width = `${((i + 1) / total) * 100}%`;
+                   },
+                   onEnterBack: () => {
+                       if (currentEl) currentEl.textContent = i + 1;
+                       if (progressBar) progressBar.style.width = `${((i + 1) / total) * 100}%`;
+                   }
+               }
+           });
+
+           tl
+               // 1. Large number flies up from below
+               .fromTo(num,
+                   { y: 60, opacity: 0 },
+                   { y: 0, opacity: 0.35, duration: 0.75, ease: 'power3.out' }
+               )
+               // 2. Field name slides up, staggered
+               .fromTo(field,
+                   { y: 40, opacity: 0 },
+                   { y: 0, opacity: 1, duration: 0.65, ease: 'power3.out' },
+                   '-=0.5'
+               )
+               // 3. Ist-label slides in from left
+               .fromTo(istLabel,
+                   { x: -30, opacity: 0 },
+                   { x: 0, opacity: 1, duration: 0.5, ease: 'power2.out' },
+                   '-=0.3'
+               )
+               // 4. Ist-text rises
+               .fromTo(istText,
+                   { y: 22, opacity: 0 },
+                   { y: 0, opacity: 1, duration: 0.55, ease: 'power2.out' },
+                   '-=0.3'
+               )
+               // 5. Divider line wipes across
+               .fromTo(divider,
+                   { scaleX: 0, opacity: 0 },
+                   { scaleX: 1, opacity: 1, duration: 0.6, ease: 'power2.inOut' },
+                   '-=0.1'
+               )
+               // 6. Soll-label slides in from left
+               .fromTo(sollLabel,
+                   { x: -30, opacity: 0 },
+                   { x: 0, opacity: 1, duration: 0.5, ease: 'power2.out' },
+                   '-=0.3'
+               )
+               // 7. Soll-text rises — the payoff
+               .fromTo(sollText,
+                   { y: 28, opacity: 0 },
+                   { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' },
+                   '-=0.35'
+               );
+       });
+   }
+   
+   // =========================================
+   // 8. SMOOTH SCROLL FOR ANCHORS
    // =========================================
    document.querySelectorAll('a[href^="#"]').forEach(link => {
        link.addEventListener('click', e => {
@@ -170,7 +362,7 @@
    });
    
    // =========================================
-   // 6. SCROLL TRIGGER REFRESH
+   // 9. SCROLL TRIGGER REFRESH
    // =========================================
    window.addEventListener('resize', () => {
        if (typeof ScrollTrigger !== 'undefined') {

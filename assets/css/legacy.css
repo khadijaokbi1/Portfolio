@@ -25,7 +25,7 @@
 
 .hero-section {
   position: relative;
-  height: 100vh;
+  height: 80vh;
   overflow: hidden;
   background: #000;
   color: var(--mauve);
@@ -75,8 +75,8 @@
 
 .hero-top    { 
   font-size: clamp(64px, 9vw, 140px); 
-  top: 23%; 
-  z-index: 7; 
+  top: 18%; 
+  z-index: 5;  /* unter Portrait (8), über Portrait-BG (3) */
 }
 .hero-bottom { 
   font-size: clamp(64px, 9vw, 140px); 
@@ -85,16 +85,6 @@
   z-index: 9; 
 }
 
-/* Italic mid-line — Playfair italic accent (not Higuen) */
-.hero-middle {
-  font-family: var(--font-display);  /* Playfair Display */
-  font-style: italic;
-  font-size: clamp(2rem, 6vw, 7rem);
-  top: 50%;
-  z-index: 3;
-  color: var(--mauve);
-  letter-spacing: 0.05em;
-}
 
 /* Portrait container */
 .hero-bilder {
@@ -105,11 +95,14 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  z-index: 5;
   pointer-events: none;
   will-change: transform;
   transform: none;
 }
+
+/* Wird in JS via ScrollTrigger animiert:
+   gsap.to('.hero-bilder', { yPercent: 12, ease: 'none', scrollTrigger: { trigger: '.hero-section', start: 'top top', end: 'bottom top', scrub: true } });
+*/
 
 .hero-portrait-bg,
 .hero-portrait {
@@ -118,10 +111,10 @@
   left: 50%;
   transform: translateX(-50%);
   width: auto;
-  height: 75vh;
+  height: 65vh;
   pointer-events: none;
 }
-.hero-portrait-bg { z-index: 6; }
+.hero-portrait-bg { z-index: 3; }
 .hero-portrait    { z-index: 8; }
 .hero-portrait-bg img,
 .hero-portrait img {
@@ -139,28 +132,28 @@
 
 /* Hero responsive */
 @media (max-width: 480px) {
-  .hero-top    { font-size: clamp(40px, 12vw, 72px); top: 23%; }
-  .hero-bottom { font-size: clamp(40px, 12vw, 72px); bottom: 4%; top: auto; }
+  .hero-top    { font-size: clamp(40px, 14vw, 72px); top: 23%; }
+  .hero-bottom { font-size: clamp(40px, 14vw, 72px); bottom: 12%; top: auto; }
   .hero-portrait-bg,
-  .hero-portrait { height: 60vh; }
+  .hero-portrait { height: 70vh; }
 }
 @media (min-width: 481px) and (max-width: 768px) {
   .hero-top    { font-size: clamp(48px, 11vw, 96px); top: 23%; }
-  .hero-bottom { font-size: clamp(48px, 11vw, 96px); bottom: 4%; top: auto; }
+  .hero-bottom { font-size: clamp(48px, 11vw, 96px); bottom: 12%; top: auto; }
   .hero-portrait-bg,
   .hero-portrait { height: 65vh; }
 }
 @media (min-width: 769px) and (max-width: 1199px) {
   .hero-top    { font-size: clamp(56px, 9vw, 120px); top: 23%; }
-  .hero-bottom { font-size: clamp(56px, 9vw, 120px); bottom: 4%; top: auto; }
+  .hero-bottom { font-size: clamp(56px, 9vw, 120px); bottom: 12%; top: auto; }
   .hero-portrait-bg,
-  .hero-portrait { height: 70vh; }
+  .hero-portrait { height: 65vh; }
 }
 @media (min-width: 1200px) {
-  .hero-top    { font-size: clamp(72px, 9vw, 140px); top: 23%; }
+  .hero-top    { font-size: clamp(72px, 9vw, 140px); top: 18%; }
   .hero-bottom { font-size: clamp(72px, 9vw, 140px); bottom: 4%; top: auto; }
   .hero-portrait-bg,
-  .hero-portrait { height: 75vh; }
+  .hero-portrait { height: 70vh; }
 }
 
 /* =========================================
@@ -170,11 +163,12 @@
 .section-photography {
   position: relative;
   width: 100%;
-  min-height: 90vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   overflow: hidden;
   background-color: var(--mint);
+  padding-bottom: 200px;
 }
 
 /* Grain overlay */
@@ -459,6 +453,7 @@
   padding: 6rem 0;
   position: relative;
   overflow: visible;
+  margin-bottom: 4rem;
 }
 
 /* Filter bar — Outfit buttons */
@@ -487,6 +482,24 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-4);
+}
+
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .project-card {
@@ -540,6 +553,14 @@
 }
 .project-btn:hover { background: var(--white); color: var(--mint); border-color: var(--white); }
 
+@media (max-width: 480px) {
+  .project-btn {
+    padding: 0.45rem 1.1rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+  }
+}
+
 /* Project category badge — Outfit eyebrow */
 .project-category {
   position: absolute; top: 1rem; left: 1rem;
@@ -563,6 +584,15 @@
       These overrides keep card details sharp.
    ========================================= */
 
+.section-blog {
+  padding-top: 4rem;
+}
+
+.section-blog .container {
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
 .blog-card .blog-title {
   font-family: var(--font-display);   /* Playfair, no uppercase */
   font-size: 1rem;
@@ -585,10 +615,10 @@
    ========================================= */
 
 @media (max-width: 1024px) {
-  .projects-grid { grid-template-columns: repeat(3, 1fr); }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 800px) {
-  .projects-grid { grid-template-columns: repeat(3, 1fr); }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
   .hero-cta-btn { bottom: 8vh; left: 50%; transform: translateX(-50%); }
@@ -606,8 +636,24 @@
   .trigger-title { font-size: clamp(1.25rem, 5vw, 2rem); }
 }
 @media (max-width: 480px) {
-  .hero-section { height: 100vh; }
+  .hero-section { height: 80vh; }
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
   .filter-bar { gap: 0.5rem; }
   .filter-btn { padding: 0.5rem 1rem; flex: 1 1 auto; text-align: center; }
+}
+
+/* FOOTER: Text wieder weiss, kein Glow auf Kontakt-Link */
+.site-footer {
+  color: #ffffff;
+}
+.site-footer .footer-link,
+.site-footer .footer-copy,
+.site-footer .social-link {
+  color: #ffffff;
+}
+
+/* Glow / Text-Schatten von Kontakt entfernen */
+.contact-btn {
+  text-shadow: none !important;
+  box-shadow: none !important;
 }

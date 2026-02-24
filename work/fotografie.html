@@ -288,14 +288,14 @@
       background: var(--mint);
     }
 
-    /* ─── GRID — exact original 5×3 subgrid logic ─── */
+    /* ─── GRID — 5×4 rows to show all images incl. shooting_5 ─── */
     .grid {
       --offset: 0;
       width: 1600px;
       max-width: calc(100% - (2 * var(--gutter)));
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      grid-template-rows: repeat(3, auto);
+      grid-template-rows: repeat(4, auto);
       gap: var(--gap);
       margin: 0 auto;
       align-content: center;
@@ -324,7 +324,6 @@
     .grid > div:nth-of-type(2) div:nth-of-type(odd)  { grid-column: calc(2 + var(--offset)); }
     .grid > div:nth-of-type(2) div:nth-of-type(even) { grid-column: calc(-3 - var(--offset)); }
     .grid > div:nth-of-type(3) div { grid-column: calc(3 + var(--offset)); }
-    .grid > div:nth-of-type(3) div:last-of-type { grid-row: -1; }
 
     .grid .scaler {
       position: relative;
@@ -361,6 +360,61 @@
       width: 100%; height: 100%;
       max-width: none;
       filter: brightness(.9) saturate(.82);
+    }
+
+    /* ─── CTA OVERLAY on scaler ─── */
+    .scaler-cta {
+      position: absolute;
+      bottom: clamp(1.2rem, 3vw, 2rem);
+      left: 50%;
+      translate: -50% 0;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .6rem;
+      pointer-events: none;
+      opacity: 0;
+      animation: ctaFadeIn 1s cubic-bezier(.16,1,.3,1) 1.8s forwards;
+    }
+    @keyframes ctaFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .scaler-cta-label {
+      font-size: .48rem;
+      letter-spacing: .42em;
+      text-transform: uppercase;
+      color: rgba(244,239,231,.72);
+      white-space: nowrap;
+    }
+    .scaler-cta-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+    .scaler-cta-arrow {
+      width: 1px;
+      height: 32px;
+      background: linear-gradient(to bottom, rgba(244,239,231,.7), transparent);
+      animation: ctaBounce 2.2s ease-in-out infinite;
+    }
+    .scaler-cta-chevron {
+      width: 10px; height: 10px;
+      border-right: 1px solid rgba(244,239,231,.6);
+      border-bottom: 1px solid rgba(244,239,231,.6);
+      transform: rotate(45deg) translateY(-3px);
+      animation: ctaBounce 2.2s ease-in-out infinite .15s;
+    }
+    @keyframes ctaBounce {
+      0%, 100% { opacity: .45; transform: translateY(0) rotate(45deg); }
+      50%       { opacity: 1;   transform: translateY(5px) rotate(45deg); }
+    }
+    .scaler-cta-arrow { animation: ctaLineBounce 2.2s ease-in-out infinite; }
+    @keyframes ctaLineBounce {
+      0%, 100% { opacity: .5; transform: scaleY(1); }
+      50%       { opacity: 1;  transform: scaleY(1.15); }
     }
 
     /* ─── CSS SCROLL-DRIVEN ANIMATIONS ─── */
@@ -482,7 +536,7 @@
     }
     .cat-head h2 {
       font-family: var(--serif); font-size: clamp(1.5rem,3vw,2.4rem);
-      font-weight: 300; font-style: italic; color: var(--teal); white-space: nowrap;
+      font-weight: 300; font-style: italic; color: var (--teal); white-space: nowrap;
     }
     .cat-rule { flex: 1; height: 1px; background: linear-gradient(to right, rgba(110,59,73,.16), transparent); }
 
@@ -500,7 +554,7 @@
     }
     .cat::before {
       content: ''; position: absolute; top: 0; left: 0;
-      width: 2px; height: 0; background: var(--burg);
+      width: 2px; height: 0; background: var (--burg);
       transition: height .55s cubic-bezier(.16,1,.3,1);
     }
     .cat:hover::before { height: 100%; }
@@ -625,12 +679,9 @@
   </div>
 </header>
 
-<!-- ─── HERO — image is the story ─── -->
-<div class="hero-section">
-<section class="hero">
-
-    <img src="../assets/images/photography/hero_shooting_1.jpg" alt="Khadija Okbi — Portrait">
-  <div class="hero-rings" aria-hidden="true">
+<!-- ─── HERO ─── -->
+<div class="hero">
+  <div class="hero-rings">
     <div class="arc"></div>
     <div class="arc"></div>
     <div class="arc"></div>
@@ -641,9 +692,9 @@
     <span class="hero-title-sub">Khadija Okbi</span>
   </h1>
 
-  <div class="hero-meta" aria-hidden="true">
+  <div class="hero-meta">
     <div class="hero-cats">
-      <span class="hero-cat">Ballett</span>
+      <span class="hero-cat">Ballet &amp; Tanz</span>
       <span class="hero-cat">Portrait</span>
       <span class="hero-cat">Lichtkunst</span>
       <span class="hero-cat">Dokumentation</span>
@@ -654,7 +705,6 @@
     </div>
   </div>
 </div>
-</section>
 
 <!-- ─── STICKY SCROLL GALLERY ─── -->
 <div class="content-wrap">
@@ -662,37 +712,45 @@
     <section>
       <div class="content">
         <div class="grid">
+
           <!-- Layer 1 — outer columns -->
           <div class="layer">
-            <div><img src="../assets/images/photography/gallery_ballet_1.jpg"   alt="Ballet"></div>
-            <div><img src="../assets/images/photography/gallery_shooting_2.jpg" alt="Portrait"></div>
+            <div><img src="../assets/images/photography/gallery_ballet_1.jpg"    alt="Ballet"></div>
+            <div><img src="../assets/images/photography/gallery_shooting_2.jpg"  alt="Portrait"></div>
             <div><img src="../assets/images/photography/gallery_projector_1.jpg" alt="Lichtkunst"></div>
-            <div><img src="../assets/images/photography/gallery_corona_2.jpg"   alt="Dokumentation"></div>
-            <div><img src="../assets/images/photography/gallery_shooting_4.jpg" alt="Portrait"></div>
-            <div><img src="../assets/images/photography/gallery_ballet_3.jpg"   alt="Ballet"></div>
+            <div><img src="../assets/images/photography/gallery_corona_2.jpg"    alt="Dokumentation"></div>
+            <div><img src="../assets/images/photography/gallery_shooting_4.jpg"  alt="Portrait"></div>
+            <div><img src="../assets/images/photography/gallery_ballet_3.jpg"    alt="Ballet"></div>
           </div>
 
           <!-- Layer 2 — middle columns -->
           <div class="layer">
-            <div><img src="../assets/images/photography/gallery_corona_1.jpg"   alt="Dokumentation"></div>
+            <div><img src="../assets/images/photography/gallery_corona_1.jpg"    alt="Dokumentation"></div>
             <div><img src="../assets/images/photography/gallery_projector_2.jpg" alt="Lichtkunst"></div>
-            <div><img src="../assets/images/photography/gallery_shooting_3.jpg" alt="Portrait"></div>
-            <div><img src="../assets/images/photography/gallery_ballet_2.png"   alt="Ballet"></div>
-            <div><img src="../assets/images/photography/gallery_corona_3.jpg"   alt="Dokumentation"></div>
+            <div><img src="../assets/images/photography/gallery_shooting_3.jpg"  alt="Portrait"></div>
+            <div><img src="../assets/images/photography/gallery_ballet_2.png"    alt="Ballet"></div>
+            <div><img src="../assets/images/photography/gallery_corona_3.jpg"    alt="Dokumentation"></div>
           </div>
 
-          <!-- Layer 3 — center column -->
+          <!-- Layer 3 — center column (5 items, alle sichtbar) -->
           <div class="layer">
-            <div><img src="../assets/images/photography/gallery_shooting_1.jpg" alt="Portrait"></div>
+            <div><img src="../assets/images/photography/gallery_shooting_1.jpg"  alt="Portrait"></div>
             <div><img src="../assets/images/photography/gallery_projector_3.jpg" alt="Lichtkunst"></div>
-            <div><img src="../assets/images/photography/gallery_corona_4.jpg"   alt="Dokumentation"></div>
-            <div><img src="../assets/images/photography/gallery_ballet_4 (1).png" alt="Ballet"></div>
-            <div><img src="../assets/images/photography/gallery_shooting_5.jpg" alt="Portrait"></div>
+            <div><img src="../assets/images/photography/gallery_corona_4.jpg"    alt="Dokumentation"></div>
+            <div><img src="../assets/images/photography/gallery_marokko_1.jpg"   alt="Marokko"></div>
+            <div><img src="../assets/images/photography/gallery_shooting_5.jpg"  alt="Portrait"></div>
           </div>
 
-          <!-- Scaler — center hero image that grows on scroll -->
+          <!-- Scaler — center hero image + CTA overlay -->
           <div class="scaler">
             <img src="../assets/images/photography/gallery_shooting_1.jpg" alt="Khadija Okbi — Portrait">
+            <div class="scaler-cta">
+              <span class="scaler-cta-label">Galerie entdecken</span>
+              <div class="scaler-cta-icon">
+                <div class="scaler-cta-arrow"></div>
+                <div class="scaler-cta-chevron"></div>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -701,75 +759,11 @@
   </main>
 </div>
 
-<!-- ─── MARQUEE ─── -->
-<div class="marquee-wrap" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item">Ballett</span>
-    <span class="marquee-item">Portrait</span>
-    <span class="marquee-item">Lichtkunst</span>
-    <span class="marquee-item">Dokumentation</span>
-    <span class="marquee-item">Editorial</span>
-    <span class="marquee-item">Bewegung</span>
-    <span class="marquee-item">Licht &amp; Schatten</span>
-    <span class="marquee-item">Ballett</span>
-    <span class="marquee-item">Portrait</span>
-    <span class="marquee-item">Lichtkunst</span>
-    <span class="marquee-item">Dokumentation</span>
-    <span class="marquee-item">Editorial</span>
-    <span class="marquee-item">Bewegung</span>
-    <span class="marquee-item">Licht &amp; Schatten</span>
-  </div>
-</div>
-
-<!-- ─── ABOUT ─── -->
-<div class="about-strip">
-  <div class="js-up">
-    <div class="section-micro">Über die Arbeit</div>
-    <h2 class="about-heading">
-      Momente, die<br><em>nicht verblassen.</em>
-    </h2>
-  </div>
-  <div class="js-up" style="--d:.12s">
-    <p class="about-body">Fotografie ist meine visuelle Sprache — ein Werkzeug, das Stille, Bewegung und Emotion in einem einzigen Frame konserviert. Jedes Shooting beginnt mit einem Gefühl.</p>
-    <p class="about-body">Von Ballett-Aufführungen über Porträt-Sessions bis hin zu experimenteller Lichtkunst.</p>
-    <div class="stats-row">
-      <div class="stat"><span class="stat-n">4+</span><span class="stat-l">Jahre</span></div>
-      <div class="stat"><span class="stat-n">200+</span><span class="stat-l">Aufnahmen</span></div>
-      <div class="stat"><span class="stat-n">4</span><span class="stat-l">Serien</span></div>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- ─── CATEGORIES ─── -->
-<section class="categories">
-  <div class="cat-head js-up">
-    <h2>Bereiche</h2>
-    <div class="cat-rule"></div>
-  </div>
-  <div class="cats">
-    <div class="cat"><div class="cat-n">01</div><div class="cat-t">Ballet &amp; Tanz</div><p class="cat-d">Bewegung, Kraft und Anmut — festgehalten im richtigen Moment.</p><div class="cat-arr"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke-width="1.4" stroke-linecap="round"/></svg></div></div>
-    <div class="cat"><div class="cat-n">02</div><div class="cat-t">Portrait</div><p class="cat-d">Menschen ohne Maske — mit Tiefe, Persönlichkeit und Ehrlichkeit.</p><div class="cat-arr"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke-width="1.4" stroke-linecap="round"/></svg></div></div>
-    <div class="cat"><div class="cat-n">03</div><div class="cat-t">Licht &amp; Projektor</div><p class="cat-d">Experimentelle Lichtkunst — wo Fotografie zur Malerei wird.</p><div class="cat-arr"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke-width="1.4" stroke-linecap="round"/></svg></div></div>
-    <div class="cat"><div class="cat-n">04</div><div class="cat-t">Dokumentation</div><p class="cat-d">Visuelle Narrative, die Realität bezeugen und Erinnerungen bewahren.</p><div class="cat-arr"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke-width="1.4" stroke-linecap="round"/></svg></div></div>
-    <div class="cat"><div class="cat-n">05</div><div class="cat-t">Editorial</div><p class="cat-d">Konzeptionelle Bildwelten für Magazine und digitale Medien.</p><div class="cat-arr"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke-width="1.4" stroke-linecap="round"/></svg></div></div>
-    <div class="cat"><div class="cat-n">06</div><div class="cat-t">Stills &amp; Mood</div><p class="cat-d">Atmosphärische Kompositionen — Fotografie als visuelle Meditation.</p><div class="cat-arr"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke-width="1.4" stroke-linecap="round"/></svg></div></div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ─── CTA ─── -->
-<div class="cta">
-  <p class="cta-lbl">Zusammenarbeit</p>
-  <h2 class="cta-h js-up">
-    Lass uns etwas<br><em>Unvergessliches</em><br>schaffen.
-  </h2>
-  <div class="cta-btns">
-    <a href="mailto:khadijaokbi@gmail.com" class="btn btn-p">Kontakt aufnehmen</a>
-    <a href="../index.html#projects"       class="btn btn-g">Alle Projekte</a>
-  </div>
+<!-- ─── WAVE ─── -->
+<div class="footer-wave">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
+    <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#314a51"/>
+  </svg>
 </div>
 
 <!-- ─── FOOTER ─── -->
@@ -892,6 +886,26 @@
       }
     );
   });
+
+  /* ── HERO SCROLL ANIMATION (Fotografie) ── */
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true
+    }
+  })
+  .to('.hero-title', {
+    yPercent: -15,
+    opacity: 0.1,
+    ease: 'none'
+  }, 0)
+  .to('.hero-meta', {
+    yPercent: -30,
+    opacity: 0,
+    ease: 'none'
+  }, 0);
 
   window.addEventListener('beforeunload', () => ScrollTrigger.killAll());
 </script>

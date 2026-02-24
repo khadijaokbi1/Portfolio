@@ -382,6 +382,57 @@ document.addEventListener('DOMContentLoaded', () => {
     rotation: 30, y: -20,
     scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: 2 }
   });
+
+  // Hero-Parallax fuer Startseite: Portrait-Cluster bewegt sich leicht nach unten beim Scrollen
+  if (document.querySelector('.hero-section') && document.querySelector('.hero-bilder')) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.to('.hero-bilder', {
+      yPercent: 12,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero-section',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+  }
+
+  // Blog-Karten sanft beim Scroll einblenden
+  if (document.querySelector('.section-blog')) {
+    gsap.utils.toArray('.blog-card').forEach((card, i) => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 30,
+        duration: 0.9,
+        ease: 'power3.out',
+        delay: i * 0.08,
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+  }
+
+  // Generelle Section-Reveals (falls noch nicht vorhanden)
+  gsap.utils.toArray('section').forEach((section) => {
+    if (section.classList.contains('section-photography')) return; // Hero bereits animiert
+
+    gsap.from(section, {
+      opacity: 0,
+      y: 24,
+      duration: 0.8,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      }
+    });
+  });
 });
 
 function buildGrid() {
