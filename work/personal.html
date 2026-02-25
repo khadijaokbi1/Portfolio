@@ -179,8 +179,9 @@ body.ch-view #cur-label{opacity:1}
 }
 
 /* WAVE DIVIDERS */
-.wave-divider{width:100%;overflow:hidden;line-height:0;position:relative}
-.wave-divider svg{display:block;width:100%;height:auto}
+.wave-divider{width:100%;overflow:hidden;line-height:0;position:relative;z-index:1;pointer-events:none}
+.wave-divider.hero-to-mint svg{height:160px}
+.wave-divider.hero-to-mint svg path{fill:#56686A !important}
 
 /* MARQUEE */
 .marquee-section{background:#f5f5f5;padding:5rem 0 0;position:relative;overflow:hidden}
@@ -286,12 +287,14 @@ body.ch-view #cur-label{opacity:1}
     flex-direction: column;
     gap: clamp(1.5rem, 3vh, 2.5rem);
     padding-bottom: 0; /* remove bottom gap so wave sits flush */
+    z-index: 3;
 }
 
 /* make sure showcase content sits above background and is visible */
-.sc-container{ max-width:960px; margin:0 auto; padding:0 clamp(1.5rem,5vw,3rem); width:100%; position:relative; z-index:6; display:flex; flex-direction:column; align-items:center; gap:clamp(2rem,5vh,3.5rem); }
-.iphone-frame{ z-index:7; opacity:1 }
-.phone-video-wrap video{ display:block; }
+.sc-container{ max-width:960px; margin:0 auto; padding:0 clamp(1.5rem,5vw,3rem); width:100%; position:relative; z-index:20 !important; display:flex; flex-direction:column; align-items:center; gap:clamp(2rem,5vh,3.5rem); }
+.iphone-frame{ z-index:22 !important; opacity:1 }
+.phone-video-wrap{ background: url('../assets/images/personal/showcase_personal_beauty_4.png') center/cover no-repeat; }
+.phone-video-wrap video{ background:transparent }
 
 .sc-bg-num {
     position: absolute;
@@ -439,96 +442,27 @@ body.ch-view #cur-label{opacity:1}
     width: 100%; height: 100%;
     position: relative;
     overflow: hidden;
-    background: #000;
+    background: url('../assets/images/personal/showcase_personal_beauty_4.png') center/cover no-repeat;
+    background-color:#2b2b2b; background-position:center; background-size:cover
 }
 .phone-video-wrap video {
     width: 100%; height: 100%;
     object-fit: cover;
     display: block;
+    background: transparent;
 }
 .phone-video-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(180deg,
-        rgba(0,0,0,0.38) 0%,
+        rgba(0,0,0,0.28) 0%,
         transparent 28%,
         transparent 62%,
-        rgba(0,0,0,0.55) 100%);
+        rgba(0,0,0,0.35) 100%);
     pointer-events: none;
-    z-index: 2;
-}
-.phone-video-header {
-    position: absolute;
-    top: 52px; left: 12px; right: 12px;
-    z-index: 5;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-}
-.phone-avatar {
-    width: 26px; height: 26px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #6E3B49, #314A51);
-    border: 2px solid #fff;
-    flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 8px; color: #fff;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-}
-.phone-username-row { display: flex; flex-direction: column; gap: 1px; }
-.phone-username {
-    font-size: 8.5px; color: #fff;
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 600; letter-spacing: 0.02em;
-}
-.phone-story-tag {
-    font-size: 6.5px; color: rgba(255,255,255,0.5);
-    font-family: 'Work Sans', sans-serif;
-    text-transform: uppercase; letter-spacing: 0.1em;
-}
-.phone-video-footer {
-    position: absolute;
-    bottom: 24px; left: 12px; right: 12px;
-    z-index: 5;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-}
-.phone-video-location {
-    display: flex; flex-direction: column; gap: 3px;
-}
-.phone-video-loc-label {
-    font-family: 'Work Sans', sans-serif;
-    font-size: 6px; letter-spacing: 0.3em;
-    text-transform: uppercase; color: rgba(255,255,255,0.5);
-}
-.phone-video-loc-name {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 14px; color: #fff;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
-    line-height: 1;
-}
-.phone-video-icons { display: flex; gap: 7px; align-items: center; }
-.phone-icon { width: 16px; height: 16px; color: rgba(255,255,255,0.75); }
-/* Progress bars */
-.phone-prog-bars {
-    position: absolute;
-    top: 14px; left: 10px; right: 10px;
-    z-index: 6;
-    display: flex; gap: 3px;
-}
-.phone-prog-bar {
-    flex: 1; height: 2px;
-    background: rgba(255,255,255,0.28);
-    border-radius: 1px; overflow: hidden;
-}
-.phone-prog-bar-fill {
-    height: 100%;
-    background: rgba(255,255,255,0.88);
-    width: 0%;
-    transition: width 0.15s linear;
+    z-index: 25;
+    opacity: 0.86;
+    display:none !important
 }
 
 /* ─ Navigation unter iPhone ─ */
@@ -642,9 +576,9 @@ body.ch-view #cur-label{opacity:1}
 </section>
 
 <!-- Wave: Hero -> Mint -->
-<div class="wave-divider" style="background:transparent;">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 490" preserveAspectRatio="none" width="100%" height="120">
-    <path d="M 0,500 L 0,187 C 84.5,144.607 169,102.214 296,129 C 423,155.786 592.5,251.75 726,271 C 859.5,290.25 957,232.786 1070,206 C 1183,179.214 1311.5,183.107 1440,187 L 1440,500 L 0,500 Z" stroke="none" stroke-width="0" fill="#56686a"></path>
+<div class="wave-divider hero-to-mint" style="background:transparent;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 490" preserveAspectRatio="none" width="100%" height="160">
+    <path d="M 0,500 L 0,187 C 84.5,144.607 169,102.214 296,129 C 423,155.786 592.5,251.75 726,271 C 859.5,290.25 957,232.786 1070,206 C 1183,179.214 1311.5,183.107 1440,187 L 1440,500 L 0,500 Z" stroke="none" stroke-width="0" fill="#314a51"></path>
   </svg>
 </div>
 
@@ -691,13 +625,16 @@ body.ch-view #cur-label{opacity:1}
 
             <!-- Video 1: Egypt (zuerst) -->
             <video class="sc-video sc-video--active" autoplay muted playsinline loop
-                   src="../assets/images/personal/egypt_personal_1.mov"></video>
+                   src="../assets/images/personal/showcase_personal_web1.mp4"
+                   poster="../assets/images/personal/showcase_personal__trailer_2.jpg"></video>
             <!-- Video 2: Dhermi -->
             <video class="sc-video" muted playsinline loop
-                   src="../assets/images/personal/dhermi_personal_2.MOV"></video>
+                   src="../assets/images/personal/dhermi_personal_2.MOV"
+                   poster="../assets/images/personal/showcase_personal_beauty_4.png"></video>
             <!-- Video 3: Paris -->
             <video class="sc-video" muted playsinline loop
-                   src="../assets/images/personal/paris_personal_3.mov"></video>
+                   src="../assets/images/personal/paris_personal_3.mov"
+                   poster="../assets/images/personal/showcase_personal_rap_1.PNG"></video>
 
             <div class="phone-video-overlay"></div>
 
@@ -709,9 +646,9 @@ body.ch-view #cur-label{opacity:1}
             </div>
 
             <!-- Phone header -->
-            <div class="phone-video-header"></div>
+            <div class="phone-video-header">
               <div class="phone-avatar">K</div>
-              <div class="phone-username-row"></div>
+              <div class="phone-username-row">
                 <div class="phone-username">khadijaokbi</div>
                 <div class="phone-story-tag" id="sc-story-tag">Travel Stories</div>
               </div>
@@ -768,9 +705,6 @@ body.ch-view #cur-label{opacity:1}
 
 <section class="marquee-section">
   <div class="mq-fade mq-fade--l"></div><div class="mq-fade mq-fade--r"></div>
-  <div class="marquee-label"><span class="s-label">Meine Logodesigns</span></div>
-  <div style="overflow:hidden">
-    <div class="marquee-track" id="marqTrack">
   <div class="marquee-label"><span class="s-label">Meine Logodesigns</span></div>
   <div style="overflow:hidden">
     <div class="marquee-track" id="marqTrack">
@@ -955,7 +889,7 @@ document.querySelectorAll('[data-count]').forEach(el=>{
       const delay=(row+col)/(n*1.8);
       const lp=Math.max(0,Math.min(1,(ease-delay)/(1-delay+.001)));
       if((row+col)%2===0&&lp>.01){ctx.save();ctx.translate(cx,cy);ctx.rotate(Math.PI/4*lp);const s=cell*.38*lp;ctx.fillStyle='rgba(110,59,73,'+(0.07*lp)+')';ctx.fillRect(-s,-s,s*2,s*2);ctx.strokeStyle='rgba(110,59,73,'+(0.18*lp)+')';ctx.lineWidth=.6;ctx.strokeRect(-s,-s,s*2,s*2);ctx.restore()}
-      if(row%2===0&&col%2===0&&lp>.2){const sp=(lp-.2)/.8,r1=cell*.28*sp,r2=cell*.12*sp,pts=8;ctx.beginPath();for(let i=0;i<pts*2;i++){const a=i*Math.PI/pts-Math.PI/2,r=i%2===0?r1:r2;i===0?ctx.moveTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r):ctx.lineTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r)}ctx.closePath();ctx.fillStyle='rgba(110,59,73,'+(0.1*sp)+')';ctx.fill();ctx.strokeStyle='rgba(110,59,73,'+(0.22*sp)+')';ctx.lineWidth=.5;ctx.stroke()}
+      if(row%2===0&&col%2===0&&lp>.2){const sp=(lp-.2)/.8,r1=cell*.28*sp,r2=cell*.12*sp,pts=8;ctx.beginPath();for(let i=0;i<pts*2;i){const a=i*Math.PI/pts-Math.PI/2,r=i%2===0?r1:r2;i===0?ctx.moveTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r):ctx.lineTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r)}ctx.closePath();ctx.fillStyle='rgba(110,59,73,'+(0.1*sp)+')';ctx.fill();ctx.strokeStyle='rgba(110,59,73,'+(0.22*sp)+')';ctx.lineWidth=.5;ctx.stroke()}
       if(row%2===1&&col%2===1&&lp>.4){const cp=(lp-.4)/.6;ctx.beginPath();ctx.arc(cx,cy,cell*.14*cp,0,Math.PI*2);ctx.strokeStyle='rgba(110,59,73,'+(0.18*cp)+')';ctx.lineWidth=.5;ctx.stroke();ctx.beginPath();ctx.arc(cx,cy,cell*.05*cp,0,Math.PI*2);ctx.fillStyle='rgba(49,74,81,'+(0.15*cp)+')';ctx.fill()}
     }}
     ctx.strokeStyle='rgba(110,59,73,.05)';ctx.lineWidth=.5;
