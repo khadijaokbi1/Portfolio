@@ -23,7 +23,7 @@
   align-items: flex-end;
   position: relative;
   overflow: hidden;
-  padding-bottom: 18vh; /* room for wave */
+  padding-bottom: clamp(4rem, 8vh, 7rem);
 }
 .work-hero::before {
   content: '';
@@ -31,18 +31,6 @@
   background: radial-gradient(ellipse at 70% 40%, rgba(110,59,73,0.22) 0%, transparent 60%);
   pointer-events: none;
 }
-.work-hero::after {
-  /* Wave → mint (from your main.css pattern) */
-  content: '';
-  position: absolute; bottom: -1px; left: 0;
-  width: 100%; height: 18vh; z-index: 4;
-  background-color: var(--mint);
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-  mask-size: 100% 100%; mask-repeat: no-repeat;
-  -webkit-mask-size: 100% 100%; -webkit-mask-repeat: no-repeat;
-}
-
 .work-hero-inner {
   position: relative; z-index: 2;
   width: 85vw; margin: 0 auto;
@@ -92,21 +80,11 @@
 /* ── WEB EXPERIENCES — mint bg ── */
 .section-web {
   background: var(--mint);
-  padding: clamp(5rem,10vh,8rem) 0 calc(25vh + 4rem);
+  padding: clamp(5rem,10vh,8rem) 0 clamp(4rem, 8vh, 6rem);
   position: relative; overflow: hidden;
 }
 .section-web::before {
   content: ''; position: absolute; inset: 0; opacity: 0; pointer-events: none;
-}
-
-.section-web::after {
-  content: ''; position: absolute; bottom: -1px; left: 0;
-  width: 100%; height: 25vh; z-index: 3;
-  background-color: var(--white);
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-  mask-size: 100% 100%; mask-repeat: no-repeat;
-  -webkit-mask-size: 100% 100%; -webkit-mask-repeat: no-repeat;
 }
 
 /* Section H2 — Higuen, uppercase, mauve accent (per your section h2 rule) */
@@ -309,22 +287,12 @@
 /* ── CASE STUDIES — off-white bg ── */
 .section-concepts {
   background: var(--white);
-  padding: clamp(4rem,10vh,8rem) 0 calc(25vh + 4rem);
+  padding: clamp(4rem,10vh,8rem) 0 clamp(4rem, 8vh, 6rem);
   position: relative; overflow: hidden;
 }
 .section-concepts::before {
   content: ''; position: absolute; inset: 0; opacity: 0; pointer-events: none;
 }
-.section-concepts::after {
-  content: ''; position: absolute; bottom: -1px; left: 0;
-  width: 100%; height: 25vh; z-index: 3;
-  background-color: var(--burgundy);
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-  mask-size: 100% 100%; mask-repeat: no-repeat;
-  -webkit-mask-size: 100% 100%; -webkit-mask-repeat: no-repeat;
-}
-
 /* KOMTHUR big card */
 .concept-featured {
   display: grid; grid-template-columns: 1.2fr 1fr;
@@ -448,20 +416,11 @@
 /* ── COLLECTIONS — burgundy bg ── */
 .section-collections {
   background: var(--burgundy);
-  padding: clamp(4rem,10vh,8rem) 0 calc(25vh + 4rem);
+  padding: clamp(4rem,10vh,8rem) 0 clamp(4rem, 8vh, 6rem);
   position: relative; overflow: hidden;
 }
 .section-collections::before {
   content: ''; position: absolute; inset: 0; opacity: 0; pointer-events: none;
-}
-.section-collections::after {
-  content: ''; position: absolute; bottom: -1px; left: 0;
-  width: 100%; height: 25vh; z-index: 3;
-  background-color: var(--mint);
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-  mask-size: 100% 100%; mask-repeat: no-repeat;
-  -webkit-mask-size: 100% 100%; -webkit-mask-repeat: no-repeat;
 }
 .section-collections h2 { color: var(--white); }
 
@@ -575,7 +534,7 @@
   </header>
 
 <!-- HERO — darkgreen, Higuen H1 -->
-<section class="work-hero">
+<section class="work-hero wave-mint">
   <div class="work-hero-inner">
     <p class="photo-eyebrow rv" style="color:var(--mauve);animation:fadeUp 1s cubic-bezier(0,0,0.2,1) 0.2s both">
       Portfolio · Selected Work
@@ -589,7 +548,7 @@
 </section>
 
 <!-- WEB EXPERIENCES -->
-<section class="section-web">
+<section class="section-web wave-cream">
   <div class="in85">
     <p class="photo-eyebrow rv" style="color:var(--mauve)">Web Experiences</p>
     <h2 class="rv d1">Gebaute <em>Welten.</em></h2>
@@ -669,7 +628,7 @@
 </section>
 
 <!-- iPHONE FOTOGRAFIE -->
-<section class="section-foto">
+<section class="section-foto wave-offwhite">
   <div class="foto-grid">
     <div>
       <p class="photo-eyebrow rv" style="color:var(--burgundy)">Bildsprache</p>
@@ -688,7 +647,7 @@
 </section>
 
 <!-- CASE STUDIES -->
-<section class="section-concepts">
+<section class="section-concepts wave-burg">
   <div class="in85">
     <p class="photo-eyebrow rv" style="color:var(--burgundy)">Case Studies</p>
     <h2 class="rv d1">Strategie &amp; <em>Konzept.</em></h2>
@@ -745,7 +704,7 @@
 </section>
 
 <!-- COLLECTIONS -->
-<section class="section-collections">
+<section class="section-collections wave-foot">
   <div class="in85">
     <p class="photo-eyebrow rv" style="color:var(--mauve)">Sammlungen & Archiv</p>
     <h2 class="rv d1">Vier Jahre <em>Schaffen.</em></h2>

@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Work+Sans:wght@300;400;500;700&family=Outfit:wght@300;400;600&family=Tenor+Sans&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/footer-nav-waves.css">
 <style>
@@ -937,13 +937,6 @@ body {
     color: rgba(235,225,209,0.28); white-space: nowrap;
 }
 
-/* ── Wave-Übergänge ── */
-.wave-between {
-    position: relative; overflow: hidden;
-    line-height: 0; display: block;
-    pointer-events: none; z-index: 3;
-}
-.wave-between svg { display: block; width: 100%; }
 </style>
 </head>
 <body>
@@ -967,7 +960,7 @@ body {
 <main>
 
 <!-- ═══ HERO ═══ -->
-<section class="sbw-hero-section">
+<section class="sbw-hero-section wave-cream">
     <div class="video-container opacity-50">
         <video autoplay muted loop playsinline>
             <source src="../video/petrichor_hero.mp4" type="video/mp4">
@@ -986,15 +979,8 @@ body {
     </div>
 </section>
 
-<!-- Wave: schwarz → creme -->
-<div class="wave-between" style="background:#000">
-    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" height="120">
-        <path fill="#F5F5F5" d="M0,60 C360,120 1080,0 1440,70 L1440,120 L0,120 Z"/>
-    </svg>
-</div>
-
 <!-- ═══ INTRO ═══ -->
-<section class="sbw-intro" id="sbw-intro">
+<section class="sbw-intro wave-mint" id="sbw-intro">
     <div class="container">
         <span class="sbw-intro-badge">4 Jahre Lehre // 2020 – 2024</span>
         <h1 class="sbw-intro-title">SBW<br><em>Neuen Medien.</em></h1>
@@ -1007,15 +993,8 @@ body {
     </div>
 </section>
 
-<!-- Wave: creme → mint -->
-<div class="wave-between" style="background:#F5F5F5">
-    <svg viewBox="0 0 1440 140" preserveAspectRatio="none" height="140">
-        <path fill="#56686A" d="M0,80 C300,140 900,20 1440,90 L1440,140 L0,140 Z"/>
-    </svg>
-</div>
-
 <!-- ═══ SHOWCASE — iPhone Video Slider ═══ -->
-<section class="section-showcase" id="showcase">
+<section class="section-showcase wave-dark" id="showcase">
     <div class="sc-bg-num" aria-hidden="true">01</div>
 
     <div class="container" style="position:relative;z-index:2;width:100%;">
@@ -1136,15 +1115,8 @@ body {
     </div><!-- /container -->
 </section>
 
-<!-- Wave: mint → dark-mint (gallery) -->
-<div class="wave-between" style="background:#56686A">
-    <svg viewBox="0 0 1440 140" preserveAspectRatio="none" height="140">
-        <path fill="#314A51" d="M0,60 C480,140 960,10 1440,80 L1440,140 L0,140 Z"/>
-    </svg>
-</div>
-
 <!-- ═══ GALLERY ═══ -->
-<section class="section-gallery" id="gallery">
+<section class="section-gallery wave-burg" id="gallery">
     <div class="container">
 
         <div class="gallery-header" id="gallery-header">
@@ -1221,15 +1193,8 @@ body {
     </div>
 </section>
 
-<!-- Wave: dark-mint → burgundy -->
-<div class="wave-between" style="background:#314A51">
-    <svg viewBox="0 0 1440 140" preserveAspectRatio="none" height="140">
-        <path fill="#6E3B49" d="M0,90 C360,20 1080,140 1440,50 L1440,140 L0,140 Z"/>
-    </svg>
-</div>
-
 <!-- ═══ STRATEGY ═══ -->
-<section class="section-strategy" id="tiktok-strategy">
+<section class="section-strategy wave-mint" id="tiktok-strategy">
     <div class="container">
         <div class="strategy-header">
             <span class="strategy-eyebrow">Social Media Management</span>
@@ -1256,13 +1221,6 @@ body {
         </div>
     </div>
 </section>
-
-<!-- Wave: burgundy → mint (films) -->
-<div class="wave-between" style="background:#6E3B49">
-    <svg viewBox="0 0 1440 140" preserveAspectRatio="none" height="140">
-        <path fill="#56686A" d="M0,50 C480,140 960,0 1440,80 L1440,140 L0,140 Z"/>
-    </svg>
-</div>
 
 <!-- ═══ FILMS ═══ -->
 <section class="section-films wave-foot" id="films">

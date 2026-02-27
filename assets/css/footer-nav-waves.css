@@ -312,9 +312,13 @@
 
 /* Neues Wellen-System */
 .wave-burg::after,
+.wave-mint::after,
 .wave-cream::after,
 .wave-dark::after,
 .wave-mauve::after,
+.wave-charcoal::after,
+.wave-warm::after,
+.wave-offwhite::after,
 .wave-foot::after {
   content: "";
   position: absolute;
@@ -334,9 +338,13 @@
 }
 
 .wave-burg,
+.wave-mint,
 .wave-cream,
 .wave-dark,
-.wave-mauve {
+.wave-mauve,
+.wave-charcoal,
+.wave-warm,
+.wave-offwhite {
   position: relative;
   overflow: visible;
   padding-bottom: 20vh;
@@ -358,6 +366,12 @@
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,280 C120,260 280,300 440,320 C600,340 680,220 800,160 C920,100 1040,80 1200,120 C1320,148 1400,200 1440,220 L1440,400 Z'/%3E%3C/svg%3E");
 }
 
+.wave-mint::after {
+  background-color: #56686a;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,260 C200,220 440,160 680,190 C920,220 1120,300 1440,270 L1440,400 Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,260 C200,220 440,160 680,190 C920,220 1120,300 1440,270 L1440,400 Z'/%3E%3C/svg%3E");
+}
+
 .wave-cream::after {
   background-color: #f5f5f5;
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,300 C240,260 480,220 720,240 C960,260 1200,310 1440,290 L1440,400 Z'/%3E%3C/svg%3E");
@@ -374,6 +388,24 @@
   background-color: #b5a19e;
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,300 C140,340 300,380 480,340 C660,300 740,180 900,140 C1060,100 1180,160 1300,220 C1370,254 1420,280 1440,292 L1440,400 Z'/%3E%3C/svg%3E");
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,300 C140,340 300,380 480,340 C660,300 740,180 900,140 C1060,100 1180,160 1300,220 C1370,254 1420,280 1440,292 L1440,400 Z'/%3E%3C/svg%3E");
+}
+
+.wave-charcoal::after {
+  background-color: #1c1714;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,220 C180,180 420,260 680,300 C920,335 1160,220 1440,190 L1440,400 Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,220 C180,180 420,260 680,300 C920,335 1160,220 1440,190 L1440,400 Z'/%3E%3C/svg%3E");
+}
+
+.wave-warm::after {
+  background-color: #fbf9f7;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,270 C220,320 440,360 700,320 C980,275 1180,160 1440,200 L1440,400 Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,270 C220,320 440,360 700,320 C980,275 1180,160 1440,200 L1440,400 Z'/%3E%3C/svg%3E");
+}
+
+.wave-offwhite::after {
+  background-color: #f7f3ee;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,280 C200,240 500,180 760,210 C1020,240 1240,320 1440,290 L1440,400 Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,280 C200,240 500,180 760,210 C1020,240 1240,320 1440,290 L1440,400 Z'/%3E%3C/svg%3E");
 }
 
 /* wave-foot: Welle zum Footer hin (dunkelgrüne Farbe, gleiche Richtung) */

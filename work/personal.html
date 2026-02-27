@@ -3,535 +3,648 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Khadija Okbi | Personal</title>
+<title>Khadija Okbi | Personal Work</title>
 <link rel="icon" type="image/png" href="../assets/images/branding/logo_white.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Tenor+Sans&family=Outfit:wght@200;300;400&family=Work+Sans:ital,wght@0,200;0,300;1,300&display=swap" rel="stylesheet">
-<!-- new: centralized CSS for header / footer / waves -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Tenor+Sans&family=Outfit:wght@200;300;400&family=Work+Sans:ital,wght@0,200;0,300;1,300&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <link rel="stylesheet" href="../assets/css/footer-nav-waves.css">
 <style>
+/* ══════════════════════════════════════════
+   ROOT
+══════════════════════════════════════════ */
 :root{
-  --bg-secondary:#F5F5F5;--bg-dark:#314A51;
-  --text-primary:#0A0A0A;--text-primary-light:#F5F5F5;
-  --text-secondary:#525252;--accent-burgundy:#6E3B49;
-  --border-light:#56686A;--mauve:#B5A19E;
+  --burgundy:#6E3B49;--dark:#314A51;--mauve:#B5A19E;
   --cream:#F7F3EE;--blush:#EFE0D8;--rose:#C9877B;--warm:#FBF9F7;--ink:#1C1714;
-  --font-body:'Work Sans',sans-serif;--font-display:'Playfair Display',serif;
-  --font-sub:'Outfit',sans-serif;--font-titel:'Tenor Sans',sans-serif;
-  --speed-base:250ms;--easing-dec:cubic-bezier(0,0,.2,1);
+  --f5:#F5F5F5;
+  --font-body:'Work Sans',sans-serif;
+  --font-display:'Cormorant Garamond',serif;
+  --font-alt:'Playfair Display',serif;
+  --font-sub:'Outfit',sans-serif;
+  --font-titel:'Tenor Sans',sans-serif;
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+  --ease-io:cubic-bezier(0.87,0,0.13,1);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:hidden}
-body{font-family:var(--font-body);background:var(--warm);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:none}
+body{font-family:var(--font-body);background:var(--warm);color:var(--ink);
+  line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:none}
 img{max-width:100%;display:block}
-a{color:inherit;text-decoration:none;transition:color var(--speed-base) var(--easing-dec)}
+a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:none;border:none;background:none}
-.container{max-width:85vw;margin:0 auto;padding:0 clamp(1rem,5vw,3rem)}
 
-/* CURSOR */
-#cur-dot{width:6px;height:6px;background:var(--accent-burgundy);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
-#cur-ring{width:34px;height:34px;border:1px solid rgba(110,59,73,.3);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .45s cubic-bezier(.23,1,.32,1),height .45s,border-color .3s}
-#cur-label{position:fixed;top:0;left:0;pointer-events:none;z-index:9997;font-family:var(--font-sub);font-size:.46rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent-burgundy);opacity:0;transform:translate(18px,18px);transition:opacity .3s;white-space:nowrap}
-body.ch #cur-ring{width:58px;height:58px;border-color:var(--accent-burgundy)}
-body.ch-view #cur-ring{width:78px;height:78px;border-color:var(--rose)}
+/* ══════════════════════════════════════════
+   CURSOR — refined
+══════════════════════════════════════════ */
+#cur-dot{
+  width:5px;height:5px;background:var(--burgundy);border-radius:50%;
+  position:fixed;top:0;left:0;pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);transition:opacity .2s;
+}
+#cur-ring{
+  width:32px;height:32px;
+  border:1px solid rgba(110,59,73,.25);border-radius:50%;
+  position:fixed;top:0;left:0;pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:width .5s cubic-bezier(.23,1,.32,1),height .5s,border-color .3s,background .3s;
+}
+#cur-label{
+  position:fixed;top:0;left:0;pointer-events:none;z-index:9997;
+  font-family:var(--font-sub);font-size:.4rem;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--burgundy);opacity:0;
+  transform:translate(20px,20px);transition:opacity .25s;white-space:nowrap;
+}
+body.ch #cur-ring{width:52px;height:52px;border-color:rgba(110,59,73,.5)}
+body.ch-view #cur-ring{width:70px;height:70px;border-color:var(--burgundy);background:rgba(110,59,73,.04)}
 body.ch-view #cur-dot{opacity:0}
 body.ch-view #cur-label{opacity:1}
 
-/* HEADER */
-.site-header{position:fixed;inset:0 0 auto 0;z-index:1000;background:transparent;backdrop-filter:blur(0px);transition:all var(--speed-base) var(--easing-dec)}
-.site-header.is-solid{background:rgba(49,74,81,.95);border-bottom:1px solid var(--border-light);backdrop-filter:blur(10px)}
-.nav-bar{height:72px;display:flex;align-items:center;justify-content:space-between;max-width:1440px;margin:0 auto;padding:10px clamp(1rem,5vw,3rem)}
-.logo{position:relative;width:38px;height:38px}
-.logo img{position:absolute;top:0;left:0;transition:opacity var(--speed-base)}
-.logo .logo-onscroll{opacity:0}
-.site-header.is-solid .logo .logo-onscroll{opacity:1}
-.site-header.is-solid .logo img:not(.logo-onscroll){opacity:0}
-.nav{display:flex;gap:2rem;align-items:center}
-.nav-link{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.15em;color:var(--text-primary-light);position:relative;padding-bottom:.5rem;transition:all var(--speed-base)}
-.nav-link::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:var(--accent-burgundy);transform:translateX(-50%);transition:width var(--speed-base) var(--easing-dec)}
-.nav-link:hover{color:var(--accent-burgundy)}
-.nav-link:hover::after{width:100%}
-
-.personal-hero-bg-image {
-  background-image: url('../assets/images/personal/hero_personal.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 100%;
+/* ══════════════════════════════════════════
+   TYPOGRAPHY HELPERS
+══════════════════════════════════════════ */
+.t-label{
+  font-family:var(--font-sub);font-size:.5rem;letter-spacing:.5em;
+  text-transform:uppercase;color:var(--mauve);display:inline-block;
 }
+.t-display{
+  font-family:var(--font-display);font-weight:300;
+  font-size:clamp(2.4rem,5vw,4rem);line-height:.95;color:var(--ink);
+}
+.t-display em{font-style:italic;color:var(--burgundy)}
 
-/* HERO GENERIC (angelehnt an about) */
+/* ══════════════════════════════════════════
+   HERO — full-bleed cinematic
+══════════════════════════════════════════ */
 .hero-section{
-  position:relative;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:7rem 0 4rem;
-  overflow:hidden;
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding-bottom:clamp(4rem,8vh,7rem);overflow:hidden;
 }
-.hero{
-  position:relative;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:flex-start;
-  padding:7rem 0 4rem;
-}
-.hero-header,
-.hero > div[style]{
-  max-width:85vw;
-  margin:0 auto;
-  padding:0 clamp(1rem,5vw,3rem);
-}
-.hero-bg-img{
-  position:absolute;
-  inset:0;
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-  z-index:0;
-}
-
-/* PERSONAL HERO VARIANTE */
-.personal-hero-bg{
-  position:absolute;
-  inset:0;
-  z-index:0;
-}
-.personal-hero-bg-image{
-  position:absolute;
-  inset:0;
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
   background-image:url('../assets/images/personal/hero_personal.jpg');
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+  background-size:cover;background-position:center 25%;
 }
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(28,23,20,.82) 0%,
+    rgba(28,23,20,.45) 40%,
+    rgba(28,23,20,.1) 100%
+  );
+}
+/* grain overlay */
+.hero-bg::before{
+  content:'';position:absolute;inset:0;z-index:1;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size:200px;opacity:.6;pointer-events:none;
+}
+.hero-inner{
+  position:relative;z-index:2;
+  max-width:85vw;margin:0 auto;
+  padding:0 clamp(1rem,5vw,3rem);
+  display:grid;grid-template-columns:1fr auto;align-items:end;gap:3rem;
+}
+@media(max-width:768px){.hero-inner{grid-template-columns:1fr}}
 
-.hero-label{
-  display:inline-block;
-  font-family:var(--font-sub);
-  font-size:.55rem;
-  letter-spacing:.42em;
-  text-transform:uppercase;
-  color:var(--text-primary-light);
-  margin-bottom:1.5rem;
-  opacity:0;
+.hero-eyebrow{
+  font-family:var(--font-sub);font-size:.48rem;letter-spacing:.55em;
+  text-transform:uppercase;color:rgba(247,243,238,.5);
+  margin-bottom:1.8rem;display:block;opacity:0;
 }
 .hero-h1{
-  font-family:var(--font-display);
-  font-size:clamp(2.7rem,6vw,4.3rem);
-  line-height:1;
-  color:var(--text-primary-light);
-  margin:0 0 1.5rem;
-  text-transform:none;
+  font-family:var(--font-display);font-weight:300;
+  font-size:clamp(3.2rem,7.5vw,6.5rem);line-height:.9;
+  color:#F7F3EE;margin-bottom:2rem;
 }
-.hero-h1 .word{overflow:hidden;display:block;}
-.hero-h1 .word span{
-  display:inline-block;
-  transform:translateY(120%);
+.hero-h1 .row{overflow:hidden;display:block}
+.hero-h1 .row span{display:inline-block;transform:translateY(105%)}
+.hero-h1 .row--outline span{
+  -webkit-text-stroke:1px rgba(247,243,238,.55);color:transparent;
 }
-.hero-h1 .outline{
-  -webkit-text-stroke:1px var(--text-primary-light);
-  color:transparent;
-}
-.hero-rule{
-  width:2px;
-  height:0;
-  background:var(--text-primary-light);
-  margin:0 0 1.5rem;
-  opacity:0;
-}
+.hero-h1 .row--accent span{color:var(--rose);font-style:italic}
+
+.hero-meta{display:flex;align-items:center;gap:2rem;opacity:0}
+.hero-line{width:32px;height:1px;background:rgba(247,243,238,.3)}
 .hero-sub{
-  display:block;
-  font-family:var(--font-sub);
-  font-size:.7rem;
-  letter-spacing:.35em;
-  text-transform:uppercase;
-  color:var(--text-primary-light);
+  font-family:var(--font-sub);font-size:.58rem;letter-spacing:.3em;
+  text-transform:uppercase;color:rgba(247,243,238,.5);
+}
+.hero-side{
+  display:flex;flex-direction:column;align-items:flex-end;gap:3rem;
   opacity:0;
 }
-.hero-scroll-hint{
-  position:absolute;
-  left:clamp(1.2rem,4vw,2.4rem);
-  bottom:1.8rem;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:.45rem;
-  z-index:2;
+.hero-scroll-v{
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
 }
-.scroll-bar{
-  width:1px;
-  height:32px;
-  background:rgba(235,225,209,.7);
+.hero-scroll-bar{
+  width:1px;height:48px;
+  background:linear-gradient(to bottom,transparent,rgba(247,243,238,.5));
 }
-#hScroll{
-  font-family:var(--font-sub);
-  font-size:.55rem;
-  letter-spacing:.35em;
-  text-transform:uppercase;
-  color:rgba(235,225,209,.7);
-  opacity:0;
+.hero-scroll-txt{
+  font-family:var(--font-sub);font-size:.42rem;letter-spacing:.4em;
+  text-transform:uppercase;color:rgba(247,243,238,.4);
+  writing-mode:vertical-rl;
+}
+.hero-index{
+  font-family:var(--font-display);font-style:italic;font-size:4.5rem;
+  color:rgba(247,243,238,.06);line-height:1;
 }
 
-/* WAVE DIVIDERS */
-.wave-divider{width:100%;overflow:hidden;line-height:0;position:relative;z-index:1;pointer-events:none}
-.wave-divider.hero-to-mint svg{height:160px}
-.wave-divider.hero-to-mint svg path{fill:#56686A !important}
+/* ══════════════════════════════════════════
+   SHOWCASE — iPhone Slider (unverändert, 
+   aber Design-Upgrade)
+══════════════════════════════════════════ */
+.section-showcase{
+  background:var(--burgundy);
+  padding:clamp(5rem,12vh,9rem) 0 clamp(4rem,8vh,6rem);
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;flex-direction:column;
+  gap:clamp(1.5rem,3vh,2.5rem);
+}
+/* subtle texture */
+.section-showcase::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(0,0,0,.25),transparent);
+}
+.sc-bg-num{
+  position:absolute;right:-0.02em;top:50%;transform:translateY(-50%);
+  font-family:var(--font-display);font-style:italic;
+  font-size:clamp(18rem,35vw,32rem);font-weight:300;line-height:1;
+  color:rgba(0,0,0,.05);user-select:none;pointer-events:none;z-index:0;
+  letter-spacing:-.05em;
+}
+.sc-container{
+  max-width:980px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);
+  width:100%;position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;
+  gap:clamp(2rem,4vh,3rem);
+}
+.sc-header-row{
+  display:grid;grid-template-columns:1fr auto;
+  align-items:end;gap:2rem;width:100%;
+}
+@media(max-width:640px){.sc-header-row{grid-template-columns:1fr;gap:.8rem}}
+.sc-eyebrow-row{
+  display:flex;gap:clamp(1.2rem,3vw,2.5rem);
+  margin-bottom:1.2rem;flex-wrap:wrap;
+}
+.sc-eyebrow-block{display:flex;flex-direction:column;gap:.3rem}
+.sc-eyebrow-key{
+  font-family:var(--font-sub);font-size:.42rem;letter-spacing:.55em;
+  text-transform:uppercase;color:rgba(235,225,209,.28);
+}
+.sc-eyebrow-val{
+  font-family:var(--font-titel);font-size:clamp(.68rem,1.1vw,.82rem);
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(235,225,209,.8);
+  transition:opacity .4s;
+}
+.sc-title{
+  font-family:var(--font-display);font-size:clamp(2.2rem,4.5vw,3.6rem);
+  font-weight:300;line-height:.92;letter-spacing:-.02em;
+  color:#F7F3EE;margin:0;padding:0;text-transform:none;
+}
+.sc-title em{font-style:italic;color:rgba(235,225,209,.55)}
+.sc-subtitle{
+  font-family:var(--font-display);font-style:italic;
+  font-size:clamp(.85rem,1.5vw,1.05rem);
+  color:rgba(235,225,209,.38);display:block;margin-top:.5rem;
+}
+.sc-meta-right{text-align:right}
+.sc-counter{
+  font-family:var(--font-display);font-style:italic;font-size:clamp(.8rem,1.2vw,1rem);
+  color:rgba(235,225,209,.28);user-select:none;white-space:nowrap;
+}
+.sc-counter #sc-cur{color:rgba(235,225,209,.8);font-size:1.5em}
 
-/* MARQUEE */
-.marquee-section{background:#f5f5f5;padding:5rem 0 0;position:relative;overflow:hidden}
+/* iPhone */
+.iphone-frame{
+  width:clamp(185px,20vw,255px);aspect-ratio:393/852;
+  background:linear-gradient(160deg,#2a2a2c,#1c1c1e);
+  border-radius:clamp(2.5rem,4.5vw,3.8rem);
+  position:relative;flex-shrink:0;overflow:hidden;
+  box-shadow:
+    0 0 0 8px #232325,
+    0 0 0 10px rgba(255,255,255,.06),
+    0 70px 140px rgba(0,0,0,.75),
+    0 25px 50px rgba(0,0,0,.4),
+    inset 0 1px 0 rgba(255,255,255,.07);
+}
+.iphone-notch{
+  position:absolute;top:12px;left:50%;transform:translateX(-50%);
+  width:32%;height:28px;background:#000;border-radius:16px;z-index:20;
+}
+.iphone-screen{position:absolute;inset:0;border-radius:inherit;overflow:hidden}
+.iphone-homeind{
+  position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
+  width:36%;height:4px;background:rgba(255,255,255,.22);border-radius:3px;z-index:20;
+}
+.phone-video-wrap{
+  width:100%;height:100%;position:relative;overflow:hidden;
+  background:url('../assets/images/personal/showcase_personal_beauty_4.png') center/cover no-repeat;
+}
+.sc-video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;display:block;opacity:0;transition:opacity .6s ease;
+}
+.sc-video--active{opacity:1}
+
+/* Phone overlay UI */
+.phone-prog-bars{
+  position:absolute;top:50px;left:10px;right:10px;
+  display:flex;gap:3px;z-index:30;
+}
+.phone-prog-bar{flex:1;height:2px;background:rgba(255,255,255,.2);border-radius:1px;overflow:hidden}
+.phone-prog-bar-fill{height:100%;background:rgba(255,255,255,.9);width:0%;transition:width .3s ease;border-radius:1px}
+.phone-video-header{
+  position:absolute;top:60px;left:12px;right:12px;
+  display:flex;align-items:center;gap:8px;z-index:30;
+}
+.phone-avatar{
+  width:26px;height:26px;border-radius:50%;
+  background:var(--burgundy);border:1.5px solid rgba(255,255,255,.5);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-sub);font-size:.5rem;font-weight:600;color:#fff;flex-shrink:0;
+}
+.phone-username-row{display:flex;flex-direction:column;gap:1px}
+.phone-username{font-family:var(--font-sub);font-size:.52rem;font-weight:600;color:#fff;line-height:1;letter-spacing:.03em}
+.phone-story-tag{font-family:var(--font-sub);font-size:.4rem;letter-spacing:.06em;color:rgba(255,255,255,.6);line-height:1}
+.phone-video-footer{
+  position:absolute;bottom:22px;left:12px;right:12px;
+  display:flex;align-items:flex-end;justify-content:space-between;z-index:30;
+}
+.phone-video-footer::before{
+  content:'';position:absolute;left:-12px;right:-12px;bottom:-22px;height:110px;
+  background:linear-gradient(0deg,rgba(0,0,0,.6),transparent);z-index:-1;pointer-events:none;
+}
+.phone-video-location{display:flex;flex-direction:column;gap:2px}
+.phone-video-loc-label{font-family:var(--font-sub);font-size:.38rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.phone-video-loc-name{font-family:var(--font-display);font-style:italic;font-size:.88rem;color:#fff;line-height:1}
+.phone-video-icons{display:flex;flex-direction:column;gap:10px;align-items:center}
+.phone-icon{width:17px;height:17px;color:rgba(255,255,255,.8);filter:drop-shadow(0 1px 4px rgba(0,0,0,.5))}
+
+/* Nav */
+.sc-nav-wrapper{display:flex;justify-content:center;align-items:center;width:100%;position:relative;z-index:2}
+.sc-nav{display:flex;align-items:center;justify-content:center;gap:clamp(.8rem,2vw,1.4rem)}
+.sc-arrow{
+  width:50px;height:50px;border-radius:50%;
+  border:1px solid rgba(235,225,209,.18);background:rgba(0,0,0,.08);
+  color:rgba(235,225,209,.55);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:all .35s cubic-bezier(.34,1.56,.64,1);flex-shrink:0;
+}
+.sc-arrow:hover{border-color:rgba(235,225,209,.5);background:rgba(0,0,0,.2);color:#F7F3EE;transform:scale(1.08)}
+.sc-arrow:active{transform:scale(.93)}
+.sc-dots{display:flex;gap:5px;align-items:center}
+.sc-dot{width:4px;height:4px;border-radius:50%;background:rgba(235,225,209,.18);transition:all .35s cubic-bezier(.34,1.56,.64,1);cursor:pointer}
+.sc-dot.on{background:rgba(235,225,209,.8);transform:scale(1.5)}
+
+/* ══════════════════════════════════════════
+   MARQUEE
+══════════════════════════════════════════ */
+.marquee-section{background:var(--f5);padding:5rem 0 4.5rem;position:relative;overflow:hidden}
 .marquee-label{text-align:center;margin-bottom:2.5rem}
 .mq-fade{position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
-.mq-fade--l{left:0;background:linear-gradient(to right,var(--cream),transparent)}
-.mq-fade--r{right:0;background:linear-gradient(to left,var(--cream),transparent)}
+.mq-fade--l{left:0;background:linear-gradient(to right,var(--f5),transparent)}
+.mq-fade--r{right:0;background:linear-gradient(to left,var(--f5),transparent)}
 .marquee-track{display:flex;gap:3rem;width:max-content}
 .m-item{display:flex;flex-direction:column;align-items:center;gap:.9rem;min-width:160px}
-.m-item img{width:100px;height:100px;object-fit:contain;filter:grayscale(.3)}
-.m-item span{font-family:var(--font-sub);font-size:.55rem;letter-spacing:.35em;text-transform:uppercase;color:var(--mauve)}
+.m-item img{width:100px;height:100px;object-fit:contain;filter:grayscale(.3);transition:filter .4s}
+.m-item:hover img{filter:none}
 
-/* HSCROLL */
-.hscroll{height:100vh;position:relative}
+/* ══════════════════════════════════════════
+   HORIZONTAL SCROLL — works
+══════════════════════════════════════════ */
+.hscroll{height:100vh;position:relative;background:var(--cream)}
 .hscroll-pin{height:100vh;width:100%;overflow:hidden}
 .hscroll-track{display:flex;height:100vh;width:max-content;will-change:transform}
-.hscroll-panel{width:100vw;height:100vh;position:relative;display:flex;align-items:center;justify-content:center;background:var(--cream)}
+.hscroll-panel{
+  width:100vw;height:100vh;position:relative;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--cream);
+}
 .hscroll-panel--b{background:var(--blush)}
 .hscroll-panel--c{background:var(--warm)}
-.hscroll-num{position:absolute;top:3rem;left:3rem;font-family:var(--font-display);font-style:italic;font-size:5rem;color:rgba(110,59,73,.07);line-height:1}
-.hscroll-media{width:min(55vw,680px);position:relative}
-.hscroll-media img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:saturate(.8)}
-.hscroll-caption{position:absolute;bottom:-3rem;right:-2rem;background:var(--warm);padding:1.25rem 1.75rem;min-width:200px}
-.hscroll-caption h3{font-family:var(--font-display);font-style:italic;font-size:1.15rem;color:var(--ink);font-weight:400}
-.hscroll-caption span{font-family:var(--font-sub);font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mauve);display:block;margin-top:.4rem}
+.hscroll-num{
+  position:absolute;top:3rem;left:3rem;
+  font-family:var(--font-display);font-style:italic;font-size:6rem;
+  color:rgba(110,59,73,.05);line-height:1;font-weight:300;
+}
+.hscroll-media{width:min(48vw,600px);position:relative}
+.hscroll-media img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:saturate(.75)}
+.hscroll-caption{
+  position:absolute;bottom:-2.8rem;right:-2.2rem;
+  background:var(--warm);padding:1.2rem 1.6rem;min-width:190px;
+  box-shadow:0 4px 24px rgba(28,23,20,.06);
+}
+.hscroll-caption h3{font-family:var(--font-display);font-style:italic;font-size:1.1rem;color:var(--ink);font-weight:300}
+.hscroll-caption span{font-family:var(--font-sub);font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mauve);display:block;margin-top:.4rem}
 .hscroll-dots{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;gap:.6rem}
-.hscroll-dot{width:4px;height:4px;border-radius:50%;background:rgba(110,59,73,.2)}
-.hscroll-dot.on{background:var(--accent-burgundy)}
+.hscroll-dot{width:4px;height:4px;border-radius:50%;background:rgba(110,59,73,.18)}
+.hscroll-dot.on{background:var(--burgundy)}
 
-/* ROOTS */
-.roots-section{padding:9rem 0;background:var(--warm)}
-.roots-inner{max-width:85vw;margin:0 auto;padding:0 clamp(1rem,2vw,2rem);display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
-.roots-lbl{font-family:var(--font-sub);font-size:.58rem;letter-spacing:.5em;text-transform:uppercase;color:var(--mauve);display:block;margin-bottom:1.5rem}
-.roots-h2{font-family:var(--font-display);font-size:clamp(2rem,4.5vw,3.6rem);line-height:1.08;color:var(--ink);margin-bottom:1.75rem}
-.roots-h2 em{font-style:italic;color:var(--accent-burgundy)}
-.roots-p{font-family:var(--font-body);font-size:.95rem;font-weight:300;color:rgba(28,23,20,.65);line-height:1.85;margin-bottom:2.5rem}
-.roots-p strong{color:var(--ink);font-weight:400}
-.roots-stats{display:flex;gap:2.5rem}
-.rst-num{font-family:var(--font-display);font-style:italic;font-size:2.5rem;color:var(--accent-burgundy);display:block;line-height:1}
-.rst-lbl{font-family:var(--font-sub);font-size:.52rem;letter-spacing:.35em;text-transform:uppercase;color:var(--mauve);display:block;margin-top:.4rem}
-.zellij-wrap{position:relative;aspect-ratio:1}
-.zellij-wrap canvas{width:100%;height:100%;border-radius:2px}
-.zellij-cap{font-family:var(--font-sub);font-size:.5rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(110,59,73,.4);text-align:center;margin-top:1rem}
-@media(max-width:768px){.roots-inner{grid-template-columns:1fr;gap:3rem}}
+/* ══════════════════════════════════════════
+   TIKTOK SECTION — dark, 3D browser tilt
+══════════════════════════════════════════ */
+.tiktok-section{
+  background:#1C1714;
+  padding:clamp(6rem,14vh,11rem) 0 clamp(5rem,10vh,9rem);
+  position:relative;overflow:hidden;
+}
+/* ambient glow */
+.tiktok-section::before{
+  content:'';position:absolute;
+  width:60vw;height:60vw;border-radius:50%;
+  background:radial-gradient(circle,rgba(110,59,73,.18) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.tt-inner{
+  max-width:85vw;margin:0 auto;
+  padding:0 clamp(1rem,3vw,2rem);
+}
+.tt-head{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:clamp(3rem,6vh,5rem);
+  gap:2rem;flex-wrap:wrap;
+}
+.tt-head-left{}
+.tt-eyebrow{
+  font-family:var(--font-sub);font-size:.46rem;letter-spacing:.55em;
+  text-transform:uppercase;color:rgba(183,161,158,.4);
+  display:block;margin-bottom:1rem;
+}
+.tt-title{
+  font-family:var(--font-display);font-weight:300;
+  font-size:clamp(2.4rem,5vw,4.2rem);line-height:.92;
+  color:#F7F3EE;letter-spacing:-.02em;
+}
+.tt-title em{font-style:italic;color:rgba(201,135,123,.7)}
+.tt-stats{
+  display:flex;gap:2.5rem;align-items:flex-end;
+}
+.tt-stat{display:flex;flex-direction:column;gap:.3rem;text-align:right}
+.tt-stat-num{
+  font-family:var(--font-display);font-style:italic;
+  font-size:clamp(1.8rem,3vw,2.8rem);color:#F7F3EE;line-height:1;font-weight:300;
+}
+.tt-stat-lbl{
+  font-family:var(--font-sub);font-size:.42rem;letter-spacing:.45em;
+  text-transform:uppercase;color:rgba(183,161,158,.4);
+}
 
-/* GALLERY */
-.gallery{padding:8rem 0 0;background:var(--cream)}
-.gallery-head{max-width:85vw;margin:0 auto;padding:0 clamp(1rem,2vw,2rem) 3.5rem;display:flex;justify-content:space-between;align-items:flex-end}
-.gallery-controls{display:flex;align-items:center;gap:1.25rem}
-.g-btn{width:44px;height:44px;border-radius:50%;border:1px solid rgba(110,59,73,.2)!important;display:flex;align-items:center;justify-content:center;color:var(--ink);transition:all .3s}
-.g-btn svg{width:18px;height:18px}
-.g-btn:hover{border-color:var(--accent-burgundy)!important;color:var(--accent-burgundy)}
-.g-progress{width:80px;height:1px;background:rgba(110,59,73,.15);position:relative;overflow:hidden}
-.g-bar{height:100%;background:var(--accent-burgundy);transition:width .4s cubic-bezier(.25,.46,.45,.94)}
-.gallery-strip-outer{overflow:hidden;padding:0 clamp(1rem,2vw,2rem) 6rem;max-width:85vw;margin:0 auto}
-.gallery-strip{display:flex;gap:1.25rem;transition:transform .75s cubic-bezier(.25,.46,.45,.94)}
-.g-card{position:relative;overflow:hidden;flex-shrink:0;cursor:none}
-.g-card--w{width:440px;height:560px}
-.g-card--t{width:300px;height:560px}
-.g-card--s{width:380px;height:560px}
-.g-card img{width:100%;height:100%;object-fit:cover;filter:saturate(.75);transition:filter .5s,transform 1.2s cubic-bezier(.25,.46,.45,.94)}
-.g-card:hover img{filter:saturate(1);transform:scale(1.04)}
-.g-overlay{position:absolute;bottom:0;left:0;right:0;padding:2.5rem 1.5rem 1.5rem;background:linear-gradient(0deg,rgba(247,243,238,.88),transparent);transform:translateY(8px);opacity:0;transition:opacity .35s,transform .35s}
-.g-card:hover .g-overlay{opacity:1;transform:translateY(0)}
-.g-overlay h4{font-family:var(--font-display);font-style:italic;font-size:1.05rem;color:var(--ink);font-weight:400}
-.g-overlay p{font-family:var(--font-sub);font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mauve);margin-top:.4rem}
+/* 3D Tilt Container */
+.tt-device-scene{
+  perspective:1200px;
+  display:flex;justify-content:center;align-items:center;
+}
+.tt-device-wrapper{
+  position:relative;
+  transform-style:preserve-3d;
+  /* subtle static tilt to show depth even without hover */
+  transform:rotateX(4deg) rotateY(-8deg);
+  transition:transform .8s cubic-bezier(.34,1.56,.64,1);
+  width:min(82vw,940px);
+}
+.tt-device-scene:hover .tt-device-wrapper{
+  transform:rotateX(2deg) rotateY(-4deg);
+}
 
-/* QUOTE */
-.quote-break{padding:7rem 2.5rem;text-align:center;background:var(--warm);max-width:85vw;margin:0 auto}
-.quote-text{font-family:var(--font-display);font-style:italic;font-size:clamp(1.5rem,3.2vw,2.4rem);line-height:1.4;color:var(--ink);font-weight:400}
-.quote-attr{font-family:var(--font-sub);font-size:.55rem;letter-spacing:.42em;text-transform:uppercase;color:var(--mauve);display:block;margin-top:1.5rem;opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s}
+/* MacBook-style frame */
+.tt-laptop{
+  position:relative;
+  background:linear-gradient(180deg,#2d2d2f 0%,#1a1a1c 100%);
+  border-radius:14px 14px 0 0;
+  padding:14px 14px 0;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.06),
+    0 -1px 0 rgba(255,255,255,.08) inset,
+    0 50px 120px rgba(0,0,0,.9),
+    0 20px 40px rgba(0,0,0,.6);
+}
+/* camera dot */
+.tt-laptop-cam{
+  width:7px;height:7px;border-radius:50%;
+  background:#111;border:1px solid rgba(255,255,255,.08);
+  margin:0 auto 10px;
+  position:relative;
+}
+.tt-laptop-cam::after{
+  content:'';position:absolute;inset:2px;border-radius:50%;
+  background:rgba(80,100,120,.4);
+}
+/* screen area */
+.tt-screen{
+  background:#0a0a0c;border-radius:6px 6px 0 0;
+  overflow:hidden;position:relative;
+  aspect-ratio:16/10;
+}
+/* browser chrome */
+.tt-browser-bar{
+  background:linear-gradient(180deg,#2a2a2e,#222225);
+  padding:.55rem .8rem;
+  display:flex;align-items:center;gap:.5rem;
+  border-bottom:1px solid rgba(255,255,255,.04);
+}
+.tt-b-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.tt-b-dot--r{background:#ff5f57}.tt-b-dot--y{background:#febc2e}.tt-b-dot--g{background:#28c840}
+.tt-url-bar{
+  flex:1;margin:0 .8rem;
+  background:rgba(255,255,255,.06);border-radius:4px;
+  padding:.25rem .6rem;
+  font-family:var(--font-sub);font-size:.42rem;letter-spacing:.05em;
+  color:rgba(255,255,255,.3);display:flex;align-items:center;gap:.4rem;
+}
+.tt-url-lock{width:8px;height:8px;opacity:.4}
+.tt-url-text{color:rgba(255,255,255,.45)}
+/* tiktok content area */
+.tt-content{
+  width:100%;height:calc(100% - 36px);
+  position:relative;overflow:hidden;
+  background:#fff;
+  display:flex;align-items:stretch;
+}
+/* left sidebar */
+.tt-sidebar{
+  width:220px;flex-shrink:0;
+  background:#fff;
+  border-right:1px solid #f0f0f0;
+  display:flex;flex-direction:column;
+  padding:1.2rem 0;
+}
+.tt-sb-logo{
+  padding:.5rem 1.2rem 1rem;
+  font-size:1.1rem;font-weight:900;color:#000;letter-spacing:-.02em;
+}
+.tt-sb-item{
+  display:flex;align-items:center;gap:.6rem;
+  padding:.45rem 1.2rem;font-size:.65rem;
+  color:#161823;cursor:default;border-radius:0;
+  transition:background .15s;
+}
+.tt-sb-item:hover{background:#f5f5f5}
+.tt-sb-item.active{font-weight:700}
+.tt-sb-icon{width:16px;height:16px;flex-shrink:0;opacity:.7}
+/* main feed */
+.tt-main{
+  flex:1;overflow:hidden;
+  background:#f8f8f8;
+  display:flex;flex-direction:column;
+}
+/* profile header inside screen */
+.tt-profile-header{
+  background:#fff;
+  padding:1.2rem 1.5rem .8rem;
+  border-bottom:1px solid #f0f0f0;
+  display:flex;align-items:center;gap:1.2rem;
+}
+.tt-prof-avatar{
+  width:52px;height:52px;border-radius:50%;
+  background:#1C1714;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-sub);font-weight:700;font-size:.7rem;
+  color:#F7F3EE;flex-shrink:0;
+  border:2px solid #f0f0f0;
+  overflow:hidden;
+}
+.tt-prof-avatar img{width:100%;height:100%;object-fit:cover}
+.tt-prof-info{flex:1}
+.tt-prof-name{font-size:.72rem;font-weight:700;color:#161823;line-height:1.2}
+.tt-prof-handle{font-size:.58rem;color:#aaa;margin-top:.1rem}
+.tt-prof-stats{display:flex;gap:.8rem;margin-top:.35rem}
+.tt-prof-stat{display:flex;flex-direction:column;align-items:center}
+.tt-prof-stat-n{font-size:.62rem;font-weight:700;color:#161823}
+.tt-prof-stat-l{font-size:.42rem;color:#aaa}
 
-/* MOCKUP */
-.mockup-section{padding:7rem 0 9rem;background:var(--cream)}
+/* video grid */
+.tt-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  padding:.5rem;flex:1;overflow:hidden;background:#f0f0f0;
+}
+.tt-cell{
+  position:relative;background:#1C1714;
+  aspect-ratio:9/16;overflow:hidden;
+}
+.tt-cell img{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(.85);transition:filter .3s;
+}
+.tt-cell:hover img{filter:brightness(1)}
+.tt-cell-views{
+  position:absolute;bottom:4px;left:4px;
+  font-size:.4rem;font-weight:700;color:#fff;
+  display:flex;align-items:center;gap:2px;
+  text-shadow:0 1px 3px rgba(0,0,0,.7);
+}
+.tt-cell-play{
+  position:absolute;bottom:4px;left:4px;
+  width:10px;height:10px;opacity:.7;
+}
+
+/* base / hinge */
+.tt-base{
+  height:14px;
+  background:linear-gradient(180deg,#252527,#1a1a1c);
+  border-radius:0 0 8px 8px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 20px rgba(0,0,0,.5);
+}
+.tt-hinge{width:60px;height:3px;background:rgba(255,255,255,.06);border-radius:2px}
+
+/* Reflection / glow under laptop */
+.tt-glow{
+  position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);
+  width:70%;height:60px;
+  background:radial-gradient(ellipse,rgba(110,59,73,.25) 0%,transparent 70%);
+  filter:blur(20px);pointer-events:none;
+}
+
+/* side detail text */
+.tt-side-caption{
+  display:flex;flex-direction:column;gap:1.5rem;
+  padding:0 clamp(1rem,3vw,2rem);
+  max-width:280px;
+}
+.tt-cap-item{}
+.tt-cap-key{
+  font-family:var(--font-sub);font-size:.42rem;letter-spacing:.5em;
+  text-transform:uppercase;color:rgba(183,161,158,.35);margin-bottom:.4rem;display:block;
+}
+.tt-cap-val{
+  font-family:var(--font-display);font-style:italic;font-size:1rem;
+  color:rgba(247,243,238,.6);line-height:1.2;font-weight:300;
+}
+
+/* ══════════════════════════════════════════
+   QUOTE
+══════════════════════════════════════════ */
+.quote-section{background:var(--warm);padding:clamp(6rem,12vh,10rem) 0}
+.quote-inner{
+  max-width:min(76ch,88vw);margin:0 auto;
+  padding:0 clamp(1rem,5vw,3rem);text-align:center;
+}
+.quote-mark{
+  font-family:var(--font-display);font-size:6rem;line-height:.7;
+  color:rgba(110,59,73,.1);display:block;margin-bottom:-.5rem;font-style:italic;
+}
+.quote-text{
+  font-family:var(--font-display);font-weight:300;font-style:italic;
+  font-size:clamp(1.6rem,3.5vw,2.6rem);line-height:1.35;
+  color:var(--ink);
+}
+.quote-attr{
+  font-family:var(--font-sub);font-size:.5rem;letter-spacing:.45em;
+  text-transform:uppercase;color:var(--mauve);display:block;
+  margin-top:2rem;opacity:0;transform:translateY(10px);
+  transition:opacity .6s,transform .6s;
+}
+
+/* ══════════════════════════════════════════
+   MOCKUP — Browser
+══════════════════════════════════════════ */
+.mockup-section{padding:clamp(6rem,12vh,10rem) 0;background:var(--cream)}
 .mockup-inner{max-width:85vw;margin:0 auto;padding:0 clamp(1rem,2vw,2rem)}
-.mockup-head{margin-bottom:3.5rem}
-.browser{border-radius:10px;overflow:hidden;box-shadow:0 20px 80px rgba(28,23,20,.07);opacity:0;transform:translateY(30px)}
-.browser-bar{background:var(--warm);padding:.75rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid rgba(110,59,73,.06)}
+.mockup-head{margin-bottom:3rem}
+.browser{
+  border-radius:12px;overflow:hidden;
+  box-shadow:0 30px 100px rgba(28,23,20,.08),0 8px 24px rgba(28,23,20,.05);
+  opacity:0;transform:translateY(35px);
+}
+.browser-bar{
+  background:var(--warm);padding:.8rem 1rem;
+  display:flex;align-items:center;gap:.5rem;
+  border-bottom:1px solid rgba(110,59,73,.05);
+}
 .b-dot{width:10px;height:10px;border-radius:50%}
-.b-dot--r{background:#FF5F57}
-.b-dot--y{background:#FEBC2E}
-.b-dot--g{background:#28C840}
-.b-url{font-family:var(--font-sub);font-size:.55rem;letter-spacing:.22em;color:var(--mauve);margin-left:auto;margin-right:auto}
+.b-dot--r{background:#FF5F57}.b-dot--y{background:#FEBC2E}.b-dot--g{background:#28C840}
+.b-url{
+  font-family:var(--font-sub);font-size:.5rem;letter-spacing:.2em;
+  color:var(--mauve);margin:0 auto;
+}
 .browser-screen{position:relative;aspect-ratio:16/9;background:var(--blush);overflow:hidden}
-.browser-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-style:italic;font-size:2rem;color:rgba(110,59,73,.18)}
+.browser-placeholder{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-style:italic;font-size:2.5rem;
+  color:rgba(110,59,73,.14);font-weight:300;
+}
 .browser-screen video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.browser-hover{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:flex-start;padding:2rem;opacity:0;transition:opacity .35s;background:linear-gradient(0deg,rgba(247,243,238,.6),transparent)}
+.browser-hover{
+  position:absolute;inset:0;
+  display:flex;align-items:flex-end;justify-content:flex-start;
+  padding:2.5rem;opacity:0;transition:opacity .4s;
+  background:linear-gradient(0deg,rgba(247,243,238,.65),transparent 60%);
+}
 .browser:hover .browser-hover{opacity:1}
-.browser-hover-box h4{font-family:var(--font-display);font-style:italic;font-size:1.1rem;color:var(--ink);font-weight:400}
-.browser-hover-box p{font-family:var(--font-sub);font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mauve);margin-top:.35rem}
+.browser-hover-box h4{font-family:var(--font-display);font-style:italic;font-size:1.2rem;color:var(--ink);font-weight:300}
+.browser-hover-box p{font-family:var(--font-sub);font-size:.46rem;letter-spacing:.32em;text-transform:uppercase;color:var(--mauve);margin-top:.4rem}
 
-/* ═══════════════════════════════════════
-   SHOWCASE SECTION — Reise Video Slider
-═══════════════════════════════════════ */
-.section-showcase {
-    background: #6e3b49; /* burgundy */
-    padding: clamp(6rem, 16vh, 11rem) 0;
-    position: relative;
-    overflow: hidden;
-    min-height: 88vh;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: clamp(1.5rem, 3vh, 2.5rem);
-    padding-bottom: 0; /* remove bottom gap so wave sits flush */
-    z-index: 3;
-}
-
-/* make sure showcase content sits above background and is visible */
-.sc-container{ max-width:960px; margin:0 auto; padding:0 clamp(1.5rem,5vw,3rem); width:100%; position:relative; z-index:20 !important; display:flex; flex-direction:column; align-items:center; gap:clamp(2rem,5vh,3.5rem); }
-.iphone-frame{ z-index:22 !important; opacity:1 }
-.phone-video-wrap{ background: url('../assets/images/personal/showcase_personal_beauty_4.png') center/cover no-repeat; }
-.phone-video-wrap video{ background:transparent }
-
-.sc-bg-num {
-    position: absolute;
-    right: -0.02em;
-    top: 50%;
-    transform: translateY(-50%);
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(16rem, 32vw, 30rem);
-    font-style: italic;
-    font-weight: 400;
-    line-height: 1;
-    color: rgba(0,0,0,0.07);
-    user-select: none;
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* ─ Neues Layout: zentrierter Container ─ */
-.sc-container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 clamp(1.5rem, 5vw, 3rem);
-    width: 100%;
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: clamp(2rem, 5vh, 3.5rem);
-}
-
-/* ─ Header Row: Text links, Meta rechts ─ */
-.sc-header-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: end;
-    gap: 2rem;
-    width: 100%;
-}
-@media (max-width: 640px) {
-    .sc-header-row {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-}
-.sc-eyebrow-row {
-    display: flex;
-    gap: clamp(1.5rem, 3vw, 2.5rem);
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
-}
-.sc-eyebrow-block { display: flex; flex-direction: column; gap: 0.2rem; }
-.sc-eyebrow-key {
-    font-family: 'Outfit', sans-serif;
-    font-size: 0.44rem;
-    letter-spacing: 0.52em;
-    text-transform: uppercase;
-    color: rgba(235,225,209,0.35);
-}
-.sc-eyebrow-val {
-    font-family: 'Tenor Sans', sans-serif;
-    font-size: clamp(0.72rem, 1.2vw, 0.88rem);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(235,225,209,0.85);
-}
-.sc-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 400;
-    line-height: 0.95;
-    letter-spacing: -0.025em;
-    color: #F5F5F5;
-    margin: 0 !important;
-    padding: 0 !important;
-    text-transform: none !important;
-}
-.sc-subtitle {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: clamp(0.9rem, 1.6vw, 1.15rem);
-    color: rgba(235,225,209,0.48);
-    display: block;
-    margin-top: 0.4rem;
-}
-.sc-meta-right {
-    text-align: right;
-}
-.sc-counter {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: clamp(0.8rem, 1.2vw, 1rem);
-    color: rgba(235,225,209,0.35);
-    user-select: none;
-    white-space: nowrap;
-}
-.sc-counter #sc-cur {
-    color: rgba(235,225,209,0.85);
-    font-size: 1.4em;
-}
-
-/* ─ iPhone ─ */
-.iphone-frame {
-    width: clamp(190px, 21vw, 265px);
-    aspect-ratio: 393 / 852;
-    background: linear-gradient(160deg, #2a2a2c, #1c1c1e);
-    border-radius: clamp(2.5rem, 4.5vw, 3.8rem);
-    position: relative;
-    box-shadow:
-        0 0 0 9px #2C2C2E,
-        0 0 0 11px rgba(255,255,255,0.08),
-        0 60px 120px rgba(0,0,0,0.65),
-        0 20px 40px rgba(0,0,0,0.35),
-        inset 0 1px 0 rgba(255,255,255,0.08);
-    overflow: hidden;
-    flex-shrink: 0;
-}
-.iphone-notch {
-    position: absolute;
-    top: 13px; left: 50%;
-    transform: translateX(-50%);
-    width: 33%; height: 30px;
-    background: #000;
-    border-radius: 18px;
-    z-index: 20;
-}
-.iphone-screen {
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    overflow: hidden;
-}
-.iphone-homeind {
-    position: absolute;
-    bottom: 9px; left: 50%;
-    transform: translateX(-50%);
-    width: 36%; height: 4px;
-    background: rgba(255,255,255,0.28);
-    border-radius: 3px;
-    z-index: 20;
-}
-
-/* ─ Video inside phone ─ */
-.phone-video-wrap {
-    width: 100%; height: 100%;
-    position: relative;
-    overflow: hidden;
-    background: url('../assets/images/personal/showcase_personal_beauty_4.png') center/cover no-repeat;
-    background-color:#2b2b2b; background-position:center; background-size:cover
-}
-.phone-video-wrap video {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-    background: transparent;
-}
-.phone-video-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg,
-        rgba(0,0,0,0.28) 0%,
-        transparent 28%,
-        transparent 62%,
-        rgba(0,0,0,0.35) 100%);
-    pointer-events: none;
-    z-index: 25;
-    opacity: 0.86;
-    display:none !important
-}
-
-/* ─ Navigation unter iPhone ─ */
-.sc-nav-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    position: relative;
-    z-index: 2;
-    margin-bottom: 0;
-}
-.sc-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: clamp(1rem, 2vw, 1.5rem);
-}
-.sc-arrow {
-    width: 54px; height: 54px;
-    border-radius: 50%;
-    border: 1px solid rgba(235,225,209,0.2);
-    background: rgba(0,0,0,0.1);
-    color: rgba(235,225,209,0.65);
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-    flex-shrink: 0;
-}
-.sc-arrow:hover {
-    border-color: rgba(235,225,209,0.55);
-    background: rgba(0,0,0,0.22);
-    color: #F5F5F5;
-    transform: scale(1.1);
-}
-.sc-arrow:active { transform: scale(0.94); }
-@media (max-width: 640px) {
-    .sc-arrow { width: 46px; height: 46px; }
-}
-
-/* Dots */
-.sc-dots {
-    display: flex; gap: 6px; align-items: center;
-}
-.sc-dot {
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: rgba(235,225,209,0.2);
-    transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
-    cursor: pointer;
-}
-.sc-dot.on {
-    background: rgba(235,225,209,0.85);
-    transform: scale(1.4);
-}
-
-/* ─ Video switcher ─ */
-.sc-video {
-    position: absolute;
-    inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-.sc-video--active {
-    opacity: 1;
-}
+/* ══════════════════════════════════════════
+   FOOTER OVERRIDE
+══════════════════════════════════════════ */
+.site-footer{background:#314A51 !important}
 </style>
 </head>
 <body>
@@ -539,6 +652,7 @@ body.ch-view #cur-label{opacity:1}
 <div id="cur-ring"></div>
 <div id="cur-label">Öffnen</div>
 
+<!-- ══════ HEADER ══════ -->
 <header class="site-header" id="top">
   <div class="page-container nav-bar">
     <a href="../index.html" class="logo">
@@ -555,157 +669,131 @@ body.ch-view #cur-label{opacity:1}
 </header>
 
 <main>
-<section class="hero hero-section" id="heroSec">
-  <div class="personal-hero-bg">
-    <div class="personal-hero-bg-image" id="heroBgImage"></div>
-  </div>
-  <div style="position:relative;z-index:2">
-    <span class="hero-label" id="hLabel">Eigenprojekte</span>
-    <h1 class="hero-h1">
-      <div class="word"><span>Design</span></div>
-      <div class="word"><span class="outline">Personal</span></div>
-      <div class="word"><span><em>Work.</em></span></div>
-    </h1>
-    <div class="hero-rule" id="heroRule"></div>
-    <span class="hero-sub" id="heroSub">Editorials &middot; Branding &middot; UI/UX &middot; Fotografie</span>
-  </div>
-  <div class="hero-scroll-hint">
-    <div class="scroll-bar"></div>
-    <span id="hScroll">Scroll</span>
+
+<!-- ══════ HERO ══════ -->
+<section class="hero-section wave-burg" id="heroSec">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div>
+      <span class="hero-eyebrow" id="hLabel">Eigenprojekte &nbsp;·&nbsp; 2022–2025</span>
+      <h1 class="hero-h1">
+        <div class="row"><span>Design</span></div>
+        <div class="row row--outline"><span>Personal</span></div>
+        <div class="row row--accent"><span>Work.</span></div>
+      </h1>
+      <div class="hero-meta" id="heroMeta">
+        <div class="hero-line"></div>
+        <span class="hero-sub">Editorials &nbsp;·&nbsp; Branding &nbsp;·&nbsp; UI/UX &nbsp;·&nbsp; Fotografie</span>
+      </div>
+    </div>
+    <div class="hero-side" id="heroSide">
+      <div class="hero-scroll-v">
+        <div class="hero-scroll-bar"></div>
+        <span class="hero-scroll-txt">Scroll</span>
+      </div>
+      <div class="hero-index">01</div>
+    </div>
   </div>
 </section>
 
-<!-- Wave: Hero -> Showcase (burgundy next) -->
-<div class="wave-divider w-to-burg">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 490" preserveAspectRatio="none" width="100%" height="160">
-    <path d="M 0,500 L 0,187 C 84.5,144.607 169,102.214 296,129 C 423,155.786 592.5,251.75 726,271 C 859.5,290.25 957,232.786 1070,206 C 1183,179.214 1311.5,183.107 1440,187 L 1440,500 L 0,500 Z" stroke="none" stroke-width="0"></path>
-  </svg>
-</div>
-
-  <!-- SHOWCASE SEKTION — Reise Video Slider -->
-  <section class="section-showcase" id="showcase">
-    <div class="sc-bg-num" aria-hidden="true"><span id="sc-bg-num-text">01</span></div>
-
-    <div class="sc-container">
-
-      <!-- Header Row -->
-      <div class="sc-header-row">
-        <div>
-          <div class="sc-eyebrow-row"></div>
-            <div class="sc-eyebrow-block">
-              <span class="sc-eyebrow-key">Kategorie</span>
-              <span class="sc-eyebrow-val sc-val-anim" id="sc-val-kat">Reise</span>
-            </div>
-            <div class="sc-eyebrow-block">
-              <span class="sc-eyebrow-key">Geschnitten mit</span>
-              <span class="sc-eyebrow-val sc-val-anim" id="sc-val-prog">CapCut</span>
-            </div>
-            <div class="sc-eyebrow-block">
-              <span class="sc-eyebrow-key">Jahr</span>
-              <span class="sc-eyebrow-val sc-val-anim" id="sc-val-year">2024</span>
-            </div>
+<!-- ══════ SHOWCASE — iPhone Slider ══════ -->
+<section class="section-showcase wave-cream" id="showcase">
+  <div class="sc-bg-num" aria-hidden="true">0<span id="sc-bg-num-text">1</span></div>
+  <div class="sc-container">
+    <div class="sc-header-row">
+      <div>
+        <div class="sc-eyebrow-row">
+          <div class="sc-eyebrow-block">
+            <span class="sc-eyebrow-key">Kategorie</span>
+            <span class="sc-eyebrow-val" id="sc-val-kat">Abenteuer</span>
           </div>
-          <h2 class="sc-title">Reise <em>Momente.</em></h2>
-          <span class="sc-subtitle" id="sc-subtitle">Schöne Erinnerungen festhalten</span>
-        </div>
-        <div class="sc-meta-right">
-          <div class="sc-counter">
-            <span id="sc-cur">1</span>
-            <span style="color:rgba(235,225,209,0.2)"> / </span>
-            <span id="sc-total">3</span>
+          <div class="sc-eyebrow-block">
+            <span class="sc-eyebrow-key">Geschnitten mit</span>
+            <span class="sc-eyebrow-val" id="sc-val-prog">Final Cut Pro</span>
+          </div>
+          <div class="sc-eyebrow-block">
+            <span class="sc-eyebrow-key">Jahr</span>
+            <span class="sc-eyebrow-val" id="sc-val-year">2023</span>
           </div>
         </div>
+        <h2 class="sc-title">Reise <em>Momente.</em></h2>
+        <span class="sc-subtitle" id="sc-subtitle">Schöne Erinnerungen festhalten</span>
       </div>
-
-      <!-- iPhone Mockup -->
-      <div class="iphone-frame" id="sc-iphone">
-        <div class="iphone-notch"></div>
-        <div class="iphone-screen">
-          <div class="phone-video-wrap" id="sc-video-wrap">
-
-            <!-- Video 1: Egypt (zuerst) -->
-            <video class="sc-video sc-video--active" autoplay muted playsinline loop
-                   src="../assets/images/personal/showcase_personal_web1.mp4"
-                   poster="../assets/images/personal/showcase_personal__trailer_2.jpg"></video>
-            <!-- Video 2: Dhermi -->
-            <video class="sc-video" muted playsinline loop
-                   src="../assets/images/personal/dhermi_personal_2.MOV"
-                   poster="../assets/images/personal/showcase_personal_beauty_4.png"></video>
-            <!-- Video 3: Paris -->
-            <video class="sc-video" muted playsinline loop
-                   src="../assets/images/personal/paris_personal_3.mov"
-                   poster="../assets/images/personal/showcase_personal_rap_1.PNG"></video>
-
-            <div class="phone-video-overlay"></div>
-
-            <!-- Progress bars (3 slots) -->
-            <div class="phone-prog-bars">
-              <div class="phone-prog-bar"><div class="phone-prog-bar-fill" id="sc-bar-0"></div></div>
-              <div class="phone-prog-bar"><div class="phone-prog-bar-fill" id="sc-bar-1"></div></div>
-              <div class="phone-prog-bar"><div class="phone-prog-bar-fill" id="sc-bar-2"></div></div>
-            </div>
-
-            <!-- Phone header -->
-            <div class="phone-video-header">
-              <div class="phone-avatar">K</div>
-              <div class="phone-username-row">
-                <div class="phone-username">khadijaokbi</div>
-                <div class="phone-story-tag" id="sc-story-tag">Travel Stories</div>
-              </div>
-            </div>
-
-            <!-- Phone footer -->
-            <div class="phone-video-footer">
-              <div class="phone-video-location">
-                <span class="phone-video-loc-label">Ort</span>
-                <span class="phone-video-loc-name" id="sc-loc-name">Egypt</span>
-              </div>
-              <div class="phone-video-icons">
-                <svg class="phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l7.78 7.78 7.78-7.78a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                <svg class="phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-              </div>
-            </div>
-
-          </div>
+      <div class="sc-meta-right">
+        <div class="sc-counter">
+          <span id="sc-cur">1</span>
+          <span style="color:rgba(235,225,209,0.18)"> / </span>
+          <span id="sc-total">3</span>
         </div>
-        <div class="iphone-homeind"></div>
-      </div>
-
-    </div><!-- /sc-container -->
-
-    <!-- Navigation UNTER dem iPhone (außerhalb des containers, aber innerhalb der section) -->
-    <div class="sc-nav-wrapper">
-      <div class="sc-nav">
-        <button class="sc-arrow" id="sc-prev" aria-label="Vorheriges Video">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <path d="M12 3.5L6 9L12 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <div class="sc-dots" id="sc-dots">
-          <div class="sc-dot on" data-idx="0"></div>
-          <div class="sc-dot" data-idx="1"></div>
-          <div class="sc-dot" data-idx="2"></div>
-        </div>
-        <button class="sc-arrow" id="sc-next" aria-label="Nächstes Video">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <path d="M6 3.5L12 9L6 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
       </div>
     </div>
 
-  </section>
+    <!-- iPhone -->
+    <div class="iphone-frame" id="sc-iphone">
+      <div class="iphone-notch"></div>
+      <div class="iphone-screen">
+        <div class="phone-video-wrap" id="sc-video-wrap">
+          <video class="sc-video sc-video--active" autoplay muted playsinline loop
+                 src="../assets/images/personal/showcase_personal_web1.mp4"
+                 poster="../assets/images/personal/showcase_personal__trailer_2.jpg"></video>
+          <video class="sc-video" muted playsinline loop
+                 src="../assets/images/personal/dhermi_personal_2.MOV"
+                 poster="../assets/images/personal/showcase_personal_beauty_4.png"></video>
+          <video class="sc-video" muted playsinline loop
+                 src="../assets/images/personal/paris_personal_3.mov"
+                 poster="../assets/images/personal/showcase_personal_rap_1.PNG"></video>
+          <div class="phone-prog-bars">
+            <div class="phone-prog-bar"><div class="phone-prog-bar-fill" id="sc-bar-0"></div></div>
+            <div class="phone-prog-bar"><div class="phone-prog-bar-fill" id="sc-bar-1"></div></div>
+            <div class="phone-prog-bar"><div class="phone-prog-bar-fill" id="sc-bar-2"></div></div>
+          </div>
+          <div class="phone-video-header">
+            <div class="phone-avatar">K</div>
+            <div class="phone-username-row">
+              <div class="phone-username">khadijaokbi</div>
+              <div class="phone-story-tag" id="sc-story-tag">Adventure Stories</div>
+            </div>
+          </div>
+          <div class="phone-video-footer">
+            <div class="phone-video-location">
+              <span class="phone-video-loc-label">Ort</span>
+              <span class="phone-video-loc-name" id="sc-loc-name">Egypt</span>
+            </div>
+            <div class="phone-video-icons">
+              <svg class="phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l7.78 7.78 7.78-7.78a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              <svg class="phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="iphone-homeind"></div>
+    </div>
+  </div>
 
-<!-- Wave: Showcase (burgundy) -> next section (f5/white) -->
-<div class="wave-divider w-to-f5">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-    <path d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,112C960,96,1056,128,1152,160C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z"></path>
-  </svg>
-</div>
+  <div class="sc-nav-wrapper">
+    <div class="sc-nav">
+      <button class="sc-arrow" id="sc-prev">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M12 3.5L6 9L12 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="sc-dots" id="sc-dots">
+        <div class="sc-dot on" data-idx="0"></div>
+        <div class="sc-dot" data-idx="1"></div>
+        <div class="sc-dot" data-idx="2"></div>
+      </div>
+      <button class="sc-arrow" id="sc-next">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M6 3.5L12 9L6 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
 
-<section class="marquee-section">
-  <div class="mq-fade mq-fade--l"></div><div class="mq-fade mq-fade--r"></div>
-  <div class="marquee-label"><span class="s-label">Meine Logodesigns</span></div>
+<!-- ══════ MARQUEE ══════ -->
+<section class="marquee-section wave-offwhite">
+  <div class="mq-fade mq-fade--l"></div>
+  <div class="mq-fade mq-fade--r"></div>
+  <div class="marquee-label">
+    <span class="t-label">Meine Logodesigns</span>
+  </div>
   <div style="overflow:hidden">
     <div class="marquee-track" id="marqTrack">
       <div class="m-item"><img src="../assets/images/personal/showcase_personal_logo_1.PNG" alt="Logo 1"></div>
@@ -720,24 +808,14 @@ body.ch-view #cur-label{opacity:1}
   </div>
 </section>
 
-<!-- Wave: Marquee (f5) -> next (dark) -->
-<div class="wave-divider w-to-dark">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-    <path d="M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-  </svg>
-</div>
-
-<div class="wave-divider w-to-cream">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 720,0 1080,50 C1260,70 1380,20 1440,45 L1440,80 L0,80 Z"/></svg>
-</div>
-
-<div class="hscroll" id="hscroll">
+<!-- ══════ HORIZONTAL SCROLL ══════ -->
+<div class="hscroll wave-charcoal" id="hscroll">
   <div class="hscroll-pin" id="hscrollPin">
     <div class="hscroll-track" id="hscrollTrack">
       <div class="hscroll-panel hscroll-panel--a">
         <span class="hscroll-num">01</span>
         <div class="hscroll-media">
-          <img src="../assets/images/personal/showcase_personal_beauty_4.png" alt="Essence of Light">
+          <img src="../assets/images/personal/showcase_personal_beauty_4.png" alt="Bildmontage">
           <div class="hscroll-caption"><h3>Bildmontage</h3><span>Porträt &middot; Natürliches Licht</span></div>
         </div>
         <div class="hscroll-dots"><div class="hscroll-dot on"></div><div class="hscroll-dot"></div><div class="hscroll-dot"></div></div>
@@ -753,8 +831,8 @@ body.ch-view #cur-label{opacity:1}
       <div class="hscroll-panel hscroll-panel--c">
         <span class="hscroll-num">03</span>
         <div class="hscroll-media">
-          <img src="../assets/images/personal/showcase_personal_rap_1.PNG" alt="Urban Soul">
-          <div class="hscroll-caption"><h3>Spotify Album Cover</h3><span>&middot; Paris</span></div>
+          <img src="../assets/images/personal/showcase_personal_rap_1.PNG" alt="Album Cover">
+          <div class="hscroll-caption"><h3>Spotify Album Cover</h3><span>Grafik &middot; Paris</span></div>
         </div>
         <div class="hscroll-dots"><div class="hscroll-dot"></div><div class="hscroll-dot"></div><div class="hscroll-dot on"></div></div>
       </div>
@@ -762,260 +840,345 @@ body.ch-view #cur-label{opacity:1}
   </div>
 </div>
 
-<div class="wave-divider" style="background:var(--warm)">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"><path fill="var(--cream)" d="M0,55 C480,10 960,75 1440,30 L1440,0 L0,0 Z"/></svg>
-</div>
-<div class="wave-divider" style="background:var(--cream)">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"><path fill="var(--warm)" d="M0,30 C360,80 900,0 1440,50 L1440,80 L0,80 Z"/></svg>
-</div>
+<!-- ══════ TIKTOK SECTION ══════ -->
+<section class="tiktok-section wave-warm" id="tiktokSec">
+  <div class="tt-inner">
 
-<div class="wave-divider" style="background:var(--warm)">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"><path fill="var(--cream)" d="M0,50 C480,5 960,75 1440,25 L1440,0 L0,0 Z"/></svg>
-</div>
+    <!-- Header -->
+    <div class="tt-head">
+      <div class="tt-head-left">
+        <span class="tt-eyebrow">Social Media &nbsp;·&nbsp; Content Creation</span>
+        <h2 class="tt-title">TikTok<br><em>Presence.</em></h2>
+      </div>
+      <div class="tt-stats">
+        <div class="tt-stat">
+          <span class="tt-stat-num">104.8K</span>
+          <span class="tt-stat-lbl">Likes</span>
+        </div>
+        <div class="tt-stat">
+          <span class="tt-stat-num">10K</span>
+          <span class="tt-stat-lbl">Followers</span>
+        </div>
+      </div>
+    </div>
 
-<div class="quote-break">
-  <p class="quote-text" id="quoteEl">Design ist nicht nur wie es aussieht, sondern wie es sich anf&uuml;hlt, wenn man hindurchgleitet.</p>
-  <span class="quote-attr" id="quoteAttr">&mdash; Khadija Okbi</span>
-</div>
+    <!-- 3D Laptop Mockup with TikTok content -->
+    <div class="tt-device-scene" id="ttScene">
+      <div class="tt-device-wrapper" id="ttDevice">
+        <div class="tt-laptop">
+          <div class="tt-laptop-cam"></div>
+          <div class="tt-screen">
+            <!-- Browser chrome -->
+            <div class="tt-browser-bar">
+              <div class="tt-b-dot tt-b-dot--r"></div>
+              <div class="tt-b-dot tt-b-dot--y"></div>
+              <div class="tt-b-dot tt-b-dot--g"></div>
+              <div class="tt-url-bar">
+                <svg class="tt-url-lock" viewBox="0 0 12 12" fill="none">
+                  <rect x="2" y="5" width="8" height="6" rx="1" fill="rgba(255,255,255,.4)"/>
+                  <path d="M4 5V3.5a2 2 0 1 1 4 0V5" stroke="rgba(255,255,255,.4)" stroke-width="1"/>
+                </svg>
+                <span class="tt-url-text">tiktok.com/@mentalwealthy</span>
+              </div>
+            </div>
 
-<div class="wave-divider" style="background:var(--cream)">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"><path fill="var(--warm)" d="M0,35 C360,80 900,10 1440,55 L1440,80 L0,80 Z"/></svg>
-</div>
+            <!-- TikTok profile UI -->
+            <div class="tt-content">
+              <!-- Sidebar -->
+              <div class="tt-sidebar">
+                <div class="tt-sb-logo">TikTok</div>
+                <div class="tt-sb-item active">
+                  <svg class="tt-sb-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                  For You
+                </div>
+                <div class="tt-sb-item">
+                  <svg class="tt-sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                  Suche
+                </div>
+                <div class="tt-sb-item">
+                  <svg class="tt-sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                  Erstellen
+                </div>
+                <div class="tt-sb-item">
+                  <svg class="tt-sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  Profil
+                </div>
+              </div>
+              <!-- Main profile -->
+              <div class="tt-main">
+                <div class="tt-profile-header">
+                  <div class="tt-prof-avatar">
+                    <img src="../assets/images/branding/logo_black.png" alt="mental wealth" onerror="this.style.display='none'">
+                  </div>
+                  <div class="tt-prof-info">
+                    <div class="tt-prof-name">mental wealth 🌿</div>
+                    <div class="tt-prof-handle">@mentalwealthy</div>
+                    <div class="tt-prof-stats">
+                      <div class="tt-prof-stat"><span class="tt-prof-stat-n">22</span><span class="tt-prof-stat-l">Following</span></div>
+                      <div class="tt-prof-stat"><span class="tt-prof-stat-n">10K</span><span class="tt-prof-stat-l">Followers</span></div>
+                      <div class="tt-prof-stat"><span class="tt-prof-stat-n">104.8K</span><span class="tt-prof-stat-l">Likes</span></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Video grid -->
+                <div class="tt-grid">
+                  <!-- 6 cells — first 3 use your actual images, rest use gradient placeholders -->
+                  <div class="tt-cell">
+                    <img src="../assets/images/personal/showcase_personal_beauty_4.png" alt="" onerror="this.style.display='none'">
+                    <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a1a1a,#2d1a22);display:flex;align-items:flex-end;padding:6px">
+                      <span class="tt-cell-views">▷ 163.9K</span>
+                    </div>
+                  </div>
+                  <div class="tt-cell">
+                    <img src="../assets/images/personal/showcase_personal_rap_1.PNG" alt="" onerror="this.style.display='none'">
+                    <div style="position:absolute;inset:0;background:linear-gradient(135deg,#181818,#1a2d2a);display:flex;align-items:flex-end;padding:6px">
+                      <span class="tt-cell-views">▷ 155.5K</span>
+                    </div>
+                  </div>
+                  <div class="tt-cell">
+                    <img src="../assets/images/personal/showcase_personal_collage_3.JPG" alt="" onerror="this.style.display='none'">
+                    <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a1a2d,#1a1818);display:flex;align-items:flex-end;padding:6px">
+                      <span class="tt-cell-views">▷ 152.0K</span>
+                    </div>
+                  </div>
+                  <div class="tt-cell" style="background:linear-gradient(135deg,#111,#1d1d1d)">
+                    <div style="position:absolute;inset:0;display:flex;align-items:flex-end;padding:6px"><span class="tt-cell-views">▷ 89.2K</span></div>
+                  </div>
+                  <div class="tt-cell" style="background:linear-gradient(135deg,#1a1212,#111)">
+                    <div style="position:absolute;inset:0;display:flex;align-items:flex-end;padding:6px"><span class="tt-cell-views">▷ 74.8K</span></div>
+                  </div>
+                  <div class="tt-cell" style="background:linear-gradient(135deg,#121a14,#111)">
+                    <div style="position:absolute;inset:0;display:flex;align-items:flex-end;padding:6px"><span class="tt-cell-views">▷ 61.3K</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tt-base"><div class="tt-hinge"></div></div>
+        <div class="tt-glow"></div>
+      </div>
+    </div>
 
-<section class="mockup-section">
+  </div>
+</section>
+
+<!-- ══════ QUOTE ══════ -->
+<section class="quote-section wave-offwhite">
+  <div class="quote-inner">
+    <span class="quote-mark">&ldquo;</span>
+    <p class="quote-text" id="quoteEl">Design ist nicht nur wie es aussieht — sondern wie es sich anfühlt, wenn man hindurchgleitet.</p>
+    <span class="quote-attr" id="quoteAttr">&mdash; Khadija Okbi</span>
+  </div>
+</section>
+
+<!-- ══════ MOCKUP — Browser ══════ -->
+<section class="mockup-section wave-foot">
   <div class="mockup-inner">
-    <div class="mockup-head"><div><span class="s-label">Digital Experience</span><h2 class="s-title" id="mockupTitle">Portfolio <em>Interface.</em></h2></div></div>
+    <div class="mockup-head">
+      <span class="t-label" style="margin-bottom:.8rem">Digital Experience</span>
+      <h2 class="t-display" id="mockupTitle" style="margin-top:.5rem">Portfolio <em>Interface.</em></h2>
+    </div>
     <div class="browser" id="browserEl">
-      <div class="browser-bar"><div class="b-dot b-dot--r"></div><div class="b-dot b-dot--y"></div><div class="b-dot b-dot--g"></div><div class="b-url">khadijaokbi.ch &middot; personal</div></div>
+      <div class="browser-bar">
+        <div class="b-dot b-dot--r"></div>
+        <div class="b-dot b-dot--y"></div>
+        <div class="b-dot b-dot--g"></div>
+        <div class="b-url">khadijaokbi.ch &middot; personal</div>
+      </div>
       <div class="browser-screen">
-        <div class="browser-placeholder" id="bPlaceholder"><span>Portfolio UI</span></div>
-        <video autoplay muted loop playsinline id="bVideo"><source src="../assets/images/personal/showcase_personal_web.mp4" type="video/mp4"></video>
-        <div class="browser-hover"><div class="browser-hover-box"><h4>Portfolio Interface</h4><p>Smooth Transitions &middot; Minimal Layout</p></div></div>
+        <div class="browser-placeholder" id="bPlaceholder">Portfolio UI</div>
+        <video autoplay muted loop playsinline id="bVideo">
+          <source src="../assets/images/personal/showcase_personal_web1.mp4" type="video/mp4">
+        </video>
+        <div class="browser-hover">
+          <div class="browser-hover-box">
+            <h4>Portfolio Interface</h4>
+            <p>Smooth Transitions &middot; Minimal Layout</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="wave-divider" style="background:var(--bg-dark)">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"><path fill="var(--cream)" d="M0,55 C480,10 960,70 1440,30 L1440,0 L0,0 Z"/></svg>
-</div>
-
 </main>
 
+<!-- ══════ FOOTER ══════ -->
 <footer class="site-footer" aria-label="Seitenende">
   <div class="page-container footer-inner">
     <div class="footer-copy">&copy; 2026 Design &amp; Development by Khadija Okbi</div>
     <div class="footer-socials">
-      <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/></svg></a>
-      <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M6.5 9.5v8.5M6.5 7.5v.01M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" fill="currentColor" stroke="currentColor" stroke-width="0.5"/></svg></a>
-      <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M3.5 7.5l8.5 5 8.5-5" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M12 21.5v-10" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></a>
+      <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/></svg>
+      </a>
+      <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M6.5 9.5v8.5M6.5 7.5v.01M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" fill="currentColor" stroke="currentColor" stroke-width="0.5"/></svg>
+      </a>
+      <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M3.5 7.5l8.5 5 8.5-5" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M12 21.5v-10" stroke="currentColor" stroke-width="1.1" fill="none"/></svg>
+      </a>
     </div>
     <div class="footer-links">
-      <a href="pages/impressum.html" class="footer-link">Impressum</a>
+      <a href="../pages/impressum.html" class="footer-link">Impressum</a>
       <a href="mailto:khadijaokbi@gmail.com" class="footer-link contact-btn"><span>Kontakt</span></a>
-      <a href="pages/datenschutz.html" class="footer-link">Datenschutz</a>
+      <a href="../pages/datenschutz.html" class="footer-link">Datenschutz</a>
     </div>
   </div>
 </footer>
 
+<!-- ══════ JS ══════ -->
 <script>
 gsap.registerPlugin(ScrollTrigger);
-window.addEventListener('scroll',()=>{document.querySelector('.site-header').classList.toggle('is-solid',window.scrollY>80)});
-const dot=document.getElementById('cur-dot'),ring=document.getElementById('cur-ring'),lbl=document.getElementById('cur-label');
+
+/* ── Header ── */
+window.addEventListener('scroll', () => {
+  document.querySelector('.site-header').classList.toggle('is-solid', window.scrollY > 80);
+});
+
+/* ── Cursor ── */
+const dot = document.getElementById('cur-dot');
+const ring = document.getElementById('cur-ring');
+const lbl = document.getElementById('cur-label');
 let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';lbl.style.left=mx+'px';lbl.style.top=my+'px'});
-(function raf(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(raf)})();
-document.querySelectorAll('a,button,.p-item,.g-card,.m-item,.browser').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('ch'));el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'))});
-document.querySelectorAll('.p-item-inner,.g-card').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('ch-view'));el.addEventListener('mouseleave',()=>document.body.classList.remove('ch-view'))});
-const heroTl=gsap.timeline({delay:.15});
-heroTl.to('#hLabel',{opacity:1,duration:.9,ease:'power3.out'}).to('.hero-h1 .word span',{y:0,duration:1.15,stagger:.2,ease:'expo.out'},'-=.5').to('#heroRule',{height:52,opacity:1,duration:.75,ease:'power3.out'},'-=.2').to('#heroSub',{opacity:1,duration:.7,ease:'power3.out'},'-=.3').to('#hScroll',{opacity:1,duration:.5},'-=.2').to('.hp',{opacity:1,stagger:.08,duration:.7,ease:'power2.out'},'-=.9');
-gsap.to('#heroRings',{rotation:360,duration:140,ease:'none',repeat:-1,transformOrigin:'50% 50%'});
-document.querySelectorAll('.hp').forEach((p,i)=>{gsap.to(p,{y:i%2===0?-70:70,ease:'none',scrollTrigger:{trigger:'#heroSec',start:'top top',end:'bottom top',scrub:1.2+i*.25}})});
-gsap.utils.toArray('[data-reveal]').forEach((el,i)=>{
-  gsap.to(el,{scrollTrigger:{trigger:el,start:'top 87%'},clipPath:'inset(0% 0 0 0)',duration:1.2,delay:i*.1,ease:'expo.inOut'});
-  const inner=el.querySelector('img,div');
-  if(inner) gsap.from(inner,{scrollTrigger:{trigger:el,start:'top 87%'},scale:1.14,duration:1.6,delay:i*.1,ease:'expo.out'});
+document.addEventListener('mousemove', e => {
+  mx=e.clientX; my=e.clientY;
+  dot.style.left=mx+'px'; dot.style.top=my+'px';
+  lbl.style.left=mx+'px'; lbl.style.top=my+'px';
 });
-gsap.from('#phLeft',{scrollTrigger:{trigger:'#phLeft',start:'top 88%'},y:45,opacity:0,duration:1,ease:'power3.out'});
-gsap.to('#phRight',{scrollTrigger:{trigger:'#phRight',start:'top 88%'},opacity:1,y:0,duration:1,ease:'power3.out'});
-
-/* ── COLLAGE: staggered clip-path reveal from bottom + inner scale ── */
-gsap.utils.toArray('.c-cell').forEach((cell,i)=>{
-  gsap.to(cell,{
-    clipPath:'inset(0% 0 0 0)',
-    duration:1.35,
-    delay:i*0.14,
-    ease:'expo.inOut',
-    scrollTrigger:{trigger:'#collage',start:'top 82%',once:true}
-  });
-  const img=cell.querySelector('img');
-  if(img) gsap.fromTo(img,{scale:1.18},{
-    scale:1.07,
-    duration:1.8,
-    delay:i*0.14,
-    ease:'expo.out',
-    scrollTrigger:{trigger:'#collage',start:'top 82%',once:true}
-  });
-});
-
-document.querySelectorAll('[data-tilt]').forEach(el=>{
-  const t=el.querySelector('.p-tilt');if(!t)return;
-  el.addEventListener('mousemove',e=>{const r=el.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;gsap.to(t,{rotateY:x*7,rotateX:-y*5,duration:.35,ease:'power2.out',transformPerspective:900})});
-  el.addEventListener('mouseleave',()=>{gsap.to(t,{rotateY:0,rotateX:0,duration:.8,ease:'elastic.out(1,.4)'})});
-});
-const track=document.getElementById('marqTrack');
-gsap.to(track,{x:-(track.scrollWidth/2),duration:20,ease:'none',repeat:-1});
-const panels=gsap.utils.toArray('.hscroll-panel');
-gsap.to('#hscrollTrack',{x:()=>-(panels.length-1)*window.innerWidth,ease:'none',scrollTrigger:{trigger:'#hscroll',start:'top top',end:()=>'+='+(panels.length-1)*window.innerWidth,pin:true,scrub:1,anticipatePin:1,invalidateOnRefresh:true}});
-panels.forEach(panel=>{const img=panel.querySelector('img');if(img)gsap.to(img,{x:-40,ease:'none',scrollTrigger:{trigger:'#hscroll',start:'top top',end:()=>'+='+(panels.length-1)*window.innerWidth,scrub:2}})});
-gsap.from('.roots-text > *',{scrollTrigger:{trigger:'#rootsSec',start:'top 75%'},y:40,opacity:0,duration:1,stagger:.15,ease:'power3.out'});
-gsap.from('.roots-visual',{scrollTrigger:{trigger:'#rootsSec',start:'top 78%'},x:50,opacity:0,duration:1.2,delay:.1,ease:'expo.out'});
-document.querySelectorAll('[data-count]').forEach(el=>{
-  const target=parseInt(el.getAttribute('data-count'));
-  ScrollTrigger.create({trigger:el,start:'top 85%',onEnter:()=>{gsap.to({v:0},{v:target,duration:1.4,ease:'power2.out',onUpdate:function(){el.textContent=Math.round(this.targets()[0].v)}})}});
-});
-(function(){
-  const canvas=document.getElementById('zellijCanvas');if(!canvas)return;
-  function resize(){const s=canvas.parentElement.offsetWidth;canvas.width=s;canvas.height=s;}
-  resize();window.addEventListener('resize',resize);
-  const ctx=canvas.getContext('2d');
-  function draw(p){
-    const w=canvas.width,n=8,cell=w/n;
-    ctx.clearRect(0,0,w,w);
-    const ease=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
-    for(let row=0;row<n;row++){for(let col=0;col<n;col++){
-      const cx=col*cell+cell/2,cy=row*cell+cell/2;
-      const delay=(row+col)/(n*1.8);
-      const lp=Math.max(0,Math.min(1,(ease-delay)/(1-delay+.001)));
-      if((row+col)%2===0&&lp>.01){ctx.save();ctx.translate(cx,cy);ctx.rotate(Math.PI/4*lp);const s=cell*.38*lp;ctx.fillStyle='rgba(110,59,73,'+(0.07*lp)+')';ctx.fillRect(-s,-s,s*2,s*2);ctx.strokeStyle='rgba(110,59,73,'+(0.18*lp)+')';ctx.lineWidth=.6;ctx.strokeRect(-s,-s,s*2,s*2);ctx.restore()}
-      if(row%2===0&&col%2===0&&lp>.2){const sp=(lp-.2)/.8,r1=cell*.28*sp,r2=cell*.12*sp,pts=8;ctx.beginPath();for(let i=0;i<pts*2;i){const a=i*Math.PI/pts-Math.PI/2,r=i%2===0?r1:r2;i===0?ctx.moveTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r):ctx.lineTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r)}ctx.closePath();ctx.fillStyle='rgba(110,59,73,'+(0.1*sp)+')';ctx.fill();ctx.strokeStyle='rgba(110,59,73,'+(0.22*sp)+')';ctx.lineWidth=.5;ctx.stroke()}
-      if(row%2===1&&col%2===1&&lp>.4){const cp=(lp-.4)/.6;ctx.beginPath();ctx.arc(cx,cy,cell*.14*cp,0,Math.PI*2);ctx.strokeStyle='rgba(110,59,73,'+(0.18*cp)+')';ctx.lineWidth=.5;ctx.stroke();ctx.beginPath();ctx.arc(cx,cy,cell*.05*cp,0,Math.PI*2);ctx.fillStyle='rgba(49,74,81,'+(0.15*cp)+')';ctx.fill()}
-    }}
-    ctx.strokeStyle='rgba(110,59,73,.05)';ctx.lineWidth=.5;
-    for(let i=0;i<=n;i++){ctx.beginPath();ctx.moveTo(i*cell,0);ctx.lineTo(i*cell,w*ease);ctx.stroke();ctx.beginPath();ctx.moveTo(0,i*cell);ctx.lineTo(w*ease,i*cell);ctx.stroke()}
-    ctx.strokeStyle='rgba(110,59,73,.2)';ctx.lineWidth=1;ctx.strokeRect(.5,.5,w-1,w-1);
-  }
-  let prog=0,running=false;
-  function loop(){prog=(prog+.0003)%1;const ping=prog<.5?prog*2:2-prog*2;draw(ping);requestAnimationFrame(loop)}
-  ScrollTrigger.create({trigger:'#rootsSec',start:'top 82%',onEnter:()=>{if(!running){running=true;loop();}}});
-  draw(0);
+(function raf(){
+  rx+=(mx-rx)*.1; ry+=(my-ry)*.1;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(raf);
 })();
-const strip=document.getElementById('gStrip'),gCards=strip.querySelectorAll('.g-card'),gBar=document.getElementById('gBar');
-let gIdx=0;const gTotal=Math.max(1,gCards.length-1);
-function galGo(idx){gIdx=Math.max(0,Math.min(idx,gTotal));let off=0;for(let i=0;i<gIdx;i++)off+=gCards[i].offsetWidth+20;strip.style.transform='translateX(-'+off+'px)';gBar.style.width=((gIdx/gTotal)*100)+'%'}
-document.getElementById('gNext').addEventListener('click',()=>galGo(gIdx+1));
-document.getElementById('gPrev').addEventListener('click',()=>galGo(gIdx-1));
-gsap.from('#galLeft',{scrollTrigger:{trigger:'.gallery',start:'top 88%'},y:40,opacity:0,duration:1,ease:'power3.out'});
-const q=document.getElementById('quoteEl');
-if(q){q.innerHTML=q.textContent.split(' ').map(w=>'<span style="display:inline-block;overflow:hidden"><span class="qw" style="display:inline-block">'+w+'</span></span>').join(' ');gsap.from('.qw',{scrollTrigger:{trigger:'#quoteEl',start:'top 86%'},y:'110%',opacity:0,stagger:.035,duration:.9,ease:'power3.out'})}
-gsap.to('#quoteAttr',{scrollTrigger:{trigger:'#quoteAttr',start:'top 90%'},opacity:1,y:0,duration:.7,delay:.3,ease:'power3.out'});
-gsap.from('#mockupTitle',{scrollTrigger:{trigger:'#mockupTitle',start:'top 88%'},y:40,opacity:0,duration:1,ease:'power3.out'});
-gsap.to('#browserEl',{scrollTrigger:{trigger:'#browserEl',start:'top 80%'},opacity:1,y:0,duration:1.3,ease:'expo.out'});
-const vid=document.getElementById('bVideo'),ph=document.getElementById('bPlaceholder');
-if(vid)vid.addEventListener('canplay',()=>{if(ph)ph.style.display='none'});
-gsap.utils.toArray('.s-title:not(.sc-title)').forEach(el=>{gsap.from(el,{scrollTrigger:{trigger:el,start:'top 91%'},y:30,opacity:0,duration:1,ease:'power3.out'})});
+document.querySelectorAll('a,button,.browser,.tt-device-wrapper').forEach(el => {
+  el.addEventListener('mouseenter',()=>document.body.classList.add('ch'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'));
+});
 
-    // ─── Showcase Slider ───
-    const scVideos = [
-        {
-            src: '../assets/images/personal/egypt_personal_1.mov',
-            location: 'Egypt',
-            category: 'Abenteuer',
-            program: 'Final Cut Pro',
-            year: '2023',
-            tag: 'Adventure Stories'
-        },
-        {
-            src: '../assets/images/personal/dhermi_personal_2.MOV',
-            location: 'Dhermi',
-            category: 'Reise',
-            program: 'CapCut',
-            year: '2024',
-            tag: 'Travel Stories'
-        },
-        {
-            src: '../assets/images/personal/paris_personal_3.mov',
-            location: 'Paris',
-            category: 'Kultur',
-            program: 'iMovie',
-            year: '2022',
-            tag: 'Cultural Stories'
-        }
-    ];
+/* ── Hero ── */
+const heroTl = gsap.timeline({delay:.1});
+heroTl
+  .to('#hLabel',    {opacity:1, duration:.8, ease:'power3.out'})
+  .to('.hero-h1 .row span', {y:0, duration:1.2, stagger:.18, ease:'expo.out'}, '-=.4')
+  .to('#heroMeta',  {opacity:1, duration:.8, ease:'power3.out'}, '-=.3')
+  .to('#heroSide',  {opacity:1, duration:.8, ease:'power3.out'}, '-=.6');
 
-    let scCurrent = 0;
+/* ── Marquee ── */
+const marqTrack = document.getElementById('marqTrack');
+if(marqTrack) gsap.to(marqTrack,{x:-(marqTrack.scrollWidth/2), duration:24, ease:'none', repeat:-1});
 
-    function scUpdateUI() {
-        const videoWrap = document.getElementById('sc-video-wrap');
-        const dots = document.querySelectorAll('.sc-dot');
-        const curEl = document.getElementById('sc-cur');
-        const locName = document.getElementById('sc-loc-name');
-        const valKat = document.getElementById('sc-val-kat');
-        const valProg = document.getElementById('sc-val-prog');
-        const valYear = document.getElementById('sc-val-year');
-        const storyTag = document.getElementById('sc-story-tag');
-
-        if (!videoWrap || !dots || !curEl || !locName || !valKat || !valProg || !valYear || !storyTag) return;
-
-        const currentVideo = scVideos[scCurrent];
-
-        // Update active video
-        videoWrap.querySelectorAll('.sc-video').forEach((video, idx) => {
-            video.classList.toggle('sc-video--active', idx === scCurrent);
-            if (idx === scCurrent) {
-                video.play();
-            } else {
-                video.pause();
-            }
-        });
-
-        // Update dots
-        dots.forEach((dot, idx) => {
-            dot.classList.toggle('on', idx === scCurrent);
-        });
-
-        // Update text
-        curEl.textContent = scCurrent + 1;
-        locName.textContent = currentVideo.location;
-        valKat.textContent = currentVideo.category;
-        valProg.textContent = currentVideo.program;
-        valYear.textContent = currentVideo.year;
-        storyTag.textContent = currentVideo.tag;
-
-        // Update progress bars
-        document.querySelectorAll('.phone-prog-bar-fill').forEach((bar, idx) => {
-            bar.style.width = idx <= scCurrent ? '100%' : '0%';
-        });
-    }
-
-    function scNext() {
-        scCurrent = (scCurrent + 1) % scVideos.length;
-        scUpdateUI();
-    }
-
-    function scPrev() {
-        scCurrent = (scCurrent - 1 + scVideos.length) % scVideos.length;
-        scUpdateUI();
-    }
-
-    document.getElementById('sc-next')?.addEventListener('click', scNext);
-    document.getElementById('sc-prev')?.addEventListener('click', scPrev);
-
-    document.querySelectorAll('.sc-dot').forEach(dot => {
-        dot.addEventListener('click', () => {
-            const idx = parseInt(dot.getAttribute('data-idx'), 10);
-            if (!isNaN(idx)) {
-                scCurrent = idx;
-                scUpdateUI();
-            }
-        });
+/* ── Horizontal Scroll ── */
+const panels = gsap.utils.toArray('.hscroll-panel');
+if(panels.length){
+  gsap.to('#hscrollTrack', {
+    x: ()=>-(panels.length-1)*window.innerWidth, ease:'none',
+    scrollTrigger:{trigger:'#hscroll',start:'top top',end:()=>'+='+(panels.length-1)*window.innerWidth,
+    pin:true,scrub:1,anticipatePin:1,invalidateOnRefresh:true}
+  });
+  panels.forEach(p=>{
+    const img=p.querySelector('img');
+    if(img) gsap.to(img,{x:-35, ease:'none',
+      scrollTrigger:{trigger:'#hscroll',start:'top top',end:()=>'+='+(panels.length-1)*window.innerWidth,scrub:2}
     });
+  });
+}
 
-    // Init
-    document.getElementById('sc-total').textContent = scVideos.length;
-    scUpdateUI();
+/* ── TikTok 3D Tilt on Mouse ── */
+const ttScene = document.getElementById('ttScene');
+const ttDevice = document.getElementById('ttDevice');
+if(ttScene && ttDevice){
+  ttScene.addEventListener('mousemove', e => {
+    const r = ttScene.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5;
+    const y = (e.clientY - r.top) / r.height - .5;
+    gsap.to(ttDevice, {
+      rotateX: -y * 8 + 2,
+      rotateY: x * 12 - 6,
+      duration:.6, ease:'power2.out',
+      transformPerspective:1200
+    });
+  });
+  ttScene.addEventListener('mouseleave', () => {
+    gsap.to(ttDevice, {
+      rotateX:4, rotateY:-8,
+      duration:1.2, ease:'elastic.out(1,.4)'
+    });
+  });
+  // Animate in on scroll
+  gsap.from(ttDevice, {
+    scrollTrigger:{trigger:'#tiktokSec', start:'top 75%'},
+    y:60, opacity:0, rotateX:15, duration:1.4, ease:'expo.out'
+  });
+}
 
+/* ── TikTok header reveal ── */
+gsap.from('.tt-head > *', {
+  scrollTrigger:{trigger:'#tiktokSec', start:'top 80%'},
+  y:40, opacity:0, stagger:.15, duration:1, ease:'power3.out'
+});
+
+/* ── Quote ── */
+const q = document.getElementById('quoteEl');
+if(q){
+  q.innerHTML = q.textContent.split(' ').map(w =>
+    `<span style="display:inline-block;overflow:hidden"><span class="qw" style="display:inline-block">${w}</span></span>`
+  ).join(' ');
+  gsap.from('.qw', {
+    scrollTrigger:{trigger:q, start:'top 88%'},
+    y:'105%', opacity:0, stagger:.04, duration:.85, ease:'power3.out'
+  });
+}
+gsap.to('#quoteAttr',{
+  scrollTrigger:{trigger:'#quoteAttr',start:'top 92%'},
+  opacity:1,y:0,duration:.7,delay:.2,ease:'power3.out'
+});
+
+/* ── Mockup ── */
+gsap.from('#mockupTitle',{
+  scrollTrigger:{trigger:'#mockupTitle',start:'top 90%'},
+  y:35,opacity:0,duration:1,ease:'power3.out'
+});
+gsap.to('#browserEl',{
+  scrollTrigger:{trigger:'#browserEl',start:'top 80%'},
+  opacity:1,y:0,duration:1.4,ease:'expo.out'
+});
+const bVid=document.getElementById('bVideo'), bPh=document.getElementById('bPlaceholder');
+if(bVid) bVid.addEventListener('canplay',()=>{if(bPh) bPh.style.display='none';});
+
+/* ── Showcase Slider ── */
+const scVideos = [
+  {location:'Egypt',  category:'Abenteuer', program:'Final Cut Pro', year:'2023', tag:'Adventure Stories', bg:'01'},
+  {location:'Dhermi', category:'Reise',     program:'CapCut',        year:'2024', tag:'Travel Stories',   bg:'02'},
+  {location:'Paris',  category:'Kultur',    program:'iMovie',        year:'2022', tag:'Cultural Stories', bg:'03'},
+];
+let scCurrent=0;
+function scUpdateUI(){
+  const d=scVideos[scCurrent];
+  document.querySelectorAll('.sc-video').forEach((v,i)=>{
+    v.classList.toggle('sc-video--active',i===scCurrent);
+    i===scCurrent ? v.play() : v.pause();
+  });
+  document.querySelectorAll('.sc-dot').forEach((dot,i)=>dot.classList.toggle('on',i===scCurrent));
+  document.getElementById('sc-cur').textContent     = scCurrent+1;
+  document.getElementById('sc-loc-name').textContent = d.location;
+  document.getElementById('sc-val-kat').textContent  = d.category;
+  document.getElementById('sc-val-prog').textContent = d.program;
+  document.getElementById('sc-val-year').textContent = d.year;
+  document.getElementById('sc-story-tag').textContent= d.tag;
+  document.getElementById('sc-bg-num-text').textContent = d.bg.slice(1);
+  document.querySelectorAll('.phone-prog-bar-fill').forEach((b,i)=>{b.style.width=i<=scCurrent?'100%':'0%'});
+}
+document.getElementById('sc-next')?.addEventListener('click',()=>{scCurrent=(scCurrent+1)%scVideos.length;scUpdateUI()});
+document.getElementById('sc-prev')?.addEventListener('click',()=>{scCurrent=(scCurrent-1+scVideos.length)%scVideos.length;scUpdateUI()});
+document.querySelectorAll('.sc-dot').forEach(dot=>{
+  dot.addEventListener('click',()=>{scCurrent=parseInt(dot.dataset.idx,10);scUpdateUI()});
+});
+document.getElementById('sc-total').textContent=scVideos.length;
+scUpdateUI();
 </script>
 </body>
 </html>

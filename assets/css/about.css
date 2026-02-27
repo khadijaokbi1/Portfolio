@@ -17,6 +17,27 @@
    ========================================= */
 
    :root {
+    /* Core design tokens (standalone, no main.css dependency) */
+    --black:        #0A0A0A;
+    --off-black:    #2D2D2D;
+    --white:        #F5F5F5;
+    --darkgreen:    #314A51;
+    --mint:         #56686A;
+    --burgundy:     #6E3B49;
+    --mauve:        #B5A19E;
+
+    --text-base:     16px;
+    --text-lg:       24px;
+    --text-xl:       36px;
+    --text-2xl:      56px;
+
+    --space-3: 1.5rem;
+
+    --font-body:     'Work Sans', sans-serif;
+    --font-display:  'Playfair Display', serif;
+    --font-subtitel: 'Outfit', sans-serif;
+    --font-titel:    'Tenor Sans', sans-serif;
+
     /* ── Hero figure sizing ── */
     --hero-fig-top:          clamp(15%, 16.6vh, 20.2%);
     --hero-fig-width:        clamp(387px, 67.6vw, 902px);
@@ -1235,3 +1256,4 @@
   /* ── Goodreads CTA left/right structure ── */
   .goodreads-cta-left { text-align: left; flex: 1; min-width: 0; }
   .goodreads-cta-right { flex-shrink: 0; }
+
