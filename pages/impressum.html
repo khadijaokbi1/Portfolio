@@ -10,16 +10,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Tenor+Sans:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/legacy.css">
     <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/footer-nav-waves.css">
 </head>
 <body>
     <div id="smooth-wrapper">
         <div id="smooth-content">
-            <header class="site-header is-solid" aria-label="Seitennavigation">
-                <div class="container nav-bar">
+            <header class="site-header" id="top" aria-label="Seitennavigation">
+                <div class="page-container nav-bar">
                     <a href="../index.html" class="logo">
-                        <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi Logo" width="40">
+                        <img src="../assets/images/branding/logo_black.png" alt="Khadija Okbi" width="45">
+                        <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi" width="45" class="logo-onscroll">
                     </a>
-                    <nav class="nav" aria-label="Hauptnavigation">
+                    <nav class="nav">
                         <a href="../index.html#hero" class="nav-link">Home</a>
                         <a href="../index.html#expertise" class="nav-link">Work</a>
                         <a href="../index.html#blog" class="nav-link">Blog</a>
@@ -76,14 +78,8 @@
             </main>
 
             <footer class="site-footer" aria-label="Seitenende">
-                <div class="container footer-inner">
-                    <div class="footer-copy">© 2026 Design & Development by Khadija Okbi</div>
-                    <div class="footer-links">
-                        <a href="impressum.html" class="footer-link">Impressum</a>
-                        <a href="mailto:khadijaokbi@gmail.com" class="footer-link contact-btn">Kontakt</a>
-                        <a href="datenschutz.html" class="footer-link">Datenschutz</a>
-
-                    </div>
+                <div class="page-container footer-inner">
+                    <div class="footer-copy">&copy; 2026 Design &amp; Development by Khadija Okbi</div>
                     <div class="footer-socials" aria-label="Soziale Netzwerke">
                         <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -96,6 +92,11 @@
                                 <path d="M6.5 9.5v8.5M6.5 7.5v.01M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
+                    </div>
+                    <div class="footer-links">
+                        <a href="impressum.html" class="footer-link">Impressum</a>
+                        <a href="mailto:khadijaokbi@gmail.com" class="footer-link contact-btn"><span>Kontakt</span></a>
+                        <a href="datenschutz.html" class="footer-link">Datenschutz</a>
                     </div>
                 </div>
             </footer>

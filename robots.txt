@@ -7,12 +7,9 @@ Allow: /
 # Sitemap Location
 Sitemap: https://khadijaokbi.com/sitemap.xml
 
-# Disallow admin/internal pages (falls vorhanden)
-Disallow: /assets/
+# Allow admin/internal pages (falls vorhanden)
+Allow: /assets/
 
 # Allow CSS and JS for better crawling
 Allow: /assets/css/
 Allow: /assets/js/
-
-# Crawl-delay (optional, für höfliche Bots)
-Crawl-delay: 1

@@ -8,12 +8,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Tenor+Sans&family=Outfit:wght@200;300;400&family=Work+Sans:ital,wght@0,200;0,300;1,300&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- new: centralized CSS for header / footer / waves -->
+<link rel="stylesheet" href="../assets/css/footer-nav-waves.css">
 <style>
 :root{
   --bg-secondary:#F5F5F5;--bg-dark:#314A51;
-  --text-primary:#0A0A0A;--text-primary-light:#EBE1D1;
+  --text-primary:#0A0A0A;--text-primary-light:#F5F5F5;
   --text-secondary:#525252;--accent-burgundy:#6E3B49;
   --border-light:#56686A;--mauve:#B5A19E;
   --cream:#F7F3EE;--blush:#EFE0D8;--rose:#C9877B;--warm:#FBF9F7;--ink:#1C1714;
@@ -367,7 +367,7 @@ body.ch-view #cur-label{opacity:1}
     font-weight: 400;
     line-height: 0.95;
     letter-spacing: -0.025em;
-    color: #EBE1D1;
+    color: #F5F5F5;
     margin: 0 !important;
     padding: 0 !important;
     text-transform: none !important;
@@ -495,7 +495,7 @@ body.ch-view #cur-label{opacity:1}
 .sc-arrow:hover {
     border-color: rgba(235,225,209,0.55);
     background: rgba(0,0,0,0.22);
-    color: #EBE1D1;
+    color: #F5F5F5;
     transform: scale(1.1);
 }
 .sc-arrow:active { transform: scale(0.94); }
@@ -540,12 +540,12 @@ body.ch-view #cur-label{opacity:1}
 <div id="cur-label">Öffnen</div>
 
 <header class="site-header" id="top">
-  <div class="container nav-bar">
+  <div class="page-container nav-bar">
     <a href="../index.html" class="logo">
       <img src="../assets/images/branding/logo_black.png" alt="Khadija Okbi" width="45">
       <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi" width="45" class="logo-onscroll">
     </a>
-    <nav class="nav"></nav>
+    <nav class="nav">
       <a href="../index.html#hero" class="nav-link">Home</a>
       <a href="../index.html#expertise" class="nav-link">Work</a>
       <a href="../index.html#blog" class="nav-link">Blog</a>
@@ -575,10 +575,10 @@ body.ch-view #cur-label{opacity:1}
   </div>
 </section>
 
-<!-- Wave: Hero -> Mint -->
-<div class="wave-divider hero-to-mint" style="background:transparent;">
+<!-- Wave: Hero -> Showcase (burgundy next) -->
+<div class="wave-divider w-to-burg">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 490" preserveAspectRatio="none" width="100%" height="160">
-    <path d="M 0,500 L 0,187 C 84.5,144.607 169,102.214 296,129 C 423,155.786 592.5,251.75 726,271 C 859.5,290.25 957,232.786 1070,206 C 1183,179.214 1311.5,183.107 1440,187 L 1440,500 L 0,500 Z" stroke="none" stroke-width="0" fill="#314a51"></path>
+    <path d="M 0,500 L 0,187 C 84.5,144.607 169,102.214 296,129 C 423,155.786 592.5,251.75 726,271 C 859.5,290.25 957,232.786 1070,206 C 1183,179.214 1311.5,183.107 1440,187 L 1440,500 L 0,500 Z" stroke="none" stroke-width="0"></path>
   </svg>
 </div>
 
@@ -696,10 +696,10 @@ body.ch-view #cur-label{opacity:1}
 
   </section>
 
-<!-- Wave: Showcase (burgundy) -> next section (white) -->
-<div class="wave-divider" style="background:#6e3b49;">
+<!-- Wave: Showcase (burgundy) -> next section (f5/white) -->
+<div class="wave-divider w-to-f5">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-    <path fill="#f5f5f5" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,112C960,96,1056,128,1152,160C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z"></path>
+    <path d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,112C960,96,1056,128,1152,160C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z"></path>
   </svg>
 </div>
 
@@ -720,15 +720,15 @@ body.ch-view #cur-label{opacity:1}
   </div>
 </section>
 
-<!-- Wave: White -> Darkgreen -->
-<div class="wave-divider" style="background:#f5f5f5;">
+<!-- Wave: Marquee (f5) -> next (dark) -->
+<div class="wave-divider w-to-dark">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-    <path fill="#314a51" d="M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    <path d="M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
   </svg>
 </div>
 
-<div class="wave-divider" style="background:var(--cream)">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"><path fill="var(--cream)" d="M0,40 C360,80 720,0 1080,50 C1260,70 1380,20 1440,45 L1440,80 L0,80 Z"/></svg>
+<div class="wave-divider w-to-cream">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 720,0 1080,50 C1260,70 1380,20 1440,45 L1440,80 L0,80 Z"/></svg>
 </div>
 
 <div class="hscroll" id="hscroll">
@@ -803,7 +803,7 @@ body.ch-view #cur-label{opacity:1}
 </main>
 
 <footer class="site-footer" aria-label="Seitenende">
-  <div class="container footer-inner">
+  <div class="page-container footer-inner">
     <div class="footer-copy">&copy; 2026 Design &amp; Development by Khadija Okbi</div>
     <div class="footer-socials">
       <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/></svg></a>

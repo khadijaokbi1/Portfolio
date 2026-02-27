@@ -1,7 +1,11 @@
-:root {
-    /* Eigene Blog-Variablen — in sync mit main.css */
+/* ============================================================
+   blog.css — komplett
+   Original + Upgrades + Mobile Fix
+   ============================================================ */
+
+   :root {
     --white:          #F5F5F5;
-    --off-white:      #EBE1D1;
+    --white:      #F5F5F5;
     --black:          #0A0A0A;
     --off-black:      #2D2D2D;
     --darkgreen:      #314A51;
@@ -27,15 +31,15 @@
 }
 
 body {
-    background-color: var(--white);   /* #F5F5F5 — hell, definiert */
-    color: var(--text-dark);          /* #121212 — maximaler Kontrast */
+    background-color: var(--white);
+    color: var(--text-dark);
     font-family: var(--font-body);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    padding-top: 72px;
+    padding-top: 60px;
 }
 
-/* Reading Progress Bar */
+/* ── Reading Progress Bar ── */
 .progress-container {
     position: fixed;
     top: 0;
@@ -47,20 +51,20 @@ body {
 
 .progress-bar {
     height: 100%;
-    background: var(--burgundy);      /* war var(--burgundy) — jetzt definiert */
+    background: var(--burgundy);
     width: 0%;
 }
 
-/* Grid Layout */
+/* ── Grid Layout ── */
 .editorial-container {
-    max-width: 140rem;
+    max-width: 85vw;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     padding: 0 4rem;
 }
 
-/* Navigation */
+/* ── Navigation ── */
 .nav-header {
     grid-column: 1 / -1;
     display: flex;
@@ -78,42 +82,34 @@ body {
     align-items: center;
     gap: 1rem;
     font-weight: 600;
-    color: var(--text-dark);          /* #121212 auf hellem Hintergrund ✓ */
+    color: var(--text-dark);
 }
 
-/* ── Title: Higuen · immer uppercase ── */
+/* ── Title ── */
 .title-large {
-    font-family: var(--font-higuen);  /* war Playfair — jetzt Higuen */
-    font-size: clamp(2rem, 5vw, 6rem); /* Reduced overall size */
-    font-weight: 400;                 /* Higuen braucht kein 900 */
-    line-height: 0.9;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;        /* Higuen → immer uppercase */
-    margin-bottom: 3rem;              /* Reduced margin */
+    font-family: var(--font-higuen);
+    font-size: clamp(2.8rem, 10vw, 6rem); /* FIXED: war 5vw/6rem — schnitt auf Mobile ab */
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
     position: relative;
-    color: var(--text-dark);          /* #121212 auf --white ✓ */
+    color: var(--text-dark);
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
-/* ── Italic Akzent im Titel → wechselt zu Playfair ── */
 .title-italic {
-    font-family: var(--font-display); /* Playfair für den italics-Teil */
+    font-family: var(--font-display);
     font-style: italic;
     font-weight: 400;
-    text-transform: none;             /* Playfair → nie uppercase */
+    font-size: 0.88em; /* relativ — skaliert automatisch mit */
+    text-transform: none;
     display: block;
-    margin-left: 3vw;                 /*
-    color: var(--burgundy);           /* #6E3B49 auf --white ✓ */
-}
-
-@media (max-width: 768px) {
-    .title-large {
-        font-size: clamp(2.5rem, 6vw, 7rem); /* Further scaling for smaller screens */
-        margin-bottom: 3rem;                /* Adjusted margin for smaller screens */
-    }
-
-    .title-italic {
-        margin-left: 3vw;                   /* Adjusted margin for smaller screens */
-    }
+    margin-left: 2vw;
+    color: var(--burgundy);
 }
 
 .meta-info {
@@ -121,12 +117,12 @@ body {
     font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 0.3em;
-    color: var(--text-gray);          /* #666 auf --white — ausreichend ✓ */
+    color: var(--text-gray);
     margin-bottom: 2rem;
     display: block;
 }
 
-/* Content Blocks */
+/* ── Content Blocks ── */
 .article-main {
     grid-column: 2 / 8;
     padding-bottom: 20rem;
@@ -139,82 +135,194 @@ body {
     height: fit-content;
 }
 
+/* ── Lead Text ── */
 .text-lead {
-    font-size: clamp(1.2rem, 1.6vw, 1.6rem);
-    line-height: 1.7;
-    font-family: var(--font-body);
-    margin-bottom: 6rem;
-    font-weight: 400;
-    color: var(--text-dark);          /* #121212 auf --white ✓ */
-    text-align: justify;
-    text-justify: inter-word;
-    hyphens: auto;
+    font-size: clamp(1rem, 1.25vw, 1.125rem);
+    font-style: italic;
+    line-height: 1.85;
+    font-family: var(--font-display);
+    margin-bottom: 3rem;
+    font-weight: 300;
+    color: var(--off-black);
+    text-align: left;
+    hyphens: none;
     text-align-last: left;
+    border-left: 1px solid var(--mauve);
+    padding-left: 1.8rem;
 }
 
+/* ── Body Text ── */
 .text-body {
     font-size: clamp(1rem, 1.25vw, 1.125rem);
     line-height: 1.85;
-    color: var(--off-black);          /* #2D2D2D auf --white ✓ */
-}
-
-.text-body p {
-    margin-bottom: 3.5rem;
-    position: relative;
     color: var(--off-black);
 }
 
+.text-body p {
+    margin-bottom: 2.8rem;
+    position: relative;
+    color: var(--off-black);
+    font-size: clamp(1.05rem, 1.2vw, 1.15rem);
+    line-height: 1.92;
+    max-width: 68ch;
+}
+
+/* ── Drop Cap ── */
 .drop-cap::first-letter {
     font-family: var(--font-display);
-    font-size: 8rem;
+    font-size: 5rem;
     float: left;
     line-height: 0.7;
-    padding-right: 1.5rem;
-    margin-top: 1rem;
-    color: var(--burgundy);           /* #6E3B49 auf --white ✓ */
+    padding-right: 1rem;
+    padding-left: 0.8rem;
+    color: var(--burgundy);
     font-style: italic;
 }
 
-/* Pull Quote */
+/* ── Pull Quote ── */
 .pull-quote {
-    margin: 8rem 0;
-    padding: 4rem 0;
+    margin: 7rem 0;
+    padding: 3.5rem 0;
     border-top: 1px solid rgba(0,0,0,0.1);
     border-bottom: 1px solid rgba(0,0,0,0.1);
     font-family: var(--font-display);
-    font-size: clamp(2rem, 3.5vw, 4rem);
+    font-size: clamp(1.7rem, 2.8vw, 3rem);
     font-style: italic;
-    font-weight: 500;
-    text-transform: none;             /* Playfair → nie uppercase */
-    line-height: 1.2;
-    color: var(--text-dark);          /* war var (--text-dark) mit Leerzeichen — Bug gefixt */
-    text-align: center;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--text-dark);
+    text-align: left;
 }
 
-/* Media Elements */
+/* ── Images ── */
 .img-reveal-wrapper {
     overflow: hidden;
-    border-radius: 0.4rem;
-    margin-bottom: 4rem;
+    border-radius: 0;
+    margin: 4rem 0;
     background: #eee;
 }
 
 .img-reveal-wrapper img {
     width: 100%;
     height: auto;
-    transform: scale(1.1);
-    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    max-height: 52vh;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.65) brightness(1.02);
+    transform: scale(1.06); /* Startzustand für GSAP-Parallax */
+    transition: filter 0.6s ease;
 }
 
-/* Mobile Layout */
-@media (max-width: 1024px) {
-    .article-main { grid-column: 1 / -1; }
-    .article-sidebar { display: none; }
-    .title-large { font-size: 8rem; }
+.img-reveal-wrapper img:hover {
+    filter: saturate(0.85) brightness(1.04);
 }
 
-/* Custom Scrollbar */
+/* ── Motion Toggle Button ──
+   HTML vor </body> einfügen:
+   <button id="motionToggle" class="motion-toggle-btn" aria-pressed="true">
+     <span class="motion-toggle-dot"></span>Animationen
+   </button>
+   ─────────────────────────────────────────────────── */
+.motion-toggle-btn {
+    position: fixed;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    z-index: 800;
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.14);
+    border-radius: 999px;
+    padding: 0.55rem 1.2rem;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-family: var(--font-body);
+    color: #909090;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.motion-toggle-btn:hover {
+    color: var(--off-black);
+    border-color: rgba(0,0,0,0.3);
+}
+
+.motion-toggle-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--burgundy);
+    transition: background 0.3s;
+    flex-shrink: 0;
+}
+
+body.no-motion .motion-toggle-dot {
+    background: var(--mauve);
+}
+
+body.no-motion .motion-toggle-btn {
+    color: var(--mauve);
+}
+
+/* ── Custom Scrollbar ── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--white); }
 ::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--burgundy); }
+
+/* ── Reduced Motion Fallback ── */
+@media (prefers-reduced-motion: reduce) {
+    .reveal-item,
+    .stagger-item {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 1024px) {
+    .article-main {
+        grid-column: 1 / -1;
+    }
+
+    .article-sidebar {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .editorial-container {
+        padding: 0 1.6rem;
+    }
+
+    .text-body p {
+        max-width: 100%;
+    }
+
+    .text-lead {
+        padding-left: 1.2rem;
+    }
+
+    .drop-cap::first-letter {
+        font-size: 5.5rem;
+    }
+
+    .pull-quote {
+        font-size: clamp(1.5rem, 6vw, 2.2rem);
+        margin: 4rem 0;
+        padding: 2.5rem 0;
+    }
+
+    .motion-toggle-btn {
+        bottom: 1.2rem;
+        right: 1.2rem;
+        padding: 0.45rem 0.9rem;
+        font-size: 0.55rem;
+    }
+}

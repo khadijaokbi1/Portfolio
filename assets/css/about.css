@@ -33,7 +33,7 @@
   html {
     font-family: var(--font-body);
     background: var(--black);
-    color: var(--off-white);
+    color: var(--white);
     line-height: 1.6;
     overflow-x: hidden;
   }
@@ -90,7 +90,7 @@
   summary { list-style: none; }
   summary::-webkit-details-marker { display: none; }
   
-  .bg-cream { background-color: var(--off-black); color: var(--off-white); }
+  .bg-cream { background-color: var(--off-black); color: var(--white); }
   .work-section { padding: clamp(4rem, 12vh, 8rem) 0; position: relative; }
   .container { max-width: 85vw; margin: 0 auto; padding: 0 clamp(1rem, 5vw, 3rem); }
   
@@ -328,7 +328,7 @@
     font-weight: 400;
     font-style: italic;
     text-transform: none;
-    color: var(--off-white);
+    color: var(--white);
     margin: 0; line-height: 1.1; letter-spacing: -0.01em;
   }
   .timeline-toggle-title span { color: var(--burgundy); font-style: italic; }
@@ -361,7 +361,7 @@
   .skills-bar .bar { background: var(--burgundy); height: 100%; width: 0%; border-radius: 100px; }
   
   .skill-label-wrapper { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.5rem; }
-  .skill-name         { font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; color: var(--off-white); letter-spacing: 0.02em; }
+  .skill-name         { font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; color: var(--white); letter-spacing: 0.02em; }
   .skill-percent-text { font-family: var(--font-display); font-size: 0.8rem; font-weight: 400; font-style: italic; color: var(--burgundy); opacity: 0.8; }
   
   /* =========================================
@@ -426,7 +426,7 @@
   .subsection-title {
     font-family: var(--font-display);
     font-size: clamp(1.8rem, 5vw, 2.5rem);
-    color: var(--off-white);
+    color: var(--white);
     text-align: center;
     margin-bottom: 1rem;
     font-weight: 600;
@@ -556,7 +556,7 @@
   .hardcover-front li:first-child:before { -webkit-transform: rotateY(90deg) translateZ(155px) translateX(2px); transform: rotateY(90deg) translateZ(155px) translateX(2px); }
   
   .figcaption-main { padding: 1.5rem 0 0; text-align: center; position: relative; width: 100%; }
-  .figcaption-main h1 { font-family: var(--font-display); font-size: clamp(1.1rem, 3vw, 1.4rem); margin: 0 0 0.3rem; font-weight: 700; color: var(--off-white); text-transform: none; }
+  .figcaption-main h1 { font-family: var(--font-display); font-size: clamp(1.1rem, 3vw, 1.4rem); margin: 0 0 0.3rem; font-weight: 700; color: var(--white); text-transform: none; }
   .figcaption-main > span { font-family: var(--font-subtitel); font-size: var(--text-xs); color: var(--burgundy); padding: 0.4rem 0 0.8rem; display: block; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; }
   .figcaption-main p { color: var(--text-secondary); line-height: 1.6; font-size: 0.85rem; margin: 0; font-weight: 300; }
   .rating-main { display: inline-block; font-size: 0.9rem; color: var(--burgundy); font-weight: 700; margin-top: 0.5rem; }
@@ -946,7 +946,7 @@
   
   .card-desc  { font-family: var(--font-body); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1rem; color: var(--text-secondary); }
   .traits-list { list-style: none; padding: 0; margin: 0; }
-  .traits-list li { font-family: var(--font-body); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; padding-left: 1rem; position: relative; color: var(--off-white); }
+  .traits-list li { font-family: var(--font-body); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; padding-left: 1rem; position: relative; color: var(--white); }
   .traits-list li::before { content: '•'; position: absolute; left: 0; color: var(--burgundy); font-weight: bold; }
   .traits-list li strong  { color: var(--burgundy); font-weight: 600; }
   
@@ -974,7 +974,7 @@
   .profile-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.2); }
   
   .grid .h-full:first-child .profile-card {
-    background: var(--off-white);
+    background: var(--white);
     color: var(--off-black);
   }
   .grid .h-full:first-child .profile-card .uppercase-label {
@@ -1002,7 +1002,7 @@
   
   .grid .h-full:last-child .profile-card {
     background: var(--darkgreen);
-    color: var(--off-white);
+    color: var(--white);
   }
   .grid .h-full:last-child .profile-card .uppercase-label {
     font-family: var(--font-subtitel);
@@ -1015,7 +1015,7 @@
     font-family: var(--font-display);
     font-weight: 400;
     font-style: italic;
-    color: var(--off-white);
+    color: var(--white);
     text-transform: none;
     letter-spacing: 0;
   }
@@ -1053,7 +1053,7 @@
     font-size: clamp(3rem, 8vw, 6.5rem);
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: var(--off-white);
+    color: var(--white);
   }
   
   .arch-mask {
@@ -1223,7 +1223,7 @@
   }
   .goodreads-btn-arrow:hover {
     background: var(--off-black);
-    color: var(--off-white);
+    color: var(--white);
     border-color: var(--off-black);
   }
   .goodreads-btn-arrow svg {

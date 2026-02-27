@@ -1,3 +1,10 @@
 {
-    "liveServer.settings.port": 5511
+    "liveServer.settings.port": 5511,
+    "github-actions.workflows.pinned.workflows": [
+        "dynamic/copilot-swe-agent/copilot"
+    ],
+    "github.copilot.chat.codesearch.enabled": true,
+    "github.copilot.chat.editor.temporalContext.enabled": true,
+    "prettier.experimentalTernaries": true,
+    "github.copilot.chat.edits.temporalContext.enabled": true
 }

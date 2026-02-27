@@ -34,7 +34,7 @@
 /* BG — tiefstes Layer, per JS nach oben verschoben */
 .hero-bg-image {
   position: absolute;
-  inset: -15% 0;
+  inset: -30% 0;
   z-index: 1;
   background: url('../images/hero/hintergrund.jpg') center/cover no-repeat;
   will-change: transform;
@@ -130,6 +130,24 @@
   background: rgba(0,0,0,0.3);
 }
 
+/* Hero wave — inside hero-section, no overflow issues */
+.hero-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 18vh;
+  background-color: #56686a;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 10;
+}
+
 /* Hero responsive */
 @media (max-width: 480px) {
   .hero-top    { font-size: clamp(40px, 14vw, 72px); top: 23%; }
@@ -166,18 +184,13 @@
   min-height: 80vh;
   display: flex;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
   background-color: var(--mint);
   padding-bottom: 200px;
 }
 
-/* Grain overlay */
-.section-photography::before {
-  content: '';
-  position: absolute; inset: 0;
-  pointer-events: none; z-index: 0; opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3C/feTurbulence%3E%3C/svg%3E");
-}
+/* Grain overlay — removed */
+/* .section-photography::before — used for hero wave, see footer-nav-waves.css */
 
 /* Edge lines */
 .edge-top, .edge-bottom {
@@ -288,7 +301,7 @@
 .photo-cta .linktext::before {
   position: absolute; content: '';
   left: 0; bottom: 1px; width: 100%; height: 1px;
-  background: var(--off-white);
+  background: var(--white);
   transform: scaleX(1);
   transition: transform 260ms ease-in-out;
   transform-origin: 0 0;
@@ -453,7 +466,6 @@
   padding: 6rem 0;
   position: relative;
   overflow: visible;
-  margin-bottom: 4rem;
 }
 
 /* Filter bar — Outfit buttons */
@@ -505,7 +517,7 @@
 .project-card {
   position: relative;
   aspect-ratio: 1;
-  background: var(--off-white);
+  background: var(--white);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   cursor: pointer;
@@ -518,7 +530,7 @@
   background-size: cover; background-position: center;
   width: 100%; height: 100%;
   transition: transform var(--speed-slow) var(--easing-decelerate),
-              filter var(--speed-slow) var(--easing-decelerate);
+              filter var(--speed-slow) var (--easing-decelerate);
 }
 .project-card:hover .project-media { transform: scale(1.08) rotate(1deg); filter: saturate(90%) brightness(0.85); }
 
@@ -549,7 +561,7 @@
   background: transparent;
   color: var(--white);
   cursor: pointer;
-  transition: background-color var(--speed-base), color var(--speed-base), border-color var(--speed-base);
+  transition: background-color var(--speed-base), color var (--speed-base), border-color var(--speed-base);
 }
 .project-btn:hover { background: var(--white); color: var(--mint); border-color: var(--white); }
 
@@ -584,9 +596,7 @@
       These overrides keep card details sharp.
    ========================================= */
 
-.section-blog {
-  padding-top: 4rem;
-}
+
 
 .section-blog .container {
   max-width: 1100px;

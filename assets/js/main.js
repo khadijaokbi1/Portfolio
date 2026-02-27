@@ -34,10 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Sticky Header
+  // Sticky Header — solid erst nach Hero-Section (80vh), auf Unterseiten nach 60px
   const header = document.querySelector('.site-header');
+  const heroSection = document.getElementById('hero');
   const updateHeader = () => {
-    header?.classList.toggle('is-solid', window.scrollY > 100);
+    const threshold = heroSection
+      ? heroSection.offsetHeight - 10
+      : 60;
+    header?.classList.toggle('is-solid', window.scrollY >= threshold);
   };
 
   window.addEventListener('scroll', updateHeader);

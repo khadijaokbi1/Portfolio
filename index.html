@@ -52,6 +52,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/legacy.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/footer-nav-waves.css">
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-B415ZJNKNW"></script>
@@ -67,16 +68,16 @@
   <body>
     <div id="smooth-wrapper">
       <div id="smooth-content">
-        <header class="site-header" id="top" aria-label="Seitennavigation">
-          <div class="container nav-bar">
+        <header class="site-header" id="siteHeader" aria-label="Seitennavigation">
+          <div class="page-container nav-bar">
             <a href="index.html" class="logo">
-              <img src="assets/images/branding/logo_black.png" alt="Khadija Okbi Logo" width="40">
-              <img src="assets/images/branding/logo_white.png" alt="Khadija Okbi Logo" width="40" class="logo-onscroll">
+              <img src="assets/images/branding/logo_black.png" alt="Khadija Okbi" width="45">
+              <img src="assets/images/branding/logo_white.png" alt="Khadija Okbi" width="45" class="logo-onscroll">
             </a>
-            <nav class="nav" aria-label="Hauptnavigation">
-              <a href="#hero" class="nav-link">Home</a>
-              <a href="#expertise" class="nav-link">Work</a>
-              <a href="#blog" class="nav-link">Blog</a>
+            <nav class="nav">
+              <a href="index.html#hero" class="nav-link">Home</a>
+              <a href="index.html#expertise" class="nav-link">Work</a>
+              <a href="index.html#blog" class="nav-link">Blog</a>
               <a href="about.html" class="nav-link">About</a>
             </nav>
           </div>
@@ -96,8 +97,10 @@
                 </div>
               </div>
             </div>
+            <!-- Wave transition into mint section -->
+            <div class="hero-wave" aria-hidden="true"></div>
           </div>
-          <section class="section-photography">
+          <section class="section-photography wave-cream">
             <div class="photo-inner">
 
               <!-- LEFT -->
@@ -190,7 +193,7 @@
             </div>
           </section>
 
-            <section class="section-projects" id="expertise" aria-label="Projekte & Arbeiten">
+            <section class="section-projects wave-burg" id="expertise" aria-label="Projekte & Arbeiten">
               <div class="container">
                 <h2 class="selected-projects" style="margin-top: 3rem;">Ausgewählte <em>Projekte</em></h2>
                 <div class="filter-bar" role="toolbar" aria-label="Projektfilter">
@@ -334,7 +337,8 @@
           </section>
           <!-- Blog Section -->
            
-          <section class="section-blog" id="blog" aria-label="Blog">
+          <!-- Blog Section — wave-foot leitet zum Footer über -->
+          <section class="section-blog wave-foot" id="blog" aria-label="Blog">
             <div class="bg-burgundy">
             <div class="container">
               <h2 style="color: white;">Aus dem <em>Blog</em></h2>
@@ -370,9 +374,8 @@
         </main>
         <!-- Footer -->
         <footer class="site-footer" aria-label="Seitenende">
-          <div class="container footer-inner">
-            <div class="footer-copy">© 2026 Design & Development by Khadija Okbi</div>
-            
+          <div class="page-container footer-inner">
+            <div class="footer-copy">&copy; 2026 Design &amp; Development by Khadija Okbi</div>
             <div class="footer-socials" aria-label="Soziale Netzwerke">
               <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -415,5 +418,18 @@
     </div>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/animations.js"></script>
+    <script>
+      // Nav solid erst NACH der Hero-Section (80vh)
+      (function() {
+        var hdr = document.getElementById('siteHeader');
+        var hero = document.getElementById('hero');
+        function onScroll() {
+          var heroH = hero ? hero.offsetHeight : window.innerHeight * 0.8;
+          hdr.classList.toggle('is-solid', window.scrollY >= heroH - 10);
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      })();
+    </script>
   </body>
 </html>

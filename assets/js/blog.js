@@ -1,206 +1,113 @@
-/* ========================================= 
-   BLOG INTERACTIVE FEATURES
-   ========================================= */
+/* ============================================================
+   BLOG UPGRADES — in main.js einfügen (oder blog-spezifisches JS).
+   Voraussetzung: GSAP + ScrollTrigger bereits geladen.
+   ============================================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // ========================================= 
-    // 1. READING PROGRESS BAR
-    // ========================================= 
-    const progressBar = document.querySelector('.reading-progress-bar');
-    
-    const updateReadingProgress = () => {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        if (progressBar) {
-            progressBar.style.width = scrolled + '%';
-        }
-    };
-    
-    window.addEventListener('scroll', updateReadingProgress);
-    
-    // ========================================= 
-    // 2. READING TIME INDICATOR
-    // ========================================= 
-    const readingTime = document.querySelector('.reading-time');
-    
-    const calculateReadingTime = () => {
-        const article = document.querySelector('.article-body');
-        if (!article) return;
-        
-        const text = article.innerText;
-        const wpm = 200; // Words per minute
-        const words = text.trim().split(/\s+/).length;
-        const time = Math.ceil(words / wpm);
-        
-        if (readingTime) {
-            readingTime.textContent = `${time} Min`;
-        }
-    };
-    
-    const toggleReadingTime = () => {
-        if (!readingTime) return;
-        
-        if (window.scrollY > 500) {
-            readingTime.classList.add('visible');
-        } else {
-            readingTime.classList.remove('visible');
-        }
-    };
-    
-    calculateReadingTime();
-    window.addEventListener('scroll', toggleReadingTime);
-    
-    // ========================================= 
-    // 3. BACK TO TOP BUTTON
-    // ========================================= 
-    const backToTop = document.querySelector('.back-to-top');
-    
-    const toggleBackToTop = () => {
-        if (!backToTop) return;
-        
-        if (window.scrollY > 800) {
-            backToTop.classList.add('visible');
-        } else {
-            backToTop.classList.remove('visible');
-        }
-    };
-    
-    if (backToTop) {
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+   (function () {
+    // Nur auf Blog-Seiten ausführen
+    if (!document.querySelector('.article-main')) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ── 1. MOTION TOGGLE ──────────────────────────────────────
+       Schaltet body.no-motion um und pausiert/killt ScrollTrigger.
+       ────────────────────────────────────────────────────────── */
+    let motionEnabled = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const toggleBtn = document.getElementById('motionToggle');
+
+    if (toggleBtn) {
+        // Knopf-Initialzustand
+        toggleBtn.setAttribute('aria-pressed', motionEnabled);
+
+        toggleBtn.addEventListener('click', () => {
+            motionEnabled = !motionEnabled;
+            toggleBtn.setAttribute('aria-pressed', motionEnabled);
+            document.body.classList.toggle('no-motion', !motionEnabled);
+
+            if (!motionEnabled) {
+                // Alle laufenden Tweens stoppen, Elemente sofort sichtbar
+                gsap.killTweensOf('.reveal-item, .stagger-item');
+                gsap.set('.reveal-item, .stagger-item', { clearProps: 'all' });
+                ScrollTrigger.getAll().forEach(t => t.kill());
+            } else {
+                // Seite neu laden ist die sauberste Option nach Re-Aktivierung
+                location.reload();
+            }
+        });
+    }
+
+    /* ── 2. HERO STAGGER (ersetzt das bestehende gsap.from .stagger-item) ──
+       Weicher, etwas länger — Abschnitte nicht Wörter.
+       Falls du das alte gsap.from(".stagger-item") noch im HTML-Script hast,
+       entferne es dort und lass nur dieses hier laufen.
+       ────────────────────────────────────────────────────────────────────── */
+    if (motionEnabled) {
+        gsap.from('.stagger-item', {
+            y: 50,
+            opacity: 0,
+            duration: 1.6,
+            stagger: 0.25,
+            ease: 'expo.out',
+            delay: 0.1,
+        });
+    }
+
+    /* ── 3. ABSCHNITTS-REVEAL (ersetzt das bestehende .reveal-item forEach) ──
+       Jeder Abschnitt kommt elegant als Ganzes — kein Word-Split.
+       ────────────────────────────────────────────────────────────────────── */
+    if (motionEnabled) {
+        gsap.utils.toArray('.reveal-item').forEach((item) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 88%',
+                    once: true,
+                },
+                y: 36,
+                opacity: 0,
+                duration: 1.1,
+                ease: 'power3.out',
             });
         });
     }
-    
-    window.addEventListener('scroll', toggleBackToTop);
-    
-    // ========================================= 
-    // 4. SCROLL REVEAL ANIMATIONS
-    // ========================================= 
-    const revealElements = document.querySelectorAll('.reveal-on-scroll');
-    
-    const revealOnScroll = () => {
-        revealElements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (elementTop < windowHeight - 100) {
-                element.classList.add('revealed');
-            }
-        });
-    };
-    
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll(); // Initial check
-    
-    // ========================================= 
-    // 5. SHARE FUNCTIONALITY
-    // ========================================= 
-    const shareButtons = document.querySelectorAll('.share-btn');
-    
-    shareButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const platform = btn.dataset.platform;
-            const url = encodeURIComponent(window.location.href);
-            const title = encodeURIComponent(document.title);
-            
-            let shareUrl = '';
-            
-            switch(platform) {
-                case 'twitter':
-                    shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
-                    break;
-                case 'linkedin':
-                    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
-                    break;
-                case 'facebook':
-                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-                    break;
-                case 'copy':
-                    navigator.clipboard.writeText(window.location.href);
-                    btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>';
-                    setTimeout(() => {
-                        btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
-                    }, 2000);
-                    return;
-            }
-            
-            if (shareUrl) {
-                window.open(shareUrl, '_blank', 'width=600,height=400');
-            }
-        });
-    });
-    
-    // ========================================= 
-    // 7. SMOOTH ANCHOR LINKS
-    // ========================================= 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            if (href === '#') return;
-            
-            const target = document.querySelector(href);
-            if (target) {
-                e.preventDefault();
-                const headerOffset = 80;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-    
-    // ========================================= 
-    // 8. LAZY LOAD IMAGES
-    // ========================================= 
-    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-    
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src || img.src;
-                    img.classList.add('loaded');
-                    observer.unobserve(img);
+
+    /* ── 4. BILD-PARALLAX (dezenter scrub) ──────────────────────
+       Ersetzt das bestehende img-reveal-wrapper scrub.
+       ────────────────────────────────────────────────────────── */
+    if (motionEnabled) {
+        gsap.utils.toArray('.img-reveal-wrapper img').forEach((img) => {
+            gsap.fromTo(img,
+                { scale: 1.06 },
+                {
+                    scale: 1,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: img,
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: true,
+                    },
                 }
-            });
+            );
         });
-        
-        lazyImages.forEach(img => imageObserver.observe(img));
     }
-    
-    // ========================================= 
-    // 9. HEADER SCROLL BEHAVIOR
-    // ========================================= 
-    const header = document.querySelector('.site-header');
-    let lastScroll = 0;
-    
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll <= 100) {
-            header?.classList.remove('is-solid');
-            header?.classList.remove('hide');
-        } else if (currentScroll > lastScroll) {
-            // Scrolling down
-            header?.classList.add('is-solid');
-            header?.classList.add('hide');
-        } else {
-            // Scrolling up
-            header?.classList.remove('hide');
-            header?.classList.add('is-solid');
-        }
-        
-        lastScroll = currentScroll;
-    });
-    
-});
+
+    /* ── 5. SIDEBAR ─────────────────────────────────────────────
+       Ersetzt das bestehende gsap.from(".article-sidebar").
+       ────────────────────────────────────────────────────────── */
+    if (motionEnabled && document.querySelector('.article-sidebar')) {
+        gsap.from('.article-sidebar', {
+            scrollTrigger: {
+                trigger: '.article-main',
+                start: 'top 70%',
+                once: true,
+            },
+            opacity: 0,
+            x: 24,
+            duration: 1.4,
+            ease: 'power3.out',
+        });
+    }
+
+})();

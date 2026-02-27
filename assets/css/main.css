@@ -30,7 +30,6 @@
   --black:        #0A0A0A;
   --off-black:    #2D2D2D;
   --white:        #F5F5F5;
-  --off-white:    #EBE1D1;
   --darkgreen:    #314A51;
   --mint:         #56686A;
   --burgundy:     #6E3B49;
@@ -42,7 +41,7 @@
   --bg-accent:         var(--white);
   --bg-dark:           var(--darkgreen);
   --text-primary:      var(--black);
-  --text-primary-light:var(--off-white);
+  --text-primary-light:var(--white);
   --text-secondary:    #525252;
   --text-tertiary:     var(--mint);
   --accent-primary:    var(--off-black);
@@ -791,8 +790,8 @@ section h2.in-view {
 }
 
 .work-section.bg-cream   { background-color: var(--white);    color: var(--off-black); }
-.work-section.bg-dark    { background-color: var(--darkgreen); color: var(--off-white); }
-.work-section.bg-burgundy { background-color: var(--burgundy); color: var(--off-white); }
+.work-section.bg-dark    { background-color: var(--darkgreen); color: var(--white); }
+.work-section.bg-burgundy { background-color: var(--burgundy); color: var(--white); }
 
 /* Layout helpers */
 .section-inner {
@@ -857,7 +856,7 @@ section h2.in-view {
 .section--dark a,
 .section--dark .link { color: var(--mauve); }
 .section--dark a:hover,
-.section--dark .link:hover { color: var(--off-white); }
+.section--dark .link:hover { color: var(--white); }
 
 .section--dark .divider,
 .section--dark .section-divider { background-color: var(--divider-dark); }
@@ -865,7 +864,7 @@ section h2.in-view {
 /* ── GREEN section (darkgreen / mint background) ── */
 .section--green {
   background: linear-gradient(135deg, var(--darkgreen), var(--mint));
-  color: var(--off-white);
+  color: var(--white);
 }
 .section--green h1,
 .section--green h2,
@@ -873,12 +872,12 @@ section h2.in-view {
 .section--green h4 { color: var(--white); }
 
 .section--green p,
-.section--green .text-body { color: var(--off-white); }
+.section--green .text-body { color: var(--white); }
 
 .section--green .eyebrow,
 .section--green .eyebrow-pill,
 .section--green .eyebrow-circle {
-  color: var(--off-white);
+  color: var(--white);
   border-color: var(--mauve);
 }
 
@@ -886,7 +885,7 @@ section h2.in-view {
 .section--green a,
 .section--green .link { color: var(--mauve); }
 .section--green a:hover,
-.section--green .link:hover { color: var(--off-white); }
+.section--green .link:hover { color: var(--white); }
 
 .section--green .divider,
 .section--green .section-divider { background-color: var(--divider-dark); }
@@ -894,7 +893,7 @@ section h2.in-view {
 /* ── BURGUNDY section (footer area, CTAs) ── */
 .section--burgundy {
   background-color: var(--burgundy);
-  color: var(--off-white);
+  color: var(--white);
 }
 .section--burgundy h1,
 .section--burgundy h2,
@@ -902,16 +901,16 @@ section h2.in-view {
 .section--burgundy h4 { color: var (--white); }
 
 .section--burgundy p,
-.section--burgundy .text-body { color: var(--off-white); }
+.section--burgundy .text-body { color: var(--white); }
 
 .section--burgundy .eyebrow,
 .section--burgundy .eyebrow-pill,
-.section--burgundy .eyebrow-circle { color: var(--off-white); }
+.section--burgundy .eyebrow-circle { color: var(--white); }
 
 .section--burgundy a,
 .section--burgundy .link { color: var(--mauve); }
 .section--burgundy a:hover,
-.section--burgundy .link:hover { color: var(--off-white); }
+.section--burgundy .link:hover { color: var(--white); }
 
 .section--burgundy .divider,
 .section--burgundy .section-divider { background-color: var(--divider-dark); }

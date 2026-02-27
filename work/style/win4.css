@@ -473,6 +473,11 @@
     overflow: hidden;
 }
 
+/* Allow wave-foot pseudo-element to overflow */
+.events-section.wave-foot {
+    overflow: visible;
+}
+
 .events-section::before {
     content: '';
     position: absolute;

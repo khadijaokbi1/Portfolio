@@ -19,6 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/SplitText.min.js"></script>
     <!-- Styles -->
     <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/footer-nav-waves.css" />
     <link rel="stylesheet" href="style/ipa.css" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-B415ZJNKNW"></script>
@@ -652,29 +653,29 @@
             </div>
         </section>
     </main>
-            <div class="site-footer"> 
-            <div class="container">
 
-                <div class="footer-info-grid">
-                    <div class="footer-info-item">
-                        <span class="uppercase-label">Auftraggeber</span>
-                        <h3>Komthur GmbH</h3>
-                        <p>Kreuzlingen, Thurgau • est.2020</p>
-                    </div>
-                    <div class="footer-info-item">
-                        <span class="uppercase-label">Projektdauer</span>
-                        <h3>90 Stunden</h3>
-                        <p>2 Wochen (IPA Rahmenbedingungen)</p>
-                    </div>
-                    <div class="footer-info-item">
-                        <span class="uppercase-label">Budget</span>
-                        <h3>CHF 14'650</h3>
-                        <p>Inkl. Beratung, Design, Dokumentation</p>
-                    </div>
+    <!-- PROJECT INFO — proper section, not site-footer -->
+    <section class="editorial-section bg-dark wave-foot" style="padding-block: clamp(3rem,6vh,5rem)">
+        <div class="container">
+            <div class="footer-info-grid">
+                <div class="footer-info-item">
+                    <span class="uppercase-label">Auftraggeber</span>
+                    <h3>Komthur GmbH</h3>
+                    <p>Kreuzlingen, Thurgau • est.2020</p>
                 </div>
+                <div class="footer-info-item">
+                    <span class="uppercase-label">Projektdauer</span>
+                    <h3>90 Stunden</h3>
+                    <p>2 Wochen (IPA Rahmenbedingungen)</p>
+                </div>
+                <div class="footer-info-item">
+                    <span class="uppercase-label">Budget</span>
+                    <h3>CHF 14'650</h3>
+                    <p>Inkl. Beratung, Design, Dokumentation</p>
                 </div>
             </div>
-   
+        </div>
+    </section>
 
     <!-- FOOTER -->
     <footer class="site-footer">
@@ -698,5 +699,16 @@
     </footer>
 
     <script src="script/komthur-script.js"></script>
+    <script>
+      // Nav solid on subpages immediately after hero video
+      (function() {
+        var hdr = document.querySelector('.site-header');
+        function onScroll() {
+          hdr.classList.toggle('is-solid', window.scrollY >= 60);
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      })();
+    </script>
 </body>
 </html>

@@ -499,7 +499,7 @@
 .project-card {
   position: relative;
   aspect-ratio: 1/1;
-  background: var(--off-white);
+  background: var(--white);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   cursor: pointer;

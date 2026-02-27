@@ -20,7 +20,7 @@
     /* ── Portfolio Tokens (exakt wie main.css) ── */
     :root {
       --black:      #0A0A0A;
-      --off-white:  #EBE1D1;   /* cream */
+      --white:  #F5F5F5;   /* cream */
       --white:      #F5F5F5;
       --darkgreen:  #314A51;
       --mint:       #56686A;
@@ -28,7 +28,7 @@
       --mauve:      #B5A19E;
 
       /* Preloader Rollen */
-      --loader-bg:      var(--off-white);   /* Hintergrund cream */
+      --loader-bg:      var(--white);   /* Hintergrund cream */
       --loader-text:    var(--burgundy);    /* Text burgundy */
       --loader-wave:    var(--mint);        /* Welle mint */
       --loader-panel:   var(--mint);        /* Rechteck mint */
@@ -235,7 +235,7 @@
     }
     .loader__bg-bar-fill {
       height: 100%; width: 0%;
-      background: linear-gradient(90deg, var(--off-white), rgba(235,225,209,0.6));
+      background: linear-gradient(90deg, var(--white), rgba(235,225,209,0.6));
       transition: width 0.1s linear;
     }
 
@@ -338,19 +338,19 @@
     .demo-info-card h3 {
       font-family: 'Tenor Sans', sans-serif; font-size: 0.7rem;
       text-transform: uppercase; letter-spacing: 0.26em;
-      color: var(--off-white); margin-bottom: 0.6rem; font-weight: 400;
+      color: var(--white); margin-bottom: 0.6rem; font-weight: 400;
     }
     .demo-info-card p { font-size: 0.88rem; color: rgba(235,225,209,0.6); line-height: 1.78; }
     .demo-info-card code {
       display: inline-block; font-size: 0.74rem;
       background: rgba(110,59,73,0.25); border: 1px solid rgba(110,59,73,0.4);
-      color: var(--off-white); padding: 0.1em 0.45em; border-radius: 3px;
+      color: var(--white); padding: 0.1em 0.45em; border-radius: 3px;
       margin-top: 0.5rem; font-family: 'Courier New', monospace;
     }
 
     /* Sub Demo Section */
     .demo-sub {
-      background: var(--off-white);
+      background: var(--white);
       padding: clamp(5rem, 10vw, 8rem) clamp(1.5rem, 6vw, 5rem);
     }
     .demo-sub h2 {
@@ -372,7 +372,7 @@
     .btn-sub-demo {
       font-family: 'Tenor Sans', sans-serif; font-size: 0.68rem;
       text-transform: uppercase; letter-spacing: 0.26em;
-      color: var(--off-white); background: var(--burgundy);
+      color: var(--white); background: var(--burgundy);
       border: none; padding: 1rem 2.5rem; cursor: pointer;
       position: relative; overflow: hidden;
       transition: background 0.35s;
@@ -402,7 +402,7 @@
       background: var(--burgundy); transform: scaleX(0);
       transform-origin: left; transition: transform 0.38s cubic-bezier(0.4,0,0.2,1);
     }
-    .btn-replay:hover { color: var(--off-white); }
+    .btn-replay:hover { color: var(--white); }
     .btn-replay:hover::before { transform: scaleX(1); }
     .btn-replay span { position: relative; z-index: 1; }
 
@@ -414,7 +414,7 @@
       letter-spacing: 0.14em; color: rgba(235,225,209,0.4); text-transform: uppercase;
     }
     .demo-footer a { color: var(--mauve); text-decoration: none; }
-    .demo-footer a:hover { color: var(--off-white); }
+    .demo-footer a:hover { color: var(--white); }
   </style>
 </head>
 <body class="is-loading">
