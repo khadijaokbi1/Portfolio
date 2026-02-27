@@ -1,7 +1,7 @@
 /* ========================================
    KOMTHUR IPA PROJECT - JAVASCRIPT
    Tab Navigation, Scroll Effects, Animations
-   ======================================== */
+   ========================================= */
 
    'use strict';
 
@@ -23,6 +23,9 @@
        initStrategieAccordion();
        initSwotAnimations();
        initOptimierungsplan();
+       initOptimAccordion();
+       initInstaCarousel();
+       initLinkedInSlider();
    });
    
    // =========================================
@@ -371,3 +374,251 @@
    });
    
    console.log('✓ Komthur IPA Project Initialized');
+
+   // =========================================
+   // 10. OPTIMIERUNGSPLAN V2 — COMPACT ACCORDION
+   // =========================================
+   function initOptimAccordion() {
+       const items = document.querySelectorAll('#optimAccordion .oa-item');
+       if (!items.length) return;
+
+       items.forEach(item => {
+           const trigger = item.querySelector('.oa-trigger');
+           if (!trigger) return;
+
+           trigger.addEventListener('click', () => {
+               const isOpen = item.classList.contains('active');
+
+               // Close all
+               items.forEach(i => i.classList.remove('active'));
+
+               // Toggle open
+               if (!isOpen) {
+                   item.classList.add('active');
+               }
+           });
+       });
+   }
+
+   // =========================================
+   // 11. INSTAGRAM CAROUSEL — infinite loop
+   // =========================================
+   function initInstaCarousel() {
+       const carousel = document.getElementById('instaCarousel');
+       const prevBtn  = document.getElementById('icPrev');
+       const nextBtn  = document.getElementById('icNext');
+       if (!carousel) return;
+
+       // ── How many cards are visible? ──
+       const visibleCount = () => window.innerWidth >= 769 ? 2 : 1;
+
+       // ── Card width + gap ──
+       const cardWidth = () => {
+           const card = carousel.querySelector('.insta-post-card');
+           if (!card) return 300;
+           const gap = parseFloat(getComputedStyle(carousel).gap) || 20;
+           return card.offsetWidth + gap;
+       };
+
+       // ── Clone cards for infinite looping ──
+       const originalCards = Array.from(carousel.querySelectorAll('.insta-post-card'));
+       const total = originalCards.length;
+
+       // Prepend clones of last N, append clones of first N
+       const clonesBefore = originalCards.map(c => { const cl = c.cloneNode(true); cl.setAttribute('aria-hidden', 'true'); return cl; });
+       const clonesAfter  = originalCards.map(c => { const cl = c.cloneNode(true); cl.setAttribute('aria-hidden', 'true'); return cl; });
+
+       clonesBefore.reverse().forEach(cl => carousel.prepend(cl));
+       clonesAfter.forEach(cl => carousel.append(cl));
+
+       // ── State ──
+       let currentIndex = total; // start at first real card (after clones)
+       let isAnimating  = false;
+
+       // ── Disable native scrollbar — JS drives position ──
+       carousel.style.display       = 'flex';
+       carousel.style.overflow      = 'hidden';
+       carousel.style.scrollBehavior = 'unset';
+
+       // ── Set visible window width ──
+       const updateCarouselWidth = () => {
+           const vc  = visibleCount();
+           const cw  = (() => {
+               const c   = carousel.querySelector('.insta-post-card:not([aria-hidden])');
+               const gap = parseFloat(getComputedStyle(carousel).gap) || 20;
+               return c ? c.offsetWidth + gap : 300;
+           })();
+           const gap = parseFloat(getComputedStyle(carousel).gap) || 20;
+           // Show exactly vc cards, minus one gap (last card has no trailing gap)
+           carousel.style.maxWidth = `${vc * cw - gap}px`;
+           carousel.style.width    = `${vc * cw - gap}px`;
+           goTo(currentIndex, false); // re-snap without animation
+       };
+
+       // ── Position engine ──
+       const goTo = (index, animate = true) => {
+           const cw = cardWidth();
+           if (animate) {
+               carousel.style.transition = 'transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94)';
+           } else {
+               carousel.style.transition = 'none';
+           }
+           carousel.style.transform = `translateX(-${index * cw}px)`;
+           currentIndex = index;
+       };
+
+       // ── After transition: jump silently if we hit a clone boundary ──
+       carousel.addEventListener('transitionend', () => {
+           isAnimating = false;
+           if (currentIndex < total) {
+               // wrapped to clones-before zone → jump to real end
+               goTo(currentIndex + total, false);
+           } else if (currentIndex >= total * 2) {
+               // wrapped to clones-after zone → jump to real start
+               goTo(currentIndex - total, false);
+           }
+       });
+
+       // ── Arrow clicks ──
+       const step = () => visibleCount();
+
+       nextBtn?.addEventListener('click', () => {
+           if (isAnimating) return;
+           isAnimating = true;
+           goTo(currentIndex + step());
+       });
+
+       prevBtn?.addEventListener('click', () => {
+           if (isAnimating) return;
+           isAnimating = true;
+           goTo(currentIndex - step());
+       });
+
+       // ── Touch / mouse drag ──
+       let startX = 0, dragDelta = 0, dragging = false;
+
+       const dragStart = (x) => { dragging = true; startX = x; dragDelta = 0; };
+       const dragMove  = (x) => {
+           if (!dragging) return;
+           dragDelta = x - startX;
+           const cw = cardWidth();
+           carousel.style.transition = 'none';
+           carousel.style.transform  = `translateX(-${currentIndex * cw - dragDelta}px)`;
+       };
+       const dragEnd = () => {
+           if (!dragging) return;
+           dragging = false;
+           const threshold = cardWidth() * 0.25;
+           if (dragDelta < -threshold)      goTo(currentIndex + step());
+           else if (dragDelta > threshold)  goTo(currentIndex - step());
+           else                             goTo(currentIndex); // snap back
+       };
+
+       carousel.addEventListener('mousedown',  e => dragStart(e.clientX));
+       window.addEventListener('mousemove',    e => { if (dragging) dragMove(e.clientX); });
+       window.addEventListener('mouseup',      ()  => dragEnd());
+       carousel.addEventListener('touchstart', e => dragStart(e.touches[0].clientX), { passive: true });
+       carousel.addEventListener('touchmove',  e => { if (dragging) dragMove(e.touches[0].clientX); }, { passive: true });
+       carousel.addEventListener('touchend',   e => dragEnd());
+
+       // Prevent native drag on images/videos inside
+       carousel.querySelectorAll('img, video').forEach(el => {
+           el.addEventListener('dragstart', e => e.preventDefault());
+       });
+
+       // ── Init + resize ──
+       updateCarouselWidth();
+       goTo(currentIndex, false);
+
+       let resizeTimer;
+       window.addEventListener('resize', () => {
+           clearTimeout(resizeTimer);
+           resizeTimer = setTimeout(updateCarouselWidth, 120);
+       });
+   }
+
+   // =========================================
+   // 12. LINKEDIN IMAGE SLIDER
+   // =========================================
+   function initLinkedInSlider() {
+       const slider   = document.getElementById('liSlider');
+       const prevBtn  = document.getElementById('liPrev');
+       const nextBtn  = document.getElementById('liNext');
+       const dotsWrap = document.getElementById('liDots');
+       const counter  = document.getElementById('liCurrent');
+       if (!slider) return;
+
+       const slides = slider.querySelectorAll('.li-slide');
+       const total  = slides.length;
+       let current  = 0;
+       let startX   = 0, startTranslate = 0, isDragging = false;
+
+       // Build dots
+       if (dotsWrap) {
+           slides.forEach((_, i) => {
+               const dot = document.createElement('div');
+               dot.className = 'li-slide-dot' + (i === 0 ? ' active' : '');
+               dot.addEventListener('click', () => goTo(i));
+               dotsWrap.appendChild(dot);
+           });
+       }
+
+       const goTo = (index) => {
+           current = Math.max(0, Math.min(index, total - 1));
+           slider.style.transform = `translateX(-${current * 100}%)`;
+
+           // Update dots
+           dotsWrap?.querySelectorAll('.li-slide-dot').forEach((d, i) => {
+               d.classList.toggle('active', i === current);
+           });
+
+           // Update counter
+           if (counter) counter.textContent = current + 1;
+
+           // Update buttons
+           if (prevBtn) prevBtn.disabled = current === 0;
+           if (nextBtn) nextBtn.disabled = current === total - 1;
+       };
+
+       prevBtn?.addEventListener('click', () => goTo(current - 1));
+       nextBtn?.addEventListener('click', () => goTo(current + 1));
+
+       // Touch drag support
+       const onDragStart = (clientX) => {
+           isDragging = true;
+           startX = clientX;
+           startTranslate = current * 100;
+           slider.classList.add('is-dragging');
+       };
+
+       const onDragMove = (clientX) => {
+           if (!isDragging) return;
+           const delta = ((startX - clientX) / slider.parentElement.offsetWidth) * 100;
+           const translate = Math.max(0, Math.min(startTranslate + delta, (total - 1) * 100));
+           slider.style.transform = `translateX(-${translate}%)`;
+       };
+
+       const onDragEnd = (clientX) => {
+           if (!isDragging) return;
+           isDragging = false;
+           slider.classList.remove('is-dragging');
+           const delta = startX - clientX;
+           if (Math.abs(delta) > 50) {
+               goTo(delta > 0 ? current + 1 : current - 1);
+           } else {
+               goTo(current); // snap back
+           }
+       };
+
+       // Mouse
+       slider.addEventListener('mousedown',  e => onDragStart(e.clientX));
+       window.addEventListener('mousemove',  e => onDragMove(e.clientX));
+       window.addEventListener('mouseup',    e => onDragEnd(e.clientX));
+
+       // Touch
+       slider.addEventListener('touchstart', e => onDragStart(e.touches[0].clientX), { passive: true });
+       slider.addEventListener('touchmove',  e => onDragMove(e.touches[0].clientX),  { passive: true });
+       slider.addEventListener('touchend',   e => onDragEnd(e.changedTouches[0].clientX));
+
+       goTo(0); // initialise
+   }

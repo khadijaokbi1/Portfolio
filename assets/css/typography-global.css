@@ -1,0 +1,169 @@
+/* =========================================
+   TYPOGRAPHY GLOBAL
+   Single source of truth for fonts
+   ========================================= */
+
+@font-face {
+  font-family: 'Higuen';
+  src: url('../fonts/Higuen.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'OT Neglige';
+  src: url('../fonts/OTNeglige-L.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Le Jour';
+  src: url('../fonts/lejour.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --font-h1: 'Higuen', serif;
+  --font-title: 'Le Jour', serif;
+  --font-ui: 'Outfit', sans-serif;
+  --font-body: 'Work Sans', sans-serif;
+  /* Legacy aliases so old selectors keep working with the global system */
+  --font-display: var(--font-title);
+  --font-higuen: var(--font-h1);
+  --font-subtitel: var(--font-ui);
+  --font-subtitle: var(--font-ui);
+  --font-titel: var(--font-ui);
+}
+
+body,
+p,
+li,
+small,
+.text-body,
+.text-meta {
+  font-family: var(--font-body) !important;
+}
+
+h1,
+h2,
+.hero-top,
+.hero-bottom,
+.page-title,
+.page-hero h1,
+.hero-title,
+.hero-title-large,
+.hero-h1,
+.sbw-intro-title {
+  font-family: var(--font-h1) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.12em !important;
+  line-height: 0.95;
+}
+
+h3,
+h4,
+h5,
+h6,
+section h3,
+.h3,
+.feat-title,
+.fav-col-title,
+.gallery-title,
+.strategy-headline,
+.films-title,
+.tt-title,
+.sc-title,
+.project-section h3,
+.project-section h4 {
+  font-family: var(--font-title) !important;
+  text-transform: none !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1.02;
+}
+
+.nav-link,
+.footer-copy,
+.footer-link,
+.meta-inline,
+.stat-label-main,
+.book-author-main,
+.btn,
+button,
+label,
+summary,
+details,
+.subtitle,
+.sub-title,
+.hero-subtitle,
+.project-hero-subtitle,
+.sc-subtitle,
+.eyebrow,
+.eyebrow-pill,
+.eyebrow-circle,
+.photo-eyebrow,
+.fav-eyebrow,
+.counter-eyebrow,
+[class*="subtitle"] {
+  font-family: var(--font-ui) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.14em !important;
+  font-weight: 600;
+}
+
+h1 em,
+h2 em,
+h3 em,
+.italic,
+.title-word-2,
+.word-2 {
+  font-family: inherit !important;
+  font-style: italic;
+  letter-spacing: inherit !important;
+}
+
+.section--dark h1,
+.section--dark h2,
+.section--dark h3,
+.section--green h1,
+.section--green h2,
+.section--green h3,
+.section--burgundy h1,
+.section--burgundy h2,
+.section--burgundy h3,
+.work-hero h1,
+.blog-hero h1,
+.site-footer h2,
+.site-footer h3 {
+  color: var(--off-white, #EBE1D1) !important;
+}
+
+.section--light h1,
+.section--light h2,
+.section--light h3,
+.section--cream h1,
+.section--cream h2,
+.section--cream h3 {
+  color: var(--off-black, #2D2D2D) !important;
+}
+
+@media (max-width: 768px) {
+  h1,
+  h2,
+  .hero-top,
+  .hero-bottom,
+  .page-title,
+  .page-hero h1 {
+    letter-spacing: 0.1em !important;
+  }
+
+  h3,
+  h4,
+  h5,
+  h6,
+  section h3,
+  .h3 {
+    letter-spacing: 0.01em !important;
+  }
+}

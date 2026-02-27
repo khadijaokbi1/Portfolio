@@ -13,22 +13,24 @@
     --burgundy:       #6E3B49;
     --mauve:          #B5A19E;
 
-    --bg-primary:     #000;
-    --bg-secondary:   #F8F7F4;
-    --text-dark:      #121212;
+    --bg-primary:     #0A0A0A;
+    --bg-secondary:   #EBE1D1;
+    --text-dark:      #2D2D2D;
     --text-gray:      #666666;
 
-    --font-body:      'Work Sans', sans-serif;
-    --font-display:   'Playfair Display', serif;
-    --font-higuen:    'Higuen', serif;
+    /* Typography tokens moved to assets/css/typography-global.css */
+    /* --font-body:      'Work Sans', sans-serif; */
+    /* --font-display:   'Playfair Display', serif; */
+    /* --font-higuen:    'Higuen', serif; */
 }
 
-@font-face {
+/* Individual @font-face disabled; handled in typography-global.css */
+/* @font-face {
     font-family: 'Higuen';
     src: url('../fonts/Higuen.woff2') format('woff2');
     font-weight: 100 900;
     font-display: swap;
-}
+} */
 
 body {
     background-color: var(--white);

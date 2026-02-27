@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Typography Lab Pro v2</title>
+
+  <link href="https://fonts.cdnfonts.com/css/le-jour" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/bruney" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/ss-bruney" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/playfair-display" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/cormorant-garamond" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/fraunces" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/bodoni-moda" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: "OT Neglige";
+      src: url("assets/fonts/OTNeglige-L.woff2") format("woff2");
+      font-weight: 500;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Bruney Local";
+      src: url("assets/fonts/Bruney.woff") format("woff");
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Le Jour Local";
+      src: url("assets/fonts/lejour.woff2") format("woff2");
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Higuen";
+      src: url("assets/fonts/Higuen.woff2") format("woff2");
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Milaness";
+      src: url("assets/fonts/Milaness.woff2") format("woff2");
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Eternal Spring";
+      src: url("assets/fonts/eternal.woff2") format("woff2");
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    :root {
+      --black: #0a0a0a;
+      --off-black: #2d2d2d;
+      --white: #f5f5f5;
+      --off-white: #ebe1d1;
+      --darkgreen: #314a51;
+      --mint: #56686a;
+      --burgundy: #6e3b49;
+      --mauve: #b5a19e;
+
+      --line: rgba(245,245,245,0.17);
+      --panel: rgba(245,245,245,0.035);
+      --radius: 18px;
+      --shadow: 0 16px 48px rgba(0, 0, 0, 0.22);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--black);
+      color: var(--white);
+      font-family: "Work Sans", "Avenir Next", system-ui, sans-serif;
+    }
+
+    body {
+      background:
+        radial-gradient(85% 70% at 85% -12%, rgba(110,59,73,.28), transparent 60%),
+        radial-gradient(90% 75% at -10% 8%, rgba(49,74,81,.28), transparent 62%),
+        var(--black);
+      min-height: 100svh;
+      overflow-x: hidden;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(49, 74, 81, 0.93);
+      border-bottom: 1px solid rgba(235, 225, 209, 0.32);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-bar {
+      max-width: 88vw;
+      margin: 0 auto;
+      min-height: 58px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-family: "Tenor Sans", "Avenir Next", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: .72rem;
+      color: var(--off-white);
+      opacity: .92;
+    }
+
+    .nav {
+      display: flex;
+      gap: clamp(.7rem, 2vw, 1.6rem);
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-link {
+      font-family: "Tenor Sans", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: .63rem;
+      color: var(--white);
+      opacity: .84;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -3px;
+      width: 0;
+      height: 1px;
+      transform: translateX(-50%);
+      background: var(--mint);
+      transition: width 220ms ease;
+    }
+
+    .nav-link:hover::after { width: 100%; }
+
+    .page {
+      width: min(1450px, 92vw);
+      margin: clamp(14px, 2vw, 24px) auto 70px;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .guide {
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .guide h1 {
+      margin: 0;
+      font-family: "Tenor Sans", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      color: var(--mauve);
+      font-size: .9rem;
+      font-weight: 400;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .step {
+      border: 1px dashed rgba(181,161,158,.35);
+      border-radius: 12px;
+      padding: 10px;
+      font-size: .8rem;
+      color: #e2d8ca;
+      line-height: 1.45;
+      background: rgba(0,0,0,.15);
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--off-white);
+      font-family: "Outfit", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: .7rem;
+    }
+
+    .controls {
+      position: sticky;
+      top: 74px;
+      max-height: calc(100svh - 92px);
+      overflow: auto;
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(0,0,0,.18);
+      padding: 8px 10px;
+    }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      font-family: "Outfit", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .74rem;
+      color: var(--mauve);
+      padding: 5px 0;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    .inside {
+      padding-top: 8px;
+      display: grid;
+      gap: 9px;
+    }
+
+    label {
+      display: grid;
+      gap: 5px;
+      font-size: .8rem;
+      color: #e8ddcf;
+      line-height: 1.4;
+    }
+
+    input[type="text"],
+    select,
+    textarea,
+    input[type="range"] {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #101010;
+      color: var(--white);
+      padding: 8px 10px;
+      font: inherit;
+    }
+
+    textarea { resize: vertical; min-height: 74px; }
+
+    .val {
+      color: var(--mauve);
+      font-family: "Outfit", sans-serif;
+      letter-spacing: .08em;
+      font-size: .72rem;
+    }
+
+    .checkline {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .8rem;
+      color: #e8ddcf;
+    }
+
+    .checkline input { accent-color: var(--burgundy); }
+
+    .btn-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .btn-row-3 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: linear-gradient(145deg, rgba(110,59,73,.22), rgba(49,74,81,.2));
+      color: var(--off-white);
+      padding: 10px;
+      cursor: pointer;
+      font: 500 .78rem/1 "Outfit", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      transition: transform .2s ease, border-color .2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); border-color: rgba(245,245,245,.35); }
+
+    .workspace {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .hero {
+      padding: clamp(22px, 4vw, 54px);
+      overflow: hidden;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(118deg, rgba(49,74,81,.25), transparent 48%),
+        linear-gradient(300deg, rgba(110,59,73,.22), transparent 38%);
+      z-index: -1;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Outfit", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font-size: .67rem;
+      color: var(--mauve);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .sample-h1,
+    .sample-h2,
+    .sample-sub,
+    .sample-body {
+      margin: 0;
+      text-wrap: balance;
+      transition: 180ms ease;
+      transition-property: letter-spacing, line-height, font-size, font-weight;
+    }
+
+    .sample-h1 {
+      font-size: clamp(2.6rem, 8.8vw, 8.4rem);
+      line-height: .9;
+      margin-bottom: 10px;
+    }
+
+    .sample-h2 {
+      font-size: clamp(1.5rem, 3.4vw, 3.1rem);
+      line-height: 1.02;
+      margin-bottom: 12px;
+    }
+
+    .sample-sub {
+      font-size: clamp(.96rem, 1.45vw, 1.28rem);
+      color: #e7dbcc;
+      margin-bottom: 14px;
+      max-width: 70ch;
+    }
+
+    .sample-body {
+      font-size: 1.01rem;
+      line-height: 1.72;
+      color: #d9cdbc;
+      max-width: 72ch;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0,1fr));
+      gap: 8px;
+      padding: 12px;
+    }
+
+    .meta-card {
+      border: 1px dashed var(--line);
+      border-radius: 10px;
+      padding: 9px;
+      font-size: .78rem;
+      color: #ddcfbe;
+      line-height: 1.4;
+    }
+
+    .meta-card strong {
+      display: block;
+      margin-bottom: 2px;
+      font-family: "Outfit", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: .63rem;
+      color: var(--mauve);
+    }
+
+    .split {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1.1fr .9fr;
+    }
+
+    .section {
+      padding: 14px;
+    }
+
+    .section h2 {
+      margin: 0 0 10px;
+      font-family: "Tenor Sans", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: .75rem;
+      font-weight: 400;
+      color: var(--mauve);
+    }
+
+    .preset-grid,
+    .download-grid {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+
+    .preset {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(0,0,0,.16);
+      color: var(--white);
+      text-align: left;
+      padding: 10px;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .preset b {
+      display: block;
+      font-family: "Outfit", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: .68rem;
+      margin-bottom: 4px;
+      color: var(--off-white);
+    }
+
+    .mini {
+      font-size: .74rem;
+      line-height: 1.45;
+      color: #ddcfbe;
+    }
+
+    pre {
+      margin: 0;
+      background: #0f0f0f;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      overflow: auto;
+      font: 500 .79rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+      color: #e8dccb;
+      min-height: 100px;
+    }
+
+    .download {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(0,0,0,.16);
+      padding: 9px;
+      display: grid;
+      gap: 5px;
+    }
+
+    .download a {
+      color: #f2e5d4;
+      text-decoration: none;
+      width: fit-content;
+      border-bottom: 1px dotted rgba(242,229,212,.42);
+    }
+
+    .cdn-ok,
+    .cdn-no {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 4px;
+      line-height: 1.45;
+      font-size: .82rem;
+    }
+
+    .cdn-ok { color: #d9ccb9; }
+    .cdn-no { color: #c6b6a2; opacity: .85; }
+
+    .tips {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 6px;
+      color: #dfd2c1;
+      line-height: 1.55;
+      font-size: .84rem;
+    }
+
+    .site-footer {
+      position: relative;
+      margin-top: 32px;
+      background: var(--darkgreen);
+      border-top: 1px solid rgba(245,245,245,.15);
+      color: var(--white);
+      text-align: center;
+      padding: 40px 16px 26px;
+    }
+
+    .site-footer::before {
+      content: "";
+      position: absolute;
+      top: -55px;
+      left: 0;
+      width: 100%;
+      height: 56px;
+      background: var(--darkgreen);
+      -webkit-mask-image: radial-gradient(100% 72px at 50% 72px, transparent 69px, #000 70px);
+      mask-image: radial-gradient(100% 72px at 50% 72px, transparent 69px, #000 70px);
+    }
+
+    .footer-copy {
+      margin: 0;
+      font-size: .78rem;
+      letter-spacing: .05em;
+      color: rgba(245,245,245,.88);
+    }
+
+    .anim-rise { animation: rise .82s cubic-bezier(.2,.7,.1,1) both; }
+
+    .anim-mask {
+      display: inline-block;
+      overflow: hidden;
+    }
+
+    .anim-mask > span {
+      display: inline-block;
+      transform: translateY(108%);
+      animation: maskIn .9s cubic-bezier(.2,.7,.1,1) forwards;
+    }
+
+    .anim-blur { animation: blurIn .72s ease both; }
+
+    .anim-char span {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: charIn .52s cubic-bezier(.2,.7,.1,1) forwards;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(42px) skewY(2deg); }
+      to { opacity: 1; transform: translateY(0) skewY(0); }
+    }
+
+    @keyframes maskIn { to { transform: translateY(0); } }
+
+    @keyframes blurIn {
+      from { opacity: 0; filter: blur(8px); transform: translateY(20px) scale(.987); }
+      to { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
+    }
+
+    @keyframes charIn { to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 1120px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .controls {
+        position: static;
+        max-height: none;
+      }
+
+      .meta,
+      .split,
+      .steps,
+      .preset-grid,
+      .download-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-bar { min-height: 52px; }
+    }
+  </style>
+    <link rel="stylesheet" href="assets/css/typography-global.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-bar">
+      <div class="brand">Khadija Typography Lab</div>
+      <nav class="nav" aria-label="Lab Navigation">
+        <a class="nav-link" href="#guide">Guide</a>
+        <a class="nav-link" href="#preview">Preview</a>
+        <a class="nav-link" href="#presets">Presets</a>
+        <a class="nav-link" href="#exports">Export</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <aside class="panel controls" id="guide">
+      <div class="guide panel" style="box-shadow:none;background:rgba(0,0,0,.16)">
+        <h1>Typography Lab Pro v2</h1>
+        <div class="steps">
+          <div class="step"><strong>Step 1</strong>Preset klicken oder eigene Font-Kombi oben auswählen.</div>
+          <div class="step"><strong>Step 2</strong>Spacing, Weight, Ligaturen und Animation fein justieren.</div>
+          <div class="step"><strong>Step 3</strong>JSON exportieren oder Apply-Snippet direkt kopieren.</div>
+        </div>
+      </div>
+
+      <details open>
+        <summary>Text</summary>
+        <div class="inside">
+          <label>H1
+            <textarea id="textH1">Psychological Depth Meets Creative Precision</textarea>
+          </label>
+          <label>H2
+            <textarea id="textH2">Narrative design that feels editorial and alive</textarea>
+          </label>
+          <label>Subtitle
+            <input id="textSub" type="text" value="Strategie, Storytelling und visuelle Strenge in einem ruhigen, markanten Stil." />
+          </label>
+          <label>Body
+            <textarea id="textBody">Ich verbinde visuelle Ästhetik mit psychologischem Blick für Details. Dadurch entstehen Seiten, die ein Gefühl transportieren und in Erinnerung bleiben.</textarea>
+          </label>
+        </div>
+      </details>
+
+      <details open>
+        <summary>Fonts</summary>
+        <div class="inside">
+          <label>H1 Font
+            <select id="fontH1"></select>
+          </label>
+          <label>H2 Font
+            <select id="fontH2"></select>
+          </label>
+          <label>Subtitle Font
+            <select id="fontSub"></select>
+          </label>
+          <label>Body Font
+            <select id="fontBody"></select>
+          </label>
+        </div>
+      </details>
+
+      <details open>
+        <summary>Spacing and Weight</summary>
+        <div class="inside">
+          <label>H1 Letter-spacing <span class="val" id="vSpaceH1">0.010em</span>
+            <input id="spaceH1" type="range" min="-0.08" max="0.2" step="0.005" value="0.01" />
+          </label>
+          <label>H2 Letter-spacing <span class="val" id="vSpaceH2">0.005em</span>
+            <input id="spaceH2" type="range" min="-0.08" max="0.2" step="0.005" value="0.005" />
+          </label>
+          <label>H1 Line-height <span class="val" id="vLineH1">0.90</span>
+            <input id="lineH1" type="range" min="0.75" max="1.35" step="0.01" value="0.90" />
+          </label>
+          <label>H2 Line-height <span class="val" id="vLineH2">1.02</span>
+            <input id="lineH2" type="range" min="0.8" max="1.45" step="0.01" value="1.02" />
+          </label>
+
+          <label>H1 Weight <span class="val" id="vWeightH1">500</span>
+            <input id="weightH1" type="range" min="300" max="800" step="10" value="500" />
+          </label>
+          <label>H2 Weight <span class="val" id="vWeightH2">500</span>
+            <input id="weightH2" type="range" min="300" max="800" step="10" value="500" />
+          </label>
+          <label>Subtitle Weight <span class="val" id="vWeightSub">450</span>
+            <input id="weightSub" type="range" min="300" max="700" step="10" value="450" />
+          </label>
+          <label>Body Weight <span class="val" id="vWeightBody">400</span>
+            <input id="weightBody" type="range" min="300" max="700" step="10" value="400" />
+          </label>
+
+          <label>H1 Size (rem) <span class="val" id="vSizeH1">6.8</span>
+            <input id="sizeH1" type="range" min="3" max="11" step="0.1" value="6.8" />
+          </label>
+          <label>H2 Size (rem) <span class="val" id="vSizeH2">2.8</span>
+            <input id="sizeH2" type="range" min="1.4" max="5.2" step="0.1" value="2.8" />
+          </label>
+
+          <label class="checkline"><input id="fauxBoldOn" type="checkbox" /> Bruney Faux Bold (kann dicker wirken)</label>
+          <label>Faux Bold Stärke <span class="val" id="vFauxBold">0.45px</span>
+            <input id="fauxBoldStrength" type="range" min="0" max="1.2" step="0.05" value="0.45" />
+          </label>
+        </div>
+      </details>
+
+      <details open>
+        <summary>Ligatures and Animation</summary>
+        <div class="inside">
+          <label class="checkline"><input id="ligOn" type="checkbox" checked /> liga</label>
+          <label class="checkline"><input id="dligOn" type="checkbox" checked /> dlig</label>
+          <label class="checkline"><input id="ss01On" type="checkbox" checked /> ss01</label>
+          <label class="checkline"><input id="swshOn" type="checkbox" checked /> swsh</label>
+          <label>Animation
+            <select id="animPreset">
+              <option value="none">None</option>
+              <option value="rise" selected>Rise + Skew Reset</option>
+              <option value="mask">Masked Line Reveal</option>
+              <option value="blur">Blur to Sharp</option>
+              <option value="chars">Character Stagger</option>
+            </select>
+          </label>
+          <div class="btn-row">
+            <button id="replayAnim" class="btn" type="button">Replay</button>
+            <button id="copyAnimCode" class="btn" type="button">Code kopieren</button>
+          </div>
+          <p id="copyState" class="mini">Kopiert das aktuelle Animations-Snippet in die Zwischenablage.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Upload and Export</summary>
+        <div class="inside">
+          <label>Eigene Dateien (.ttf .woff .woff2)
+            <input id="userFontFiles" type="file" multiple accept=".ttf,.woff,.woff2,font/ttf,font/woff,font/woff2" />
+          </label>
+          <div class="btn-row">
+            <button id="exportPresetJson" class="btn" type="button">Preset JSON</button>
+            <button id="copyApplySnippet" class="btn" type="button">Apply Snippet</button>
+          </div>
+          <div class="btn-row-3">
+            <button id="applyIndexBtn" class="btn" type="button">Auf Index anwenden</button>
+            <button id="applyWorkMainBtn" class="btn" type="button">Auf work.html anwenden</button>
+            <button id="applyWorkAllBtn" class="btn" type="button">Auf alle work Projekte anwenden</button>
+          </div>
+          <p id="exportState" class="mini">Exportiert aktuelle Einstellungen als Datei oder kopiert den Einbau-Code.</p>
+        </div>
+      </details>
+    </aside>
+
+    <section class="workspace" id="preview">
+      <article class="panel hero" id="heroPreview">
+        <p class="eyebrow">Typography Specimen</p>
+        <h1 id="previewH1" class="sample-h1">Psychological Depth Meets Creative Precision</h1>
+        <h2 id="previewH2" class="sample-h2">Narrative design that feels editorial and alive</h2>
+        <p id="previewSub" class="sample-sub">Strategie, Storytelling und visuelle Strenge in einem ruhigen, markanten Stil.</p>
+        <p id="previewBody" class="sample-body">Ich verbinde visuelle Ästhetik mit psychologischem Blick für Details. Dadurch entstehen Seiten, die ein Gefühl transportieren und in Erinnerung bleiben.</p>
+      </article>
+
+      <article class="panel meta">
+        <div class="meta-card"><strong>H1</strong><span id="metaH1">OT Neglige</span></div>
+        <div class="meta-card"><strong>H2</strong><span id="metaH2">Bruney Local</span></div>
+        <div class="meta-card"><strong>Subtitle</strong><span id="metaSub">Le Jour</span></div>
+        <div class="meta-card"><strong>Body</strong><span id="metaBody">System Sans</span></div>
+        <div class="meta-card"><strong>Animation</strong><span id="metaAnim">Rise + Skew Reset</span></div>
+        <div class="meta-card"><strong>Source</strong><span id="metaSource">Local + CDN</span></div>
+      </article>
+
+      <section class="split">
+        <article class="panel section" id="presets">
+          <h2>Kombi Presets</h2>
+          <div class="preset-grid" id="comboList"></div>
+        </article>
+
+        <article class="panel section">
+          <h2>CDN Ready Fonts</h2>
+          <p class="mini">Funktioniert als `<link>` bei `fonts.cdnfonts.com`:</p>
+          <ul class="cdn-ok">
+            <li>Le Jour (`/css/le-jour`)</li>
+            <li>Bruney (`/css/bruney`)</li>
+            <li>SS Bruney (`/css/ss-bruney`)</li>
+            <li>Playfair Display, Cormorant Garamond, Fraunces, Bodoni Moda</li>
+          </ul>
+          <p class="mini">Nicht verlässlich auf CDNFonts (in Test 500):</p>
+          <ul class="cdn-no">
+            <li>Higuen</li>
+            <li>Milaness</li>
+            <li>Eternal Spring</li>
+            <li>OT Neglige</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="split" id="exports">
+        <article class="panel section">
+          <h2>Live CSS</h2>
+          <pre id="cssOutput"></pre>
+        </article>
+
+        <article class="panel section">
+          <h2>Apply Snippet</h2>
+          <pre id="applyOutput"></pre>
+        </article>
+      </section>
+
+      <section class="split">
+        <article class="panel section">
+          <h2>Downloads</h2>
+          <div id="downloadList" class="download-grid"></div>
+        </article>
+
+        <article class="panel section">
+          <h2>Tipps, Tricks and Hacks</h2>
+          <ol class="tips">
+            <li>Neglige braucht meist leicht positives Tracking (`0.005em` bis `0.03em`) statt negativem Spacing.</li>
+            <li>Bruney hat keinen echten dicken Schnitt. Nutze Faux-Bold nur moderat (`0.3px-0.6px`).</li>
+            <li>Wenn du Zahlen brauchst und eine Display-Schrift dabei schwächelt, gib Zahlen ein Sans-Fallback.</li>
+            <li>H1 kurz halten. Lange Headlines lieber auf H1 + H2 verteilen.</li>
+            <li>Auf Mobile H1 line-height leicht hochziehen, sonst kollidieren Ligaturen und Oberlängen.</li>
+          </ol>
+        </article>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-copy">Typography Lab Pro for khadijaokbi.ch - Nav, footer and palette aligned to your site system.</p>
+  </footer>
+
+  <script>
+    const fontOptions = [
+      { name: 'OT Neglige', stack: '"OT Neglige", serif', source: 'local' },
+      { name: 'Bruney Local', stack: '"Bruney Local", serif', source: 'local' },
+      { name: 'Le Jour Local', stack: '"Le Jour Local", serif', source: 'local' },
+      { name: 'Higuen', stack: '"Higuen", serif', source: 'local' },
+      { name: 'Milaness', stack: '"Milaness", serif', source: 'local' },
+      { name: 'Eternal Spring', stack: '"Eternal Spring", serif', source: 'local' },
+      { name: 'Le Jour CDN', stack: '"Le Jour", serif', source: 'cdn', embed: '<link href="https://fonts.cdnfonts.com/css/le-jour" rel="stylesheet">' },
+      { name: 'Bruney CDN', stack: '"Bruney", serif', source: 'cdn', embed: '<link href="https://fonts.cdnfonts.com/css/bruney" rel="stylesheet">' },
+      { name: 'SS Bruney CDN', stack: '"SS Bruney", serif', source: 'cdn', embed: '<link href="https://fonts.cdnfonts.com/css/ss-bruney" rel="stylesheet">' },
+      { name: 'Playfair Display CDN', stack: '"Playfair Display", serif', source: 'cdn', embed: '<link href="https://fonts.cdnfonts.com/css/playfair-display" rel="stylesheet">' },
+      { name: 'Cormorant Garamond CDN', stack: '"Cormorant Garamond", serif', source: 'cdn', embed: '<link href="https://fonts.cdnfonts.com/css/cormorant-garamond" rel="stylesheet">' },
+      { name: 'Fraunces CDN', stack: '"Fraunces", serif', source: 'cdn', embed: '<link href="https://fonts.cdnfonts.com/css/fraunces" rel="stylesheet">' },
+      { name: 'Bodoni Moda CDN', stack: '"Bodoni Moda", serif', source: 'cdn', embed: '<link href="https://fonts.cdnfonts.com/css/bodoni-moda" rel="stylesheet">' },
+      { name: 'System Serif', stack: '"Iowan Old Style", "Times New Roman", serif', source: 'system' },
+      { name: 'System Sans', stack: '"Avenir Next", "Segoe UI", system-ui, sans-serif', source: 'system' }
+    ];
+
+    const presets = [
+      { label: 'Editorial Sharp', hint: 'Neglige + Bruney + Le Jour + Sans', h1: 'OT Neglige', h2: 'Bruney Local', sub: 'Le Jour CDN', body: 'System Sans' },
+      { label: 'Romantic Editorial', hint: 'SS Bruney + Le Jour + Playfair', h1: 'SS Bruney CDN', h2: 'Le Jour CDN', sub: 'Playfair Display CDN', body: 'System Sans' },
+      { label: 'Swiss Contrast', hint: 'Neglige + Cormorant + Sans', h1: 'OT Neglige', h2: 'Cormorant Garamond CDN', sub: 'Le Jour Local', body: 'System Sans' },
+      { label: 'Modern Luxury', hint: 'Bodoni + Fraunces + Sans', h1: 'Bodoni Moda CDN', h2: 'Fraunces CDN', sub: 'Le Jour CDN', body: 'System Sans' },
+      { label: 'Local Art Direction', hint: 'Higuen + Bruney + Le Jour', h1: 'Higuen', h2: 'Bruney Local', sub: 'Le Jour Local', body: 'System Sans' },
+      { label: 'Soft Prestige', hint: 'Playfair + Bruney + Cormorant', h1: 'Playfair Display CDN', h2: 'Bruney CDN', sub: 'Cormorant Garamond CDN', body: 'System Sans' }
+    ];
+
+    const baseDownloads = [
+      { label: 'OTNeglige-L.woff2', href: 'assets/fonts/OTNeglige-L.woff2', type: 'woff2' },
+      { label: 'Bruney.woff', href: 'assets/fonts/Bruney.woff', type: 'woff' },
+      { label: 'lejour.woff2', href: 'assets/fonts/lejour.woff2', type: 'woff2' },
+      { label: 'Higuen.woff2', href: 'assets/fonts/Higuen.woff2', type: 'woff2' },
+      { label: 'Milaness.woff2', href: 'assets/fonts/Milaness.woff2', type: 'woff2' },
+      { label: 'eternal.woff2', href: 'assets/fonts/eternal.woff2', type: 'woff2' }
+    ];
+
+    const dom = {
+      textH1: document.getElementById('textH1'),
+      textH2: document.getElementById('textH2'),
+      textSub: document.getElementById('textSub'),
+      textBody: document.getElementById('textBody'),
+      fontH1: document.getElementById('fontH1'),
+      fontH2: document.getElementById('fontH2'),
+      fontSub: document.getElementById('fontSub'),
+      fontBody: document.getElementById('fontBody'),
+      spaceH1: document.getElementById('spaceH1'),
+      spaceH2: document.getElementById('spaceH2'),
+      lineH1: document.getElementById('lineH1'),
+      lineH2: document.getElementById('lineH2'),
+      weightH1: document.getElementById('weightH1'),
+      weightH2: document.getElementById('weightH2'),
+      weightSub: document.getElementById('weightSub'),
+      weightBody: document.getElementById('weightBody'),
+      sizeH1: document.getElementById('sizeH1'),
+      sizeH2: document.getElementById('sizeH2'),
+      vSpaceH1: document.getElementById('vSpaceH1'),
+      vSpaceH2: document.getElementById('vSpaceH2'),
+      vLineH1: document.getElementById('vLineH1'),
+      vLineH2: document.getElementById('vLineH2'),
+      vWeightH1: document.getElementById('vWeightH1'),
+      vWeightH2: document.getElementById('vWeightH2'),
+      vWeightSub: document.getElementById('vWeightSub'),
+      vWeightBody: document.getElementById('vWeightBody'),
+      vSizeH1: document.getElementById('vSizeH1'),
+      vSizeH2: document.getElementById('vSizeH2'),
+      fauxBoldOn: document.getElementById('fauxBoldOn'),
+      fauxBoldStrength: document.getElementById('fauxBoldStrength'),
+      vFauxBold: document.getElementById('vFauxBold'),
+      ligOn: document.getElementById('ligOn'),
+      dligOn: document.getElementById('dligOn'),
+      ss01On: document.getElementById('ss01On'),
+      swshOn: document.getElementById('swshOn'),
+      animPreset: document.getElementById('animPreset'),
+      replayAnim: document.getElementById('replayAnim'),
+      copyAnimCode: document.getElementById('copyAnimCode'),
+      copyState: document.getElementById('copyState'),
+      userFontFiles: document.getElementById('userFontFiles'),
+      exportPresetJson: document.getElementById('exportPresetJson'),
+      copyApplySnippet: document.getElementById('copyApplySnippet'),
+      applyIndexBtn: document.getElementById('applyIndexBtn'),
+      applyWorkMainBtn: document.getElementById('applyWorkMainBtn'),
+      applyWorkAllBtn: document.getElementById('applyWorkAllBtn'),
+      exportState: document.getElementById('exportState'),
+      previewH1: document.getElementById('previewH1'),
+      previewH2: document.getElementById('previewH2'),
+      previewSub: document.getElementById('previewSub'),
+      previewBody: document.getElementById('previewBody'),
+      metaH1: document.getElementById('metaH1'),
+      metaH2: document.getElementById('metaH2'),
+      metaSub: document.getElementById('metaSub'),
+      metaBody: document.getElementById('metaBody'),
+      metaAnim: document.getElementById('metaAnim'),
+      metaSource: document.getElementById('metaSource'),
+      cssOutput: document.getElementById('cssOutput'),
+      applyOutput: document.getElementById('applyOutput'),
+      downloadList: document.getElementById('downloadList'),
+      comboList: document.getElementById('comboList')
+    };
+
+    function findFont(name) {
+      return fontOptions.find(f => f.name === name);
+    }
+
+    function stackByName(name) {
+      return findFont(name)?.stack || 'serif';
+    }
+
+    function populateSelects() {
+      const options = fontOptions.map(f => `<option value="${f.name}">${f.name} (${f.source})</option>`).join('');
+      [dom.fontH1, dom.fontH2, dom.fontSub, dom.fontBody].forEach(sel => sel.innerHTML = options);
+      dom.fontH1.value = 'OT Neglige';
+      dom.fontH2.value = 'Bruney Local';
+      dom.fontSub.value = 'Le Jour CDN';
+      dom.fontBody.value = 'System Sans';
+    }
+
+    function renderPresets() {
+      dom.comboList.innerHTML = presets.map((preset, idx) => (
+        `<button class="preset" type="button" data-preset="${idx}"><b>${preset.label}</b><span class="mini">${preset.hint}</span></button>`
+      )).join('');
+
+      dom.comboList.querySelectorAll('[data-preset]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const p = presets[Number(btn.dataset.preset)];
+          dom.fontH1.value = p.h1;
+          dom.fontH2.value = p.h2;
+          dom.fontSub.value = p.sub;
+          dom.fontBody.value = p.body;
+          applyState();
+        });
+      });
+    }
+
+    function featureString() {
+      return [
+        `"liga" ${dom.ligOn.checked ? 1 : 0}`,
+        `"dlig" ${dom.dligOn.checked ? 1 : 0}`,
+        `"ss01" ${dom.ss01On.checked ? 1 : 0}`,
+        `"swsh" ${dom.swshOn.checked ? 1 : 0}`
+      ].join(', ');
+    }
+
+    function isBruneySelected() {
+      return [dom.fontH1.value, dom.fontH2.value].some(v => v.toLowerCase().includes('bruney'));
+    }
+
+    function fauxBoldShadow() {
+      const px = Number(dom.fauxBoldStrength.value).toFixed(2);
+      if (!dom.fauxBoldOn.checked) return 'none';
+      if (!isBruneySelected()) return 'none';
+      return `${px}px 0 currentColor, -${px}px 0 currentColor`;
+    }
+
+    function animationSnippet(mode) {
+      const map = {
+        none: '/* no animation */',
+        rise: `.title { animation: rise .82s cubic-bezier(.2,.7,.1,1) both; }\n@keyframes rise {\n  from { opacity:0; transform:translateY(42px) skewY(2deg); }\n  to { opacity:1; transform:translateY(0) skewY(0); }\n}`,
+        mask: `.title { overflow:hidden; display:inline-block; }\n.title > span {\n  display:inline-block; transform:translateY(108%);\n  animation: maskIn .9s cubic-bezier(.2,.7,.1,1) forwards;\n}\n@keyframes maskIn { to { transform:translateY(0);} }`,
+        blur: `.title { animation: blurIn .72s ease both; }\n@keyframes blurIn {\n  from { opacity:0; filter:blur(8px); transform:translateY(20px) scale(.987); }\n  to { opacity:1; filter:blur(0); transform:translateY(0) scale(1); }\n}`,
+        chars: `.title span { display:inline-block; opacity:0; transform:translateY(16px); animation:charIn .52s cubic-bezier(.2,.7,.1,1) forwards; }\n@keyframes charIn { to { opacity:1; transform:translateY(0);} }`
+      };
+      return map[mode] || map.none;
+    }
+
+    function applyAnimation(el, mode, text) {
+      el.classList.remove('anim-rise', 'anim-mask', 'anim-blur', 'anim-char');
+      el.innerHTML = '';
+
+      if (mode === 'mask') {
+        el.classList.add('anim-mask');
+        const span = document.createElement('span');
+        span.textContent = text;
+        el.appendChild(span);
+        return;
+      }
+
+      if (mode === 'chars') {
+        el.classList.add('anim-char');
+        [...text].forEach((ch, i) => {
+          const span = document.createElement('span');
+          span.textContent = ch === ' ' ? '\u00A0' : ch;
+          span.style.animationDelay = `${i * 28}ms`;
+          el.appendChild(span);
+        });
+        return;
+      }
+
+      el.textContent = text;
+      if (mode === 'rise') el.classList.add('anim-rise');
+      if (mode === 'blur') el.classList.add('anim-blur');
+    }
+
+    function buildCdnHeadLinks() {
+      const names = [dom.fontH1.value, dom.fontH2.value, dom.fontSub.value, dom.fontBody.value];
+      const links = [];
+      for (const name of names) {
+        const f = findFont(name);
+        if (f?.source === 'cdn' && f.embed && !links.includes(f.embed)) links.push(f.embed);
+      }
+      return links.join('\n');
+    }
+
+    function currentCss() {
+      const features = featureString();
+      const shadow = fauxBoldShadow();
+      return `.sample-h1 {\n  font-family: ${stackByName(dom.fontH1.value)};\n  font-weight: ${dom.weightH1.value};\n  font-size: ${Number(dom.sizeH1.value).toFixed(1)}rem;\n  line-height: ${Number(dom.lineH1.value).toFixed(2)};\n  letter-spacing: ${Number(dom.spaceH1.value).toFixed(3)}em;\n  font-feature-settings: ${features};\n  text-shadow: ${shadow};\n}\n\n.sample-h2 {\n  font-family: ${stackByName(dom.fontH2.value)};\n  font-weight: ${dom.weightH2.value};\n  font-size: ${Number(dom.sizeH2.value).toFixed(1)}rem;\n  line-height: ${Number(dom.lineH2.value).toFixed(2)};\n  letter-spacing: ${Number(dom.spaceH2.value).toFixed(3)}em;\n  font-feature-settings: ${features};\n  text-shadow: ${shadow};\n}\n\n.sample-sub {\n  font-family: ${stackByName(dom.fontSub.value)};\n  font-weight: ${dom.weightSub.value};\n  font-feature-settings: ${features};\n}\n\n.sample-body {\n  font-family: ${stackByName(dom.fontBody.value)};\n  font-weight: ${dom.weightBody.value};\n}\n\n${animationSnippet(dom.animPreset.value)}`;
+    }
+
+    function buildApplySnippet() {
+      const cdnLinks = buildCdnHeadLinks();
+      const css = currentCss();
+      return `${cdnLinks ? `<!-- head -->\n${cdnLinks}\n\n` : ''}<style>\n${css}\n</style>`;
+    }
+
+    function buildTargetApplySnippet(target) {
+      const baseCss = currentCss();
+      const indexCss = `${baseCss}\n\n/* index target */\n.index-hero h1, .hero-top, .hero-bottom { font-family: ${stackByName(dom.fontH1.value)}; }\n.index-hero h2, .hero-subline { font-family: ${stackByName(dom.fontH2.value)}; }`;
+      const workMainCss = `${baseCss}\n\n/* work.html target */\n.work-hero h1, .work-title { font-family: ${stackByName(dom.fontH1.value)}; }\n.work-hero h2, .work-subtitle, .project-title { font-family: ${stackByName(dom.fontH2.value)}; }`;
+      const workAllCss = `${baseCss}\n\n/* work/*.html target (shared classes) */\n.work-hero h1, .project-hero h1, .page-hero h1, .section h1 { font-family: ${stackByName(dom.fontH1.value)}; }\n.work-hero h2, .project-hero h2, .page-hero h2, .section h2, .project-title { font-family: ${stackByName(dom.fontH2.value)}; }\n.project-meta, .project-subtitle { font-family: ${stackByName(dom.fontSub.value)}; }\n.project-copy, .project-description, p { font-family: ${stackByName(dom.fontBody.value)}; }`;
+
+      const targetMap = {
+        index: { path: 'index.html', css: indexCss },
+        workMain: { path: 'work.html', css: workMainCss },
+        workAll: { path: 'work/*.html', css: workAllCss }
+      };
+
+      const picked = targetMap[target] || targetMap.workMain;
+      return `/* Paste in assets/css/main.css or a page-specific stylesheet */\n/* Target: ${picked.path} */\n${picked.css}`;
+    }
+
+    function renderDownloads(extra = []) {
+      const cdnLinks = [
+        { label: 'CDN Le Jour CSS', href: 'https://fonts.cdnfonts.com/css/le-jour', type: 'link' },
+        { label: 'CDN Bruney CSS', href: 'https://fonts.cdnfonts.com/css/bruney', type: 'link' },
+        { label: 'CDN SS Bruney CSS', href: 'https://fonts.cdnfonts.com/css/ss-bruney', type: 'link' }
+      ];
+
+      const all = [
+        ...baseDownloads.map(x => ({ ...x, uploaded: false })),
+        ...cdnLinks.map(x => ({ ...x, uploaded: false })),
+        ...extra.map(x => ({ ...x, uploaded: true }))
+      ];
+
+      dom.downloadList.innerHTML = all.map(item => {
+        const isFile = item.type !== 'link';
+        const action = isFile
+          ? `<a href="${item.href}" download="${item.label}">Download</a>`
+          : `<a href="${item.href}" target="_blank" rel="noopener">Open</a>`;
+        return `<div class="download"><strong>${item.label}</strong>${action}<span class="mini">${item.uploaded ? 'uploaded' : item.type}</span></div>`;
+      }).join('');
+    }
+
+    function collectState() {
+      return {
+        text: {
+          h1: dom.textH1.value,
+          h2: dom.textH2.value,
+          subtitle: dom.textSub.value,
+          body: dom.textBody.value
+        },
+        fonts: {
+          h1: dom.fontH1.value,
+          h2: dom.fontH2.value,
+          subtitle: dom.fontSub.value,
+          body: dom.fontBody.value
+        },
+        spacing: {
+          h1LetterSpacingEm: Number(dom.spaceH1.value),
+          h2LetterSpacingEm: Number(dom.spaceH2.value),
+          h1LineHeight: Number(dom.lineH1.value),
+          h2LineHeight: Number(dom.lineH2.value)
+        },
+        size: {
+          h1Rem: Number(dom.sizeH1.value),
+          h2Rem: Number(dom.sizeH2.value)
+        },
+        weight: {
+          h1: Number(dom.weightH1.value),
+          h2: Number(dom.weightH2.value),
+          subtitle: Number(dom.weightSub.value),
+          body: Number(dom.weightBody.value)
+        },
+        opentype: {
+          liga: dom.ligOn.checked,
+          dlig: dom.dligOn.checked,
+          ss01: dom.ss01On.checked,
+          swsh: dom.swshOn.checked
+        },
+        bruneyFauxBold: {
+          enabled: dom.fauxBoldOn.checked,
+          strengthPx: Number(dom.fauxBoldStrength.value)
+        },
+        animation: dom.animPreset.value,
+        generatedAt: new Date().toISOString()
+      };
+    }
+
+    function applyState() {
+      dom.previewSub.textContent = dom.textSub.value;
+      dom.previewBody.textContent = dom.textBody.value;
+
+      dom.previewH1.style.fontFamily = stackByName(dom.fontH1.value);
+      dom.previewH2.style.fontFamily = stackByName(dom.fontH2.value);
+      dom.previewSub.style.fontFamily = stackByName(dom.fontSub.value);
+      dom.previewBody.style.fontFamily = stackByName(dom.fontBody.value);
+
+      dom.previewH1.style.fontWeight = dom.weightH1.value;
+      dom.previewH2.style.fontWeight = dom.weightH2.value;
+      dom.previewSub.style.fontWeight = dom.weightSub.value;
+      dom.previewBody.style.fontWeight = dom.weightBody.value;
+
+      dom.previewH1.style.letterSpacing = `${Number(dom.spaceH1.value).toFixed(3)}em`;
+      dom.previewH2.style.letterSpacing = `${Number(dom.spaceH2.value).toFixed(3)}em`;
+      dom.previewH1.style.lineHeight = Number(dom.lineH1.value).toFixed(2);
+      dom.previewH2.style.lineHeight = Number(dom.lineH2.value).toFixed(2);
+
+      dom.previewH1.style.fontSize = `${Number(dom.sizeH1.value).toFixed(1)}rem`;
+      dom.previewH2.style.fontSize = `${Number(dom.sizeH2.value).toFixed(1)}rem`;
+
+      const features = featureString();
+      dom.previewH1.style.fontFeatureSettings = features;
+      dom.previewH2.style.fontFeatureSettings = features;
+      dom.previewSub.style.fontFeatureSettings = features;
+
+      const shadow = fauxBoldShadow();
+      dom.previewH1.style.textShadow = shadow;
+      dom.previewH2.style.textShadow = shadow;
+
+      dom.vSpaceH1.textContent = `${Number(dom.spaceH1.value).toFixed(3)}em`;
+      dom.vSpaceH2.textContent = `${Number(dom.spaceH2.value).toFixed(3)}em`;
+      dom.vLineH1.textContent = Number(dom.lineH1.value).toFixed(2);
+      dom.vLineH2.textContent = Number(dom.lineH2.value).toFixed(2);
+      dom.vWeightH1.textContent = dom.weightH1.value;
+      dom.vWeightH2.textContent = dom.weightH2.value;
+      dom.vWeightSub.textContent = dom.weightSub.value;
+      dom.vWeightBody.textContent = dom.weightBody.value;
+      dom.vSizeH1.textContent = Number(dom.sizeH1.value).toFixed(1);
+      dom.vSizeH2.textContent = Number(dom.sizeH2.value).toFixed(1);
+      dom.vFauxBold.textContent = `${Number(dom.fauxBoldStrength.value).toFixed(2)}px`;
+
+      dom.metaH1.textContent = dom.fontH1.value;
+      dom.metaH2.textContent = dom.fontH2.value;
+      dom.metaSub.textContent = dom.fontSub.value;
+      dom.metaBody.textContent = dom.fontBody.value;
+      dom.metaAnim.textContent = dom.animPreset.options[dom.animPreset.selectedIndex].textContent;
+
+      const selected = [findFont(dom.fontH1.value), findFont(dom.fontH2.value), findFont(dom.fontSub.value), findFont(dom.fontBody.value)]
+        .map(x => x?.source || 'system');
+      dom.metaSource.textContent = Array.from(new Set(selected)).join(' + ');
+
+      dom.cssOutput.textContent = currentCss();
+      dom.applyOutput.textContent = buildApplySnippet();
+
+      replayAnimation();
+    }
+
+    function replayAnimation() {
+      const mode = dom.animPreset.value;
+      const h1 = dom.textH1.value;
+      const h2 = dom.textH2.value;
+      requestAnimationFrame(() => {
+        applyAnimation(dom.previewH1, mode, h1);
+        applyAnimation(dom.previewH2, mode, h2);
+      });
+    }
+
+    async function copyAnimationCode() {
+      try {
+        await navigator.clipboard.writeText(animationSnippet(dom.animPreset.value));
+        dom.copyState.textContent = 'Animation-Code wurde kopiert.';
+      } catch {
+        dom.copyState.textContent = 'Clipboard blockiert. Nutze den Live CSS Block.';
+      }
+    }
+
+    async function copyApplySnippet() {
+      try {
+        await navigator.clipboard.writeText(buildApplySnippet());
+        dom.exportState.textContent = 'Apply-Snippet kopiert. Du kannst es direkt in eine Seite einsetzen.';
+      } catch {
+        dom.exportState.textContent = 'Kopieren fehlgeschlagen. Copy aus dem Apply-Snippet Block.';
+      }
+    }
+
+    async function copyTargetSnippet(target) {
+      try {
+        await navigator.clipboard.writeText(buildTargetApplySnippet(target));
+        if (target === 'index') dom.exportState.textContent = 'Index-Snippet kopiert.';
+        if (target === 'workMain') dom.exportState.textContent = 'work.html Snippet kopiert.';
+        if (target === 'workAll') dom.exportState.textContent = 'work/*.html Snippet kopiert.';
+      } catch {
+        dom.exportState.textContent = 'Kopieren fehlgeschlagen. Bitte aus dem Apply-Snippet Block kopieren.';
+      }
+    }
+
+    function exportPresetJson() {
+      const payload = JSON.stringify(collectState(), null, 2);
+      const blob = new Blob([payload], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `typography-preset-${Date.now()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      dom.exportState.textContent = 'Preset JSON exportiert.';
+    }
+
+    function handleUserFonts(files) {
+      const accepted = [...files].filter(file => /\.(ttf|woff2?|TTF|WOFF2?)$/.test(file.name));
+      const mapped = accepted.map(file => ({
+        label: file.name,
+        href: URL.createObjectURL(file),
+        type: file.name.split('.').pop().toLowerCase()
+      }));
+      renderDownloads(mapped);
+    }
+
+    populateSelects();
+    renderPresets();
+    renderDownloads();
+
+    const controls = [
+      dom.textH1, dom.textH2, dom.textSub, dom.textBody,
+      dom.fontH1, dom.fontH2, dom.fontSub, dom.fontBody,
+      dom.spaceH1, dom.spaceH2, dom.lineH1, dom.lineH2,
+      dom.weightH1, dom.weightH2, dom.weightSub, dom.weightBody,
+      dom.sizeH1, dom.sizeH2,
+      dom.fauxBoldOn, dom.fauxBoldStrength,
+      dom.ligOn, dom.dligOn, dom.ss01On, dom.swshOn,
+      dom.animPreset
+    ];
+
+    controls.forEach(el => el.addEventListener('input', applyState));
+
+    dom.replayAnim.addEventListener('click', replayAnimation);
+    dom.copyAnimCode.addEventListener('click', copyAnimationCode);
+    dom.copyApplySnippet.addEventListener('click', copyApplySnippet);
+    dom.applyIndexBtn.addEventListener('click', () => copyTargetSnippet('index'));
+    dom.applyWorkMainBtn.addEventListener('click', () => copyTargetSnippet('workMain'));
+    dom.applyWorkAllBtn.addEventListener('click', () => copyTargetSnippet('workAll'));
+    dom.exportPresetJson.addEventListener('click', exportPresetJson);
+    dom.userFontFiles.addEventListener('change', e => handleUserFonts(e.target.files));
+
+    applyState();
+  </script>
+</body>
+</html>

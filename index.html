@@ -40,10 +40,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <!-- GSAP mit allen Plugins -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollSmoother.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollSmoother.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js"></script>
     
     <!-- Additional Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
@@ -64,7 +64,8 @@
       gtag('js', new Date());
       gtag('config', 'G-B415ZJNKNW');
     </script>
-  </head>
+      <link rel="stylesheet" href="assets/css/typography-global.css">
+</head>
   <body>
     <div id="smooth-wrapper">
       <div id="smooth-content">
@@ -355,7 +356,7 @@
                   <div class="blog-thumb" style="background-image:url('assets/images/photography/gallery_corona_1.jpg')" loading="lazy" aria-hidden="true"></div>
                   <div class="blog-content">
                     <h3 class="blog-title">Ein Bild sagt mehr als <em>1000 Worte</em></h3>
-                    <p class="blog-teaser">Konstanz während des Corona-Lockdown</p>
+                    <p class="blog-teaser">Konstanz während des Corona-Lockdowns</p>
                     <a href="blog/corona.html" class="read-more" data-target="post-3">Weiterlesen</a>
                   </div>
                 </article>
@@ -363,7 +364,7 @@
                   <div class="blog-thumb" style="background-image:url('assets/images/blog/threads.webp')" loading="lazy" aria-hidden="true"></div>
                   <div class="blog-content">
                     <h3 class="blog-title">Trending on <em>Threads</em></h3>
-                    <p class="blog-teaser">Community building on Threads</p>
+                    <p class="blog-teaser">Community-Aufbau auf Threads</p>
                     <a href="blog/threads.html" class="read-more" data-target="post-3">Weiterlesen</a>
                   </div>
                 </article>
@@ -416,8 +417,8 @@
         </footer>
       </div>
     </div>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/animations.js"></script>
+    <script defer src="assets/js/main.js"></script>
+    <script defer src="assets/js/animations.js"></script>
     <script>
       // Nav solid erst NACH der Hero-Section (80vh)
       (function() {
@@ -431,5 +432,6 @@
         onScroll();
       })();
     </script>
-  </body>
+  <script defer src="assets/js/typography-reveal.js"></script>
+</body>
 </html>

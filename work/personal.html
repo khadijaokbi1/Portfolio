@@ -8,17 +8,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Tenor+Sans&family=Outfit:wght@200;300;400&family=Work+Sans:ital,wght@0,200;0,300;1,300&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <link rel="stylesheet" href="../assets/css/footer-nav-waves.css">
 <style>
 /* ══════════════════════════════════════════
    ROOT
 ══════════════════════════════════════════ */
 :root{
-  --burgundy:#6E3B49;--dark:#314A51;--mauve:#B5A19E;
-  --cream:#F7F3EE;--blush:#EFE0D8;--rose:#C9877B;--warm:#FBF9F7;--ink:#1C1714;
-  --f5:#F5F5F5;
+  --black:#0A0A0A;--off-black:#2D2D2D;--white:#F5F5F5;--off-white:#EBE1D1;
+  --dark:#314A51;--mint:#56686A;--burgundy:#6E3B49;--mauve:#B5A19E;
+  --cream:var(--off-white);--blush:var(--off-white);--rose:var(--burgundy);--warm:var(--off-white);--ink:var(--off-black);
+  --f5:var(--white);
   --font-body:'Work Sans',sans-serif;
   --font-display:'Cormorant Garamond',serif;
   --font-alt:'Playfair Display',serif;
@@ -646,6 +647,7 @@ body.ch-view #cur-label{opacity:1}
 ══════════════════════════════════════════ */
 .site-footer{background:#314A51 !important}
 </style>
+    <link rel="stylesheet" href="../assets/css/typography-global.css">
 </head>
 <body>
 <div id="cur-dot"></div>
@@ -751,13 +753,13 @@ body.ch-view #cur-label{opacity:1}
             <div class="phone-avatar">K</div>
             <div class="phone-username-row">
               <div class="phone-username">khadijaokbi</div>
-              <div class="phone-story-tag" id="sc-story-tag">Adventure Stories</div>
+              <div class="phone-story-tag" id="sc-story-tag">Travel Stories</div>
             </div>
           </div>
           <div class="phone-video-footer">
             <div class="phone-video-location">
               <span class="phone-video-loc-label">Ort</span>
-              <span class="phone-video-loc-name" id="sc-loc-name">Egypt</span>
+              <span class="phone-video-loc-name" id="sc-loc-name">Ägypten</span>
             </div>
             <div class="phone-video-icons">
               <svg class="phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l7.78 7.78 7.78-7.78a5.5 5.5 0 0 0 0-7.78z"/></svg>
@@ -987,7 +989,7 @@ body.ch-view #cur-label{opacity:1}
         <div class="b-url">khadijaokbi.ch &middot; personal</div>
       </div>
       <div class="browser-screen">
-        <div class="browser-placeholder" id="bPlaceholder">Portfolio UI</div>
+        <div class="browser-placeholder" id="bPlaceholder">Web Showcase</div>
         <video autoplay muted loop playsinline id="bVideo">
           <source src="../assets/images/personal/showcase_personal_web1.mp4" type="video/mp4">
         </video>
@@ -1151,7 +1153,7 @@ if(bVid) bVid.addEventListener('canplay',()=>{if(bPh) bPh.style.display='none';}
 
 /* ── Showcase Slider ── */
 const scVideos = [
-  {location:'Egypt',  category:'Abenteuer', program:'Final Cut Pro', year:'2023', tag:'Adventure Stories', bg:'01'},
+  {location:'Ägypten',  category:'Abenteuer', program:'Final Cut Pro', year:'2023', tag:'Travel Stories', bg:'01'},
   {location:'Dhermi', category:'Reise',     program:'CapCut',        year:'2024', tag:'Travel Stories',   bg:'02'},
   {location:'Paris',  category:'Kultur',    program:'iMovie',        year:'2022', tag:'Cultural Stories', bg:'03'},
 ];
@@ -1180,5 +1182,6 @@ document.querySelectorAll('.sc-dot').forEach(dot=>{
 document.getElementById('sc-total').textContent=scVideos.length;
 scUpdateUI();
 </script>
+<script defer src="../assets/js/typography-reveal.js"></script>
 </body>
 </html>

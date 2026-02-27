@@ -33,10 +33,11 @@
 
     --space-3: 1.5rem;
 
-    --font-body:     'Work Sans', sans-serif;
-    --font-display:  'Playfair Display', serif;
-    --font-subtitel: 'Outfit', sans-serif;
-    --font-titel:    'Tenor Sans', sans-serif;
+    /* Typography tokens moved to assets/css/typography-global.css */
+    /* --font-body:     'Work Sans', sans-serif; */
+    /* --font-display:  'Playfair Display', serif; */
+    /* --font-subtitel: 'Outfit', sans-serif; */
+    /* --font-titel:    'Tenor Sans', sans-serif; */
 
     /* ── Hero figure sizing ── */
     --hero-fig-top:          clamp(15%, 16.6vh, 20.2%);
@@ -59,48 +60,10 @@
     overflow-x: hidden;
   }
   
-  h1 {
-    font-family: var(--font-display);
-    font-size: clamp(var(--text-2xl), 5vw, 72px);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    color: var(--off-black);
-    text-transform: none;
-  }
-  
-  h2 {
-    font-family: var(--font-display);
-    font-size: clamp(var(--text-xl), 4vw, 44px);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    color: var(--off-black);
-    text-transform: none;
-  }
-  
-  h2 em { font-style: italic; }
-  
-  h3 {
-    font-family: var(--font-titel);
-    font-size: var(--text-lg);
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-  }
-  
-  h4 {
-    font-family: var(--font-subtitel);
-    font-size: 1.25rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  
-  p {
-    font-family: var(--font-body);
-    font-size: var(--text-base);
-    line-height: 1.7;
-    margin-bottom: var(--space-3);
-  }
+  /*
+    Base typography rules moved to assets/css/typography-global.css
+    (h1-h6, p, spacing, transforms, letterspacing)
+  */
   
   h1, h2, h3, .summary-title {
     hyphens: auto;
@@ -1256,4 +1219,3 @@
   /* ── Goodreads CTA left/right structure ── */
   .goodreads-cta-left { text-align: left; flex: 1; min-width: 0; }
   .goodreads-cta-right { flex-shrink: 0; }
-

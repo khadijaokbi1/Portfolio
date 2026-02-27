@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Typography Test - Neglige vs Bruney</title>
+  <style>
+    @font-face {
+      font-family: "OT Neglige";
+      src: url("assets/fonts/OTNeglige-L.woff2") format("woff2");
+      font-display: swap;
+      font-weight: 500;
+    }
+
+    @font-face {
+      font-family: "Bruney";
+      src: url("assets/fonts/Bruney.woff") format("woff");
+      font-display: swap;
+      font-weight: 400;
+    }
+
+    @font-face {
+      font-family: "Le Jour";
+      src: url("assets/fonts/lejour.woff2") format("woff2");
+      font-display: swap;
+      font-weight: 400;
+    }
+
+    @font-face {
+      font-family: "Work Sans";
+      src: local("Work Sans");
+    }
+
+    :root {
+      --black: #0A0A0A;
+      --off-black: #2D2D2D;
+      --white: #F5F5F5;
+      --off-white: #EBE1D1;
+      --darkgreen: #314A51;
+      --mint: #56686A;
+      --burgundy: #6E3B49;
+      --mauve: #B5A19E;
+      --card: rgba(255, 255, 255, 0.07);
+      --border: rgba(255, 255, 255, 0.16);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Work Sans", system-ui, sans-serif;
+      background: radial-gradient(circle at 20% 0%, #405d64 0%, #1d2e32 55%, #0d1214 100%);
+      color: var(--off-white);
+      line-height: 1.5;
+      padding: clamp(24px, 3vw, 48px);
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      gap: clamp(18px, 2vw, 28px);
+    }
+
+    .header {
+      background: var(--card);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(6px);
+      border-radius: 20px;
+      padding: clamp(20px, 2vw, 28px);
+    }
+
+    .header h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--mauve);
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: clamp(18px, 2vw, 26px);
+      overflow: hidden;
+      position: relative;
+      min-height: 250px;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(125deg, transparent 0%, rgba(255,255,255,.05) 36%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      font-size: .74rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--mauve);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+      opacity: .8;
+    }
+
+    .sample-h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      line-height: .95;
+      letter-spacing: .005em;
+    }
+
+    .sample-h2 {
+      margin: 14px 0 0;
+      font-size: clamp(1.35rem, 2.2vw, 2rem);
+      line-height: 1.08;
+    }
+
+    .sample-h3 {
+      margin: 18px 0 0;
+      font-family: "Le Jour", serif;
+      font-size: clamp(1rem, 1.2vw, 1.2rem);
+      font-weight: 400;
+      letter-spacing: .02em;
+      color: var(--mauve);
+    }
+
+    .neglige .sample-h1,
+    .neglige .sample-h2 { font-family: "OT Neglige", serif; }
+
+    .bruney .sample-h1,
+    .bruney .sample-h2 { font-family: "Bruney", serif; }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .test-row {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(255, 255, 255, .2);
+      display: grid;
+      gap: 8px;
+    }
+
+    .w400 { font-weight: 400; }
+    .w500 { font-weight: 500; }
+    .w700 { font-weight: 700; }
+
+    .lig-off { font-feature-settings: "liga" 0, "dlig" 0, "ss01" 0, "swsh" 0; }
+    .lig-on { font-feature-settings: "liga" 1, "dlig" 1, "ss01" 1, "swsh" 1; }
+
+    .anim-stage {
+      display: grid;
+      gap: 14px;
+      background: rgba(10, 10, 10, .28);
+      border: 1px solid rgba(255, 255, 255, .15);
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 8px;
+    }
+
+    .anim-title {
+      margin: 0;
+      font-family: "OT Neglige", serif;
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      line-height: .96;
+      color: var(--white);
+    }
+
+    .rv {
+      opacity: 0;
+      transform: translateY(44px) skewY(2deg);
+      transition: transform .9s cubic-bezier(.2,.7,.1,1), opacity .75s ease;
+      will-change: transform, opacity;
+    }
+
+    .rv.vis {
+      opacity: 1;
+      transform: translateY(0) skewY(0deg);
+    }
+
+    .mask {
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .mask .inner {
+      display: inline-block;
+      transform: translateY(115%);
+      transition: transform .9s cubic-bezier(.2,.7,.1,1);
+    }
+
+    .mask.vis .inner { transform: translateY(0%); }
+
+    .blur-up {
+      opacity: 0;
+      filter: blur(10px);
+      transform: translateY(22px) scale(.985);
+      transition: opacity .85s ease, transform .9s cubic-bezier(.2,.7,.1,1), filter .9s ease;
+    }
+
+    .blur-up.vis {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0) scale(1);
+    }
+
+    .char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: transform .55s cubic-bezier(.2,.7,.1,1), opacity .4s ease;
+    }
+
+    .chars.vis .char {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .chars.vis .char:nth-child(1) { transition-delay: 0ms; }
+    .chars.vis .char:nth-child(2) { transition-delay: 35ms; }
+    .chars.vis .char:nth-child(3) { transition-delay: 70ms; }
+    .chars.vis .char:nth-child(4) { transition-delay: 105ms; }
+    .chars.vis .char:nth-child(5) { transition-delay: 140ms; }
+    .chars.vis .char:nth-child(6) { transition-delay: 175ms; }
+    .chars.vis .char:nth-child(7) { transition-delay: 210ms; }
+    .chars.vis .char:nth-child(8) { transition-delay: 245ms; }
+    .chars.vis .char:nth-child(9) { transition-delay: 280ms; }
+    .chars.vis .char:nth-child(10) { transition-delay: 315ms; }
+    .chars.vis .char:nth-child(11) { transition-delay: 350ms; }
+    .chars.vis .char:nth-child(12) { transition-delay: 385ms; }
+    .chars.vis .char:nth-child(13) { transition-delay: 420ms; }
+    .chars.vis .char:nth-child(14) { transition-delay: 455ms; }
+    .chars.vis .char:nth-child(15) { transition-delay: 490ms; }
+    .chars.vis .char:nth-child(16) { transition-delay: 525ms; }
+    .chars.vis .char:nth-child(17) { transition-delay: 560ms; }
+    .chars.vis .char:nth-child(18) { transition-delay: 595ms; }
+
+    .note {
+      margin: 0;
+      color: #d9d1c2;
+      font-size: .92rem;
+    }
+
+    @media (max-width: 900px) {
+      .grid,
+      .controls { grid-template-columns: 1fr; }
+    }
+  </style>
+    <link rel="stylesheet" href="assets/css/typography-global.css">
+</head>
+<body>
+  <main class="wrap">
+    <section class="header">
+      <h1>Font Test: OT Neglige vs Bruney</h1>
+      <p class="note">H1/H2 laufen im Vergleich mit zwei Sets. H3 ist fix Le Jour. Unten siehst du Ligaturen, simulierte Gewichte und 4 Titel-Animationen als Vorschau.</p>
+    </section>
+
+    <section class="grid">
+      <article class="panel neglige rv">
+        <p class="eyebrow">Set A</p>
+        <h1 class="sample-h1 lig-on">Reflections in Motion</h1>
+        <h2 class="sample-h2 lig-on">Where narrative meets strategy</h2>
+        <h3 class="sample-h3">Le Jour als H3 Akzent bleibt konstant</h3>
+      </article>
+
+      <article class="panel bruney rv">
+        <p class="eyebrow">Set B</p>
+        <h1 class="sample-h1 lig-on">Reflections in Motion</h1>
+        <h2 class="sample-h2 lig-on">Where narrative meets strategy</h2>
+        <h3 class="sample-h3">Le Jour als H3 Akzent bleibt konstant</h3>
+      </article>
+    </section>
+
+    <section class="controls">
+      <article class="panel neglige rv">
+        <p class="eyebrow">Weight Test Neglige</p>
+        <div class="test-row">
+          <p class="sample-h2 w400">400: Editorial Presence</p>
+          <p class="sample-h2 w500">500: Editorial Presence</p>
+          <p class="sample-h2 w700">700: Editorial Presence</p>
+        </div>
+        <p class="note">Falls 700 zu künstlich wirkt, im Live-System besser max 500 verwenden.</p>
+      </article>
+
+      <article class="panel bruney rv">
+        <p class="eyebrow">Ligature Test Bruney</p>
+        <div class="test-row">
+          <p class="sample-h2 lig-off">ligatures off: office affine starlight</p>
+          <p class="sample-h2 lig-on">ligatures on: office affine starlight</p>
+        </div>
+        <p class="note">Mit aktivierten Features wirkt Bruney organischer, aber sparsam in langen Titeln einsetzen.</p>
+      </article>
+    </section>
+
+    <section class="panel rv">
+      <p class="eyebrow">Animation Preview</p>
+      <div class="anim-stage">
+        <h2 class="anim-title rv">1. Rise + Skew Reset</h2>
+        <h2 class="anim-title mask"><span class="inner">2. Masked Line Reveal</span></h2>
+        <h2 class="anim-title blur-up">3. Blur to Sharp</h2>
+        <h2 class="anim-title chars" data-text="4. Character Stagger"></h2>
+      </div>
+      <p class="note">Diese 4 Varianten sind performant, weil nur transform/opacity/filter animiert werden.</p>
+    </section>
+  </main>
+
+  <script>
+    (function initCharTitle() {
+      const target = document.querySelector('.chars[data-text]');
+      if (!target) return;
+      const text = target.getAttribute('data-text');
+      target.innerHTML = '';
+      for (const ch of text) {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = ch === ' ' ? '\u00A0' : ch;
+        target.appendChild(span);
+      }
+    })();
+
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        e.target.classList.add('vis');
+        if (e.target.classList.contains('mask')) {
+          e.target.classList.add('vis');
+        }
+      }
+    }, { threshold: 0.24 });
+
+    document.querySelectorAll('.rv, .mask, .blur-up, .chars').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>

@@ -18,18 +18,27 @@
    1. DESIGN SYSTEM & VARIABLES
    ========================================= */
 
-@font-face {
+/* Individual @font-face declarations moved to typography-global.css */
+/* @font-face {
   font-family: 'Higuen';
   src: url('../fonts/Higuen.woff2') format('woff2');
   font-weight: 100 900;
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'OT Neglige';
+  src: url('../fonts/OTNeglige-L.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+} */
+
 :root {
   /* ── Colors ── */
   --black:        #0A0A0A;
   --off-black:    #2D2D2D;
   --white:        #F5F5F5;
+  --off-white:    #EBE1D1;
   --darkgreen:    #314A51;
   --mint:         #56686A;
   --burgundy:     #6E3B49;
@@ -38,7 +47,7 @@
   /* Aliases kept for backward-compat */
   --bg-primary:        var(--black);
   --bg-secondary:      var(--white);
-  --bg-accent:         var(--white);
+  --bg-accent:         var(--off-white);
   --bg-dark:           var(--darkgreen);
   --text-primary:      var(--black);
   --text-primary-light:var(--white);
@@ -55,17 +64,18 @@
   --text-sm:       13px;   /* Captions, Meta   → Outfit / Work Sans */
   --text-base:     16px;   /* Body             → Work Sans */
   --text-md:       18px;   /* Lead-Text        → Work Sans */
-  --text-lg:       24px;   /* H3               → Tenor Sans */
-  --text-xl:       36px;   /* H2               → Playfair */
-  --text-2xl:      56px;   /* H1 Subpages      → Playfair */
+  --text-lg:       24px;   /* H3               → OT Neglige */
+  --text-xl:       42px;   /* H2               → OT Neglige */
+  --text-2xl:      64px;   /* H1 Subpages      → Higuen */
   --text-3xl-min:  64px;   /* H1 Index min     → Higuen */
   --text-3xl-max: 140px;   /* H1 Index max     → Higuen */
 
   /* ── Font Roles ── */
   --font-body:     'Work Sans', sans-serif;
-  --font-display:  'Playfair Display', serif;
+  --font-display:  'OT Neglige', 'Le Jour', serif;
   --font-higuen:   'Higuen', serif;
   --font-subtitel: 'Outfit', sans-serif;
+  --font-subtitle: 'Outfit', sans-serif; /* alias for legacy selectors */
   --font-titel:    'Tenor Sans', sans-serif;
 
   /* ── Body Typography ── */
@@ -143,147 +153,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* =========================================
    3. TYPOGRAPHY
    ========================================= */
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 0 0 var(--space-3) 0;
-  line-height: 1.2;
-}
-
 /*
-  H1 BASE — Playfair, Subpages only.
-  Index hero overrides with .hero-top / .hero-bottom (Higuen via legacy.css).
+  Global typography has been centralized in:
+  assets/css/typography-global.css
+
+  Previous per-file headline/body font rules are intentionally disabled
+  here to avoid conflicts with the single global type system.
 */
-h1 {
-  font-family: var(--font-display);
-  font-size: clamp(var(--text-2xl), 5vw, 72px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--off-black);
-  text-transform: none;
-}
-
-/*
-  H2 BASE — Playfair, section openers.
-  Never uppercase. Italic accent via <em>.
-*/
-h2 {
-  font-family: var(--font-display);
-  font-size: clamp(var(--text-xl), 4vw, 44px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  text-transform: none;
-}
-
-h2 em {
-  font-family: 'Abril Fatface', serif;
-  font-style: italic;
-  color: var(--burgundy);
-  text-transform: uppercase;
-}
-
-/*
-  H3 — Tenor Sans, section subtitles, nav structure.
-  Always caps, wide letter-spacing.
-*/
-h3 {
-  font-family: var(--font-titel);
-  font-size: var(--text-lg);
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-}
-
-/*
-  H4 — Work Sans, labels inside cards etc.
-*/
-h4 {
-  font-family: var(--font-body);
-  font-size: 1.1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-p {
-  font-family: var(--font-body);
-  font-size: var(--text-base);
-  line-height: var(--body-line-height);
-  color: rgba(10, 10, 10, 0.75);
-  margin-bottom: var(--space-3);
-}
-
-small, .text-meta {
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  line-height: 1.6;
-  opacity: 0.8;
-}
-
-/* ── INDEX HERO H1 (Higuen) — ONLY on index, via .hero-top / .hero-bottom ── */
-.hero-top,
-.hero-bottom {
-  font-family: var(--font-higuen);
-  color: var(--mauve);
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-}
-
-/* ── SUBPAGE H1 (Playfair) ── */
-.page-title,
-.page-hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(var(--text-2xl), 5vw, 72px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--off-black);
-  text-transform: none;
-}
-
-.page-title em,
-.page-hero h1 em { font-style: italic; }
-
-/* ── SECTION H2 (Higuen) ── */
-section h2 {
-  font-family: var(--font-higuen);
-  font-size: clamp(var(--text-xl), 4vw, 44px);
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin: 0 0 3rem 0;
-  position: relative;
-  color: var(--off-black);
-  opacity: 0;
-  transform: translateY(60px) skewY(2deg);
-  animation: titleReveal 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
-}
-
-section h2 em {
-  font-family: 'Abril Fatface', serif;
-  font-style: italic;
-  color: var(--burgundy);
-  text-transform: uppercase;
-}
-
-section h2.in-view {
-  animation: titleReveal 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
-}
-
-/* ── SECTION H3 (Tenor Sans) ── */
-.h3, section h3 {
-  font-family: var(--font-titel);
-  font-size: var(--text-lg);
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-}
-
-/* ── LEAD TEXT ── */
-.lead, .text-lead {
-  font-family: var(--font-body);
-  font-size: var(--text-md);
-  line-height: 1.75;
-  color: rgba(45, 45, 45, 0.8);
-}
 
 /* =========================================
    4. EYEBROWS & LABELS
@@ -301,16 +177,15 @@ section h2.in-view {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
+  color: var(--burgundy);
+  border: 1px solid rgba(110,59,73,0.45);
+  padding: 0.4em 1.2em;
+  border-radius: 999px;
 }
 
 /* Line decoration beside eyebrow */
 .eyebrow-line {
-  display: inline-block;
-  width: 28px;
-  height: 2px;
-  border-radius: 999px;
-  background-color: currentColor;
-  flex-shrink: 0;
+  display: none;
 }
 
 /* Eyebrow as circle — border only, never filled */
@@ -326,9 +201,86 @@ section h2.in-view {
 
 /* Eyebrow as pill */
 .eyebrow-pill {
-  padding: 0.45em 1.4em;
+  padding: 0.4em 1.2em;
   border-radius: 999px;
-  border: 1px solid currentColor;
+  border: 1px solid rgba(110,59,73,0.45);
+}
+
+/* Subtitle/Accent system — Outfit, uppercase, Vogue-style tracking */
+.subtitle,
+.sub-title,
+.hero-subtitle,
+.project-hero-subtitle,
+.sc-subtitle,
+[class*="subtitle"] {
+  font-family: var(--font-subtitel);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+}
+
+/* Second word accent (applied by typography-reveal.js) */
+.word-2,
+.title-word-2 {
+  font-style: italic;
+  color: var(--burgundy);
+}
+
+/* OT Neglige accents — only for selected large titles */
+.title-neglige,
+.accent-neglige,
+h1.title-neglige,
+h2.title-neglige {
+  font-family: 'OT Neglige', 'Le Jour', serif !important;
+  font-feature-settings: "liga" 1, "dlig" 1, "ss01" 1, "swsh" 1;
+  letter-spacing: 0.03em;
+  text-transform: none;
+}
+
+.section--dark .title-neglige,
+.section--green .title-neglige,
+.section--burgundy .title-neglige,
+.darkgreen .title-neglige {
+  color: var(--off-white) !important;
+}
+
+.section--light .title-neglige,
+.section--cream .title-neglige,
+.white .title-neglige {
+  color: var(--off-black) !important;
+}
+
+/* Headline contrast guardrails */
+.section--dark h1,
+.section--dark h2,
+.section--green h1,
+.section--green h2,
+.section--burgundy h1,
+.section--burgundy h2 {
+  color: var(--off-white);
+}
+
+/* Global masked line reveal */
+.mlr-line {
+  display: block;
+  overflow: hidden;
+}
+
+.mlr-line + .mlr-line {
+  margin-top: 0.05em;
+}
+
+.mlr-inner {
+  display: inline-block;
+  transform: translateY(108%);
+  opacity: 0;
+  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.1, 1), opacity 0.7s ease;
+  will-change: transform, opacity;
+}
+
+.mlr-ready.is-visible .mlr-inner {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 /* Meta inline row */

@@ -13,8 +13,8 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- GSAP-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollSmoother.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/SplitText.min.js"></script>
     <!-- Styles -->
@@ -32,7 +32,8 @@
       gtag('js', new Date());
       gtag('config', 'G-B415ZJNKNW');
     </script>
-  </head>   
+      <link rel="stylesheet" href="../assets/css/typography-global.css">
+</head>   
 <body>
     <!-- HEADER -->
     <header class="site-header" id="top">
@@ -43,9 +44,9 @@
             </a>
             <nav class="nav">
                 <a href="../index.html#hero" class="nav-link">Home</a>
-                <a href="../index.html#expertise" class="nav-link">work</a>
+                <a href="../index.html#expertise" class="nav-link">Work</a>
                 <a href="../index.html#blog" class="nav-link">Blog</a>
-                <a href="../about.html" class="nav-link">about</a>
+                <a href="../about.html" class="nav-link">About</a>
             </nav>
         </div>
     </header>
@@ -419,238 +420,531 @@
             </div>
         </section>
 
-        <!-- OPTIMIERUNGSPLAN SECTION -->
-        <section class="section-optim" id="optimierung">
-
-            <!-- Sticky header that stays while scrolling through items -->
-            <div class="optim-sticky-header">
-                <span class="optim-sticky-eyebrow">Optimierungsplan</span>
-                <div class="optim-sticky-progress">
-                    <div class="optim-sticky-bar" id="optimProgressBar"></div>
+        <!-- OPTIMIERUNGSPLAN SECTION — compact accordion -->
+        <section class="section-optim-v2 editorial-section bg-cream" id="optimierung">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Optimierungs<span class="highlight-burgundy">plan.</span></h2>
                 </div>
-                <span class="optim-sticky-counter"><span id="optimCurrent">1</span> / 6</span>
-            </div>
+                <p class="section-intro">Sechs strategische Felder — Ist-Zustand und messbares Ziel im direkten Vergleich.</p>
 
-            <!-- Each field is a full-height panel -->
-            <div class="optim-panels" id="optimPanels">
+                <div class="optim-accordion" id="optimAccordion">
 
-                <!-- 01 -->
-                <div class="optim-panel" data-index="0">
-                    <div class="optim-panel-inner">
-                        <div class="optim-panel-left">
-                            <span class="optim-panel-num">01</span>
-                            <h3 class="optim-panel-field">Sichtbarkeit</h3>
-                        </div>
-                        <div class="optim-panel-right">
-                            <div class="optim-state optim-state-ist">
-                                <span class="optim-state-label">Ist-Zustand</span>
-                                <p class="optim-state-text">Kaum in Suchmaschinen sichtbar — keine Keyword-Strategie</p>
-                            </div>
-                            <div class="optim-divider-line"></div>
-                            <div class="optim-state optim-state-soll">
-                                <span class="optim-state-label">Ziel</span>
-                                <p class="optim-state-text">Top-Rankings für regionale Zielkeywords</p>
+                    <div class="oa-item active">
+                        <button class="oa-trigger">
+                            <span class="oa-num">01</span>
+                            <span class="oa-title">Sichtbarkeit</span>
+                            <span class="oa-arrow"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 3.5L5 7.5L9 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                        </button>
+                        <div class="oa-body">
+                            <div class="oa-states">
+                                <div class="oa-state oa-ist">
+                                    <span class="oa-state-label">Ist</span>
+                                    <p>Kaum in Suchmaschinen sichtbar — keine Keyword-Strategie</p>
+                                </div>
+                                <div class="oa-divider">→</div>
+                                <div class="oa-state oa-soll">
+                                    <span class="oa-state-label">Ziel</span>
+                                    <p>Top-Rankings für regionale Zielkeywords</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 02 -->
-                <div class="optim-panel" data-index="1">
-                    <div class="optim-panel-inner">
-                        <div class="optim-panel-left">
-                            <span class="optim-panel-num">02</span>
-                            <h3 class="optim-panel-field">Content<br><em>&amp; Story</em></h3>
-                        </div>
-                        <div class="optim-panel-right">
-                            <div class="optim-state optim-state-ist">
-                                <span class="optim-state-label">Ist-Zustand</span>
-                                <p class="optim-state-text">Statische, generische Texte ohne Markencharakter</p>
-                            </div>
-                            <div class="optim-divider-line"></div>
-                            <div class="optim-state optim-state-soll">
-                                <span class="optim-state-label">Ziel</span>
-                                <p class="optim-state-text">Emotionales Storytelling &amp; authentische Markenstimme</p>
+                    <div class="oa-item">
+                        <button class="oa-trigger">
+                            <span class="oa-num">02</span>
+                            <span class="oa-title">Content & Story</span>
+                            <span class="oa-arrow"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 3.5L5 7.5L9 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                        </button>
+                        <div class="oa-body">
+                            <div class="oa-states">
+                                <div class="oa-state oa-ist">
+                                    <span class="oa-state-label">Ist</span>
+                                    <p>Statische, generische Texte ohne Markencharakter</p>
+                                </div>
+                                <div class="oa-divider">→</div>
+                                <div class="oa-state oa-soll">
+                                    <span class="oa-state-label">Ziel</span>
+                                    <p>Emotionales Storytelling &amp; authentische Markenstimme</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 03 -->
-                <div class="optim-panel" data-index="2">
-                    <div class="optim-panel-inner">
-                        <div class="optim-panel-left">
-                            <span class="optim-panel-num">03</span>
-                            <h3 class="optim-panel-field">User<br><em>Journey</em></h3>
-                        </div>
-                        <div class="optim-panel-right">
-                            <div class="optim-state optim-state-ist">
-                                <span class="optim-state-label">Ist-Zustand</span>
-                                <p class="optim-state-text">Unklare CTAs, hohe Absprungrate</p>
-                            </div>
-                            <div class="optim-divider-line"></div>
-                            <div class="optim-state optim-state-soll">
-                                <span class="optim-state-label">Ziel</span>
-                                <p class="optim-state-text">Gelenkte Journey, optimierte Conversion-Pfade</p>
+                    <div class="oa-item">
+                        <button class="oa-trigger">
+                            <span class="oa-num">03</span>
+                            <span class="oa-title">User Journey</span>
+                            <span class="oa-arrow"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 3.5L5 7.5L9 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                        </button>
+                        <div class="oa-body">
+                            <div class="oa-states">
+                                <div class="oa-state oa-ist">
+                                    <span class="oa-state-label">Ist</span>
+                                    <p>Unklare CTAs, hohe Absprungrate</p>
+                                </div>
+                                <div class="oa-divider">→</div>
+                                <div class="oa-state oa-soll">
+                                    <span class="oa-state-label">Ziel</span>
+                                    <p>Gelenkte Journey, optimierte Conversion-Pfade</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 04 -->
-                <div class="optim-panel" data-index="3">
-                    <div class="optim-panel-inner">
-                        <div class="optim-panel-left">
-                            <span class="optim-panel-num">04</span>
-                            <h3 class="optim-panel-field">Mobile<br><em>Experience</em></h3>
-                        </div>
-                        <div class="optim-panel-right">
-                            <div class="optim-state optim-state-ist">
-                                <span class="optim-state-label">Ist-Zustand</span>
-                                <p class="optim-state-text">Darstellungsprobleme, langsame Ladezeit</p>
-                            </div>
-                            <div class="optim-divider-line"></div>
-                            <div class="optim-state optim-state-soll">
-                                <span class="optim-state-label">Ziel</span>
-                                <p class="optim-state-text">100% responsive, unter 3 Sek. Ladezeit</p>
+                    <div class="oa-item">
+                        <button class="oa-trigger">
+                            <span class="oa-num">04</span>
+                            <span class="oa-title">Mobile Experience</span>
+                            <span class="oa-arrow"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 3.5L5 7.5L9 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                        </button>
+                        <div class="oa-body">
+                            <div class="oa-states">
+                                <div class="oa-state oa-ist">
+                                    <span class="oa-state-label">Ist</span>
+                                    <p>Darstellungsprobleme, langsame Ladezeit</p>
+                                </div>
+                                <div class="oa-divider">→</div>
+                                <div class="oa-state oa-soll">
+                                    <span class="oa-state-label">Ziel</span>
+                                    <p>100% responsive, unter 3 Sek. Ladezeit</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 05 -->
-                <div class="optim-panel" data-index="4">
-                    <div class="optim-panel-inner">
-                        <div class="optim-panel-left">
-                            <span class="optim-panel-num">05</span>
-                            <h3 class="optim-panel-field">Social<br><em>Presence</em></h3>
-                        </div>
-                        <div class="optim-panel-right">
-                            <div class="optim-state optim-state-ist">
-                                <span class="optim-state-label">Ist-Zustand</span>
-                                <p class="optim-state-text">Unregelmässige Posts, keine Strategie</p>
-                            </div>
-                            <div class="optim-divider-line"></div>
-                            <div class="optim-state optim-state-soll">
-                                <span class="optim-state-label">Ziel</span>
-                                <p class="optim-state-text">Konsistenter 16-Wochen Content-Plan</p>
+                    <div class="oa-item">
+                        <button class="oa-trigger">
+                            <span class="oa-num">05</span>
+                            <span class="oa-title">Social Presence</span>
+                            <span class="oa-arrow"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 3.5L5 7.5L9 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                        </button>
+                        <div class="oa-body">
+                            <div class="oa-states">
+                                <div class="oa-state oa-ist">
+                                    <span class="oa-state-label">Ist</span>
+                                    <p>Unregelmässige Posts, keine Strategie</p>
+                                </div>
+                                <div class="oa-divider">→</div>
+                                <div class="oa-state oa-soll">
+                                    <span class="oa-state-label">Ziel</span>
+                                    <p>Konsistenter 16-Wochen Content-Plan</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 06 -->
-                <div class="optim-panel" data-index="5">
-                    <div class="optim-panel-inner">
-                        <div class="optim-panel-left">
-                            <span class="optim-panel-num">06</span>
-                            <h3 class="optim-panel-field">Tech<br><em>Score</em></h3>
-                        </div>
-                        <div class="optim-panel-right">
-                            <div class="optim-state optim-state-ist">
-                                <span class="optim-state-label">Ist-Zustand</span>
-                                <p class="optim-state-text">42 / 100 PageSpeed Score</p>
-                            </div>
-                            <div class="optim-divider-line"></div>
-                            <div class="optim-state optim-state-soll">
-                                <span class="optim-state-label">Ziel</span>
-                                <p class="optim-state-text">75 – 85 / 100 PageSpeed Score</p>
+                    <div class="oa-item">
+                        <button class="oa-trigger">
+                            <span class="oa-num">06</span>
+                            <span class="oa-title">Tech Score</span>
+                            <span class="oa-arrow"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 3.5L5 7.5L9 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                        </button>
+                        <div class="oa-body">
+                            <div class="oa-states">
+                                <div class="oa-state oa-ist">
+                                    <span class="oa-state-label">Ist</span>
+                                    <p>42 / 100 PageSpeed Score</p>
+                                </div>
+                                <div class="oa-divider">→</div>
+                                <div class="oa-state oa-soll">
+                                    <span class="oa-state-label">Ziel</span>
+                                    <p>75 – 85 / 100 PageSpeed Score</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </section>
 
-        <!-- ANALYTICS & PERFORMANCE SECTION -->
-        <section class="editorial-section bg-cream section-analytics">
+        <!-- WEBSITE + MEDIA SHOWCASE — unified dark section -->
+        <section class="editorial-section section-digital-showcase" id="digital-showcase">
+
+            <!-- ── Website Redesign ── -->
             <div class="container">
                 <div class="section-header">
-                    <h2>SEO <span class="highlight-burgundy">&amp; SEA.</span></h2>
+                    <h2>Website <span class="highlight-mint">Redesign.</span></h2>
                 </div>
-                <p class="section-intro">Datengestützte Analyse mit prognostizierten KPIs für maximale Effizienz.</p>
+                <p class="section-intro-dark">Mobile First · Storytelling · Conversion — Live Prototype via Canva Site.</p>
 
-                <div class="analytics-grid">
-                    <div class="analytics-card">
-                        <h3>SEO Checkbot Score</h3>
-                        <div class="seo-circle-container">
-                            <svg viewBox="0 0 200 200" class="seo-circle">
-                                <circle cx="100" cy="100" r="90" fill="none" stroke="#f0f0f0" stroke-width="12"/>
-                                <circle class="seo-progress-circle" cx="100" cy="100" r="90" fill="none" stroke="#56686A" stroke-width="12" stroke-dasharray="565.48" stroke-dashoffset="565.48" stroke-linecap="round" transform="rotate(-90 100 100)"/>
-                                <text x="100" y="110" font-size="48" font-family="Italiana" text-anchor="middle" fill="#2D2D2D">75%</text>
-                            </svg>
+                <div class="website-showcase-frame wsf-dark">
+                    <div class="wsf-bar">
+                        <div class="wsf-dots">
+                            <span class="wsf-dot" style="background:#ff5f56"></span>
+                            <span class="wsf-dot" style="background:#ffbd2e"></span>
+                            <span class="wsf-dot" style="background:#27c93f"></span>
                         </div>
-                        <p class="seo-text"><strong>75 / 100 SEO-Score</strong></p>
-                        <div class="info-box">
-                            <p><strong>Optimierung:</strong><br>URLs & Bilder korrekt verlinkt, SEO-Keywords, Meta-Tags & Mobile-First-Ansatz.<br><br><strong>Zusätzlich:</strong><br>Integration von Google Analytics für Traffic-Tracking & Ads-Schaltung.</p>
+                        <div class="wsf-url">komthur.my.canva.site</div>
+                    </div>
+                    <div class="wsf-embed">
+                        <div style="position:relative;width:100%;height:0;padding-top:56.25%;overflow:hidden;border-radius:0 0 8px 8px;">
+                            <iframe loading="lazy"
+                                style="position:absolute;width:100%;height:100%;top:0;left:0;border:none;padding:0;margin:0;"
+                                src="https://www.canva.com/design/DAFiUbYkJD8/imYPvUNS2rY7GK7_-WPWZw/view?embed"
+                                allowfullscreen="allowfullscreen" allow="fullscreen">
+                            </iframe>
                         </div>
                     </div>
-
-                    <div class="analytics-card">
-                        <h3>SEA Prognose</h3>
-                        <div class="ads-list">
-                            <div class="ads-item">
-                                <div class="ads-header">
-                                    <span><i class="fa-brands fa-google"></i> Google Ads</span>
-                                    <span class="ads-value">306 Klicks</span>
-                                </div>
-                                <div class="progress-bar">
-                                    <div class="google-bar ads-bar"></div>
-                                </div>
-                                <p class="ads-meta">2.642 Impressionen · CPL ~0,23 CHF</p>
-                            </div>
-                            <div class="ads-item">
-                                <div class="ads-header">
-                                    <span><i class="fa-brands fa-linkedin"></i> LinkedIn Ads</span>
-                                    <span class="ads-value">890 Klicks</span>
-                                </div>
-                                <div class="progress-bar">
-                                    <div class="linkedin-bar ads-bar"></div>
-                                </div>
-                                <p class="ads-meta">43.040 Impressionen · CPL &lt;5 CHF</p>
-                            </div>
-                            <div class="ads-item">
-                                <div class="ads-header">
-                                    <span><i class="fa-brands fa-meta"></i> Meta (FB/IG)</span>
-                                    <span class="ads-value">72 Klicks</span>
-                                </div>
-                                <div class="progress-bar">
-                                    <div class="meta-bar ads-bar"></div>
-                                </div>
-                                <p class="ads-meta">40.004 Impressionen · CPL ~6 CHF</p>
-                            </div>
-                        </div>
-                        <div class="info-box">
-                            <p><strong>Budget-Split:</strong> 60% Google · 25% LinkedIn · 15% Meta<br><strong>ROI-Erwartung:</strong> 3:1 bis 5:1</p>
-                        </div>
-                    </div>
+                </div>
+                <div class="wsf-caption">
+                    <a href="https://www.canva.com/design/DAFiUbYkJD8/view?utm_content=DAFiUbYkJD8&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener" class="wsf-link">
+                        Live Preview öffnen <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
                 </div>
             </div>
 
-            <div class="container">
-                <div class="section-header">
-                    <h2>Pro<span class="highlight-burgundy">gnose.</span></h2>
+            <!-- ══════════════════════════════════════
+                 SEA — PAID ADS
+            ══════════════════════════════════════ -->
+            <div class="container showcase-subsection">
+                <div class="showcase-sub-header">
+                    <span class="showcase-eyebrow">Performance Marketing</span>
+                    <h2 class="showcase-sub-title">SEA — <em>Paid Ads.</em></h2>
                 </div>
-                <p class="section-intro">Prognostizierte KPIs bei vollständiger Strategieumsetzung.</p>
-                <div class="results-grid">
-                    <div class="result-item">
-                        <span class="big-number">77K</span>
-                        <span class="uppercase-label">Google Impressionen</span>
-                        <p>8.739 erwartete Clicks bei ~0.11 CTR</p>
+
+                <!-- Phone centered + two square mint boxes -->
+                <div class="sea-story-layout">
+
+                    <!-- LEFT BOX -->
+                    <div class="sea-info-box sea-info-left">
+                        <div class="sea-box-icon"><i class="fa-brands fa-instagram"></i><i class="fa-brands fa-meta"></i></div>
+                        <span class="sea-box-label">Paid Story Ad</span>
+                        <h3 class="sea-box-title">Gesponserte<br>Story</h3>
+                        <div class="sea-box-rows">
+                            <div class="sea-box-row">
+                                <span>Zielgruppe</span>
+                                <span>KMU-Entscheider, 25–50 J.</span>
+                            </div>
+                            <div class="sea-box-row">
+                                <span>Geografie</span>
+                                <span>Kreuzlingen · Thurgau</span>
+                            </div>
+                            <div class="sea-box-row">
+                                <span>Placement</span>
+                                <span>IG Stories · FB Stories · Reels</span>
+                            </div>
+                            <div class="sea-box-row">
+                                <span>Format</span>
+                                <span>9:16 Vertical Video</span>
+                            </div>
+                            <div class="sea-box-row">
+                                <span>Laufzeit</span>
+                                <span>4 Wochen / Quartal</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="result-item">
-                        <span class="big-number">6.2K</span>
-                        <span class="uppercase-label">LinkedIn Link-Clicks</span>
-                        <p>Hochqualifizierte B2B-Leads, CPL &lt;CHF 5</p>
+
+                    <!-- CENTER: Phone mockup -->
+                    <div class="sea-phone-wrap">
+                        <div class="phone-mockup">
+                            <div class="phone-frame">
+                                <div class="phone-notch"></div>
+                                <div class="phone-screen">
+                                    <video class="phone-video" autoplay muted loop playsinline>
+                                        <source src="../assets/images/komthur/showcase_komthur_instastory.mp4" type="video/mp4">
+                                    </video>
+                                    <div class="phone-story-ui">
+                                        <div class="story-progress-bars">
+                                            <span class="story-bar active"></span>
+                                            <span class="story-bar"></span>
+                                            <span class="story-bar"></span>
+                                        </div>
+                                        <div class="story-header-ui">
+                                            <img src="../assets/images/komthur/komthur_favicon.png" alt="komthur" class="story-avatar-img">
+                                            <span>komthur</span>
+                                            <span class="story-sponsored-badge">Gesponsert</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="phone-shadow"></div>
+                        </div>
                     </div>
-                    <div class="result-item">
-                        <span class="big-number">5K</span>
-                        <span class="uppercase-label">Jahresbudget (CHF)</span>
-                        <p>Optimiert über alle Kanäle für max. ROI</p>
+
+                    <!-- RIGHT BOX -->
+                    <div class="sea-info-box sea-info-right">
+                        <div class="sea-box-icon"><i class="fa-solid fa-chart-line"></i></div>
+                        <span class="sea-box-label">Performance Prognose</span>
+                        <h3 class="sea-box-title">Meta<br>Analyse</h3>
+                        <div class="sea-box-rows">
+                            <div class="sea-box-row">
+                                <span>Budget</span>
+                                <em>~CHF 750 / Jahr</em>
+                            </div>
+                            <div class="sea-box-row">
+                                <span>Impressionen</span>
+                                <em>40'004 prognostiziert</em>
+                            </div>
+                            <div class="sea-box-row">
+                                <span>CPL Ziel</span>
+                                <em>~CHF 6 / Klick</em>
+                            </div>
+                            <div class="sea-box-row">
+                                <span>CTR Ziel</span>
+                                <em>~1.8%</em>
+                            </div>
+                            <div class="sea-box-row">
+                                <span>Ziel</span>
+                                <em>Awareness · B2B Leads</em>
+                            </div>
+                        </div>
+                        <p class="sea-box-note"><i class="fa-solid fa-circle-info"></i> Basierend auf Meta Audience Insights — markenbewusste KMU-Entscheider mit Designaffinität.</p>
                     </div>
+
                 </div>
             </div>
+
+            <!-- ══════════════════════════════════════
+                 ORGANISCHER CONTENT — Instagram Posts
+            ══════════════════════════════════════ -->
+            <div class="container showcase-subsection">
+                <div class="showcase-sub-header">
+                    <span class="showcase-eyebrow">Instagram</span>
+                    <h2 class="showcase-sub-title">Organischer <em>Content.</em></h2>
+                </div>
+
+                <div class="insta-carousel-wrap">
+                    <button class="ic-arrow ic-prev ic-dark" id="icPrev" aria-label="Zurück">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <div class="insta-carousel insta-carousel-infinite" id="instaCarousel">
+
+                        <!-- Post 1 — Video/Reel -->
+                        <div class="insta-post-card">
+                            <div class="ipc-header">
+                                <img src="../assets/images/komthur/komthur_favicon.png" alt="komthur" class="ipc-avatar-img">
+                                <div class="ipc-meta">
+                                    <strong>komthur</strong>
+                                    <span>Kreuzlingen · vor 3 Tagen</span>
+                                </div>
+                                <i class="fa-solid fa-ellipsis ipc-dots"></i>
+                            </div>
+                            <div class="ipc-media-wrap">
+                                <video class="ipc-media" autoplay muted loop playsinline>
+                                    <source src="../assets/images/komthur/showcase_komthur_insta_1.mp4" type="video/mp4">
+                                </video>
+                                <span class="ipc-reel-badge"><i class="fa-solid fa-film"></i> Reel</span>
+                            </div>
+                            <div class="ipc-actions">
+                                <div class="ipc-actions-left">
+                                    <i class="fa-regular fa-heart"></i>
+                                    <i class="fa-regular fa-comment"></i>
+                                    <i class="fa-regular fa-paper-plane"></i>
+                                </div>
+                                <i class="fa-regular fa-bookmark"></i>
+                            </div>
+                            <div class="ipc-likes"><strong>312 Gefällt mir</strong></div>
+                            <div class="ipc-caption"><strong>komthur</strong> Wir möchten all jenen danken, die hart arbeiten, um unser tägliches Leben zu verbessern. 🌱 <span class="ipc-hashtags">#TagDerArbeit #Komthur</span></div>
+                            <div class="ipc-timestamp">VOR 3 TAGEN</div>
+                        </div>
+
+                        <!-- Post 2 — Design Dienstag -->
+                        <div class="insta-post-card">
+                            <div class="ipc-header">
+                                <img src="../assets/images/komthur/komthur_favicon.png" alt="komthur" class="ipc-avatar-img">
+                                <div class="ipc-meta">
+                                    <strong>komthur</strong>
+                                    <span>vor 1 Woche</span>
+                                </div>
+                                <i class="fa-solid fa-ellipsis ipc-dots"></i>
+                            </div>
+                            <div class="ipc-media-wrap">
+                                <img src="../assets/images/komthur/showcase_komthur_insta_1.jpg" alt="Design Dienstag" class="ipc-media">
+                            </div>
+                            <div class="ipc-actions">
+                                <div class="ipc-actions-left">
+                                    <i class="fa-regular fa-heart"></i>
+                                    <i class="fa-regular fa-comment"></i>
+                                    <i class="fa-regular fa-paper-plane"></i>
+                                </div>
+                                <i class="fa-regular fa-bookmark"></i>
+                            </div>
+                            <div class="ipc-likes"><strong>248 Gefällt mir</strong></div>
+                            <div class="ipc-caption"><strong>komthur</strong> ✏️ <strong>#DesignDienstag</strong> — Kreativität kennt keine Zeit. 🎨</div>
+                            <div class="ipc-timestamp">VOR 1 WOCHE</div>
+                        </div>
+
+                        <!-- Post 3 — Website online -->
+                        <div class="insta-post-card">
+                            <div class="ipc-header">
+                                <img src="../assets/images/komthur/komthur_favicon.png" alt="komthur" class="ipc-avatar-img">
+                                <div class="ipc-meta">
+                                    <strong>komthur</strong>
+                                    <span>vor 2 Wochen</span>
+                                </div>
+                                <i class="fa-solid fa-ellipsis ipc-dots"></i>
+                            </div>
+                            <div class="ipc-media-wrap">
+                                <img src="../assets/images/komthur/showcase_komthur_insta_3.jpg" alt="Neue Website online" class="ipc-media">
+                            </div>
+                            <div class="ipc-actions">
+                                <div class="ipc-actions-left">
+                                    <i class="fa-regular fa-heart"></i>
+                                    <i class="fa-regular fa-comment"></i>
+                                    <i class="fa-regular fa-paper-plane"></i>
+                                </div>
+                                <i class="fa-regular fa-bookmark"></i>
+                            </div>
+                            <div class="ipc-likes"><strong>487 Gefällt mir</strong></div>
+                            <div class="ipc-caption"><strong>komthur</strong> 🚀 Unsere neue Website ist <strong>jetzt online!</strong> Modern, schnell &amp; mit Herz. <span class="ipc-hashtags">#JetztOnline #Webdesign</span></div>
+                            <div class="ipc-timestamp">VOR 2 WOCHEN</div>
+                        </div>
+
+                        <!-- Post 4 — Progress -->
+                        <div class="insta-post-card">
+                            <div class="ipc-header">
+                                <img src="../assets/images/komthur/komthur_favicon.png" alt="komthur" class="ipc-avatar-img">
+                                <div class="ipc-meta">
+                                    <strong>komthur</strong>
+                                    <span>vor 3 Wochen</span>
+                                </div>
+                                <i class="fa-solid fa-ellipsis ipc-dots"></i>
+                            </div>
+                            <div class="ipc-media-wrap">
+                                <img src="../assets/images/komthur/showcase_komthur_insta_2.jpg" alt="Progress" class="ipc-media">
+                            </div>
+                            <div class="ipc-actions">
+                                <div class="ipc-actions-left">
+                                    <i class="fa-regular fa-heart"></i>
+                                    <i class="fa-regular fa-comment"></i>
+                                    <i class="fa-regular fa-paper-plane"></i>
+                                </div>
+                                <i class="fa-regular fa-bookmark"></i>
+                            </div>
+                            <div class="ipc-likes"><strong>391 Gefällt mir</strong></div>
+                            <div class="ipc-caption"><strong>komthur</strong> <em>Progress</em> fliesst — wie gutes Design. 💧 <span class="ipc-hashtags">#DesignThinking</span></div>
+                            <div class="ipc-timestamp">VOR 3 WOCHEN</div>
+                        </div>
+
+                    </div><!-- /insta-carousel -->
+
+                    <button class="ic-arrow ic-next ic-dark" id="icNext" aria-label="Weiter">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ══════════════════════════════════════
+                 LINKEDIN — MacBook Showcase
+            ══════════════════════════════════════ -->
+            <div class="container showcase-subsection">
+                <div class="showcase-sub-header">
+                    <span class="showcase-eyebrow">LinkedIn</span>
+                    <h2 class="showcase-sub-title">B2B <em>Content.</em></h2>
+                </div>
+
+                <div class="li-macbook-layout">
+
+                    <!-- MacBook frame -->
+                    <div class="li-macbook-wrap">
+                        <div class="li-macbook">
+                            <!-- Lid / screen -->
+                            <div class="li-macbook-lid">
+                                <div class="li-macbook-screen">
+                                    <!-- LinkedIn post card inside screen -->
+                                    <div class="li-screen-post">
+                                        <!-- Post header -->
+                                        <div class="li-sp-header">
+                                            <img src="../assets/images/komthur/komthur_favicon.png" alt="Komthur" class="li-sp-avatar">
+                                            <div class="li-sp-meta">
+                                                <strong>Komthur GmbH</strong>
+                                                <span>Grafik &amp; Design · Kreuzlingen</span>
+                                                <span class="li-sp-time">vor 2 Tagen · <i class="fa-solid fa-earth-europe"></i></span>
+                                            </div>
+                                            <button class="li-sp-follow">+ Folgen</button>
+                                        </div>
+                                        <!-- Post text -->
+                                        <div class="li-sp-body">
+                                            ✦ <strong>Design Dienstag #07</strong> — 94% der ersten Nutzerurteile basieren auf dem Design. Corporate Identity entscheidet über Erfolg.
+                                            <span class="li-sp-tags">#DesignDienstag #Branding #Komthur</span>
+                                        </div>
+                                        <!-- Image slider -->
+                                        <div class="li-img-slider-wrap">
+                                            <div class="li-img-slider" id="liSlider">
+                                                <div class="li-slide"><img src="../assets/images/komthur/showcase_komthur_linkedin_1.png" alt="LI 1"></div>
+                                                <div class="li-slide"><img src="../assets/images/komthur/showcase_komthur_linkedin_2.png" alt="LI 2"></div>
+                                                <div class="li-slide"><img src="../assets/images/komthur/showcase_komthur_linkedin_3.png" alt="LI 3"></div>
+                                                <div class="li-slide"><img src="../assets/images/komthur/showcase_komthur_linkedin_4.png" alt="LI 4"></div>
+                                                <div class="li-slide"><img src="../assets/images/komthur/showcase_komthur_linkedin_5.png" alt="LI 5"></div>
+                                                <div class="li-slide"><img src="../assets/images/komthur/showcase_komthur_linkedin_6.png" alt="LI 6"></div>
+                                                <div class="li-slide"><img src="../assets/images/komthur/showcase_komthur_linkedin_7.png" alt="LI 7"></div>
+                                                <div class="li-slide"><img src="../assets/images/komthur/showcase_komthur_linkedin_8.png" alt="LI 8"></div>
+                                                <div class="li-slide"><img src="../assets/images/komthur/showcase_komthur_linkedin_9.png" alt="LI 9"></div>
+                                                <div class="li-slide"><img src="../assets/images/komthur/showcase_komthur_linkedin_10.png" alt="LI 10"></div>
+                                            </div>
+                                            <button class="li-slide-btn li-slide-prev" id="liPrev"><i class="fa-solid fa-chevron-left"></i></button>
+                                            <button class="li-slide-btn li-slide-next" id="liNext"><i class="fa-solid fa-chevron-right"></i></button>
+                                            <div class="li-slide-dots" id="liDots"></div>
+                                            <div class="li-slide-counter"><span id="liCurrent">1</span> / 10</div>
+                                        </div>
+                                        <!-- Reactions -->
+                                        <div class="li-sp-reactions">
+                                            <span class="li-sp-emojis">👍❤️💡</span>
+                                            <span><b>284</b> Reaktionen · <b>38</b> Kommentare</span>
+                                        </div>
+                                        <div class="li-sp-divider"></div>
+                                        <div class="li-sp-actions">
+                                            <button class="li-sp-btn"><i class="fa-regular fa-thumbs-up"></i> Gefällt mir</button>
+                                            <button class="li-sp-btn"><i class="fa-regular fa-comment"></i> Kommentieren</button>
+                                            <button class="li-sp-btn"><i class="fa-solid fa-retweet"></i> Repost</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="li-macbook-notch"></div>
+                            </div>
+                            <!-- Base -->
+                            <div class="li-macbook-base">
+                                <div class="li-macbook-hinge"></div>
+                                <div class="li-macbook-keyboard"></div>
+                                <div class="li-macbook-trackpad"></div>
+                            </div>
+                        </div>
+                        <div class="li-macbook-shadow"></div>
+                    </div>
+
+                    <!-- Side info panel -->
+                    <div class="li-macbook-info">
+                        <div class="li-mi-profile">
+                            <img src="../assets/images/komthur/komthur_favicon.png" alt="Komthur" class="li-mi-avatar">
+                            <div>
+                                <strong>Komthur GmbH</strong>
+                                <span>284 Follower</span>
+                            </div>
+                        </div>
+                        <div class="li-mi-stats">
+                            <div class="li-mi-stat">
+                                <span class="li-mi-num">10</span>
+                                <span>Design-Posts</span>
+                            </div>
+                            <div class="li-mi-stat">
+                                <span class="li-mi-num">16</span>
+                                <span>Wochen Plan</span>
+                            </div>
+                            <div class="li-mi-stat">
+                                <span class="li-mi-num">B2B</span>
+                                <span>Fokus</span>
+                            </div>
+                        </div>
+                        <div class="li-mi-tags">
+                            <span>#DesignDienstag</span>
+                            <span>#Branding</span>
+                            <span>#CorporateIdentity</span>
+                            <span>#Komthur</span>
+                            <span>#DigitalMarketing</span>
+                        </div>
+                        <p class="li-mi-note">
+                            <i class="fa-brands fa-linkedin"></i>
+                            Wöchentliche Design-Fakten für Entscheidungsträger in KMU — aufgebaut auf dem 16-Wochen Content-Plan.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
         </section>
     </main>
 
@@ -710,5 +1004,6 @@
         onScroll();
       })();
     </script>
+<script defer src="../assets/js/typography-reveal.js"></script>
 </body>
 </html>

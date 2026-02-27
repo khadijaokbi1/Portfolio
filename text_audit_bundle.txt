@@ -1,0 +1,1302 @@
+TEXT AUDIT REPORT
+=================
+
+# Text-Audit (ohne `web/`)
+
+## Scope
+- Geprüft: alle HTML-Seiten ausser `web/`
+- Enthalten: Sprachqualität, Platzhaltertexte, Inkonsistenzen, offensichtliche Sinn-/Grammatikfehler
+
+## Priorisierte Anpassungen
+
+1. Datei: `about.html`
+- Problem: "Unsere Triebe, Veranlagerungen und Triebe."
+- Typ: Rechtschreibung + Dopplung
+- Vorschlag: "Unsere Triebe, Veranlagungen und Muster."
+
+2. Datei: `about.html`
+- Problem: "..., und ich nehme jede Gelegenheit mit, etwas neues zu lernen."
+- Typ: Rechtschreibung
+- Vorschlag: "..., und ich nutze jede Gelegenheit, etwas Neues zu lernen."
+
+3. Datei: `about.html`
+- Problem: "..., und wo die Bruchstellen liegen. warum wir Dinge tun ..."
+- Typ: Satzanfang klein
+- Vorschlag: "..., und wo die Bruchstellen liegen. Warum wir Dinge tun ..."
+
+4. Datei: `about.html`
+- Problem: Timeline-Satzbruch: "Nach vier Jahren ... durfte ich ... Komthur. Im ein umfassendes Online-Marketing-Konzept entwickeln."
+- Typ: Sinnfehler / Satzbruch
+- Vorschlag: "Nach vier Jahren Ausbildung zur Mediamatikerin durfte ich im Rahmen meiner IPA für die Werbeagentur Komthur ein umfassendes Online-Marketing-Konzept entwickeln."
+
+5. Datei: `about.html`
+- Problem: "Beginn der zwei Jährigen schulischen Ausbildung."
+- Typ: Rechtschreibung
+- Vorschlag: "Beginn der zweijährigen schulischen Ausbildung."
+
+6. Datei: `about.html`
+- Problem: Persönlichkeitstyp inkonsistent (oben: `ENTJ-A`, unten: `INTP-A`).
+- Typ: Inhaltliche Inkonsistenz
+- Vorschlag: auf einen finalen Typ vereinheitlichen.
+
+7. Datei: `blog.html`
+- Problem: "Texte die mehr hinterfragen ..."
+- Typ: Kommasetzung
+- Vorschlag: "Texte, die mehr hinterfragen ..."
+
+8. Datei: `blog/corona.html`
+- Problem: Navigation uneinheitlich (`work`, `about` kleingeschrieben).
+- Typ: UI-Text-Inkonsistenz
+- Vorschlag: `Work`, `About` (wie restliche Seiten).
+
+9. Datei: `blog/corona.html`
+- Problem: "Corona Pandemie"
+- Typ: Rechtschreibung
+- Vorschlag: "Corona-Pandemie" (an allen Stellen).
+
+10. Datei: `index.html`
+- Problem: "Konstanz während des Corona-Lockdown"
+- Typ: Grammatik
+- Vorschlag: "Konstanz während des Corona-Lockdowns"
+
+11. Datei: `index.html`
+- Problem: "Community building on Threads"
+- Typ: Sprachmix (DE/EN)
+- Vorschlag (DE): "Community-Aufbau auf Threads"
+
+12. Datei: mehrere Seiten
+- Problem: Footer-Text "Design & Development by Khadija Okbi" in englisch, restliche Seite meist deutsch.
+- Typ: Sprachkonsistenz
+- Vorschlag (optional): "Design & Entwicklung von Khadija Okbi" oder bewusst überall Englisch.
+
+## Platzhaltertexte / Demo-Inhalte (anpassen oder aus Live-Navigation entfernen)
+
+1. Datei: `pages/template.html`
+- Enthält zahlreiche Platzhalter:
+- "Projekt Titel"
+- "Projekt Übersicht"
+- "Einleitung und Kontext"
+- "Beschreibung des Kunden und der Zusammenarbeit."
+- "Die Herausforderung und Zielsetzung des Projekts."
+- "Projektdauer und wichtige Meilensteine."
+- "Hier beschreibst du den konzeptionellen Ansatz ..."
+- "Welche Tools und Technologien wurden verwendet?"
+- "Probleme, die gelöst wurden ..."
+- "Hier präsentierst du das fertige Projekt ..."
+
+2. Datei: `pages/preloader-demo.html`
+- Demo-Text vorhanden (kein Fehler, aber kein produktiver Seiteninhalt):
+- "Preloader Demo"
+- "Nochmal testen"
+
+3. Datei: `pages/wellen-demo.html`
+- Reine Demo-Seite (kein Fehler, aber nicht inhaltlich redaktionell):
+- "Wellen Demo"
+
+4. Datei: `work/personal.html`
+- Sichtbarer Placeholder: "Portfolio UI" (Element-ID `bPlaceholder`).
+
+## Optionaler Feinschliff (kein harter Fehler)
+- Einheitliche Schreibweise von Navigationstexten (`Work` vs ggf. `Arbeiten`).
+- Einheitliche Mikrocopy bei Buttons (`MEHR DETAILS` vs `Jetzt lesen` vs `Weiterlesen`).
+
+## Hinweis zur Vollständigkeit
+- Vollständige, extrahierte Textsammlung liegt in: `text_audit_all_texts.md`.
+
+
+VOLLSTAENDIGE TEXTSAMMLUNG
+==========================
+
+# about.html
+Titel: Über mich | Khadija Okbi
+Texte:
+- Über mich | Khadija Okbi
+- Home
+- Work
+- Blog
+- About
+- About Me
+- Kreativität zieht sich durch mein ganzes Leben. Meine Lösungswege sind oft unkonventionell. Effizienz trifft auf kreatives Chaos, ein laufendes Paradox. Mein Mantra: Wo ein Wille ist, ist auch ein Weg. Mein Durst nach Wissen ist unstillbar und ich nehme jede Gelegenheit mit, etwas neues zu lernen. Ob im Baumarkt in der Holzabteilung oder vom Elektriker in der Waschküche, welche Gelegenheit eignet sich bitte besser als diese, um von Experten zu lernen. Was mich schon seit Jahren besonders fasziniert, ist die menschliche Psyche. Unsere Triebe, Veranlagerungen und Triebe. warum wir Dinge tun, die wir rational längst durchschaut haben, und wo die Bruchstellen liegen. True Crime ist für mich kein billiger Thrill – es ist der Blick in den Extremfall, in den Moment, wo alles kippt. Ich will nicht nur wissen, was passiert ist. Ich will verstehen, warum. Deshalb verschlinge ich alles zu Psychologie, Neurologie, Philosophie und True Crime.
+- Personality Type
+- ENTJ-A — The Commander
+- Strategisch, entschlossen, effizient. Ich sehe Strukturen, wo andere Chaos sehen. Mein Antrieb ist Fortschritt und Perfektion.
+- Zodiac Sign
+- Cancer — The Intuitive
+- Tiefgründig, intuitiv, beschützend. Ich fühle die Stimmung eines Raumes (oder einer Brand) sofort. Das emotionale Gegengewicht zu meiner Strategie.
+- Werdegang
+- Bildung
+- Erfahrung
+- 2025
+- Technische Berufsmaturität
+- Mehr
+- Mit der Abgabe meiner interdisziplinären Arbeit zum Thema ‚Die Illusion der freien Meinung‘ schloss ich meine Ausbildung ab. Die Arbeit analysiert die biologischen und psychologischen Ursprünge der Meinungsbildung sowie die zentrale Frage nach der Möglichkeit von Demokratie. Untersucht wurden neurowissenschaftliche Faktoren wie hormonelle Steuerung, genetische Präferenzen und transgenerationale Traumata sowie soziologische Einflüsse durch kollektive Glaubenssysteme und unbewusste Triebe. Abschliessend wird die gezielte Beeinflussung durch Social Media und Künstliche Intelligenz auf die individuelle Autonomie und die damit verbundene Gefährdung demokratischer Prozesse beleuchtet.
+- Oktober 2025
+- 2023
+- Mediamatikerin EFZ
+- Nach vier Jahren Ausbildung zur Mediamatikerin durfte ich im Rahmen meiner IPA, für die Werbeagentur
+- Komthur
+- Im ein umfassendes Online-Marketing-Konzept entwickeln. Dieses basierte auf einer strategischen Marktanalyse und Zielgruppendefinition mittels Personas sowie einem vollständigen UI/UX-Website-Redesign. Die Performance-Marketing-Strategie kombinierte SEO- und SEA-Optimierungen mit budgetierter Mediaplanung auf Google, LinkedIn und Meta. Ein halbjährlicher Social-Media-Plan strukturierte die Inhalte für alle relevanten Plattformen. Mithilfe von After Effects und Canva wurden Templates und Assets für die kanalübergreifende Content-Strategie erstellt. Das Gesamtkonzept integrierte organische und bezahlte Kanäle zu einer kohärenten Gesamtstrategie.
+- Juli 2023
+- 2022
+- Social Media Management
+- Im zweiten Lehrjahr der praktischen Ausbildung bei der SBW Neue Medien umfasste mein Aufgabenbereich die Konzeption und Umsetzung zielgruppengerechter Social-Media-Inhalte für Instagram und TikTok. Für interne und externe Projekte durfte ich zudem in den Bereichen Design und Animation mein Wissen vertiefen.
+- SBW Neue Medien, Romanshorn
+- 2021
+- Sportmarketing
+- Praktikumsjahr im Bereich Sportmarketing. Erstellen von Festführern, Sponsoring-Materialien und Bandenanimationen für große Sportevents wie die Schweizermeisterschaft im Kunstturnen.
+- Win-4 Winterthur
+- 2019
+- Ausbildung zur Mediamatikerin
+- Beginn der zwei Jährigen schulischen Ausbildung.
+- SBW Neue Medien
+- 2018
+- Praktikum Social Media
+- Bei meinem Praktikum in der Kommunikationsabteilung bei Hillsong Germany durfte ich die Mediaverantwortung für den Young & Free-Bereich übernehmen. Das Aufgabenfeld umfasste Social-Media-Management mit Fokus auf Instagram: Erstellung von Event-Trailern, Screen-Designs, Flyern sowie Foto- und Videoproduktionen für verschiedene Kanäle. Erste Erfahrungen entstanden mit Adobe Premiere, Photoshop, InDesign sowie in Fotografie und Videografie. Dieses Praktikum legte den Grundstein für die Leidenschaft für Animation, Design und Social-Media-Management.
+- Hillsong, Konstanz
+- MBTI Persönlichkeit
+- INTP‑A
+- 51%
+- Introvertiert
+- 95%
+- Intuitiv
+- 74%
+- Analytisch
+- 100%
+- Kreativ
+- Der Logiker
+- Neugierig. Unabhängig. Analytisch. INTPs analysieren komplexe Systeme und finden kreative Lösungen—Pioniere neuer Ideen.
+- Charaktereigenschaften
+- Analytisch und logisch denkend
+- Neugierig und an tiefem Verständnis interessiert
+- Unabhängig und eigenständig in ihren Ideen
+- Manchmal abwesend oder unpraktisch im Alltag
+- Können mit sozialen Konventionen Schwierigkeiten haben
+- Lieben intellektuelle Herausforderungen und Problemlösen
+- Like minds
+- Albert Einstein · Nikola Tesla · Marie Curie
+- Technical Skills
+- Adobe InDesign
+- Photoshop
+- 98%
+- Premiere Pro
+- 92%
+- After Effects
+- 90%
+- Frontend (HTML, CSS, JS)
+- 85%
+- Backend (NodeJS, PHP)
+- 75%
+- Marketing & Social Media
+- 80%
+- Gelesene Bücher
+- Meine
+- Favoriten
+- Ein Einblick in die Bücher, die mich dieses Jahr besonders geprägt haben.
+- 2024
+- 52
+- Bücher
+- 104
+- Violet Sorrengail sollte ein ruhiges Leben unter Büchern führen – doch auf Befehl ihrer Mutter wird sie ans Basgiath War College geschickt, wo Drachenreiter ausgebildet werden.
+- Zwischen brutalen Prüfungen, tödlicher Konkurrenz und politischen Intrigen muss sie beweisen, dass Intelligenz ebenso mächtig sein kann wie rohe Stärke.
+- Es geht um Macht, Loyalität – und die Frage, wem man in einem System trauen kann, das auf Kontrolle aufgebaut ist.
+- Fantasy · Empyrean-Reihe
+- Fourth Wing
+- von Rebecca Yarros
+- Mein erstes Buch im Jahr 2025 hat die Messlatte unschlagbar hoch gelegt – eine Welt, die in den Bann zieht und so schnell nicht loslässt.
+- Rezension lesen
+- Von der ersten Seite an zog mich die dreiteilige Empyrean-Reihe in ihren Bann. Obwohl Fantasy nicht meinem üblichen Genre entspricht, mangelte es diesem Buch keinesfalls an Spannung. Die Welt des Basgiath War College ist komplex und fesselnd aufgebaut – die Dynamik zwischen den Charakteren, die ständige Bedrohung und die überraschenden Wendungen haben mich bis zur letzten Seite nicht losgelassen. Fourth Wing hat mein Herz erobert und mich in ganz neue fantastische Welten katapultiert.
+- Fünf Jahre nach einem vermeintlich gelösten Mordfall beschliesst Pip Fitz-Amobi, die Geschichte für ihr Abschluss­projekt neu aufzurollen.
+- Je tiefer Pip recherchiert, desto mehr Widersprüche entdeckt sie – nicht jeder will, dass die Vergangenheit erneut aufgedeckt wird.
+- Was als Schulprojekt beginnt, entwickelt sich zu einer gefährlichen Suche nach Wahrheit.
+- Young Adult · Mystery
+- A Good Girl's Guide to Murder
+- von Holly Jackson
+- Die Reihe hätte es alleinstehend wohl nicht in meine Top 3 geschafft – doch Band drei verleiht ihr einen Flair, dem ich so noch nie begegnet bin.
+- Besonders einprägend fand ich Jacksons Fähigkeit, komplexe Charaktere aufzubauen, Einblicke in die Psyche dieser zu vermitteln und die anschliessende Kapitulation anzubahnen. Die Entwicklung der Hauptprotagonistin war so unerwartet, dass sie einen bleibenden Eindruck hinterlassen hat – und mich dazu gebracht hat, alle drei Bände in einem Zug zu lesen.
+- Nach fünf Jahren im Gefängnis kehrt Kenna Rowan in eine Stadt zurück, die ihr nie verziehen hat.
+- Gefühle entstehen dort, wo sie eigentlich keinen Platz haben dürften.
+- Die Geschichte handelt von Schuld und der Frage, ob ein einziger Fehler ein ganzes Leben definieren darf.
+- Contemporary Romance
+- Reminders of Him
+- von Colleen Hoover
+- Die Bücher, die mich zu Tränen gerührt haben, kann ich an einer Hand abzählen – dieses ist eines davon.
+- Was mich so berührt hat, war nicht nur die tragische Ausgangslage, sondern die schonungslose Ehrlichkeit, mit der dieser schmale Grat zwischen Schicksal und Schuld gezeichnet wird. Der innere Kampf zwischen Hoffnung und Selbstverurteilung war intensiv und bewegend. Eine emotionale Achterbahnfahrt, die tief unter die Haut geht und noch lange nachhallt.
+- Goodreads Wrapped 2025
+- Tops, Flops &
+- alles dazwischen.
+- Alle 104 Bücher — unzensiert bewertet.
+- Zum Goodreads-Profil
+- Spotify Wrapped 2025
+- Klänge,
+- die prägen.
+- Drei Alben, die 2025 auf Repeat liefen – jedes davon ein eigenes Universum.
+- Hip-Hop / Soul
+- Runaway
+- Kanye West
+- R&B / Gospel
+- FEAR.
+- Kendrick Lamar
+- Pop
+- A Million Years
+- Westlife
+- © 2026 Design & Development by Khadija Okbi
+- Impressum
+- Kontakt
+- Datenschutz
+
+# blog.html
+Titel: Blog — Khadija Okbi
+Texte:
+- Blog — Khadija Okbi
+- Home
+- Work
+- Blog
+- About
+- Journal & Perspektiven
+- Ge
+- danken
+- auf
+- Papier.
+- Psychologie, Gesellschaft, Social Media, Fotografie — Texte die mehr hinterfragen als sie beantworten.
+- Aktuell · Psychologie
+- Die Illusion der
+- freien Meinung
+- Gene, Algorithmen, Gesellschaft — wir glauben frei zu denken, während alles längst vorcodiert ist.
+- Lesezeit
+- 6 Min
+- Kategorie
+- Psychologie
+- IDPA
+- 2025
+- Jetzt lesen
+- Alle Artikel
+- Aus dem
+- Blog.
+- Alle
+- Fotografie
+- Social Media
+- Genetik, Neurochemie, Algorithmen — wenn unsere Meinungen biologisch vorcodiert und technologisch konditioniert sind, was ist dann noch echt?
+- Weiterlesen · 6 Min
+- Ein Bild sagt mehr als
+- 1000 Worte
+- Konstanz im Lockdown 2021. Eine fotografische Dokumentation zwischen Stille, Erschöpfung und dem Ende der Normalität.
+- Weiterlesen · 5 Min
+- Trending on
+- Threads
+- 500'000 Aufrufe, 700 Follower, eine Telegram-Community — Early Adoption auf einer neuen Plattform wird zu echtem Vertrauen.
+- Weiterlesen · 8 Min
+- "Wir machen uns vor, eine freie Meinung zu besitzen, während sie lediglich ein Ergebnis von Prägung, Erfahrung und Umfeld ist."
+- — Die Illusion der freien Meinung · IDPA 2025
+- Mehr lesen.
+- Mehr denken.
+- Drei Themenfelder, drei Perspektiven — verbunden durch die Frage, wie wir uns selbst wahrnehmen.
+- 1 Artikel →
+- © 2026 Design & Development by Khadija Okbi
+- Impressum
+- Kontakt
+- Datenschutz
+
+# blog/corona.html
+Titel: Corona | Ein Bild sagt mehr als tausend Wörter
+Texte:
+- Corona | Ein Bild sagt mehr als tausend Wörter
+- Home
+- work
+- Blog
+- about
+- Lesezeit: 5 Minuten // Fotografie
+- Ein Bild sagt mehr
+- als tausend Wörter
+- Auch fünf Jahre später überkommt mich ein mulmiges Gefühl, wenn ich die im Rahmen des Fotografie ÜKs entstandenen Bilder der Corona Pandemie betrachte. Konstanz im Frühling 2021, der Höhepunkt des zweiten Lockdowns. Uns war klar: wir wollen diese Absurdität bildlich festhalten.
+- Die Corona Pandemie war weitaus mehr als nur eine Gesundheitskrise. Es war ein Toleranztest für die Gesellschaft. Wie weit kann man Grundrechte einschränken, bevor Widerstand entsteht? Wie schnell akzeptieren Menschen drastische Eingriffe in ihr Leben, wenn man an das Gewissen appelliert? Sind Menschen so schnell bereit, Freiheit gegen vermeintliche Sicherheit zu tauschen?
+- Die Konstanzer Innenstadt und das sonst so belebte Lago wirken wie ausgestorben. Die wenigen Passanten wirkten eingeschüchtert, vorsichtig, erschöpft. Herumliegende Masken werden zum Symbol einer Gesellschaft zwischen Angst und Verordnungsmüdigkeit.
+- Die entstandenen Werke zeigen: Fotografie ist mehr als Ästhetik, sie erzählt Geschichten. Was wir während des Lockdowns dokumentiert haben, ist ein visuelles Zeugnis einer Pandemie, die die Welt verändert hat. Sie sind eine warnende Erinnerung daran, wie fragil unsere Normalität ist.
+- Über die Arbeit
+- Visuelle Dokumentation des zweiten Lockdowns im Rahmen des Fotografie ÜKs.
+- Fotografie als Zeugnis
+- Bilder erzählen Geschichten, die Worte allein nicht vermitteln können.
+- © 2026 Design & Development by Khadija Okbi
+
+# blog/idpa.html
+Titel: IDPA | Die Illusion der freien Meinung
+Texte:
+- IDPA | Die Illusion der freien Meinung
+- Home
+- Work
+- Blog
+- About
+- Lesezeit: 6 Minuten // Psychologie
+- Die Illusion
+- der freien Meinung
+- Meine IDPA entstand aus einer intensiven Beschäftigung mit der menschlichen Psyche. Damals war das Ziel klar: Ich wollte die psychologischen, biologischen und sozialen Mechanismen verstehen, die unser Denken prägen. Doch je tiefer ich einstieg, desto mehr offenbarte sich eine unbequeme Wahrheit.
+- Schon seit einiger Zeit befasse ich mich intensiv mit der menschlichen Psyche. Was mit dem Ziel begann, mir Wissen anzueignen, um zu verstehen, endete in der Akzeptanz, dass wir als Menschen eigentlich alle machtlos unserer selbst sind. Wir machen uns vor, eine freie Meinung zu besitzen, während sie lediglich ein Ergebnis von Prägung, Erfahrung und Umfeld ist. Lange bevor wir ein bewusstes Wort sprechen, ist die Weiche bereits gestellt – unsere Meinungen werden nicht im Kopf, sondern im Bauch, oder genauer gesagt, in den Drüsen gemacht.
+- Gene wie das COMT-Gen bestimmen schon bei unserer Geburt, wie risikofreudig oder neugierig wir sind und damit, ob wir eher zu progressiven oder konservativen politischen Ansichten neigen. Die Epigenetik zeigt uns, dass sogar Traumata unserer Vorfahren wie Hungersnöte, Kriege und Verfolgung über Generationen hinweg unsere Ängstlichkeit und unser Sicherheitsbedürfnis prägen. Hinzu kommt ein komplexer Hormon-Cocktail: Neurotransmitter wie Oxytocin steuern nicht nur die Bindung, sondern auch unsere politische Loyalität und das Vertrauen gegenüber Anführern.
+- "Das Ich ist nicht Herr im eigenen Hause."
+- — Sigmund Freud
+- Doch Biologie allein erzählt nicht die ganze Geschichte. Weltgeschehen und technischer Fortschritt bekamen aus dieser Perspektive eine ganz andere Bedeutung. Wir sind tiefgreifend soziale Wesen, und unser tiefstes Bedürfnis ist die Zugehörigkeit – ein evolutionäres Überlebensmuster, das systematisch von unseren sozialen Strukturen genutzt wird. Religionen funktionieren als hocheffiziente "kulturelle Technologien", die Verhaltensregeln durch Belohnung und Bestrafung festlegen und so Kooperation in großem Maßstab ermöglichen.
+- Das 21. Jahrhundert hat alle Mechanismen der psychischen und sozialen Konditionierung perfektioniert und globalisiert. Social-Media-Algorithmen sind darauf optimiert, uns möglichst lange zu binden und fördern dafür emotional aufgeladene, polarisierende Inhalte – Wut und Empörung verbreiten sich sechsmal schneller als Fakten und schaffen so digitale Echokammern. Empfehlungsalgorithmen auf Plattformen wie YouTube führen Nutzer systematisch zu extremeren Inhalten.
+- Wenn unsere Meinungen biologisch vorcodiert, neurochemisch gesteuert und technologisch konditioniert sind, bleibt die Frage: Was ist dann noch echt? Philosophen wie Nietzsche erkannten: Der freie Wille ist eine Illusion, aber eine notwendige. Die einzige verbleibende Freiheit liegt in der Selbsterkenntnis. Wahre geistige Autonomie erfordert kritische Distanz – das Erkennen der eigenen biologischen und psychischen Prägungen – sowie algorithmische Aufklärung.
+- Über die Arbeit
+- Untersuchung der fünf Kernaspekte: Genetik, Neurowissenschaft, Soziologie, Psychologie und Philosophie.
+- Zugehörigkeit
+- Der Mensch ist ein Herdentier. Unser Wunsch nach Konformität ist stärker als der Wunsch nach Wahrheit.
+- © 2026 Design & Development by Khadija Okbi
+
+# blog/threads.html
+Titel: Threads | Early Adoption in der Krypto-Community
+Texte:
+- Threads | Early Adoption in der Krypto-Community
+- Home
+- Work
+- Blog
+- About
+- Lesezeit: 8 Minuten // Social Media
+- Threads
+- Neue Plattformen erobern
+- Als Meta im Dezember 2023 Threads im DACH-Raum launchte, war die Plattform für die meisten noch ein unbeschriebenes Blatt. Kein etablierter Algorithmus, keine eingefleischte Community – nur eine Menge neugieriger Nutzer und ein offenes Spielfeld. Genau das war meine Chance.
+- Neue Plattformen folgen einer einfachen Logik: Je weniger Nutzer aktiv sind, desto grösser ist das Fenster, sich klar zu positionieren, ohne in der Masse unterzugehen. Wer früh versteht, wie ein neuer Algorithmus belohnt und bestraft, kann sich einen Vorsprung aufbauen, den spätere Nutzer nur schwer einholen. Ich wollte genau das verstehen – und entschied mich, die Nische der Krypto- und Trading-Community konsequent zu besetzen. Keine halben Sachen, keine thematischen Ausflüge in andere Bereiche. Eine Nische, eine Stimme, ein klares Versprechen an die Zielgruppe.
+- Der Plan war schnell definiert: täglich posten, verschiedene Formate testen, den Algorithmus beobachten und die Reaktionen der Community ernst nehmen. Nicht als Feedback, das man irgendwann auswertet – sondern als Signal, das man sofort verarbeitet. Chartanalysen mit klaren Aussagen, Einblicke in Trading-Psychologie, Reaktionen auf aktuelle News-Events und vor allem: Transparenz über laufende Trades, inklusive der Positionen, die nicht aufgingen. Gerade letzteres war ein bewusster Entscheid. Im Trading-Umfeld ist Glaubwürdigkeit keine Selbstverständlichkeit. Wer nur Gewinne zeigt, wird früher oder später durchschaut. Wer auch Verluste teilt, baut etwas auf, das sich nicht kopieren lässt: echtes Vertrauen.
+- "Neue Plattformen sind Machtvakuum. Wer früh kommt, mit klarer Positionierung und echtem Mehrwert, kann sich einen Platz sichern, der später nur noch schwer zu besetzen ist."
+- — Lessons from Threads
+- Was als gezieltes Experiment begann, entwickelte sich schneller als erwartet. Aus Reichweite wurde Resonanz, aus Resonanz wurde Bindung. Innerhalb weniger Wochen zeigten die Zahlen, was die Strategie in der Praxis leistete: über 500.000 Aufrufe, 700 neue Follower und eine wachsende Gruppe an Menschen, die nicht nur lasen, sondern mitmachten, kommentierten, weiterteilten und andere mitbrachten. Threads hatte geliefert, was ich erhofft hatte – ein Schaufenster mit echter Aufmerksamkeit.
+- Doch Reichweite allein ist kein Fundament. Sie ist ein Einstieg. Der nächste Schritt war, aus flüchtigen Plattform-Interaktionen etwas Dauerhafteres zu bauen. Über den Link in der Bio entstand der Übergang zu Telegram – und damit zu einem Format, das echten Tiefgang erlaubte. Was mich dabei am meisten überraschte, war die Zusammensetzung der Gruppe: Nicht nur Einsteiger, die ihre ersten Schritte im Trading machten, sondern auch deutlich erfahrenere Trader und Investoren, die ihre Expertise regelmässig und ohne Vorbehalt teilten. Die Dynamik, die sich daraus entwickelte, war kaum planbar gewesen.
+- Täglich wurden live Trades analysiert, News-Events gemeinsam abgewartet, Marktbewegungen in Echtzeit diskutiert. Anfänger stellten Fragen, die erfahrene Trader vor Jahren selbst gestellt hatten. Erfahrene Trader erkannten in den Fragen der Anfänger Denkmuster, über die es sich lohnte, noch einmal nachzudenken. Es entstand kein klassischer Lehrkanal, sondern ein Ort des gegenseitigen Austauschs – und damit etwas, das weit mehr Wert hat als jede Follower-Zahl: eine Gemeinschaft, die sich selbst trägt.
+- Das Modell dahinter war im Nachhinein klarer als während der Umsetzung: Threads schuf Discovery und Sichtbarkeit, Telegram schuf Tiefe und Bindung. Zwei Plattformen, zwei Funktionen, ein sich selbst verstärkender Kreislauf. Wer auf Threads mit dem Content resonierte, landete in der Gruppe. Wer in der Gruppe aktiv war, sprach mit anderen darüber – und brachte sie auf Threads. Reichweite und Community begannen, sich gegenseitig zu nähren.
+- Was dieses Experiment letztlich gezeigt hat, lässt sich auf einen Kern reduzieren: Neue Plattformen sind Machtvakuum. Wer früh kommt, mit klarer Positionierung und echtem Mehrwert, kann sich einen Platz sichern, der später nur noch schwer zu besetzen ist. Nicht weil der Algorithmus es für immer so belohnt – sondern weil das Vertrauen, das in dieser frühen Phase entsteht, bleibt. Und Vertrauen ist im digitalen Raum die knappste Ressource überhaupt.
+- Die Strategie
+- Nischenfokus + tägliche Aktivität + Transparenz = Vertrauen und organisches Wachstum.
+- Zwei Plattformen
+- Threads für Sichtbarkeit, Telegram für Tiefe. Ein Zwei-Säulen-System, das sich selbst verstärkt.
+- © 2026 Design & Development by Khadija Okbi
+
+# blog/tiktok.html
+Titel: 10k Follower in 30 Tagen | Khadija Okbi Blog
+Texte:
+- 10k Follower in 30 Tagen | Khadija Okbi Blog
+- Home
+- Work
+- Blog
+- About
+- 10k Follower in 30 Tagen
+- Meine Faceless TikTok Strategie
+- 📖 5 Min Lesezeit
+- 📱 Social Media
+- 📅 Januar 2026
+- Als ich mein Faceless TikTok-Projekt startete, hatte ich ein klares Ziel: Beweisen, dass man auch ohne Gesicht zu zeigen eine engagierte Community aufbauen kann. Das Ergebnis? 10.000 Follower in nur 30 Tagen – komplett organisch, ohne einen einzigen Cent in Werbung zu investieren.
+- 🎯 Die Strategie: Weniger ist mehr
+- Der größte Fehler, den die meisten Content Creator machen: Sie versuchen, perfekt zu sein. Stundenlange Bearbeitung, teure Ausrüstung, komplizierte Setups. Dabei ist das Gegenteil der Fall – TikTok belohnt Authentizität und Konsistenz, nicht Perfektion.
+- Organisches Wachstum: Von 0 auf 10k in 30 Tagen
+- 📊 Die 3 Säulen meiner Strategie
+- 1. Nischen-Fokus: Trading & Finanzen
+- Anstatt breit zu streuen, fokussierte ich mich auf eine klare Nische: Trading-Psychologie und finanzielle Bildung. Der Vorteil? Eine hochengagierte Zielgruppe, die aktiv nach genau diesem Content sucht.
+- 2. Hook-Format: Die ersten 3 Sekunden entscheiden
+- TikTok-Nutzer scrollen schnell. Sehr schnell. Deshalb beginnt jedes meiner Videos mit einem starken Hook:
+- "95% der Trader verlieren Geld. Hier ist warum..."
+- — Typischer Video-Hook
+- 3. Konsistenz schlägt Qualität
+- Ich postete 3-4 Videos pro Tag. Nicht alle waren perfekt. Aber sie waren konsistent. TikTok's Algorithmus liebt Accounts, die regelmäßig Content liefern. Das Ergebnis? Mehr Reichweite, mehr Follower, mehr Engagement.
+- 🛠️ Das Setup: Simpel & Effektiv
+- Mein Equipment war bewusst minimal gehalten:
+- Smartphone
+- – Keine teure Kamera nötig
+- CapCut
+- – Kostenlose Editing-App
+- Stock-Footage
+- – Kostenlose B-Roll Videos
+- AI-Voiceover
+- – Text-to-Speech für anonyme Videos
+- 📈 Die Ergebnisse: Zahlen sprechen für sich
+- Nach 30 Tagen hatte ich erreicht:
+- 10.247 Follower
+- – Organisches Wachstum
+- 👁️
+- 2,3M Views
+- – Durchschnittlich 20k pro Video
+- 15% Engagement-Rate
+- – Hochaktive Community
+- 0€ Ad-Spend
+- – Komplett organisch
+- 💡 Die wichtigsten Learnings
+- 1. Algorithmus verstehen:
+- TikTok belohnt Watch-Time und Engagement, nicht Follower-Zahlen. Ein Video mit 100% Watch-Time und 50 Views ist wertvoller als eines mit 10.000 Views und 20% Watch-Time.
+- 2. Trends nutzen, aber nicht kopieren:
+- Ich beobachtete Trends in meiner Nische und adaptierte sie auf meine Art. So blieb ich relevant, ohne meine Authentizität zu verlieren.
+- 3. Community first:
+- Ich antwortete auf jeden Kommentar in den ersten 30 Minuten nach Upload. Das signalisiert dem Algorithmus: "Dieses Video ist relevant!"
+- 🚀 Fazit: Du brauchst kein Gesicht für Erfolg
+- Die größte Erkenntnis aus diesem Experiment? Man braucht kein Gesicht, keine teure Ausrüstung und kein Werbebudget, um auf TikTok erfolgreich zu sein. Was man braucht, ist eine klare Strategie, Konsistenz und das Verständnis für den Algorithmus.
+- Wenn du auch eine Faceless-Strategie aufbauen willst, starte heute. Nicht morgen. Nicht nächste Woche. Der beste Zeitpunkt ist jetzt.
+- ← Vorheriger Artikel
+- Trending on Threads
+- Nächster Artikel →
+- Die Illusion der freien Meinung
+- 5 Min
+- Design & Development by Khadija Okbi
+- Impressum
+- Kontakt
+- Datenschutz
+
+# index.html
+Titel: Khadija Okbi | Creative Director für Design, Marketing & Motion
+Texte:
+- Khadija Okbi | Creative Director für Design, Marketing & Motion
+- Home
+- Work
+- Blog
+- About
+- CREATIVE
+- DIRECTOR
+- Design & Direction
+- ich mache
+- Als Creative Director verbinde ich visuelles Denken mit strategischem Gespür — von Branding und Motion Design bis hin zu Kampagnen, die bleiben.
+- Meine Arbeiten
+- Fotografie
+- Design
+- Marketing
+- Animation
+- Ausgewählte
+- Projekte
+- Alle
+- Visual Art
+- Motion
+- Web Dev
+- MEHR DETAILS
+- Aus dem
+- Die Illusion der
+- freien Meinung
+- Demokratie in Zeiten von Social Media & KI
+- Weiterlesen
+- Ein Bild sagt mehr als
+- 1000 Worte
+- Konstanz während des Corona-Lockdown
+- Trending on
+- Threads
+- Community building on Threads
+- © 2026 Design & Development by Khadija Okbi
+- Impressum
+- Kontakt
+- Datenschutz
+
+# pages/404.html
+Titel: 404 - Seite nicht gefunden | Khadija Okbi
+Texte:
+- 404 - Seite nicht gefunden | Khadija Okbi
+- Home
+- Work
+- Blog
+- About
+- 404
+- Seite nicht gefunden
+- Die Seite, die du suchst, existiert leider nicht oder wurde verschoben. Vielleicht findest du auf der Startseite, was du suchst?
+- Zur Startseite
+- Zurück
+- © 2026 Design & Development by Khadija Okbi
+- Impressum
+- Kontakt
+- Datenschutz
+
+# pages/animation.html
+Titel: Praktikum | Hillsong Germany Comms
+Texte:
+- Praktikum | Hillsong Germany Comms
+- IPA Projekt 2023
+- Strategisches
+- Marketing
+- Eine ganzheitliche Neuausrichtung für die Komthur GmbH. Von der Zielgruppenanalyse über digitale Transformation bis zur messbaren Erfolgsrealisierung.
+- Visual
+- Storytelling
+- Video Production // Social Media // 1080x1920
+
+# pages/datenschutz.html
+Titel: Datenschutzerklärung | Khadija Okbi
+Texte:
+- Datenschutzerklärung | Khadija Okbi
+- Home
+- Work
+- Blog
+- About
+- Datenschutzerklärung
+- 1. Datenschutz auf einen Blick
+- Allgemeine Hinweise
+- Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.
+- Datenerfassung auf dieser Website
+- Wer ist verantwortlich für die Datenerfassung auf dieser Website?
+- Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.
+- Wie erfassen wir Ihre Daten?
+- Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.B. um Daten handeln, die Sie per E-Mail an uns senden.
+- Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z.B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie diese Website betreten.
+- 2. Hosting
+- Diese Website wird extern gehostet. Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Hierbei kann es sich v.a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, die über eine Website generiert werden, handeln.
+- 3. Allgemeine Hinweise und Pflichtinformationen
+- Datenschutz
+- Ich nehme den Schutz Ihrer persönlichen Daten sehr ernst. Ich behandle Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
+- Wenn Sie diese Website benutzen, werden verschiedene personenbezogene Daten erhoben. Personenbezogene Daten sind Daten, mit denen Sie persönlich identifiziert werden können. Die vorliegende Datenschutzerklärung erläutert, welche Daten ich erhebe und wofür ich sie nutze. Sie erläutert auch, wie und zu welchem Zweck das geschieht.
+- Hinweis zur verantwortlichen Stelle
+- Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
+- Khadija Okbi
+- E-Mail:
+- khadijaokbi@gmail.com
+- Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z.B. Namen, E-Mail-Adressen o. Ä.) entscheidet.
+- 4. Datenerfassung auf dieser Website
+- Server-Log-Dateien
+- Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:
+- Browsertyp und Browserversion
+- verwendetes Betriebssystem
+- Referrer URL
+- Hostname des zugreifenden Rechners
+- Uhrzeit der Serveranfrage
+- IP-Adresse
+- Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.
+- Kontaktformular & E-Mail-Kontakt
+- Wenn Sie mir per E-Mail Kontakt aufnehmen, wird Ihre Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten (Name, Anfrage) zum Zwecke der Bearbeitung Ihres Anliegens bei mir gespeichert und verarbeitet. Diese Daten gebe ich nicht ohne Ihre Einwilligung weiter.
+- 5. Analyse-Tools und Werbung
+- Google Analytics
+- Diese Website nutzt Funktionen des Webanalysedienstes Google Analytics. Anbieter ist die Google Ireland Limited ("Google"), Gordon House, Barrow Street, Dublin 4, Irland.
+- Google Analytics verwendet so genannte "Cookies". Das sind Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermöglichen. Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert.
+- 6. Ihre Rechte
+- Sie haben jederzeit das Recht auf:
+- Auskunft über Ihre bei mir gespeicherten Daten und deren Verarbeitung
+- Berichtigung unrichtiger personenbezogener Daten
+- Löschung Ihrer bei mir gespeicherten Daten
+- Einschränkung der Datenverarbeitung
+- Datenübertragbarkeit
+- Widerspruch gegen die Verarbeitung Ihrer Daten
+- Stand:
+- Februar 2026
+- © 2026 Design & Development by Khadija Okbi
+- Impressum
+- Kontakt
+
+# pages/gallery-carousel-new.html
+Texte:
+- Filmplakat
+- Geister
+- Jumpin
+- Parasit
+- Petrichor
+- Trailer Park
+- Wehelp
+- Klicken oder scrollen
+
+# pages/impressum.html
+Titel: Impressum | Khadija Okbi
+Texte:
+- Impressum | Khadija Okbi
+- Home
+- Work
+- Blog
+- About
+- Impressum
+- Angaben gemäß § 5 TMG
+- Khadija Okbi
+- Mediamatikerin & Creative Director
+- Schweiz
+- Kontakt
+- E-Mail:
+- khadijaokbi@gmail.com
+- Haftungsausschluss
+- Haftung für Inhalte
+- Die Inhalte meiner Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann ich jedoch keine Gewähr übernehmen. Als Diensteanbieter bin ich gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+- Haftung für Links
+- Mein Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte ich keinen Einfluss habe. Deshalb kann ich für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+- Urheberrecht
+- Die durch mich erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen meiner schriftlichen Zustimmung.
+- Stand:
+- Februar 2026
+- © 2026 Design & Development by Khadija Okbi
+- Datenschutz
+
+# pages/preloader-demo.html
+Titel: Preloader Demo — Khadija Okbi
+Texte:
+- Preloader Demo — Khadija Okbi
+- Portfolio
+- © 2026
+- Creative Direction
+- Loading Experience
+- Good things
+- take time
+- Setting the stage
+- Crafting animations — please wait
+- 0%
+- Preloader Demo
+- LUXURY
+- MOTION
+- Editorial Preloader — cream background, burgundy typography, mint wave. Ladedauer passt sich automatisch der Internetgeschwindigkeit an.
+- 01
+- Portfolio-Wellen
+- Die Wellen-Pfade sind identisch mit denen aus main.css — hero-section, section-photography etc. Konsistentes Design.
+- mask-image path → SVG fill
+- 02
+- Speed-adaptiv
+- Vor dem Start wird die Internetgeschwindigkeit gemessen. Langsame Verbindung → längere Mindestladezeit. Schnell → kurz.
+- navigator.connection API
+- 03
+- Vollseiten-Loader
+- Cream-Hintergrund, Burgundy-Text, drei Headline-Zeilen mit clip-reveal — Editorial Magazine Ästhetik.
+- clip-path reveal / stagger
+- 04
+- Unterseiten-Loader
+- Nur kurze Welle von unten — kein Text. Revealst danach alle Bilder und Elemente der Unterseite gestaffelt.
+- loader--sub / stagger reveal
+- Unterseiten
+- Transition
+- So sieht der Loader auf Unterseiten aus: Nur die Welle kommt kurz hoch, danach werden alle Elemente der Seite gestaffelt eingeblendet. Klick zum Testen:
+- ↓ Unterseiten-Loader testen
+- A
+- Hero Image
+- Erscheint als erstes — Bild fährt von unten ein, opacity 0 → 1.
+- B
+- Seitentitel
+- Zeile für Zeile clip-reveal — gleiche Technik wie der Fullpage-Loader.
+- C
+- Content Grid
+- Cards erscheinen gestaffelt mit 0.1s Delay — smooth, nicht abrupt.
+- D
+- Footer
+- Als letztes — Navigation und Footer gleiten sanft herein.
+- Fullpage-Loader erneut abspielen
+- ↺ Preloader neu starten
+- Demo —
+- Khadija Okbi Portfolio
+
+# pages/template.html
+Titel: Projekt Titel | Khadija Okbi Portfolio
+Texte:
+- Projekt Titel | Khadija Okbi Portfolio
+- Home
+- Work
+- Blog
+- About
+- Projekt Übersicht
+- Einleitung und Kontext
+- Kunde
+- Beschreibung des Kunden und der Zusammenarbeit.
+- Aufgabe
+- Die Herausforderung und Zielsetzung des Projekts.
+- Zeitraum
+- Projektdauer und wichtige Meilensteine.
+- Konzept & Strategie
+- Der kreative Ansatz
+- Hier beschreibst du den konzeptionellen Ansatz, die Ideen und die strategische Planung hinter dem Projekt. Was war die zentrale Idee? Welche Überlegungen haben zu diesem Konzept geführt?
+- Umsetzung
+- Vom Konzept zur Realität
+- Design Phase
+- Beschreibung des Design-Prozesses und der visuellen Entwicklung.
+- Technische Umsetzung
+- Welche Tools und Technologien wurden verwendet?
+- Herausforderungen
+- Probleme, die gelöst wurden, und Learnings aus dem Projekt.
+- Ergebnis
+- Das finale Produkt
+- Hier präsentierst du das fertige Projekt. Was wurde erreicht? Welche Ergebnisse wurden erzielt? Wie hat der Kunde reagiert?
+- 150+
+- Arbeitsstunden
+- 20+
+- Design Iterationen
+- 100%
+- Kundenzufriedenheit
+- Zurück zu allen Projekten
+- Design & Development by Khadija Okbi
+- Impressum
+- Kontakt
+- Datenschutz
+
+# pages/wellen-demo.html
+Titel: Wellen Demo | 5 Farben
+Texte:
+- Wellen Demo | 5 Farben
+- S1
+- S2
+- S3
+- S4
+- S5
+- Section 01 — Mint
+- Creative
+- Direction
+- Das ist ein Platzhalter-Text damit du siehst, dass der Inhalt nicht mit der Welle darunter kollidiert. Die Welle gehört dieser Section und zeigt die Farbe der nächsten.
+- Section 02 — Burgundy
+- Ausgewählte
+- Projekte
+- Noch ein Platzhalter-Block. Kein Overlap, kein zu grosser Abstand — die Welle schliesst sauber unten ab.
+- Section 03 — Cream
+- Aus dem
+- Blog
+- Heller Hintergrund, Welle in Darkgreen unten — sauber, kein weisser Streifen dazwischen.
+- Section 04 — Darkgreen
+- Über
+- mich
+- Welle in Mauve unten. Der Inhalt endet sauber oberhalb der Welle dank padding-bottom.
+- Section 05 — Mauve
+- Kontakt
+- aufnehmen
+- Letzte Section vor dem Footer. Welle in Mint, Footer direkt in Mint — kein Strich, kein Abstand.
+- © 2026 Wellen-Demo — Khadija Okbi
+- Nach oben
+
+# work.html
+Titel: Work — Khadija Okbi
+Texte:
+- Work — Khadija Okbi
+- Home
+- Work
+- Blog
+- About
+- Portfolio · Selected Work
+- Aus
+- gewählte
+- Arbeiten.
+- 07
+- Web Experiences, Case Studies, Sportmarketing, Fotografie — vier Jahre Schaffen in drei Kategorien.
+- Web Experiences
+- Gebaute
+- Welten.
+- wehelp.ch — Psychische Gesundheit
+- Web App · Konzept
+- WeHelp
+- Vollständige Plattform für psychische Gesundheit — Forum, Klinik-Netzwerk, Selbsttest.
+- Entdecken →
+- ec-weinfelden.ch — Eislaufclub
+- Website · Verein
+- EC Weinfelden
+- Vereinswebsite für den Eislaufclub Weinfelden — Team, Events, Sponsoren.
+- khadijaokbi.ch/fotografie
+- Galerie · Fotografie
+- Fotografie
+- Animierte Galerie — Ballet, Portrait, Lichtkunst, Dokumentation.
+- Galerie öffnen →
+- Bildsprache
+- Momente,
+- festgehalten.
+- Ballet & Tanz, Portrait, Lichtkunst, Dokumentation — vier Welten, eine visuelle Sprache.
+- Galerie entdecken
+- Case Studies
+- Strategie &
+- Konzept.
+- Strengths
+- Weaknesses
+- Opportunities
+- Threats
+- IPA 2023
+- Online-Marketing
+- Konzept
+- SEO / SEA
+- Social Media
+- UI/UX
+- Komthur
+- GmbH.
+- SWOT-Analyse, drei Buyer Personas, 16-Wochen-Content-Plan, budgetierte SEA-Kampagnen auf Google, LinkedIn und Meta. Budget CHF 14'650, 90 Stunden.
+- 77K
+- Impressionen
+- 75
+- SEO Score
+- 5:1
+- ROI Prognose
+- Case Study ansehen
+- Pfadi Winterthur
+- 24·18
+- Live
+- Sportmarketing
+- WIN4 Highlights
+- Motion Design
+- After Effects
+- Print
+- Sponsoring
+- WIN4
+- Sportmarketing.
+- Screendesigns für Pfadi Winterthur, Festführer für die Schweizer Meisterschaften im Kunstturnen, Bandenanimationen für Hauptsponsoren.
+- Projekt ansehen
+- Sammlungen & Archiv
+- Vier Jahre
+- Schaffen.
+- 2020 – 2024
+- Lehre · Projektsammlung
+- SBW
+- Neuen Medien
+- Filmplakate, Animationen, TikTok-Strategie — vier Jahre kreative Reise.
+- 2021 – 2022
+- Sportmarketing · Sammlung
+- Highlights
+- Busplakate, Gameday-Screens, SM-Kunstturnen — Schweizer Spitzensport.
+- Laufend
+- Personal · Eigenprojekte
+- Personal
+- Reisevideos, Logodesigns, Editorials, Spotify-Cover — kreative Freiheit.
+- © 2026 Design & Development by Khadija Okbi
+- Impressum
+- Kontakt
+- Datenschutz
+
+# work/fotografie.html
+Titel: Fotografie | Khadija Okbi
+Texte:
+- Fotografie | Khadija Okbi
+- Home
+- Work
+- About
+- Blog
+- Fotografie
+- Khadija Okbi
+- Ballet & Tanz
+- Portrait
+- Lichtkunst
+- Dokumentation
+- Scrollen
+- Galerie entdecken
+- Design & Development — Khadija Okbi
+- Impressum
+- Datenschutz
+- Kontakt
+
+# work/komthur.html
+Titel: Khadija Okbi | Portfolio
+Texte:
+- Khadija Okbi | Portfolio
+- Home
+- work
+- Blog
+- about
+- IPA Projekt 2023
+- Online-Marketing
+- Konzept
+- Eine ganzheitliche Neuausrichtung für die Komthur GmbH. Von der Zielgruppenanalyse über digitale Transformation bis zur messbaren Erfolgsrealisierung.
+- Strategische
+- Analyse.
+- SWOT, Customer Journey und Konkurrenzpositionierung — die Fundamente der Strategie.
+- S
+- Strengths
+- Langjährige Erfahrung & hohe Fachkompetenz
+- Authentische, regionale Online-Präsenz
+- Starke Referenzen & Kundenbeziehungen
+- W
+- Weaknesses
+- Kleine Agentur (2 Mitarbeiter)
+- Social-Media Präsenz unaktiv
+- Begrenzte Skalierungsmöglichkeiten
+- O
+- Opportunities
+- Social-Media-Kanal-Expansion für Awareness
+- National skalierbar über Paid Ads
+- Content-Marketing für SEO & Authority
+- T
+- Threats
+- Größere Agenturen mit mehr Ressourcen
+- Fragmentierter Markt & niedriges Vertrauen
+- Schnelle Technologie-Veränderungen
+- Konkurrenz-Analyse
+- Komthur
+- Authentisch
+- Regional verankert
+- Persönliche Note
+- VS
+- Konkurrenz
+- Großagenturen
+- Generische Lösungen
+- Wenig Social-Media
+- Positionierungsvorteil:
+- "Partner statt Agentur" — individuelle Beratung, direkte Ansprechperson, transparente Abläufe.
+- Produkte &
+- Strategie.
+- Vier umfassende strategische Bereiche, die kombiniert zu messbaren Results führen.
+- 01
+- Suchmaschinenoptimierung
+- SEO
+- Durchführung einer umfassenden Google Analytics Analyse zur Identifikation von Traffic-Quellen und User-Verhalten. Keywords mit hohem Suchvolumen und niedriger Konkurrenz für die Region Thurgau wurden identifiziert und strategisch platziert. Technische SEO-Korrektionen: Meta-Tags Optimierung, Alt-Text-Struktur, Mobile-Rendering und Ladegeschwindigkeit.
+- Google Analytics
+- Keyword Research
+- Meta-Tags
+- Mobile-First
+- Zielkeywords
+- "Grafikdesign Kreuzlingen" · "Werbeagentur Thurgau" · "Corporate Design Bodensee" · "Digitale Strategie Schweiz"
+- 02
+- Design & User Experience
+- Website
+- Vollständige Neukonzeption als responsiver, emotionaler One-Pager. Kern-Elemente: Video-Hero-Section mit Parallax-Effekt, Storytelling zur Markenpositionierung, klare Visual Hierarchy und prominente Call-to-Actions. Desktop-zu-Mobile-Optimierung für nahtlose User Journey.
+- Minimalistisch
+- Conversion-fokussiert
+- Schnell-ladend
+- Status
+- Live Prototype · Canva
+- Responsive
+- Desktop · Tablet · Mobile
+- Performance-Ziel
+- <85 PageSpeed Score
+- 03
+- Content & Community
+- Social Media
+- Entwicklung eines 16-wöchigen Master-Content-Plans mit täglich geplanten Postings. Lancierung der Serie "Design Dienstag" zur Etablierung von Expertenstatus. Fokus auf Instagram und LinkedIn als Primär-Kanäle für B2B-Engagement.
+- Design-Tipps
+- Team-Storys
+- Brancheninsights
+- Trendanalysen
+- 16
+- Wochen Content Plan
+- 3
+- Kanäle
+- 7×
+- Posts pro Woche
+- 04
+- Performance Marketing
+- Paid Ads
+- Detaillierter Preisvergleich und Performance-Analyse über Google Ads, Meta und LinkedIn. Budget-Allokation von CHF 5'000 Jahresbudget optimiert für maximale lokale Reichweite im B2B-Sektor.
+- Google Ads
+- Meta Ads
+- LinkedIn Campaign
+- ROI-Prognose
+- Budget-Split
+- 60% Google · 25% LinkedIn · 15% Meta
+- Optimization-Ziel
+- <5 CHF Cost-Per-Click
+- ROI-Erwartung
+- 3:1 bis 5:1
+- Zielgruppen
+- analyse.
+- Datengetriebene Segmentierung — vier strategische Dimensionen zur präzisen Kundenansprache.
+- Demografie
+- 25–50 Jahre, Entscheidungsträger in KMU. Gehobenes Bildungsniveau, hohe Kaufkraft.
+- Psychografie
+- Markenbewusst, designaffin. Bedürfnis nach Qualität, Authentizität und persönlicher Beratung.
+- Geografie
+- Fokus Kreuzlingen & Bodenseeregion. Regionale Präsenz mit nationaler Reichweite.
+- Verhalten
+- Hochaktiv auf Social Media & Google. Nutzen Empfehlungen als Entscheidungshilfe.
+- Per
+- sonas.
+- Eva
+- Startup-Gründerin · 25 J.
+- Bedürfnisse
+- Sucht einen kreativen Dienstleister für ein einzigartiges Corporate Design.
+- Pain Points
+- Begrenzte Zeit und Budget, gleichzeitig hohe Qualitätsansprüche.
+- Touchpoint
+- Instagram, Pinterest, LinkedIn & Website-Besuche.
+- Daniel
+- Marketingleiter · 37 J.
+- Benötigt eine langfristige Partnerschaft mit hoher Fachkompetenz.
+- Fluktuierende Agenturen, Missverständnisse bei Briefing-Übergaben.
+- LinkedIn, Business-Kontakte & Networking-Events.
+- Maria
+- Geschäftsführerin · 48 J.
+- Sucht eine erfahrene Agentur für Design und Rebranding-Projekte.
+- Unerfahrene Agenturen. Online-Präsenz wird oft vernachlässigt.
+- Google-Suche (SEO & SEA), Empfehlungen, Telefon.
+- Insight:
+- Alle drei Personas vereint das Bedürfnis nach
+- Authentizität
+- Fachkompetenz
+- und
+- persönlicher Betreuung
+- Optimierungs
+- plan.
+- Sechs strategische Felder — Ist-Zustand und messbares Ziel im direkten Vergleich.
+- Sichtbarkeit
+- Ist
+- Kaum in Suchmaschinen sichtbar — keine Keyword-Strategie
+- Ziel
+- Top-Rankings für regionale Zielkeywords
+- Content & Story
+- Statische, generische Texte ohne Markencharakter
+- Emotionales Storytelling & authentische Markenstimme
+- User Journey
+- Unklare CTAs, hohe Absprungrate
+- Gelenkte Journey, optimierte Conversion-Pfade
+- Mobile Experience
+- Darstellungsprobleme, langsame Ladezeit
+- 100% responsive, unter 3 Sek. Ladezeit
+- 05
+- Social Presence
+- Unregelmässige Posts, keine Strategie
+- Konsistenter 16-Wochen Content-Plan
+- 06
+- Tech Score
+- 42 / 100 PageSpeed Score
+- 75 – 85 / 100 PageSpeed Score
+- Redesign.
+- Mobile First · Storytelling · Conversion — Live Prototype via Canva Site.
+- komthur.my.canva.site
+- Live Preview öffnen
+- Medien
+- Showcase.
+- 16-Wochen Content-Plan · Instagram · LinkedIn · Reels & Stories
+- Instagram
+- komthur
+- K
+- @komthur
+- Neue Website — modern, schnell & emotional. ✦
+- Design Dienstag #01 — Farbe als Kommunikationsmittel. 🎨
+- LinkedIn
+- Posts auswählen
+- 10
+- Posts
+- Wochen
+- B2B
+- Fokus
+- & SEA.
+- Datengestützte Analyse mit prognostizierten KPIs für maximale Effizienz.
+- SEO Checkbot Score
+- 75%
+- 75 / 100 SEO-Score
+- Optimierung:
+- URLs & Bilder korrekt verlinkt, SEO-Keywords, Meta-Tags & Mobile-First-Ansatz.
+- Zusätzlich:
+- Integration von Google Analytics für Traffic-Tracking & Ads-Schaltung.
+- SEA Prognose
+- 306 Klicks
+- 2.642 Impressionen · CPL ~0,23 CHF
+- LinkedIn Ads
+- 890 Klicks
+- 43.040 Impressionen · CPL <5 CHF
+- Meta (FB/IG)
+- 72 Klicks
+- 40.004 Impressionen · CPL ~6 CHF
+- Budget-Split:
+- ROI-Erwartung:
+- Pro
+- gnose.
+- Prognostizierte KPIs bei vollständiger Strategieumsetzung.
+- 77K
+- Google Impressionen
+- 8.739 erwartete Clicks bei ~0.11 CTR
+- 6.2K
+- LinkedIn Link-Clicks
+- Hochqualifizierte B2B-Leads, CPL <CHF 5
+- 5K
+- Jahresbudget (CHF)
+- Optimiert über alle Kanäle für max. ROI
+- Auftraggeber
+- Komthur GmbH
+- Kreuzlingen, Thurgau • est.2020
+- Projektdauer
+- 90 Stunden
+- 2 Wochen (IPA Rahmenbedingungen)
+- Budget
+- CHF 14'650
+- Inkl. Beratung, Design, Dokumentation
+- © 2026 Design & Development by Khadija Okbi
+
+# work/personal.html
+Titel: Khadija Okbi | Personal Work
+Texte:
+- Khadija Okbi | Personal Work
+- Öffnen
+- Home
+- Work
+- Blog
+- About
+- Eigenprojekte · 2022–2025
+- Design
+- Personal
+- Work.
+- Editorials · Branding · UI/UX · Fotografie
+- Scroll
+- 01
+- 0
+- 1
+- Kategorie
+- Abenteuer
+- Geschnitten mit
+- Final Cut Pro
+- Jahr
+- 2023
+- Reise
+- Momente.
+- Schöne Erinnerungen festhalten
+- 3
+- K
+- khadijaokbi
+- Adventure Stories
+- Ort
+- Egypt
+- Meine Logodesigns
+- Bildmontage
+- Porträt · Natürliches Licht
+- 02
+- Editorial Pink
+- Fashion · Fotografie
+- 03
+- Spotify Album Cover
+- Grafik · Paris
+- Social Media · Content Creation
+- TikTok
+- Presence.
+- 104.8K
+- Likes
+- 10K
+- Followers
+- tiktok.com/@mentalwealthy
+- For You
+- Suche
+- Erstellen
+- Profil
+- mental wealth 🌿
+- @mentalwealthy
+- 22
+- Following
+- ▷ 163.9K
+- ▷ 155.5K
+- ▷ 152.0K
+- ▷ 89.2K
+- ▷ 74.8K
+- ▷ 61.3K
+- Design ist nicht nur wie es aussieht — sondern wie es sich anfühlt, wenn man hindurchgleitet.
+- — Khadija Okbi
+- Digital Experience
+- Portfolio
+- Interface.
+- khadijaokbi.ch · personal
+- Portfolio UI
+- Portfolio Interface
+- Smooth Transitions · Minimal Layout
+- © 2026 Design & Development by Khadija Okbi
+- Impressum
+- Kontakt
+- Datenschutz
+
+# work/sbw.html
+Titel: Lehre | SBW Neuen Medien
+Texte:
+- Lehre | SBW Neuen Medien
+- Home
+- Work
+- Blog
+- About
+- Entdecken
+- 4 Jahre Lehre // 2020 – 2024
+- SBW
+- Neuen Medien.
+- Die Grundsteine meiner kreativen Reise. Von Modulen bis hin zu echten Kundenprojekten — vier Jahre, in denen Design, Code und Strategie zur zweiten Sprache wurden.
+- 01
+- Projekte
+- 02
+- TikTok Strategie
+- 03
+- Film & Video
+- Kategorie
+- Schulprojekt
+- Geschnitten mit
+- CapCut
+- Jahr
+- 2023
+- 1
+- 3
+- Promo.
+- Imagefilm für die Schule
+- K
+- khadijaokbi
+- SBW Stories
+- Projekt
+- Promo
+- Portfolio Highlights
+- Projekte &
+- Arbeiten.
+- Eine Auswahl meiner vielfältigsten und kreativsten Projekte aus verschiedenen Medienformaten und Plattformen.
+- Modul
+- Video Production
+- Kunde
+- SBW Neuen Medien
+- Fach
+- Filmgestaltung
+- Filmplakat
+- Ein visuell starkes Filmplakat, das die Essenz des Projekts einfängt.
+- Geister
+- Jumpin
+- Parasit
+- Petrichor
+- Trailer Park
+- Wehelp
+- Klicken zum Navigieren
+- Social Media Management
+- TikTok
+- Strategie.
+- Vom passiven Konsumenten zum strategischen Content Producer — ein strukturierter, datengestützter Prozess, der kreative Visionen in messbaren Erfolg verwandelt.
+- Analyse & Vorbereitung
+- Nischen-Identifikation
+- Bevor der erste Frame gedreht wird, definieren wir das Spielfeld. In intensiver Analyse identifizieren wir die präzise Nische, in der du dich als unverwechselbare Stimme positionierst.
+- Zielgruppen-Profiling
+- Konkurrenz-Audit
+- USP Definition
+- Trend-Forecasting
+- Strategie & Planung
+- Content-Architektur
+- Ein Deep Dive in die Planung. Wir entwickeln ein vollständiges Social-Media-Konzept, das visuelle Ästhetik mit psychologischem Hook-Design vereint — Struktur trifft Kreativität.
+- ChatGPT 4o
+- Canva Pro
+- Notion
+- Umsetzung & Erstellung
+- Produktion & Rollout
+- High-End Produktion im Batch-Verfahren. Täglich ein Beitrag, der durch Qualität und Relevanz besticht — Technik und Storytelling in perfekter Symbiose.
+- Batch Production
+- In Progress
+- Daily Posting
+- 1 Month Cycle
+- 04
+- Performance & Optimierung
+- Analytics & Growth
+- Wahre Stärke liegt in konstanter Reflexion. Im Check-Zyklus analysieren wir Performance-Daten und leiten präzise Handlungsempfehlungen ab — Iteration als Wettbewerbs­vorteil.
+- PDCA-Zyklus
+- KPI-Tracking
+- A/B Testing
+- Film & Produktion
+- Animationen
+- & Filme
+- Film · 01
+- Berufsbild
+- Mediamatiker
+- Click to
+- watch
+- Film · 02
+- Animation
+- Urbangardening
+- SBW Neuen Medien — 2020 – 2024
+- © 2026 Design & Development by Khadija Okbi
+- Impressum
+- Kontakt
+- Datenschutz
+
+# work/win4.html
+Titel: WIN4 | Sportmarketing
+Texte:
+- WIN4 | Sportmarketing
+- Home
+- Work
+- Blog
+- About
+- Sportmarketing & Event Design
+- WIN4
+- Sportmarketing.
+- Von Screendesigns über Festführer bis zu innovativen Sponsoring-Animationen — visuelle Exzellenz für den Schweizer Spitzensport.
+- Events &
+- Kunden
+- Von Screendesigns für Pfadi Winterthur, Festführer für die Schweizer Meisterschaften im Kunstturnen, bis hin zu Gamedays-Busplakaten.
+- Busplakat Gamedays
+- Next Game Display
+- SM Kunstturnen
+- Sponsoring
+- Banden-Animationen für Sport-Events
+- Kompetenz
+- bereiche
+- Professionelle Tools und strategische Expertise für visuelle Kommunikation im Sport.
+- Software &
+- Skills
+- After Effects
+- Animation
+- Premiere Pro
+- Editing
+- Photoshop
+- Screen Design
+- InDesign
+- Print Media
+- 02
+- Interne
+- Events
+- 01
+- Main Event
+- Gamedays Winterthur
+- Komplette visuelle Bespielung der Spieltage für Pfadi Winterthur.
+- National Event
+- Erstellung von Print sowie digitalen Medien für die Schweizer Meisterschaften im Kunstturnen.
+- © 2026 Design & Development by Khadija Okbi
+- Impressum
+- Kontakt
+- Datenschutz
+
