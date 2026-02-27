@@ -295,18 +295,20 @@
       max-width: calc(100% - (2 * var(--gutter)));
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      grid-template-rows: repeat(4, auto);
+      grid-template-rows: repeat(3, 1fr);
       gap: var(--gap);
       margin: 0 auto;
       align-content: center;
       position: absolute;
       top: 50%; left: 50%;
       translate: -50% -50%;
+      height: 600px;
     }
     @media (max-width: 600px) {
       .grid {
         grid-template-columns: repeat(3, 1fr);
         --offset: -1;
+        height: auto;
       }
       .grid > div:nth-of-type(1) { display: none; }
     }
@@ -327,7 +329,9 @@
 
     .grid .scaler {
       position: relative;
-      grid-area: 2 / calc(3 + var(--offset));
+      grid-area: 1 / calc(3 + var(--offset)) / -1 / span 1;
+      height: 100%;
+      z-index: 2;
     }
 
     .grid img {
@@ -732,13 +736,12 @@
             <div><img src="../assets/images/photography/gallery_corona_3.jpg"    alt="Dokumentation"></div>
           </div>
 
-          <!-- Layer 3 — center column (5 items, alle sichtbar) -->
+          <!-- Layer 3 — center column (4 items, alle sichtbar) -->
           <div class="layer">
             <div><img src="../assets/images/photography/gallery_shooting_1.jpg"  alt="Portrait"></div>
             <div><img src="../assets/images/photography/gallery_projector_3.jpg" alt="Lichtkunst"></div>
             <div><img src="../assets/images/photography/gallery_corona_4.jpg"    alt="Dokumentation"></div>
             <div><img src="../assets/images/photography/gallery_marokko_1.jpg"   alt="Marokko"></div>
-            <div><img src="../assets/images/photography/gallery_shooting_5.jpg"  alt="Portrait"></div>
           </div>
 
           <!-- Scaler — center hero image + CTA overlay -->
