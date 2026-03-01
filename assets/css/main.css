@@ -18,11 +18,10 @@
    1. DESIGN SYSTEM & VARIABLES
    ========================================= */
 
-/* Individual @font-face declarations moved to typography-global.css */
-/* @font-face {
+@font-face {
   font-family: 'Higuen';
   src: url('../fonts/Higuen.woff2') format('woff2');
-  font-weight: 100 900;
+  font-weight: 400;
   font-display: swap;
 }
 
@@ -31,7 +30,7 @@
   src: url('../fonts/OTNeglige-L.woff2') format('woff2');
   font-weight: 500;
   font-display: swap;
-} */
+}
 
 :root {
   /* ── Colors ── */
@@ -153,13 +152,86 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* =========================================
    3. TYPOGRAPHY
    ========================================= */
-/*
-  Global typography has been centralized in:
-  assets/css/typography-global.css
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 var(--space-3) 0;
+  line-height: 1.2;
+}
 
-  Previous per-file headline/body font rules are intentionally disabled
-  here to avoid conflicts with the single global type system.
-*/
+h1,
+h2 {
+  font-family: var(--font-display);
+  font-feature-settings: "liga" 1, "dlig" 1, "ss01" 1, "swsh" 1;
+  color: var(--off-black);
+}
+
+h1 {
+  font-size: clamp(var(--text-2xl), 7vw, 110px);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: none;
+}
+
+h2,
+section h2 {
+  font-size: clamp(var(--text-xl), 4.8vw, 72px);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+
+h1 em,
+h2 em,
+section h2 em {
+  font-family: inherit;
+  font-style: italic;
+  color: var(--burgundy);
+}
+
+h3,
+.h3,
+section h3 {
+  font-family: var(--font-titel);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+h4,
+h5,
+h6 {
+  font-family: var(--font-subtitel);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+p,
+small,
+.text-meta,
+.lead,
+.text-lead {
+  font-family: var(--font-body);
+}
+
+/* Strong global lock for requested typography direction */
+body h1,
+body h2,
+body section h2 {
+  font-family: 'OT Neglige', 'Le Jour', serif !important;
+  font-feature-settings: "liga" 1, "dlig" 1, "ss01" 1, "swsh" 1 !important;
+  text-transform: none !important;
+}
+
+body h1 {
+  letter-spacing: 0.06em !important;
+}
+
+body h2,
+body section h2 {
+  letter-spacing: 0.08em !important;
+}
 
 /* =========================================
    4. EYEBROWS & LABELS
