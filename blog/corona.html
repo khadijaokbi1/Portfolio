@@ -20,10 +20,22 @@
        <link rel="stylesheet" href="../assets/css/main.css" />
        <link rel="stylesheet" href="../assets/css/footer-nav-waves.css" />
        <link rel="stylesheet" href="../assets/css/blog.css" />
+       <link rel="stylesheet" href="../assets/css/preloader.css" />
          
 </head>
 
-<body>
+<body class="is-loading">
+
+  <!-- SUB PRELOADER -->
+  <div class="loader loader--sub" id="loaderSub">
+    <div class="loader__riser" id="loaderSubRiser">
+      <svg class="loader__wave-svg" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+        <path class="loader__wave-path" d="M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z"/>
+      </svg>
+      <div class="loader__panel"></div>
+    </div>
+  </div>
+
     <div class="reading-progress">
         <div id="myBar" class="reading-progress-bar"></div>
     </div>
@@ -238,5 +250,6 @@
 
     </script>
 <script defer src="../assets/js/typography-reveal.js"></script>
+<script defer src="../assets/js/preloader.js"></script>
 </body>
 </html>

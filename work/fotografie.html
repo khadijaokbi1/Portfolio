@@ -14,7 +14,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
  <link rel="stylesheet" href="../assets/css/typography-global.css" />
+ <link rel="stylesheet" href="../assets/css/design-system.css" />
  <link rel="stylesheet" href="../assets/css/footer-nav-waves.css" />
+ <link rel="stylesheet" href="../assets/css/preloader.css" />
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
@@ -46,7 +48,7 @@
     /* ─── TOKENS ─── */
     :root {
       --white:   #F5F5F5;
-      --off-white:#EBE1D1;
+      --off-white:#F5F5F5;
       --off-black:#2D2D2D;
       --burg:    #6E3B49;
       --mint:    #56686A;
@@ -79,22 +81,14 @@
     body {
       background: var(--mint);
       color: var(--text);
-      font-family: var(--tenor);
+      font-family: var(--body);
       font-weight: 400;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-      cursor: none;
     }
 
     /* ─── SUBTLE GRAIN on light background ─── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      pointer-events: none; z-index: 9000;
-      opacity: .018;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
 
     /* ─── CURSOR ─── */
     #cur-dot {
@@ -173,9 +167,13 @@
       height: 100vh; min-height: 560px;
       display: grid; place-items: center;
       overflow: hidden;
-      background: linear-gradient(180deg, var(--cream) 0%, var(--mint) 50%, var(--teal) 100%);
+      background: var(--burg);
+      padding-bottom: 0; /* wave-mint würde 20vh hinzufügen → neutralisieren */
     }
-
+    /* Wave-after hinter Hero-Content halten (wave-mint setzt z-index:10 = gleich wie Title/Meta) */
+    .hero::after {
+      z-index: 2 !important;
+    }
     /* delicate concentric arcs */
     .hero-rings {
       position: absolute; inset: 0;
@@ -214,7 +212,7 @@
       font-style: italic;
       line-height: .82;
       letter-spacing: -.025em;
-      color: var(--teal);
+      color: var(--white);
     }
     .hero-title-sub {
       display: block;
@@ -744,7 +742,17 @@
     .js-up { opacity: 0; transform: translateY(36px); }
   </style>
 </head>
-<body>
+<body class="is-loading">
+
+  <!-- SUB PRELOADER -->
+  <div class="loader loader--sub" id="loaderSub">
+    <div class="loader__riser" id="loaderSubRiser">
+      <svg class="loader__wave-svg" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+        <path class="loader__wave-path" d="M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z"/>
+      </svg>
+      <div class="loader__panel"></div>
+    </div>
+  </div>
 
 <!-- cursor -->
 <div id="cur-dot"></div>
@@ -769,7 +777,7 @@
 </header>
 
 <!-- ─── HERO ─── -->
-<div class="hero">
+<div class="hero wave-mint" >
   <div class="hero-rings">
     <div class="arc"></div>
     <div class="arc"></div>
@@ -777,8 +785,7 @@
   </div>
 
   <h1 class="hero-title">
-    <span class="hero-title-main">Fotografie</span>
-    <span class="hero-title-sub">Khadija Okbi</span>
+    <span class="hero-title-main">Fotografie <br> Portfolio</span>
   </h1>
 
   <div class="hero-meta">
@@ -994,5 +1001,7 @@
   window.addEventListener('beforeunload', () => ScrollTrigger.killAll());
 </script>
 <script defer src="../assets/js/typography-reveal.js"></script>
+<script defer src="../assets/js/ds-reveal.js"></script>
+<script defer src="../assets/js/preloader.js"></script>
 </body>
 </html>

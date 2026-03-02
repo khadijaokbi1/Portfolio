@@ -44,7 +44,7 @@
   --text-hero:    clamp(96px, 13vw, 200px);    /* H1 Hero Index */
 
   /* Kontrast-Farben */
-  --contrast-on-dark:  #EBE1D1;   /* off-white auf dunklem BG */
+  --contrast-on-dark:  rgba(245,245,245,0.92);   /* off-white auf dunklem BG */
   --contrast-on-light: #2D2D2D;   /* off-black auf hellem BG  */
 }
 

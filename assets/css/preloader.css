@@ -1,0 +1,260 @@
+/* ════════════════════════════════════════════
+   PORTFOLIO PRELOADER — preloader.css
+   Fullpage (index) + Subpage (work / blog)
+   Tokens: cream bg · burgundy text · mint wave
+════════════════════════════════════════════ */
+
+/* ── Higuen Font ── */
+@font-face {
+  font-family: 'Higuen';
+  src: url('../fonts/Higuen.woff2') format('woff2');
+  font-display: block;
+}
+
+/* ── Tokens ── */
+:root {
+  --loader-bg:     #F5F5F5;           /* cream  */
+  --loader-text:   #6E3B49;           /* burgundy */
+  --loader-wave:   #56686A;           /* mint   */
+  --loader-panel:  #56686A;           /* mint   */
+  --loader-subtle: rgba(110,59,73,.35);
+  --mauve:         #B5A19E;
+}
+
+/* ── Basis ── */
+body.is-loading { overflow: hidden; }
+
+/* Verhindert FOUC — Seiteninhalte sofort unsichtbar bis Preloader fertig */
+body.is-loading #smooth-wrapper,
+body.is-loading > .site-header,
+body.is-loading > main {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Sub-Pages: header + main versteckt bis Sub-Loader fertig */
+body.is-loading .site-header,
+body.is-loading main {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* ════════════════════════════════════════════
+   BASE LOADER SHELL
+════════════════════════════════════════════ */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: var(--loader-bg);
+  overflow: hidden;
+}
+
+/* ── Rahmen-Linien ── */
+.loader__line {
+  position: absolute;
+  left: clamp(2rem, 5vw, 4rem);
+  right: clamp(2rem, 5vw, 4rem);
+  height: 1px;
+  background: var(--loader-subtle);
+  z-index: 2;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.loader__line--top    { top: clamp(2rem, 4vw, 3rem); }
+.loader__line--bottom { bottom: clamp(2rem, 4vw, 3rem); }
+
+/* ── Eckmarken ── */
+.loader__corner {
+  position: absolute;
+  width: 16px; height: 16px;
+  z-index: 2; opacity: 0;
+}
+.loader__corner::before,
+.loader__corner::after {
+  content: '';
+  position: absolute;
+  background: var(--loader-subtle);
+}
+.loader__corner::before { width: 100%; height: 1px; top: 0; left: 0; }
+.loader__corner::after  { width: 1px; height: 100%; top: 0; left: 0; }
+.loader__corner--tl { top: clamp(2rem,4vw,3rem);    left: clamp(2rem,5vw,4rem); }
+.loader__corner--tr { top: clamp(2rem,4vw,3rem);    right: clamp(2rem,5vw,4rem); transform: rotate(90deg); }
+.loader__corner--bl { bottom: clamp(2rem,4vw,3rem); left: clamp(2rem,5vw,4rem);  transform: rotate(-90deg); }
+.loader__corner--br { bottom: clamp(2rem,4vw,3rem); right: clamp(2rem,5vw,4rem); transform: rotate(180deg); }
+
+/* ── Meta links unten ── */
+.loader__meta {
+  position: absolute;
+  bottom: clamp(2.2rem, 4.5vw, 3.2rem);
+  left: clamp(2rem, 5vw, 4rem);
+  z-index: 2;
+  display: flex; flex-direction: column; gap: .25rem;
+  opacity: 0; transform: translateY(6px);
+}
+.loader__meta span {
+  font-family: 'Outfit', sans-serif;
+  font-size: .58rem;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--loader-subtle);
+}
+
+/* ── Edition rechts unten ── */
+.loader__edition {
+  position: absolute;
+  bottom: clamp(2.2rem, 4.5vw, 3.2rem);
+  right: clamp(2rem, 5vw, 4rem);
+  z-index: 2;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(.62rem, 1.4vw, .72rem);
+  color: var(--loader-subtle);
+  opacity: 0; transform: translateY(6px);
+}
+
+/* ── Zentraler Block ── */
+.loader__center {
+  position: absolute;
+  inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  z-index: 2; pointer-events: none;
+  padding: 0 1.5rem 8vh;
+}
+
+.loader__eyebrow {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(.52rem, 1.1vw, .62rem);
+  letter-spacing: .55em;
+  text-transform: uppercase;
+  color: var(--loader-subtle);
+  opacity: 0; transform: translateY(10px);
+  margin-bottom: 1.8rem;
+  display: flex; align-items: center; gap: .9rem;
+}
+.loader__eyebrow i {
+  display: inline-block;
+  width: 22px; height: 1px;
+  background: var(--loader-subtle);
+}
+
+/* Headline */
+.loader__headline {
+  text-align: center;
+  line-height: 1.05;
+}
+.loader__headline-line {
+  display: block;
+  overflow: hidden;
+}
+.loader__headline-line span {
+  display: block;
+  transform: translateY(108%);
+  font-family: 'Higuen', serif;
+  font-size: clamp(2.4rem, 7.5vw, 6rem);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--loader-text);
+}
+.loader__headline-line.is--italic span {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.9rem, 5.5vw, 4.4rem);
+  color: var(--mauve);
+  letter-spacing: .04em;
+  text-transform: none;
+}
+
+/* Tagline */
+.loader__tagline {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(.58rem, 1.2vw, .68rem);
+  font-weight: 300;
+  letter-spacing: .42em;
+  text-transform: uppercase;
+  color: rgba(110,59,73,.5);
+  margin-top: 2rem;
+  opacity: 0;
+  text-align: center;
+}
+
+/* ── Fortschritt-Block ── */
+.loader__progress-wrap {
+  position: absolute;
+  bottom: clamp(2.2rem, 4.5vw, 3.2rem);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: .6rem;
+  opacity: 0;
+  white-space: nowrap;
+}
+.loader__percent {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(.58rem, 1.2vw, .68rem);
+  letter-spacing: .42em;
+  color: rgba(110,59,73,.55);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Riser: Welle + Panel ── */
+.loader__riser {
+  position: absolute;
+  top: 100%;
+  left: 0; width: 100%;
+  height: calc(100vh + 160px);
+  display: flex; flex-direction: column;
+  z-index: 3;
+  will-change: top;
+}
+.loader__wave-svg {
+  width: 100%; height: 160px;
+  flex-shrink: 0; display: block;
+  color: var(--loader-wave);
+}
+/* Mobile: kleinere Welle damit kein Overflow */
+@media (max-width: 600px) {
+  .loader__wave-svg { height: 100px; }
+  .loader__riser   { height: calc(100vh + 100px); top: 100%; }
+}
+.loader__wave-path { fill: currentColor; }
+
+.loader__panel {
+  flex: 1;
+  background: var(--loader-panel);
+  position: relative;
+}
+.loader__bg-bar {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 3px;
+  background: rgba(245,245,245,.15);
+}
+.loader__bg-bar-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, #F5F5F5, rgba(245,245,245,.6));
+  transition: width .1s linear;
+}
+
+/* ════════════════════════════════════════════
+   SUB-PAGE LOADER VARIANT
+   Nur Welle — kein Text
+════════════════════════════════════════════ */
+.loader--sub {
+  background: var(--loader-bg);
+  pointer-events: none;
+}
+.loader--sub .loader__center,
+.loader--sub .loader__line,
+.loader--sub .loader__corner,
+.loader--sub .loader__meta,
+.loader--sub .loader__edition,
+.loader--sub .loader__progress-wrap {
+  display: none;
+}
+.loader--sub .loader__riser {
+  height: calc(100vh + 160px);
+}
+@media (max-width: 600px) {
+  .loader--sub .loader__riser { height: calc(100vh + 100px); }
+}

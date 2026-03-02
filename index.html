@@ -44,6 +44,13 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
+    <!-- Preloader -->
+    <link rel="stylesheet" href="assets/css/preloader.css" />
+
+    <!-- Hero-Bilder vorladen (kein lazy load) -->
+    <link rel="preload" as="image" href="assets/images/hero/cutout_bg.png">
+    <link rel="preload" as="image" href="assets/images/hero/cutout.png">
+
     <!-- GSAP mit allen Plugins -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -65,7 +72,66 @@
       gtag('config', 'G-B415ZJNKNW');
     </script>
 </head>
-  <body>
+  <body class="is-loading">
+
+  <!-- ══════════════════════════════════════
+       FULLPAGE PRELOADER
+  ══════════════════════════════════════ -->
+  <div class="loader" id="loader">
+    <div class="loader__line loader__line--top"    id="lineTop"></div>
+    <div class="loader__line loader__line--bottom" id="lineBottom"></div>
+    <div class="loader__corner loader__corner--tl" id="cTL"></div>
+    <div class="loader__corner loader__corner--tr" id="cTR"></div>
+    <div class="loader__corner loader__corner--bl" id="cBL"></div>
+    <div class="loader__corner loader__corner--br" id="cBR"></div>
+    <div class="loader__meta" id="loaderMeta">
+      <span>Portfolio</span>
+      <span>&copy; 2026</span>
+    </div>
+    <div class="loader__edition" id="loaderEdition">Creative Direction</div>
+    <div class="loader__center">
+      <div class="loader__eyebrow" id="loaderEyebrow">
+        <i></i> Loading Experience <i></i>
+      </div>
+      <div class="loader__headline">
+        <div class="loader__headline-line">
+          <span id="hLine1">Good things</span>
+        </div>
+        <div class="loader__headline-line is--italic">
+          <span id="hLine2">take time</span>
+        </div>
+        <div class="loader__headline-line">
+          <span id="hLine3">Setting the stage</span>
+        </div>
+      </div>
+      <div class="loader__tagline" id="loaderTagline">Crafting&nbsp;animations &mdash; please&nbsp;wait</div>
+    </div>
+    <div class="loader__progress-wrap" id="loaderProgressWrap">
+      <span class="loader__percent" id="loaderPercent">0%</span>
+    </div>
+    <div class="loader__riser" id="loaderRiser">
+      <svg class="loader__wave-svg" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+        <path class="loader__wave-path"
+          d="M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z"/>
+      </svg>
+      <div class="loader__panel">
+        <div class="loader__bg-bar">
+          <div class="loader__bg-bar-fill" id="loaderBarFill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUB PRELOADER (für Rückbesuche auf index) -->
+  <div class="loader loader--sub" id="loaderSub" style="display:none;">
+    <div class="loader__riser" id="loaderSubRiser">
+      <svg class="loader__wave-svg" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+        <path class="loader__wave-path" d="M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z"/>
+      </svg>
+      <div class="loader__panel"></div>
+    </div>
+  </div>
+
     <div id="smooth-wrapper">
       <div id="smooth-content">
         <header class="site-header" id="siteHeader" aria-label="Seitennavigation">
@@ -90,10 +156,10 @@
               <h1 class="hero-bottom">DIRECTOR</h1>
               <div class="hero-bilder">
                 <div class="hero-portrait-bg">
-                  <img src="assets/images/hero/cutout_bg.png" alt="Hintergrund des Portraits">
+                  <img src="assets/images/hero/cutout_bg.png" alt="Hintergrund des Portraits" loading="eager" fetchpriority="high">
                 </div>
                 <div class="hero-portrait">
-                  <img src="assets/images/hero/cutout.png" alt="Portrait von Khadija Okbi">
+                  <img src="assets/images/hero/cutout.png" alt="Portrait von Khadija Okbi" loading="eager" fetchpriority="high">
                 </div>
               </div>
             </div>
@@ -432,5 +498,6 @@
       })();
     </script>
   <script defer src="assets/js/typography-reveal.js"></script>
+  <script defer src="assets/js/preloader.js"></script>
 </body>
 </html>

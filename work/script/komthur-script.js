@@ -26,6 +26,7 @@
        initOptimAccordion();
        initInstaCarousel();
        initLinkedInSlider();
+       initShowcaseNav();
    });
    
    // =========================================
@@ -401,80 +402,78 @@
    }
 
    // =========================================
-   // 11. INSTAGRAM CAROUSEL — infinite loop
+   // 11. INSTAGRAM CAROUSEL — rail-based infinite loop
    // =========================================
    function initInstaCarousel() {
        const carousel = document.getElementById('instaCarousel');
+       const rail     = document.getElementById('instaRail');
        const prevBtn  = document.getElementById('icPrev');
        const nextBtn  = document.getElementById('icNext');
-       if (!carousel) return;
+       if (!carousel || !rail) return;
 
        // ── How many cards are visible? ──
        const visibleCount = () => window.innerWidth >= 769 ? 2 : 1;
 
        // ── Card width + gap ──
        const cardWidth = () => {
-           const card = carousel.querySelector('.insta-post-card');
+           const card = rail.querySelector('.insta-post-card');
            if (!card) return 300;
-           const gap = parseFloat(getComputedStyle(carousel).gap) || 20;
+           const gap = parseFloat(getComputedStyle(rail).gap) || 20;
            return card.offsetWidth + gap;
        };
 
        // ── Clone cards for infinite looping ──
-       const originalCards = Array.from(carousel.querySelectorAll('.insta-post-card'));
+       const originalCards = Array.from(rail.querySelectorAll('.insta-post-card'));
        const total = originalCards.length;
 
-       // Prepend clones of last N, append clones of first N
-       const clonesBefore = originalCards.map(c => { const cl = c.cloneNode(true); cl.setAttribute('aria-hidden', 'true'); return cl; });
-       const clonesAfter  = originalCards.map(c => { const cl = c.cloneNode(true); cl.setAttribute('aria-hidden', 'true'); return cl; });
+       // Append clones of ALL cards at start and end
+       originalCards.forEach(c => {
+           const cl = c.cloneNode(true);
+           cl.setAttribute('aria-hidden', 'true');
+           rail.appendChild(cl);
+       });
+       [...originalCards].reverse().forEach(c => {
+           const cl = c.cloneNode(true);
+           cl.setAttribute('aria-hidden', 'true');
+           rail.prepend(cl);
+       });
 
-       clonesBefore.reverse().forEach(cl => carousel.prepend(cl));
-       clonesAfter.forEach(cl => carousel.append(cl));
-
-       // ── State ──
-       let currentIndex = total; // start at first real card (after clones)
+       // ── State: start at first real card ──
+       let currentIndex = total;
        let isAnimating  = false;
 
-       // ── Disable native scrollbar — JS drives position ──
-       carousel.style.display       = 'flex';
-       carousel.style.overflow      = 'hidden';
-       carousel.style.scrollBehavior = 'unset';
+       // ── Set overflow:hidden on carousel (viewport), rail scrolls ──
+       carousel.style.overflow = 'hidden';
+       rail.style.display      = 'flex';
+       rail.style.gap          = getComputedStyle(rail).gap || '1.25rem';
 
-       // ── Set visible window width ──
+       // ── Set carousel (viewport) width ──
        const updateCarouselWidth = () => {
            const vc  = visibleCount();
-           const cw  = (() => {
-               const c   = carousel.querySelector('.insta-post-card:not([aria-hidden])');
-               const gap = parseFloat(getComputedStyle(carousel).gap) || 20;
-               return c ? c.offsetWidth + gap : 300;
-           })();
-           const gap = parseFloat(getComputedStyle(carousel).gap) || 20;
-           // Show exactly vc cards, minus one gap (last card has no trailing gap)
-           carousel.style.maxWidth = `${vc * cw - gap}px`;
+           const cw  = cardWidth();
+           const gap = parseFloat(getComputedStyle(rail).gap) || 20;
+           // viewport = vc cards wide
            carousel.style.width    = `${vc * cw - gap}px`;
-           goTo(currentIndex, false); // re-snap without animation
+           carousel.style.maxWidth = `${vc * cw - gap}px`;
+           goTo(currentIndex, false);
        };
 
-       // ── Position engine ──
+       // ── Position engine: transform the RAIL ──
        const goTo = (index, animate = true) => {
            const cw = cardWidth();
-           if (animate) {
-               carousel.style.transition = 'transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94)';
-           } else {
-               carousel.style.transition = 'none';
-           }
-           carousel.style.transform = `translateX(-${index * cw}px)`;
+           rail.style.transition = animate
+               ? 'transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94)'
+               : 'none';
+           rail.style.transform = `translateX(-${index * cw}px)`;
            currentIndex = index;
        };
 
-       // ── After transition: jump silently if we hit a clone boundary ──
-       carousel.addEventListener('transitionend', () => {
+       // ── After transition: silent jump if boundary hit ──
+       rail.addEventListener('transitionend', () => {
            isAnimating = false;
            if (currentIndex < total) {
-               // wrapped to clones-before zone → jump to real end
                goTo(currentIndex + total, false);
            } else if (currentIndex >= total * 2) {
-               // wrapped to clones-after zone → jump to real start
                goTo(currentIndex - total, false);
            }
        });
@@ -502,8 +501,8 @@
            if (!dragging) return;
            dragDelta = x - startX;
            const cw = cardWidth();
-           carousel.style.transition = 'none';
-           carousel.style.transform  = `translateX(-${currentIndex * cw - dragDelta}px)`;
+           rail.style.transition = 'none';
+           rail.style.transform  = `translateX(-${currentIndex * cw - dragDelta}px)`;
        };
        const dragEnd = () => {
            if (!dragging) return;
@@ -511,24 +510,29 @@
            const threshold = cardWidth() * 0.25;
            if (dragDelta < -threshold)      goTo(currentIndex + step());
            else if (dragDelta > threshold)  goTo(currentIndex - step());
-           else                             goTo(currentIndex); // snap back
+           else                             goTo(currentIndex);
        };
 
-       carousel.addEventListener('mousedown',  e => dragStart(e.clientX));
-       window.addEventListener('mousemove',    e => { if (dragging) dragMove(e.clientX); });
-       window.addEventListener('mouseup',      ()  => dragEnd());
-       carousel.addEventListener('touchstart', e => dragStart(e.touches[0].clientX), { passive: true });
-       carousel.addEventListener('touchmove',  e => { if (dragging) dragMove(e.touches[0].clientX); }, { passive: true });
-       carousel.addEventListener('touchend',   e => dragEnd());
+       rail.addEventListener('mousedown',  e => dragStart(e.clientX));
+       window.addEventListener('mousemove', e => { if (dragging) dragMove(e.clientX); });
+       window.addEventListener('mouseup',   ()  => dragEnd());
+       rail.addEventListener('touchstart', e => dragStart(e.touches[0].clientX), { passive: true });
+       rail.addEventListener('touchmove',  e => { if (dragging) dragMove(e.touches[0].clientX); }, { passive: true });
+       rail.addEventListener('touchend',   ()  => dragEnd());
 
-       // Prevent native drag on images/videos inside
-       carousel.querySelectorAll('img, video').forEach(el => {
+       // Prevent native drag on images/videos
+       rail.querySelectorAll('img, video').forEach(el => {
            el.addEventListener('dragstart', e => e.preventDefault());
+       });
+
+       // ── Autoplay videos in clones ──
+       rail.querySelectorAll('video').forEach(v => {
+           v.muted = true;
+           v.play().catch(() => {});
        });
 
        // ── Init + resize ──
        updateCarouselWidth();
-       goTo(currentIndex, false);
 
        let resizeTimer;
        window.addEventListener('resize', () => {
@@ -621,4 +625,66 @@
        slider.addEventListener('touchend',   e => onDragEnd(e.changedTouches[0].clientX));
 
        goTo(0); // initialise
+   }
+
+   // =========================================
+   // 13. SHOWCASE INPAGE NAV — active on scroll
+   // =========================================
+   function initShowcaseNav() {
+       const nav = document.getElementById('showcaseNav');
+       if (!nav) return;
+
+       const links = nav.querySelectorAll('.ssn-link[data-section]');
+       const sectionIds = Array.from(links).map(l => l.getAttribute('data-section'));
+
+       // Make nav sticky after it scrolls into view
+       const heroSection = document.querySelector('.section-hero');
+       const heroHeight  = heroSection ? heroSection.offsetHeight : 400;
+
+       const updateNav = () => {
+           const scrollY = window.scrollY;
+           // Sticky behaviour
+           if (scrollY > heroHeight) {
+               nav.classList.add('ssn-sticky');
+           } else {
+               nav.classList.remove('ssn-sticky');
+           }
+           // Active link
+           let active = null;
+           sectionIds.forEach(id => {
+               const el = document.getElementById(id);
+               if (!el) return;
+               const rect = el.getBoundingClientRect();
+               if (rect.top <= 120) active = id;
+           });
+           links.forEach(l => {
+               l.classList.toggle('ssn-active', l.getAttribute('data-section') === active);
+           });
+       };
+
+       window.addEventListener('scroll', updateNav, { passive: true });
+       updateNav();
+
+       // Smooth scroll on click
+       links.forEach(l => {
+           l.addEventListener('click', e => {
+               e.preventDefault();
+               const target = document.getElementById(l.getAttribute('data-section'));
+               if (target) {
+                   window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+               }
+           });
+       });
+
+       // Also wire the "Strategie" link
+       const stratLink = nav.querySelector('.ssn-analysis');
+       if (stratLink) {
+           stratLink.addEventListener('click', e => {
+               e.preventDefault();
+               const target = document.getElementById('section-analyse');
+               if (target) {
+                   window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+               }
+           });
+       }
    }

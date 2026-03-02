@@ -9,17 +9,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/typography-global.css" />
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link rel="stylesheet" href="../assets/css/design-system.css" />
+<link rel="stylesheet" href="../assets/css/preloader.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <link rel="stylesheet" href="../assets/css/footer-nav-waves.css">
 <style>
 /* ══════════════════════════════════════════
    ROOT
 ══════════════════════════════════════════ */
 :root{
-  --black:#0A0A0A;--off-black:#2D2D2D;--white:#F5F5F5;--off-white:#EBE1D1;
-  --dark:#314A51;--mint:#56686A;--burgundy:#6E3B49;--mauve:#B5A19E;
-  --cream:var(--off-white);--blush:var(--off-white);--rose:var(--burgundy);--warm:var(--off-white);--ink:var(--off-black);
+  --black:#0A0A0A;--off-black:#2D2D2D;--white:#F5F5F5;
+  --dark:#314A51;--mint:#56686A;--burgundy:#6E3B49;--mauve:#B5A19E;--blush:#D4B9B5;
+  --cream:var(--white);--rose:var(--burgundy);--ink:var(--off-black);
   --f5:var(--white);
   --font-body:'Work Sans',sans-serif;
   --font-display:'Cormorant Garamond',serif;
@@ -31,7 +33,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:hidden}
-body{font-family:var(--font-body);background:var(--warm);color:var(--ink);
+body{font-family:var(--font-body);background:var(--white);color:var(--ink);
   line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:none}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
@@ -107,7 +109,8 @@ body.ch-view #cur-label{opacity:1}
 .hero-inner{
   position:relative;z-index:2;
   max-width:85vw;margin:0 auto;
-  padding:0 clamp(1rem,5vw,3rem);
+  width:85vw;
+  padding:0;
   display:grid;grid-template-columns:1fr auto;align-items:end;gap:3rem;
 }
 @media(max-width:768px){.hero-inner{grid-template-columns:1fr}}
@@ -167,11 +170,7 @@ body.ch-view #cur-label{opacity:1}
   display:flex;align-items:center;flex-direction:column;
   gap:clamp(1.5rem,3vh,2.5rem);
 }
-/* subtle texture */
-.section-showcase::before{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(0,0,0,.25),transparent);
-}
+
 .sc-bg-num{
   position:absolute;right:-0.02em;top:50%;transform:translateY(-50%);
   font-family:var(--font-display);font-style:italic;
@@ -180,8 +179,8 @@ body.ch-view #cur-label{opacity:1}
   letter-spacing:-.05em;
 }
 .sc-container{
-  max-width:980px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);
-  width:100%;position:relative;z-index:2;
+  max-width:85vw;margin:0 auto;padding:0;
+  width:85vw;position:relative;z-index:2;
   display:flex;flex-direction:column;align-items:center;
   gap:clamp(2rem,4vh,3rem);
 }
@@ -197,11 +196,11 @@ body.ch-view #cur-label{opacity:1}
 .sc-eyebrow-block{display:flex;flex-direction:column;gap:.3rem}
 .sc-eyebrow-key{
   font-family:var(--font-sub);font-size:.42rem;letter-spacing:.55em;
-  text-transform:uppercase;color:rgba(235,225,209,.28);
+  text-transform:uppercase;color:rgba(245,245,245,.28);
 }
 .sc-eyebrow-val{
   font-family:var(--font-titel);font-size:clamp(.68rem,1.1vw,.82rem);
-  letter-spacing:.1em;text-transform:uppercase;color:rgba(235,225,209,.8);
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(245,245,245,.8);
   transition:opacity .4s;
 }
 .sc-title{
@@ -209,18 +208,18 @@ body.ch-view #cur-label{opacity:1}
   font-weight:300;line-height:.92;letter-spacing:-.02em;
   color:#F7F3EE;margin:0;padding:0;text-transform:none;
 }
-.sc-title em{font-style:italic;color:rgba(235,225,209,.55)}
+.sc-title em{font-style:italic;color:rgba(245,245,245,.55)}
 .sc-subtitle{
   font-family:var(--font-display);font-style:italic;
   font-size:clamp(.85rem,1.5vw,1.05rem);
-  color:rgba(235,225,209,.38);display:block;margin-top:.5rem;
+  color:rgba(245,245,245,.38);display:block;margin-top:.5rem;
 }
 .sc-meta-right{text-align:right}
 .sc-counter{
   font-family:var(--font-display);font-style:italic;font-size:clamp(.8rem,1.2vw,1rem);
-  color:rgba(235,225,209,.28);user-select:none;white-space:nowrap;
+  color:rgba(245,245,245,.28);user-select:none;white-space:nowrap;
 }
-.sc-counter #sc-cur{color:rgba(235,225,209,.8);font-size:1.5em}
+.sc-counter #sc-cur{color:rgba(245,245,245,.8);font-size:1.5em}
 
 /* iPhone */
 .iphone-frame{
@@ -250,7 +249,8 @@ body.ch-view #cur-label{opacity:1}
 }
 .sc-video{
   position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;display:block;opacity:0;transition:opacity .6s ease;
+  object-fit:cover;display:block;opacity:0;
+  transition:opacity .55s cubic-bezier(.4,0,.2,1);
 }
 .sc-video--active{opacity:1}
 
@@ -293,16 +293,15 @@ body.ch-view #cur-label{opacity:1}
 .sc-nav{display:flex;align-items:center;justify-content:center;gap:clamp(.8rem,2vw,1.4rem)}
 .sc-arrow{
   width:50px;height:50px;border-radius:50%;
-  border:1px solid rgba(235,225,209,.18);background:rgba(0,0,0,.08);
-  color:rgba(235,225,209,.55);
+  border:1px solid rgba(245,245,245,.18);background:rgba(0,0,0,.08);
+  color:rgba(245,245,245,.55);
   display:flex;align-items:center;justify-content:center;cursor:pointer;
   transition:all .35s cubic-bezier(.34,1.56,.64,1);flex-shrink:0;
 }
-.sc-arrow:hover{border-color:rgba(235,225,209,.5);background:rgba(0,0,0,.2);color:#F7F3EE;transform:scale(1.08)}
+.sc-arrow:hover{border-color:rgba(245,245,245,.5);background:rgba(0,0,0,.2);color:#F7F3EE;transform:scale(1.08)}
 .sc-arrow:active{transform:scale(.93)}
-.sc-dots{display:flex;gap:5px;align-items:center}
-.sc-dot{width:4px;height:4px;border-radius:50%;background:rgba(235,225,209,.18);transition:all .35s cubic-bezier(.34,1.56,.64,1);cursor:pointer}
-.sc-dot.on{background:rgba(235,225,209,.8);transform:scale(1.5)}
+.sc-dots{display:flex;gap:6px;align-items:center}
+/* sc-dot styles in HIGH-END UI EXTRAS section below */
 
 /* ══════════════════════════════════════════
    MARQUEE
@@ -313,14 +312,12 @@ body.ch-view #cur-label{opacity:1}
 .mq-fade--l{left:0;background:linear-gradient(to right,var(--f5),transparent)}
 .mq-fade--r{right:0;background:linear-gradient(to left,var(--f5),transparent)}
 .marquee-track{display:flex;gap:3rem;width:max-content}
-.m-item{display:flex;flex-direction:column;align-items:center;gap:.9rem;min-width:160px}
-.m-item img{width:100px;height:100px;object-fit:contain;filter:grayscale(.3);transition:filter .4s}
-.m-item:hover img{filter:none}
+/* m-item styles in HIGH-END UI EXTRAS section */
 
 /* ══════════════════════════════════════════
    HORIZONTAL SCROLL — works
 ══════════════════════════════════════════ */
-.hscroll{height:100vh;position:relative;background:var(--cream)}
+.hscroll{height:100vh;position:relative;background:var(--mauve)}
 .hscroll-pin{height:100vh;width:100%;overflow:hidden}
 .hscroll-track{display:flex;height:100vh;width:max-content;will-change:transform}
 .hscroll-panel{
@@ -328,8 +325,8 @@ body.ch-view #cur-label{opacity:1}
   display:flex;align-items:center;justify-content:center;
   background:var(--cream);
 }
-.hscroll-panel--b{background:var(--blush)}
-.hscroll-panel--c{background:var(--warm)}
+.hscroll-panel--b{background:var(--burgundy)}
+.hscroll-panel--c{background:var(--mauve)}
 .hscroll-num{
   position:absolute;top:3rem;left:3rem;
   font-family:var(--font-display);font-style:italic;font-size:6rem;
@@ -337,11 +334,7 @@ body.ch-view #cur-label{opacity:1}
 }
 .hscroll-media{width:min(48vw,600px);position:relative}
 .hscroll-media img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:saturate(.75)}
-.hscroll-caption{
-  position:absolute;bottom:-2.8rem;right:-2.2rem;
-  background:var(--warm);padding:1.2rem 1.6rem;min-width:190px;
-  box-shadow:0 4px 24px rgba(28,23,20,.06);
-}
+/* hscroll-caption in HIGH-END UI EXTRAS section */
 .hscroll-caption h3{font-family:var(--font-display);font-style:italic;font-size:1.1rem;color:var(--ink);font-weight:300}
 .hscroll-caption span{font-family:var(--font-sub);font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mauve);display:block;margin-top:.4rem}
 .hscroll-dots{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;gap:.6rem}
@@ -352,21 +345,15 @@ body.ch-view #cur-label{opacity:1}
    TIKTOK SECTION — dark, 3D browser tilt
 ══════════════════════════════════════════ */
 .tiktok-section{
-  background:#1C1714;
+  background:var(--mauve);
   padding:clamp(6rem,14vh,11rem) 0 clamp(5rem,10vh,9rem);
   position:relative;overflow:hidden;
 }
-/* ambient glow */
-.tiktok-section::before{
-  content:'';position:absolute;
-  width:60vw;height:60vw;border-radius:50%;
-  background:radial-gradient(circle,rgba(110,59,73,.18) 0%,transparent 70%);
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  pointer-events:none;
-}
+
 .tt-inner{
   max-width:85vw;margin:0 auto;
-  padding:0 clamp(1rem,3vw,2rem);
+  width:85vw;
+  padding:0;
 }
 .tt-head{
   display:flex;justify-content:space-between;align-items:flex-end;
@@ -582,10 +569,10 @@ body.ch-view #cur-label{opacity:1}
 /* ══════════════════════════════════════════
    QUOTE
 ══════════════════════════════════════════ */
-.quote-section{background:var(--warm);padding:clamp(6rem,12vh,10rem) 0}
+.quote-section{background:var(--mauve);padding:clamp(6rem,12vh,10rem) 0}
 .quote-inner{
-  max-width:min(76ch,88vw);margin:0 auto;
-  padding:0 clamp(1rem,5vw,3rem);text-align:center;
+  max-width:min(76ch,85vw);margin:0 auto;
+  padding:0;text-align:center;
 }
 .quote-mark{
   font-family:var(--font-display);font-size:6rem;line-height:.7;
@@ -607,15 +594,14 @@ body.ch-view #cur-label{opacity:1}
    MOCKUP — Browser
 ══════════════════════════════════════════ */
 .mockup-section{padding:clamp(6rem,12vh,10rem) 0;background:var(--cream)}
-.mockup-inner{max-width:85vw;margin:0 auto;padding:0 clamp(1rem,2vw,2rem)}
+.mockup-inner{max-width:85vw;margin:0 auto;width:85vw;padding:0}
 .mockup-head{margin-bottom:3rem}
 .browser{
   border-radius:12px;overflow:hidden;
   box-shadow:0 30px 100px rgba(28,23,20,.08),0 8px 24px rgba(28,23,20,.05);
-  opacity:0;transform:translateY(35px);
 }
 .browser-bar{
-  background:var(--warm);padding:.8rem 1rem;
+  background:var(--mauve);padding:.8rem 1rem;
   display:flex;align-items:center;gap:.5rem;
   border-bottom:1px solid rgba(110,59,73,.05);
 }
@@ -646,9 +632,137 @@ body.ch-view #cur-label{opacity:1}
    FOOTER OVERRIDE
 ══════════════════════════════════════════ */
 .site-footer{background:#314A51 !important}
+
+/* ══════════════════════════════════════════
+   HIGH-END UI EXTRAS
+══════════════════════════════════════════ */
+
+/* Smooth video crossfade */
+.sc-video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;display:block;opacity:0;
+  transition:opacity .55s cubic-bezier(.4,0,.2,1);
+}
+.sc-video--active{opacity:1}
+
+/* iPhone hover lift */
+.iphone-frame{
+  transition:transform .5s cubic-bezier(.34,1.56,.64,1),
+             box-shadow .5s ease;
+}
+.iphone-frame:hover{
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:
+    0 0 0 8px #232325,
+    0 0 0 10px rgba(255,255,255,.07),
+    0 90px 160px rgba(0,0,0,.85),
+    0 30px 60px rgba(0,0,0,.5);
+}
+
+/* Marquee items */
+.m-item{
+  display:flex;flex-direction:column;align-items:center;
+  gap:.9rem;min-width:160px;
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.m-item:hover{transform:translateY(-4px) scale(1.05)}
+.m-item img{
+  width:110px;height:110px;object-fit:contain;
+  filter:grayscale(.4) brightness(.95);
+  transition:filter .45s ease, transform .45s ease;
+}
+.m-item:hover img{filter:none;transform:scale(1.04)}
+
+/* Horizontal gallery caption */
+.hscroll-caption{
+  position:absolute;bottom:-2.8rem;right:-2.2rem;
+  background:rgba(255,255,255,.95);
+  padding:1.2rem 1.6rem;min-width:190px;
+  box-shadow:0 8px 32px rgba(28,23,20,.1);
+  backdrop-filter:blur(12px);
+  transition:transform .4s ease, box-shadow .4s ease;
+}
+.hscroll-media:hover .hscroll-caption{
+  transform:translateY(-4px);
+  box-shadow:0 16px 48px rgba(28,23,20,.14);
+}
+
+/* hscroll panel bg fix */
+.hscroll-panel--a{background:#F7F3EE}
+.hscroll-panel--b{background:#6E3B49}
+.hscroll-panel--c{background:#B5A19E}
+
+/* Better heading style for dark panel */
+.hscroll-panel--b .hscroll-caption{background:rgba(30,10,15,.8);color:#F7F3EE}
+.hscroll-panel--b .hscroll-caption h3{color:#F7F3EE}
+
+/* Web Showcase section label */
+.mockup-section .t-label{
+  display:block;margin-bottom:.6rem;
+  color:var(--mauve);opacity:1;
+}
+.mockup-section .t-display em{color:var(--burgundy)}
+
+/* Quote mark color fix */
+.quote-mark{color:rgba(110,59,73,.12)}
+
+/* Browser hover overlay */
+.browser-hover{
+  position:absolute;inset:0;
+  display:flex;align-items:flex-end;justify-content:flex-start;
+  padding:2.5rem;opacity:0;
+  transition:opacity .5s cubic-bezier(.4,0,.2,1);
+  background:linear-gradient(0deg,rgba(247,243,238,.7),transparent 55%);
+  pointer-events:none;
+}
+.browser:hover .browser-hover{opacity:1}
+.browser{
+  transition:box-shadow .5s ease, transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.browser:hover{
+  box-shadow:0 50px 120px rgba(28,23,20,.13),0 16px 40px rgba(28,23,20,.08);
+  transform:translateY(-4px);
+}
+
+/* TikTok grid cell hover */
+.tt-cell{
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+  cursor:pointer;
+}
+.tt-cell:hover{transform:scale(1.03)}
+.tt-cell:hover img{filter:brightness(1.05)}
+
+/* SC dot animation */
+.sc-dot{
+  width:5px;height:5px;border-radius:50%;
+  background:rgba(245,245,245,.2);
+  transition:all .4s cubic-bezier(.34,1.56,.64,1);
+  cursor:pointer;
+}
+.sc-dot.on{
+  width:22px;border-radius:3px;
+  background:rgba(245,245,245,.9);
+}
+
+/* Section entrance: initially hidden for JS-animated elements */
+.hero-eyebrow{opacity:0;transform:translateY(8px)}
+#heroMeta{opacity:0;transform:translateY(8px)}
+#heroSide{opacity:0;transform:translateY(8px)}
+
 </style>
 </head>
-<body>
+<body class="is-loading">
+
+  <!-- SUB PRELOADER -->
+  <div class="loader loader--sub" id="loaderSub">
+    <div class="loader__riser" id="loaderSubRiser">
+      <svg class="loader__wave-svg" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+        <path class="loader__wave-path" d="M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z"/>
+      </svg>
+      <div class="loader__panel"></div>
+    </div>
+  </div>
+
 <div id="cur-dot"></div>
 <div id="cur-ring"></div>
 <div id="cur-label">Öffnen</div>
@@ -723,7 +837,7 @@ body.ch-view #cur-label{opacity:1}
       <div class="sc-meta-right">
         <div class="sc-counter">
           <span id="sc-cur">1</span>
-          <span style="color:rgba(235,225,209,0.18)"> / </span>
+          <span style="color:rgba(245,245,245,0.18)"> / </span>
           <span id="sc-total">3</span>
         </div>
       </div>
@@ -735,14 +849,11 @@ body.ch-view #cur-label{opacity:1}
       <div class="iphone-screen">
         <div class="phone-video-wrap" id="sc-video-wrap">
           <video class="sc-video sc-video--active" autoplay muted playsinline loop
-                 src="../assets/images/personal/showcase_personal_web1.mp4"
-                 poster="../assets/images/personal/showcase_personal__trailer_2.jpg"></video>
+                 src="../assets/images/personal/egypt_personal_1.mov"></video>
           <video class="sc-video" muted playsinline loop
-                 src="../assets/images/personal/dhermi_personal_2.MOV"
-                 poster="../assets/images/personal/showcase_personal_beauty_4.png"></video>
+                 src="../assets/images/personal/dhermi_personal_2.MOV"></video>
           <video class="sc-video" muted playsinline loop
-                 src="../assets/images/personal/paris_personal_3.mov"
-                 poster="../assets/images/personal/showcase_personal_rap_1.PNG"></video>
+                 src="../assets/images/personal/paris_personal_3.mov"></video>
           <div class="phone-prog-bars">
             <div class="phone-prog-bar"><div class="phone-prog-bar-fill" id="sc-bar-0"></div></div>
             <div class="phone-prog-bar"><div class="phone-prog-bar-fill" id="sc-bar-1"></div></div>
@@ -810,7 +921,7 @@ body.ch-view #cur-label{opacity:1}
 </section>
 
 <!-- ══════ HORIZONTAL SCROLL ══════ -->
-<div class="hscroll wave-charcoal" id="hscroll">
+<div class="hscroll" id="hscroll">
   <div class="hscroll-pin" id="hscrollPin">
     <div class="hscroll-track" id="hscrollTrack">
       <div class="hscroll-panel hscroll-panel--a">
@@ -842,7 +953,7 @@ body.ch-view #cur-label{opacity:1}
 </div>
 
 <!-- ══════ TIKTOK SECTION ══════ -->
-<section class="tiktok-section wave-warm" id="tiktokSec">
+<section class="tiktok-section" id="tiktokSec">
   <div class="tt-inner">
 
     <!-- Header -->
@@ -964,14 +1075,6 @@ body.ch-view #cur-label{opacity:1}
   </div>
 </section>
 
-<!-- ══════ QUOTE ══════ -->
-<section class="quote-section wave-offwhite">
-  <div class="quote-inner">
-    <span class="quote-mark">&ldquo;</span>
-    <p class="quote-text" id="quoteEl">Design ist nicht nur wie es aussieht — sondern wie es sich anfühlt, wenn man hindurchgleitet.</p>
-    <span class="quote-attr" id="quoteAttr">&mdash; Khadija Okbi</span>
-  </div>
-</section>
 
 <!-- ══════ MOCKUP — Browser ══════ -->
 <section class="mockup-section wave-foot">
@@ -1051,136 +1154,275 @@ document.addEventListener('mousemove', e => {
   lbl.style.left=mx+'px'; lbl.style.top=my+'px';
 });
 (function raf(){
-  rx+=(mx-rx)*.1; ry+=(my-ry)*.1;
+  rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
   ring.style.left=rx+'px'; ring.style.top=ry+'px';
   requestAnimationFrame(raf);
 })();
-document.querySelectorAll('a,button,.browser,.tt-device-wrapper').forEach(el => {
+document.querySelectorAll('a,button,.browser,.tt-device-wrapper,.iphone-frame').forEach(el => {
   el.addEventListener('mouseenter',()=>document.body.classList.add('ch'));
   el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'));
 });
 
 /* ── Hero ── */
-const heroTl = gsap.timeline({delay:.1});
+const heroTl = gsap.timeline({delay:.15});
 heroTl
-  .to('#hLabel',    {opacity:1, duration:.8, ease:'power3.out'})
-  .to('.hero-h1 .row span', {y:0, duration:1.2, stagger:.18, ease:'expo.out'}, '-=.4')
-  .to('#heroMeta',  {opacity:1, duration:.8, ease:'power3.out'}, '-=.3')
-  .to('#heroSide',  {opacity:1, duration:.8, ease:'power3.out'}, '-=.6');
+  .to('#hLabel',    {opacity:1, y:0, duration:.9, ease:'power3.out'})
+  .fromTo('.hero-h1 .row span', {y:'105%'}, {y:0, duration:1.3, stagger:.2, ease:'expo.out'}, '-=.5')
+  .to('#heroMeta',  {opacity:1, y:0, duration:.8, ease:'power3.out'}, '-=.4')
+  .to('#heroSide',  {opacity:1, y:0, duration:.8, ease:'power3.out'}, '-=.6');
 
-/* ── Marquee ── */
-const marqTrack = document.getElementById('marqTrack');
-if(marqTrack) gsap.to(marqTrack,{x:-(marqTrack.scrollWidth/2), duration:24, ease:'none', repeat:-1});
+/* ── Showcase Animate In ── */
+gsap.from('#showcase', {
+  scrollTrigger:{trigger:'#showcase', start:'top 85%'},
+  opacity:0, y:40, duration:1.2, ease:'expo.out'
+});
+gsap.from('.sc-header-row', {
+  scrollTrigger:{trigger:'#showcase', start:'top 75%'},
+  opacity:0, y:30, duration:1, ease:'power3.out', delay:.1
+});
+gsap.from('#sc-iphone', {
+  scrollTrigger:{trigger:'#showcase', start:'top 70%'},
+  opacity:0, y:60, scale:.95, duration:1.4, ease:'expo.out', delay:.2
+});
 
-/* ── Horizontal Scroll ── */
-const panels = gsap.utils.toArray('.hscroll-panel');
-if(panels.length){
-  gsap.to('#hscrollTrack', {
-    x: ()=>-(panels.length-1)*window.innerWidth, ease:'none',
-    scrollTrigger:{trigger:'#hscroll',start:'top top',end:()=>'+='+(panels.length-1)*window.innerWidth,
-    pin:true,scrub:1,anticipatePin:1,invalidateOnRefresh:true}
-  });
-  panels.forEach(p=>{
-    const img=p.querySelector('img');
-    if(img) gsap.to(img,{x:-35, ease:'none',
-      scrollTrigger:{trigger:'#hscroll',start:'top top',end:()=>'+='+(panels.length-1)*window.innerWidth,scrub:2}
-    });
+/* ── Marquee – garantiert nach Bildladen ── */
+function initMarquee(){
+  const marqTrack = document.getElementById('marqTrack');
+  if(!marqTrack) return;
+  const trackW = marqTrack.scrollWidth;
+  if(trackW < 100){ setTimeout(initMarquee, 150); return; }
+  gsap.set(marqTrack, {x:0});
+  gsap.to(marqTrack,{
+    x:-(trackW/2),
+    duration:28, ease:'none', repeat:-1,
+    modifiers:{x: gsap.utils.unitize(x => parseFloat(x) % (trackW/2))}
   });
 }
 
-/* ── TikTok 3D Tilt on Mouse ── */
+/* Logo-Items beim Scrollen animieren */
+gsap.from('.m-item', {
+  scrollTrigger:{trigger:'.marquee-section', start:'top 85%'},
+  opacity:0, y:25, scale:.92, stagger:.1, duration:.8, ease:'power3.out'
+});
+
+window.addEventListener('load', initMarquee);
+
+/* ── Horizontal Gallery Scroll ── */
+const panels = gsap.utils.toArray('.hscroll-panel');
+const hscrollEl = document.getElementById('hscroll');
+const hscrollTrack = document.getElementById('hscrollTrack');
+if(panels.length && hscrollEl && hscrollTrack){
+  const totalMove = ()=>(panels.length-1)*window.innerWidth;
+  gsap.to(hscrollTrack, {
+    x: ()=> -totalMove(),
+    ease:'none',
+    scrollTrigger:{
+      trigger: hscrollEl,
+      start: 'top top',
+      end: ()=>'+=' + totalMove(),
+      pin: true,
+      scrub: 1.2,
+      anticipatePin: 1,
+      invalidateOnRefresh: true
+    }
+  });
+  /* Parallax per Bild */
+  panels.forEach(p=>{
+    const img = p.querySelector('img');
+    if(img){
+      gsap.fromTo(img, {x:0}, {x:-50, ease:'none',
+        scrollTrigger:{
+          trigger: hscrollEl,
+          start:'top top',
+          end:()=>'+='+ totalMove(),
+          scrub:2.5
+        }
+      });
+    }
+    /* Caption reveal */
+    const cap = p.querySelector('.hscroll-caption');
+    if(cap){
+      gsap.from(cap,{
+        scrollTrigger:{trigger:p, containerAnimation: ScrollTrigger.getAll().find(st=>st.pin===hscrollEl), start:'left 80%'},
+        y:20, opacity:0, duration:.8, ease:'power3.out'
+      });
+    }
+  });
+}
+
+/* ── TikTok 3D Tilt ── */
 const ttScene = document.getElementById('ttScene');
 const ttDevice = document.getElementById('ttDevice');
 if(ttScene && ttDevice){
+  gsap.set(ttDevice, {transformPerspective:1400, rotateX:4, rotateY:-8});
+
   ttScene.addEventListener('mousemove', e => {
     const r = ttScene.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width - .5;
     const y = (e.clientY - r.top) / r.height - .5;
     gsap.to(ttDevice, {
-      rotateX: -y * 8 + 2,
-      rotateY: x * 12 - 6,
-      duration:.6, ease:'power2.out',
-      transformPerspective:1200
+      rotateX: -y * 10 + 2,
+      rotateY: x * 14 - 4,
+      duration:.7, ease:'power2.out'
     });
   });
+
   ttScene.addEventListener('mouseleave', () => {
     gsap.to(ttDevice, {
       rotateX:4, rotateY:-8,
-      duration:1.2, ease:'elastic.out(1,.4)'
+      duration:1.4, ease:'elastic.out(1,.35)'
     });
   });
-  // Animate in on scroll
+
   gsap.from(ttDevice, {
     scrollTrigger:{trigger:'#tiktokSec', start:'top 75%'},
-    y:60, opacity:0, rotateX:15, duration:1.4, ease:'expo.out'
+    y:80, opacity:0, rotateX:20, scale:.97,
+    duration:1.6, ease:'expo.out'
+  });
+
+  /* TikTok grid cells stagger */
+  gsap.from('.tt-cell', {
+    scrollTrigger:{trigger:'#tiktokSec', start:'top 65%'},
+    opacity:0, scale:.88, y:15,
+    stagger:{amount:.5, grid:'auto', from:'center'},
+    duration:.9, ease:'power3.out'
   });
 }
 
-/* ── TikTok header reveal ── */
+/* ── TikTok Header Reveal ── */
 gsap.from('.tt-head > *', {
   scrollTrigger:{trigger:'#tiktokSec', start:'top 80%'},
-  y:40, opacity:0, stagger:.15, duration:1, ease:'power3.out'
+  y:45, opacity:0, stagger:.18, duration:1.1, ease:'power3.out'
 });
 
 /* ── Quote ── */
 const q = document.getElementById('quoteEl');
 if(q){
-  q.innerHTML = q.textContent.split(' ').map(w =>
-    `<span style="display:inline-block;overflow:hidden"><span class="qw" style="display:inline-block">${w}</span></span>`
-  ).join(' ');
+  q.innerHTML = q.textContent.trim().split(' ').map(w =>
+    `<span style="display:inline-block;overflow:hidden;vertical-align:bottom"><span class="qw" style="display:inline-block">${w}&nbsp;</span></span>`
+  ).join('');
   gsap.from('.qw', {
     scrollTrigger:{trigger:q, start:'top 88%'},
-    y:'105%', opacity:0, stagger:.04, duration:.85, ease:'power3.out'
+    y:'105%', opacity:0, stagger:.042, duration:.9, ease:'power3.out'
   });
 }
 gsap.to('#quoteAttr',{
   scrollTrigger:{trigger:'#quoteAttr',start:'top 92%'},
-  opacity:1,y:0,duration:.7,delay:.2,ease:'power3.out'
+  opacity:1, y:0, duration:.8, delay:.25, ease:'power3.out'
 });
 
-/* ── Mockup ── */
+/* ── Web Showcase (Mockup/Browser) ── */
 gsap.from('#mockupTitle',{
-  scrollTrigger:{trigger:'#mockupTitle',start:'top 90%'},
-  y:35,opacity:0,duration:1,ease:'power3.out'
+  scrollTrigger:{trigger:'.mockup-section', start:'top 85%'},
+  y:40, opacity:0, duration:1.1, ease:'power3.out'
 });
-gsap.to('#browserEl',{
-  scrollTrigger:{trigger:'#browserEl',start:'top 80%'},
-  opacity:1,y:0,duration:1.4,ease:'expo.out'
+gsap.from('[data-mockup-label]',{
+  scrollTrigger:{trigger:'.mockup-section', start:'top 88%'},
+  y:20, opacity:0, duration:.8, ease:'power3.out'
 });
-const bVid=document.getElementById('bVideo'), bPh=document.getElementById('bPlaceholder');
-if(bVid) bVid.addEventListener('canplay',()=>{if(bPh) bPh.style.display='none';});
-
-/* ── Showcase Slider ── */
-const scVideos = [
-  {location:'Ägypten',  category:'Abenteuer', program:'Final Cut Pro', year:'2023', tag:'Travel Stories', bg:'01'},
-  {location:'Dhermi', category:'Reise',     program:'CapCut',        year:'2024', tag:'Travel Stories',   bg:'02'},
-  {location:'Paris',  category:'Kultur',    program:'iMovie',        year:'2022', tag:'Cultural Stories', bg:'03'},
-];
-let scCurrent=0;
-function scUpdateUI(){
-  const d=scVideos[scCurrent];
-  document.querySelectorAll('.sc-video').forEach((v,i)=>{
-    v.classList.toggle('sc-video--active',i===scCurrent);
-    i===scCurrent ? v.play() : v.pause();
-  });
-  document.querySelectorAll('.sc-dot').forEach((dot,i)=>dot.classList.toggle('on',i===scCurrent));
-  document.getElementById('sc-cur').textContent     = scCurrent+1;
-  document.getElementById('sc-loc-name').textContent = d.location;
-  document.getElementById('sc-val-kat').textContent  = d.category;
-  document.getElementById('sc-val-prog').textContent = d.program;
-  document.getElementById('sc-val-year').textContent = d.year;
-  document.getElementById('sc-story-tag').textContent= d.tag;
-  document.getElementById('sc-bg-num-text').textContent = d.bg.slice(1);
-  document.querySelectorAll('.phone-prog-bar-fill').forEach((b,i)=>{b.style.width=i<=scCurrent?'100%':'0%'});
+gsap.from('#browserEl',{
+  scrollTrigger:{trigger:'#browserEl', start:'top 80%'},
+  opacity:0, y:55, scale:.98, duration:1.6, ease:'expo.out', delay:.1
+});
+/* Show video placeholder text until video loads */
+const bVid = document.getElementById('bVideo');
+const bPh  = document.getElementById('bPlaceholder');
+if(bVid){
+  bVid.addEventListener('canplay',()=>{ if(bPh) bPh.style.opacity='0'; });
+  bVid.play().catch(()=>{});
 }
-document.getElementById('sc-next')?.addEventListener('click',()=>{scCurrent=(scCurrent+1)%scVideos.length;scUpdateUI()});
-document.getElementById('sc-prev')?.addEventListener('click',()=>{scCurrent=(scCurrent-1+scVideos.length)%scVideos.length;scUpdateUI()});
-document.querySelectorAll('.sc-dot').forEach(dot=>{
-  dot.addEventListener('click',()=>{scCurrent=parseInt(dot.dataset.idx,10);scUpdateUI()});
+
+/* ── Showcase iPhone Slider ── */
+const scVideos = [
+  {location:'Ägypten',  category:'Abenteuer', program:'Final Cut Pro', year:'2023', tag:'Travel Stories',  bg:'01'},
+  {location:'Dhermi',   category:'Reise',     program:'CapCut',        year:'2024', tag:'Travel Stories',  bg:'02'},
+  {location:'Paris',    category:'Kultur',    program:'iMovie',        year:'2022', tag:'Cultural Stories',bg:'03'},
+];
+let scCurrent = 0;
+let scAnimating = false;
+
+function scUpdateUI(dir){
+  if(scAnimating) return;
+  scAnimating = true;
+  const d = scVideos[scCurrent];
+
+  /* Headline-Animation */
+  const metaEls = document.querySelectorAll('.sc-eyebrow-val');
+  gsap.to(metaEls, {opacity:0, y:-8, duration:.18, stagger:.04, ease:'power2.in', onComplete:()=>{
+    metaEls[0] && (metaEls[0].textContent = d.category);
+    metaEls[1] && (metaEls[1].textContent = d.program);
+    metaEls[2] && (metaEls[2].textContent = d.year);
+    gsap.to(metaEls, {opacity:1, y:0, duration:.35, stagger:.05, ease:'power2.out'});
+  }});
+
+  /* Video crossfade */
+  document.querySelectorAll('.sc-video').forEach((v,i)=>{
+    if(i === scCurrent){
+      gsap.to(v, {opacity:1, duration:.55, ease:'power2.inOut',
+        onStart:()=>{ v.play().catch(()=>{}); }
+      });
+    } else {
+      gsap.to(v, {opacity:0, duration:.4, ease:'power2.in',
+        onComplete:()=>{ v.pause(); }
+      });
+    }
+    v.classList.toggle('sc-video--active', i===scCurrent);
+  });
+
+  document.querySelectorAll('.sc-dot').forEach((dot,i)=>dot.classList.toggle('on',i===scCurrent));
+  document.getElementById('sc-cur').textContent = scCurrent+1;
+
+  const locEl = document.getElementById('sc-loc-name');
+  gsap.to(locEl, {opacity:0, y:-12, duration:.2, ease:'power2.in', onComplete:()=>{
+    locEl.textContent = d.location;
+    gsap.to(locEl, {opacity:1, y:0, duration:.35, ease:'power3.out'});
+  }});
+
+  const tagEl = document.getElementById('sc-story-tag');
+  if(tagEl) tagEl.textContent = d.tag;
+
+  const bgEl = document.getElementById('sc-bg-num-text');
+  if(bgEl){
+    gsap.to(bgEl.parentElement, {opacity:0, duration:.2, onComplete:()=>{
+      bgEl.textContent = d.bg.slice(1);
+      gsap.to(bgEl.parentElement, {opacity:1, duration:.4});
+    }});
+  }
+
+  /* Progress bars */
+  document.querySelectorAll('.phone-prog-bar-fill').forEach((b,i)=>{
+    gsap.to(b, {width: i <= scCurrent ? '100%' : '0%', duration:.4, ease:'power2.inOut'});
+  });
+
+  setTimeout(()=>{ scAnimating = false; }, 500);
+}
+
+document.getElementById('sc-next')?.addEventListener('click',()=>{
+  scCurrent=(scCurrent+1)%scVideos.length; scUpdateUI('next');
 });
-document.getElementById('sc-total').textContent=scVideos.length;
-scUpdateUI();
+document.getElementById('sc-prev')?.addEventListener('click',()=>{
+  scCurrent=(scCurrent-1+scVideos.length)%scVideos.length; scUpdateUI('prev');
+});
+document.querySelectorAll('.sc-dot').forEach(d=>{
+  d.addEventListener('click',()=>{ scCurrent=parseInt(d.dataset.idx,10); scUpdateUI(); });
+});
+
+/* Keyboard nav */
+document.addEventListener('keydown', e=>{
+  if(e.key==='ArrowRight'){ scCurrent=(scCurrent+1)%scVideos.length; scUpdateUI('next'); }
+  if(e.key==='ArrowLeft'){  scCurrent=(scCurrent-1+scVideos.length)%scVideos.length; scUpdateUI('prev'); }
+});
+
+document.getElementById('sc-total').textContent = scVideos.length;
+/* Init first video */
+document.querySelectorAll('.sc-video').forEach((v,i)=>{
+  if(i===0){ v.classList.add('sc-video--active'); gsap.set(v,{opacity:1}); v.play().catch(()=>{}); }
+  else { gsap.set(v,{opacity:0}); }
+});
+document.querySelectorAll('.phone-prog-bar-fill')[0] && gsap.set(document.querySelectorAll('.phone-prog-bar-fill')[0],{width:'100%'});
 </script>
 <script defer src="../assets/js/typography-reveal.js"></script>
+<script defer src="../assets/js/ds-reveal.js"></script>
+<script defer src="../assets/js/preloader.js"></script>
 </body>
 </html>

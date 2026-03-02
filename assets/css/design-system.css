@@ -1,0 +1,805 @@
+/* =========================================
+   DESIGN SYSTEM — Khadija Okbi Portfolio
+   =========================================
+   High-End UI Tokens, Hintergrundklassen,
+   Hero-Pattern, Cards, Stats & Animations
+
+   Palette:
+     --white:     #F5F5F5
+     --mauve:     #B5A19E
+     --mint:      #56686A
+     --darkgreen: #314A51
+     --burgundy:  #6E3B49
+     --blush:     #D4B9B5
+   ========================================= */
+
+/* ── 0. TOKENS ─────────────────────────────────── */
+:root {
+  --white:      #F5F5F5;
+  --mauve:      #B5A19E;
+  --blush:      #D4B9B5;
+  --mint:       #56686A;
+  --darkgreen:  #314A51;
+  --burgundy:   #6E3B49;
+
+  --white-95:   rgba(245,245,245,.95);
+  --white-90:   rgba(245,245,245,.90);
+  --white-60:   rgba(245,245,245,.60);
+  --white-35:   rgba(245,245,245,.35);
+  --white-15:   rgba(245,245,245,.15);
+  --white-08:   rgba(245,245,245,.08);
+  --mauve-40:   rgba(181,161,158,.40);
+  --mauve-20:   rgba(181,161,158,.20);
+  --mauve-12:   rgba(181,161,158,.12);
+  --mint-20:    rgba(86,104,106,.20);
+  --mint-08:    rgba(86,104,106,.08);
+  --burg-20:    rgba(110,59,73,.20);
+  --burg-10:    rgba(110,59,73,.10);
+
+  --font-h1:    'Higuen', serif;
+  --font-h2:    'Higuen', serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-body:  'Work Sans', system-ui, sans-serif;
+  --font-ui:    'Outfit', system-ui, sans-serif;
+
+  --section-py:  clamp(5.5rem, 12vh, 10rem);
+  --container-w: 85vw;
+  --ease:        cubic-bezier(.16,1,.3,1);
+  --ease-bounce: cubic-bezier(.34,1.56,.64,1);
+  --text-on-dark: rgba(245,245,245,.92);
+}
+
+
+/* ── 1. HINTERGRUNDKLASSEN ─────────────────────── */
+
+.bg-white {
+  background-color: var(--white);
+  --ct:  var(--darkgreen);  --csb: var(--mint);
+  --cb:  rgba(49,74,81,.80); --cbg: var(--burgundy);
+  --cac: var(--burgundy);    --cr:  var(--mauve-40);
+  --ccard: var(--mauve-12);  --ccb: var(--mauve-40);
+}
+.bg-blush {
+  background-color: var(--blush);
+  --ct:  var(--darkgreen);  --csb: var(--darkgreen);
+  --cb:  rgba(49,74,81,.80); --cbg: var(--burgundy);
+  --cac: var(--burgundy);    --cr:  rgba(49,74,81,.20);
+  --ccard: rgba(245,245,245,.45); --ccb: rgba(245,245,245,.55);
+}
+.bg-mauve {
+  background-color: var(--mauve);
+  --ct:  var(--darkgreen);  --csb: var(--darkgreen);
+  --cb:  rgba(49,74,81,.80); --cbg: var(--burgundy);
+  --cac: var(--darkgreen);   --cr:  rgba(49,74,81,.22);
+  --ccard: rgba(245,245,245,.32); --ccb: rgba(245,245,245,.42);
+}
+.bg-mint {
+  background-color: var(--mint);
+  --ct:  var(--white); --csb: rgba(245,245,245,.85);
+  --cb:  rgba(245,245,245,.72); --cbg: var(--mauve);
+  --cac: var(--mauve); --cr:  rgba(245,245,245,.22);
+  --ccard: var(--white-08); --ccb: var(--white-15);
+}
+.bg-darkgreen {
+  background-color: var(--darkgreen);
+  --ct:  var(--white); --csb: rgba(245,245,245,.85);
+  --cb:  rgba(245,245,245,.72); --cbg: var(--mauve);
+  --cac: var(--mauve); --cr:  rgba(245,245,245,.20);
+  --ccard: var(--white-08); --ccb: var(--white-15);
+}
+.bg-burgundy {
+  background-color: var(--burgundy);
+  --ct:  var(--white); --csb: rgba(245,245,245,.85);
+  --cb:  rgba(245,245,245,.72); --cbg: var(--mauve);
+  --cac: var(--mauve); --cr:  rgba(245,245,245,.22);
+  --ccard: var(--white-08); --ccb: var(--white-15);
+}
+.bg-dark {
+  background-color: var(--darkgreen);
+  --ct:  var(--white); --csb: rgba(245,245,245,.85);
+  --cb:  rgba(245,245,245,.72); --cbg: var(--mauve);
+  --cac: var(--mauve); --cr:  rgba(245,245,245,.20);
+  --ccard: var(--white-08); --ccb: var(--white-15);
+}
+
+
+/* ── 2. CONTEXT-AWARE TYPOGRAPHY ───────────────── */
+
+[class*="bg-"] h1, [class*="bg-"] h2 { color: var(--ct) !important; }
+[class*="bg-"] h3, [class*="bg-"] h4 { color: var(--csb) !important; }
+[class*="bg-"] h1 em, [class*="bg-"] h2 em { color: var(--cac) !important; }
+
+
+/* ── 3. SECTION-BLOCK ─────────────────────────── */
+
+.section-block,
+.editorial-section {
+  position: relative;
+  padding-block: var(--section-py);
+}
+
+/* ── Sections in work = 85vw Container ───────── */
+.work-section-inner,
+.editorial-section > .container {
+  max-width: var(--container-w);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 5vw, 3rem);
+}
+
+
+/* ── 4. BADGE / EYEBROW ──────────────────────── */
+
+.ds-badge,
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: var(--font-ui);
+  font-size: clamp(0.46rem, 0.72vw, 0.56rem);
+  font-weight: 600;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--cbg, var(--burgundy));
+}
+
+.ds-badge::before,
+.section-badge::before {
+  content: "";
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+
+/* ── 5. WORK HERO — Vollbild Video/Bild ────────── */
+
+.work-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--darkgreen);
+}
+
+.work-hero video,
+.work-hero img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.work-hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(10,10,10,.35) 60%, rgba(10,10,10,.65) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Hero Eyebrow overlay — bottom of video */
+.work-hero-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 5;
+  padding: clamp(3rem,8vh,6rem) clamp(2rem,7.5vw,4rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.work-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: var(--font-ui);
+  font-size: clamp(0.44rem, 0.7vw, 0.54rem);
+  font-weight: 600;
+  letter-spacing: 0.50em;
+  text-transform: uppercase;
+  color: var(--white-60);
+  animation: heroSlide .9s var(--ease) .15s both;
+}
+
+.work-hero-eyebrow::before,
+.work-hero-eyebrow::after {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.work-hero-title {
+  font-family: var(--font-h1);
+  font-weight: 800;
+  font-size: clamp(3rem, 9vw, 9rem);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: .88;
+  color: var(--white);
+  animation: heroSlide .95s var(--ease) .28s both;
+}
+
+.work-hero-title em {
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -.01em;
+  font-size: .62em;
+  color: var(--mauve);
+  line-height: 1.15;
+}
+
+/* Scroll Hint */
+.work-hero-scroll {
+  position: absolute;
+  bottom: clamp(2rem, 5vh, 4rem);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  animation: heroSlide 1s var(--ease) .55s both;
+}
+
+.work-hero-scroll-label {
+  font-family: var(--font-ui);
+  font-size: 0.42rem;
+  letter-spacing: 0.55em;
+  text-transform: uppercase;
+  color: var(--white-35);
+}
+
+.work-hero-scroll-line {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(to bottom, var(--white-60), transparent);
+  animation: sPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes heroSlide {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes sPulse {
+  0%, 100% { opacity: .35; }
+  50%      { opacity: .9; }
+}
+
+
+/* ── 6. WORK INTRO — Section unter Hero ────────── */
+
+.work-intro {
+  position: relative;
+  z-index: 2;
+  padding: clamp(5rem, 12vh, 9rem) 0 clamp(4rem, 9vh, 7rem);
+  text-align: center;
+}
+
+.work-intro-inner {
+  max-width: var(--container-w);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+  padding-inline: clamp(1rem, 5vw, 3rem);
+}
+
+.work-intro h1 {
+  font-family: var(--font-h1) !important;
+  font-weight: 800 !important;
+  font-size: clamp(3.2rem, 9vw, 10rem) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  line-height: 0.88 !important;
+  color: var(--ct, var(--darkgreen));
+  text-align: center;
+}
+
+.work-intro h1 em {
+  font-family: var(--font-serif) !important;
+  font-style: italic !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  letter-spacing: -0.01em !important;
+  color: var(--cac, var(--burgundy));
+}
+
+.work-intro-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.92rem, 1.3vw, 1.06rem);
+  line-height: 1.82;
+  font-weight: 300;
+  color: var(--cb, rgba(49,74,81,.80));
+  max-width: 54ch;
+  text-align: center;
+}
+
+.work-intro-rule {
+  width: 48px;
+  height: 1px;
+  border: none;
+  background: var(--cr, var(--mauve-40));
+  margin: 0.5rem auto;
+}
+
+/* Meta Row */
+.work-meta-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(2rem, 5vw, 4rem);
+  flex-wrap: wrap;
+  padding-top: 1.8rem;
+  border-top: 1px solid var(--cr, var(--mauve-40));
+  width: 100%;
+  max-width: 680px;
+}
+
+.work-meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.work-meta-label {
+  font-family: var(--font-ui);
+  font-size: 0.42rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--cbg, var(--burgundy));
+  font-weight: 600;
+}
+
+.work-meta-value {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--csb, var(--mint));
+  letter-spacing: 0.01em;
+}
+
+
+/* ── 7. STAT BOXES — Zahlen + Icons ──────────── */
+
+.work-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: clamp(1rem, 2vw, 1.6rem);
+  max-width: var(--container-w);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 5vw, 3rem);
+}
+
+.stat-box {
+  position: relative;
+  padding: clamp(1.8rem, 3.5vw, 2.8rem) clamp(1.4rem, 2.5vw, 2rem);
+  border: 1px solid var(--ccb, var(--mauve-40));
+  background: var(--ccard, var(--mauve-12));
+  text-align: center;
+  overflow: hidden;
+  transition: border-color 350ms var(--ease), transform 350ms var(--ease);
+}
+
+.stat-box::before {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--cac, var(--burgundy));
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 500ms var(--ease-bounce);
+}
+
+.stat-box:hover { border-color: var(--cac, var(--burgundy)); transform: translateY(-4px); }
+.stat-box:hover::before { transform: scaleX(1); }
+
+.stat-number {
+  font-family: var(--font-h1);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--ct, var(--darkgreen));
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-family: var(--font-ui);
+  font-size: 0.46rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--cbg, var(--burgundy));
+}
+
+.stat-desc {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--cb, rgba(49,74,81,.70));
+  margin-top: 0.6rem;
+}
+
+/* Icon variant */
+.stat-icon {
+  width: 42px; height: 42px;
+  margin: 0 auto 1rem;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--cac, var(--burgundy));
+  color: var(--white);
+  font-size: 1.1rem;
+  transition: transform 350ms var(--ease-bounce);
+}
+
+.stat-box:hover .stat-icon { transform: scale(1.12) rotate(-6deg); }
+
+
+/* ── 8. SECTION CENTER — Badge + H2 + Lead ────── */
+
+.section-center {
+  text-align: center;
+  max-width: var(--container-w);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  padding-inline: clamp(1rem, 5vw, 3rem);
+  margin-bottom: clamp(3rem, 7vh, 5rem);
+}
+
+.section-center h2 { max-width: 18ch; text-align: center; }
+
+.section-lead {
+  font-family: var(--font-body);
+  font-size: clamp(0.92rem, 1.3vw, 1.06rem);
+  line-height: 1.82;
+  font-weight: 300;
+  color: var(--cb, rgba(49,74,81,.80));
+  max-width: 52ch;
+  text-align: center;
+}
+
+.section-rule {
+  width: 48px;
+  height: 1px;
+  border: none;
+  background: var(--cr, var(--mauve-40));
+  margin: .3rem auto;
+}
+
+
+/* ── 9. CARDS ─────────────────────────────────── */
+
+.ds-card {
+  position: relative;
+  background: var(--ccard, var(--mauve-12));
+  border: 1px solid var(--ccb, var(--mauve-40));
+  padding: clamp(2rem, 3.5vw, 3rem);
+  overflow: hidden;
+  transition: border-color 300ms var(--ease), transform 300ms var(--ease), box-shadow 300ms var(--ease);
+}
+
+.ds-card::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--cac, var(--burgundy));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms var(--ease-bounce);
+}
+
+.ds-card:hover {
+  border-color: var(--cac, var(--burgundy));
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.08);
+}
+
+.ds-card:hover::after { transform: scaleX(1); }
+
+.ds-card-number {
+  font-family: var(--font-h1);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--cac, var(--burgundy));
+  opacity: .15;
+  line-height: 1;
+  margin-bottom: .5rem;
+}
+
+.ds-card h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  font-weight: 700;
+  font-style: italic;
+  margin-bottom: .6rem;
+}
+
+.ds-card p {
+  font-family: var(--font-body);
+  font-size: clamp(0.84rem, 1.1vw, 0.94rem);
+  line-height: 1.78;
+  color: var(--cb, rgba(49,74,81,.75));
+}
+
+
+/* ── 10. FEATURE LIST — Icon + Text Rows ─────── */
+
+.ds-feature-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(1.2rem, 2.5vw, 2rem);
+  max-width: var(--container-w);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 5vw, 3rem);
+}
+
+.ds-feature {
+  display: flex;
+  gap: 1.2rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--cr, var(--mauve-40));
+  transition: transform 300ms var(--ease);
+}
+
+.ds-feature:hover { transform: translateX(6px); }
+
+.ds-feature-icon {
+  width: 36px; height: 36px;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--cac, var(--burgundy));
+  color: var(--cac, var(--burgundy));
+  font-size: .85rem;
+  transition: background 250ms var(--ease), color 250ms var(--ease);
+}
+
+.ds-feature:hover .ds-feature-icon {
+  background: var(--cac, var(--burgundy));
+  color: var(--white);
+}
+
+.ds-feature h4 {
+  font-family: var(--font-ui);
+  font-size: 0.52rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: .3rem;
+}
+
+.ds-feature p {
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  line-height: 1.72;
+  color: var(--cb, rgba(49,74,81,.75));
+}
+
+
+/* ── 11. BUTTON ──────────────────────────────── */
+
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: var(--font-ui);
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  padding: 0.85rem 2.6rem;
+  border: 1px solid var(--cac, var(--burgundy));
+  background: transparent;
+  color: var(--cac, var(--burgundy));
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  transition: color 250ms var(--ease);
+}
+
+.ds-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--cac, var(--burgundy));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 380ms var(--ease);
+}
+
+.ds-btn:hover { color: var(--white); }
+.ds-btn:hover::before { transform: scaleX(1); }
+.ds-btn span { position: relative; z-index: 1; }
+
+.bg-mint .ds-btn,
+.bg-darkgreen .ds-btn,
+.bg-dark .ds-btn,
+.bg-burgundy .ds-btn {
+  border-color: var(--white-60);
+  color: var(--white);
+}
+.bg-mint .ds-btn::before,
+.bg-darkgreen .ds-btn::before,
+.bg-dark .ds-btn::before,
+.bg-burgundy .ds-btn::before {
+  background: var(--white-90);
+}
+.bg-mint .ds-btn:hover,
+.bg-darkgreen .ds-btn:hover,
+.bg-dark .ds-btn:hover,
+.bg-burgundy .ds-btn:hover {
+  color: var(--darkgreen);
+}
+
+
+/* ── 12. REVEAL ANIMATIONEN ────────────────────── */
+
+.ds-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .9s var(--ease), transform .9s var(--ease);
+}
+.ds-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.ds-reveal-d1 { transition-delay: .08s; }
+.ds-reveal-d2 { transition-delay: .16s; }
+.ds-reveal-d3 { transition-delay: .26s; }
+.ds-reveal-d4 { transition-delay: .38s; }
+.ds-reveal-d5 { transition-delay: .50s; }
+.ds-reveal-d6 { transition-delay: .62s; }
+
+/* Reveal from left */
+.ds-reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity .85s var(--ease), transform .85s var(--ease);
+}
+.ds-reveal-left.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Scale reveal */
+.ds-reveal-scale {
+  opacity: 0;
+  transform: scale(.92);
+  transition: opacity .75s var(--ease), transform .75s var(--ease);
+}
+.ds-reveal-scale.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Counter animation */
+.ds-count-up {
+  transition: --num 1.5s var(--ease);
+  counter-reset: num var(--num, 0);
+}
+.ds-count-up::after {
+  content: counter(num);
+}
+
+
+/* ── 13. DIVIDER ──────────────────────────────── */
+
+.ds-divider {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  max-width: var(--container-w);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 5vw, 3rem);
+}
+
+.ds-divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--cr, var(--mauve-40));
+}
+
+.ds-divider-text {
+  font-family: var(--font-ui);
+  font-size: 0.44rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--cbg, var(--burgundy));
+  white-space: nowrap;
+}
+
+
+/* ── 14. PROGRESS BAR ─────────────────────────── */
+
+.ds-progress {
+  max-width: var(--container-w);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 5vw, 3rem);
+}
+
+.ds-progress-item {
+  margin-bottom: 1.8rem;
+}
+
+.ds-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: .5rem;
+}
+
+.ds-progress-label {
+  font-family: var(--font-ui);
+  font-size: 0.5rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ct, var(--darkgreen));
+}
+
+.ds-progress-value {
+  font-family: var(--font-h1);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--cac, var(--burgundy));
+}
+
+.ds-progress-track {
+  height: 3px;
+  background: var(--cr, var(--mauve-20));
+  position: relative;
+  overflow: hidden;
+}
+
+.ds-progress-fill {
+  height: 100%;
+  background: var(--cac, var(--burgundy));
+  width: 0;
+  transition: width 1.2s var(--ease);
+}
+
+
+/* ── 15. RESPONSIVE ────────────────────────────── */
+
+@media (max-width: 768px) {
+  .work-intro h1 {
+    font-size: clamp(2.6rem, 14vw, 5rem) !important;
+  }
+  .work-hero-title {
+    font-size: clamp(2.4rem, 12vw, 4.5rem);
+  }
+  .work-meta-row { gap: 1.2rem; }
+  .section-center h2 { max-width: 20ch; }
+  .work-stats { grid-template-columns: 1fr 1fr; }
+  .ds-feature-list { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .work-intro h1 {
+    font-size: clamp(2.2rem, 15vw, 4rem) !important;
+  }
+  .work-hero-title {
+    font-size: clamp(2rem, 14vw, 3.5rem);
+  }
+  .work-intro { padding: clamp(3.5rem, 9vh, 6rem) 0 clamp(2.5rem, 6vh, 5rem); }
+  .work-stats { grid-template-columns: 1fr; }
+}

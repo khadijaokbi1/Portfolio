@@ -37,7 +37,6 @@
   --black:        #0A0A0A;
   --off-black:    #2D2D2D;
   --white:        #F5F5F5;
-  --off-white:    #EBE1D1;
   --darkgreen:    #314A51;
   --mint:         #56686A;
   --burgundy:     #6E3B49;
@@ -46,7 +45,7 @@
   /* Aliases kept for backward-compat */
   --bg-primary:        var(--black);
   --bg-secondary:      var(--white);
-  --bg-accent:         var(--off-white);
+  --bg-accent:         var(--white);
   --bg-dark:           var(--darkgreen);
   --text-primary:      var(--black);
   --text-primary-light:var(--white);

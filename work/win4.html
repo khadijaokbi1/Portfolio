@@ -1,269 +1,980 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>WIN4 | Sportmarketing</title>
-    <meta name="description" content="WIN4 | Sportmarketing Premium Design & Sportevents" />
-		<link rel="icon" type="image/png" href="../assets/images/branding/logo_white.png" />
-    <!-- Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- GSAP-->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollSmoother.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/SplitText.min.js"></script>
-    <!-- Styles -->
-    <link rel="stylesheet" href="../assets/css/main.css" />
-    <link rel="stylesheet" href="../assets/css/footer-nav-waves.css" />
-    <link rel="stylesheet" href="style/win4.css" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B415ZJNKNW"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'G-B415ZJNKNW');
-    </script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WIN4 | Sportmarketing</title>
+  <meta name="description" content="WIN4 Sportmarketing — Premium Design & Sportevents von Khadija Okbi" />
+  <link rel="icon" type="image/png" href="../assets/images/branding/logo_white.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B415ZJNKNW"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-B415ZJNKNW');</script>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/footer-nav-waves.css">
+    <link rel="stylesheet" href="../assets/css/typography-global.css" />
+    <link rel="stylesheet" href="../assets/css/design-system.css" />
+    <link rel="stylesheet" href="../assets/css/preloader.css" />
+<style>
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --white:     #F5F5F5;
+  --cream:     #F5F5F5;
+  --mauve:     #B5A19E;
+  --mint:      #56686A;
+  --darkgreen: #314A51;
+  --burgundy:  #6E3B49;
+
+  --cream-60:  rgba(245,245,245,.60);
+  --cream-25:  rgba(245,245,245,.25);
+  --cream-12:  rgba(245,245,245,.12);
+  --mauve-30:  rgba(181,161,158,.30);
+  --mauve-15:  rgba(181,161,158,.15);
+
+  --font-h:    'Playfair Display', Georgia, serif;
+  --font-serif:'Playfair Display', Georgia, serif;
+  --font-body: 'Work Sans', system-ui, sans-serif;
+  --font-ui:   'Outfit', system-ui, sans-serif;
+  --ease:      cubic-bezier(.16,1,.3,1);
+}
+
+/* ═══════════════════════════════════════════
+   RESET
+═══════════════════════════════════════════ */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0 }
+html { scroll-behavior:smooth; overflow-x:hidden }
+body { font-family:var(--font-body); background:var(--cream); color:var(--darkgreen); -webkit-font-smoothing:antialiased; overflow-x:hidden }
+img  { display:block; max-width:100% }
+a    { color:inherit; text-decoration:none }
+button { font-family:inherit; cursor:pointer; border:none; background:none }
+
+/* ═══════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════ */
+.site-header {
+  position:fixed; inset:0 0 auto 0; z-index:1000;
+  background:transparent;
+  transition:background 250ms ease, backdrop-filter 250ms ease, box-shadow 250ms ease;
+}
+.site-header.is-solid {
+  background:rgba(49,74,81,.95);
+  backdrop-filter:blur(14px);
+  box-shadow:0 8px 28px rgba(49,74,81,.25);
+}
+.nav-bar {
+  height:58px; display:flex; align-items:center; justify-content:space-between;
+  max-width:88vw; margin-inline:auto; padding-inline:clamp(.5rem,2vw,1.5rem);
+}
+.logo {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:38px; height:38px; position:relative; flex-shrink:0;
+}
+.logo img {
+  max-width:36px; max-height:36px; width:100%; height:auto;
+  position:absolute; inset:0; margin:auto; transition:opacity 200ms ease;
+}
+.logo .logo-onscroll { opacity:0 }
+.site-header.is-solid .logo .logo-onscroll { opacity:1 }
+.site-header.is-solid .logo img:not(.logo-onscroll) { opacity:0 }
+.nav { display:flex; align-items:center; gap:clamp(1rem,2.5vw,2rem) }
+.nav-link {
+  font-family:var(--font-ui); font-size:clamp(.52rem,.8vw,.62rem);
+  font-weight:600; text-transform:uppercase; letter-spacing:.22em;
+  color:#F5F5F5 !important; opacity:.82; position:relative; padding-block:.2rem;
+  transition:opacity 200ms ease;
+}
+.nav-link::after {
+  content:''; position:absolute; left:50%; bottom:-.15rem;
+  width:0; height:1px; background:var(--mauve);
+  transform:translateX(-50%); transition:width 200ms ease;
+}
+.nav-link:hover { opacity:1 }
+.nav-link:hover::after { width:100% }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.section-hero {
+  position:relative; width:100%; height:100vh; min-height:600px;
+  overflow:hidden; display:flex; align-items:flex-end; justify-content:center;
+  background:var(--darkgreen);
+}
+.hero-image {
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center; z-index:0;
+}
+.section-hero::before {
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:linear-gradient(to bottom,rgba(49,74,81,.12) 0%,rgba(49,74,81,.04) 40%,rgba(49,74,81,.58) 100%);
+}
+.section-hero::after {
+  content:""; position:absolute; bottom:-1px; left:0; width:100%; height:22vh;
+  z-index:10; pointer-events:none; background-color:var(--white);
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,300 C200,260 440,220 720,240 C1000,260 1240,310 1440,290 L1440,400 Z'/%3E%3C/svg%3E");
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,300 C200,260 440,220 720,240 C1000,260 1240,310 1440,290 L1440,400 Z'/%3E%3C/svg%3E");
+  mask-size:100% 100%; -webkit-mask-size:100% 100%;
+  mask-repeat:no-repeat; -webkit-mask-repeat:no-repeat;
+}
+.hero-overlay {
+  position:absolute; bottom:13vh; left:50%; transform:translateX(-50%);
+  z-index:5; text-align:center; width:90%; max-width:920px;
+  display:flex; flex-direction:column; align-items:center; gap:1.2rem;
+}
+.hero-badge {
+  display:inline-flex; align-items:center; gap:.7rem;
+  font-family:var(--font-ui); font-size:.5rem; font-weight:600;
+  letter-spacing:.38em; text-transform:uppercase; color:var(--mauve);
+  animation:hFade .9s var(--ease) .1s both;
+}
+.hero-badge::before { content:""; width:22px; height:1px; background:var(--mauve); display:inline-block }
+.hero-title-large {
+  font-family:var(--font-h); font-weight:900;
+  font-size:clamp(3.5rem,11vw,11rem); line-height:.88;
+  text-transform:uppercase; letter-spacing:.05em; color:var(--white);
+  animation:hFade .9s var(--ease) .2s both;
+}
+.hero-title-large span {
+  display:block; font-family:var(--font-serif); font-style:italic;
+  font-weight:700; text-transform:none; font-size:.65em;
+  letter-spacing:-.01em; color:var(--mauve); line-height:1.1;
+}
+.hero-subtitle {
+  font-family:var(--font-body); font-size:clamp(.88rem,1.3vw,1.05rem);
+  font-weight:400; line-height:1.82; color:var(--cream-60);
+  max-width:52ch; text-align:center; animation:hFade .9s var(--ease) .34s both;
+}
+.hero-scroll { display:flex; flex-direction:column; align-items:center; gap:.5rem; animation:hFade 1s var(--ease) .55s both }
+.hero-scroll-label { font-family:var(--font-ui); font-size:.44rem; letter-spacing:.48em; text-transform:uppercase; color:rgba(245,245,245,.65) }
+.hero-scroll-line { width:1px; height:30px; background:linear-gradient(to bottom,rgba(245,245,245,.65),transparent); animation:sPulse 2s ease-in-out infinite }
+@keyframes hFade { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+@keyframes sPulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+
+/* ═══════════════════════════════════════════
+   SECTION SYSTEM — bg tokens
+═══════════════════════════════════════════ */
+.editorial-section { padding:clamp(5rem,12vh,9rem) 0; position:relative }
+
+.bg-dark {
+  background:var(--darkgreen); color:var(--white);
+  --ct:var(--white); --cb:rgba(245,245,245,.72);
+  --cbadge:var(--mauve); --cacc:var(--mauve);
+  --cr:var(--cream-25); --ccard:rgba(245,245,245,.07); --ccb:rgba(245,245,245,.14);
+}
+.bg-cream {
+  background:var(--cream); color:var(--darkgreen);
+  --ct:var(--darkgreen); --cb:rgba(49,74,81,.78);
+  --cbadge:var(--burgundy); --cacc:var(--burgundy);
+  --cr:var(--mauve-30); --ccard:rgba(181,161,158,.14); --ccb:var(--mauve-30);
+}
+.bg-mint {
+  background:var(--mint); color:var(--white);
+  --ct:var(--white); --cb:rgba(245,245,245,.72);
+  --cbadge:var(--mauve); --cacc:var(--mauve);
+  --cr:var(--cream-25); --ccard:rgba(245,245,245,.10); --ccb:rgba(245,245,245,.18);
+}
+
+/* Wave helpers */
+.wave-to-cream { padding-bottom:calc(clamp(5rem,12vh,9rem) + 22vh); overflow:visible }
+.wave-to-cream::after {
+  content:""; position:absolute; bottom:-1px; left:0; width:100%; height:22vh;
+  z-index:10; pointer-events:none; background-color:var(--cream);
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,280 C200,240 450,180 720,210 C990,240 1240,320 1440,290 L1440,400 Z'/%3E%3C/svg%3E");
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,280 C200,240 450,180 720,210 C990,240 1240,320 1440,290 L1440,400 Z'/%3E%3C/svg%3E");
+  mask-size:100% 100%; -webkit-mask-size:100% 100%; mask-repeat:no-repeat; -webkit-mask-repeat:no-repeat;
+}
+.wave-to-mint { padding-bottom:calc(clamp(5rem,12vh,9rem) + 22vh); overflow:visible }
+.wave-to-mint::after {
+  content:""; position:absolute; bottom:-1px; left:0; width:100%; height:22vh;
+  z-index:10; pointer-events:none; background-color:var(--mint);
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,260 C200,220 440,160 680,190 C920,220 1120,300 1440,270 L1440,400 Z'/%3E%3C/svg%3E");
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,260 C200,220 440,160 680,190 C920,220 1120,300 1440,270 L1440,400 Z'/%3E%3C/svg%3E");
+  mask-size:100% 100%; -webkit-mask-size:100% 100%; mask-repeat:no-repeat; -webkit-mask-repeat:no-repeat;
+}
+.wave-foot { padding-bottom:calc(clamp(5rem,12vh,9rem) + 30vh); overflow:visible }
+.wave-foot::after {
+  content:""; position:absolute; bottom:-1px; left:0; width:100%; height:30vh;
+  z-index:10; pointer-events:none; background-color:var(--darkgreen);
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,180 C100,160 220,140 380,180 C540,220 620,320 780,350 C940,380 1060,300 1220,240 C1340,194 1400,180 1440,175 L1440,400 Z'/%3E%3C/svg%3E");
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,180 C100,160 220,140 380,180 C540,220 620,320 780,350 C940,380 1060,300 1220,240 C1340,194 1400,180 1440,175 L1440,400 Z'/%3E%3C/svg%3E");
+  mask-size:100% 100%; -webkit-mask-size:100% 100%; mask-repeat:no-repeat; -webkit-mask-repeat:no-repeat;
+}
+
+/* Section typography */
+.section-center {
+  text-align:center; display:flex; flex-direction:column; align-items:center;
+  gap:1rem; max-width:85vw; margin-inline:auto; margin-bottom:4rem;
+}
+.section-badge {
+  display:inline-flex; align-items:center; gap:.7rem;
+  font-family:var(--font-ui); font-size:.5rem; font-weight:600;
+  letter-spacing:.38em; text-transform:uppercase; color:var(--cbadge,var(--burgundy));
+}
+.section-badge::before { content:""; width:22px; height:1px; background:currentColor }
+.section-h2 {
+  font-family:var(--font-h); font-weight:700;
+  font-size:clamp(2.8rem,7vw,8rem); text-transform:uppercase;
+  letter-spacing:.06em; line-height:.92; color:var(--ct,var(--darkgreen));
+  text-align:center; max-width:16ch;
+}
+.section-h2 em {
+  font-family:var(--font-serif); font-style:italic; font-weight:700;
+  text-transform:none; letter-spacing:-.01em; color:var(--cacc,var(--burgundy));
+}
+.section-lead {
+  font-family:var(--font-body); font-size:clamp(.9rem,1.3vw,1.05rem);
+  line-height:1.82; color:var(--cb,rgba(49,74,81,.78)); max-width:52ch; text-align:center;
+}
+.section-rule { width:44px; height:1px; background:var(--cr,var(--mauve-30)); border:none; margin:.3rem auto }
+
+/* ═══════════════════════════════════════════
+   3D CARD SHOWCASE
+═══════════════════════════════════════════ */
+.showcase-inner {
+  max-width:85vw; margin-inline:auto;
+  display:grid; grid-template-columns:1fr 1.2fr;
+  gap:4rem; align-items:center;
+}
+.scene-3d {
+  perspective:1200px; display:flex; align-items:center;
+  justify-content:center; min-height:380px; position:relative;
+}
+.card-3d {
+  width:100%; max-width:500px; aspect-ratio:16/9; border-radius:10px;
+  overflow:hidden; position:relative;
+  transform:rotateY(-18deg) rotateX(6deg) rotateZ(-2deg);
+  box-shadow:0 30px 60px rgba(49,74,81,.55),0 0 0 1px rgba(245,245,245,.10),inset 0 1px 0 rgba(245,245,245,.15);
+  animation:float3d 6s ease-in-out infinite;
+}
+.card-3d::before {
+  content:""; position:absolute; inset:0; z-index:2; pointer-events:none; border-radius:inherit;
+  background:linear-gradient(135deg,rgba(245,245,245,.18) 0%,transparent 40%,rgba(245,245,245,.06) 80%,transparent 100%);
+}
+.card-3d img { width:100%; height:100%; object-fit:cover; display:block }
+.card-3d-shadow {
+  position:absolute; bottom:-24px; left:50%; transform:translateX(-50%);
+  width:70%; height:36px;
+  background:radial-gradient(ellipse,rgba(49,74,81,.55) 0%,transparent 70%);
+  filter:blur(12px); animation:shadPulse 6s ease-in-out infinite;
+}
+@keyframes float3d {
+  0%,100% { transform:rotateY(-18deg) rotateX(6deg) rotateZ(-2deg) translateY(0) }
+  50%     { transform:rotateY(-18deg) rotateX(6deg) rotateZ(-2deg) translateY(-12px) }
+}
+@keyframes shadPulse {
+  0%,100% { opacity:.7; transform:translateX(-50%) scaleX(1) }
+  50%     { opacity:.4; transform:translateX(-50%) scaleX(.85) }
+}
+.card-3d-caption {
+  font-family:var(--font-ui); font-size:.46rem; letter-spacing:.35em;
+  text-transform:uppercase; color:var(--mauve); text-align:center; margin-top:1.5rem;
+}
+.showcase-content { display:flex; flex-direction:column; gap:1.4rem }
+.showcase-content .section-badge,
+.showcase-content .section-lead { align-self:flex-start }
+.showcase-content .section-h2  { text-align:left }
+.showcase-content .section-lead { text-align:left }
+.slide-pills { display:flex; gap:.5rem; margin-top:.3rem }
+.slide-pill {
+  width:28px; height:3px; border-radius:2px; background:var(--cream-25);
+  transition:background .3s, width .3s; cursor:pointer;
+}
+.slide-pill.active { background:var(--mauve); width:48px }
+.slider-controls { display:flex; gap:.8rem; margin-top:.2rem }
+.slider-btn {
+  width:52px; height:52px; border:1px solid var(--cream-25); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:transparent; color:var(--cream); transition:all .28s var(--ease);
+}
+.slider-btn:hover { background:var(--mauve); border-color:var(--mauve); color:var(--darkgreen) }
+
+/* ═══════════════════════════════════════════
+   3D MONITOR — SPONSORING
+═══════════════════════════════════════════ */
+.sponsoring-header {
+  text-align:center; margin-bottom:3.5rem;
+  max-width:85vw; margin-inline:auto;
+  display:flex; flex-direction:column; align-items:center; gap:.9rem;
+}
+.sponsoring-header h2 {
+  font-family:var(--font-h); font-weight:700;
+  font-size:clamp(2.8rem,7vw,8rem); text-transform:uppercase;
+  letter-spacing:.06em; line-height:.92; color:var(--darkgreen);
+}
+.sponsoring-header h2 em {
+  font-family:var(--font-serif); font-style:italic; font-weight:700;
+  text-transform:none; letter-spacing:-.01em; color:var(--burgundy);
+}
+.spon-label {
+  display:inline-flex; align-items:center; gap:.7rem;
+  font-family:var(--font-ui); font-size:.48rem; letter-spacing:.38em;
+  text-transform:uppercase; color:var(--burgundy); font-weight:600;
+}
+.spon-label::before { content:""; width:22px; height:1px; background:currentColor }
+
+.banden-stage { perspective:900px; max-width:85vw; margin-inline:auto }
+.banden-frame {
+  position:relative; width:100%; max-width:1100px; margin-inline:auto;
+  transform:rotateX(8deg) scale(.98); transform-origin:bottom center;
+  transition:transform .5s var(--ease);
+}
+.banden-frame:hover { transform:rotateX(3deg) scale(1) }
+.banden-bezel {
+  background:var(--darkgreen); border-radius:12px; padding:12px 12px 32px;
+  box-shadow:0 40px 80px rgba(49,74,81,.35),0 0 0 1px rgba(49,74,81,.2),inset 0 1px 0 var(--cream-12);
+  position:relative;
+}
+.banden-bezel::before {
+  content:""; position:absolute; top:6px; left:50%; transform:translateX(-50%);
+  width:5px; height:5px; border-radius:50%; background:rgba(181,161,158,.4);
+}
+.carousel-wrapper { position:relative; width:100%; border-radius:6px; overflow:hidden; background:var(--darkgreen) }
+.carousel-track { display:flex; transition:transform .6s cubic-bezier(.4,0,.2,1) }
+.slide-item {
+  flex-shrink:0; width:100%; aspect-ratio:16/5;
+  background:var(--darkgreen); display:flex; align-items:center; justify-content:center; overflow:hidden;
+}
+.slide-item video { width:100%; height:100%; object-fit:cover }
+.banden-stand { width:120px; height:14px; background:var(--darkgreen); margin:0 auto; border-radius:0 0 6px 6px }
+.banden-stand::after {
+  content:""; display:block; width:200px; height:6px;
+  background:rgba(49,74,81,.35); border-radius:50%;
+  margin:4px auto 0; filter:blur(6px);
+}
+.carousel-controls { display:flex; align-items:center; justify-content:center; gap:1rem; margin-top:2.5rem }
+.carousel-btn {
+  width:48px; height:48px; border:1px solid var(--mauve-30); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:transparent; color:var(--darkgreen); transition:all .28s var(--ease); cursor:pointer;
+}
+.carousel-btn:hover { background:var(--darkgreen); border-color:var(--darkgreen); color:var(--cream) }
+
+/* ═══════════════════════════════════════════
+   SKILLS GRID
+═══════════════════════════════════════════ */
+.competence-inner { max-width:85vw; margin-inline:auto }
+.skills-grid {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--cream-25); border-left:1px solid var(--cream-25);
+  margin-top:3.5rem;
+}
+.skill-cell {
+  border-right:1px solid var(--cream-25); border-bottom:1px solid var(--cream-25);
+  padding:clamp(1.6rem,3vw,2.8rem) clamp(1.2rem,2vw,2rem);
+  display:flex; flex-direction:column; gap:.6rem;
+  position:relative; overflow:hidden; transition:background .35s var(--ease);
+}
+.skill-cell::before {
+  content:""; position:absolute; inset:0;
+  background:rgba(245,245,245,.06); opacity:0; transition:opacity .35s ease;
+}
+.skill-cell:hover::before { opacity:1 }
+.skill-cell::after {
+  content:""; position:absolute; top:0; left:0; width:0; height:2px;
+  background:var(--mauve); transition:width .5s var(--ease);
+}
+.skill-cell:hover::after { width:100% }
+.skill-num  { font-family:var(--font-ui); font-size:.42rem; letter-spacing:.35em; text-transform:uppercase; color:var(--mauve); font-weight:600; opacity:.6 }
+.skill-name { font-family:var(--font-serif); font-weight:700; font-size:clamp(1.1rem,1.8vw,1.6rem); color:var(--white); line-height:1.15 }
+.skill-tag  { font-family:var(--font-ui); font-size:.44rem; letter-spacing:.3em; text-transform:uppercase; color:var(--mauve); font-weight:600 }
+
+/* ═══════════════════════════════════════════
+   EVENT CARDS
+═══════════════════════════════════════════ */
+.events-inner  { max-width:85vw; margin-inline:auto }
+.events-grid-new { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:3.5rem }
+.event-card-new {
+  background:var(--ccard,rgba(181,161,158,.12)); border:1px solid var(--ccb,var(--mauve-30));
+  border-radius:4px; padding:clamp(2rem,3.5vw,3rem);
+  display:flex; flex-direction:column; gap:1rem;
+  position:relative; overflow:hidden; transition:border-color .3s ease, transform .3s var(--ease);
+}
+.event-card-new:hover { border-color:var(--burgundy); transform:translateY(-5px) }
+.event-ghost-num {
+  font-family:var(--font-h); font-size:clamp(5rem,10vw,9rem); font-weight:800;
+  color:var(--mauve-15); line-height:1; position:absolute; bottom:-.5rem; right:1.5rem;
+  user-select:none; pointer-events:none;
+}
+.event-card-label {
+  display:inline-flex; align-items:center; gap:.5rem;
+  font-family:var(--font-ui); font-size:.46rem; letter-spacing:.32em;
+  text-transform:uppercase; color:var(--burgundy); font-weight:600;
+}
+.event-card-label::before { content:""; width:14px; height:1px; background:currentColor }
+.event-card-title { font-family:var(--font-serif); font-weight:700; font-size:clamp(1.3rem,2.2vw,2rem); color:var(--darkgreen); line-height:1.15 }
+.event-card-desc  { font-family:var(--font-body); font-size:clamp(.88rem,1.2vw,1rem); line-height:1.78; color:rgba(49,74,81,.75); max-width:42ch }
+
+/* ═══════════════════════════════════════════
+   3D BOOK — FESTFÜHRER
+═══════════════════════════════════════════ */
+.festfuhrer-showcase {
+  grid-column:1/-1; display:grid; grid-template-columns:1.1fr 1fr;
+  gap:3rem; align-items:center;
+  background:var(--darkgreen); border-radius:6px;
+  padding:clamp(2.5rem,4vw,4rem); margin-top:.5rem;
+  overflow:hidden; position:relative;
+}
+.festfuhrer-showcase::before {
+  content:""; position:absolute; inset:0; opacity:.03; pointer-events:none;
+  background-image:repeating-linear-gradient(45deg,var(--cream) 0px,var(--cream) 1px,transparent 1px,transparent 14px);
+}
+.festfuhrer-text { color:var(--white); display:flex; flex-direction:column; gap:1.2rem; position:relative; z-index:1 }
+.festfuhrer-badge {
+  display:inline-flex; align-items:center; gap:.7rem;
+  font-family:var(--font-ui); font-size:.46rem; font-weight:600;
+  letter-spacing:.35em; text-transform:uppercase; color:var(--mauve); align-self:flex-start;
+}
+.festfuhrer-badge::before { content:""; width:18px; height:1px; background:currentColor }
+.festfuhrer-h3 {
+  font-family:var(--font-h); font-weight:700;
+  font-size:clamp(1.8rem,3.5vw,3.5rem); text-transform:uppercase;
+  letter-spacing:.05em; line-height:.94; color:var(--white);
+}
+.festfuhrer-h3 em {
+  display:block; font-family:var(--font-serif); font-style:italic;
+  font-weight:700; text-transform:none; font-size:.72em; letter-spacing:-.01em; color:var(--mauve);
+}
+.festfuhrer-desc { font-family:var(--font-body); font-size:clamp(.88rem,1.2vw,1rem); line-height:1.8; color:rgba(245,245,245,.72); max-width:42ch }
+.festfuhrer-tags { display:flex; gap:.7rem; flex-wrap:wrap }
+.ftag {
+  font-family:var(--font-ui); font-size:.44rem; letter-spacing:.28em;
+  text-transform:uppercase; color:var(--mauve); font-weight:600;
+  border:1px solid var(--cream-25); padding:.35rem .9rem; border-radius:2px;
+}
+.book-3d-wrap {
+  perspective:1000px; display:flex; align-items:center;
+  justify-content:center; position:relative; z-index:1; min-height:320px;
+}
+.book-3d {
+  width:200px; height:280px; position:relative;
+  transform-style:preserve-3d;
+  transform:rotateY(-30deg) rotateX(5deg);
+  animation:bookFloat 7s ease-in-out infinite; cursor:pointer;
+}
+@keyframes bookFloat {
+  0%,100% { transform:rotateY(-30deg) rotateX(5deg) translateY(0) }
+  50%     { transform:rotateY(-30deg) rotateX(5deg) translateY(-14px) }
+}
+.book-front {
+  position:absolute; width:200px; height:280px;
+  background:var(--cream); border-radius:2px 8px 8px 2px;
+  transform:translateZ(20px); overflow:hidden;
+  box-shadow:6px 6px 30px rgba(0,0,0,.38);
+  display:flex; flex-direction:column; align-items:center;
+  justify-content:center; padding:1.5rem; text-align:center; gap:.5rem;
+}
+.book-front::before {
+  content:""; position:absolute; left:0; top:0; bottom:0; width:24px;
+  background:linear-gradient(to right,rgba(86,104,106,.15),transparent);
+}
+.book-front::after {
+  content:""; position:absolute; top:0; right:0; width:30%; height:100%;
+  background:linear-gradient(to left,rgba(245,245,245,.15),transparent); pointer-events:none;
+}
+.book-logo        { font-family:var(--font-ui); font-size:.55rem; letter-spacing:.35em; text-transform:uppercase; color:var(--mint); font-weight:700 }
+.book-title-text  { font-family:var(--font-serif); font-size:1.15rem; font-weight:700; color:var(--darkgreen); line-height:1.1; font-style:italic }
+.book-divider     { width:30px; height:1px; background:var(--mauve-30) }
+.book-subtitle-text { font-family:var(--font-ui); font-size:.4rem; letter-spacing:.3em; text-transform:uppercase; color:var(--mint); font-weight:600 }
+.book-spine {
+  position:absolute; width:40px; height:280px; background:var(--mint);
+  transform:rotateY(90deg) translateZ(20px) translateX(-20px);
+  left:0; display:flex; align-items:center; justify-content:center; border-radius:2px 0 0 2px;
+}
+.book-spine span { font-family:var(--font-ui); font-size:.4rem; letter-spacing:.3em; text-transform:uppercase; color:var(--cream-60); writing-mode:vertical-rl; font-weight:600 }
+.book-back  { position:absolute; width:200px; height:280px; background:var(--darkgreen); border-radius:2px 8px 8px 2px; transform:translateZ(-20px); border:1px solid var(--cream-25) }
+.book-pages {
+  position:absolute; width:38px; height:270px;
+  background:repeating-linear-gradient(to right,var(--cream) 0px,var(--cream) 1px,rgba(181,161,158,.3) 1px,rgba(181,161,158,.3) 2px);
+  transform:rotateY(90deg) translateZ(181px) translateX(-20px);
+  left:0; top:5px;
+}
+.book-shadow {
+  position:absolute; bottom:-30px; left:50%; transform:translateX(-40%);
+  width:80%; height:30px;
+  background:radial-gradient(ellipse,rgba(49,74,81,.55) 0%,transparent 70%);
+  filter:blur(10px); animation:shadPulse 7s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+.site-footer {
+  background:var(--darkgreen); color:var(--white);
+  padding-block:clamp(1.5rem,3vw,2.5rem);
+}
+.footer-inner {
+  max-width:85vw; margin-inline:auto;
+  display:flex; flex-direction:column; align-items:center; gap:1rem; text-align:center;
+}
+.footer-copy { font-family:var(--font-body); font-size:clamp(.65rem,.85vw,.78rem); letter-spacing:.04em; opacity:.8 }
+.footer-socials { display:flex; align-items:center; justify-content:center; gap:1.5rem; flex-wrap:wrap }
+.social-link {
+  width:34px; height:34px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;
+  color:var(--white); transition:transform 200ms ease, opacity 200ms ease; opacity:.75;
+}
+.social-link svg { width:16px; height:16px }
+.social-link:hover { transform:translateY(-2px); opacity:1 }
+.footer-links { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:1.5rem }
+.footer-link {
+  font-family:var(--font-ui); font-size:clamp(.58rem,.82vw,.7rem); font-weight:400;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--white);
+  position:relative; padding-block:.25rem; opacity:.78; transition:opacity 200ms ease;
+}
+.footer-link:hover { opacity:1 }
+.footer-link::after { content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:rgba(245,245,245,.7); transition:width 200ms ease }
+.footer-link:hover::after { width:100% }
+.footer-link.contact-btn {
+  padding:.5rem 1.6rem; border-radius:999px;
+  border:1px solid rgba(245,245,245,.4);
+  background:rgba(245,245,245,.06); opacity:1;
+}
+.footer-link.contact-btn::after { display:none }
+.footer-link.contact-btn:hover { background:rgba(245,245,245,.14) }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media(max-width:1024px) {
+  .showcase-inner { grid-template-columns:1fr; gap:3rem }
+  .showcase-content .section-h2   { text-align:center }
+  .showcase-content .section-lead { text-align:center; max-width:100% }
+  .showcase-content .section-badge,
+  .showcase-content .slider-controls,
+  .showcase-content .slide-pills  { align-self:center; justify-content:center }
+  .festfuhrer-showcase { grid-template-columns:1fr; gap:2rem }
+  .skills-grid { grid-template-columns:repeat(2,1fr) }
+}
+@media(max-width:768px) {
+  .nav-bar { height:52px }
+  .hero-overlay { bottom:11vh }
+  .hero-title-large { font-size:clamp(2.8rem,14vw,5.5rem) }
+  .events-grid-new { grid-template-columns:1fr }
+  .festfuhrer-showcase { grid-column:1 }
+  .slide-item { aspect-ratio:16/6 }
+}
+@media(max-width:480px) {
+  .hero-title-large { font-size:clamp(2.4rem,15vw,4rem) }
+  .skills-grid { grid-template-columns:1fr 1fr }
+  .book-3d,.book-front,.book-back { width:160px; height:224px }
+  .book-spine { height:224px }
+  .book-pages { height:216px }
+}
+</style>
 </head>
-<body>
-    <!-- HEADER -->
-    <header class="site-header" id="top">
-        <div class="container nav-bar">
-            <a href="../index.html" class="logo">
-                <img src="../assets/images/branding/logo_black.png" alt="Khadija Okbi Logo" width="45">
-                <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi Logo" width="45" class="logo-onscroll">
-            </a>
-            <nav class="nav">
-                <a href="../index.html#hero" class="nav-link">Home</a>
-                <a href="../index.html#expertise" class="nav-link">Work</a>
-                <a href="../index.html#blog" class="nav-link">Blog</a>
-                <a href="../about.html" class="nav-link">About</a>
-            </nav>
+
+<body class="is-loading">
+
+  <!-- SUB PRELOADER -->
+  <div class="loader loader--sub" id="loaderSub">
+    <div class="loader__riser" id="loaderSubRiser">
+      <svg class="loader__wave-svg" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+        <path class="loader__wave-path" d="M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z"/>
+      </svg>
+      <div class="loader__panel"></div>
+    </div>
+  </div>
+
+<!-- ── HEADER ──────────────────────────────── -->
+<header class="site-header" id="top">
+  <div class="nav-bar">
+    <a href="../index.html" class="logo">
+      <img src="../assets/images/branding/logo_black.png" alt="Khadija Okbi" width="45">
+      <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi" width="45" class="logo-onscroll">
+    </a>
+    <nav class="nav">
+      <a href="../index.html#hero"      class="nav-link">Home</a>
+      <a href="../index.html#expertise" class="nav-link">Work</a>
+      <a href="../index.html#blog"      class="nav-link">Blog</a>
+      <a href="../about.html"           class="nav-link">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ═══════════════════════════════════════════
+       HERO — Vollbild Video
+  ═══════════════════════════════════════════ -->
+  <section class="section-hero">
+    <video class="hero-image" autoplay muted loop playsinline>
+      <source src="../video/win4_bg.mp4" type="video/mp4">
+    </video>
+    <div class="work-hero-overlay">
+      <span class="work-hero-eyebrow">Sportmarketing &amp; Event Design</span>
+      <h1 class="work-hero-title">WIN4 <em>Sportmarketing.</em></h1>
+    </div>
+    <div class="work-hero-scroll">
+      <span class="work-hero-scroll-label">Scroll</span>
+      <div class="work-hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       INTRO SECTION — unter dem Hero
+  ═══════════════════════════════════════════ -->
+  <section class="work-intro bg-white wave-dark">
+    <div class="work-intro-inner">
+      <span class="ds-badge">Sportmarketing &amp; Event Design</span>
+      <h1>WIN4 <em>Sportmarketing.</em></h1>
+      <p class="work-intro-subtitle">Von Screendesigns über Festführer bis zu innovativen Sponsoring-Animationen — visuelle Exzellenz für den Schweizer Spitzensport.</p>
+      <hr class="work-intro-rule">
+      <div class="work-meta-row">
+        <div class="work-meta-item">
+          <span class="work-meta-label">Kunden</span>
+          <span class="work-meta-value">Pfadi Winterthur · Swiss Gymnastics</span>
         </div>
-    </header>
+        <div class="work-meta-item">
+          <span class="work-meta-label">Bereich</span>
+          <span class="work-meta-value">Sportmarketing &amp; Print</span>
+        </div>
+        <div class="work-meta-item">
+          <span class="work-meta-label">Jahr</span>
+          <span class="work-meta-value">2022 – 2024</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <main>
-        <!-- HERO SECTION -->
-        <section class="section-hero">
-            <video class="hero-image" autoplay muted loop playsinline>
-                <source src="../video/win4_bg.mp4" type="video/mp4">
-            </video>
-            <div class="hero-overlay">
-                <div class="hero-badge uppercase-label">Sportmarketing & Event Design</div>
-                <h1 class="hero-title-large">
-                    WIN4<span>Sportmarketing.</span>
-                </h1>
-                <p class="hero-subtitle">Von Screendesigns über Festführer bis zu innovativen Sponsoring-Animationen — visuelle Exzellenz für den Schweizer Spitzensport.</p>
+
+  <!-- ═══════════════════════════════════════════
+       3D BUSPLAKAT SHOWCASE
+       darkgreen → wave → cream
+  ═══════════════════════════════════════════ -->
+  <section class="editorial-section bg-dark wave-to-cream">
+    <div class="showcase-inner">
+
+      <div style="position:relative">
+        <div class="scene-3d">
+          <div>
+            <div class="card-3d" id="card3d">
+              <img src="../assets/images/win4/WIN4_busplakat.jpg" alt="Busplakat Gamedays" id="card3dImg">
             </div>
-        </section>
+            <div class="card-3d-shadow"></div>
+            <p class="card-3d-caption" id="card3dCaption">Busplakat Gamedays</p>
+          </div>
+        </div>
+      </div>
 
-        <!-- EVENTS & KUNDEN SLIDER SECTION -->
-        <section class="editorial-section bg-dark">
-            <div class="container">
-                <div class="slider-section">
-                    <div class="slider-content">
-                        <h2>Events &<br/>Kunden</h2>
-                        <p>Von Screendesigns für Pfadi Winterthur, Festführer für die Schweizer Meisterschaften im Kunstturnen, bis hin zu Gamedays-Busplakaten.</p>
-                        <div class="slider-controls">
-                            <button onclick="changeSlide(-1)" class="slider-btn">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="m15 18-6-6 6-6"/>
-                                </svg>
-                            </button>
-                            <button onclick="changeSlide(1)" class="slider-btn">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="m9 18 6-6-6-6"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="slider-viewer">
-                        <div id="pfadi-slider">
-                            <div class="pfadi-slide active">
-                                <img src="../assets/images/win4/WIN4_busplakat.jpg" alt="Busplakat">
-                                <div class="slide-caption">Busplakat Gamedays</div>
-                            </div>
-                            <div class="pfadi-slide">
-                                <img src="../assets/images/win4/WIN4_nextgame.jpg" alt="Next Game Screen">
-                                <div class="slide-caption">Next Game Display</div>
-                            </div>
-                            <div class="pfadi-slide">
-                                <img src="../assets/images/win4/WIN4_smkutu_1.jpg" alt="SM Kunstturnen">
-                                <div class="slide-caption">SM Kunstturnen</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div class="showcase-content">
+        <span class="section-badge">Events & Kunden</span>
+        <h2 class="section-h2">Events &<br><em>Kunden.</em></h2>
+        <p class="section-lead">Von Screendesigns für Pfadi Winterthur, Festführer für die Schweizer Meisterschaften im Kunstturnen, bis hin zu Gamedays-Busplakaten.</p>
+        <div class="slide-pills">
+          <button class="slide-pill active" data-idx="0"></button>
+          <button class="slide-pill"        data-idx="1"></button>
+          <button class="slide-pill"        data-idx="2"></button>
+        </div>
+        <div class="slider-controls">
+          <button id="prevCard" class="slider-btn" aria-label="Zurück">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <button id="nextCard" class="slider-btn" aria-label="Weiter">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       3D MONITOR — BANDEN SPONSORING
+       cream → wave → mint
+  ═══════════════════════════════════════════ -->
+  <section class="editorial-section bg-cream wave-to-mint">
+
+    <div class="sponsoring-header">
+      <span class="section-badge" style="--cbadge:var(--burgundy)">Sponsoring</span>
+      <h2>Banden-<em>Animationen.</em></h2>
+      <span class="spon-label">Für Sport-Events · After Effects</span>
+    </div>
+
+    <div class="banden-stage">
+      <div class="banden-frame">
+        <div class="banden-bezel">
+          <div class="carousel-wrapper">
+            <div class="carousel-track" id="carouselTrack">
+              <div class="slide-item"><video muted playsinline><source src="../video/sponsoren/RLC.mp4" type="video/mp4"></video></div>
+              <div class="slide-item"><video muted playsinline><source src="../video/sponsoren/Schiess.mp4" type="video/mp4"></video></div>
+              <div class="slide-item"><video muted playsinline><source src="../video/sponsoren/Schroeckel.mp4" type="video/mp4"></video></div>
+              <div class="slide-item"><video muted playsinline><source src="../video/sponsoren/GM.mp4" type="video/mp4"></video></div>
             </div>
-        </section>
+          </div>
+        </div>
+        <div class="banden-stand"></div>
+      </div>
+      <div class="carousel-controls">
+        <button id="bandePrev" class="carousel-btn" aria-label="Zurück">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button id="bandeNext" class="carousel-btn" aria-label="Weiter">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
 
-        <!-- SPONSORING SECTION -->
-        <section class="editorial-section sponsoring-section bg-cream" style="padding-bottom: 150px;">
-            <div class="sponsoring-header">
-                <h2>Sponsoring</h2>
-                <p class="label uppercase-label">Banden-Animationen für Sport-Events</p>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       SKILLS GRID
+       mint → wave → cream
+  ═══════════════════════════════════════════ -->
+  <section class="editorial-section bg-mint wave-to-cream">
+    <div class="competence-inner">
+      <div class="section-center">
+        <span class="section-badge">Software & Skills</span>
+        <h2 class="section-h2">Kompetenz<em>bereiche.</em></h2>
+        <p class="section-lead">Professionelle Tools und strategische Expertise für visuelle Kommunikation im Sport.</p>
+        <hr class="section-rule">
+      </div>
+      <div class="skills-grid">
+        <div class="skill-cell">
+          <span class="skill-num">01</span>
+          <span class="skill-name">After Effects</span>
+          <span class="skill-tag">Animation · Motion</span>
+        </div>
+        <div class="skill-cell">
+          <span class="skill-num">02</span>
+          <span class="skill-name">Premiere Pro</span>
+          <span class="skill-tag">Video · Editing</span>
+        </div>
+        <div class="skill-cell">
+          <span class="skill-num">03</span>
+          <span class="skill-name">Photoshop</span>
+          <span class="skill-tag">Screen Design · Retusche</span>
+        </div>
+        <div class="skill-cell">
+          <span class="skill-num">04</span>
+          <span class="skill-name">InDesign</span>
+          <span class="skill-tag">Print · Festführer</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       EVENTS + 3D FESTFÜHRER BUCH
+       cream → wave → darkgreen (footer)
+  ═══════════════════════════════════════════ -->
+  <section class="editorial-section bg-cream wave-foot">
+    <div class="events-inner">
+
+      <div class="section-center">
+        <span class="section-badge" style="--cbadge:var(--burgundy)">02</span>
+        <h2 class="section-h2">Interne<br><em>Events.</em></h2>
+        <hr class="section-rule">
+      </div>
+
+      <div class="events-grid-new">
+
+        <div class="event-card-new">
+          <span class="event-ghost-num">01</span>
+          <span class="event-card-label">Main Event</span>
+          <h3 class="event-card-title">Gamedays Winterthur</h3>
+          <p class="event-card-desc">Komplette visuelle Bespielung der Spieltage für Pfadi Winterthur — von Busplakaten bis Stadion-Screens.</p>
+        </div>
+
+        <div class="event-card-new">
+          <span class="event-ghost-num">02</span>
+          <span class="event-card-label">National Event</span>
+          <h3 class="event-card-title">SM Kunstturnen</h3>
+          <p class="event-card-desc">Erstellung von Print und digitalen Medien für die Schweizer Meisterschaften im Kunstturnen.</p>
+        </div>
+
+        <!-- 3D Book Showcase -->
+        <div class="festfuhrer-showcase">
+          <div class="festfuhrer-text">
+            <span class="festfuhrer-badge">Print · InDesign</span>
+            <h3 class="festfuhrer-h3">Festführer<em>SM Kunstturnen</em></h3>
+            <p class="festfuhrer-desc">Gestaltung des offiziellen Programmhefts für die Schweizer Meisterschaften im Kunstturnen — von der Konzeption bis zum Druckexport.</p>
+            <div class="festfuhrer-tags">
+              <span class="ftag">InDesign</span>
+              <span class="ftag">Print</span>
+              <span class="ftag">Branding</span>
+              <span class="ftag">Typografie</span>
             </div>
-
-            <div class="carousel-wrapper">
-                <div class="carousel-track" id="carouselTrack">
-                    <div class="slide-item">
-                        <video muted playsinline>
-                            <source src="../video/sponsoren/RLC.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="slide-item">
-                        <video muted playsinline>
-                            <source src="../video/sponsoren/Schiess.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="slide-item">
-                        <video muted playsinline>
-                            <source src="../video/sponsoren/Schroeckel.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="slide-item">
-                        <video muted playsinline>
-                            <source src="../video/sponsoren/GM.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
-
-                <div class="carousel-controls">
-                    <button id="bandePrev" class="carousel-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="m15 18-6-6 6-6"/>
-                        </svg>
-                    </button>
-                    <button id="bandeNext" class="carousel-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="m9 18 6-6-6-6"/>
-                        </svg>
-                    </button>
-                </div>
-
+          </div>
+          <div class="book-3d-wrap">
+            <div class="book-3d" id="book3d">
+              <div class="book-spine"><span>SM Kunstturnen · Festführer</span></div>
+              <div class="book-front">
+                <span class="book-logo">WIN4</span>
+                <div class="book-divider"></div>
+                <span class="book-title-text">SM Kunstturnen</span>
+                <div class="book-divider"></div>
+                <span class="book-subtitle-text">Offiz. Festführer</span>
+              </div>
+              <div class="book-pages"></div>
+              <div class="book-back"></div>
             </div>
-        </section>
+            <div class="book-shadow"></div>
+          </div>
+        </div>
 
-        <!-- KOMPETENZBEREICHE SECTION -->
-        <section class="editorial-section bg-cream">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Kompetenz<span class="highlight-burgundy">bereiche.</span></h2>
-                </div>
-                <p class="section-intro">Professionelle Tools und strategische Expertise für visuelle Kommunikation im Sport.</p>
+      </div>
+    </div>
+  </section>
 
-                <div class="competence-grid">
-                    <div class="competence-column">
-                        <h3>Software &<br/>Skills</h3>
-                        <div class="competence-list">
-                            <div class="competence-item">
-                                <h4>After Effects</h4>
-                                <span class="label">Animation</span>
-                            </div>
-                            <div class="competence-item">
-                                <h4>Premiere Pro</h4>
-                                <span class="label">Editing</span>
-                            </div>
-                            <div class="competence-item">
-                                <h4>Photoshop</h4>
-                                <span class="label">Screen Design</span>
-                            </div>
-                            <div class="competence-item">
-                                <h4>InDesign</h4>
-                                <span class="label">Print Media</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- EVENTS SECTION -->
-        <section class="events-section wave-foot">
-            <div class="events-container">
-                <div class="events-header">
-                    <span class="events-number">02</span>
-                    <h2 class="events-title">Interne<br/><span>Events</span></h2>
-                </div>
+  <!-- ── FOOTER ───────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-copy">© 2026 Design & Development by Khadija Okbi</div>
+      <div class="footer-socials">
+        <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/></svg>
+        </a>
+        <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="2" fill="currentColor" opacity=".15"/><rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M6.5 9.5v8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="6.5" cy="7.5" r=".8" fill="currentColor"/><path d="M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" fill="currentColor" stroke="currentColor" stroke-width=".5"/></svg>
+        </a>
+        <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M3.5 7.5l8.5 5 8.5-5" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M12 21.5v-10" stroke="currentColor" stroke-width="1.1" fill="none"/></svg>
+        </a>
+      </div>
+      <div class="footer-links">
+        <a href="../pages/impressum.html"      class="footer-link">Impressum</a>
+        <a href="mailto:khadijaokbi@gmail.com" class="footer-link contact-btn"><span>Kontakt</span></a>
+        <a href="../pages/datenschutz.html"    class="footer-link">Datenschutz</a>
+      </div>
+    </div>
+  </footer>
 
-                <div class="events-grid">
-                    <div class="event-card">
-                        <div class="event-card-number">01</div>
-                        <div class="event-card-content">
-                            <span class="event-card-label">Main Event</span>
-                            <h3 class="event-card-title">Gamedays Winterthur</h3>
-                            <p class="event-card-description">Komplette visuelle Bespielung der Spieltage für Pfadi Winterthur.</p>
-                        </div>
-                        <div class="event-card-accent"></div>
-                    </div>
+</main>
 
-                    <div class="event-card">
-                        <div class="event-card-number">02</div>
-                        <div class="event-card-content">
-                            <span class="event-card-label">National Event</span>
-                            <h3 class="event-card-title">SM Kunstturnen</h3>
-                            <p class="event-card-description">Erstellung von Print sowie digitalen Medien für die Schweizer Meisterschaften im Kunstturnen.</p>
-                        </div>
-                        <div class="event-card-accent"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
 
-        <!-- FOOTER -->
-        <footer class="site-footer" aria-label="Seitenende">
-            <div class="container footer-inner">
-                <div class="footer-copy">© 2026 Design & Development by Khadija Okbi</div>
-                
-                <div class="footer-socials" aria-label="Soziale Netzwerke">
-                    <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/>
-                        </svg>
-                    </a>
-                    <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <rect x="2" y="2" width="20" height="20" rx="2" fill="currentColor" opacity="0.15"/>
-                            <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                            <path d="M6.5 9.5v8.5M6.5 7.5a0.5 0.5 0 1 1 0 1z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <circle cx="6.5" cy="7.5" r="0.8" fill="currentColor"/>
-                            <path d="M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </a>
-                    <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" fill="currentColor" stroke="currentColor" stroke-width="0.5"/>
-                        </svg>
-                    </a>
-                    <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.1" fill="none"/>
-                            <path d="M3.5 7.5l8.5 5 8.5-5" stroke="currentColor" stroke-width="1.1" fill="none"/>
-                            <path d="M12 21.5v-10" stroke="currentColor" stroke-width="1.1" fill="none"/>
-                        </svg>
-                    </a>
-                </div>
+  /* ── Header solid on scroll ── */
+  const header = document.querySelector('.site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('is-solid', window.scrollY > 60);
+  }, { passive:true });
 
-                <div class="footer-links">
-                    <a href="../pages/impressum.html" class="footer-link">Impressum</a>
-                    <a href="mailto:khadijaokbi@gmail.com" class="footer-link contact-btn">
-                        <span>Kontakt</span>
-                    </a>
-                    <a href="../pages/datenschutz.html" class="footer-link">Datenschutz</a>
-                </div>
-            </div>
-        </footer>
-    </main>
-    
-    <script src="work-header.js"></script>
-<script defer src="../assets/js/typography-reveal.js"></script>
+  /* ── 3D Card Slider ── */
+  const cardSlides = [
+    { src:'../assets/images/win4/WIN4_busplakat.jpg', caption:'Busplakat Gamedays' },
+    { src:'../assets/images/win4/WIN4_nextgame.jpg',  caption:'Next Game Display'  },
+    { src:'../assets/images/win4/WIN4_smkutu_1.jpg',  caption:'SM Kunstturnen'     }
+  ];
+  let cardIdx = 0;
+  const cardImg = document.getElementById('card3dImg');
+  const cardCap = document.getElementById('card3dCaption');
+  const pills   = document.querySelectorAll('.slide-pill');
+
+  if (cardImg) cardImg.style.transition = 'opacity .22s ease';
+
+  function setCard(n) {
+    cardIdx = (n + cardSlides.length) % cardSlides.length;
+    if (cardImg) {
+      cardImg.style.opacity = '0';
+      setTimeout(() => { cardImg.src = cardSlides[cardIdx].src; cardImg.style.opacity = '1'; }, 220);
+    }
+    if (cardCap) cardCap.textContent = cardSlides[cardIdx].caption;
+    pills.forEach((p, i) => p.classList.toggle('active', i === cardIdx));
+  }
+
+  document.getElementById('prevCard')?.addEventListener('click', () => setCard(cardIdx - 1));
+  document.getElementById('nextCard')?.addEventListener('click', () => setCard(cardIdx + 1));
+  pills.forEach(p => p.addEventListener('click', () => setCard(+p.dataset.idx)));
+
+  /* ── Mouse parallax — 3D card ── */
+  const card3d = document.getElementById('card3d');
+  card3d?.addEventListener('mousemove', e => {
+    const r = card3d.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width  - .5;
+    const y = (e.clientY - r.top)  / r.height - .5;
+    card3d.style.cssText = `transform:rotateY(${-4+x*16}deg) rotateX(${-y*8}deg) scale(1.03); animation:none`;
+  });
+  card3d?.addEventListener('mouseleave', () => {
+    card3d.style.transition = 'transform .65s cubic-bezier(.16,1,.3,1)';
+    card3d.style.transform  = '';
+    setTimeout(() => { card3d.style.cssText = 'animation:float3d 6s ease-in-out infinite'; }, 660);
+  });
+
+  /* ── Mouse parallax — 3D book ── */
+  const book = document.getElementById('book3d');
+  book?.addEventListener('mousemove', e => {
+    const r = book.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width  - .5;
+    const y = (e.clientY - r.top)  / r.height - .5;
+    book.style.cssText = `transform:rotateY(${-30+x*35}deg) rotateX(${5-y*14}deg) scale(1.05); animation:none`;
+  });
+  book?.addEventListener('mouseleave', () => {
+    book.style.transition = 'transform .7s cubic-bezier(.16,1,.3,1)';
+    book.style.transform  = '';
+    setTimeout(() => { book.style.cssText = 'animation:bookFloat 7s ease-in-out infinite'; }, 710);
+  });
+
+  /* ── Banden Carousel ── */
+  let cur = 0;
+  const track  = document.getElementById('carouselTrack');
+  const items  = document.querySelectorAll('.slide-item');
+  const total  = items.length;
+
+  function goBande(n) {
+    cur = (n + total) % total;
+    if (track) track.style.transform = `translateX(-${cur*100}%)`;
+    items.forEach((s, i) => {
+      const v = s.querySelector('video');
+      if (!v) return;
+      if (i === cur) {
+        v.currentTime = 0;
+        v.play().catch(() => {});
+        v.onended = () => goBande(cur + 1);
+      } else {
+        v.pause(); v.currentTime = 0; v.onended = null;
+      }
+    });
+  }
+
+  document.getElementById('bandeNext')?.addEventListener('click', () => goBande(cur + 1));
+  document.getElementById('bandePrev')?.addEventListener('click', () => goBande(cur - 1));
+  goBande(0);
+
+  /* ── GSAP scroll reveals ── */
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+
+    document.querySelectorAll(
+      '.section-badge,.section-h2,.section-lead,.section-rule,' +
+      '.skill-cell,.event-card-new,.festfuhrer-text,.book-3d-wrap,.showcase-content'
+    ).forEach((el, i) => {
+      gsap.from(el, {
+        y:32, opacity:0, duration:1.05, ease:'power4.out',
+        delay:(i % 4) * .07,
+        scrollTrigger:{ trigger:el, start:'top 88%', once:true }
+      });
+    });
+
+    gsap.from('.banden-frame', {
+      rotateX:18, opacity:0, duration:1.2, ease:'power4.out',
+      scrollTrigger:{ trigger:'.banden-stage', start:'top 80%', once:true }
+    });
+
+    gsap.from('.card-3d', {
+      opacity:0, scale:.92, duration:1.1, ease:'power4.out',
+      scrollTrigger:{ trigger:'.scene-3d', start:'top 85%', once:true }
+    });
+
+    gsap.from('.book-3d', {
+      opacity:0, scale:.88, rotateY:-50, duration:1.3, ease:'power4.out',
+      scrollTrigger:{ trigger:'.book-3d-wrap', start:'top 85%', once:true }
+    });
+  }
+
+});
+</script>
+<script defer src="../assets/js/ds-reveal.js"></script>
+<script defer src="../assets/js/preloader.js"></script>
 </body>
 </html>
