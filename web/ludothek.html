@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludothek Kreuzlingen 🎲</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --yellow: #FFD93D;
+            --pink:   #FF6B9D;
+            --mint:   #00D68F;
+            --blue:   #4ECDC4;
+            --orange: #FF6B35;
+            --purple: #A855F7;
+            --ink:    #1A1A2E;
+        }
+
+        * { scroll-behavior: smooth; box-sizing: border-box; }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #FFFBF2;
+            color: var(--ink);
+            overflow-x: hidden;
+        }
+
+        .display { font-family: 'Fredoka One', cursive; letter-spacing: 0.01em; }
+
+        /* wider container on desktop */
+        .wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        @media (min-width: 1280px) { .wrap { max-width: 1240px; } }
+
+        .blob-1 { border-radius: 60% 40% 55% 45% / 45% 55% 45% 55%; }
+
+        /* Dotted bg */
+        .dot-bg {
+            background-image: radial-gradient(circle, #e2e2e2 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+
+        /* ── Nav pill ── */
+        .nav-pill {
+            background: transparent;
+            border-radius: 999px;
+            color: var(--ink);
+            font-family: 'Fredoka One', cursive;
+            padding: 8px 20px;
+            font-size: 1rem;
+            transition: background 0.2s, color 0.2s, transform 0.15s;
+        }
+        .nav-pill:hover {
+            background: var(--ink);
+            color: white;
+            transform: rotate(-1.5deg) scale(1.04);
+        }
+
+        /* ── Sticker button ── */
+        .sticker-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.1rem;
+            padding: 14px 32px;
+            border-radius: 999px;
+            border: 2.5px solid var(--ink);
+            cursor: pointer;
+            transition: transform 0.18s cubic-bezier(.175,.885,.32,1.4), box-shadow 0.18s;
+            box-shadow: 4px 4px 0 var(--ink);
+            text-decoration: none;
+        }
+        .sticker-btn:hover {
+            transform: translate(-3px, -3px) rotate(-1deg);
+            box-shadow: 7px 7px 0 var(--ink);
+        }
+        .sticker-btn:active {
+            transform: translate(1px, 1px);
+            box-shadow: 2px 2px 0 var(--ink);
+        }
+
+        /* ── Game card – minimal ── */
+        .game-card {
+            background: white;
+            border-radius: 20px;
+            border: 2px solid #e8e8e8;
+            transition: border-color 0.2s, transform 0.2s cubic-bezier(.175,.885,.32,1.4), box-shadow 0.2s;
+            cursor: pointer;
+            user-select: none;
+        }
+        .game-card:hover {
+            border-color: var(--ink);
+            transform: translateY(-6px) rotate(-1deg);
+            box-shadow: 6px 6px 0 var(--ink);
+        }
+        .game-card:active {
+            transform: translateY(0);
+            box-shadow: 2px 2px 0 var(--ink);
+        }
+
+        /* ── Info card – cleaner ── */
+        .info-card {
+            border-radius: 24px;
+            border: 2px solid var(--ink);
+            box-shadow: 5px 5px 0 var(--ink);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .info-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0 var(--ink);
+        }
+
+        /* ── Ticker ── */
+        .ticker-track {
+            display: flex;
+            animation: ticker 22s linear infinite;
+            white-space: nowrap;
+        }
+        .ticker-track:hover { animation-play-state: paused; }
+        @keyframes ticker {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+
+        /* ── Float emojis ── */
+        .float-emoji { animation: floatUp 3s ease-in-out infinite; display: inline-block; }
+        .float-emoji:nth-child(2) { animation-delay: .5s; }
+        .float-emoji:nth-child(3) { animation-delay: 1s; }
+        .float-emoji:nth-child(4) { animation-delay: 1.5s; }
+        .float-emoji:nth-child(5) { animation-delay: 2s; }
+        .float-emoji:nth-child(6) { animation-delay: 2.5s; }
+        @keyframes floatUp {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50%       { transform: translateY(-12px) rotate(5deg); }
+        }
+
+        /* ══════════════════════════════════════
+           STAMP ANIMATION for "Ausleihen."
+        ══════════════════════════════════════ */
+        .stamp-word {
+            display: inline-block;
+            position: relative;
+        }
+        /* the highlighted background pill */
+        .stamp-word .stamp-bg {
+            position: absolute;
+            inset: -6px -14px;
+            background: var(--pink);
+            border-radius: 14px;
+            border: 2.5px solid var(--ink);
+            transform: scaleX(0) scaleY(0) rotate(-2deg);
+            transform-origin: center center;
+            z-index: 0;
+        }
+        .stamp-word .stamp-text {
+            position: relative;
+            z-index: 1;
+            color: var(--ink);
+            transition: color 0.1s 0.25s;
+        }
+        /* fired once on load */
+        .stamp-word.stamp-in .stamp-bg {
+            animation: stampDrop 0.55s cubic-bezier(0.22, 1.8, 0.4, 0.9) forwards;
+        }
+        .stamp-word.stamp-in .stamp-text {
+            color: white;
+        }
+        @keyframes stampDrop {
+            0%   { transform: scaleX(0.2) scaleY(0.2) rotate(-2deg); opacity: 0; }
+            60%  { transform: scaleX(1.08) scaleY(1.08) rotate(-1.5deg); opacity: 1; }
+            80%  { transform: scaleX(0.96) scaleY(0.97) rotate(-2deg); }
+            100% { transform: scaleX(1) scaleY(1) rotate(-2deg); opacity: 1; }
+        }
+        /* subtle ink-press shadow lines that flash and fade */
+        .stamp-word.stamp-in::after {
+            content: '';
+            position: absolute;
+            inset: -10px -18px;
+            border-radius: 16px;
+            border: 2px solid var(--pink);
+            opacity: 0;
+            animation: stampRing 0.6s ease 0.1s forwards;
+            z-index: 2;
+            pointer-events: none;
+        }
+        @keyframes stampRing {
+            0%   { transform: scale(0.9); opacity: 0.7; }
+            100% { transform: scale(1.25); opacity: 0; }
+        }
+
+        /* Wobble on card click */
+        @keyframes wobble {
+            0%,100% { transform: rotate(0) translateY(-6px); }
+            25%      { transform: rotate(-7deg) translateY(-6px); }
+            75%      { transform: rotate(5deg) translateY(-6px); }
+        }
+        .wobble { animation: wobble 0.45s ease; }
+
+        /* Mobile menu */
+        #mobile-menu {
+            transition: max-height 0.35s cubic-bezier(.4,0,.2,1), opacity 0.3s;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open { max-height: 400px; opacity: 1; }
+
+        /* FAQ */
+        .faq-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .faq-body.open { max-height: 220px; }
+        .faq-icon { transition: transform 0.3s; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+        /* Reveal */
+        .reveal        { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-left   { opacity: 0; transform: translateX(-36px); transition: opacity .6s ease, transform .6s ease; }
+        .reveal-left.visible  { opacity: 1; transform: translateX(0); }
+        .reveal-right  { opacity: 0; transform: translateX(36px);  transition: opacity .6s ease, transform .6s ease; }
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    </style>
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════════════ NAV -->
+<nav class="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
+    <div class="max-w-[1240px] mx-auto bg-white/95 backdrop-blur border border-[#e8e8e8] rounded-[28px] px-6 py-3 flex justify-between items-center shadow-sm">
+        <a href="#top" class="flex items-center gap-3">
+            <div class="w-9 h-9 flex items-center justify-center text-xl blob-1 bg-[#FFD93D] border border-[#1A1A2E]">🎲</div>
+            <span class="display text-[#1A1A2E] text-lg leading-none hidden sm:block">Ludothek <span class="text-[#FF6B9D]">Kreuzlingen</span></span>
+        </a>
+        <div class="hidden md:flex items-center gap-1">
+            <a href="#sortiment"       class="nav-pill">Sortiment</a>
+            <a href="#oeffnungszeiten" class="nav-pill">Öffnungszeiten</a>
+            <a href="#reglement"       class="nav-pill">Reglement</a>
+            <a href="#kontakt"         class="nav-pill">Kontakt</a>
+        </div>
+        <button id="burger-btn" class="md:hidden w-9 h-9 rounded-xl border border-gray-200 flex items-center justify-center hover:bg-[#FFD93D] transition">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+    <!-- Mobile dropdown -->
+    <div id="mobile-menu" class="max-w-[1240px] mx-auto px-2">
+        <div class="bg-[#1A1A2E] rounded-b-[20px] px-5 py-4 flex flex-col gap-2">
+            <a href="#sortiment"       class="text-white font-bold text-base py-2 border-b border-white/10 flex items-center gap-3 mobile-link"><span>🧩</span> Sortiment</a>
+            <a href="#oeffnungszeiten" class="text-white font-bold text-base py-2 border-b border-white/10 flex items-center gap-3 mobile-link"><span>🕐</span> Öffnungszeiten</a>
+            <a href="#reglement"       class="text-white font-bold text-base py-2 border-b border-white/10 flex items-center gap-3 mobile-link"><span>📋</span> Reglement</a>
+            <a href="#kontakt"         class="text-white font-bold text-base py-2 flex items-center gap-3 mobile-link"><span>📍</span> Kontakt</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════ HERO -->
+<section id="top" class="dot-bg pt-36 pb-24 px-4 min-h-screen flex flex-col justify-center">
+    <div class="wrap text-center">
+
+        <!-- floating emojis -->
+        <div class="flex gap-8 justify-center mb-10 text-4xl md:text-5xl select-none">
+            <span class="float-emoji">🎲</span>
+            <span class="float-emoji">🧩</span>
+            <span class="float-emoji">🚗</span>
+            <span class="float-emoji">♟️</span>
+            <span class="float-emoji">🤖</span>
+            <span class="float-emoji">🎠</span>
+        </div>
+
+        <!-- location badge -->
+        <div class="flex justify-center mb-8">
+            <span class="display text-sm bg-[#FFD93D] border border-[#1A1A2E] px-5 py-2 rounded-full shadow-[3px_3px_0_#1A1A2E] inline-block">
+                📍 Hafenstrasse 8, Kreuzlingen
+            </span>
+        </div>
+
+        <!-- headline with stamp word -->
+        <h1 class="display text-[clamp(3.5rem,10vw,8rem)] leading-[1.08] text-[#1A1A2E] mb-8">
+            Spielen.<br>
+            <span class="stamp-word" id="stamp-ausleihen">
+                <span class="stamp-bg"></span>
+                <span class="stamp-text">Ausleihen.</span>
+            </span><br>
+            Geniessen.
+        </h1>
+
+        <p class="text-gray-500 text-lg max-w-lg mx-auto mb-12 leading-relaxed">
+            Über <strong class="text-[#1A1A2E]">2000 Spielwaren</strong> warten auf dich –
+            für Gross und Klein, ehrenamtlich und mit Herzblut betrieben. 💛
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-14">
+            <a href="#sortiment" class="sticker-btn bg-[#FFD93D] text-[#1A1A2E]">
+                Sortiment entdecken <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="#oeffnungszeiten" class="sticker-btn bg-white text-[#1A1A2E]">
+                <i class="fa-solid fa-clock text-[#FF6B9D]"></i> Öffnungszeiten
+            </a>
+        </div>
+
+        <!-- quick info pills -->
+        <div class="flex flex-wrap gap-3 justify-center">
+            <span class="bg-[#4ECDC4]/15 border border-[#4ECDC4] text-[#1A1A2E] font-bold text-sm px-4 py-2 rounded-full">📅 Do 16:30–18:00</span>
+            <span class="bg-[#FF6B9D]/15 border border-[#FF6B9D] text-[#1A1A2E] font-bold text-sm px-4 py-2 rounded-full">📅 Sa 09:30–11:00</span>
+            <span class="bg-[#00D68F]/15 border border-[#00D68F] text-[#1A1A2E] font-bold text-sm px-4 py-2 rounded-full">🎟️ Abo ab CHF 20/Jahr</span>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ TICKER -->
+<div class="overflow-hidden bg-[#FFD93D] border-y-2 border-[#1A1A2E] py-3">
+    <div class="ticker-track display text-xl text-[#1A1A2E]">
+        <span class="px-10">🎲 Brettspiele</span><span class="px-6 opacity-40">—</span>
+        <span class="px-10">🧩 Puzzle</span><span class="px-6 opacity-40">—</span>
+        <span class="px-10">🚗 Fahrzeuge</span><span class="px-6 opacity-40">—</span>
+        <span class="px-10">🤖 Technik</span><span class="px-6 opacity-40">—</span>
+        <span class="px-10">🎠 Kleinkinder</span><span class="px-6 opacity-40">—</span>
+        <span class="px-10">♟️ Strategiespiele</span><span class="px-6 opacity-40">—</span>
+        <span class="px-10">🎲 Brettspiele</span><span class="px-6 opacity-40">—</span>
+        <span class="px-10">🧩 Puzzle</span><span class="px-6 opacity-40">—</span>
+        <span class="px-10">🚗 Fahrzeuge</span><span class="px-6 opacity-40">—</span>
+        <span class="px-10">🤖 Technik</span><span class="px-6 opacity-40">—</span>
+        <span class="px-10">🎠 Kleinkinder</span><span class="px-6 opacity-40">—</span>
+        <span class="px-10">♟️ Strategiespiele</span><span class="px-6 opacity-40">—</span>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ SORTIMENT -->
+<section id="sortiment" class="py-28 px-4">
+    <div class="wrap">
+        <div class="reveal mb-16">
+            <h2 class="display text-5xl md:text-6xl text-[#1A1A2E] mb-3">Was gibt's?</h2>
+            <p class="text-gray-400 text-lg">Klick auf eine Kategorie.</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-5">
+            <div class="game-card p-6 flex flex-col items-start reveal" style="transition-delay:.05s">
+                <span class="text-4xl mb-4 block">🧩</span>
+                <h3 class="display text-xl text-[#1A1A2E]">Puzzle</h3>
+                <p class="text-xs text-gray-400 mt-1 font-semibold">240+ Stück</p>
+            </div>
+            <div class="game-card p-6 flex flex-col items-start reveal" style="transition-delay:.1s">
+                <span class="text-4xl mb-4 block">🚗</span>
+                <h3 class="display text-xl text-[#1A1A2E]">Fahrzeuge</h3>
+                <p class="text-xs text-gray-400 mt-1 font-semibold">80+ Modelle</p>
+            </div>
+            <div class="game-card p-6 flex flex-col items-start reveal" style="transition-delay:.15s">
+                <span class="text-4xl mb-4 block">♟️</span>
+                <h3 class="display text-xl text-[#1A1A2E]">Brettspiele</h3>
+                <p class="text-xs text-gray-400 mt-1 font-semibold">500+ Spiele</p>
+            </div>
+            <div class="game-card p-6 flex flex-col items-start reveal" style="transition-delay:.2s">
+                <span class="text-4xl mb-4 block">🤖</span>
+                <h3 class="display text-xl text-[#1A1A2E]">Technik</h3>
+                <p class="text-xs text-gray-400 mt-1 font-semibold">Neueste Trends</p>
+            </div>
+            <div class="game-card p-6 flex flex-col items-start reveal" style="transition-delay:.25s">
+                <span class="text-4xl mb-4 block">🎠</span>
+                <h3 class="display text-xl text-[#1A1A2E]">Kleinkinder</h3>
+                <p class="text-xs text-gray-400 mt-1 font-semibold">Ab 0 Jahren</p>
+            </div>
+            <div class="game-card p-6 flex flex-col items-start reveal" style="transition-delay:.3s">
+                <span class="text-4xl mb-4 block">🎭</span>
+                <h3 class="display text-xl text-[#1A1A2E]">Rollenspiele</h3>
+                <p class="text-xs text-gray-400 mt-1 font-semibold">Verkleiden & mehr</p>
+            </div>
+            <div class="game-card p-6 flex flex-col items-start reveal" style="transition-delay:.35s">
+                <span class="text-4xl mb-4 block">🏗️</span>
+                <h3 class="display text-xl text-[#1A1A2E]">Bauen</h3>
+                <p class="text-xs text-gray-400 mt-1 font-semibold">Lego & Bausteine</p>
+            </div>
+            <div class="game-card p-6 flex flex-col items-start reveal" style="transition-delay:.4s">
+                <span class="text-4xl mb-4 block">🎨</span>
+                <h3 class="display text-xl text-[#1A1A2E]">Kreativität</h3>
+                <p class="text-xs text-gray-400 mt-1 font-semibold">Basteln & Malen</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ STATS -->
+<section class="bg-[#1A1A2E] py-20 px-4">
+    <div class="wrap grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        <div class="reveal text-center">
+            <p class="display text-[#FFD93D] text-6xl md:text-7xl">2000+</p>
+            <p class="text-gray-500 font-semibold mt-2 text-sm">Spielwaren</p>
+        </div>
+        <div class="reveal text-center" style="transition-delay:.1s">
+            <p class="display text-[#FF6B9D] text-6xl md:text-7xl">100%</p>
+            <p class="text-gray-500 font-semibold mt-2 text-sm">Ehrenamtlich</p>
+        </div>
+        <div class="reveal text-center" style="transition-delay:.2s">
+            <p class="display text-[#00D68F] text-6xl md:text-7xl">ab 1.–</p>
+            <p class="text-gray-500 font-semibold mt-2 text-sm">CHF pro Ausleihe</p>
+        </div>
+        <div class="reveal text-center" style="transition-delay:.3s">
+            <p class="display text-[#4ECDC4] text-6xl md:text-7xl">4 Wo.</p>
+            <p class="text-gray-500 font-semibold mt-2 text-sm">Leihdauer</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ ÖFFNUNGSZEITEN -->
+<section id="oeffnungszeiten" class="py-28 px-4 bg-[#FFFBF2]">
+    <div class="wrap">
+        <div class="reveal mb-16">
+            <h2 class="display text-5xl md:text-6xl text-[#1A1A2E] mb-3">Wann kommen?</h2>
+            <p class="text-gray-400 text-lg">Wir freuen uns auf deinen Besuch!</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div class="info-card bg-[#FF6B9D] p-10 reveal reveal-left text-white">
+                <p class="display text-xl opacity-70 mb-1">Donnerstag</p>
+                <p class="display text-[clamp(3rem,6vw,5rem)] leading-none">16:30–18:00</p>
+                <p class="mt-4 text-sm font-bold opacity-80">Während der Schulzeit 🏫</p>
+            </div>
+            <div class="info-card bg-[#4ECDC4] p-10 reveal reveal-right text-[#1A1A2E]">
+                <p class="display text-xl opacity-60 mb-1">Samstag</p>
+                <p class="display text-[clamp(3rem,6vw,5rem)] leading-none">09:30–11:00</p>
+                <p class="mt-4 text-sm font-bold opacity-70">Während der Schulzeit 🏫</p>
+            </div>
+        </div>
+
+        <div class="info-card bg-[#FFD93D] p-5 flex items-center gap-5 reveal mb-16">
+            <span class="text-3xl shrink-0">⚠️</span>
+            <div>
+                <h4 class="display text-lg text-[#1A1A2E]">Schulferien = geschlossen</h4>
+                <p class="text-sm text-gray-700 font-semibold">Während der Schulferien bleibt die Ludothek zu. Schau vorher in den Ferienplan! 📆</p>
+            </div>
+        </div>
+
+        <!-- Preise -->
+        <div id="abo" class="grid sm:grid-cols-2 gap-6">
+            <div class="info-card bg-white p-10 reveal reveal-left">
+                <span class="text-3xl block mb-5">🎟️</span>
+                <h3 class="display text-2xl mb-3">Jahresabo</h3>
+                <div class="flex items-baseline gap-2 mb-4">
+                    <span class="display text-5xl text-[#FF6B9D]">CHF 20.–</span>
+                    <span class="text-gray-400 font-bold text-sm">/ Jahr</span>
+                </div>
+                <p class="text-sm text-gray-500">Für Einheimische. Unbegrenzter Spass für die ganze Familie!</p>
+                <p class="text-xs text-gray-400 mt-3 font-bold"><i class="fa-solid fa-circle-check text-[#00D68F] mr-1"></i>Auswärtige: CHF 30/Jahr</p>
+            </div>
+            <div class="info-card bg-[#1A1A2E] p-10 reveal reveal-right text-white">
+                <span class="text-3xl block mb-5">💳</span>
+                <h3 class="display text-2xl mb-3">Ausleihe</h3>
+                <div class="flex items-baseline gap-2 mb-4">
+                    <span class="display text-5xl text-[#FFD93D]">CHF 1–10</span>
+                    <span class="text-gray-500 font-bold text-sm">/ Spiel</span>
+                </div>
+                <p class="text-sm text-gray-400">Je nach Artikel. Zahlung via <strong class="text-white">TWINT</strong> oder Bar.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ MISSION -->
+<section id="mission" class="py-28 px-4 dot-bg">
+    <div class="wrap">
+        <div class="reveal mb-16">
+            <h2 class="display text-5xl md:text-6xl text-[#1A1A2E] mb-3">Was uns antreibt</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <div class="info-card bg-[#00D68F] p-8 reveal">
+                <span class="text-3xl block mb-5">🌍</span>
+                <h3 class="display text-2xl mb-2 text-[#1A1A2E]">Spielkultur</h3>
+                <p class="text-sm leading-relaxed text-[#1A1A2E]/70 font-semibold">Neue Spielideen entdecken durch sorgfältig ausgewählte Sortimente – für jedes Alter.</p>
+            </div>
+            <div class="info-card bg-[#A855F7] p-8 reveal text-white" style="transition-delay:.1s">
+                <span class="text-3xl block mb-5">🤝</span>
+                <h3 class="display text-2xl mb-2">Inklusion</h3>
+                <p class="text-sm leading-relaxed opacity-80 font-semibold">Spielen für alle – unabhängig von Alter, Hintergrund oder Budget.</p>
+            </div>
+            <div class="info-card bg-[#FF6B35] p-8 reveal text-white" style="transition-delay:.2s">
+                <span class="text-3xl block mb-5">⭐</span>
+                <h3 class="display text-2xl mb-2">Selbstständigkeit</h3>
+                <p class="text-sm leading-relaxed opacity-80 font-semibold">Kinder ab Schulalter können selbstständig ausleihen. Wir vertrauen ihnen!</p>
+            </div>
+        </div>
+
+        <div class="info-card bg-white p-10 reveal flex flex-col md:flex-row items-center gap-8">
+            <span class="text-5xl shrink-0">💛</span>
+            <blockquote class="text-xl md:text-2xl font-black text-[#1A1A2E] italic leading-snug">
+                "Wir hören nicht auf zu spielen, weil wir alt werden –
+                wir werden alt, weil wir aufhören zu spielen."
+            </blockquote>
+            <span class="text-sm font-bold text-gray-400 md:ml-auto shrink-0">— George Bernard Shaw</span>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ REGLEMENT -->
+<section id="reglement" class="py-28 px-4 bg-[#1A1A2E]">
+    <div class="wrap">
+        <div class="reveal mb-16">
+            <h2 class="display text-5xl md:text-6xl text-[#FFD93D] mb-3">Die Spielregeln</h2>
+            <p class="text-gray-500 text-lg">Kurz & knackig.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="space-y-3 reveal reveal-left">
+                <div class="faq-item border border-white/15 rounded-2xl overflow-hidden cursor-pointer">
+                    <button class="w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+                        <span class="font-black text-white flex items-center gap-3 text-sm"><span>💰</span> Ausleihgebühren</span>
+                        <i class="fa-solid fa-plus faq-icon text-[#FFD93D] text-sm"></i>
+                    </button>
+                    <div class="faq-body px-6 pb-5">
+                        <p class="text-gray-400 text-sm leading-relaxed">Pro Spiel zwischen <strong class="text-white">CHF 1.00 und CHF 10.00</strong>. Zahlung via TWINT oder Bar. Batterien: Eigenverantwortung.</p>
+                    </div>
+                </div>
+                <div class="faq-item border border-white/15 rounded-2xl overflow-hidden cursor-pointer">
+                    <button class="w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+                        <span class="font-black text-white flex items-center gap-3 text-sm"><span>📅</span> Leihdauer</span>
+                        <i class="fa-solid fa-plus faq-icon text-[#FFD93D] text-sm"></i>
+                    </button>
+                    <div class="faq-body px-6 pb-5">
+                        <p class="text-gray-400 text-sm leading-relaxed">Standardmässig <strong class="text-white">4 Wochen</strong>. Bitte sauber und komplett zurückbringen.</p>
+                    </div>
+                </div>
+                <div class="faq-item border border-white/15 rounded-2xl overflow-hidden cursor-pointer">
+                    <button class="w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+                        <span class="font-black text-white flex items-center gap-3 text-sm"><span>🧹</span> Sauberkeit</span>
+                        <i class="fa-solid fa-plus faq-icon text-[#FFD93D] text-sm"></i>
+                    </button>
+                    <div class="faq-body px-6 pb-5">
+                        <p class="text-gray-400 text-sm leading-relaxed">Verschmutzte Rückgaben: <strong class="text-white">CHF 5.00</strong> Gebühr.</p>
+                    </div>
+                </div>
+                <div class="faq-item border border-white/15 rounded-2xl overflow-hidden cursor-pointer">
+                    <button class="w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+                        <span class="font-black text-white flex items-center gap-3 text-sm"><span>🔍</span> Reklamation</span>
+                        <i class="fa-solid fa-plus faq-icon text-[#FFD93D] text-sm"></i>
+                    </button>
+                    <div class="faq-body px-6 pb-5">
+                        <p class="text-gray-400 text-sm leading-relaxed">Defekte oder fehlende Teile <strong class="text-white">innerhalb 48h</strong> melden. Verlust/Beschädigung: CHF 5.00 zzgl. Ersatzkosten.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card bg-[#FF6B9D] p-10 reveal reveal-right text-white flex flex-col justify-between">
+                <div>
+                    <h3 class="display text-3xl mb-8">Gut zu wissen ⚡</h3>
+                    <ul class="space-y-5 text-sm font-bold">
+                        <li class="flex items-start gap-3"><span class="shrink-0">✅</span> Abo notwendig für die Ausleihe</li>
+                        <li class="flex items-start gap-3"><span class="shrink-0">✅</span> Kinder ab Schulalter dürfen selbst ausleihen</li>
+                        <li class="flex items-start gap-3"><span class="shrink-0">✅</span> KulturLegi-Inhaber erhalten Vergünstigungen</li>
+                        <li class="flex items-start gap-3"><span class="shrink-0">⚠️</span> Keine Haftung für Schäden durch die Ludothek</li>
+                    </ul>
+                </div>
+                <a href="#kontakt" class="mt-10 sticker-btn bg-white text-[#1A1A2E] self-start">
+                    Fragen? Kontakt <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ KONTAKT -->
+<section id="kontakt" class="py-28 px-4 bg-[#FFFBF2]">
+    <div class="wrap">
+        <div class="reveal mb-16">
+            <h2 class="display text-5xl md:text-6xl text-[#1A1A2E] mb-3">Besuche uns! 👋</h2>
+            <p class="text-gray-400 text-lg">Bring einfach gute Laune mit.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="info-card bg-[#4ECDC4] p-10 reveal reveal-left text-[#1A1A2E]">
+                <span class="text-3xl block mb-5">📍</span>
+                <h3 class="display text-3xl mb-4">Wo sind wir?</h3>
+                <address class="not-italic display text-[clamp(1.8rem,4vw,3rem)] leading-tight mb-8">
+                    Hafenstrasse 8<br>8280 Kreuzlingen
+                </address>
+                <a href="https://maps.google.com/?q=Hafenstrasse+8,+8280+Kreuzlingen"
+                   target="_blank" rel="noopener"
+                   class="sticker-btn bg-[#1A1A2E] text-white inline-flex">
+                    <i class="fa-solid fa-map-location-dot"></i> Route planen
+                </a>
+            </div>
+
+            <div class="info-card bg-white p-10 reveal reveal-right flex flex-col gap-5">
+                <h3 class="display text-3xl text-[#1A1A2E]">Social & Links</h3>
+                <a href="https://www.facebook.com" target="_blank" rel="noopener"
+                   class="flex items-center gap-4 p-4 rounded-xl border border-gray-200 hover:bg-[#FFD93D] hover:border-[#1A1A2E] transition font-bold text-sm">
+                    <i class="fa-brands fa-facebook-f text-lg w-5 text-center"></i> Facebook
+                    <i class="fa-solid fa-arrow-right ml-auto opacity-30 text-xs"></i>
+                </a>
+                <a href="https://www.instagram.com" target="_blank" rel="noopener"
+                   class="flex items-center gap-4 p-4 rounded-xl border border-gray-200 hover:bg-[#FF6B9D] hover:text-white hover:border-[#1A1A2E] transition font-bold text-sm">
+                    <i class="fa-brands fa-instagram text-lg w-5 text-center"></i> Instagram
+                    <i class="fa-solid fa-arrow-right ml-auto opacity-30 text-xs"></i>
+                </a>
+                <a href="https://www.vsl.ch" target="_blank" rel="noopener"
+                   class="flex items-center gap-4 p-4 rounded-xl border border-gray-200 hover:bg-[#00D68F] hover:border-[#1A1A2E] transition font-bold text-sm">
+                    <i class="fa-solid fa-globe text-lg w-5 text-center"></i> VSL – Verband Schweizer Ludotheken
+                    <i class="fa-solid fa-arrow-right ml-auto opacity-30 text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ FOOTER -->
+<footer class="bg-[#1A1A2E] pt-20 pb-36 md:pb-20 px-4 rounded-t-[40px] md:rounded-t-[56px]">
+    <div class="wrap">
+        <div class="flex flex-col md:flex-row justify-between items-start gap-16 mb-16">
+            <div class="max-w-xs">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 flex items-center justify-center text-xl blob-1 bg-[#FFD93D] border border-white">🎲</div>
+                    <span class="display text-white text-xl leading-tight">Ludothek <span class="text-[#FF6B9D]">Kreuzlingen</span></span>
+                </div>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                    Ehrenamtliches Projekt für Spielfreude in Kreuzlingen. Mitglied im <strong class="text-white">VSL</strong>.
+                </p>
+                <div class="flex gap-3">
+                    <a href="https://www.facebook.com" target="_blank" rel="noopener"
+                       class="w-10 h-10 rounded-xl border border-white/15 flex items-center justify-center text-white hover:bg-[#FFD93D] hover:text-[#1A1A2E] hover:border-[#FFD93D] transition text-sm">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" rel="noopener"
+                       class="w-10 h-10 rounded-xl border border-white/15 flex items-center justify-center text-white hover:bg-[#FF6B9D] hover:border-[#FF6B9D] transition text-sm">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-12">
+                <div>
+                    <h4 class="display text-[#FFD93D] text-base mb-5">Navigation</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#sortiment"       class="hover:text-white transition">🧩 Sortiment</a></li>
+                        <li><a href="#oeffnungszeiten" class="hover:text-white transition">🕐 Öffnungszeiten</a></li>
+                        <li><a href="#mission"         class="hover:text-white transition">💛 Mission</a></li>
+                        <li><a href="#reglement"       class="hover:text-white transition">📋 Reglement</a></li>
+                        <li><a href="#kontakt"         class="hover:text-white transition">📍 Kontakt</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="display text-[#FF6B9D] text-base mb-5">Rechtliches</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="/pages/impressum.html"   class="hover:text-white transition">Impressum</a></li>
+                        <li><a href="/pages/datenschutz.html" class="hover:text-white transition">Datenschutz</a></li>
+                        <li><a href="https://www.vsl.ch" target="_blank" rel="noopener" class="hover:text-white transition">VSL</a></li>
+                    </ul>
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                    <h4 class="display text-[#4ECDC4] text-base mb-5">Newsletter</h4>
+                    <div class="relative">
+                        <input type="email" placeholder="deine@email.ch"
+                               class="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#FFD93D] placeholder-gray-600">
+                        <button onclick="subscribeNewsletter(this)"
+                                class="absolute right-2 top-2 w-8 h-8 bg-[#FFD93D] text-[#1A1A2E] rounded-lg flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-paper-plane text-xs"></i>
+                        </button>
+                    </div>
+                    <p class="text-xs text-gray-600 mt-2">Kein Spam – versprochen! 🤞</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600">
+            <p>© 2026 Ludothek Kreuzlingen · Mitglied im <a href="https://www.vsl.ch" target="_blank" class="hover:text-white transition">VSL</a> · Made with 💛 by Khadija Okbi</p>
+            <a href="#top" class="text-gray-500 hover:text-white transition flex items-center gap-1 font-bold">
+                <i class="fa-solid fa-arrow-up"></i> Nach oben
+            </a>
+        </div>
+    </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════ MOBILE BOTTOM NAV -->
+<div class="fixed bottom-4 left-4 right-4 md:hidden z-50">
+    <div class="bg-[#1A1A2E]/95 backdrop-blur border border-white/10 px-4 py-3 rounded-3xl flex justify-around items-center shadow-2xl">
+        <a href="#top"             class="flex flex-col items-center gap-1 text-[#FFD93D] text-xs font-bold"><i class="fa-solid fa-house text-lg"></i>Start</a>
+        <a href="#sortiment"       class="flex flex-col items-center gap-1 text-gray-500 hover:text-white text-xs font-bold transition"><i class="fa-solid fa-gamepad text-lg"></i>Spiele</a>
+        <a href="#oeffnungszeiten" class="flex flex-col items-center gap-1 -translate-y-3 text-xs font-bold">
+            <span class="w-13 h-13 w-12 h-12 bg-[#FF6B9D] border-4 border-[#1A1A2E] rounded-full flex items-center justify-center text-xl shadow-xl">🎲</span>
+            <span class="text-gray-500 text-xs">Abo</span>
+        </a>
+        <a href="#reglement"       class="flex flex-col items-center gap-1 text-gray-500 hover:text-white text-xs font-bold transition"><i class="fa-solid fa-book text-lg"></i>Regeln</a>
+        <a href="#kontakt"         class="flex flex-col items-center gap-1 text-gray-500 hover:text-white text-xs font-bold transition"><i class="fa-solid fa-map-pin text-lg"></i>Wo?</a>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ JS -->
+<script>
+    // ── Mobile menu
+    document.getElementById('burger-btn').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.toggle('open');
+    });
+    document.querySelectorAll('.mobile-link').forEach(l =>
+        l.addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('open'))
+    );
+
+    // ── Stamp animation – fires once, 400ms after page load
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.getElementById('stamp-ausleihen').classList.add('stamp-in');
+        }, 400);
+    });
+
+    // ── FAQ accordion
+    function toggleFaq(btn) {
+        const item = btn.closest('.faq-item');
+        const body = item.querySelector('.faq-body');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => {
+            i.classList.remove('open');
+            i.querySelector('.faq-body').classList.remove('open');
+        });
+        if (!isOpen) { item.classList.add('open'); body.classList.add('open'); }
+    }
+
+    // ── Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+    // ── Wobble on game card click
+    document.querySelectorAll('.game-card').forEach(card => {
+        card.addEventListener('click', function () {
+            this.classList.remove('wobble');
+            void this.offsetWidth;
+            this.classList.add('wobble');
+            this.addEventListener('animationend', () => this.classList.remove('wobble'), { once: true });
+        });
+    });
+
+    // ── Newsletter
+    function subscribeNewsletter(btn) {
+        const input = btn.previousElementSibling;
+        if (!input.value.includes('@')) { input.style.borderColor = '#FF6B9D'; input.focus(); return; }
+        btn.innerHTML = '✅';
+        input.value = '';
+        input.placeholder = 'Danke! 🎉';
+        setTimeout(() => {
+            btn.innerHTML = '<i class="fa-solid fa-paper-plane text-xs"></i>';
+            input.placeholder = 'deine@email.ch';
+        }, 3000);
+    }
+
+    // ── Active nav on scroll
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        document.querySelectorAll('section[id]').forEach(s => {
+            if (window.scrollY >= s.offsetTop - 130) current = s.id;
+        });
+        navLinks.forEach(l => {
+            l.style.background = l.getAttribute('href') === `#${current}` ? '#FFD93D' : '';
+            l.style.color      = l.getAttribute('href') === `#${current}` ? '#1A1A2E' : '';
+        });
+    }, { passive: true });
+</script>
+</body>
+</html>
