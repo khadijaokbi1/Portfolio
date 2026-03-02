@@ -25,7 +25,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Tenor+Sans:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -72,11 +72,11 @@
 
   <!-- GSAP -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/SplitText.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollSmoother.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/SplitText.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
   <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/typography-global.css">
   <link rel="stylesheet" href="assets/css/about.css">
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/footer-nav-waves.css">
@@ -89,8 +89,6 @@
   </script>
 </head>
 <body>
-  <div id="smooth-wrapper">
-    <div id="smooth-content">
   <!-- ======================== HEADER ======================== -->
   <header class="site-header" id="top" aria-label="Seitennavigation">
     <div class="page-container nav-bar">
@@ -945,40 +943,6 @@ class CounterAnimator {
     counters.forEach(counter => observer.observe(counter));
 
     console.log('3D Books 2025 loaded!');
-
-    // ── Hero Parallax (GSAP) ──
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
-
-      const heroTrigger = { trigger: '.hero-section', start: 'top top', end: 'bottom top', scrub: 1 };
-
-      gsap.to('.about-hero-top', { y: 100, scrollTrigger: heroTrigger });
-      gsap.to('.about-hero-bottom', { y: 120, scrollTrigger: heroTrigger });
-      gsap.to('.hero-fig-img', { y: -20, scrollTrigger: heroTrigger });
-      gsap.to('.hero-fig-bg', { y: -20, scrollTrigger: heroTrigger });
-
-      // ── Personality Cards Animation ──
-      gsap.utils.toArray('.personality-card').forEach((card, index) => {
-        gsap.fromTo(card, 
-          { opacity: 0, y: 50, scale: 0.9 },
-          { 
-            opacity: 1, 
-            y: 0, 
-            scale: 1,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 80%",
-              end: "bottom 20%",
-              toggleActions: "play none none reverse"
-            }
-          }
-        );
-      });
-
-      ScrollTrigger.refresh();
-    }
 
     console.log('🎯 About page initialized!');
   });

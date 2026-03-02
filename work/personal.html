@@ -7,7 +7,8 @@
 <link rel="icon" type="image/png" href="../assets/images/branding/logo_white.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Tenor+Sans&family=Outfit:wght@200;300;400&family=Work+Sans:ital,wght@0,200;0,300;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/typography-global.css" />
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <link rel="stylesheet" href="../assets/css/footer-nav-waves.css">
@@ -372,7 +373,7 @@ body.ch-view #cur-label{opacity:1}
   margin-bottom:clamp(3rem,6vh,5rem);
   gap:2rem;flex-wrap:wrap;
 }
-.tt-head-left{}
+.tt-head-left{ display: flex; align-items: center; gap: 0.5rem; }
 .tt-eyebrow{
   font-family:var(--font-sub);font-size:.46rem;letter-spacing:.55em;
   text-transform:uppercase;color:rgba(183,161,158,.4);
@@ -569,7 +570,6 @@ body.ch-view #cur-label{opacity:1}
   padding:0 clamp(1rem,3vw,2rem);
   max-width:280px;
 }
-.tt-cap-item{}
 .tt-cap-key{
   font-family:var(--font-sub);font-size:.42rem;letter-spacing:.5em;
   text-transform:uppercase;color:rgba(183,161,158,.35);margin-bottom:.4rem;display:block;

@@ -7,12 +7,13 @@
     <title>Lehre | SBW Neuen Medien</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Work+Sans:wght@300;400;500;700&family=Outfit:wght@300;400;600&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/footer-nav-waves.css">
+    <link rel="stylesheet" href="../assets/css/typography-global.css" />
 <style>
 :root {
     --bg-primary: #000;
@@ -784,7 +785,7 @@ body {
     justify-self: end;
 }
 .strategy-item:hover .st-icon { border-color: rgba(235,225,209,0.5); }
-.strategy-item.active .st-icon { border-color: var(--cream); background: rgba(235,225,209,0.12); }
+.strategy-item.active .st-icon { border-color: var (--cream); background: rgba(235,225,209,0.12); }
 .st-icon svg { transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1); stroke: rgba(235,225,209,0.45); }
 .strategy-item:hover .st-icon svg { stroke: rgba(235,225,209,0.75); }
 .strategy-item.active .st-icon svg { transform: rotate(45deg); stroke: var(--cream); }
@@ -811,7 +812,7 @@ body {
 .sc-tag:hover { border-color: rgba(235,225,209,0.5); color: var(--cream); background: rgba(235,225,209,0.06); }
 .sc-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; }
 .sc-pill {
-    font-family: var(--font-subtitel); font-size: 0.5rem;
+    font-family: var (--font-subtitel); font-size: 0.5rem;
     font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase;
     color: rgba(235,225,209,0.45); border: 1px solid rgba(235,225,209,0.15);
     padding: 0.35rem 0.75rem;

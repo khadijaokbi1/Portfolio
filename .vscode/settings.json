@@ -6,5 +6,6 @@
     "github.copilot.chat.codesearch.enabled": true,
     "github.copilot.chat.editor.temporalContext.enabled": true,
     "prettier.experimentalTernaries": true,
-    "github.copilot.chat.edits.temporalContext.enabled": true
+    "github.copilot.chat.edits.temporalContext.enabled": true,
+    "livePreview.defaultPreviewPath": "/work/fotografie.html"
 }

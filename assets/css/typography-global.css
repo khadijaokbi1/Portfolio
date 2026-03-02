@@ -1,169 +1,515 @@
 /* =========================================
-   TYPOGRAPHY GLOBAL
-   Single source of truth for fonts
+   TYPOGRAPHY GLOBAL — Single Source of Truth
+   =========================================
+   Rollen:
+   H1          → Higuen  800  (local)        sehr gross, Kontrast auto
+   H2          → Higuen  700  (local)        gross, Kontrast auto
+   H3–H6       → Playfair Display 700/900    elegant serif, italic als Akzent
+   Eyebrows    → Outfit  600                 uppercase, tight tracking
+   Fliesstext  → Work Sans 400/500           überall ausser /web/
    ========================================= */
 
+/* ── 1. LOCAL FONT ─────────────────────────────────── */
 @font-face {
   font-family: 'Higuen';
   src: url('../fonts/Higuen.woff2') format('woff2');
-  font-weight: 400;
+  font-weight: 400 900;
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'OT Neglige';
-  src: url('../fonts/OTNeglige-L.woff2') format('woff2');
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Le Jour';
-  src: url('../fonts/lejour.woff2') format('woff2');
-  font-weight: 400;
-  font-display: swap;
-}
-
+/* ── 2. CSS-VARIABLEN ──────────────────────────────── */
 :root {
-  --font-h1: 'Higuen', serif;
-  --font-title: 'Le Jour', serif;
-  --font-ui: 'Outfit', sans-serif;
-  --font-body: 'Work Sans', sans-serif;
-  /* Legacy aliases so old selectors keep working with the global system */
-  --font-display: var(--font-title);
-  --font-higuen: var(--font-h1);
+  /* Klare Rollen */
+  --font-h1:      'Higuen', serif;
+  --font-h2:      'Higuen', serif;
+  --font-h3:      'Playfair Display', Georgia, serif;
+  --font-body:    'Work Sans', system-ui, sans-serif;
+  --font-ui:      'Outfit', system-ui, sans-serif;
+
+  /* Legacy-Aliases — damit alte Selektoren nicht brechen */
+  --font-higuen:   var(--font-h1);
+  --font-display:  var(--font-h3);
   --font-subtitel: var(--font-ui);
   --font-subtitle: var(--font-ui);
-  --font-titel: var(--font-ui);
+  --font-titel:    var(--font-ui);
+
+  /* Typographic Scale */
+  --text-xs:      11px;
+  --text-sm:      13px;
+  --text-base:    16px;
+  --text-md:      18px;
+  --text-lg:      clamp(22px, 2.4vw, 32px);   /* H3            */
+  --text-xl:      clamp(52px, 6vw,  100px);    /* H2            */
+  --text-2xl:     clamp(80px, 10vw, 160px);    /* H1 Subpages   */
+  --text-hero:    clamp(96px, 13vw, 200px);    /* H1 Hero Index */
+
+  /* Kontrast-Farben */
+  --contrast-on-dark:  #EBE1D1;   /* off-white auf dunklem BG */
+  --contrast-on-light: #2D2D2D;   /* off-black auf hellem BG  */
 }
 
-body,
-p,
-li,
-small,
-.text-body,
-.text-meta {
-  font-family: var(--font-body) !important;
-}
-
+/* ── 3. H1 — Higuen 800 ────────────────────────────── */
 h1,
-h2,
+.h1,
 .hero-top,
 .hero-bottom,
 .page-title,
-.page-hero h1,
 .hero-title,
 .hero-title-large,
 .hero-h1,
 .sbw-intro-title {
   font-family: var(--font-h1) !important;
+  font-weight: 800 !important;
+  font-size: var(--text-2xl) !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.12em !important;
-  line-height: 0.95;
+  letter-spacing: 0.10em !important;
+  line-height: 0.92 !important;
+  color: var(--contrast-on-light);
 }
 
+/* Hero-Spezial: noch grösser auf der Startseite */
+.hero-section h1,
+.hero-section .hero-top,
+.hero-section .hero-bottom {
+  font-size: var(--text-hero) !important;
+  letter-spacing: 0.08em !important;
+  line-height: 0.88 !important;
+}
+
+/* ── 4. H2 — Higuen 700 ────────────────────────────── */
+h2,
+.h2,
+section h2,
+.page-hero h2,
+.section-header h2,
+.selected-projects,
+.fav-col-title,
+.visionary-title {
+  font-family: var(--font-h2) !important;
+  font-weight: 700 !important;
+  font-size: var(--text-xl) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  line-height: 0.94 !important;
+  color: var(--contrast-on-light);
+}
+
+/* H2 em-Akzent — Playfair italic als eleganter Kontrast */
+h1 em,
+h2 em,
+.h1 em,
+.h2 em,
+.hero-top em,
+.hero-bottom em,
+.fav-col-title em,
+.visionary-title em,
+.selected-projects em {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-style: italic !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  letter-spacing: -0.01em !important;
+  color: var(--burgundy, #6E3B49);
+}
+
+/* ── 5. H3–H6 — Playfair Display ───────────────────── */
 h3,
 h4,
 h5,
 h6,
-section h3,
 .h3,
+.h4,
+section h3,
+section h4,
 .feat-title,
-.fav-col-title,
 .gallery-title,
 .strategy-headline,
 .films-title,
 .tt-title,
 .sc-title,
 .project-section h3,
-.project-section h4 {
-  font-family: var(--font-title) !important;
+.project-section h4,
+.blog-title,
+.goodreads-cta-title {
+  font-family: var(--font-h3) !important;
+  font-weight: 700 !important;
   text-transform: none !important;
-  letter-spacing: 0.02em !important;
-  line-height: 1.02;
+  letter-spacing: 0.01em !important;
+  line-height: 1.1 !important;
 }
 
-.nav-link,
-.footer-copy,
-.footer-link,
-.meta-inline,
-.stat-label-main,
-.book-author-main,
-.btn,
-button,
-label,
-summary,
-details,
-.subtitle,
-.sub-title,
-.hero-subtitle,
-.project-hero-subtitle,
-.sc-subtitle,
+h3, .h3, section h3  { font-size: clamp(20px, 2.2vw, 30px) !important; }
+h4, .h4, section h4  { font-size: clamp(17px, 1.8vw, 24px) !important; }
+h5                    { font-size: clamp(15px, 1.4vw, 20px) !important; }
+h6                    { font-size: clamp(13px, 1.2vw, 17px) !important; }
+
+/* H3–H6 italic Akzent — Playfair Display italic */
+h3 em, h4 em, h5 em, h6 em,
+.h3 em, .h4 em,
+.feat-title em,
+.blog-title em,
+.goodreads-cta-title em {
+  font-style: italic !important;
+  color: var(--burgundy, #6E3B49);
+}
+
+/* ── 6. FLIESSTEXT — Work Sans ──────────────────────── */
+body,
+p,
+li,
+td,
+blockquote,
+.text-body,
+.text-meta,
+.lead,
+.text-lead,
+.blog-teaser,
+.work-hero-desc,
+.feat-exc,
+.fav-col-desc,
+.q-text {
+  font-family: var(--font-body) !important;
+}
+
+/* ── 7. EYEBROWS & LABELS — Outfit ─────────────────── */
 .eyebrow,
 .eyebrow-pill,
 .eyebrow-circle,
 .photo-eyebrow,
 .fav-eyebrow,
 .counter-eyebrow,
-[class*="subtitle"] {
+.blog-cat,
+.nav-link,
+.footer-link,
+.footer-copy,
+.meta-inline,
+.stat-label-main,
+.btn,
+button,
+label,
+summary,
+.subtitle,
+.sub-title,
+.hero-subtitle,
+.project-hero-subtitle,
+.sc-subtitle,
+[class*="subtitle"],
+.filter-btn,
+.ctag,
+.wc-type,
+.cc-type,
+.cv-tag,
+.feat-tag,
+.vinyl-genre,
+.book-genre-tag,
+.uppercase-label,
+.read-more,
+.wc-link,
+.cc-link,
+.btn-site {
   font-family: var(--font-ui) !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.14em !important;
-  font-weight: 600;
+  letter-spacing: 0.16em !important;
+  font-weight: 600 !important;
 }
 
-h1 em,
-h2 em,
-h3 em,
-.italic,
-.title-word-2,
-.word-2 {
-  font-family: inherit !important;
-  font-style: italic;
-  letter-spacing: inherit !important;
+/* Eyebrow-Grössen */
+.eyebrow,
+.eyebrow-pill,
+.eyebrow-circle,
+.photo-eyebrow,
+.fav-eyebrow,
+.counter-eyebrow,
+.blog-cat,
+.feat-tag,
+.wc-type,
+.cc-type,
+.cv-tag,
+.vinyl-genre,
+.book-genre-tag,
+.uppercase-label { font-size: var(--text-xs) !important; }
+
+.read-more,
+.wc-link,
+.cc-link,
+.btn-site,
+.nav-link,
+.footer-link   { font-size: 11px !important; }
+
+/* ── 8. KONTRAST-GUARDRAILS ─────────────────────────
+   Automatische Textfarbe je nach Sektion-Hintergrund
+   ─────────────────────────────────────────────────── */
+
+/* Helle Sektionen → dunkel */
+.section--light h1,  .section--light h2,
+.section--cream h1,  .section--cream h2,
+.section-photography h1, .section-photography h2,
+.section-concepts h1, .section-concepts h2,
+.section-foto h1,    .section-foto h2,
+.section-cats h1,    .section-cats h2,
+.bg-cream h1,        .bg-cream h2,
+.work-section.bg-cream h1, .work-section.bg-cream h2 {
+  color: var(--contrast-on-light) !important;
 }
 
-.section--dark h1,
-.section--dark h2,
-.section--dark h3,
-.section--green h1,
-.section--green h2,
-.section--green h3,
-.section--burgundy h1,
-.section--burgundy h2,
-.section--burgundy h3,
-.work-hero h1,
-.blog-hero h1,
-.site-footer h2,
-.site-footer h3 {
-  color: var(--off-white, #EBE1D1) !important;
+/* Dunkle Sektionen → hell */
+.section--dark h1,       .section--dark h2,
+.section--green h1,      .section--green h2,
+.section--burgundy h1,   .section--burgundy h2,
+.hero-section h1,        .hero-section h2,
+.blog-hero h1,           .blog-hero h2,
+.work-hero h1,           .work-hero h2,
+.site-footer h1,         .site-footer h2,
+.section-blog h1,        .section-blog h2,
+.section-web h1,         .section-web h2,
+.section-collections h1, .section-collections h2,
+.work-section.bg-dark h1, .work-section.bg-dark h2,
+.work-section.mint h1,    .work-section.mint h2,
+.bg-dark h1,             .bg-dark h2,
+.darkgreen h1,           .darkgreen h2,
+[style*="background:var(--darkgreen)"] h1,
+[style*="background:var(--burgundy)"] h1 {
+  color: var(--contrast-on-dark) !important;
 }
 
-.section--light h1,
-.section--light h2,
-.section--light h3,
-.section--cream h1,
-.section--cream h2,
-.section--cream h3 {
-  color: var(--off-black, #2D2D2D) !important;
+/* H3–H6 hell in dunklen Sektionen */
+.section--dark h3,       .section--dark h4,
+.section--green h3,      .section--green h4,
+.section--burgundy h3,   .section--burgundy h4,
+.hero-section h3,
+.work-section.bg-dark h3, .work-section.bg-dark h4,
+.section-blog h3,        .section-blog h4,
+.section-web h3,         .section-web h4,
+.section-collections h3, .section-collections h4 {
+  color: var(--contrast-on-dark) !important;
+}
+
+/* Blog-Card Titel — immer dunkel (heller Kartenhintergrund) */
+.blog-card h3,
+.blog-card .blog-title {
+  color: var(--contrast-on-light) !important;
+  font-size: clamp(16px, 1.4vw, 20px) !important;
+}
+
+/* ── 9. HERO-SPEZIFISCH: Mauve-Farbe für H1 in Hero-Sektionen */
+.hero-section .hero-top,
+.hero-section .hero-bottom,
+.blog-hero .hero-top,
+.work-hero .hero-top {
+  color: var(--mauve, #B5A19E) !important;
+}
+
+/* ── 10. RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 1024px) {
+  :root {
+    --text-xl:   clamp(44px, 7vw, 80px);
+    --text-2xl:  clamp(64px, 11vw, 120px);
+    --text-hero: clamp(72px, 14vw, 140px);
+  }
 }
 
 @media (max-width: 768px) {
-  h1,
-  h2,
-  .hero-top,
-  .hero-bottom,
-  .page-title,
-  .page-hero h1 {
-    letter-spacing: 0.1em !important;
+  :root {
+    --text-xl:   clamp(36px, 9vw, 64px);
+    --text-2xl:  clamp(52px, 13vw, 96px);
+    --text-hero: clamp(56px, 16vw, 100px);
   }
 
-  h3,
-  h4,
-  h5,
-  h6,
-  section h3,
-  .h3 {
-    letter-spacing: 0.01em !important;
+  h1, .h1, .hero-top, .hero-bottom {
+    letter-spacing: 0.07em !important;
   }
+  h2, .h2, section h2 {
+    letter-spacing: 0.06em !important;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --text-xl:   clamp(30px, 10vw, 52px);
+    --text-2xl:  clamp(40px, 14vw, 72px);
+    --text-hero: clamp(44px, 17vw, 80px);
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   11. FONT LOCK — Nur Higuen · Playfair Display · Outfit
+       Alle anderen Schriften werden hier überschrieben.
+   ══════════════════════════════════════════════════════ */
+
+/* — Variable-Overrides: lokale --font-* Deklarationen neutralisieren — */
+:root,
+[style],
+* {
+  /* Cormorant Garamond → Playfair Display */
+  --serif:        'Playfair Display', Georgia, serif !important;
+  --font-serif:   'Playfair Display', Georgia, serif !important;
+  --font-display: 'Playfair Display', Georgia, serif !important;
+  --font-alt:     'Playfair Display', Georgia, serif !important;
+
+  /* Tenor Sans → Outfit */
+  --tenor:        'Outfit', system-ui, sans-serif !important;
+  --font-tenor:   'Outfit', system-ui, sans-serif !important;
+  --font-titel:   'Outfit', system-ui, sans-serif !important;
+  --font-sub:     'Outfit', system-ui, sans-serif !important;
+  --font-subtitel:'Outfit', system-ui, sans-serif !important;
+  --font-subtitle:'Outfit', system-ui, sans-serif !important;
+  --font-ui:      'Outfit', system-ui, sans-serif !important;
+
+  /* Work Sans bleibt als body — aber auch hier sauber gesetzt */
+  --font-body:    'Work Sans', system-ui, sans-serif !important;
+}
+
+/* — Element-Level: font-family direkt überschreiben — */
+
+/* Basis: Work Sans als Default für alles ausser Headings */
+body,
+p,
+li,
+span,
+div,
+td,
+input,
+textarea,
+select {
+  font-family: 'Work Sans', system-ui, sans-serif;
+}
+
+/* Serifen-Elemente → Playfair Display */
+h3, h4, h5, h6,
+.h3, .h4,
+.hero-title-main,
+.about-heading,
+.cat-t,
+.cta-h,
+.tt-title,
+.sc-title,
+.sc-subtitle,
+.films-title,
+.sbw-intro-title,
+.strategy-headline,
+.gallery-title,
+.t-display,
+.quote-text,
+.quote-mark,
+.featured-text h3,
+.sc-title,
+.film-meta-title,
+blockquote,
+.hero-h1 .row--accent span {
+  font-family: 'Playfair Display', Georgia, serif !important;
+}
+
+/* H1 / H2 → Higuen */
+h1, .h1,
+h2, .h2,
+.hero-h1,
+.hero-title-large,
+.page-title,
+.hero-top,
+.hero-bottom,
+.sbw-intro-title {
+  font-family: 'Higuen', serif !important;
+}
+
+/* H2-Ausnahmen mit Playfair (explizit als Display-Elemente designed) */
+.sc-title,
+.films-title,
+.gallery-title,
+.strategy-headline,
+.sbw-intro-title,
+.tt-title {
+  font-family: 'Playfair Display', Georgia, serif !important;
+}
+
+/* Labels / Nav / Buttons → Outfit */
+.nav-link,
+.nav-links a,
+.footer-link,
+.footer-copy,
+.footer-brand,
+.footer-cta,
+.uppercase-label,
+.eyebrow,
+.t-label,
+.section-micro,
+.hero-eyebrow,
+.hero-cat,
+.scroll-label,
+.hero-sub,
+.hero-scroll-txt,
+.btn,
+button,
+.hero-meta,
+.hero-cats,
+.hero-scroll,
+.sc-eyebrow-key,
+.sc-eyebrow-val,
+.sc-counter,
+.phone-username,
+.phone-story-tag,
+.phone-video-loc-label,
+.b-url,
+.tt-url-bar,
+.tt-eyebrow,
+.tt-stat-lbl,
+.films-label,
+.film-meta-tag,
+.film-bottom-label,
+.gallery-eyebrow,
+.meta-label,
+.meta-value,
+.strategy-eyebrow,
+.st-label,
+.cat-d,
+.hscroll-caption span,
+.m-item + *,
+.marquee-item,
+.stat-l,
+.cta-lbl,
+.hero-title-sub,
+.tt-prof-handle,
+.tt-prof-name,
+.tt-cell-views,
+[class*="eyebrow"],
+[class*="label"],
+[class*="tag"],
+[class*="meta"],
+[class*="caption"] {
+  font-family: 'Outfit', system-ui, sans-serif !important;
+}
+
+/* Sonderfälle: Zahlen-Akzente im Display-Stil → Playfair italic */
+.sc-bg-num,
+.hscroll-num,
+.film-index,
+.st-number,
+.hero-index,
+.tt-stat-num,
+.tt-prof-stat-n,
+.quote-mark,
+.cat-n,
+.stat-n,
+.featured-text h3,
+.hscroll-caption h3,
+.browser-hover-box h4 {
+  font-family: 'Playfair Display', Georgia, serif !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   12. HIGUEN FINAL LOCK — letzte Zeile gewinnt immer
+       Kommt nach allem anderen → kein !important-Konflikt
+   ══════════════════════════════════════════════════════ */
+h1,
+h1 *:not(em),
+h2,
+h2 *:not(em),
+.h1,
+.h2,
+.hero-h1,
+.hero-h1 .row span,
+.hero-top,
+.hero-bottom,
+.hero-title-large,
+.page-title {
+  font-family: 'Higuen', serif !important;
 }
