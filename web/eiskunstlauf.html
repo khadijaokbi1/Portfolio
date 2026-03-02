@@ -1,901 +1,1268 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EC Weinfelden - Eislaufclub mit Tradition</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        * {
-            scroll-behavior: smooth;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EC Weinfelden — Eislaufclub mit Tradition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
+<style>
+:root {
+  --white: #FFFFFF;
+  --off-white: #F7F9FC;
+  --light: #EEF3F9;
+  --blue: #2563EB;
+  --blue-mid: #3B82F6;
+  --blue-light: #BFDBFE;
+  --blue-pale: #EFF6FF;
+  --blue-dark: #1D4ED8;
+  --navy: #0F172A;
+  --charcoal: #1E293B;
+  --slate: #475569;
+  --mist: #94A3B8;
+  --border: #E2EAF4;
+  --ice: #DBEAFE;
+}
 
-        h1, h2, h3, .heading {
-            font-family: 'Playfair Display', serif;
-            letter-spacing: -0.5px;
-        }
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+html{font-size:16px}
+body{font-family:'Jost',sans-serif;background:var(--white);color:var(--charcoal);overflow-x:hidden;font-weight:300;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:400}
+.label{font-family:'Cinzel',serif}
 
-        .page {
-            display: none;
-            animation: fadeIn 0.6s ease-out;
-        }
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideRight{from{width:0}to{width:100%}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
 
-        .page.active {
-            display: block;
-        }
+.anim-up{opacity:0;animation:fadeUp 0.7s cubic-bezier(.16,1,.3,1) forwards}
+.anim-d1{animation-delay:0.1s}
+.anim-d2{animation-delay:0.2s}
+.anim-d3{animation-delay:0.3s}
+.anim-d4{animation-delay:0.4s}
+.anim-d5{animation-delay:0.5s}
 
-        @keyframes fadeIn {
-            from { 
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+/* ── PAGE SYSTEM ── */
+.page{display:none}
+.page.active{display:block;animation:fadeUp 0.55s cubic-bezier(.16,1,.3,1) both}
 
-        .hero-gradient {
-            background: linear-gradient(135deg, rgba(15,23,42,0.7) 0%, rgba(51,65,85,0.5) 100%);
-        }
+/* ── NAVBAR ── */
+#navbar{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:1.25rem 1.5rem;
+  transition:all 0.4s ease;
+  background:transparent;
+}
+#navbar.solid{
+  background:rgba(255,255,255,0.97);
+  backdrop-filter:blur(16px);
+  padding:0.85rem 1.5rem;
+  box-shadow:0 1px 0 var(--border), 0 4px 20px rgba(0,0,0,0.05);
+}
+.nav-inner{
+  max-width:1320px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;
+}
+.logo-wrap{display:flex;align-items:center;gap:0.75rem;cursor:pointer;text-decoration:none}
+.logo-wrap img{height:36px;width:auto;object-fit:contain}
+.logo-text{font-family:'Cinzel',serif;font-size:0.78rem;letter-spacing:0.15em;color:var(--navy);line-height:1.2}
+.logo-text span{display:block;font-size:0.6rem;letter-spacing:0.2em;color:var(--mist);font-weight:400}
 
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+nav.desk{display:flex;gap:2.5rem;align-items:center}
+.nb{
+  background:none;border:none;cursor:pointer;
+  font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.14em;
+  color:var(--slate);text-transform:uppercase;
+  position:relative;padding:0.25rem 0;
+  transition:color 0.3s;
+}
+.nb::after{
+  content:'';position:absolute;bottom:-2px;left:0;
+  height:2px;width:0;
+  background:var(--blue);border-radius:2px;
+  transition:width 0.35s cubic-bezier(.16,1,.3,1);
+}
+.nb:hover,.nb.active{color:var(--blue)}
+.nb:hover::after,.nb.active::after{width:100%}
 
-        .nav-active {
-            position: relative;
-        }
+/* hamburger */
+.ham{
+  display:none;background:none;border:none;cursor:pointer;
+  color:var(--navy);padding:0.4rem;
+  width:44px;height:44px;align-items:center;justify-content:center;
+  border-radius:8px;transition:background 0.2s;
+}
+.ham:hover{background:var(--light)}
 
-        .nav-active::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #3b82f6, #0ea5e9);
-            border-radius: 1px;
-        }
+/* ── MOBILE MENU ── */
+#mmenu{
+  display:none;position:fixed;inset:0;z-index:190;
+  background:var(--white);flex-direction:column;
+  padding:6rem 2rem 3rem;gap:0;
+  overflow-y:auto;
+}
+#mmenu.open{display:flex;animation:fadeIn 0.3s ease both}
+.mmenu-item{
+  background:none;border:none;cursor:pointer;text-align:left;
+  font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;
+  color:var(--charcoal);padding:1rem 0;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  transition:color 0.3s;width:100%;
+}
+.mmenu-item:hover{color:var(--blue)}
+.mmenu-close{
+  position:absolute;top:1.5rem;right:1.5rem;
+  background:var(--light);border:none;cursor:pointer;
+  width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--charcoal);transition:background 0.2s;
+}
+.mmenu-close:hover{background:var(--border)}
 
-        .team-card {
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
-            border-radius: 20px;
-        }
+/* ── HERO ── */
+.hero{
+  position:relative;min-height:100svh;
+  display:flex;align-items:flex-end;padding-bottom:6rem;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('images/ecw/ecw_1.jpg');
+  background-size:cover;background-position:center;
+  background-repeat:no-repeat;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.3) 50%, rgba(15,23,42,0.15) 100%);
+}
+.hero-content{
+  position:relative;z-index:2;
+  max-width:1320px;margin:0 auto;padding:0 1.5rem;
+  width:100%;
+}
+.hero-tag{
+  font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.25em;
+  color:var(--blue-light);text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:0.75rem;
+  margin-bottom:1.5rem;
+  animation:fadeUp 0.6s 0.2s both;
+}
+.hero-tag::before{content:'';width:30px;height:1px;background:var(--blue-mid);opacity:0.7}
+.hero-h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,6.5vw,5.5rem);
+  font-weight:300;color:#fff;line-height:1.05;
+  max-width:700px;margin-bottom:1.25rem;
+  animation:fadeUp 0.7s 0.3s both;
+}
+.hero-h1 em{font-style:italic;color:var(--blue-light)}
+.hero-sub{
+  font-size:1rem;font-weight:300;color:rgba(255,255,255,0.7);
+  max-width:480px;line-height:1.75;margin-bottom:2.5rem;
+  animation:fadeUp 0.7s 0.4s both;
+}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.7s 0.5s both}
+.btn-main{
+  font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;
+  background:var(--blue);color:#fff;border:none;
+  padding:1rem 2.2rem;cursor:pointer;border-radius:4px;
+  transition:all 0.3s;white-space:nowrap;
+  box-shadow:0 4px 20px rgba(37,99,235,0.4);
+}
+.btn-main:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,0.45)}
+.btn-outline{
+  font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;
+  background:transparent;color:rgba(255,255,255,0.85);
+  border:1px solid rgba(255,255,255,0.4);
+  padding:1rem 2.2rem;cursor:pointer;border-radius:4px;
+  transition:all 0.3s;white-space:nowrap;
+}
+.btn-outline:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.7);color:#fff}
 
-        .team-card:hover {
-            transform: translateY(-8px);
-        }
+.scroll-cue{
+  position:absolute;bottom:2.5rem;right:2rem;z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:0.5rem;
+  color:rgba(255,255,255,0.4);animation:float 3s ease-in-out infinite;
+}
+.scroll-cue span{font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:0.2em;writing-mode:vertical-lr;text-transform:uppercase}
 
-        .team-card-image {
-            position: relative;
-            overflow: hidden;
-            border-radius: 16px;
-        }
+/* ── STATS ── */
+.stats{
+  background:var(--navy);
+  padding:3rem 1.5rem;
+  border-top:3px solid var(--blue);
+}
+.stats-inner{
+  max-width:1000px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+}
+.stat{
+  text-align:center;padding:0 2rem;
+  position:relative;
+}
+.stat:not(:last-child)::after{
+  content:'';position:absolute;right:0;top:15%;bottom:15%;
+  width:1px;background:rgba(255,255,255,0.08);
+}
+.stat-n{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem;font-weight:300;
+  color:var(--blue-mid);line-height:1;
+}
+.stat-l{
+  font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.18em;
+  text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:0.4rem;
+}
 
-        .team-card-image img {
-            transition: transform 0.5s ease;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+/* ── SECTIONS ── */
+.section{padding:7rem 1.5rem}
+.sec-inner{max-width:1320px;margin:0 auto}
+.sec-hd{text-align:center;margin-bottom:4.5rem}
+.sec-tag{
+  font-family:'Cinzel',serif;font-size:0.63rem;letter-spacing:0.25em;
+  text-transform:uppercase;color:var(--blue);
+  display:inline-block;margin-bottom:0.9rem;
+}
+.sec-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,3rem);font-weight:300;
+  color:var(--charcoal);line-height:1.1;
+}
+.sec-sub{font-size:0.92rem;color:var(--mist);margin-top:0.75rem;letter-spacing:0.03em}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0}
 
-        .team-card:hover .team-card-image img {
-            transform: scale(1.08);
-        }
+/* ── OFFER CARDS ── */
+.offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.offer-card{
+  padding:3rem 2.5rem;border:1px solid var(--border);border-radius:16px;
+  background:var(--white);position:relative;overflow:hidden;
+  transition:all 0.4s cubic-bezier(.16,1,.3,1);cursor:default;
+}
+.offer-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--blue-pale),var(--white));
+  opacity:0;transition:opacity 0.4s;
+}
+.offer-card:hover{border-color:var(--blue-light);transform:translateY(-6px);box-shadow:0 20px 50px rgba(37,99,235,0.1)}
+.offer-card:hover::before{opacity:1}
+.offer-ic{
+  width:48px;height:48px;border-radius:12px;
+  background:var(--blue-pale);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--blue);margin-bottom:1.75rem;
+  position:relative;z-index:1;
+  transition:background 0.3s, transform 0.3s;
+}
+.offer-card:hover .offer-ic{background:var(--blue);color:#fff;transform:scale(1.1)}
+.offer-t{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--charcoal);margin-bottom:0.75rem;position:relative;z-index:1}
+.offer-p{font-size:0.88rem;color:var(--slate);line-height:1.8;position:relative;z-index:1}
 
-        .sponsor-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
+/* ── GALLERY ── */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:1.6fr 1fr 1fr;
+  grid-template-rows:280px 240px;
+  gap:6px;
+  max-width:1320px;margin:0 auto;
+}
+.g-cell{overflow:hidden;position:relative;border-radius:4px}
+.g-cell.main{grid-row:span 2}
+.g-cell img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s cubic-bezier(.25,.46,.45,.94);display:block}
+.g-cell:hover img{transform:scale(1.07)}
+.g-lbl{
+  position:absolute;bottom:0;left:0;right:0;padding:1.5rem;
+  background:linear-gradient(transparent,rgba(15,23,42,0.7));
+  opacity:0;transition:opacity 0.35s;
+}
+.g-cell:hover .g-lbl{opacity:1}
+.g-lbl span{font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.2em;color:rgba(255,255,255,0.9);text-transform:uppercase}
 
-        .sponsor-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            background: #f8fafc;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            border: 1px solid #e2e8f0;
-        }
+/* ── PAGE HERO SM ── */
+.pg-hero{
+  padding:9rem 1.5rem 5rem;
+  background:linear-gradient(135deg, var(--navy) 0%, #0F2040 100%);
+  position:relative;overflow:hidden;
+}
+.pg-hero::after{
+  content:'';position:absolute;top:-40%;right:-15%;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(59,130,246,0.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.pg-hero-inner{max-width:1320px;margin:0 auto;position:relative;z-index:1}
+.pg-tag{font-family:'Cinzel',serif;font-size:0.63rem;letter-spacing:0.25em;color:var(--blue-mid);text-transform:uppercase;display:block;margin-bottom:1.2rem}
+.pg-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;color:#fff;line-height:1.05}
+.pg-title span{display:block;font-style:italic;color:var(--blue-light)}
 
-        .sponsor-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
-            border-color: #3b82f6;
-            background: rgba(226, 232, 240, 0.5);
-        }
+/* back button */
+.back-btn{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+  color:rgba(255,255,255,0.7);border-radius:6px;
+  padding:0.6rem 1.2rem;cursor:pointer;
+  font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;
+  margin-bottom:2rem;transition:all 0.3s;
+}
+.back-btn:hover{background:rgba(255,255,255,0.15);color:#fff}
+/* back btn on light bg */
+.back-light{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  border:1px solid var(--border);
+  color:var(--slate);border-radius:6px;
+  padding:0.55rem 1.1rem;cursor:pointer;
+  font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;
+  margin-bottom:2.5rem;transition:all 0.3s;background:var(--white);
+}
+.back-light:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-pale)}
 
-        .sponsor-item img {
-            max-height: 60px;
-            max-width: 180px;
-            object-fit: contain;
-            filter: grayscale(100%);
-            transition: filter 0.3s ease;
-        }
+/* ── VEREIN ── */
+.v-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;margin-bottom:6rem}
+.v-text h2{
+  font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:400;
+  color:var(--charcoal);margin-bottom:1rem;padding-bottom:1rem;
+  border-bottom:1px solid var(--border);
+}
+.v-text p{font-size:0.92rem;line-height:1.9;color:var(--slate);margin-bottom:2rem}
+.v-text strong{color:var(--charcoal);font-weight:500}
+.v-img{position:relative}
+.v-img img{width:100%;border-radius:12px;display:block;aspect-ratio:4/5;object-fit:cover}
+.v-badge{
+  position:absolute;bottom:-1.5rem;left:-1.5rem;
+  background:var(--navy);color:#fff;
+  padding:1.5rem 2rem;border-radius:12px;
+  border:1px solid rgba(59,130,246,0.2);
+  box-shadow:0 8px 32px rgba(15,23,42,0.2);
+}
+.v-badge-n{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--blue-mid);display:block;line-height:1}
+.v-badge-t{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:0.3rem}
 
-        .sponsor-item:hover img {
-            filter: grayscale(0%);
-        }
+.values-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.val-item{
+  padding:2.5rem 1.75rem;border-right:1px solid var(--border);
+  text-align:center;transition:background 0.35s;
+}
+.val-item:last-child{border-right:none}
+.val-item:hover{background:var(--blue-pale)}
+.val-ic{color:var(--blue);margin-bottom:1rem;transition:transform 0.3s}
+.val-item:hover .val-ic{transform:scale(1.2)}
+.val-t{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:500;color:var(--charcoal);margin-bottom:0.4rem}
+.val-s{font-size:0.8rem;color:var(--mist);line-height:1.7}
 
-        .header-scroll {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
-        }
+.thanks{
+  margin-top:5rem;padding:3.5rem;
+  border:1px solid var(--border);border-radius:16px;
+  background:linear-gradient(135deg,var(--off-white),var(--blue-pale));
+  position:relative;
+}
+.thanks::before{
+  content:'❧';position:absolute;top:-0.75rem;left:50%;transform:translateX(-50%);
+  background:var(--white);padding:0 1rem;font-size:1.1rem;color:var(--blue);
+}
+.thanks h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin-bottom:0.75rem;color:var(--charcoal)}
+.thanks p{font-size:0.9rem;color:var(--slate);line-height:1.9}
 
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
-        }
+/* ── TEAM ── */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-bottom:3rem}
+.tm{transition:transform 0.4s cubic-bezier(.16,1,.3,1)}
+.tm:hover{transform:translateY(-5px)}
+.tm-photo{
+  border-radius:12px;overflow:hidden;position:relative;
+  aspect-ratio:3/4;background:var(--light);
+}
+.tm-photo img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform 0.6s ease;display:block}
+.tm:hover .tm-photo img{transform:scale(1.04)}
+.tm-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(15,23,42,0.75) 0%,transparent 55%);
+  border-radius:12px;
+}
+.tm-name-block{position:absolute;bottom:1.25rem;left:1.25rem;right:1.25rem}
+.tm-name-block h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:300;color:#fff;line-height:1.1}
+.tm-name-block .role{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--blue-light);margin-top:0.3rem;display:block}
+.tm-details{padding:1.25rem 0 0}
+.tm-link,.tm-info{
+  display:flex;align-items:center;gap:0.5rem;
+  font-size:0.8rem;color:var(--mist);
+  text-decoration:none;margin-bottom:0.35rem;
+  transition:color 0.3s;
+}
+.tm-link:hover{color:var(--blue)}
+.tm-subrole{font-size:0.8rem;color:var(--mist);padding-top:0.5rem;letter-spacing:0.02em}
 
-        @media (max-width: 768px) {
-            .sponsor-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 1rem;
-            }
-        }
-    </style>
+.further-box{
+  background:var(--navy);border-radius:16px;padding:3rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;
+}
+.fb-title{
+  grid-column:span 2;
+  font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;color:#fff;
+  padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:0.5rem;
+}
+.fb-item{display:flex;align-items:start;gap:1rem}
+.fb-ic{color:var(--blue-mid);flex-shrink:0;margin-top:2px}
+.fb-name{font-size:0.93rem;color:rgba(255,255,255,0.85);font-weight:400}
+.fb-role{font-size:0.77rem;color:rgba(255,255,255,0.3);margin-top:0.15rem;letter-spacing:0.03em}
+
+/* ── TERMINE ── */
+.events{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:3px}
+.ev{
+  display:grid;grid-template-columns:90px 1fr;
+  align-items:center;gap:2.5rem;
+  background:var(--white);padding:2.25rem 2.5rem;
+  border-left:3px solid transparent;
+  border-radius:0 8px 8px 0;
+  transition:all 0.3s;border-top:1px solid var(--border);
+}
+.ev:first-child{border-radius:8px 8px 8px 8px;border-top:none}
+.ev:hover{border-left-color:var(--blue);background:var(--blue-pale)}
+.ev-date{text-align:center}
+.ev-day{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--blue);line-height:1}
+.ev-month{font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--mist);margin-top:0.1rem}
+.ev-year{font-size:0.72rem;color:var(--border)}
+.ev-body h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--charcoal)}
+.ev-body p{font-size:0.82rem;color:var(--mist);margin-top:0.25rem}
+.ev-meta{display:flex;flex-wrap:wrap;gap:1.25rem;margin-top:0.75rem}
+.ev-mi{display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:var(--slate)}
+.ev-btn{
+  margin-top:0.75rem;display:inline-block;
+  font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;
+  border:1px solid var(--blue);color:var(--blue);
+  padding:0.55rem 1.3rem;border-radius:4px;cursor:pointer;background:transparent;
+  transition:all 0.3s;
+}
+.ev-btn:hover{background:var(--blue);color:#fff}
+.ev-btn.tba{border-color:var(--border);color:var(--mist);cursor:default}
+.ev-btn.tba:hover{background:transparent;color:var(--mist)}
+.ev-note{
+  margin-top:2.5rem;padding:2rem 2.5rem;text-align:center;
+  border:1px solid var(--blue-light);border-radius:8px;
+  font-size:0.85rem;color:var(--slate);line-height:1.8;
+  background:var(--blue-pale);
+}
+
+/* ── KONTAKT ── */
+.k-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.k-intro{font-size:0.95rem;color:var(--slate);line-height:1.9;margin-bottom:3rem}
+.k-item{display:flex;gap:1.5rem;margin-bottom:2.75rem}
+.k-icon{
+  width:46px;height:46px;flex-shrink:0;border-radius:10px;
+  background:var(--blue-pale);border:1px solid var(--blue-light);
+  display:flex;align-items:center;justify-content:center;color:var(--blue);
+  transition:background 0.3s;
+}
+.k-item:hover .k-icon{background:var(--blue);color:#fff}
+.k-lbl{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--mist);margin-bottom:0.4rem}
+.k-val{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--charcoal)}
+.k-val a{color:var(--blue-dark);text-decoration:none;transition:color 0.3s}
+.k-val a:hover{color:var(--blue)}
+.k-val-sm{font-size:0.88rem;font-family:'Jost',sans-serif;color:var(--slate);line-height:1.7}
+
+.form-wrap{
+  background:var(--navy);border-radius:16px;padding:3.5rem;
+  box-shadow:0 20px 60px rgba(15,23,42,0.15);
+}
+.form-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#fff;margin-bottom:0.4rem}
+.form-sub{font-size:0.82rem;color:rgba(255,255,255,0.3);margin-bottom:2.5rem;letter-spacing:0.03em}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.f-field{margin-bottom:1.5rem}
+.f-lbl{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);display:block;margin-bottom:0.6rem}
+.f-in,.f-ta{
+  width:100%;background:rgba(255,255,255,0.05);
+  border:none;border-bottom:1px solid rgba(255,255,255,0.12);
+  padding:0.75rem 0;color:rgba(255,255,255,0.85);
+  font-family:'Jost',sans-serif;font-size:0.9rem;font-weight:300;
+  outline:none;transition:border-color 0.3s;
+  border-radius:0;
+}
+.f-in:focus,.f-ta:focus{border-bottom-color:var(--blue-mid)}
+.f-in::placeholder,.f-ta::placeholder{color:rgba(255,255,255,0.18)}
+.f-ta{resize:none}
+.f-submit{
+  width:100%;margin-top:0.5rem;
+  font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;
+  background:var(--blue);color:#fff;border:none;
+  padding:1.1rem;cursor:pointer;border-radius:6px;
+  transition:all 0.3s;
+  box-shadow:0 4px 16px rgba(37,99,235,0.35);
+}
+.f-submit:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,0.45)}
+.f-note{font-size:0.72rem;color:rgba(255,255,255,0.2);text-align:center;margin-top:1rem}
+
+/* SPONSORS */
+.sp-section{padding:5rem 1.5rem;background:var(--off-white);border-top:1px solid var(--border)}
+.sp-inner{max-width:1320px;margin:0 auto}
+.sp-title{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--charcoal);text-align:center;margin-bottom:0.6rem}
+.sp-sub{text-align:center;font-size:0.85rem;color:var(--mist);margin-bottom:3.5rem;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7}
+.sp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--border);border-radius:12px;overflow:hidden}
+.sp-item{
+  background:var(--white);padding:2rem 1.25rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:background 0.3s;
+}
+.sp-item:hover{background:var(--blue-pale)}
+.sp-item img{max-height:46px;max-width:150px;object-fit:contain;filter:grayscale(100%) opacity(0.45);transition:all 0.4s}
+.sp-item:hover img{filter:grayscale(0%) opacity(1)}
+.sp-dl{text-align:center;margin-top:2.5rem}
+.sp-dl a{
+  font-family:'Cinzel',serif;font-size:0.67rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--blue-dark);text-decoration:none;
+  padding:0.7rem 1.75rem;border:1px solid var(--blue-light);border-radius:4px;
+  transition:all 0.3s;display:inline-flex;align-items:center;gap:0.5rem;
+}
+.sp-dl a:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+/* ── FOOTER ── */
+footer{background:var(--navy);padding:5rem 1.5rem 2.5rem;border-top:3px solid var(--blue)}
+.ft-inner{max-width:1320px;margin:0 auto}
+.ft-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem;margin-bottom:4rem}
+.ft-brand h2{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;color:#fff;margin-bottom:0.9rem}
+.ft-brand h2 span{color:var(--blue-mid)}
+.ft-brand p{font-size:0.83rem;color:rgba(255,255,255,0.3);line-height:1.8;max-width:300px}
+.ft-social{display:flex;gap:0.7rem;margin-top:1.75rem}
+.soc{
+  width:38px;height:38px;border:1px solid rgba(255,255,255,0.1);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,0.3);text-decoration:none;
+  transition:all 0.3s;
+}
+.soc:hover{border-color:var(--blue-mid);color:var(--blue-mid);background:rgba(59,130,246,0.1)}
+.ft-ht{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue-mid);margin-bottom:1.25rem}
+.ft-list{list-style:none;display:flex;flex-direction:column;gap:0.7rem}
+.ft-list button{background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-weight:300;font-size:0.85rem;color:rgba(255,255,255,0.35);transition:color 0.3s;letter-spacing:0.03em;padding:0}
+.ft-list button:hover{color:var(--blue-light)}
+.ft-addr{font-size:0.83rem;color:rgba(255,255,255,0.3);line-height:1.9}
+.ft-addr a{color:var(--blue-mid);text-decoration:none;transition:color 0.3s}
+.ft-addr a:hover{color:var(--blue-light)}
+.ft-bot{border-top:1px solid rgba(255,255,255,0.05);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.ft-bot p,.ft-bot a{font-size:0.75rem;color:rgba(255,255,255,0.2);text-decoration:none}
+.ft-bot a:hover{color:var(--blue-light)}
+.ft-bot-links{display:flex;gap:2rem}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;bottom:2rem;right:2rem;z-index:999;
+  background:var(--navy);color:#fff;padding:1rem 1.75rem;
+  border-radius:10px;border-left:4px solid var(--blue);
+  font-size:0.88rem;box-shadow:0 8px 32px rgba(0,0,0,0.2);
+  transform:translateY(100px);opacity:0;
+  transition:all 0.4s cubic-bezier(.16,1,.3,1);
+  pointer-events:none;
+}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .offer-grid{grid-template-columns:1fr;gap:1rem}
+  .v-grid{grid-template-columns:1fr;gap:3rem}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .ft-top{grid-template-columns:1fr 1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:240px 200px 200px}
+  .g-cell.main{grid-row:span 2}
+  .values-row{grid-template-columns:1fr 1fr}
+  .k-grid{grid-template-columns:1fr;gap:3rem}
+  .further-box{grid-template-columns:1fr}
+  .fb-title{grid-column:span 1}
+}
+
+@media(max-width:768px){
+  #navbar{padding:1rem}
+  #navbar.solid{padding:0.7rem 1rem}
+  nav.desk{display:none}
+  .ham{display:flex}
+
+  .hero-h1{font-size:2.4rem}
+  .hero-btns{flex-direction:column;width:100%;max-width:280px}
+  .btn-main,.btn-outline{text-align:center;padding:1rem 1.5rem}
+
+  .stats-inner{grid-template-columns:1fr;gap:2rem}
+  .stat::after{display:none}
+  .stat{padding:1rem;border-bottom:1px solid rgba(255,255,255,0.07)}
+
+  .offer-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr;grid-template-rows:auto}
+  .g-cell.main{grid-row:span 1}
+  .g-cell{height:220px}
+
+  .team-grid{grid-template-columns:1fr}
+  .values-row{grid-template-columns:1fr 1fr}
+  .v-badge{left:0.5rem;bottom:-1rem}
+
+  .ev{grid-template-columns:70px 1fr;gap:1.25rem;padding:1.5rem}
+  .ev-meta{display:none}
+
+  .f-row{grid-template-columns:1fr}
+  .form-wrap{padding:2rem 1.5rem;border-radius:12px}
+  .ft-top{grid-template-columns:1fr}
+
+  .section{padding:5rem 1.25rem}
+  .pg-hero{padding:7rem 1.25rem 3.5rem}
+  .sp-grid{grid-template-columns:repeat(3,1fr)}
+  .further-box{padding:2rem 1.5rem}
+  .k-grid{gap:2.5rem}
+  .f-row{gap:0}
+}
+
+@media(max-width:480px){
+  .hero-h1{font-size:2rem}
+  .values-row{grid-template-columns:1fr}
+  .values-row .val-item{border-right:none;border-bottom:1px solid var(--border)}
+  .sp-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
 </head>
-<body class="bg-white text-slate-900">
+<body>
 
-    <!-- Navigation -->
-    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-6">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <!-- Logo -->
-            <div onclick="navigateTo('home')" class="cursor-pointer">
-                <h1 class="text-2xl font-bold flex items-baseline gap-2">
-                    <img src="images/ecw/ecw_logo.png" alt="EC Weinfelden Logo" class="h-10 w-auto" onerror="this.onerror=null;this.src='https://via.placeholder.com/80x40?text=Logo';">
-                </h1>
-            
-            </div>
+<!-- ══════ NAVBAR ══════ -->
+<header id="navbar">
+  <div class="nav-inner">
+    <div class="logo-wrap" onclick="goto('home')">
+      <img src="images/ecw/ecw_logo.png" alt="EC Weinfelden"
+           onerror="this.onerror=null;this.style.display='none'">
+      <div class="logo-text">
+        EC Weinfelden
+        <span>Eislaufclub seit 1970+</span>
+      </div>
+    </div>
+    <nav class="desk">
+      <button class="nb active" data-p="home"    onclick="goto('home')">Startseite</button>
+      <button class="nb"        data-p="verein"  onclick="goto('verein')">Verein</button>
+      <button class="nb"        data-p="team"    onclick="goto('team')">Team</button>
+      <button class="nb"        data-p="termine" onclick="goto('termine')">Termine</button>
+      <button class="nb"        data-p="kontakt" onclick="goto('kontakt')">Kontakt</button>
+    </nav>
+    <button class="ham" onclick="openMenu()" aria-label="Menu öffnen">
+      <i data-lucide="menu" style="width:22px;height:22px"></i>
+    </button>
+  </div>
+</header>
 
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:flex gap-8 items-center">
-                <button onclick="navigateTo('home')" class="nav-link text-sm font-semibold text-slate-700 hover:text-blue-600 transition-colors nav-active" data-page="home">Startseite</button>
-                <button onclick="navigateTo('verein')" class="nav-link text-sm font-semibold text-slate-700 hover:text-blue-600 transition-colors" data-page="verein">Verein</button>
-                <button onclick="navigateTo('team')" class="nav-link text-sm font-semibold text-slate-700 hover:text-blue-600 transition-colors" data-page="team">Team</button>
-                <button onclick="navigateTo('termine')" class="nav-link text-sm font-semibold text-slate-700 hover:text-blue-600 transition-colors" data-page="termine">Termine</button>
-                <button onclick="navigateTo('kontakt')" class="nav-link text-sm font-semibold text-slate-700 hover:text-blue-600 transition-colors" data-page="kontakt">Kontakt</button>
-            </nav>
+<!-- ══════ MOBILE MENU ══════ -->
+<div id="mmenu">
+  <button class="mmenu-close" onclick="closeMenu()" aria-label="Menu schliessen">
+    <i data-lucide="x" style="width:20px;height:20px"></i>
+  </button>
+  <button class="mmenu-item" onclick="goto('home')">Startseite <i data-lucide="chevron-right" style="width:20px;height:20px;color:var(--blue)"></i></button>
+  <button class="mmenu-item" onclick="goto('verein')">Verein <i data-lucide="chevron-right" style="width:20px;height:20px;color:var(--blue)"></i></button>
+  <button class="mmenu-item" onclick="goto('team')">Team <i data-lucide="chevron-right" style="width:20px;height:20px;color:var(--blue)"></i></button>
+  <button class="mmenu-item" onclick="goto('termine')">Termine <i data-lucide="chevron-right" style="width:20px;height:20px;color:var(--blue)"></i></button>
+  <button class="mmenu-item" onclick="goto('kontakt')">Kontakt <i data-lucide="chevron-right" style="width:20px;height:20px;color:var(--blue)"></i></button>
+</div>
 
-            <!-- Mobile Menu Toggle -->
-            <button class="md:hidden text-slate-900" onclick="toggleMobileMenu()">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
+<!-- ══════════════════════════════════════════ -->
+<!--  PAGE: HOME                               -->
+<!-- ══════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Willkommen beim EC Weinfelden</div>
+      <h1 class="hero-h1">Eleganz und<br>Leidenschaft<br><em>auf dem Eis</em></h1>
+      <p class="hero-sub">Seit über 50 Jahren fördern wir die Freude am Eiskunstlauf mit hochstehender Ausbildung und bester Atmosphäre.</p>
+      <div class="hero-btns">
+        <button class="btn-main" onclick="goto('verein')">Mehr erfahren</button>
+        <button class="btn-outline" onclick="goto('kontakt')">Kontakt aufnehmen</button>
+      </div>
+    </div>
+    <div class="scroll-cue">
+      <svg width="1" height="48"><line x1="0.5" y1="0" x2="0.5" y2="48" stroke="rgba(255,255,255,0.25)" stroke-width="1"/></svg>
+      <span>Scrollen</span>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stats-inner">
+      <div class="stat anim-up anim-d1">
+        <div class="stat-n">50+</div>
+        <div class="stat-l">Jahre Erfahrung</div>
+      </div>
+      <div class="stat anim-up anim-d2">
+        <div class="stat-n">100%</div>
+        <div class="stat-l">Qualifizierte Lehrer</div>
+      </div>
+      <div class="stat anim-up anim-d3">
+        <div class="stat-n">∞</div>
+        <div class="stat-l">Leidenschaft für Eislauf</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" style="background:var(--white)">
+    <div class="sec-inner">
+      <div class="sec-hd anim-up">
+        <span class="sec-tag">Was wir bieten</span>
+        <h2 class="sec-title">Unser Angebot</h2>
+        <p class="sec-sub">Hochstehendes Training für alle Niveaus und Altersgruppen</p>
+      </div>
+      <div class="offer-grid">
+        <div class="offer-card anim-up anim-d1">
+          <div class="offer-ic"><i data-lucide="users" style="width:22px;height:22px"></i></div>
+          <h3 class="offer-t">Anfängerkurse</h3>
+          <p class="offer-p">Professionelle Eislaufschule für Kinder und Anfänger mit bestens ausgebildeten Lehrerinnen.</p>
         </div>
-    </header>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed inset-0 bg-white z-40 hidden flex flex-col pt-24 px-6 gap-6">
-        <button onclick="navigateTo('home')" class="text-xl font-bold text-slate-900 text-left">Startseite</button>
-        <button onclick="navigateTo('verein')" class="text-xl font-bold text-slate-900 text-left">Verein</button>
-        <button onclick="navigateTo('team')" class="text-xl font-bold text-slate-900 text-left">Team</button>
-        <button onclick="navigateTo('termine')" class="text-xl font-bold text-slate-900 text-left">Termine</button>
-        <button onclick="navigateTo('kontakt')" class="text-xl font-bold text-slate-900 text-left">Kontakt</button>
-    </div>
-
-    <!-- PAGE: HOME -->
-    <div id="page-home" class="page active">
-        <!-- Hero Section -->
-        <section class="relative h-screen flex items-center justify-center overflow-hidden pt-20">
-            <div class="absolute inset-0 z-0">
-                <img src="images/ecw/ecw_1.jpg" alt="Eislauf" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1547347316-3685e683995d?auto=format&fit=crop&w=1600&q=80';">
-                <div class="absolute inset-0 hero-gradient"></div>
-            </div>
-
-            <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
-                <div class="inline-block px-4 py-2 rounded-full bg-white/10 glass-effect text-white text-sm font-medium mb-6 tracking-wide">
-                    Willkommen beim EC Weinfelden
-                </div>
-                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                    Eleganz und Leidenschaft
-                    <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">auf dem Eis</span>
-                </h1>
-                <p class="text-white/90 text-lg md:text-xl font-light mb-12 max-w-2xl mx-auto">
-                    Seit über 50 Jahren fördern wir die Freude am Eiskunstlauf mit hochstehender Ausbildung und bester Atmosphäre.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button onclick="navigateTo('verein')" class="px-8 py-4 bg-white text-blue-600 font-bold rounded-full hover:bg-blue-50 transition-all shadow-xl">
-                        Mehr erfahren
-                    </button>
-                    <button onclick="navigateTo('kontakt')" class="px-8 py-4 bg-white/20 glass-effect text-white font-bold rounded-full hover:bg-white/30 transition-all">
-                        Kontakt aufnehmen
-                    </button>
-                </div>
-            </div>
-
-            <!-- Scroll Indicator -->
-            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                </svg>
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section class="py-20 bg-gradient-to-b from-slate-50 to-white">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="text-center">
-                        <div class="text-5xl font-bold text-blue-600 mb-2">50+</div>
-                        <p class="text-slate-600 font-medium">Jahre Erfahrung</p>
-                    </div>
-                    <div class="text-center border-l border-r border-slate-200 px-8">
-                        <div class="text-5xl font-bold text-blue-600 mb-2">100%</div>
-                        <p class="text-slate-600 font-medium">Qualifizierte Lehrer</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-5xl font-bold text-blue-600 mb-2">∞</div>
-                        <p class="text-slate-600 font-medium">Leidenschaft für Eislauf</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Unser Angebot</h2>
-                    <p class="text-slate-600 text-lg max-w-2xl mx-auto">Hochstehendes Training für alle Niveaus und Altersgruppen</p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="group p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-100 hover:shadow-xl transition-all">
-                        <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
-                            <i data-lucide="users" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Anfängerkurse</h3>
-                        <p class="text-slate-600">Professionelle Eislaufschule für Kinder und Anfänger mit bestens ausgebildeten Lehrerinnen.</p>
-                    </div>
-
-                    <div class="group p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-100 hover:shadow-xl transition-all">
-                        <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
-                            <i data-lucide="trophy" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Leistungstraining</h3>
-                        <p class="text-slate-600">Intensives Training für fortgeschrittene Läufer mit Vorbereitung auf Wettkämpfe.</p>
-                    </div>
-
-                    <div class="group p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-100 hover:shadow-xl transition-all">
-                        <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
-                            <i data-lucide="zap" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Off-Ice Training</h3>
-                        <p class="text-slate-600">Ergänzendes Trainingsprogramm zur Steigerung von Kraft, Beweglichkeit und Ausdauer.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Gallery Section -->
-        <section class="py-24 bg-gradient-to-b from-white to-slate-50">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Momente auf dem Eis</h2>
-                    <p class="text-slate-600 text-lg max-w-2xl mx-auto">Erleben Sie die Eleganz und Leidenschaft unserer Läuferinnen und Läufer</p>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="md:col-span-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group cursor-pointer">
-                        <div class="relative h-80 overflow-hidden bg-slate-200">
-                            <img src="images/ecw/ecw_1.jpg" alt="Eislaufclub Weinfelden" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://via.placeholder.com/800x400?text=ECW+Moment+1';">
-                        </div>
-                    </div>
-                    
-                    <div class="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group cursor-pointer">
-                        <div class="relative h-72 overflow-hidden bg-slate-200">
-                            <img src="images/ecw/ecw_2.jpg" alt="Training" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://via.placeholder.com/600x400?text=ECW+Moment+2';">
-                        </div>
-                    </div>
-                    
-                    <div class="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group cursor-pointer">
-                        <div class="relative h-72 overflow-hidden bg-slate-200">
-                            <img src="images/ecw/ecw_3.jpg" alt="Performance" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://via.placeholder.com/600x400?text=ECW+Moment+3';">
-                        </div>
-                    </div>
-                    
-                    <div class="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group cursor-pointer">
-                        <div class="relative h-72 overflow-hidden bg-slate-200">
-                            <img src="images/ecw/ecw_4.jpg" alt="Wettkampf" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://via.placeholder.com/600x400?text=ECW+Moment+4';">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- PAGE: VEREIN -->
-    <div id="page-verein" class="page pt-32 pb-24">
-        <div class="max-w-6xl mx-auto px-6">
-            <!-- Hero Text -->
-            <div class="mb-20">
-                <h1 class="text-5xl md:text-6xl font-bold text-slate-900 mb-8">Über den Verein</h1>
-                <div class="w-20 h-1 bg-blue-600 rounded-full mb-8"></div>
-            </div>
-
-            <!-- Main Content -->
-            <div class="grid md:grid-cols-2 gap-16 items-center mb-24">
-                <div class="space-y-6">
-                    <div>
-                        <h2 class="text-3xl font-bold text-slate-900 mb-4">Wer sind wir?</h2>
-                        <p class="text-slate-700 text-lg leading-relaxed font-medium">
-                            Der Eislaufclub Weinfelden (ECW) ist ein traditionsreicher Verein, der seit über 50 Jahren die Freude am Eiskunstlauf fördert. Neben dem öffentlichen Eislauf bieten wir guten Sport und sinnvolle Jugendförderung für Kinder und Jugendliche.
-                        </p>
-                    </div>
-
-                    <div>
-                        <h2 class="text-3xl font-bold text-slate-900 mb-4">Unsere Philosophie</h2>
-                        <p class="text-slate-600 leading-relaxed">
-                            Einen hohen Stellenwert hat bei uns das <span class="font-semibold text-slate-900">Wohlfühlen auf dem Eis</span>. Alle Läufer und Läuferinnen – ob in den Anfängerkursen oder in den intensiven Trainings – sollen in einer guten Atmosphäre ihren Sport und ihr Hobby ausüben können.
-                        </p>
-                    </div>
-
-                    <div>
-                        <h2 class="text-3xl font-bold text-slate-900 mb-4">Unser Anspruch</h2>
-                        <p class="text-slate-600 leading-relaxed">
-                            Unsere bestens ausgebildete Eislauflehrerin und Kursleiterinnen garantieren einen <span class="font-semibold text-slate-900">geordneten und qualitativ hochstehenden Trainingsbetrieb</span>. Wir bieten für alle Niveaus und Altersgruppen professionelle Ausbildungsmöglichkeiten in ausgeschriebenen Kursen. Zusätzlich zum Training auf dem Eis bieten wir Lektionen im Off-Ice Training an.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="relative">
-                    <div class="rounded-3xl overflow-hidden shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1547347316-3685e683995d?auto=format&fit=crop&w=800&q=80" alt="Team" class="w-full h-full object-cover">
-                    </div>
-                    <div class="absolute -bottom-8 -right-8 bg-gradient-to-br from-blue-600 to-cyan-600 text-white p-8 rounded-2xl shadow-2xl max-w-xs">
-                        <p class="text-sm font-medium opacity-90">Tradition trifft Moderne</p>
-                        <p class="text-3xl font-bold mt-2">Qualität seit 1970+</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Values Section -->
-            <div class="section-divider mb-24"></div>
-
-            <div class="mb-24">
-                <h2 class="text-4xl font-bold text-slate-900 text-center mb-16">Unsere Werte</h2>
-                
-                <div class="grid md:grid-cols-4 gap-8">
-                    <div class="text-center">
-                        <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center">
-                            <i data-lucide="heart" class="w-8 h-8 text-blue-600"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900 mb-2">Leidenschaft</h3>
-                        <p class="text-slate-600 text-sm">Für den Eislauf und unsere Athleten</p>
-                    </div>
-
-                    <div class="text-center">
-                        <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center">
-                            <i data-lucide="award" class="w-8 h-8 text-blue-600"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900 mb-2">Exzellenz</h3>
-                        <p class="text-slate-600 text-sm">Hochstehendes Training und Coaching</p>
-                    </div>
-
-                    <div class="text-center">
-                        <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center">
-                            <i data-lucide="users" class="w-8 h-8 text-blue-600"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900 mb-2">Gemeinschaft</h3>
-                        <p class="text-slate-600 text-sm">Kameradschaft und gegenseitige Unterstützung</p>
-                    </div>
-
-                    <div class="text-center">
-                        <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center">
-                            <i data-lucide="sparkles" class="w-8 h-8 text-blue-600"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900 mb-2">Eleganz</h3>
-                        <p class="text-slate-600 text-sm">Kunstvolle Bewegung und Ausdruck</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Thank You Section -->
-            <div class="bg-gradient-to-r from-slate-50 to-blue-50 p-12 rounded-3xl border border-slate-200">
-                <h3 class="text-2xl font-bold text-slate-900 mb-4">Dank an unsere Unterstützer</h3>
-                <p class="text-slate-600 leading-relaxed">
-                    Den Sponsoren, Inserenten, Gönnern und Helfern dankt der Vorstand herzlich für die Unterstützung. Die Herausgabe dieser Broschüre, der Trainingsbetrieb und die Organisation von Anlässen wären ohne das Mittragen von vielen nicht möglich. <span class="font-semibold text-slate-900">Vielen Dank für Ihren Glauben an unseren Club!</span>
-                </p>
-            </div>
+        <div class="offer-card anim-up anim-d2">
+          <div class="offer-ic"><i data-lucide="trophy" style="width:22px;height:22px"></i></div>
+          <h3 class="offer-t">Leistungstraining</h3>
+          <p class="offer-p">Intensives Training für fortgeschrittene Läufer mit Vorbereitung auf Wettkämpfe.</p>
         </div>
-    </div>
-
-    <!-- PAGE: TEAM -->
-    <div id="page-team" class="page pt-32 pb-24 bg-gradient-to-b from-white to-slate-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20">
-                <h1 class="text-5xl md:text-6xl font-bold text-slate-900 mb-6">Die Personen dahinter</h1>
-                <p class="text-slate-600 text-lg max-w-2xl mx-auto">Erfahrene Trainer und Betreuer mit Leidenschaft für Eiskunstlauf</p>
-                <div class="w-20 h-1 bg-blue-600 rounded-full mt-8 mx-auto"></div>
-            </div>
-
-            <!-- Team Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-24">
-                <!-- Team Member 1 -->
-                <div class="team-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl">
-                    <div class="team-card-image h-64 bg-slate-200">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80" alt="Corinne Kurmann">
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-slate-900">Corinne Kurmann</h3>
-                        <p class="text-blue-600 font-semibold text-sm mt-2">Präsidentin</p>
-                        <p class="text-slate-600 text-sm mt-1">Sponsoring & Kursleiterin</p>
-                        <div class="mt-6 space-y-3 border-t border-slate-100 pt-6">
-                            <a href="mailto:c.kurmann@ec-weinfelden.ch" class="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors text-sm">
-                                <i data-lucide="mail" class="w-4 h-4"></i> c.kurmann@ec-weinfelden.ch
-                            </a>
-                            <a href="tel:+41765137853" class="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors text-sm">
-                                <i data-lucide="phone" class="w-4 h-4"></i> 076 513 78 53
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Member 2 -->
-                <div class="team-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl">
-                    <div class="team-card-image h-64 bg-slate-200">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Jacqueline Schmid">
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-slate-900">Jacqueline Schmid</h3>
-                        <p class="text-blue-600 font-semibold text-sm mt-2">Eislauflehrerin</p>
-                        <p class="text-slate-600 text-sm mt-1">Leiterin Trainings & Kurse</p>
-                        <div class="mt-6 space-y-3 border-t border-slate-100 pt-6">
-                            <a href="mailto:j.schmid@ec-weinfelden.ch" class="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors text-sm">
-                                <i data-lucide="mail" class="w-4 h-4"></i> j.schmid@ec-weinfelden.ch
-                            </a>
-                            <a href="tel:+41797990088" class="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors text-sm">
-                                <i data-lucide="phone" class="w-4 h-4"></i> 079 799 00 88
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Member 3 -->
-                <div class="team-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl">
-                    <div class="team-card-image h-64 bg-slate-200">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=600&q=80" alt="Jasmin Bär">
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-slate-900">Jasmin Bär</h3>
-                        <p class="text-blue-600 font-semibold text-sm mt-2">Anmeldungen</p>
-                        <p class="text-slate-600 text-sm mt-1">Kursleiterin</p>
-                        <div class="mt-6 space-y-3 border-t border-slate-100 pt-6">
-                            <a href="mailto:info@ec-weinfelden.ch" class="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors text-sm">
-                                <i data-lucide="mail" class="w-4 h-4"></i> info@ec-weinfelden.ch
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Member 4 -->
-                <div class="team-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl">
-                    <div class="team-card-image h-64 bg-slate-200">
-                        <img src="https://images.unsplash.com/photo-1506008590869-c8eba2c3e304?auto=format&fit=crop&w=600&q=80" alt="Silke Höchner">
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-slate-900">Silke Höchner</h3>
-                        <p class="text-blue-600 font-semibold text-sm mt-2">Finanzen</p>
-                        <p class="text-slate-600 text-sm mt-1">Verwaltung</p>
-                        <div class="mt-6 space-y-3 border-t border-slate-100 pt-6">
-                            <a href="mailto:buha@ec-weinfelden.ch" class="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors text-sm">
-                                <i data-lucide="mail" class="w-4 h-4"></i> buha@ec-weinfelden.ch
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Member 5 -->
-                <div class="team-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl">
-                    <div class="team-card-image h-64 bg-slate-200">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Nicole Nussbaum">
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-slate-900">Nicole Nussbaum</h3>
-                        <p class="text-blue-600 font-semibold text-sm mt-2">Aktuarin</p>
-                        <p class="text-slate-600 text-sm mt-1">Dokumentation & Verwaltung</p>
-                        <div class="mt-6 space-y-3 border-t border-slate-100 pt-6">
-                            <p class="text-slate-600 text-sm">Kontakt über Hauptadresse</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Member 6 -->
-                <div class="team-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl">
-                    <div class="team-card-image h-64 bg-slate-200">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80" alt="Elena Möckli">
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-slate-900">Elena Möckli</h3>
-                        <p class="text-blue-600 font-semibold text-sm mt-2">Kursleitung</p>
-                        <p class="text-slate-600 text-sm mt-1">Trainerin Anfängerkurse</p>
-                        <div class="mt-6 space-y-3 border-t border-slate-100 pt-6">
-                            <p class="text-slate-600 text-sm">Kontakt über Hauptadresse</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Additional Team Members -->
-            <div class="bg-white rounded-3xl p-12 border border-slate-100">
-                <h3 class="text-2xl font-bold text-slate-900 mb-8">Weiteres Team</h3>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-1">
-                            <i data-lucide="user" class="w-6 h-6 text-blue-600"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900">Manisha Anouk Baier</h4>
-                            <p class="text-slate-600 text-sm">Kursleitung</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-1">
-                            <i data-lucide="camera" class="w-6 h-6 text-blue-600"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900">Alisa Widmer</h4>
-                            <p class="text-slate-600 text-sm">Fotografin - www.alisa-widmer.ch</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-1">
-                            <i data-lucide="megaphone" class="w-6 h-6 text-blue-600"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900">Bettina Mannale</h4>
-                            <p class="text-slate-600 text-sm">Marketing & Homepage</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="offer-card anim-up anim-d3">
+          <div class="offer-ic"><i data-lucide="zap" style="width:22px;height:22px"></i></div>
+          <h3 class="offer-t">Off-Ice Training</h3>
+          <p class="offer-p">Ergänzendes Trainingsprogramm zur Steigerung von Kraft, Beweglichkeit und Ausdauer.</p>
         </div>
+      </div>
     </div>
+  </section>
 
-    <!-- PAGE: TERMINE -->
-    <div id="page-termine" class="page pt-32 pb-24 bg-slate-50">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="text-center mb-20">
-                <h1 class="text-5xl md:text-6xl font-bold text-slate-900 mb-6">Termine & Events</h1>
-                <p class="text-slate-600 text-lg">Markieren Sie sich diese wichtigen Daten in Ihrem Kalender</p>
-                <div class="w-20 h-1 bg-blue-600 rounded-full mt-8 mx-auto"></div>
-            </div>
+  <div class="divider"></div>
 
-            <div class="space-y-6">
-                <!-- Event 1 -->
-                <div class="bg-white rounded-2xl p-8 border border-slate-100 hover:border-blue-200 hover:shadow-lg transition-all group">
-                    <div class="grid md:grid-cols-3 gap-8 items-center">
-                        <div class="flex items-center gap-6">
-                            <div class="bg-gradient-to-br from-blue-600 to-cyan-600 text-white rounded-2xl p-6 text-center min-w-fit">
-                                <p class="text-3xl font-bold">24</p>
-                                <p class="text-xs font-semibold uppercase mt-1">Feb</p>
-                                <p class="text-xs font-light mt-0.5">2024</p>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-slate-900">Schaulaufen 2024</h3>
-                                <p class="text-slate-600 text-sm mt-1">Spektakuläre Show auf dem Eis</p>
-                            </div>
-                        </div>
-                        <div class="md:col-span-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                            <div class="space-y-2">
-                                <p class="flex items-center gap-2 text-slate-600">
-                                    <i data-lucide="clock" class="w-5 h-5 text-blue-600"></i>
-                                    <span class="font-semibold">18:30 Uhr</span>
-                                </p>
-                                <p class="flex items-center gap-2 text-slate-600">
-                                    <i data-lucide="map-pin" class="w-5 h-5 text-blue-600"></i>
-                                    <span>Eishalle Güttingersreuti</span>
-                                </p>
-                            </div>
-                            <button class="px-6 py-2 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all whitespace-nowrap">Details</button>
-                        </div>
-                    </div>
-                </div>
+  <!-- Gallery with children ice skating images -->
+  <section class="section" style="background:var(--off-white);padding-top:5rem;padding-bottom:0">
+    <div class="sec-inner">
+      <div class="sec-hd anim-up">
+        <span class="sec-tag">Galerie</span>
+        <h2 class="sec-title">Momente auf dem Eis</h2>
+        <p class="sec-sub">Erleben Sie die Eleganz und Leidenschaft unserer Läuferinnen und Läufer</p>
+      </div>
+    </div>
+  </section>
+  <div class="gallery-grid" style="padding:0 1.5rem 5rem;max-width:1320px;margin:0 auto;background:var(--off-white)">
+    <div class="g-cell main">
+      <img src="images/ecw/ecw_1.jpg" alt="Eiskunstlauf"
+           onerror="this.src='https://images.unsplash.com/photo-1578144088279-d93710dfda5b?auto=format&fit=crop&w=900&q=85'">
+      <div class="g-lbl"><span>Eiskunstlauf</span></div>
+    </div>
+    <div class="g-cell">
+      <img src="images/ecw/ecw_2.jpg" alt="Kinder auf dem Eis"
+           onerror="this.src='https://images.unsplash.com/photo-1547347316-3685e683995d?auto=format&fit=crop&w=700&q=85'">
+      <div class="g-lbl"><span>Nachwuchs</span></div>
+    </div>
+    <div class="g-cell">
+      <img src="images/ecw/ecw_3.jpg" alt="Training"
+           onerror="this.src='https://images.unsplash.com/photo-1612404730960-5c71577fca11?auto=format&fit=crop&w=700&q=85'">
+      <div class="g-lbl"><span>Training</span></div>
+    </div>
+    <div class="g-cell">
+      <img src="images/ecw/ecw_4.jpg" alt="Kinder Eislaufen"
+           onerror="this.src='https://images.unsplash.com/photo-1568574561049-89fe7d79aaf4?auto=format&fit=crop&w=700&q=85'">
+      <div class="g-lbl"><span>Kinder &amp; Spass</span></div>
+    </div>
+    <div class="g-cell">
+      <img src="images/ecw/ecw_1.jpg" alt="Performance"
+           onerror="this.src='https://images.unsplash.com/photo-1599481238640-4c1288750d7a?auto=format&fit=crop&w=700&q=85'">
+      <div class="g-lbl"><span>Performance</span></div>
+    </div>
+  </div>
 
-                <!-- Event 2 -->
-                <div class="bg-white rounded-2xl p-8 border border-slate-100 hover:border-blue-200 hover:shadow-lg transition-all group">
-                    <div class="grid md:grid-cols-3 gap-8 items-center">
-                        <div class="flex items-center gap-6">
-                            <div class="bg-gradient-to-br from-slate-300 to-slate-400 text-slate-700 rounded-2xl p-6 text-center min-w-fit">
-                                <p class="text-3xl font-bold">10</p>
-                                <p class="text-xs font-semibold uppercase mt-1">Mär</p>
-                                <p class="text-xs font-light mt-0.5">2024</p>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-slate-900">Interclub Wettkampf</h3>
-                                <p class="text-slate-600 text-sm mt-1">Regionales Wettbewerbs-Event</p>
-                            </div>
-                        </div>
-                        <div class="md:col-span-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                            <div class="space-y-2">
-                                <p class="flex items-center gap-2 text-slate-600">
-                                    <i data-lucide="calendar" class="w-5 h-5 text-blue-600"></i>
-                                    <span class="font-semibold">Ganztägig</span>
-                                </p>
-                                <p class="flex items-center gap-2 text-slate-600">
-                                    <i data-lucide="map-pin" class="w-5 h-5 text-blue-600"></i>
-                                    <span>Region Zürich</span>
-                                </p>
-                            </div>
-                            <button class="px-6 py-2 bg-slate-300 text-slate-700 font-bold rounded-lg hover:bg-slate-400 transition-all whitespace-nowrap cursor-default">TBA</button>
-                        </div>
-                    </div>
-                </div>
+</div><!-- /page-home -->
 
-                <!-- Event Info -->
-                <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-8 border border-blue-100 text-center">
-                    <i data-lucide="info" class="w-8 h-8 text-blue-600 mx-auto mb-4"></i>
-                    <p class="text-slate-700">Weitere Termine und Trainingszeiten finden Sie unter <span class="font-bold">Trainingszeiten & Kursangebote</span> auf der Hauptwebsite</p>
-                </div>
-            </div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  PAGE: VEREIN                             -->
+<!-- ══════════════════════════════════════════ -->
+<div id="page-verein" class="page">
+  <div class="pg-hero">
+    <div class="pg-hero-inner">
+      <button class="back-btn" onclick="goto('home')">
+        <i data-lucide="arrow-left" style="width:14px;height:14px"></i> Zurück zur Startseite
+      </button>
+      <span class="pg-tag">Über uns</span>
+      <h1 class="pg-title">Über den Verein<span>mit Tradition</span></h1>
+    </div>
+  </div>
+
+  <section class="section" style="background:var(--white)">
+    <div class="sec-inner">
+      <div class="v-grid">
+        <div class="v-text anim-up">
+          <h2>Wer sind wir?</h2>
+          <p style="font-weight:400;font-size:1rem;color:var(--charcoal)">Der Eislaufclub Weinfelden (ECW) ist ein traditionsreicher Verein, der seit über 50 Jahren die Freude am Eiskunstlauf fördert. Neben dem öffentlichen Eislauf bieten wir guten Sport und sinnvolle Jugendförderung für Kinder und Jugendliche.</p>
+          <h2>Unsere Philosophie</h2>
+          <p>Einen hohen Stellenwert hat bei uns das <strong>Wohlfühlen auf dem Eis</strong>. Alle Läufer und Läuferinnen – ob in den Anfängerkursen oder in den intensiven Trainings – sollen in einer guten Atmosphäre ihren Sport und ihr Hobby ausüben können.</p>
+          <h2>Unser Anspruch</h2>
+          <p>Unsere bestens ausgebildete Eislauflehrerin und Kursleiterinnen garantieren einen <strong>geordneten und qualitativ hochstehenden Trainingsbetrieb</strong>. Wir bieten für alle Niveaus und Altersgruppen professionelle Ausbildungsmöglichkeiten in ausgeschriebenen Kursen. Zusätzlich zum Training auf dem Eis bieten wir Lektionen im Off-Ice Training an.</p>
         </div>
+        <div class="v-img anim-up anim-d2">
+          <img src="https://images.unsplash.com/photo-1611741016809-aee3d7ae74a3?auto=format&fit=crop&w=800&q=85" alt="Eiskunstlauf Performance"
+               onerror="this.onerror=null;this.src='https://picsum.photos/800/1000?random=20'">
+          <div class="v-badge">
+            <span class="v-badge-n">1970</span>
+            <div class="v-badge-t">Gegründet in Weinfelden</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider" style="margin-bottom:4rem"></div>
+
+      <div class="sec-hd" style="margin-bottom:2.5rem">
+        <span class="sec-tag">Was uns bewegt</span>
+        <h2 class="sec-title">Unsere Werte</h2>
+      </div>
+      <div class="values-row anim-up">
+        <div class="val-item">
+          <div class="val-ic"><i data-lucide="heart" style="width:24px;height:24px"></i></div>
+          <div class="val-t">Leidenschaft</div>
+          <div class="val-s">Für den Eislauf und unsere Athleten</div>
+        </div>
+        <div class="val-item">
+          <div class="val-ic"><i data-lucide="award" style="width:24px;height:24px"></i></div>
+          <div class="val-t">Exzellenz</div>
+          <div class="val-s">Hochstehendes Training und Coaching</div>
+        </div>
+        <div class="val-item">
+          <div class="val-ic"><i data-lucide="users" style="width:24px;height:24px"></i></div>
+          <div class="val-t">Gemeinschaft</div>
+          <div class="val-s">Kameradschaft und gegenseitige Unterstützung</div>
+        </div>
+        <div class="val-item">
+          <div class="val-ic"><i data-lucide="sparkles" style="width:24px;height:24px"></i></div>
+          <div class="val-t">Eleganz</div>
+          <div class="val-s">Kunstvolle Bewegung und Ausdruck</div>
+        </div>
+      </div>
+
+      <div class="thanks anim-up">
+        <h3>Dank an unsere Unterstützer</h3>
+        <p>Den Sponsoren, Inserenten, Gönnern und Helfern dankt der Vorstand herzlich für die Unterstützung. Die Herausgabe dieser Broschüre, der Trainingsbetrieb und die Organisation von Anlässen wären ohne das Mittragen von vielen nicht möglich. <strong>Vielen Dank für Ihren Glauben an unseren Club!</strong></p>
+      </div>
     </div>
+  </section>
+</div><!-- /page-verein -->
 
-    <!-- PAGE: KONTAKT -->
-    <div id="page-kontakt" class="page pt-32 pb-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-20 mb-24">
-                <!-- Contact Info -->
-                <div>
-                    <h1 class="text-5xl md:text-6xl font-bold text-slate-900 mb-8">Kontakt</h1>
-                    <p class="text-slate-600 text-lg mb-16 leading-relaxed">
-                        Haben Sie Fragen zu unseren Trainingszeiten, der Eislaufschule oder einer Mitgliedschaft? Wir stehen Ihnen gerne zur Verfügung!
-                    </p>
 
-                    <div class="space-y-10">
-                        <div class="flex gap-6 items-start">
-                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="mail" class="w-6 h-6 text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-slate-900">Email</h3>
-                                <a href="mailto:info@ec-weinfelden.ch" class="text-blue-600 hover:text-blue-700 text-lg font-medium mt-2 block">info@ec-weinfelden.ch</a>
-                            </div>
-                        </div>
+<!-- ══════════════════════════════════════════ -->
+<!--  PAGE: TEAM                               -->
+<!-- ══════════════════════════════════════════ -->
+<div id="page-team" class="page">
+  <div class="pg-hero">
+    <div class="pg-hero-inner">
+      <button class="back-btn" onclick="goto('home')">
+        <i data-lucide="arrow-left" style="width:14px;height:14px"></i> Zurück zur Startseite
+      </button>
+      <span class="pg-tag">Unser Team</span>
+      <h1 class="pg-title">Die Personen<span>dahinter</span></h1>
+    </div>
+  </div>
 
-                        <div class="flex gap-6 items-start">
-                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="phone" class="w-6 h-6 text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-slate-900">Telefon</h3>
-                                <p class="text-slate-600 text-lg mt-1">Für spezifische Anfragen kontaktieren Sie</p>
-                                <p class="text-slate-600 text-lg">uns gerne per Email oder Mail</p>
-                            </div>
-                        </div>
+  <section class="section" style="background:var(--white)">
+    <div class="sec-inner">
+      <div class="sec-hd anim-up" style="margin-bottom:3rem">
+        <p class="sec-sub">Erfahrene Trainer und Betreuer mit Leidenschaft für Eiskunstlauf</p>
+      </div>
 
-                        <div class="flex gap-6 items-start">
-                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="map-pin" class="w-6 h-6 text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-slate-900">Adresse</h3>
-                                <p class="text-slate-600 mt-2 leading-relaxed">
-                                    Lauligstrasse 6<br>
-                                    8570 Weinfelden<br>
-                                    <span class="text-sm text-slate-500">Eishalle Güttingersreuti</span>
-                                </p>
-                            </div>
-                        </div>
+      <div class="team-grid">
+        <div class="tm anim-up anim-d1">
+          <div class="tm-photo">
+            <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80" alt="Corinne Kurmann"
+                 onerror="this.onerror=null;this.src='https://picsum.photos/600/800?random=21'">
+            <div class="tm-overlay"></div>
+            <div class="tm-name-block"><h3>Corinne Kurmann</h3><span class="role">Präsidentin · Sponsoring</span></div>
+          </div>
+          <div class="tm-details">
+            <a class="tm-link" href="mailto:c.kurmann@ec-weinfelden.ch"><i data-lucide="mail" style="width:13px;height:13px"></i> c.kurmann@ec-weinfelden.ch</a>
+            <a class="tm-link" href="tel:+41765137853"><i data-lucide="phone" style="width:13px;height:13px"></i> 076 513 78 53</a>
+          </div>
+          <div class="tm-subrole">Kursleiterin</div>
+        </div>
 
-                        <div class="flex gap-6 items-start">
-                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="globe" class="w-6 h-6 text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-slate-900">Verbände</h3>
-                                <div class="mt-2 space-y-1 text-blue-600">
-                                    <a href="http://www.tgev.ch" target="_blank" class="block hover:text-blue-700">www.tgev.ch</a>
-                                    <a href="http://www.swissiceskating.ch" target="_blank" class="block hover:text-blue-700">www.swissiceskating.ch</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="tm anim-up anim-d2">
+          <div class="tm-photo">
+            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=600&q=80" alt="Jacqueline Schmid"
+                 onerror="this.onerror=null;this.src='https://picsum.photos/600/800?random=22'">
+            <div class="tm-overlay"></div>
+            <div class="tm-name-block"><h3>Jacqueline Schmid</h3><span class="role">Eislauflehrerin</span></div>
+          </div>
+          <div class="tm-details">
+            <a class="tm-link" href="mailto:j.schmid@ec-weinfelden.ch"><i data-lucide="mail" style="width:13px;height:13px"></i> j.schmid@ec-weinfelden.ch</a>
+            <a class="tm-link" href="tel:+41797990088"><i data-lucide="phone" style="width:13px;height:13px"></i> 079 799 00 88</a>
+          </div>
+          <div class="tm-subrole">Leiterin Trainings &amp; Kurse</div>
+        </div>
 
-                <!-- Contact Form -->
-                <div class="bg-gradient-to-br from-slate-50 to-blue-50 p-12 rounded-3xl border border-slate-100 shadow-xl h-fit sticky top-32">
-                    <h2 class="text-3xl font-bold text-slate-900 mb-8">Nachricht senden</h2>
-                    <form onsubmit="handleContactForm(event)" class="space-y-6">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-bold uppercase text-slate-600 mb-3 tracking-wider">Vorname</label>
-                                <input type="text" required class="w-full px-5 py-3 bg-white rounded-xl border border-slate-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all" placeholder="Max">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold uppercase text-slate-600 mb-3 tracking-wider">Nachname</label>
-                                <input type="text" required class="w-full px-5 py-3 bg-white rounded-xl border border-slate-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all" placeholder="Müller">
-                            </div>
-                        </div>
+        <div class="tm anim-up anim-d3">
+          <div class="tm-photo">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80" alt="Jasmin Bär"
+                 onerror="this.onerror=null;this.src='https://picsum.photos/600/800?random=23'">
+            <div class="tm-overlay"></div>
+            <div class="tm-name-block"><h3>Jasmin Bär</h3><span class="role">Anmeldungen</span></div>
+          </div>
+          <div class="tm-details">
+            <a class="tm-link" href="mailto:info@ec-weinfelden.ch"><i data-lucide="mail" style="width:13px;height:13px"></i> info@ec-weinfelden.ch</a>
+          </div>
+          <div class="tm-subrole">Kursleiterin</div>
+        </div>
 
-                        <div>
-                            <label class="block text-xs font-bold uppercase text-slate-600 mb-3 tracking-wider">Email</label>
-                            <input type="email" required class="w-full px-5 py-3 bg-white rounded-xl border border-slate-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all" placeholder="max@beispiel.ch">
-                        </div>
+        <div class="tm anim-up anim-d1">
+          <div class="tm-photo">
+            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80" alt="Silke Höchner"
+                 onerror="this.onerror=null;this.src='https://picsum.photos/600/800?random=24'">
+            <div class="tm-overlay"></div>
+            <div class="tm-name-block"><h3>Silke Höchner</h3><span class="role">Finanzen</span></div>
+          </div>
+          <div class="tm-details">
+            <a class="tm-link" href="mailto:buha@ec-weinfelden.ch"><i data-lucide="mail" style="width:13px;height:13px"></i> buha@ec-weinfelden.ch</a>
+          </div>
+          <div class="tm-subrole">Verwaltung</div>
+        </div>
 
-                        <div>
-                            <label class="block text-xs font-bold uppercase text-slate-600 mb-3 tracking-wider">Telefon (optional)</label>
-                            <input type="tel" class="w-full px-5 py-3 bg-white rounded-xl border border-slate-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all" placeholder="+41 ...">
-                        </div>
+        <div class="tm anim-up anim-d2">
+          <div class="tm-photo">
+            <img src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=600&q=80" alt="Nicole Nussbaum"
+                 onerror="this.onerror=null;this.src='https://picsum.photos/600/800?random=25'">
+            <div class="tm-overlay"></div>
+            <div class="tm-name-block"><h3>Nicole Nussbaum</h3><span class="role">Aktuarin</span></div>
+          </div>
+          <div class="tm-details">
+            <p class="tm-info"><i data-lucide="info" style="width:13px;height:13px"></i> Kontakt über Hauptadresse</p>
+          </div>
+          <div class="tm-subrole">Dokumentation &amp; Verwaltung</div>
+        </div>
 
-                        <div>
-                            <label class="block text-xs font-bold uppercase text-slate-600 mb-3 tracking-wider">Nachricht</label>
-                            <textarea rows="5" required class="w-full px-5 py-3 bg-white rounded-xl border border-slate-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all resize-none" placeholder="Ihre Nachricht..."></textarea>
-                        </div>
+        <div class="tm anim-up anim-d3">
+          <div class="tm-photo">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt="Elena Möckli"
+                 onerror="this.onerror=null;this.src='https://picsum.photos/600/800?random=26'">
+            <div class="tm-overlay"></div>
+            <div class="tm-name-block"><h3>Elena Möckli</h3><span class="role">Kursleitung</span></div>
+          </div>
+          <div class="tm-details">
+            <p class="tm-info"><i data-lucide="info" style="width:13px;height:13px"></i> Kontakt über Hauptadresse</p>
+          </div>
+          <div class="tm-subrole">Trainerin Anfängerkurse</div>
+        </div>
+      </div>
 
-                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-4 rounded-xl font-bold uppercase tracking-wider hover:shadow-lg hover:shadow-blue-200 transition-all">
-                            Nachricht senden
-                        </button>
+      <div class="further-box anim-up">
+        <div class="fb-title">Weiteres Team</div>
+        <div class="fb-item">
+          <div class="fb-ic"><i data-lucide="user" style="width:18px;height:18px"></i></div>
+          <div><div class="fb-name">Manisha Anouk Baier</div><div class="fb-role">Kursleitung</div></div>
+        </div>
+        <div class="fb-item">
+          <div class="fb-ic"><i data-lucide="camera" style="width:18px;height:18px"></i></div>
+          <div><div class="fb-name">Alisa Widmer</div><div class="fb-role">Fotografin — www.alisa-widmer.ch</div></div>
+        </div>
+        <div class="fb-item">
+          <div class="fb-ic"><i data-lucide="megaphone" style="width:18px;height:18px"></i></div>
+          <div><div class="fb-name">Bettina Mannale</div><div class="fb-role">Marketing &amp; Homepage</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-team -->
 
-                        <p class="text-xs text-slate-500 text-center">Wir antworten so schnell wie möglich auf Ihre Anfrage.</p>
-                    </form>
-                </div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  PAGE: TERMINE                            -->
+<!-- ══════════════════════════════════════════ -->
+<div id="page-termine" class="page">
+  <div class="pg-hero">
+    <div class="pg-hero-inner">
+      <button class="back-btn" onclick="goto('home')">
+        <i data-lucide="arrow-left" style="width:14px;height:14px"></i> Zurück zur Startseite
+      </button>
+      <span class="pg-tag">Kalender</span>
+      <h1 class="pg-title">Termine<span>&amp; Events</span></h1>
+    </div>
+  </div>
+
+  <section class="section" style="background:var(--off-white)">
+    <div class="sec-inner">
+      <div class="sec-hd anim-up" style="margin-bottom:3rem">
+        <p class="sec-sub">Markieren Sie sich diese wichtigen Daten in Ihrem Kalender</p>
+      </div>
+
+      <div class="events anim-up">
+        <div class="ev">
+          <div class="ev-date">
+            <div class="ev-day">24</div>
+            <div class="ev-month">Feb</div>
+            <div class="ev-year">2024</div>
+          </div>
+          <div class="ev-body">
+            <h3>Schaulaufen 2024</h3>
+            <p>Spektakuläre Show auf dem Eis</p>
+            <div class="ev-meta">
+              <div class="ev-mi"><i data-lucide="clock" style="width:13px;height:13px;color:var(--blue)"></i> 18:30 Uhr</div>
+              <div class="ev-mi"><i data-lucide="map-pin" style="width:13px;height:13px;color:var(--blue)"></i> Eishalle Güttingersreuti</div>
             </div>
+            <button class="ev-btn">Details</button>
+          </div>
+        </div>
 
-            <!-- Sponsors Section -->
-            <div class="section-divider mb-24"></div>
+        <div class="ev">
+          <div class="ev-date">
+            <div class="ev-day" style="color:var(--mist)">10</div>
+            <div class="ev-month">Mär</div>
+            <div class="ev-year">2024</div>
+          </div>
+          <div class="ev-body">
+            <h3>Interclub Wettkampf</h3>
+            <p>Regionales Wettbewerbs-Event</p>
+            <div class="ev-meta">
+              <div class="ev-mi"><i data-lucide="calendar" style="width:13px;height:13px;color:var(--blue)"></i> Ganztägig</div>
+              <div class="ev-mi"><i data-lucide="map-pin" style="width:13px;height:13px;color:var(--blue)"></i> Region Zürich</div>
+            </div>
+            <button class="ev-btn tba">TBA</button>
+          </div>
+        </div>
+      </div>
 
+      <div class="ev-note anim-up">
+        Weitere Termine und Trainingszeiten finden Sie unter <strong>Trainingszeiten &amp; Kursangebote</strong> auf der Hauptwebsite.
+      </div>
+    </div>
+  </section>
+</div><!-- /page-termine -->
+
+
+<!-- ══════════════════════════════════════════ -->
+<!--  PAGE: KONTAKT                            -->
+<!-- ══════════════════════════════════════════ -->
+<div id="page-kontakt" class="page">
+  <div class="pg-hero">
+    <div class="pg-hero-inner">
+      <button class="back-btn" onclick="goto('home')">
+        <i data-lucide="arrow-left" style="width:14px;height:14px"></i> Zurück zur Startseite
+      </button>
+      <span class="pg-tag">Schreiben Sie uns</span>
+      <h1 class="pg-title">Kontakt<span>aufnehmen</span></h1>
+    </div>
+  </div>
+
+  <section class="section" style="background:var(--white)">
+    <div class="sec-inner">
+      <div class="k-grid anim-up">
+        <div>
+          <p class="k-intro">Haben Sie Fragen zu unseren Trainingszeiten, der Eislaufschule oder einer Mitgliedschaft? Wir stehen Ihnen gerne zur Verfügung!</p>
+
+          <div class="k-item">
+            <div class="k-icon"><i data-lucide="mail" style="width:18px;height:18px"></i></div>
             <div>
-                <h2 class="text-4xl font-bold text-slate-900 text-center mb-6">Unsere Partner & Sponsoren</h2>
-                <p class="text-slate-600 text-center mb-16 max-w-2xl mx-auto">
-                    Bitte berücksichtigen Sie unsere Sponsoren und Inserenten bei Ihren Einkäufen und Aufträgen. Vielen Dank für die großartige Unterstützung!
-                </p>
-
-                <div class="sponsor-grid mb-12">
-                    <a href="https://www.aemisegger-apotheke.ch/" target="_blank" class="sponsor-item">
-                        <img src="https://ec-weinfelden.ch/wp-content/uploads/2019/12/AEMISEGGER-APOTHEKE-DROGERIE.png" alt="Aemisegger Apotheke">
-                    </a>
-                    <a href="https://www.skatingundsport.ch/" target="_blank" class="sponsor-item">
-                        <img src="https://ec-weinfelden.ch/wp-content/uploads/2020/01/shoplogo_xs.jpg" alt="Skating und Sport">
-                    </a>
-                    <a href="https://www.tbweinfelden.ch/" target="_blank" class="sponsor-item">
-                        <img src="https://ec-weinfelden.ch/wp-content/uploads/2019/12/04_Ins_Mobiliar-1024x384.jpg" alt="TB Weinfelden">
-                    </a>
-                    <a href="https://www.tobi-fruechte.ch/" target="_blank" class="sponsor-item">
-                        <img src="https://ec-weinfelden.ch/wp-content/uploads/2019/12/05_Ins_TBW-1024x739.jpg" alt="Tobi Früchte">
-                    </a>
-                    <a href="http://www.mages-uhren.ch/" target="_blank" class="sponsor-item">
-                        <img src="https://ec-weinfelden.ch/wp-content/uploads/2019/12/09_Ins_TKB-e1741115308404.jpg" alt="Mages Uhren">
-                    </a>
-                    <a href="https://www.sbw-media.ch/" target="_blank" class="sponsor-item">
-                        <img src="https://ec-weinfelden.ch/wp-content/uploads/2019/12/SBW_Logo@2x.png" alt="SBW Media">
-                    </a>
-                    <a href="https://www.landimittelthurgau.ch/" target="_blank" class="sponsor-item">
-                        <img src="https://ec-weinfelden.ch/wp-content/uploads/2019/12/TeeZeit.jpeg" alt="Landi Mittelthurgau">
-                    </a>
-                    <a href="http://www.stelzenhof.ch/" target="_blank" class="sponsor-item">
-                        <img src="https://ec-weinfelden.ch/wp-content/uploads/2019/12/LogoStelzenhof_Web-1024x255.gif" alt="Stelzenhof">
-                    </a>
-                    <a href="https://www.coop.ch/" target="_blank" class="sponsor-item">
-                        <img src="https://ec-weinfelden.ch/wp-content/uploads/2019/12/coop.png" alt="Coop">
-                    </a>
-                </div>
-
-                <div class="bg-gradient-to-r from-blue-50 to-cyan-50 p-8 rounded-2xl border border-blue-100 text-center">
-                    <a href="https://ec-weinfelden.ch/wp-content/uploads/2025/09/ECW_Spons_low_2526.pdf" target="_blank" class="inline-flex items-center gap-2 text-blue-600 font-bold hover:text-blue-700">
-                        <i data-lucide="file-download" class="w-5 h-5"></i>
-                        ECW Sponsorendatei herunterladen
-                    </a>
-                </div>
+              <div class="k-lbl">Email</div>
+              <div class="k-val"><a href="mailto:info@ec-weinfelden.ch">info@ec-weinfelden.ch</a></div>
             </div>
+          </div>
+
+          <div class="k-item">
+            <div class="k-icon"><i data-lucide="phone" style="width:18px;height:18px"></i></div>
+            <div>
+              <div class="k-lbl">Telefon</div>
+              <div class="k-val-sm">Für spezifische Anfragen kontaktieren Sie<br>uns gerne per Email oder Mail</div>
+            </div>
+          </div>
+
+          <div class="k-item">
+            <div class="k-icon"><i data-lucide="map-pin" style="width:18px;height:18px"></i></div>
+            <div>
+              <div class="k-lbl">Adresse</div>
+              <div class="k-val">Lauligstrasse 6<br>8570 Weinfelden</div>
+              <div class="k-val-sm" style="margin-top:0.3rem">Eishalle Güttingersreuti</div>
+            </div>
+          </div>
+
+          <div class="k-item">
+            <div class="k-icon"><i data-lucide="globe" style="width:18px;height:18px"></i></div>
+            <div>
+              <div class="k-lbl">Verbände</div>
+              <div class="k-val">
+                <a href="http://www.tgev.ch" target="_blank" style="display:block;font-size:0.95rem">www.tgev.ch</a>
+                <a href="http://www.swissiceskating.ch" target="_blank" style="display:block;font-size:0.95rem">www.swissiceskating.ch</a>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <div class="form-wrap">
+          <h2 class="form-title">Nachricht senden</h2>
+          <p class="form-sub">Wir antworten so schnell wie möglich auf Ihre Anfrage.</p>
+          <form onsubmit="handleForm(event)">
+            <div class="f-row">
+              <div class="f-field">
+                <label class="f-lbl">Vorname</label>
+                <input class="f-in" type="text" required placeholder="Max">
+              </div>
+              <div class="f-field">
+                <label class="f-lbl">Nachname</label>
+                <input class="f-in" type="text" required placeholder="Müller">
+              </div>
+            </div>
+            <div class="f-field">
+              <label class="f-lbl">Email</label>
+              <input class="f-in" type="email" required placeholder="max@beispiel.ch">
+            </div>
+            <div class="f-field">
+              <label class="f-lbl">Telefon (optional)</label>
+              <input class="f-in" type="tel" placeholder="+41 …">
+            </div>
+            <div class="f-field">
+              <label class="f-lbl">Nachricht</label>
+              <textarea class="f-ta" rows="5" required placeholder="Ihre Nachricht…"></textarea>
+            </div>
+            <button type="submit" class="f-submit">Nachricht senden</button>
+            <p class="f-note">Ihre Daten werden vertraulich behandelt.</p>
+          </form>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-white py-16 mt-24 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-12 mb-16">
-                <div class="md:col-span-2">
-                    <h2 class="text-2xl font-bold mb-4">EC<span class="text-blue-400">Weinfelden</span></h2>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Der Eislaufclub Weinfelden bietet hochstehendes Training im Eiskunstlauf für Anfänger und Fortgeschrittene in der Thurgauer Region seit über 50 Jahren.
-                    </p>
-                    <div class="flex gap-4">
-                        <a href="https://www.instagram.com/eislaufclub_weinfelden/" target="_blank" class="w-10 h-10 bg-slate-800 hover:bg-blue-600 rounded-full flex items-center justify-center transition-all">
-                            <i data-lucide="instagram" class="w-5 h-5"></i>
-                        </a>
-                        <a href="https://www.facebook.com/EislaufclubWeinfelden/" target="_blank" class="w-10 h-10 bg-slate-800 hover:bg-blue-600 rounded-full flex items-center justify-center transition-all">
-                            <i data-lucide="facebook" class="w-5 h-5"></i>
-                        </a>
-                    </div>
-                </div>
+  <div class="sp-section">
+    <div class="sp-inner">
+      <h2 class="sp-title anim-up">Unsere Partner &amp; Sponsoren</h2>
+      <p class="sp-sub anim-up">Bitte berücksichtigen Sie unsere Sponsoren und Inserenten bei Ihren Einkäufen und Aufträgen. Vielen Dank für die grossartige Unterstützung!</p>
+      <div class="sp-grid anim-up">
+        <a href="https://www.aemisegger-apotheke.ch/" target="_blank" class="sp-item"><img src="https://ec-weinfelden.ch/wp-content/uploads/2019/12/AEMISEGGER-APOTHEKE-DROGERIE.png" alt="Aemisegger Apotheke"></a>
+        <a href="https://www.skatingundsport.ch/" target="_blank" class="sp-item"><img src="https://ec-weinfelden.ch/wp-content/uploads/2020/01/shoplogo_xs.jpg" alt="Skating und Sport"></a>
+        <a href="https://www.tbweinfelden.ch/" target="_blank" class="sp-item"><img src="https://ec-weinfelden.ch/wp-content/uploads/2019/12/04_Ins_Mobiliar-1024x384.jpg" alt="TB Weinfelden"></a>
+        <a href="https://www.tobi-fruechte.ch/" target="_blank" class="sp-item"><img src="https://ec-weinfelden.ch/wp-content/uploads/2019/12/05_Ins_TBW-1024x739.jpg" alt="Tobi Früchte"></a>
+        <a href="http://www.mages-uhren.ch/" target="_blank" class="sp-item"><img src="https://ec-weinfelden.ch/wp-content/uploads/2019/12/09_Ins_TKB-e1741115308404.jpg" alt="Mages Uhren"></a>
+        <a href="https://www.sbw-media.ch/" target="_blank" class="sp-item"><img src="https://ec-weinfelden.ch/wp-content/uploads/2019/12/SBW_Logo@2x.png" alt="SBW Media"></a>
+        <a href="https://www.landimittelthurgau.ch/" target="_blank" class="sp-item"><img src="https://ec-weinfelden.ch/wp-content/uploads/2019/12/TeeZeit.jpeg" alt="Landi Mittelthurgau"></a>
+        <a href="http://www.stelzenhof.ch/" target="_blank" class="sp-item"><img src="https://ec-weinfelden.ch/wp-content/uploads/2019/12/LogoStelzenhof_Web-1024x255.gif" alt="Stelzenhof"></a>
+        <a href="https://www.coop.ch/" target="_blank" class="sp-item"><img src="https://ec-weinfelden.ch/wp-content/uploads/2019/12/coop.png" alt="Coop"></a>
+      </div>
+      <div class="sp-dl">
+        <a href="https://ec-weinfelden.ch/wp-content/uploads/2025/09/ECW_Spons_low_2526.pdf" target="_blank">
+          <i data-lucide="download" style="width:14px;height:14px"></i>
+          ECW Sponsorendatei herunterladen
+        </a>
+      </div>
+    </div>
+  </div>
+</div><!-- /page-kontakt -->
 
-                <div>
-                    <h4 class="font-bold text-blue-400 text-sm uppercase tracking-widest mb-6">Navigation</h4>
-                    <ul class="space-y-3 text-slate-400 text-sm">
-                        <li><button onclick="navigateTo('home')" class="hover:text-white transition-colors">Startseite</button></li>
-                        <li><button onclick="navigateTo('verein')" class="hover:text-white transition-colors">Verein</button></li>
-                        <li><button onclick="navigateTo('team')" class="hover:text-white transition-colors">Team</button></li>
-                        <li><button onclick="navigateTo('termine')" class="hover:text-white transition-colors">Termine</button></li>
-                        <li><button onclick="navigateTo('kontakt')" class="hover:text-white transition-colors">Kontakt</button></li>
-                    </ul>
-                </div>
 
-                <div>
-                    <h4 class="font-bold text-blue-400 text-sm uppercase tracking-widest mb-6">Kontakt</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        <span class="block font-semibold text-white">Lauligstrasse 6</span>
-                        8570 Weinfelden<br>
-                        <a href="mailto:info@ec-weinfelden.ch" class="text-blue-400 hover:text-white transition-colors">info@ec-weinfelden.ch</a>
-                    </p>
-                </div>
-            </div>
-
-            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-400 text-sm">
-                <p>&copy; 2024 Eislaufclub Weinfelden. All Rights Reserved.</p>
-                <div class="flex gap-6">
-                    <a href="#" class="hover:text-white transition-colors">Datenschutz</a>
-                    <a href="#" class="hover:text-white transition-colors">Impressum</a>
-                </div>
-                <p>Design: Modern & Elegant</p>
-            </div>
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <h2>EC<span>Weinfelden</span></h2>
+        <p>Der Eislaufclub Weinfelden bietet hochstehendes Training im Eiskunstlauf für Anfänger und Fortgeschrittene in der Thurgauer Region seit über 50 Jahren.</p>
+        <div class="ft-social">
+          <a href="https://www.instagram.com/eislaufclub_weinfelden/" target="_blank" class="soc"><i data-lucide="instagram" style="width:16px;height:16px"></i></a>
+          <a href="https://www.facebook.com/EislaufclubWeinfelden/" target="_blank" class="soc"><i data-lucide="facebook" style="width:16px;height:16px"></i></a>
         </div>
-    </footer>
+      </div>
+      <div>
+        <div class="ft-ht">Navigation</div>
+        <ul class="ft-list">
+          <li><button onclick="goto('home')">Startseite</button></li>
+          <li><button onclick="goto('verein')">Verein</button></li>
+          <li><button onclick="goto('team')">Team</button></li>
+          <li><button onclick="goto('termine')">Termine</button></li>
+          <li><button onclick="goto('kontakt')">Kontakt</button></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-ht">Kontakt</div>
+        <div class="ft-addr">
+          Lauligstrasse 6<br>8570 Weinfelden<br>
+          <a href="mailto:info@ec-weinfelden.ch">info@ec-weinfelden.ch</a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <p>© 2024 Eislaufclub Weinfelden. All Rights Reserved.</p>
+      <div class="ft-bot-links">
+        <a href="#">Datenschutz</a>
+        <a href="#">Impressum</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-    <script>
-        // Initialize Icons
-        lucide.createIcons();
+<!-- Toast -->
+<div id="toast" class="toast">✓ Nachricht erfolgreich gesendet!</div>
 
-        // Navigation
-        function navigateTo(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            const targetPage = document.getElementById('page-' + pageId);
-            if (targetPage) targetPage.classList.add('active');
+<script>
+lucide.createIcons();
 
-            // Update nav styling
-            document.querySelectorAll('.nav-link').forEach(btn => {
-                btn.classList.toggle('nav-active', btn.dataset.page === pageId);
-            });
+// ── NAVIGATION ──
+const history_stack = [];
 
-            document.getElementById('mobile-menu').classList.add('hidden');
-            window.scrollTo(0, 0);
-        }
+function goto(page) {
+  const current = document.querySelector('.page.active');
+  const currentId = current ? current.id.replace('page-', '') : null;
 
-        // Mobile Menu
-        function toggleMobileMenu() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        }
+  // Push to history if navigating away from home (or anywhere)
+  if (currentId && currentId !== page) {
+    history_stack.push(currentId);
+  }
 
-        // Contact Form
-        function handleContactForm(event) {
-            event.preventDefault();
-            alert('Vielen Dank! Wir werden Ihre Nachricht in Kürze beantworten.');
-            event.target.reset();
-        }
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + page);
+  if (target) target.classList.add('active');
 
-        // Header Scroll Effect
-        let lastScroll = 0;
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('header-scroll');
-            } else {
-                navbar.classList.remove('header-scroll');
-            }
-            lastScroll = window.scrollY;
-        });
+  // Update nav
+  document.querySelectorAll('.nb').forEach(b => b.classList.toggle('active', b.dataset.p === page));
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            navigateTo('home');
-        });
-    </script>
+  closeMenu();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Re-run animations on newly visible page
+  requestAnimationFrame(() => {
+    target.querySelectorAll('.anim-up').forEach(el => {
+      el.style.animation = 'none';
+      requestAnimationFrame(() => {
+        el.style.animation = '';
+      });
+    });
+    lucide.createIcons();
+  });
+}
+
+// ── MOBILE MENU ──
+function openMenu() {
+  document.getElementById('mmenu').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+  document.getElementById('mmenu').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ── SCROLL NAV ──
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('solid', window.scrollY > 50);
+}, { passive: true });
+
+// ── FORM ──
+function handleForm(e) {
+  e.preventDefault();
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3500);
+  e.target.reset();
+}
+
+// ── INTERSECTION OBSERVER for scroll animations ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animationPlayState = 'running';
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.anim-up').forEach(el => {
+  el.style.animationPlayState = 'paused';
+  observer.observe(el);
+});
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  goto('home');
+});
+</script>
 </body>
 </html>

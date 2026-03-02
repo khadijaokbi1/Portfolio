@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — Khadija Okbi</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/typography-global.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/legacy.css">
+<link rel="stylesheet" href="assets/css/footer-nav-waves.css">
+
+<style>
+/* ── Page-specific additions only ─────────────────────────── */
+
+/* HERO — darkgreen bg, mauve Higuen H1 */
+.work-hero {
+  min-height: 80vh;
+  background: var(--darkgreen);
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: clamp(4rem, 8vh, 7rem);
+}
+.work-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 40%, rgba(110,59,73,0.22) 0%, transparent 60%);
+  pointer-events: none;
+}
+.work-hero-inner {
+  position: relative; z-index: 2;
+  width: 85vw; margin: 0 auto;
+}
+
+/* Higuen H1 — only used here, per your CSS rules */
+.work-hero .hero-top {
+  position: static;
+  display: block;
+  font-family: var(--font-higuen);
+  font-size: clamp(64px, 9vw, 130px);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--mauve);
+  line-height: 0.88;
+  margin-bottom: 36px;
+  transform: none; left: auto;
+  animation: fadeUp 1s cubic-bezier(0,0,0.2,1) 0.3s both;
+}
+.work-hero .hero-top em {
+  font-family: var(--font-display);
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+
+.work-hero-meta {
+  display: flex; align-items: center; gap: 48px;
+  animation: fadeUp 1s cubic-bezier(0,0,0.2,1) 0.5s both;
+}
+.work-hero-bignum {
+  font-family: var(--font-display);
+  font-style: italic; font-size: 80px; font-weight: 600;
+  color: rgba(181,161,158,0.1); line-height: 1;
+}
+.work-hero-desc {
+  font-size: 14px; line-height: 1.8;
+  color: rgba(235,225,209,0.55); max-width: 380px;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── WEB EXPERIENCES — mint bg ── */
+.section-web {
+  background: var(--mint);
+  padding: clamp(5rem,10vh,8rem) 0 clamp(4rem, 8vh, 6rem);
+  position: relative; overflow: hidden;
+}
+.section-web::before {
+  content: ''; position: absolute; inset: 0; opacity: 0; pointer-events: none;
+}
+
+/* Section H2 — Higuen, uppercase, mauve accent (per your section h2 rule) */
+.section-web h2,
+.section-concepts h2,
+.section-collections h2 {
+  color: var(--white);
+  opacity: 1; transform: none; animation: none;
+}
+.section-concepts h2 { color: var(--off-black); }
+.section-web h2 em,
+.section-concepts h2 em,
+.section-collections h2 em {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--mauve);
+  text-transform: none;
+  letter-spacing: -0.02em;
+}
+.section-concepts h2 em { color: var(--burgundy); }
+
+/* WEB CARDS — browser mockup */
+.web-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 24px;
+}
+.web-card {
+  background: rgba(10,10,10,0.5);
+  border: 1px solid rgba(181,161,158,0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.5s cubic-bezier(0,0,0.2,1), box-shadow 0.5s ease;
+}
+.web-card:hover {
+  transform: translateY(-14px) scale(1.02);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.45);
+}
+
+/* Browser chrome */
+.bc {
+  background: rgba(28,28,28,0.95);
+  padding: 10px 14px;
+  display: flex; align-items: center; gap: 7px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.bd { width: 9px; height: 9px; border-radius: 50%; }
+.bd-r { background: #FF5F57; }
+.bd-y { background: #FFBD2E; }
+.bd-g { background: #28CA41; }
+.burl {
+  flex: 1; margin-left: 8px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 4px; padding: 4px 10px;
+  font-family: var(--font-subtitel); font-size: 9px;
+  color: rgba(255,255,255,0.3); letter-spacing: 0.04em;
+}
+.bscreen { height: 220px; position: relative; overflow: hidden; }
+
+/* WeHelp */
+.scr-wh {
+  background: linear-gradient(160deg,#0d1520,#0f2540,#1a3a50);
+  height: 100%; padding: 14px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.wh-nav { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+.wh-logo { width: 22px; height: 7px; background: #4FC3F7; border-radius: 2px; }
+.wh-nl { display: flex; gap: 5px; }
+.wh-n { height: 5px; border-radius: 2px; background: rgba(255,255,255,0.12); }
+.wh-hero {
+  background: rgba(79,195,247,0.08); border: 1px solid rgba(79,195,247,0.12);
+  border-radius: 5px; padding: 12px; flex: 1;
+  display: flex; align-items: center; gap: 10px;
+}
+.wh-t { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+.wh-l { height: 5px; background: rgba(255,255,255,0.15); border-radius: 2px; }
+.wh-a { height: 5px; width: 40%; background: rgba(79,195,247,0.5); border-radius: 2px; }
+.wh-cta { width: 46px; height: 16px; background: #4FC3F7; border-radius: 3px; }
+.wh-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+.wh-c { height: 30px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07); border-radius: 4px; }
+
+/* ECW */
+.scr-ecw { background: #0f0f0f; height: 100%; display: flex; flex-direction: column; }
+.ecw-h { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.ecw-ice { width: 60%; height: 45%; background: radial-gradient(circle, rgba(180,220,240,0.14), transparent 70%); border-radius: 50%; }
+.ecw-ov { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), transparent); padding: 10px 12px; }
+.ecw-ti { width: 70%; height: 6px; background: var(--white); border-radius: 2px; margin-bottom: 4px; opacity: 0.9; }
+.ecw-su { width: 50%; height: 4px; background: rgba(255,255,255,0.4); border-radius: 2px; }
+.ecw-bar { background: rgba(255,255,255,0.04); padding: 8px 12px; display: flex; gap: 10px; }
+.ecw-ta { height: 5px; background: rgba(255,255,255,0.12); border-radius: 2px; }
+
+/* Fotografie */
+.scr-fo { height: 100%; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2px; }
+.fc { overflow: hidden; position: relative; transition: filter 0.4s ease; }
+.fc:hover { filter: brightness(1.2); }
+.fc1 { background: linear-gradient(135deg,#2d1a2e,#1a0f1f); }
+.fc2 { background: linear-gradient(135deg,#1a2d1a,#0f1a0f); }
+.fc3 { background: linear-gradient(135deg,#1a1a2d,#0f0f1a); }
+.fc4 { background: linear-gradient(135deg,#2d1a1a,#1a0f0f); }
+.fc::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 40% 40%, rgba(181,161,158,0.12), transparent 70%); }
+
+/* Card info */
+.wci { padding: 20px 22px 22px; background: rgba(10,10,10,0.75); }
+.wc-type {
+  font-family: var(--font-subtitel); font-size: 9px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--mauve); margin-bottom: 6px;
+}
+.wc-name {
+  font-family: var(--font-display); font-size: 20px; font-weight: 600;
+  color: var(--white); margin-bottom: 8px;
+}
+.wc-desc {
+  font-family: var(--font-body); font-size: 11px; line-height: 1.7;
+  color: rgba(181,161,158,0.65); margin-bottom: 14px;
+}
+.wc-link {
+  font-family: var(--font-titel); font-size: 9px; text-transform: uppercase;
+  letter-spacing: 0.18em; color: var(--mauve);
+  border-bottom: 1px solid var(--burgundy); padding-bottom: 2px;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: color 250ms, border-color 250ms;
+}
+.wc-link:hover { color: var(--white); border-color: var(--mauve); }
+
+/* ── FOTOGRAFIE — iPhone showcase — white bg ── */
+.section-foto {
+  background: var(--white);
+  padding: clamp(6rem,12vh,10rem) 0;
+  position: relative;
+}
+.foto-grid {
+  max-width: 85vw; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem,6vw,8rem); align-items: center;
+}
+
+/* iPhone 3D mockup */
+.ip-stage {
+  display: flex; justify-content: center; align-items: flex-end;
+  position: relative; height: 460px;
+  perspective: 1200px;
+}
+.ip {
+  width: 174px; height: 370px;
+  background: #1c1c1e;
+  border-radius: 40px;
+  border: 7px solid #2c2c2e;
+  position: absolute;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08),
+    inset 0 0 0 1px rgba(255,255,255,0.06),
+    0 40px 80px rgba(0,0,0,0.55);
+  overflow: hidden;
+  transition: transform 0.7s cubic-bezier(0,0,0.2,1), box-shadow 0.7s ease;
+}
+/* side button */
+.ip::before {
+  content: ''; position: absolute; right: -9px; top: 80px;
+  width: 4px; height: 56px; background: #3a3a3c; border-radius: 2px;
+}
+.ip-notch {
+  position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+  width: 70px; height: 22px;
+  background: #1c1c1e; border-radius: 0 0 14px 14px; z-index: 5;
+}
+.ip-scr { width: 100%; height: 100%; }
+
+.ip1 { left: 28px; bottom: 0; transform: rotate(-10deg) translateY(20px); z-index: 1; }
+.ip2 { left: 50%; transform: translateX(-50%) rotate(1deg); z-index: 3; bottom: 20px; }
+.ip3 { right: 28px; bottom: 0; transform: rotate(9deg) translateY(20px); z-index: 1; }
+
+.ip-stage:hover .ip1 { transform: rotate(-14deg) translateX(-20px) translateY(10px); }
+.ip-stage:hover .ip2 {
+  transform: translateX(-50%) rotate(0deg) translateY(-20px);
+  box-shadow: 0 60px 120px rgba(110,59,73,0.4), 0 0 0 1px rgba(255,255,255,0.1);
+}
+.ip-stage:hover .ip3 { transform: rotate(13deg) translateX(20px) translateY(10px); }
+
+/* Photo screens — atmospheric gradients */
+.s-ballet { background: linear-gradient(160deg,#1a0f1f,#2d1a2d,#1a0f2d); width:100%; height:100%; position:relative; }
+.s-portrait { background: linear-gradient(160deg,#2d1a0f,#1a120a,#0f1a2d); width:100%; height:100%; }
+.s-licht { background: linear-gradient(160deg,#0f1a12,#0f2d1a,#1a2d0f); width:100%; height:100%; position:relative; }
+.s-ballet::after, .s-licht::after {
+  content: ''; position: absolute; top:20%; left:10%; right:10%; height:50%;
+  background: radial-gradient(ellipse, rgba(181,161,158,0.2) 0%, transparent 70%);
+  filter: blur(20px);
+}
+
+/* foto text */
+.foto-text h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px,5vw,58px);
+  font-weight: 600; line-height: 1.05; letter-spacing: -0.02em;
+  color: var(--off-black); margin-bottom: 20px;
+  opacity: 1; transform: none; animation: none;
+}
+.foto-text h2 em { font-style: italic; color: var(--burgundy); }
+
+/* ── CASE STUDIES — off-white bg ── */
+.section-concepts {
+  background: var(--white);
+  padding: clamp(4rem,10vh,8rem) 0 clamp(4rem, 8vh, 6rem);
+  position: relative; overflow: hidden;
+}
+.section-concepts::before {
+  content: ''; position: absolute; inset: 0; opacity: 0; pointer-events: none;
+}
+/* KOMTHUR big card */
+.concept-featured {
+  display: grid; grid-template-columns: 1.2fr 1fr;
+  border: 1px solid rgba(45,45,45,0.1);
+  margin-bottom: 24px; overflow: hidden;
+  transition: box-shadow 0.4s ease;
+}
+.concept-featured:hover { box-shadow: 0 24px 64px rgba(110,59,73,0.2); }
+
+.cv {
+  background: var(--darkgreen);
+  padding: 48px; position: relative; overflow: hidden;
+  min-height: 420px; display: flex; flex-direction: column; justify-content: flex-end;
+}
+.cv::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 60% 30%, rgba(181,161,158,0.1), transparent 60%);
+}
+
+/* SWOT mini visualization */
+.swot { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; position: absolute; top: 40px; left: 40px; right: 40px; }
+.sw { padding: 11px 13px; border: 1px solid rgba(181,161,158,0.18); border-radius: 4px; background: rgba(181,161,158,0.04); }
+.swl {
+  font-family: var(--font-subtitel); font-size: 8px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 6px;
+}
+.sw-s .swl { color: #4CAF50; } .sw-w .swl { color: #FF7043; }
+.sw-o .swl { color: #42A5F5; } .sw-t .swl { color: #FFA726; }
+.swln { height: 4px; background: rgba(181,161,158,0.18); border-radius: 2px; margin-bottom: 3px; }
+.swlns { height: 4px; width: 65%; background: rgba(181,161,158,0.1); border-radius: 2px; }
+
+.cv-lbl { position: relative; z-index: 2; }
+.cv-tag {
+  font-family: var(--font-subtitel); font-size: 9px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--mauve); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.cv-tag::before { content: '—'; opacity: 0.4; }
+.cv-tit { font-family: var(--font-display); font-size: 26px; font-weight: 600; color: var(--white); line-height: 1.1; }
+
+.ct {
+  padding: 48px; background: var(--white);
+  display: flex; flex-direction: column; justify-content: center;
+}
+
+/* Tags — your filter-btn style */
+.cm { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.ctag {
+  font-family: var(--font-subtitel); font-size: 9px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  padding: 5px 12px; border: 1.5px solid var(--burgundy); color: var(--burgundy);
+}
+
+.ct h3 {
+  font-family: var(--font-display); font-size: clamp(26px,3vw,40px);
+  font-weight: 600; text-transform: none; letter-spacing: -0.02em;
+  color: var(--off-black); margin-bottom: 18px;
+}
+.ct h3 em { font-style: italic; color: var(--burgundy); }
+.ct p { font-size: 13px; line-height: 1.8; color: rgba(45,45,45,0.7); margin-bottom: 28px; }
+
+/* KPIs */
+.kpis { display: flex; gap: 28px; margin-bottom: 32px; }
+.kpi { display: flex; flex-direction: column; gap: 4px; }
+.kn {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 34px; font-weight: 600; color: var(--burgundy); line-height: 1;
+}
+.kl {
+  font-family: var(--font-subtitel); font-size: 9px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.15em; color: rgba(45,45,45,0.45);
+}
+
+/* WIN4 secondary */
+.cs {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border: 1px solid rgba(45,45,45,0.1); overflow: hidden;
+  transition: box-shadow 0.4s ease;
+}
+.cs:hover { box-shadow: 0 24px 64px rgba(49,74,81,0.2); }
+
+.csv {
+  background: var(--darkgreen); padding: 40px;
+  position: relative; overflow: hidden; min-height: 300px;
+}
+.csv::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 70%, rgba(110,59,73,0.2), transparent 60%);
+}
+
+/* Sport screen mockup inside WIN4 */
+.sscr {
+  position: absolute; top: 24px; left: 24px; right: 24px;
+  background: rgba(0,0,0,0.65); border: 1px solid rgba(181,161,158,0.15);
+  border-radius: 6px; overflow: hidden;
+}
+.ssh { background: rgba(181,161,158,0.07); padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; }
+.sst { font-family: var(--font-titel); font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mauve); }
+.sss { font-family: var(--font-higuen); font-size: 18px; letter-spacing: 0.1em; color: var (--white); }
+.ssb { height: 2px; background: var(--burgundy); }
+.ssbdy { padding: 10px 12px; display: flex; flex-direction: column; gap: 5px; }
+.ssl { height: 4px; background: rgba(181,161,158,0.13); border-radius: 2px; }
+
+/* sport field deco */
+.sf {
+  position: absolute; top: 50%; left: 50%; opacity: 0.1;
+  width: 120px; height: 80px; border: 1px solid rgba(255,255,255,0.2);
+  transform: translate(-50%,-50%);
+}
+.sf::before {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  width: 28px; height: 28px; border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%; transform: translate(-50%,-50%);
+}
+.sf::after {
+  content: ''; position: absolute; top: 0; bottom: 0; left: 50%;
+  width: 1px; background: rgba(255,255,255,0.15);
+}
+
+/* ── COLLECTIONS — burgundy bg ── */
+.section-collections {
+  background: var(--burgundy);
+  padding: clamp(4rem,10vh,8rem) 0 clamp(4rem, 8vh, 6rem);
+  position: relative; overflow: hidden;
+}
+.section-collections::before {
+  content: ''; position: absolute; inset: 0; opacity: 0; pointer-events: none;
+}
+.section-collections h2 { color: var(--white); }
+
+/* Collection cards */
+.cg { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+.cc {
+  position: relative; overflow: hidden; aspect-ratio: 3/4;
+  cursor: pointer;
+}
+.cc-bg { position: absolute; inset: 0; transition: transform 0.7s cubic-bezier(0,0,0.2,1); }
+.cc:hover .cc-bg { transform: scale(1.06); }
+
+.bg-sbw  { background: linear-gradient(160deg,#1a0808,#2d1010,#1a0808); }
+.bg-win4 { background: linear-gradient(160deg,#081a08,#102d10,#081a08); }
+.bg-pers { background: linear-gradient(160deg,#08081a,#10102d,#08081a); }
+
+/* film strip */
+.fst { position: absolute; top: 24px; left: 14px; right: 14px; display: flex; flex-direction: column; gap: 4px; opacity: 0.18; }
+.fsr { display: flex; gap: 3px; }
+.fsf { flex: 1; height: 26px; background: rgba(181,161,158,0.14); border: 1px solid rgba(181,161,158,0.18); border-radius: 1px; }
+.fsh { width: 6px; height: 26px; background: rgba(0,0,0,0.5); border: 1px solid rgba(181,161,158,0.1); border-radius: 1px; flex-shrink: 0; }
+
+/* logo shapes deco */
+.ldco { position: absolute; top: 24px; left: 24px; right: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; opacity: 0.12; }
+.lsh { height: 38px; border: 1px solid rgba(181,161,158,0.5); border-radius: 2px; display: flex; align-items: center; justify-content: center; }
+.lci { width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(181,161,158,0.7); }
+
+.cc::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 65%; background: linear-gradient(to top, rgba(0,0,0,0.93), transparent);
+}
+.cc-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 26px; z-index: 2; }
+.cc-type {
+  font-family: var(--font-subtitel); font-size: 9px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  color: var (--mauve); margin-bottom: 6px;
+}
+.cc-name {
+  font-family: var(--font-display); font-size: 22px; font-weight: 600;
+  color: var(--white); line-height: 1.15; margin-bottom: 10px;
+}
+.cc-desc {
+  font-size: 11px; line-height: 1.7; color: rgba(235,225,209,0.6);
+  margin-bottom: 14px;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.cc:hover .cc-desc { opacity: 1; transform: translateY(0); }
+.cc-link {
+  font-family: var(--font-titel); font-size: 9px; text-transform: uppercase;
+  letter-spacing: 0.18em; color: var(--mauve);
+  border-bottom: 1px solid var(--burgundy); padding-bottom: 2px;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity 0.3s ease 0.1s, transform 0.4s ease 0.1s, color 250ms;
+}
+.cc:hover .cc-link { opacity: 1; transform: translateY(0); }
+.cc-link:hover { color: var(--white); }
+.cc-yr {
+  position: absolute; top: 18px; right: 18px;
+  font-family: var(--font-subtitel); font-size: 9px; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(181,161,158,0.35); z-index: 2;
+}
+
+/* CTA button — consistent with site */
+.btn-site {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-titel); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.18em;
+  color: var(--white); background: var(--burgundy);
+  padding: 14px 30px;
+  transition: background 250ms, transform 250ms;
+  border: none; cursor: pointer;
+}
+.btn-site:hover { background: var(--darkgreen); transform: translateY(-2px); }
+
+/* Utility */
+.in85 { max-width: 85vw; margin: 0 auto; }
+
+/* Reveal */
+.rv { opacity: 0; transform: translateY(36px); transition: opacity 0.85s cubic-bezier(0,0,0.2,1), transform 0.85s cubic-bezier(0,0,0.2,1); }
+.rv.vis { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.12s; } .d2 { transition-delay: 0.24s; } .d3 { transition-delay: 0.36s; }
+
+@media (max-width: 768px) {
+  .web-grid, .cg { grid-template-columns: 1fr; }
+  .foto-grid, .concept-featured, .cs { grid-template-columns: 1fr; }
+  .ip-stage { height: 320px; }
+  .ip { width: 140px; height: 290px; }
+  .kpis { gap: 18px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV — your exact site-header structure -->
+<header class="site-header" id="top" aria-label="Seitennavigation"></header>
+    <div class="page-container nav-bar">
+      <a href="index.html" class="logo">
+        <img src="assets/images/branding/logo_black.png" alt="Khadija Okbi" width="45">
+        <img src="assets/images/branding/logo_white.png" alt="Khadija Okbi" width="45" class="logo-onscroll">
+      </a>
+      <nav class="nav">
+        <a href="index.html#hero" class="nav-link">Home</a>
+        <a href="index.html#expertise" class="nav-link">Work</a>
+        <a href="index.html#blog" class="nav-link">Blog</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
+  </header>
+
+<!-- HERO — darkgreen, Higuen H1 -->
+<section class="work-hero wave-mint"></section>
+  <div class="work-hero-inner">
+    <p class="photo-eyebrow rv" style="color:var(--mauve);animation:fadeUp 1s cubic-bezier(0,0,0.2,1) 0.2s both">
+      Portfolio · Ausgewählte Arbeiten
+    </p>
+    <h1 class="hero-top">Aus<em>gewählte</em><br>Arbeiten.</h1>
+    <div class="work-hero-meta">
+      <span class="work-hero-bignum">07</span>
+      <p class="work-hero-desc">Web Experiences, Case Studies, Sportmarketing und Fotografie — vier Jahre kreative Arbeit in klaren Schwerpunkten.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WEB EXPERIENCES -->
+<section class="section-web wave-cream"></section>
+  <div class="in85">
+    <p class="photo-eyebrow rv" style="color:var(--mauve)">Web Experiences</p>
+    <h2 class="rv d1">Gebaute <em>Welten.</em></h2>
+
+    <div class="web-grid">
+
+      <div class="web-card rv">
+        <div class="bc"></div>
+          <div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div>
+          <div class="burl">wehelp.ch — Psychische Gesundheit</div>
+        </div>
+        <div class="bscreen">
+          <div class="scr-wh">
+            <div class="wh-nav">
+              <div class="wh-logo"></div>
+              <div class="wh-nl"><div class="wh-n" style="width:26px"></div><div class="wh-n" style="width:34px"></div><div class="wh-n" style="width:20px"></div></div>
+            </div>
+            <div class="wh-hero">
+              <div class="wh-t">
+                <div class="wh-a"></div>
+                <div class="wh-l" style="width:85%"></div>
+                <div class="wh-l" style="width:65%"></div>
+                <div style="margin-top:6px"><div class="wh-cta"></div></div>
+              </div>
+            </div>
+            <div class="wh-cards"><div class="wh-c"></div><div class="wh-c"></div><div class="wh-c"></div></div>
+          </div>
+        </div>
+        <div class="wci">
+          <div class="wc-type">Web App · Konzept</div>
+          <div class="wc-name">WeHelp</div>
+          <div class="wc-desc">Vollständige Plattform für psychische Gesundheit — Forum, Klinik-Netzwerk, Selbsttest.</div>
+          <a href="web/wehelp.html" class="wc-link">Entdecken →</a>
+        </div>
+      </div>
+
+      <div class="web-card rv d1">
+        <div class="bc"></div>
+          <div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div>
+          <div class="burl">ec-weinfelden.ch — Eislaufclub</div>
+        </div>
+        <div class="bscreen">
+          <div class="scr-ecw">
+            <div class="ecw-h"><div class="ecw-ice"></div><div class="ecw-ov"><div class="ecw-ti"></div><div class="ecw-su"></div></div></div>
+            <div class="ecw-bar"><div class="ecw-ta" style="width:48px"></div><div class="ecw-ta" style="width:34px"></div><div class="ecw-ta" style="width:42px"></div><div class="ecw-ta" style="width:26px"></div></div>
+          </div>
+        </div>
+        <div class="wci">
+          <div class="wc-type">Website · Verein</div>
+          <div class="wc-name">EC Weinfelden</div>
+          <div class="wc-desc">Vereinswebsite für den Eislaufclub Weinfelden — Team, Events, Sponsoren.</div>
+          <a href="web/eiskunstlauf.html" class="wc-link">Entdecken →</a>
+        </div>
+      </div>
+
+      <div class="web-card rv d2">
+        <div class="bc"></div>
+          <div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div>
+          <div class="burl">khadijaokbi.ch/fotografie</div>
+        </div>
+        <div class="bscreen">
+          <div class="scr-fo">
+            <div class="fc fc1"></div><div class="fc fc2"></div>
+            <div class="fc fc3"></div><div class="fc fc4"></div>
+          </div>
+        </div>
+        <div class="wci">
+          <div class="wc-type">Galerie · Fotografie</div>
+          <div class="wc-name">Fotografie</div>
+          <div class="wc-desc">Animierte Galerie — Ballet, Portrait, Lichtkunst, Dokumentation.</div>
+          <a href="work/fotografie.html" class="wc-link">Galerie öffnen →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- iPHONE FOTOGRAFIE -->
+<section class="section-foto wave-offwhite">
+  <div class="foto-grid">
+    <div>
+      <p class="photo-eyebrow rv" style="color:var(--burgundy)">Bildsprache</p>
+      <h2 class="foto-text rv d1">Momente,<br><em>festgehalten.</em></h2>
+      <p class="rv d2" style="color:rgba(45,45,45,0.65);font-size:14px;line-height:1.8;margin-bottom:32px">
+        Ballet & Tanz, Portrait, Lichtkunst, Dokumentation — vier Welten, eine visuelle Sprache.
+      </p>
+      <a href="work/fotografie.html" class="btn-site rv d2">Galerie entdecken</a>
+    </div>
+    <div class="ip-stage rv d1">
+      <div class="ip ip1"><div class="ip-notch"></div><div class="ip-scr"><div class="s-ballet"></div></div></div>
+      <div class="ip ip2"><div class="ip-notch"></div><div class="ip-scr"><div class="s-portrait"></div></div></div>
+      <div class="ip ip3"><div class="ip-notch"></div><div class="ip-scr"><div class="s-licht"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="section-concepts wave-burg">
+  <div class="in85">
+    <p class="photo-eyebrow rv" style="color:var(--burgundy)">Case Studies</p>
+    <h2 class="rv d1">Strategie &amp; <em>Konzept.</em></h2>
+
+    <!-- KOMTHUR -->
+    <div class="concept-featured rv">
+      <div class="cv">
+        <div class="swot">
+          <div class="sw sw-s"><div class="swl">Strengths</div><div class="swln"></div><div class="swlns"></div></div>
+          <div class="sw sw-w"><div class="swl">Weaknesses</div><div class="swln"></div><div class="swlns"></div></div>
+          <div class="sw sw-o"><div class="swl">Opportunities</div><div class="swln"></div><div class="swlns"></div></div>
+          <div class="sw sw-t"><div class="swl">Threats</div><div class="swln"></div><div class="swlns"></div></div>
+        </div>
+        <div class="cv-lbl">
+          <div class="cv-tag">IPA 2023</div>
+          <div class="cv-tit">Online-Marketing<br>Konzept</div>
+        </div>
+      </div>
+      <div class="ct">
+        <div class="cm"><span class="ctag">IPA 2023</span><span class="ctag">SEO / SEA</span><span class="ctag">Social Media</span><span class="ctag">UI/UX</span></div>
+        <h3>Komthur <em>GmbH.</em></h3>
+        <p>SWOT-Analyse, drei Buyer Personas, 16-Wochen-Content-Plan, budgetierte SEA-Kampagnen auf Google, LinkedIn und Meta. Budget CHF 14'650, 90 Stunden.</p>
+        <div class="kpis">
+          <div class="kpi"><span class="kn">77K</span><span class="kl">Impressionen</span></div>
+          <div class="kpi"><span class="kn">75</span><span class="kl">SEO Score</span></div>
+          <div class="kpi"><span class="kn">5:1</span><span class="kl">ROI Prognose</span></div>
+        </div>
+        <a href="work/komthur.html" class="btn-site">Case Study ansehen</a>
+      </div>
+    </div>
+
+    <!-- WIN4 -->
+    <div class="cs rv d1">
+      <div class="csv">
+        <div class="sscr">
+          <div class="ssh"><span class="sst">Pfadi Winterthur</span><span class="sss">24·18</span><span class="sst">Live</span></div>
+          <div class="ssb"></div>
+          <div class="ssbdy"><div class="ssl"></div><div class="ssl" style="width:72%"></div><div class="ssl" style="width:52%"></div></div>
+        </div>
+        <div class="sf"></div>
+        <div class="cv-lbl" style="position:absolute;bottom:28px;left:28px">
+          <div class="cv-tag">Sportmarketing</div>
+          <div class="cv-tit">WIN4 Highlights</div>
+        </div>
+      </div>
+      <div class="ct">
+        <div class="cm"><span class="ctag">Motion Design</span><span class="ctag">After Effects</span><span class="ctag">Print</span><span class="ctag">Sponsoring</span></div>
+        <h3>WIN4 <em>Sportmarketing.</em></h3>
+        <p>Screendesigns für Pfadi Winterthur, Festführer für die Schweizer Meisterschaften im Kunstturnen, Bandenanimationen für Hauptsponsoren.</p>
+        <a href="work/win4.html" class="btn-site">Projekt ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section class="section-collections wave-foot"></section>
+  <div class="in85">
+    <p class="photo-eyebrow rv" style="color:var(--mauve)">Sammlungen & Archiv</p>
+    <h2 class="rv d1">Vier Jahre <em>Schaffen.</em></h2>
+
+    <div class="cg">
+      <div class="cc rv"></div>
+        <div class="cc-bg bg-sbw">
+          <div class="fst">
+            <div class="fsr"><div class="fsh"></div><div class="fsf"></div><div class="fsf"></div><div class="fsf"></div><div class="fsh"></div></div>
+            <div class="fsr"><div class="fsh"></div><div class="fsf"></div><div class="fsf"></div><div class="fsf"></div><div class="fsh"></div></div>
+          </div>
+        </div>
+        <span class="cc-yr">2020 – 2024</span>
+        <div class="cc-info">
+          <div class="cc-type">Lehre · Projektsammlung</div>
+          <div class="cc-name">SBW<br>Neuen Medien</div>
+          <div class="cc-desc">Filmplakate, Animationen, TikTok-Strategie — vier Jahre kreative Reise.</div>
+          <a href="work/sbw.html" class="cc-link">Entdecken →</a>
+        </div>
+      </div>
+
+      <div class="cc rv d1">
+        <div class="cc-bg bg-win4"><div class="sf" style="opacity:.08;position:absolute;top:50%;left:50%;width:140px;height:90px;transform:translate(-50%,-50%)"></div></div>
+        <span class="cc-yr">2021 – 2022</span>
+        <div class="cc-info">
+          <div class="cc-type">Sportmarketing · Sammlung</div>
+          <div class="cc-name">WIN4<br>Highlights</div>
+          <div class="cc-desc">Busplakate, Gameday-Screens, SM-Kunstturnen — Schweizer Spitzensport.</div>
+          <a href="work/win4.html" class="cc-link">Entdecken →</a>
+        </div>
+      </div>
+
+      <div class="cc rv d2">
+        <div class="cc-bg bg-pers">
+          <div class="ldco">
+            <div class="lsh"><div class="lci"></div></div>
+            <div class="lsh" style="border-radius:50%"></div>
+            <div class="lsh"></div>
+            <div class="lsh" style="border-radius:50% 0 50% 0"></div>
+          </div>
+        </div>
+        <span class="cc-yr">Laufend</span>
+        <div class="cc-info">
+          <div class="cc-type">Personal · Eigenprojekte</div>
+          <div class="cc-name">Personal<br>Work</div>
+          <div class="cc-desc">Reisevideos, Logodesigns, Editorials, Spotify-Cover — kreative Freiheit.</div>
+          <a href="work/personal.html" class="cc-link">Entdecken →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER — your exact class structure -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-copy">© 2026 Design & Development by Khadija Okbi</p>
+    <div class="footer-links">
+      <a href="pages/impressum.html" class="footer-link">Impressum</a>
+      <a href="mailto:khadijaokbi@gmail.com" class="footer-link contact-btn"><span>Kontakt</span></a>
+      <a href="pages/datenschutz.html" class="footer-link">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav — your exact site pattern
+const hdr = document.querySelector('.site-header');
+window.addEventListener('scroll', () => hdr.classList.toggle('is-solid', scrollY > 60));
+
+// Scroll reveal
+const obs = new IntersectionObserver(
+  es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); }),
+  { threshold: 0.08 }
+);
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+</script>
+<script defer src="assets/js/typography-reveal.js"></script>
+</body>
+</html>

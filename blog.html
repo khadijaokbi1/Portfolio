@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Khadija Okbi</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/typography-global.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/legacy.css">
+<link rel="stylesheet" href="assets/css/footer-nav-waves.css">
+
+<style>
+/* ── Page-specific only ─────────────────────────────── */
+
+/* HERO — split: darkgreen left, burgundy right */
+.blog-hero {
+  min-height: 90vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative; overflow: hidden;
+}
+
+.bh-left {
+  background: var(--darkgreen);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 160px clamp(2rem,5vw,5rem) 160px;
+  position: relative;
+}
+.bh-left::before {
+  content: ''; position: absolute; inset: 0; opacity: 0; pointer-events: none;
+  /* grain removed */
+}
+
+.bh-right {
+  background: var(--burgundy);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 160px clamp(2rem,5vw,5rem) 60px;
+  position: relative; overflow: hidden;
+}
+.bh-right::before {
+  content: ''; position: absolute; inset: 0; opacity: 0; pointer-events: none;
+  /* grain removed */
+}
+/* ghost number — decorative */
+.bh-right::after {
+  content: '01';
+  position: absolute; bottom: -60px; right: -20px;
+  font-family: var(--font-higuen);
+  font-size: clamp(150px,20vw,300px);
+  font-weight: 400; letter-spacing: 0.05em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(235,225,209,0.06);
+  line-height: 1; pointer-events: none; user-select: none;
+}
+
+/* HERO h1 — Higuen (per your CSS rules, hero only) */
+.blog-hero .hero-top {
+  position: static; display: block;
+  font-family: var(--font-higuen);
+  font-size: clamp(56px,8vw,120px);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--mauve); line-height: 0.88;
+  margin-bottom: 28px;
+  transform: none; left: auto;
+  animation: fadeUp 1s cubic-bezier(0,0,0.2,1) 0.3s both;
+}
+.blog-hero .hero-top em {
+  font-family: var(--font-display);
+  font-style: italic; text-transform: none;
+  letter-spacing: -0.02em; color: var(--white);
+}
+
+
+/* Featured article preview in right hero */
+.feat-dot {
+  display: inline-block; width: 6px; height: 6px;
+  border-radius: 50%; background: var(--mauve);
+  animation: pulse 2s ease-in-out infinite; margin-right: 10px;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.7)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+
+.feat-tag {
+  font-family: var(--font-subtitel); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--mauve); margin-bottom: 20px;
+  display: flex; align-items: center;
+}
+.feat-title {
+  font-family: var(--font-display);
+  font-size: clamp(24px,3vw,44px); font-weight: 600;
+  color: var(--white); line-height: 1.05;
+  margin-bottom: 16px; letter-spacing: -0.01em;
+}
+.feat-title em { font-style: italic; color: var(--mauve); }
+.feat-exc {
+  font-family: var(--font-body); font-size: 13px; line-height: 1.8;
+  color: rgba(235,225,209,0.5); margin-bottom: 24px;
+}
+.feat-meta {
+  display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 28px;
+}
+.fm {
+  font-family: var(--font-subtitel); font-size: 9px; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(235,225,209,0.3);
+}
+.fm span { color: var(--mauve); }
+
+/* ── BLOG SECTION — uses your exact .section-blog rules ── */
+/* Override section h2 per your main.css .section-blog h2 rule */
+.section-blog h2 {
+  color: var(--white);
+  font-family: var(--font-display);
+  text-transform: none; opacity: 1; transform: none; animation: none;
+  letter-spacing: -0.02em;
+}
+.section-blog h2 em {
+  font-family: 'Abril Fatface', serif;
+  font-style: italic; color: var(--mauve); text-transform: uppercase;
+}
+
+/* Filter — your filter-btn style */
+.filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+.filter-btn {
+  font-family: var(--font-subtitel); font-size: var(--text-xs); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  border: 2px solid var(--mauve); background: transparent; color: var(--mauve);
+  cursor: pointer; padding: 0.6rem 1.4rem;
+  transition: all var(--speed-base) var(--easing-decelerate);
+}
+.filter-btn:hover, .filter-btn.active { background: var(--mauve); color: var(--burgundy); }
+
+/* Blog thumb visuals */
+.bt-idpa { background: linear-gradient(160deg,#0d0d1a,#1a1a2d,#2d1a0d); }
+.bt-corona { background: linear-gradient(160deg,#1a0808,#2d1010,#1a0808); }
+.bt-threads { background: linear-gradient(160deg,#08081a,#10102d,#0a0a1a); }
+
+/* IDPA: network SVG overlay */
+.bt-idpa { position: relative; display: flex; align-items: center; justify-content: center; }
+
+/* Corona: photo strip deco */
+.corona-deco {
+  position: absolute; inset: 12px;
+  display: flex; flex-direction: column; gap: 3px;
+}
+.cor-img {
+  flex: 1; background: rgba(235,225,209,0.06);
+  border: 1px solid rgba(235,225,209,0.08); border-radius: 1px;
+}
+
+/* Threads: post mockup */
+.threads-deco {
+  position: absolute; inset: 12px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.th-post {
+  background: rgba(235,225,209,0.04);
+  border: 1px solid rgba(235,225,209,0.07);
+  border-radius: 4px; padding: 8px 10px;
+  display: flex; flex-direction: column; gap: 3px;
+}
+.th-ln { height: 4px; border-radius: 2px; background: rgba(235,225,209,0.1); }
+.th-acc { height: 4px; border-radius: 2px; background: rgba(181,161,158,0.22); }
+.th-stats { display: flex; gap: 6px; margin-top: 2px; }
+.th-st { width: 14px; height: 3px; border-radius: 2px; background: rgba(181,161,158,0.18); }
+
+/* blog-cat eyebrow inside card */
+.blog-cat {
+  font-family: var(--font-subtitel); font-size: 9px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  color: var(--burgundy); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 6px;
+}
+.blog-cat::before { content: '//'; opacity: 0.4; }
+
+/* ── QUOTE BAND — darkgreen ── */
+.section-quote {
+  background: var(--darkgreen);
+  padding: clamp(5rem,10vh,8rem) 0 calc(25vh + 2rem);
+  position: relative; overflow: hidden; text-align: center;
+}
+.section-quote::before {
+  content: ''; position: absolute; inset: 0; opacity: 0; pointer-events: none;
+  /* grain removed */
+}
+/* Wave → white */
+.section-quote::after {
+  content: ''; position: absolute; bottom: -1px; left: 0;
+  width: 100%; height: 25vh; z-index: 3;
+  background-color: var(--white);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+  mask-size: 100% 100%; mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%; -webkit-mask-repeat: no-repeat;
+}
+.q-inner {
+  max-width: 820px; margin: 0 auto;
+  padding: 0 clamp(2rem,5vw,4rem);
+  position: relative; z-index: 2;
+}
+.q-text {
+  font-family: var(--font-display); font-style: italic;
+  font-size: clamp(22px,3vw,42px); font-weight: 400;
+  color: var(--white); line-height: 1.3;
+  letter-spacing: -0.01em; margin-bottom: 24px;
+}
+.q-src {
+  font-family: var(--font-subtitel); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--mauve);
+}
+
+/* ── CATEGORIES — white bg ── */
+.section-cats {
+  background: var(--white);
+  padding: clamp(5rem,10vh,8rem) 0;
+}
+.cats-grid {
+  max-width: 85vw; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem,8vw,10rem); align-items: center;
+}
+.cats-l h2 {
+  font-family: var(--font-display); font-size: clamp(32px,4vw,52px);
+  font-weight: 600; line-height: 1.05; letter-spacing: -0.02em;
+  color: var(--off-black); margin-bottom: 18px;
+  opacity: 1; transform: none; animation: none;
+}
+.cats-l h2 em { font-style: italic; color: var(--burgundy); }
+.cats-l p { font-size: 13px; line-height: 1.8; color: rgba(45,45,45,0.65); margin-bottom: 0; }
+
+.cat-links { display: flex; flex-direction: column; }
+.cat-link {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 22px 0; border-top: 1px solid rgba(45,45,45,0.08);
+  text-decoration: none;
+  transition: padding 300ms cubic-bezier(0,0,0.2,1);
+}
+.cat-link:hover { padding: 22px 14px; }
+.cat-link:last-child { border-bottom: 1px solid rgba(45,45,45,0.08); }
+.cat-link-name {
+  font-family: var(--font-display); font-size: 26px; font-weight: 600;
+  color: var(--off-black); transition: color 250ms;
+}
+.cat-link:hover .cat-link-name { color: var(--burgundy); }
+.cat-link-meta {
+  font-family: var(--font-subtitel); font-size: 9px; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase; color: rgba(45,45,45,0.4);
+}
+
+/* Utility */
+.in85 { max-width: 85vw; margin: 0 auto; }
+.btn-site {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-titel); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.18em;
+  color: var(--white); background: var(--darkgreen);
+  padding: 14px 30px;
+  transition: background 250ms, transform 250ms;
+  border: none; cursor: pointer;
+}
+.btn-site:hover { background: var(--off-black); transform: translateY(-2px); }
+
+/* Reveal */
+.rv { opacity: 0; transform: translateY(36px); transition: opacity 0.85s cubic-bezier(0,0,0.2,1), transform 0.85s cubic-bezier(0,0,0.2,1); }
+.rv.vis { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.12s; } .d2 { transition-delay: 0.24s; } .d3 { transition-delay: 0.36s; }
+
+@media (max-width: 768px) {
+  .blog-hero { grid-template-columns: 1fr; }
+  .bh-right::after { display: none; }
+  .cats-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-header" id="top" aria-label="Seitennavigation">
+    <div class="page-container nav-bar">
+      <a href="index.html" class="logo">
+        <img src="assets/images/branding/logo_black.png" alt="Khadija Okbi" width="45">
+        <img src="assets/images/branding/logo_white.png" alt="Khadija Okbi" width="45" class="logo-onscroll">
+      </a>
+      <nav class="nav">
+        <a href="index.html#hero" class="nav-link">Home</a>
+        <a href="index.html#expertise" class="nav-link">Work</a>
+        <a href="index.html#blog" class="nav-link">Blog</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
+  </header>
+
+<!-- HERO SPLIT -->
+<section class="blog-hero wave-burg">
+  <div class="bh-left">
+    <p class="photo-eyebrow rv" style="color:var(--mauve);animation:fadeUp 1s cubic-bezier(0,0,0.2,1) 0.2s both">
+      Journal & Perspektiven
+    </p>
+    <h1 class="hero-top">Ge<em>danken</em><br>auf<br>Papier.</h1>
+    <p style="font-size:13px;line-height:1.8;color:rgba(235,225,209,0.5);max-width:320px;animation:fadeUp 1s cubic-bezier(0,0,0.2,1) 0.5s both">
+      Psychologie, Gesellschaft, Social Media, Fotografie — Texte, die mehr hinterfragen, als sie beantworten.
+    </p>
+  </div>
+  <div class="bh-right">
+    <div class="rv d1">
+      <div class="feat-tag"><div class="feat-dot"></div>Aktuell · Psychologie</div>
+      <h2 class="feat-title">Die Illusion der<br><em>freien Meinung</em></h2>
+      <p class="feat-exc">Gene, Algorithmen, Gesellschaft — wir glauben frei zu denken, während alles längst vorcodiert ist.</p>
+      <div class="feat-meta">
+        <div class="fm">Lesezeit <span>6 Min</span></div>
+        <div class="fm">Kategorie <span>Psychologie</span></div>
+        <div class="fm">IDPA <span>2025</span></div>
+      </div>
+      <a href="blog/idpa.html" class="btn-site">Jetzt lesen</a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG SECTION — your exact .section-blog class → picks up all main.css rules -->
+<section class="section-blog bg-burgundy wave-dark">
+  <div class="in85">
+    <p class="photo-eyebrow rv" style="color:rgba(235,225,209,0.6)">Alle Artikel</p>
+    <h2 class="rv d1">Aus dem <em>Blog.</em></h2>
+
+    <div class="filter-bar rv d2">
+      <button class="filter-btn active" data-f="all">Alle</button>
+      <button class="filter-btn" data-f="psychologie">Psychologie</button>
+      <button class="filter-btn" data-f="fotografie">Fotografie</button>
+      <button class="filter-btn" data-f="social">Social Media</button>
+    </div>
+
+    <!-- Uses your exact .blog-grid from main.css -->
+    <div class="blog-grid">
+
+      <!-- IDPA — uses .blog-card, .blog-thumb, .blog-content, .blog-title, .blog-teaser, .read-more -->
+      <article class="blog-card rv" data-cat="psychologie">
+        <div class="blog-thumb bt-idpa" style="position:relative;display:flex;align-items:center;justify-content:center">
+          <svg width="160" height="140" viewBox="0 0 200 180" fill="none" style="position:absolute;opacity:0.45">
+            <circle cx="100" cy="90" r="4" fill="#B5A19E" opacity=".8"/>
+            <circle cx="40" cy="40" r="3" fill="#B5A19E" opacity=".4"/>
+            <circle cx="160" cy="40" r="3" fill="#B5A19E" opacity=".4"/>
+            <circle cx="30" cy="140" r="3" fill="#B5A19E" opacity=".4"/>
+            <circle cx="170" cy="130" r="3" fill="#B5A19E" opacity=".4"/>
+            <circle cx="100" cy="160" r="3" fill="#B5A19E" opacity=".4"/>
+            <line x1="100" y1="90" x2="40" y2="40" stroke="#B5A19E" stroke-width=".5" opacity=".2"/>
+            <line x1="100" y1="90" x2="160" y2="40" stroke="#B5A19E" stroke-width=".5" opacity=".2"/>
+            <line x1="100" y1="90" x2="30" y2="140" stroke="#B5A19E" stroke-width=".5" opacity=".2"/>
+            <line x1="100" y1="90" x2="170" y2="130" stroke="#B5A19E" stroke-width=".5" opacity=".2"/>
+            <line x1="100" y1="90" x2="100" y2="160" stroke="#B5A19E" stroke-width=".5" opacity=".2"/>
+            <circle cx="100" cy="90" r="35" stroke="#B5A19E" stroke-width=".4" opacity=".07" fill="none"/>
+            <circle cx="100" cy="90" r="70" stroke="#B5A19E" stroke-width=".4" opacity=".04" fill="none"/>
+          </svg>
+        </div>
+        <div class="blog-content">
+          <div class="blog-cat">Psychologie</div>
+          <h3 class="blog-title">Die Illusion der <em>freien Meinung</em></h3>
+          <p class="blog-teaser">Genetik, Neurochemie, Algorithmen — wenn unsere Meinungen biologisch vorcodiert und technologisch konditioniert sind, was ist dann noch echt?</p>
+          <a href="blog/idpa.html" class="read-more">Weiterlesen · 6 Min</a>
+        </div>
+      </article>
+
+      <!-- CORONA -->
+      <article class="blog-card rv d1" data-cat="fotografie">
+        <div class="blog-thumb bt-corona" style="position:relative">
+          <div class="corona-deco">
+            <div class="cor-img"></div>
+            <div class="cor-img" style="flex:0.55"></div>
+          </div>
+        </div>
+        <div class="blog-content">
+          <div class="blog-cat">Fotografie</div>
+          <h3 class="blog-title">Ein Bild sagt mehr als <em>1000 Worte</em></h3>
+          <p class="blog-teaser">Konstanz im Lockdown 2021. Eine fotografische Dokumentation zwischen Stille, Erschöpfung und dem Ende der Normalität.</p>
+          <a href="blog/corona.html" class="read-more">Weiterlesen · 5 Min</a>
+        </div>
+      </article>
+
+      <!-- THREADS -->
+      <article class="blog-card rv d2" data-cat="social">
+        <div class="blog-thumb bt-threads" style="position:relative">
+          <div class="threads-deco">
+            <div class="th-post">
+              <div class="th-ln" style="width:75%"></div><div class="th-ln" style="width:55%"></div>
+              <div class="th-stats"><div class="th-st"></div><div class="th-st" style="width:20px"></div><div class="th-st" style="background:rgba(79,195,247,0.22)"></div></div>
+            </div>
+            <div class="th-post">
+              <div class="th-ln" style="width:90%"></div><div class="th-ln" style="width:65%"></div><div class="th-ln" style="width:40%"></div>
+              <div class="th-stats"><div class="th-st" style="width:24px"></div><div class="th-st" style="width:16px"></div></div>
+            </div>
+            <div class="th-post">
+              <div class="th-ln" style="width:80%"></div><div class="th-ln" style="width:60%"></div>
+              <div class="th-stats"><div class="th-st" style="width:30px"></div><div class="th-st" style="width:12px"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="blog-content">
+          <div class="blog-cat">Social Media</div>
+          <h3 class="blog-title">Trending on <em>Threads</em></h3>
+          <p class="blog-teaser">500'000 Aufrufe, 700 Follower, eine Telegram-Community — Early Adoption auf einer neuen Plattform wird zu echtem Vertrauen.</p>
+          <a href="blog/threads.html" class="read-more">Weiterlesen · 8 Min</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE — darkgreen -->
+<section class="section-quote wave-cream">
+  <div class="q-inner rv">
+    <blockquote class="q-text">"Wir machen uns vor, eine freie Meinung zu besitzen, während sie lediglich ein Ergebnis von Prägung, Erfahrung und Umfeld ist."</blockquote>
+    <p class="q-src">— Die Illusion der freien Meinung · IDPA 2025</p>
+  </div>
+</section>
+
+<!-- CATEGORIES — white -->
+<section class="section-cats wave-foot">
+  <div class="cats-grid">
+    <div class="rv">
+      <h2>Mehr lesen.<br><em>Mehr denken.</em></h2>
+      <p>Drei Themenfelder, drei Perspektiven — verbunden durch die Frage, wie wir uns selbst wahrnehmen.</p>
+    </div>
+    <div class="rv d1">
+      <div class="cat-links">
+        <a href="blog/idpa.html" class="cat-link">
+          <span class="cat-link-name">Psychologie</span>
+          <span class="cat-link-meta">1 Artikel →</span>
+        </a>
+        <a href="blog/corona.html" class="cat-link">
+          <span class="cat-link-name">Fotografie</span>
+          <span class="cat-link-meta">1 Artikel →</span>
+        </a>
+        <a href="blog/threads.html" class="cat-link">
+          <span class="cat-link-name">Social Media</span>
+          <span class="cat-link-meta">1 Artikel →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER — your exact class structure -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-copy">© 2026 Design & Development by Khadija Okbi</p>
+    <div class="footer-links">
+      <a href="pages/impressum.html" class="footer-link">Impressum</a>
+      <a href="mailto:khadijaokbi@gmail.com" class="footer-link contact-btn"><span>Kontakt</span></a>
+      <a href="pages/datenschutz.html" class="footer-link">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const hdr = document.querySelector('.site-header');
+window.addEventListener('scroll', () => hdr.classList.toggle('is-solid', scrollY > 60));
+
+// Filter
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.f;
+    document.querySelectorAll('[data-cat]').forEach(el => {
+      el.style.transition = 'opacity 0.4s ease';
+      el.style.opacity = (f === 'all' || el.dataset.cat === f) ? '1' : '0.2';
+      el.style.pointerEvents = (f === 'all' || el.dataset.cat === f) ? 'all' : 'none';
+    });
+  });
+});
+
+// Reveal
+const obs = new IntersectionObserver(
+  es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); }),
+  { threshold: 0.08 }
+);
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+</script>
+<script defer src="assets/js/typography-reveal.js"></script>
+</body>
+</html>
