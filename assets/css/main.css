@@ -62,19 +62,21 @@
   --text-sm:       13px;   /* Captions, Meta   → Outfit / Work Sans */
   --text-base:     16px;   /* Body             → Work Sans */
   --text-md:       18px;   /* Lead-Text        → Work Sans */
-  --text-lg:       24px;   /* H3               → OT Neglige */
-  --text-xl:       42px;   /* H2               → OT Neglige */
-  --text-2xl:      64px;   /* H1 Subpages      → Higuen */
+  /* --text-lg / --text-xl / --text-2xl: defined as responsive clamps in global.css */
   --text-3xl-min:  64px;   /* H1 Index min     → Higuen */
   --text-3xl-max: 140px;   /* H1 Index max     → Higuen */
 
   /* ── Font Roles ── */
+  /* Font variables are defined in global.css:
+     --font-h1 / --font-h2  → Higuen
+     --font-h3              → Playfair Display
+     --font-body            → Work Sans
+     --font-ui              → Outfit
+     OT Neglige is available via .title-neglige class only  */
   --font-body:     'Work Sans', sans-serif;
-  --font-display:  'OT Neglige', 'Le Jour', serif;
   --font-higuen:   'Higuen', serif;
   --font-subtitel: 'Outfit', sans-serif;
   --font-subtitle: 'Outfit', sans-serif; /* alias for legacy selectors */
-  --font-titel:    'Tenor Sans', sans-serif;
 
   /* ── Body Typography ── */
   --body-font-size:   var(--text-base);
@@ -170,12 +172,7 @@ small,
   font-family: var(--font-body);
 }
 
-/* Strong global lock — Higuen für alle H1/H2 (bleibt als Absicherung) */
-body h1,
-body h2,
-body section h2 {
-  font-family: var(--font-h1) !important;
-}
+/* H1/H2 use Higuen via global.css — no override needed here */
 
 /* =========================================
    4. EYEBROWS & LABELS
@@ -257,13 +254,13 @@ h2.title-neglige {
 .section--green .title-neglige,
 .section--burgundy .title-neglige,
 .darkgreen .title-neglige {
-  color: var(--off-white) !important;
+  color: var(--off-white);
 }
 
 .section--light .title-neglige,
 .section--cream .title-neglige,
 .white .title-neglige {
-  color: var(--off-black) !important;
+  color: var(--off-black);
 }
 
 /* Headline contrast guardrails */
