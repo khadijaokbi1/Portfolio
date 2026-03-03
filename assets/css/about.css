@@ -1219,3 +1219,23 @@
   /* ── Goodreads CTA left/right structure ── */
   .goodreads-cta-left { text-align: left; flex: 1; min-width: 0; }
   .goodreads-cta-right { flex-shrink: 0; }
+
+/* =========================================
+   ABOUT PAGE — POLISH OVERRIDES
+   Stellt sicher dass Tailwind-Klassen die
+   Wellen nicht abschneiden.
+   ========================================= */
+
+/* Tailwinds overflow-hidden auf der Intro-Section
+   würde die ::after-Welle abschneiden → erzwinge visible */
+.section-about-me {
+  overflow: visible !important;
+}
+
+/* Wellen brauchen position: relative + overflow: visible */
+.section-about-me,
+.work-section.mint,
+.creative-fuel-section {
+  position: relative;
+  overflow: visible !important;
+}
