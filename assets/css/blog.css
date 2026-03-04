@@ -5,40 +5,38 @@
 
    :root {
     --white:          #F5F5F5;
-    --white:      #F5F5F5;
-    --black:          #2D2D2D;
-    --off-black:      #525252;
+    --off-white:      #EBE1D1;
+    --black:          #0A0A0A;
+    --off-black:      #2D2D2D;
     --darkgreen:      #314A51;
     --mint:           #56686A;
     --burgundy:       #6E3B49;
     --mauve:          #B5A19E;
 
-    --black:     #2D2D2D;
-    --white:   #F5F5F5;
-    --text-dark:      #525252;
+    --bg-primary:     #000;
+    --bg-secondary:   #F8F7F4;
+    --text-dark:      #121212;
     --text-gray:      #666666;
 
-    /* Typography tokens moved to assets/css/typography-global.css */
-    /* --work:      'Work Sans', sans-serif; */
-    /* --playfair:   'Playfair Display', serif; */
-    /* --higuen:    'Higuen', serif; */
+    --font-body:      'Work Sans', sans-serif;
+    --font-display:   'Playfair Display', serif;
+    --font-higuen:    'Higuen', serif;
 }
 
-/* Individual @font-face disabled; handled in typography-global.css */
-/* @font-face {
+@font-face {
     font-family: 'Higuen';
     src: url('../fonts/Higuen.woff2') format('woff2');
     font-weight: 100 900;
-    playfair: swap;
-} */
+    font-display: swap;
+}
 
 body {
     background-color: var(--white);
     color: var(--text-dark);
-    font-family: var(--work);
+    font-family: var(--font-body);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    padding-top: 60px;
+    padding-top: 72px;
 }
 
 /* ── Reading Progress Bar ── */
@@ -59,7 +57,7 @@ body {
 
 /* ── Grid Layout ── */
 .editorial-container {
-    max-width: 85vw;
+    max-width: 140rem;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -89,7 +87,7 @@ body {
 
 /* ── Title ── */
 .title-large {
-    font-family: var(--higuen);
+    font-family: var(--font-higuen);
     font-size: clamp(2.8rem, 10vw, 6rem); /* FIXED: war 5vw/6rem — schnitt auf Mobile ab */
     font-weight: 400;
     line-height: 0.92;
@@ -104,7 +102,7 @@ body {
 }
 
 .title-italic {
-    font-family: var(--playfair);
+    font-family: var(--font-display);
     font-style: italic;
     font-weight: 400;
     font-size: 0.88em; /* relativ — skaliert automatisch mit */
@@ -115,7 +113,7 @@ body {
 }
 
 .meta-info {
-    font-family: var(--work);
+    font-family: var(--font-body);
     font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 0.3em;
@@ -139,13 +137,12 @@ body {
 
 /* ── Lead Text ── */
 .text-lead {
-    font-size: clamp(1rem, 1.25vw, 1.125rem);
-    font-style: italic;
+    font-size: clamp(1.2rem, 1.55vw, 1.4rem);
     line-height: 1.85;
-    font-family: var(--playfair);
-    margin-bottom: 3rem;
+    font-family: var(--font-body);
+    margin-bottom: 5rem;
     font-weight: 300;
-    color: var(--off-black);
+    color: var(--text-dark);
     text-align: left;
     hyphens: none;
     text-align-last: left;
@@ -171,12 +168,12 @@ body {
 
 /* ── Drop Cap ── */
 .drop-cap::first-letter {
-    font-family: var(--playfair);
-    font-size: 5rem;
+    font-family: var(--font-display);
+    font-size: 8rem;
     float: left;
     line-height: 0.7;
-    padding-right: 1rem;
-    padding-left: 0.8rem;
+    padding-right: 1.5rem;
+    margin-top: 1rem;
     color: var(--burgundy);
     font-style: italic;
 }
@@ -187,7 +184,7 @@ body {
     padding: 3.5rem 0;
     border-top: 1px solid rgba(0,0,0,0.1);
     border-bottom: 1px solid rgba(0,0,0,0.1);
-    font-family: var(--playfair);
+    font-family: var(--font-display);
     font-size: clamp(1.7rem, 2.8vw, 3rem);
     font-style: italic;
     font-weight: 400;
@@ -237,7 +234,7 @@ body {
     font-size: 0.6rem;
     text-transform: uppercase;
     letter-spacing: 0.22em;
-    font-family: var(--work);
+    font-family: var(--font-body);
     color: #909090;
     cursor: pointer;
     display: flex;

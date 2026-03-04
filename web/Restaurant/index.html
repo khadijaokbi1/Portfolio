@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thai Express — Thai Restaurant & Take-away Kreuzlingen</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --red: #b11116; --red-dark: #8a0d11; }
+    body  { font-family: 'DM Sans', sans-serif; background: #fcfcfc; color: #1a1a1a; }
+
+    /* brand */
+    .bg-brand   { background-color: var(--red); }
+    .text-brand { color: var(--red); }
+    .border-brand { border-color: var(--red); }
+
+    /* typography */
+    .serif  { font-family: 'Cormorant Garamond', Georgia, serif; }
+    .cinzel { font-family: 'Cinzel', serif; }
+
+    /* nav link */
+    .nav-link { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase;
+      font-weight: 600; color: #fff; opacity: .85; transition: opacity .2s; cursor: pointer; }
+    .nav-link:hover, .nav-link.active { opacity: 1; }
+    .nav-link.active { border-bottom: 2px solid rgba(255,255,255,.7); padding-bottom: 1px; }
+
+    /* btn */
+    .btn-red  { background: var(--red); color: #fff; font-weight: 700; letter-spacing: .07em;
+      text-transform: uppercase; transition: filter .2s, transform .15s; cursor: pointer; }
+    .btn-red:hover  { filter: brightness(1.1); }
+    .btn-red:active { transform: scale(.97); }
+    .btn-outline { border: 2px solid var(--red); color: var(--red); font-weight: 700;
+      letter-spacing: .07em; text-transform: uppercase; transition: all .2s; cursor: pointer; }
+    .btn-outline:hover { background: var(--red); color: #fff; }
+
+    /* scrollbar */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: var(--red); border-radius: 10px; }
+
+    /* section transitions */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* menu-order page specific */
+    .cat-pill { border: 1.5px solid var(--red); color: var(--red); transition: all .2s; }
+    .cat-pill:hover { background: #fdf0f0; }
+    .cat-pill.active { background: var(--red); color: #fff; box-shadow: 0 2px 12px rgba(177,17,22,.25); }
+
+    .menu-card { background: #fff; border: 1px solid #f0f0f0; transition: box-shadow .25s, transform .25s; }
+    .menu-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.10); transform: translateY(-2px); }
+    .menu-card img { transition: transform .5s ease, filter .3s; filter: brightness(.92); }
+    .menu-card:hover img { transform: scale(1.06); filter: brightness(1.05); }
+
+    .cart-badge { position: absolute; top: -8px; right: -8px; background: #fff; color: var(--red);
+      border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center;
+      justify-content: center; font-size: 12px; font-weight: 700;
+      box-shadow: 0 2px 6px rgba(177,17,22,.3); }
+
+    .form-input { background: #f8f8f8; border: 1.5px solid #ebebeb; border-radius: 12px;
+      padding: .65rem .9rem; font-family: 'DM Sans', sans-serif; font-size: .88rem;
+      color: #111; width: 100%; transition: border-color .2s, box-shadow .2s; outline: none; }
+    .form-input:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(177,17,22,.10); background: #fff; }
+
+    .spicy { filter: drop-shadow(0 0 2px rgba(177,17,22,.5)); }
+
+    @keyframes popIn { from { transform: scale(.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .pop-in { animation: popIn .25s cubic-bezier(.23,1,.32,1) both; }
+
+    /* gallery */
+    .gallery-img { aspect-ratio: 1; object-fit: cover; transition: transform .4s; }
+    .gallery-img:hover { transform: scale(1.04); }
+
+    /* red section */
+    .section-red { background: var(--red); color: #fff; }
+    .section-red h2, .section-red p { color: #fff; }
+
+    /* divider ornament */
+    .ornament { display: flex; align-items: center; gap: .6rem; justify-content: center; margin-bottom: .8rem; }
+    .ornament span { font-size: .55rem; color: var(--red); letter-spacing: .3em; }
+    .ornament::before, .ornament::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--red); opacity: .35; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     TOPBAR NAV
+════════════════════════════════════════════════════ -->
+<nav id="main-nav" class="bg-brand sticky top-0 z-40 shadow-lg">
+  <div class="max-w-5xl mx-auto px-4 flex items-center justify-between h-14">
+
+    <!-- Logo -->
+    <button onclick="showPage('home')" class="flex items-center gap-2 shrink-0">
+      <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow">
+        <span class="text-brand font-black text-sm cinzel">E</span>
+      </div>
+      <span class="cinzel text-white text-base font-semibold tracking-widest hidden sm:block">THAI EXPRESS</span>
+    </button>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-6">
+      <span class="nav-link active" data-page="home"     onclick="showPage('home')">Startseite</span>
+      <span class="nav-link"        data-page="about"    onclick="showPage('about')">Über uns</span>
+      <span class="nav-link"        data-page="menu-order" onclick="showPage('menu-order')">Menü</span>
+      <span class="nav-link"        data-page="gallery"  onclick="showPage('gallery')">Galerie</span>
+      <span class="nav-link"        data-page="takeaway" onclick="showPage('takeaway')">Take-away</span>
+      <span class="nav-link"        data-page="contact"  onclick="showPage('contact')">Kontakt</span>
+    </div>
+
+    <!-- Cart + mobile menu -->
+    <div class="flex items-center gap-3">
+      <button onclick="showPage('menu-order'); openCart();"
+        class="relative p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors">
+        <i class="fa-solid fa-basket-shopping text-white text-base"></i>
+        <span id="cart-badge" class="cart-badge" style="display:none">0</span>
+      </button>
+      <!-- Mobile hamburger -->
+      <button onclick="toggleMobileNav()" class="md:hidden p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors">
+        <i class="fa-solid fa-bars text-white text-base"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-nav" class="hidden md:hidden bg-red-900/95 border-t border-white/10 px-4 py-3 space-y-2">
+    <div class="nav-link block py-2" onclick="showPage('home');toggleMobileNav()">Startseite</div>
+    <div class="nav-link block py-2" onclick="showPage('about');toggleMobileNav()">Über uns</div>
+    <div class="nav-link block py-2" onclick="showPage('menu-order');toggleMobileNav()">Menü</div>
+    <div class="nav-link block py-2" onclick="showPage('gallery');toggleMobileNav()">Galerie</div>
+    <div class="nav-link block py-2" onclick="showPage('takeaway');toggleMobileNav()">Take-away</div>
+    <div class="nav-link block py-2" onclick="showPage('contact');toggleMobileNav()">Kontakt</div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: HOME (LANDING)
+════════════════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <section class="relative w-full overflow-hidden" style="height: clamp(380px, 55vw, 580px);">
+    <img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?auto=format&fit=crop&q=85&w=1600"
+      alt="Thai Express" class="absolute inset-0 w-full h-full object-cover object-center" />
+    <!-- spice scatter overlays -->
+    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(177,17,22,.45) 0%, rgba(0,0,0,.35) 50%, rgba(0,0,0,.15) 100%)"></div>
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+      <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-xl mb-4">
+        <span class="cinzel text-brand font-bold text-2xl">E</span>
+      </div>
+      <h1 class="serif text-white font-semibold leading-tight mb-2"
+        style="font-size: clamp(2.4rem, 6vw, 4.2rem)">
+        Thai <span class="italic">EXPRESS</span>
+      </h1>
+      <p class="text-white/80 text-sm tracking-widest uppercase mb-6">
+        Thai Restaurant &amp; Take-away in Kreuzlingen Thurgau
+      </p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <button onclick="showPage('menu-order')"
+          class="btn-red px-8 py-3 rounded-none text-xs tracking-widest shadow-xl">
+          Bestellen Sie
+        </button>
+        <a href="#" onclick="event.preventDefault()"
+          class="btn-outline px-8 py-3 rounded-none text-xs tracking-widest bg-white/10 border-white text-white hover:bg-white hover:text-brand">
+          Kreuzlingen
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured dishes preview -->
+  <section class="max-w-5xl mx-auto px-4 py-10">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="rounded-2xl overflow-hidden shadow-md group">
+        <div class="overflow-hidden h-40">
+          <img src="https://images.unsplash.com/photo-1544333346-64e4fe1820af?auto=format&fit=crop&q=80&w=400"
+            alt="Gung-Chup-Paeng-Toad" class="w-full h-full object-cover gallery-img" />
+        </div>
+        <div class="p-3 bg-white border border-gray-100">
+          <p class="font-semibold text-sm text-gray-900">Gung-Chup-Paeng-Toad</p>
+          <p class="text-[11px] text-gray-400 italic mt-0.5">4 knusprige Garnelen mit süss-saurem Sauce</p>
+          <p class="text-brand font-bold text-sm mt-1">7.90</p>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow-md group">
+        <div class="overflow-hidden h-40">
+          <img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&q=80&w=400"
+            alt="Panaeng Gai" class="w-full h-full object-cover gallery-img" />
+        </div>
+        <div class="p-3 bg-white border border-gray-100">
+          <p class="font-semibold text-sm text-gray-900">Panaeng Gai</p>
+          <p class="text-[11px] text-gray-400 italic mt-0.5">Hühnerfleisch mit Thai-Curry &amp; Kokosmilch</p>
+          <p class="text-brand font-bold text-sm mt-1">15.90</p>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow-md group">
+        <div class="overflow-hidden h-40">
+          <img src="https://images.unsplash.com/photo-1559496417-e7f25cb247f3?auto=format&fit=crop&q=80&w=400"
+            alt="Phad Thai" class="w-full h-full object-cover gallery-img" />
+        </div>
+        <div class="p-3 bg-white border border-gray-100">
+          <p class="font-semibold text-sm text-gray-900">Phad Thai</p>
+          <p class="text-[11px] text-gray-400 italic mt-0.5">Reisnudeln nach Nationalrezept mit Erdnuss</p>
+          <p class="text-brand font-bold text-sm mt-1">15.90</p>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow-md group">
+        <div class="overflow-hidden h-40">
+          <img src="https://images.unsplash.com/photo-1548943487-a2e4e43b4853?auto=format&fit=crop&q=80&w=400"
+            alt="Tom Yam" class="w-full h-full object-cover gallery-img" />
+        </div>
+        <div class="p-3 bg-white border border-gray-100">
+          <p class="font-semibold text-sm text-gray-900">Tom-Yam-Gung</p>
+          <p class="text-[11px] text-gray-400 italic mt-0.5">Garnelensuppe mit Zitronengras &amp; Chili</p>
+          <p class="text-brand font-bold text-sm mt-1">8.90</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- teaser text + PDF CTA -->
+    <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 border-t pt-6">
+      <p class="text-gray-500 text-sm leading-relaxed max-w-xl">
+        Unser Geheimrezept? Authentizität! Frische Produkte bester Qualität, traditionell
+        zubereitet durch uns, raffiniert gewürzt, mit thailändischer Freundlichkeit serviert.
+        Authentischer geht's wirklich nicht, so als wenn Sie fliegen nach Bangkok.
+      </p>
+      <button onclick="showPage('menu-order')"
+        class="btn-red px-7 py-3 rounded-none text-xs tracking-widest shrink-0 shadow-md">
+        Menükarte
+      </button>
+    </div>
+  </section>
+
+  <!-- Über uns teaser -->
+  <section class="section-red py-14 px-6">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <div class="overflow-hidden rounded-2xl shadow-2xl">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=800"
+          alt="Restaurant" class="w-full h-72 object-cover" />
+      </div>
+      <div>
+        <div class="ornament" style="justify-content:flex-start; margin-bottom:.4rem;">
+          <span style="color:rgba(255,255,255,.5);letter-spacing:.3em;font-size:.55rem;">✦ ÜBER UNS ✦</span>
+        </div>
+        <h2 class="serif text-4xl font-semibold text-white mb-4">Über uns</h2>
+        <p class="text-white/80 text-sm leading-relaxed mb-4">
+          Willkommen bei Thai Express. Sie finden uns in Kreuzlingen &amp; Frauenfeld im Thurgau.
+          Wer das leckere, frische und ursprüngliche asiatische Essen aus originell thailändischer
+          Küche geniessen will, der sollte lächelnd bei uns vorbeischauen.
+        </p>
+        <p class="text-white/80 text-sm leading-relaxed mb-6">
+          Sie können diese Geschmackserlebnisse vor Ort genießen, lassen Sie den Geschmack frischer
+          Currys, Suppen auf der Zunge getragen. Wir freuen uns für Sie kochen zu dürfen.
+        </p>
+        <button onclick="showPage('about')"
+          class="bg-white text-brand font-bold text-xs tracking-widest px-6 py-3 rounded-none uppercase transition hover:bg-gray-100">
+          Mehr erfahren
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu section heading -->
+  <section class="py-14 px-6 max-w-5xl mx-auto">
+    <div class="ornament"><span>✦ SPEISEKARTE ✦</span></div>
+    <h2 class="serif text-5xl font-semibold text-center text-gray-900 mb-10">Menu</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Satay Spiesse -->
+      <div class="flex gap-4 items-start border-b pb-6">
+        <div class="w-28 h-28 rounded-xl overflow-hidden shrink-0 shadow">
+          <img src="https://images.unsplash.com/photo-1529563021893-cc829871633d?auto=format&fit=crop&q=80&w=300"
+            alt="Satay" class="w-full h-full object-cover gallery-img" />
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900">Satay Spiesse</h3>
+          <p class="text-[11px] text-gray-400 italic mt-1 leading-relaxed">3 Hühnerpiesse mit Erdnuss-Curry-Sauce</p>
+          <p class="text-brand font-bold mt-2">7.90</p>
+        </div>
+      </div>
+      <!-- Gaeng-Khaw-Gai -->
+      <div class="flex gap-4 items-start border-b pb-6">
+        <div class="w-28 h-28 rounded-xl overflow-hidden shrink-0 shadow">
+          <img src="https://images.unsplash.com/photo-1565123409695-7b5ef63a2efb?auto=format&fit=crop&q=80&w=300"
+            alt="Gaeng Khaw Gai" class="w-full h-full object-cover gallery-img" />
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900">Gaeng-Khaw-Gai</h3>
+          <p class="text-[11px] text-gray-400 italic mt-1 leading-relaxed">Hühnerfleisch mit Thai-Curry und tropischen Früchten</p>
+          <p class="text-brand font-bold mt-2">15.90</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-8">
+      <button onclick="showPage('menu-order')"
+        class="btn-red px-10 py-3 rounded-none text-xs tracking-widest shadow-lg">
+        Zur vollständigen Menükarte &amp; Online Bestellen
+      </button>
+    </div>
+  </section>
+
+  <!-- Küche section -->
+  <section class="section-red">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2">
+      <!-- Text left -->
+      <div class="py-14 px-8 flex flex-col justify-center">
+        <div class="ornament" style="justify-content:flex-start;">
+          <span style="color:rgba(255,255,255,.45);letter-spacing:.3em;font-size:.55rem;">✦ KÜCHE ✦</span>
+        </div>
+        <h2 class="serif text-4xl font-semibold text-white mb-5">Unsere Küche</h2>
+        <p class="text-white/80 text-sm leading-relaxed mb-3">
+          Sie möchten einfach gut, authentisch und traditionell thailändisch speisen? Dann sitzen Sie
+          bei Thai Express in Kreuzlingen am richtigen Tisch. Ob Wok-Gerichte, leichte Thai-Suppen,
+          Curry-Gerichte, leckere Thai-Sauce Gerichte, nach Ihren oder Tofu &amp; Pfannengerichte.
+        </p>
+        <p class="text-white/80 text-sm leading-relaxed mb-3">
+          Vegetarisch, mit Tofu oder Fleisch, Sonderwünsche werden im Rahmen der Möglichkeiten
+          gerne berücksichtigt. Qualität statt Quantität.
+        </p>
+        <p class="text-white/80 text-sm leading-relaxed">
+          Benötigen Sie Rat für ein gemütliches Mittagessen, zwischendurch oder keinen Sie auf
+          schnelle Zubereitung? Wir informieren Sie gerne.
+        </p>
+      </div>
+      <!-- Image right -->
+      <div class="overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&q=80&w=800"
+          alt="Unsere Küche" class="w-full h-full object-cover min-h-[320px]" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Galerie teaser -->
+  <section class="py-14 px-6 max-w-5xl mx-auto">
+    <div class="ornament"><span>✦ GALERIE ✦</span></div>
+    <p class="cinzel text-[9px] text-center tracking-[.2em] uppercase text-gray-400 mb-2">Einblick</p>
+    <h2 class="serif text-4xl text-center text-gray-900 font-semibold mb-8">Zum Wohlfühlen</h2>
+    <p class="text-center text-gray-500 text-sm max-w-xl mx-auto mb-8">
+      Ob per Take-away oder in unserem Restaurant geniessen Sie authentische Thai-Food mit frischen
+      Zutaten bester Qualität. Das muss man zu einem glauben. Überzeugen Sie selbst!
+    </p>
+    <div class="grid grid-cols-3 md:grid-cols-5 gap-2">
+      <div class="overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=400" alt="" class="gallery-img w-full" /></div>
+      <div class="overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=400" alt="" class="gallery-img w-full" /></div>
+      <div class="overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80&w=400" alt="" class="gallery-img w-full" /></div>
+      <div class="overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=400" alt="" class="gallery-img w-full" /></div>
+      <div class="overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&q=80&w=400" alt="" class="gallery-img w-full" /></div>
+    </div>
+  </section>
+
+  <!-- Take Away teaser -->
+  <section class="py-14 px-6 bg-gray-50 border-t border-gray-100">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <div class="ornament" style="justify-content:flex-start;"><span>✦ TAKE AWAY ✦</span></div>
+        <h2 class="serif text-4xl font-semibold text-gray-900 mb-4">Take Away</h2>
+        <p class="text-gray-500 text-sm leading-relaxed mb-3">
+          Wir kochen für Sie alle Ihre Thai-Lieblingsgerichte auch zum Mitnehmen zu einem fairen
+          Preis in Haushaltsqualität. Rufen Sie uns einfach an und bestellen Sie Ihr Lieblingsessen.
+        </p>
+        <p class="text-gray-500 text-sm leading-relaxed mb-6">
+          Informieren Sie sich über mögliche Allergene. Ausserdem geniessen wir original
+          Thailändische Zutaten.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <button onclick="showPage('menu-order')"
+            class="btn-red px-7 py-3 rounded-none text-xs tracking-widest shadow-md">
+            Online Bestellen
+          </button>
+          <button onclick="showPage('takeaway')"
+            class="btn-outline px-7 py-3 rounded-none text-xs tracking-widest">
+            Klicken für Menükarte PDF
+          </button>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-2xl shadow-xl">
+        <img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&q=80&w=700"
+          alt="Take Away" class="w-full h-72 object-cover" />
+      </div>
+    </div>
+    <!-- Testimonial -->
+    <div class="text-center mt-10">
+      <blockquote class="serif italic text-3xl text-gray-700">
+        "Einfach, lecker und Authentisch"
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Kontakt teaser -->
+  <section class="py-14 px-6 max-w-5xl mx-auto">
+    <div class="ornament"><span>✦ KONTAKT ✦</span></div>
+    <h2 class="serif text-4xl text-center text-gray-900 font-semibold mb-3">Wie Sie uns erreichen.</h2>
+    <p class="text-center text-gray-400 text-sm max-w-lg mx-auto mb-10">
+      Wenn Sie Fragen haben zu unseren Leistungen und Angeboten, können Sie uns einfach erreichen.
+    </p>
+    <div class="grid md:grid-cols-2 gap-8 items-start">
+      <!-- Info -->
+      <div class="bg-brand text-white rounded-2xl p-8">
+        <h3 class="cinzel text-lg font-semibold mb-5 tracking-wide">Thai Express Kreuzlingen</h3>
+        <div class="space-y-3 text-sm">
+          <div class="flex gap-3"><i class="fa-solid fa-location-dot mt-0.5 opacity-70"></i>
+            <span>Konstanzerstrasse 70<br />8280 Kreuzlingen</span></div>
+          <div class="flex gap-3"><i class="fa-solid fa-clock mt-0.5 opacity-70"></i>
+            <div>
+              <div>Di–Fr: 11:30–14:00 · 17:30–21:30</div>
+              <div>Sa: 11:30–21:00</div>
+              <div class="opacity-60">Montag: Ruhetag</div>
+            </div>
+          </div>
+          <div class="flex gap-3"><i class="fa-solid fa-phone mt-0.5 opacity-70"></i>
+            <a href="tel:+41715447044" class="text-white hover:underline">+41 71 544 70 44</a></div>
+        </div>
+      </div>
+      <!-- Map placeholder -->
+      <div class="rounded-2xl overflow-hidden shadow-lg h-64 bg-gray-200 relative">
+        <img src="https://maps.googleapis.com/maps/api/staticmap?center=Konstanzerstrasse+70,8280+Kreuzlingen&zoom=14&size=600x300&maptype=roadmap&markers=color:red|Konstanzerstrasse+70,8280+Kreuzlingen&key=DEMO"
+          alt="Karte" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+        <div class="absolute inset-0 flex flex-col items-center justify-center bg-gray-100">
+          <i class="fa-solid fa-location-dot text-4xl text-brand mb-2"></i>
+          <p class="text-sm text-gray-600 font-semibold">Konstanzerstrasse 70</p>
+          <p class="text-xs text-gray-400">8280 Kreuzlingen</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-brand text-white py-8 px-6 text-center">
+    <p class="cinzel text-sm tracking-widest mb-1">THAI EXPRESS</p>
+    <p class="text-white/60 text-xs">Thai Restaurant &amp; Take-away · Kreuzlingen &amp; Frauenfeld</p>
+    <div class="mt-4 flex justify-center gap-4 text-xs text-white/50">
+      <a href="/admin" class="hover:text-white/80 transition">Admin</a>
+      <span>·</span>
+      <span>© 2026 Thai Express</span>
+    </div>
+  </footer>
+
+</div><!-- /page-home -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: ABOUT
+════════════════════════════════════════════════════ -->
+<div id="page-about" class="page">
+  <div class="relative h-48 overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=1400"
+      alt="Über uns" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-brand/70 flex items-center justify-center">
+      <h1 class="serif text-white text-4xl font-semibold italic">Über uns</h1>
+    </div>
+  </div>
+  <div class="max-w-3xl mx-auto px-6 py-14">
+    <div class="ornament"><span>✦ UNSERE GESCHICHTE ✦</span></div>
+    <p class="text-gray-600 text-sm leading-relaxed mb-4">
+      Willkommen bei Thai Express. Sie finden uns in Kreuzlingen &amp; Frauenfeld im Thurgau. Wer das leckere,
+      frische und ursprüngliche asiatische Essen aus originell thailändischer Küche geniessen will, der sollte
+      lächelnd bei uns vorbeischauen.
+    </p>
+    <p class="text-gray-600 text-sm leading-relaxed mb-4">
+      Sie können diese Geschmackserlebnisse vor Ort genießen, lassen Sie den Geschmack frischer Currys, Suppen
+      und anderen leckeren Speisen auf der Zunge getragen nach Thailand. Vor allem aber zeichnen wir uns durch
+      die schnelle Zubereitung der Menüs aus.
+    </p>
+    <p class="text-gray-600 text-sm leading-relaxed">
+      Wir freuen uns für Sie kochen zu dürfen.
+    </p>
+    <div class="mt-8">
+      <button onclick="showPage('menu-order')" class="btn-red px-8 py-3 rounded-none text-xs tracking-widest">
+        Jetzt Online Bestellen
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: GALLERY
+════════════════════════════════════════════════════ -->
+<div id="page-gallery" class="page">
+  <div class="relative h-48 overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80&w=1400"
+      alt="Galerie" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-brand/70 flex items-center justify-center">
+      <h1 class="serif text-white text-4xl font-semibold italic">Galerie</h1>
+    </div>
+  </div>
+  <div class="max-w-5xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-3 gap-3">
+    <div class="overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=600" alt="" class="gallery-img w-full h-52 object-cover" /></div>
+    <div class="overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=600" alt="" class="gallery-img w-full h-52 object-cover" /></div>
+    <div class="overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80&w=600" alt="" class="gallery-img w-full h-52 object-cover" /></div>
+    <div class="overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600" alt="" class="gallery-img w-full h-52 object-cover" /></div>
+    <div class="overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&q=80&w=600" alt="" class="gallery-img w-full h-52 object-cover" /></div>
+    <div class="overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&q=80&w=600" alt="" class="gallery-img w-full h-52 object-cover" /></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: TAKE AWAY
+════════════════════════════════════════════════════ -->
+<div id="page-takeaway" class="page">
+  <div class="relative h-48 overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=1400"
+      alt="Take Away" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-brand/70 flex items-center justify-center">
+      <h1 class="serif text-white text-4xl font-semibold italic">Take Away</h1>
+    </div>
+  </div>
+  <div class="max-w-3xl mx-auto px-6 py-14">
+    <div class="ornament"><span>✦ ONLINE BESTELLEN ✦</span></div>
+    <p class="text-gray-600 text-sm leading-relaxed mb-6 text-center">
+      Bestellen Sie bequem online — wählen Sie Ihre Lieblingsgerichte, geben Sie Ihre Kontaktdaten ein
+      und wählen Sie ein Abholfenster. Wir benachrichtigen Sie per SMS &amp; E-Mail.
+    </p>
+    <div class="text-center">
+      <button onclick="showPage('menu-order')" class="btn-red px-10 py-4 rounded-none text-xs tracking-widest shadow-xl">
+        Jetzt Online Bestellen
+      </button>
+    </div>
+    <div class="mt-10 bg-brand/5 border border-brand/15 rounded-2xl p-6 text-sm text-gray-600 space-y-2">
+      <p><strong class="text-gray-800">Öffnungszeiten Take-Away:</strong></p>
+      <p>Di–Fr: 11:30–14:00 &amp; 17:30–21:30</p>
+      <p>Sa: 11:30–21:00</p>
+      <p class="text-gray-400">Montag geschlossen</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: CONTACT
+════════════════════════════════════════════════════ -->
+<div id="page-contact" class="page">
+  <div class="relative h-48 overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&q=80&w=1400"
+      alt="Kontakt" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-brand/70 flex items-center justify-center">
+      <h1 class="serif text-white text-4xl font-semibold italic">Kontakt</h1>
+    </div>
+  </div>
+  <div class="max-w-4xl mx-auto px-6 py-14 grid md:grid-cols-2 gap-10">
+    <div class="bg-brand text-white rounded-2xl p-8">
+      <h3 class="cinzel text-lg font-semibold mb-5 tracking-wide">Thai Express Kreuzlingen</h3>
+      <div class="space-y-4 text-sm">
+        <div class="flex gap-3"><i class="fa-solid fa-location-dot mt-0.5 opacity-70 shrink-0"></i>
+          <span>Konstanzerstrasse 70<br />8280 Kreuzlingen</span></div>
+        <div class="flex gap-3"><i class="fa-solid fa-clock mt-0.5 opacity-70 shrink-0"></i>
+          <div>
+            <div>Di–Fr: 11:30–14:00 · 17:30–21:30</div>
+            <div>Sa: 11:30–21:00</div>
+            <div class="opacity-60 mt-1">Montag: Ruhetag</div>
+          </div>
+        </div>
+        <div class="flex gap-3"><i class="fa-solid fa-phone mt-0.5 opacity-70 shrink-0"></i>
+          <a href="tel:+41715447044" class="text-white hover:underline">+41 71 544 70 44</a></div>
+      </div>
+    </div>
+    <div class="rounded-2xl overflow-hidden shadow-lg h-72 bg-gray-100 flex flex-col items-center justify-center">
+      <i class="fa-solid fa-location-dot text-5xl text-brand mb-3"></i>
+      <p class="font-semibold text-gray-700">Konstanzerstrasse 70</p>
+      <p class="text-sm text-gray-400">8280 Kreuzlingen</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: MENU & ORDER (the full order system)
+════════════════════════════════════════════════════ -->
+<div id="page-menu-order" class="page pb-28">
+
+  <!-- Sub-hero -->
+  <div class="relative h-40 overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?auto=format&fit=crop&q=80&w=1400"
+      alt="Menü" class="w-full h-full object-cover object-top" />
+    <div class="absolute inset-0 bg-brand/65 flex flex-col items-center justify-center">
+      <h1 class="serif text-white text-4xl font-semibold italic mb-1">Unsere Menükarte</h1>
+      <p class="cinzel text-white/70 text-[9px] tracking-[.25em] uppercase">Online Bestellen · Take Away</p>
+    </div>
+  </div>
+
+  <!-- Category bar -->
+  <nav id="cat-bar" class="sticky top-[56px] z-30 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm py-3 overflow-x-auto no-scrollbar">
+    <div class="flex gap-2.5 max-w-4xl mx-auto px-4 w-max">
+      <button class="cat-pill active px-5 py-1.5 rounded-full text-xs font-semibold" data-cat="all">Alle</button>
+      <button class="cat-pill px-5 py-1.5 rounded-full text-xs font-semibold" data-cat="vorspeisen">Vorspeisen</button>
+      <button class="cat-pill px-5 py-1.5 rounded-full text-xs font-semibold" data-cat="suppen">Suppen</button>
+      <button class="cat-pill px-5 py-1.5 rounded-full text-xs font-semibold" data-cat="hauptspeisen">Hauptspeisen</button>
+      <button class="cat-pill px-5 py-1.5 rounded-full text-xs font-semibold" data-cat="vegetarisch">Veggie &amp; Tofu</button>
+      <button class="cat-pill px-5 py-1.5 rounded-full text-xs font-semibold" data-cat="dessert">Dessert</button>
+    </div>
+  </nav>
+
+  <!-- Menu grid -->
+  <main id="menu-container" class="max-w-4xl mx-auto px-4 pt-5 pb-10 space-y-4"></main>
+
+</div><!-- /page-menu-order -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     CART SIDEBAR
+════════════════════════════════════════════════════ -->
+<div id="cart-overlay" class="fixed inset-0 bg-black/55 backdrop-blur-sm z-50 hidden" onclick="closeCart()"></div>
+<aside id="cart-panel" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-[55] flex flex-col shadow-2xl" style="transform:translateX(100%);transition:transform .35s cubic-bezier(.23,1,.32,1)">
+  <div class="bg-brand text-white px-6 py-5 flex justify-between items-center shrink-0">
+    <div>
+      <h3 class="cinzel text-lg font-semibold tracking-wide">Warenkorb</h3>
+      <p class="text-[9px] uppercase tracking-[.25em] opacity-70 mt-0.5">Ihre Auswahl</p>
+    </div>
+    <button onclick="closeCart()" class="text-3xl leading-none hover:rotate-90 transition-transform duration-300">&times;</button>
+  </div>
+  <div id="cart-items" class="flex-1 overflow-y-auto px-6 py-5 space-y-3 custom-scrollbar">
+    <div id="cart-empty-state" class="flex flex-col items-center justify-center h-full text-gray-300 py-16">
+      <i class="fa-solid fa-utensils text-5xl mb-4 opacity-30"></i>
+      <p class="text-sm">Ihr Warenkorb ist noch leer.</p>
+    </div>
+  </div>
+  <div class="px-6 py-5 border-t bg-gray-50 shrink-0">
+    <div class="flex justify-between items-center mb-4">
+      <span class="font-semibold text-gray-700 text-sm">Gesamtsumme</span>
+      <span id="cart-total" class="serif text-2xl font-semibold text-brand">CHF 0.00</span>
+    </div>
+    <button onclick="openCheckout()"
+      class="btn-red w-full py-4 rounded-2xl text-xs tracking-widest shadow-lg">
+      <i class="fa-solid fa-lock mr-2 text-[10px]"></i>Zur Kasse
+    </button>
+  </div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════
+     CHECKOUT PANEL
+════════════════════════════════════════════════════ -->
+<div id="checkout-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] hidden"></div>
+<div id="checkout-panel" class="fixed inset-0 z-[65] flex items-end sm:items-center justify-center hidden">
+  <div class="bg-white w-full max-w-lg rounded-t-3xl sm:rounded-3xl shadow-2xl max-h-[92vh] flex flex-col pop-in">
+    <div class="flex justify-between items-center px-7 py-5 border-b shrink-0">
+      <div>
+        <p class="cinzel text-[9px] tracking-[.2em] uppercase text-brand mb-1">Bestellung abschliessen</p>
+        <h3 class="serif text-2xl font-semibold text-gray-900">Ihre Angaben</h3>
+      </div>
+      <button onclick="closeCheckout()" class="text-gray-400 hover:text-gray-700 text-2xl leading-none">&times;</button>
+    </div>
+    <div class="overflow-y-auto custom-scrollbar px-7 py-6 space-y-4 flex-1">
+      <div id="checkout-summary" class="bg-gray-50 rounded-2xl p-4 space-y-2"></div>
+      <div class="space-y-3">
+        <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-400">Kontakt</p>
+        <input id="co-name"  class="form-input" type="text"  placeholder="Name" />
+        <input id="co-phone" class="form-input" type="tel"   placeholder="Telefon (+41 79 …)" />
+        <input id="co-email" class="form-input" type="email" placeholder="E-Mail" />
+      </div>
+      <div class="space-y-2">
+        <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-400">Abholfenster</p>
+        <div id="slot-loading" class="text-xs text-gray-400 flex items-center gap-2">
+          <i class="fa-solid fa-circle-notch fa-spin text-brand"></i> Wird geladen…
+        </div>
+        <select id="co-slot" class="form-input hidden"><option value="">Bitte wählen</option></select>
+        <p id="slot-note" class="text-[11px] text-gray-400"></p>
+      </div>
+      <div class="space-y-2">
+        <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-400">Spezialwunsch (optional)</p>
+        <textarea id="co-note" class="form-input resize-none h-20" placeholder="z.B. ohne Chili, Allergie…"></textarea>
+      </div>
+      <div class="flex justify-between items-center bg-red-50 border border-red-100 rounded-2xl px-4 py-3">
+        <span class="text-sm font-semibold text-gray-700">Total</span>
+        <span id="co-total" class="serif text-2xl font-semibold text-brand">CHF 0.00</span>
+      </div>
+    </div>
+    <div class="px-7 py-5 border-t shrink-0">
+      <button id="pay-btn" onclick="submitOrder()"
+        class="btn-red w-full py-4 rounded-2xl text-xs tracking-widest shadow-xl">
+        <i class="fa-solid fa-lock mr-2 text-[10px]"></i>Jetzt bezahlen
+      </button>
+      <p class="text-center text-[10px] text-gray-400 mt-3">
+        <i class="fa-solid fa-shield-halved mr-1"></i>Sichere Zahlung · Stripe / TWINT
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SUCCESS DIALOG
+════════════════════════════════════════════════════ -->
+<div id="success-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[70] hidden flex items-center justify-center p-6">
+  <div class="bg-white rounded-[2rem] text-center max-w-sm w-full p-10 shadow-2xl pop-in">
+    <div class="w-20 h-20 bg-brand rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+      <i class="fa-solid fa-check text-white text-3xl"></i>
+    </div>
+    <p class="cinzel text-[9px] tracking-[.2em] uppercase text-brand mb-2">Bestellung eingegangen</p>
+    <h3 class="serif text-3xl font-semibold text-gray-900 mb-3">Vielen Dank!</h3>
+    <p id="success-msg" class="text-sm text-gray-500 leading-relaxed mb-8">Bestellung erfolgreich übermittelt.</p>
+    <button onclick="resetAll()" class="btn-red w-full py-4 rounded-2xl text-xs tracking-widest">
+      Zurück zur Speisekarte
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════════ -->
+<script>
+/* ── Page routing ────────────────────────────────── */
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const pg = document.getElementById('page-' + id);
+  if (pg) { pg.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+  // update nav active state
+  document.querySelectorAll('.nav-link[data-page]').forEach(l => {
+    l.classList.toggle('active', l.dataset.page === id);
+  });
+
+  // render menu when menu-order page opens
+  if (id === 'menu-order') renderMenu();
+}
+
+function toggleMobileNav() {
+  document.getElementById('mobile-nav').classList.toggle('hidden');
+}
+
+/* ── Menu Data ───────────────────────────────────── */
+const MENU = [
+  { id:'v01', cat:'vorspeisen',   name:'Poh-Pia-Jee',     price:5.90,  spicy:0, desc:'5 vegetarische Frühlingsrollen mit hausgemachter süss-saurer Sauce',          img:'https://images.unsplash.com/photo-1544333346-64e4fe1820af?auto=format&fit=crop&q=80&w=600' },
+  { id:'v02', cat:'vorspeisen',   name:'Satay-Gai',        price:7.90,  spicy:0, desc:'3 saftige Hühnerfleischspiesse an aromatischer Erdnuss-Curry Sauce',           img:'https://images.unsplash.com/photo-1529563021893-cc829871633d?auto=format&fit=crop&q=80&w=600' },
+  { id:'v03', cat:'vorspeisen',   name:'Spareribs',        price:8.90,  spicy:0, desc:'5 gegrillte Schweinerippchen, mariniert mit exotischen Thai-Gewürzen',         img:'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600' },
+  { id:'v04', cat:'vorspeisen',   name:'Krabbenchips',     price:3.00,  spicy:0, desc:'Knusprig gebratene Prawn Crackers nach traditioneller Art',                    img:'https://images.unsplash.com/photo-1625938146369-adc83368bda7?auto=format&fit=crop&q=80&w=600' },
+  { id:'v05', cat:'vorspeisen',   name:'Poh-Pia-Gung',     price:7.90,  spicy:0, desc:'4 handgerollte Frühlingsrollen mit ganzen Crevetten',                          img:'https://images.unsplash.com/photo-1539136788836-5699e7863572?auto=format&fit=crop&q=80&w=600' },
+  { id:'s01', cat:'suppen',       name:'Tom-Yam-Gung',     price:8.90,  spicy:2, desc:'Klassische Garnelensuppe mit Strohpilzen, Zitronengras & Chili',               img:'https://images.unsplash.com/photo-1548943487-a2e4e43b4853?auto=format&fit=crop&q=80&w=600' },
+  { id:'s02', cat:'suppen',       name:'Tom-Kha-Gai',      price:7.90,  spicy:0, desc:'Cremige Hühnersuppe in Kokosmilch mit Galgant & Champignons',                  img:'https://images.unsplash.com/photo-1637004313400-e74c83220462?auto=format&fit=crop&q=80&w=600' },
+  { id:'s03', cat:'suppen',       name:'Tom-Kah-Pak',      price:6.90,  spicy:0, desc:'Feine Gemüsesuppe in Kokosmilch mit asiatischen Pilzen',                       img:'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=600' },
+  { id:'h01', cat:'hauptspeisen', name:'Gaeng-Gai',        spicy:1,              desc:'Roter Thai-Curry, Bambussprossen & Thai-Basilikum in Kokosmilch', isMulti:true, img:'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&q=80&w=600' },
+  { id:'h02', cat:'hauptspeisen', name:'Ba-Mee-Phad',      spicy:0,              desc:'Im Wok geschwenkte Eiernudeln mit Marktgemüse',                   isMulti:true, img:'https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&q=80&w=600' },
+  { id:'h03', cat:'hauptspeisen', name:'Khau-Phad',        spicy:0,              desc:'Gebratener Duftreis mit feinem Gemüse und Bio-Ei',                isMulti:true, img:'https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&q=80&w=600' },
+  { id:'h04', cat:'hauptspeisen', name:'Phad-Krapau',      spicy:2,              desc:'Scharf gebraten mit Vogelaugenchili & heiligem Thai-Basilikum',   isMulti:true, img:'https://images.unsplash.com/photo-1562607394-5abc0c346bc2?auto=format&fit=crop&q=80&w=600' },
+  { id:'h05', cat:'hauptspeisen', name:'Gaeng-Kheuw-Wan',  spicy:2,              desc:'Grüner Thai-Curry mit Auberginen & frischem Basilikum',          isMulti:true, img:'https://images.unsplash.com/photo-1565123409695-7b5ef63a2efb?auto=format&fit=crop&q=80&w=600' },
+  { id:'h06', cat:'hauptspeisen', name:'Phad-Thai',        spicy:1,              desc:'Reisnudeln nach Nationalrezept mit Ei, Erdnuss-Crunch & Limette', isMulti:true, img:'https://images.unsplash.com/photo-1559496417-e7f25cb247f3?auto=format&fit=crop&q=80&w=600' },
+  { id:'g01', cat:'vegetarisch',  name:'Khao-Pad-Jee',     price:15.90, spicy:0, desc:'Gebratener Reis mit krossem Tofu, Gemüse und Ei',                              img:'https://images.unsplash.com/photo-1512058560366-cd2427ff1141?auto=format&fit=crop&q=80&w=600' },
+  { id:'g02', cat:'vegetarisch',  name:'Phad-Thai-Jee',    price:15.90, spicy:0, desc:'Reisnudeln nach Nationalrezept mit Tofu & Erdnuss-Crunch',                     img:'https://images.unsplash.com/photo-1559496417-e7f25cb247f3?auto=format&fit=crop&q=80&w=600' },
+  { id:'g03', cat:'vegetarisch',  name:'Panaeng-Tao-Hue',  price:15.90, spicy:1, desc:'Tofu & Saisongemüse in cremigem Panaeng-Curry',                                img:'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600' },
+  { id:'d01', cat:'dessert',      name:'Gluay-Thod',       price:6.90,  spicy:0, desc:'Gebackene Bananen im Teigmantel mit Wildblütenhonig',                          img:'https://images.unsplash.com/photo-1621506289937-9cd3ad8179e9?auto=format&fit=crop&q=80&w=600' },
+  { id:'d02', cat:'dessert',      name:'Mango Sticky Rice', price:9.50, spicy:0, desc:'Klebreis mit frischer Mango & gesüsster Kokosmilch',                           img:'Mango_reis.png' },
+];
+
+const MEATS = [
+  { label:'Hühnerfleisch',  price:15.90 },
+  { label:'Schweinefleisch',price:16.90 },
+  { label:'Rindfleisch',    price:17.90 },
+  { label:'Ente',           price:17.90 },
+  { label:'Crevetten',      price:17.90 },
+  { label:'Fisch',          price:17.90 },
+];
+
+let cart = [];
+let availableSlots = [];
+let menuRendered = false;
+
+const $  = id => document.getElementById(id);
+const fmt = v => 'CHF ' + Number(v).toFixed(2);
+
+function spicyHtml(n) {
+  return Array.from({length:n}, () =>
+    `<i class="fa-solid fa-pepper-hot text-[10px] ml-0.5 spicy" style="color:var(--red)"></i>`
+  ).join('');
+}
+
+/* ── Render Menu ─────────────────────────────────── */
+function renderMenu(cat = 'all') {
+  const container = $('menu-container');
+  if (!container) return;
+  container.innerHTML = '';
+  const items = cat === 'all' ? MENU : MENU.filter(i => i.cat === cat);
+
+  items.forEach(item => {
+    const el = document.createElement('div');
+    el.className = 'menu-card rounded-3xl overflow-hidden flex h-44';
+    const priceTag = item.isMulti
+      ? `<span class="text-[10px] text-gray-400 font-medium">ab 15.90 CHF</span>`
+      : `<span class="font-bold text-brand text-sm">${item.price.toFixed(2)} CHF</span>`;
+    const selectHtml = item.isMulti ? `
+      <select id="sel-${item.id}" onclick="event.stopPropagation()"
+        class="text-[10px] px-2 py-1.5 bg-gray-50 border border-gray-100 rounded-lg outline-none font-semibold text-gray-700 w-full mb-1.5">
+        ${MEATS.map(m=>`<option value="${m.label}|${m.price}">${m.label.toUpperCase()} — ${m.price.toFixed(2)} CHF</option>`).join('')}
+      </select>` : '';
+    el.innerHTML = `
+      <div class="w-2/5 overflow-hidden bg-black shrink-0">
+        <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+      <div class="w-3/5 p-4 flex flex-col justify-between">
+        <div>
+          <div class="flex justify-between items-start gap-1 mb-1">
+            <h3 class="font-semibold text-gray-900 text-sm leading-snug">${item.name}${spicyHtml(item.spicy||0)}</h3>
+            ${priceTag}
+          </div>
+          <p class="text-[11px] text-gray-400 leading-relaxed line-clamp-2 italic">${item.desc}</p>
+        </div>
+        <div>
+          ${selectHtml}
+          <button onclick="addToCart('${item.id}', event)"
+            class="btn-red w-full py-2 rounded-xl text-[10px] tracking-widest flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-plus text-[8px]"></i>In den Warenkorb
+          </button>
+        </div>
+      </div>`;
+    container.appendChild(el);
+  });
+}
+
+/* ── Category filter ─────────────────────────────── */
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.cat-pill');
+  if (!btn) return;
+  document.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMenu(btn.dataset.cat);
+});
+
+/* ── Add to Cart ─────────────────────────────────── */
+function addToCart(itemId, event) {
+  const item = MENU.find(i => i.id === itemId);
+  let name = item.name, price = item.price;
+  if (item.isMulti) {
+    const sel = document.getElementById(`sel-${itemId}`);
+    if (sel) { const [l,p] = sel.value.split('|'); name = `${item.name} · ${l}`; price = parseFloat(p); }
+  }
+  const existing = cart.find(c => c.name === name);
+  if (existing) existing.qty++;
+  else cart.push({ id: itemId, name, price, qty: 1, note: '' });
+  updateCartBadge();
+  const btn = event.currentTarget;
+  const orig = btn.innerHTML;
+  btn.innerHTML = '<i class="fa-solid fa-check mr-1"></i>Hinzugefügt!';
+  btn.style.background = '#16a34a';
+  setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; }, 900);
+}
+
+function updateCartBadge() {
+  const count = cart.reduce((a,i)=>a+i.qty,0);
+  const badge = $('cart-badge');
+  badge.textContent = count;
+  badge.style.display = count > 0 ? 'flex' : 'none';
+}
+
+/* ── Cart Sidebar ────────────────────────────────── */
+function openCart() {
+  $('cart-overlay').classList.remove('hidden');
+  $('cart-panel').style.transform = 'translateX(0)';
+  renderCartItems();
+}
+function closeCart() {
+  $('cart-overlay').classList.add('hidden');
+  $('cart-panel').style.transform = 'translateX(100%)';
+}
+function renderCartItems() {
+  const container = $('cart-items');
+  container.querySelectorAll('.cart-line').forEach(el => el.remove());
+  const empty = $('cart-empty-state');
+  if (!cart.length) { empty.style.display = 'flex'; $('cart-total').textContent = 'CHF 0.00'; return; }
+  empty.style.display = 'none';
+  cart.forEach((item, i) => {
+    const el = document.createElement('div');
+    el.className = 'cart-line flex justify-between items-center bg-gray-50 rounded-2xl p-3.5 border border-gray-100';
+    el.innerHTML = `
+      <div class="flex-1 pr-3">
+        <p class="font-semibold text-gray-800 text-xs leading-snug">${item.name}</p>
+        <p class="text-brand text-xs font-bold mt-0.5">${fmt(item.price * item.qty)}</p>
+      </div>
+      <div class="flex items-center gap-1.5 bg-white rounded-full px-2 py-1 border border-gray-200">
+        <button onclick="changeQty(${i},-1)" class="w-6 h-6 rounded-full text-gray-400 hover:text-brand text-sm">−</button>
+        <span class="font-bold text-xs w-4 text-center">${item.qty}</span>
+        <button onclick="changeQty(${i}, 1)" class="w-6 h-6 rounded-full text-gray-400 hover:text-brand text-sm">+</button>
+      </div>`;
+    container.appendChild(el);
+  });
+  $('cart-total').textContent = fmt(cart.reduce((a,i)=>a+i.price*i.qty,0));
+}
+function changeQty(idx, delta) {
+  cart[idx].qty += delta;
+  if (cart[idx].qty <= 0) cart.splice(idx, 1);
+  updateCartBadge();
+  renderCartItems();
+}
+
+/* ── Checkout ────────────────────────────────────── */
+async function openCheckout() {
+  if (!cart.length) return;
+  closeCart();
+  const summary = $('checkout-summary');
+  const total = cart.reduce((a,i)=>a+i.price*i.qty,0);
+  summary.innerHTML = cart.map(i =>
+    `<div class="flex justify-between text-xs"><span class="text-gray-600">${i.qty}× ${i.name}</span>
+    <span class="font-semibold text-gray-800">${fmt(i.price*i.qty)}</span></div>`
+  ).join('') +
+  `<div class="border-t pt-2 mt-1 flex justify-between text-xs font-bold">
+    <span>Total</span><span class="text-brand">${fmt(total)}</span></div>`;
+  $('co-total').textContent = fmt(total);
+  $('checkout-overlay').classList.remove('hidden');
+  $('checkout-panel').classList.remove('hidden');
+  await loadSlots();
+}
+function closeCheckout() {
+  $('checkout-overlay').classList.add('hidden');
+  $('checkout-panel').classList.add('hidden');
+}
+async function loadSlots() {
+  const loading = $('slot-loading'), sel = $('co-slot'), note = $('slot-note');
+  loading.classList.remove('hidden'); sel.classList.add('hidden'); note.textContent = '';
+  try {
+    const res  = await fetch('/api/availability', { method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ cart: cart.map(i=>({itemId:i.id,quantity:i.qty,note:i.note})) }) });
+    const data = await res.json();
+    availableSlots = data.slots || [];
+    loading.classList.add('hidden');
+    if (!availableSlots.length) { note.textContent = 'Heute keine freien Zeitfenster. Bitte später versuchen.'; $('pay-btn').disabled = true; return; }
+    sel.innerHTML = availableSlots.map(s=>`<option value="${s.value}">${s.label}</option>`).join('');
+    sel.classList.remove('hidden');
+    note.textContent = `Benötigte Kapazität: ${data.neededLoad} Einheit(en).`;
+    $('pay-btn').disabled = false;
+  } catch { loading.classList.add('hidden'); note.textContent = 'Zeitfenster nicht verfügbar.'; }
+}
+
+/* ── Submit ──────────────────────────────────────── */
+async function submitOrder() {
+  const name=($('co-name').value||'').trim(), phone=($('co-phone').value||'').trim(),
+        email=($('co-email').value||'').trim(), slot=$('co-slot').value, note=($('co-note').value||'').trim();
+  if (!name||!phone||!email) { alert('Bitte Name, Telefon und E-Mail ausfüllen.'); return; }
+  if (!slot) { alert('Bitte ein Abholfenster wählen.'); return; }
+  const btn = $('pay-btn');
+  btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin mr-2"></i>Wird verarbeitet…';
+  try {
+    const res = await fetch('/api/orders/create-checkout-session', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ customerName:name, customerPhone:phone, customerEmail:email,
+        pickupSlot:slot, cart:cart.map(i=>({itemId:i.id,quantity:i.qty,note})) })
+    });
+    const result = await res.json();
+    if (!res.ok) throw new Error(result.error||'Fehler beim Bestellen.');
+    if (result.checkoutUrl) { window.location.href = result.checkoutUrl; return; }
+    closeCheckout();
+    $('success-msg').textContent = result.message || `Bestellung #${result.orderId} entgegengenommen. Abholen um ${slot.slice(11,16)} Uhr.`;
+    $('success-overlay').classList.remove('hidden'); $('success-overlay').style.display = 'flex';
+  } catch(err) {
+    alert(err.message);
+    btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-lock mr-2"></i>Jetzt bezahlen';
+  }
+}
+
+/* ── Reset ───────────────────────────────────────── */
+function resetAll() {
+  cart = []; updateCartBadge();
+  $('success-overlay').classList.add('hidden'); $('success-overlay').style.display = '';
+  ['co-name','co-phone','co-email','co-note'].forEach(id => $(id) && ($(id).value=''));
+  showPage('home');
+}
+</script>
+</body>
+</html>

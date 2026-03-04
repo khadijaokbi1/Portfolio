@@ -2,11 +2,15 @@
    GLOBAL LAYOUT HELPERS
    ========================================= */
 
+/* ── COLOR DEFINITIONS MOVED TO global.css ── */
+/* :root { ... } — auskommentiert, verwendet global.css */
+/*
 :root {
   --mint: #56686A;
   --white: #F5F5F5;
   --off-black: #525252;
 }
+*/
 
 .page-wrap {
   max-width: 85vw;

@@ -105,9 +105,9 @@
 
 /* ── 2. CONTEXT-AWARE TYPOGRAPHY ───────────────── */
 
-[class*="bg-"] h1, [class*="bg-"] h2 { color: var(--ct) !important; }
-[class*="bg-"] h3, [class*="bg-"] h4 { color: var(--csb) !important; }
-[class*="bg-"] h1 em, [class*="bg-"] h2 em { color: var(--cac) !important; }
+[class*="bg-"] h1, [class*="bg-"] h2 { color: var(--ct); }
+[class*="bg-"] h3, [class*="bg-"] h4 { color: var(--csb); }
+[class*="bg-"] h1 em, [class*="bg-"] h2 em { color: var(--cac); }
 
 
 /* ── 3. SECTION-BLOCK ─────────────────────────── */

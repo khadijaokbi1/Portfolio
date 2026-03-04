@@ -4,94 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Über mich | Khadija Okbi</title>
-  <meta name="description" content="Erfahre mehr über Khadija Okbi - Mediamatikerin, Creative Director und Full Stack Developer mit Leidenschaft für Design, Marketing und digitale Innovation.">
-
-  <!-- Open Graph -->
+  <meta name="description" content="Erfahre mehr über Khadija Okbi — Mediamatikerin, Creative Director und Full Stack Developer.">
   <meta property="og:title" content="Über Khadija Okbi | Creative Director & Developer">
   <meta property="og:description" content="Mediamatikerin mit Leidenschaft für Design, Marketing und digitale Innovation.">
   <meta property="og:image" content="https://khadijaokbi.com/assets/images/hero/cutout.png">
   <meta property="og:url" content="https://khadijaokbi.com/about.html">
   <meta property="og:type" content="profile">
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Über Khadija Okbi">
-  <meta name="twitter:description" content="Creative Director & Developer mit Leidenschaft für Design und Innovation.">
-  <meta name="twitter:image" content="https://khadijaokbi.com/assets/images/hero/cutout.png">
-
   <link rel="canonical" href="https://khadijaokbi.com/about.html">
   <link rel="icon" type="image/png" href="assets/images/branding/logo_white.png">
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'brand-dark':       '#314A51',
-            'brand-cream':      '#F5F5F5',
-            'bg-cream':         '#F5F5F5',
-            'brand-burgundy':   '#6E3B49',
-            'brand-mauve':      '#B5A19E',
-            'brand-text-light': '#F5F5F5',
-            'brand-text-sec':   '#525252',
-            'brand-text-tert':  '#56686A',
-            'brand-border':     '#56686A',
-            // CSS-Variablen gespiegelt
-            'primary':    '#2D2D2D',
-            'secondary':  '#525252',
-            'tertiary':   '#56686A',
-            'white':  '#F5F5F5',
-            'off-black':  '#525252',
-            'mint':       '#56686A',
-            'darkgreen':  '#314A51',
-            'burgundy':   '#6E3B49',
-            'mauve':      '#B5A19E',
-          },
-          fontFamily: {
-            // exakt wie in main.css --font-* Variablen
-            body:     ['Work Sans', 'sans-serif'],
-            display:  ['Playfair Display', 'serif'],
-            higuen:   ['Higuen', 'serif'],
-            subtitel: ['Outfit', 'sans-serif'],
-            titel:    ['Tenor Sans', 'sans-serif'],
-          },
-        }
-      }
-    }
-  </script>
-
-  <!-- GSAP -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/SplitText.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="assets/css/typography-global.css">
-  <link rel="stylesheet" href="assets/css/about.css">
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/footer-nav-waves.css">
-  <link rel="stylesheet" href="assets/css/preloader.css" />
-  <!-- Google Analytics -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-B415ZJNKNW');
-  </script>
+  <link rel="stylesheet" href="assets/css/about.css">
+  <link rel="stylesheet" href="assets/css/preloader.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B415ZJNKNW"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-B415ZJNKNW');</script>
 </head>
 <body class="is-loading">
 
-  <!-- SUB PRELOADER -->
+  <!-- PRELOADER -->
   <div class="loader loader--sub" id="loaderSub">
     <div class="loader__riser" id="loaderSubRiser">
       <svg class="loader__wave-svg" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
@@ -101,646 +42,596 @@
     </div>
   </div>
 
-  <!-- ======================== HEADER ======================== -->
+  <!-- HEADER -->
   <header class="site-header" id="top" aria-label="Seitennavigation">
     <div class="page-container nav-bar">
       <a href="index.html" class="logo">
         <img src="assets/images/branding/logo_black.png" alt="Khadija Okbi" width="45">
         <img src="assets/images/branding/logo_white.png" alt="Khadija Okbi" width="45" class="logo-onscroll">
       </a>
-      <nav class="nav">
+      <nav class="nav" aria-label="Hauptnavigation">
         <a href="index.html#hero" class="nav-link">Home</a>
         <a href="index.html#expertise" class="nav-link">Work</a>
         <a href="index.html#blog" class="nav-link">Blog</a>
-        <a href="about.html" class="nav-link">About</a>
+        <a href="about.html" class="nav-link nav-link--active">About</a>
       </nav>
     </div>
   </header>
 
   <main>
 
-    <!-- ======================== HERO ======================== -->
-    <div class="hero-section about-hero-section wave-mint" id="hero">
-      <div class="hero-bg-img about-hero-bg-img"></div>
-      <div class="hero-header about-hero-header">
-    </div>
-    </div>
+    <!-- ═══════════════════════════════════════
+         HERO
+    ═══════════════════════════════════════ -->
+    <section class="about-hero" id="hero" aria-label="Hero">
+      <div class="about-hero__bg"></div>
+      <div class="about-hero__overlay"></div>
 
-    <!-- ======================== INTRO / PORTRAIT ======================== -->
-    <section class="section-about-me py-24 relative overflow-visible" id="about-vision">
-      <div class="container relative z-10">
-        
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-          
-          <!-- Left Column: Image & Personal Traits -->
-          <div class="lg:col-span-5">
-            <div class="relative mb-12">
-              <div class="arch-mask overflow-hidden aspect-[4/5] border border-mauve/20">
-                <!-- Dein Portrait -->
-                <img src="assets/images/about/portrait-about.png" alt="Khadija Okbi Portrait" class="object-cover w-full h-full transition-all duration-700 hover:scale-105">
+      <!-- Floating index tags — tell the story of the page -->
+      <div class="about-hero__index" aria-hidden="true">
+        <a href="#about-me"    class="hero-index__item"><span class="hero-index__num">01</span><span class="hero-index__label">Wer ich bin</span></a>
+        <a href="#kompetenzen" class="hero-index__item"><span class="hero-index__num">02</span><span class="hero-index__label">Was ich kann</span></a>
+        <a href="#timeline"    class="hero-index__item"><span class="hero-index__num">03</span><span class="hero-index__label">Mein Weg</span></a>
+        <a href="#favorites"   class="hero-index__item"><span class="hero-index__num">04</span><span class="hero-index__label">Was mich prägt</span></a>
+      </div>
+
+      <div class="about-hero__content">
+        <span class="about-hero__eyebrow">Mediamatikerin · Creative Director · Developer</span>
+        <h1 class="about-hero__title">
+          <span class="about-hero__title-top">About</span>
+          <span class="about-hero__title-bottom">Me</span>
+        </h1>
+        <p class="about-hero__sub">Design. Code. Strategie. Alles mit Seele.</p>
+      </div>
+
+      <!-- Scroll hint -->
+      <div class="about-hero__scroll" aria-hidden="true">
+        <div class="about-hero__scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         ABOUT ME — cinematic editorial
+    ═══════════════════════════════════════ -->
+    <section class="about-me" id="about-me" aria-label="Über mich">
+      <div class="about-me__inner">
+
+        <!-- LEFT COL — portrait + identity pills -->
+        <div class="about-me__left">
+
+          <div class="about-me__portrait-frame">
+            <img
+              src="assets/images/about/portrait-about.png"
+              alt="Khadija Okbi"
+              class="about-me__portrait"
+              loading="eager"
+            >
+            <!-- Floating identity badge -->
+            <div class="about-me__badge" aria-hidden="true">
+              <span class="badge__role">Creative Director</span>
+              <span class="badge__location"><i class="fa-solid fa-location-dot"></i> Schweiz</span>
+            </div>
+            <!-- Decorative corners -->
+            <div class="deco-corner deco-corner--tl" aria-hidden="true"></div>
+            <div class="deco-corner deco-corner--br" aria-hidden="true"></div>
+          </div>
+
+          <!-- Personality chips -->
+          <div class="about-me__pills">
+            <div class="pill pill--burgundy">
+              <i class="fa-solid fa-brain"></i>
+              <div class="pill__text">
+                <span class="pill__label">MBTI</span>
+                <span class="pill__value">ENTJ-A</span>
               </div>
-              
-              <!-- Decorative Element -->
-              <div class="absolute -bottom-4 -left-4 w-24 h-24 border-l-2 border-b-2 border-burgundy opacity-40"></div>
+            </div>
+            <div class="pill pill--mint">
+              <i class="fa-solid fa-moon"></i>
+              <div class="pill__text">
+                <span class="pill__label">Sternzeichen</span>
+                <span class="pill__value">Krebs ☽</span>
+              </div>
+            </div>
+            <div class="pill pill--mauve">
+              <i class="fa-solid fa-book-open"></i>
+              <div class="pill__text">
+                <span class="pill__label">2025</span>
+                <span class="pill__value">104 Bücher</span>
+              </div>
             </div>
           </div>
-    
-          <!-- Right Column: Content -->
-          <div class="lg:col-span-7 pt-4">
-            <div class="mb-12">
-                <h2 class="visionary-title leading-[0.9] mb-8 text-[var(--mauve)]">
-             About Me
-              </h2>
-              <p class="text-xl leading-relaxed off-black max-w-2xl">Kreativität war bei mir nie ein Hobby, sondern immer ein natürlicher Teil meines Alltags. Mit 11 habe ich angefangen, Videos zu schneiden, mit 12 meinen ersten Sprüche-Account aufgebaut und damit 5k Follower erreicht. Nicht perfekt, aber früh mit viel Neugier, Ausprobieren und dem Drang, Dinge visuell auf den Punkt zu bringen.<br><br>
-              Gleichzeitig fasziniert mich seit Jahren die menschliche Psyche: warum wir handeln, wie wir handeln, und wie stark Muster, Erfahrungen und Umfeld unser Denken prägen. Genau deshalb liebe ich Bücher, vor allem Psychothriller, und auch True Crime aus derselben Perspektive: nicht wegen des Schocks, sondern wegen der Motive dahinter. Mich interessiert, was unter der Oberfläche passiert.<br><br>
-              Von dort war der Schritt zu Psychologie, Neurologie und Neuroplastizität fast logisch. Ich mag Themen, die Tiefe haben, und ich arbeite am liebsten dort, wo Strategie, Kreativität und echtes Verständnis für Menschen zusammenkommen.</p>
-            </div>
-    
-            <!-- Profile Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 items-stretch">
-              
-              <!-- Personality -->
-              <div class="h-full">
-                <div class="profile-card px-4">
-                  <p class="uppercase-label text-burgundy mb-4">Personality Type</p>
-                  <h3 class="playfair text-2xl mb-4 italic">ENTJ-A — The Commander</h3>
-                  <p class="off-black text-sm leading-relaxed">
-                    Strategisch, entschlossen, effizient. Ich sehe Strukturen, wo andere Chaos sehen. Mein Antrieb ist Fortschritt und Perfektion.
-                  </p>
-                </div>
-              </div>
-    
-              <!-- Zodiac -->
-              <div class="h-full">
-                <div class="profile-card">
-                  <p class="uppercase-label text-burgundy mb-4">Zodiac Sign</p>
-                  <div class="flex items-center gap-3 mb-4">
-                    <h3 class="playfair text-2xl italic mb-0 black">Cancer — The Intuitive</h3>
-                    <i class="fas fa-moon text-2xl text-burgundy opacity-60"></i>
-                  </div>
-                  <p class="off-black text-sm leading-relaxed">
-                    Tiefgründig, intuitiv, beschützend. Ich fühle die Stimmung eines Raumes (oder einer Brand) sofort. Das emotionale Gegengewicht zu meiner Strategie.
-                  </p>
-                </div>
-              </div>
-    
-            </div>
-          </div>
-    
+
         </div>
- 
-        <div class="traits-box bg-white/5 p-8 border border-mauve/10 backdrop-blur-sm">
-          <button class="timeline-toggle-btn mb-8" aria-expanded="false">
-            <div class="timeline-toggle-content">
-              <div class="timeline-toggle-text">
-                <p class="timeline-toggle-label">Werdegang</p>
-                <h3 class="timeline-toggle-title">Bildung <span>&</span> Erfahrung</h3>
-              </div>
-              <div class="timeline-toggle-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-                </svg>
-              </div>
+
+        <!-- RIGHT COL — editorial text -->
+        <div class="about-me__right">
+
+          <div class="about-me__header">
+            <span class="about-eyebrow">Wer ich bin</span>
+            <h2 class="about-me__title">About <em>Me</em></h2>
+          </div>
+
+          <!-- Big pull quote -->
+          <blockquote class="about-me__quote">
+            „Kreativität war bei mir nie ein Hobby — sie ist meine Sprache."
+          </blockquote>
+
+          <div class="about-me__body">
+            <p>Mit 11 angefangen Videos zu schneiden, mit 12 meinen ersten Sprüche-Account mit 5k Followern aufgebaut. Nicht perfekt, aber früh mit viel Neugier und dem Drang, Dinge visuell auf den Punkt zu bringen.</p>
+            <p>Mich fasziniert die menschliche Psyche: warum wir handeln wie wir handeln. Deshalb liebe ich Psychothriller, True Crime — nicht wegen des Schocks, sondern wegen der Motive dahinter.</p>
+            <p>Ich arbeite dort, wo Strategie, Kreativität und echtes Verständnis für Menschen zusammenkommen.</p>
+          </div>
+
+          <!-- Personality cards — horizontal, editorial -->
+          <div class="about-me__cards">
+            <div class="about-me__card about-me__card--light">
+              <span class="card__eyebrow"><i class="fa-solid fa-chess-queen"></i> Personality</span>
+              <h3 class="card__title">ENTJ‑A</h3>
+              <p class="card__sub"><em>The Commander</em></p>
+              <p class="card__desc">Strategisch. Entschlossen. Ich sehe Strukturen, wo andere Chaos sehen.</p>
             </div>
+            <div class="about-me__card about-me__card--dark">
+              <span class="card__eyebrow"><i class="fa-solid fa-moon"></i> Zodiac</span>
+              <h3 class="card__title">Cancer ☽</h3>
+              <p class="card__sub"><em>The Intuitive</em></p>
+              <p class="card__desc">Tiefgründig, intuitiv. Das emotionale Gegengewicht zu meiner Strategie.</p>
+            </div>
+            <div class="about-me__card about-me__card--burgundy">
+              <span class="card__eyebrow"><i class="fa-solid fa-fire"></i> Antrieb</span>
+              <h3 class="card__title">Perfection</h3>
+              <p class="card__sub"><em>always</em></p>
+              <p class="card__desc">Details sind keine Kleinigkeit. Details sind alles.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Full-width marquee — skill strip -->
+      <div class="skills-marquee" aria-hidden="true">
+        <div class="skills-marquee__track">
+          <span>Photoshop</span><span class="dot">·</span>
+          <span>Illustrator</span><span class="dot">·</span>
+          <span>After Effects</span><span class="dot">·</span>
+          <span>Premiere Pro</span><span class="dot">·</span>
+          <span>HTML · CSS · JS</span><span class="dot">·</span>
+          <span>Python · Flask</span><span class="dot">·</span>
+          <span>GSAP</span><span class="dot">·</span>
+          <span>Figma</span><span class="dot">·</span>
+          <span>SEO · SEA</span><span class="dot">·</span>
+          <span>Procreate</span><span class="dot">·</span>
+          <span>Stripe API</span><span class="dot">·</span>
+          <span>Tailwind</span><span class="dot">·</span>
+          <span>Photoshop</span><span class="dot">·</span>
+          <span>Illustrator</span><span class="dot">·</span>
+          <span>After Effects</span><span class="dot">·</span>
+          <span>Premiere Pro</span><span class="dot">·</span>
+          <span>HTML · CSS · JS</span><span class="dot">·</span>
+          <span>Python · Flask</span><span class="dot">·</span>
+          <span>GSAP</span><span class="dot">·</span>
+          <span>Figma</span><span class="dot">·</span>
+          <span>SEO · SEA</span><span class="dot">·</span>
+          <span>Procreate</span><span class="dot">·</span>
+          <span>Stripe API</span><span class="dot">·</span>
+          <span>Tailwind</span><span class="dot">·</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         KOMPETENZEN — icon + editorial numbers
+    ═══════════════════════════════════════ -->
+    <section class="about-komp" id="kompetenzen" aria-label="Kompetenzen">
+      <div class="about-komp__inner">
+
+        <header class="about-komp__header">
+          <span class="about-eyebrow">Was ich mache</span>
+          <h2 class="about-komp__title">Kompetenz<em>bereiche</em></h2>
+        </header>
+
+        <div class="komp-grid">
+
+          <!-- 01 Design -->
+          <article class="komp-card" data-color="burgundy">
+            <div class="komp-card__top">
+              <span class="komp-card__num">01</span>
+              <div class="komp-card__icon"><i class="fa-solid fa-pen-nib"></i></div>
+            </div>
+            <h3 class="komp-card__title">Design</h3>
+            <p class="komp-card__sub">Branding · UI · Print</p>
+            <ul class="komp-card__list">
+              <li>Visuelle Identitäten & Branding</li>
+              <li>UI/UX für Web & Apps</li>
+              <li>Kampagnen & Social Layouts</li>
+              <li>Bildbearbeitung & Compositing</li>
+            </ul>
+            <div class="komp-card__tools">
+              <span><i class="fa-brands fa-adobe"></i> Photoshop</span>
+              <span>Illustrator</span>
+              <span>Figma</span>
+              <span>Procreate</span>
+            </div>
+          </article>
+
+          <!-- 02 Marketing -->
+          <article class="komp-card" data-color="mint">
+            <div class="komp-card__top">
+              <span class="komp-card__num">02</span>
+              <div class="komp-card__icon"><i class="fa-solid fa-chart-line"></i></div>
+            </div>
+            <h3 class="komp-card__title">Marketing</h3>
+            <p class="komp-card__sub">Social · Strategie · SEO</p>
+            <ul class="komp-card__list">
+              <li>Content-Strategie & Kampagnen</li>
+              <li>Instagram, TikTok, Threads</li>
+              <li>SEO, SEA & Mediaplanung</li>
+              <li>Storytelling & Copywriting</li>
+            </ul>
+            <div class="komp-card__tools">
+              <span><i class="fa-brands fa-instagram"></i> Instagram</span>
+              <span><i class="fa-brands fa-tiktok"></i> TikTok</span>
+              <span>Google Ads</span>
+            </div>
+          </article>
+
+          <!-- 03 Motion -->
+          <article class="komp-card" data-color="mauve">
+            <div class="komp-card__top">
+              <span class="komp-card__num">03</span>
+              <div class="komp-card__icon"><i class="fa-solid fa-film"></i></div>
+            </div>
+            <h3 class="komp-card__title">Motion</h3>
+            <p class="komp-card__sub">Animation · Video · Kurzformate</p>
+            <ul class="komp-card__list">
+              <li>Motion Design & Typo-Animation</li>
+              <li>Video-Schnitt & Postproduktion</li>
+              <li>Kurzformate für TikTok & Reels</li>
+              <li>Bandenanimationen & Trailer</li>
+            </ul>
+            <div class="komp-card__tools">
+              <span>After Effects</span>
+              <span>Premiere Pro</span>
+              <span>CapCut</span>
+            </div>
+          </article>
+
+          <!-- 04 Web -->
+          <article class="komp-card" data-color="dark">
+            <div class="komp-card__top">
+              <span class="komp-card__num">04</span>
+              <div class="komp-card__icon"><i class="fa-solid fa-code"></i></div>
+            </div>
+            <h3 class="komp-card__title">Web</h3>
+            <p class="komp-card__sub">Frontend · Backend · GSAP</p>
+            <ul class="komp-card__list">
+              <li>HTML5, CSS3, JavaScript</li>
+              <li>Python, Flask, SQLite</li>
+              <li>GSAP, Tailwind CSS</li>
+              <li>Stripe API & REST APIs</li>
+            </ul>
+            <div class="komp-card__tools">
+              <span><i class="fa-brands fa-html5"></i> HTML5</span>
+              <span><i class="fa-brands fa-python"></i> Python</span>
+              <span>Flask</span>
+              <span>GSAP</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         TIMELINE — two-level accordion
+    ═══════════════════════════════════════ -->
+    <section class="about-timeline wave-charcoal" id="timeline" aria-label="Werdegang">
+      <div class="about-timeline__inner">
+
+        <header class="about-timeline__header">
+          <span class="about-eyebrow about-eyebrow--light">Werdegang</span>
+          <h2 class="about-timeline__title">Mein <em>Weg</em></h2>
+          <p class="about-timeline__sub">Von der ersten Kamera bis zum ersten Deploy.</p>
+        </header>
+
+        <!-- OUTER TOGGLE -->
+        <div class="tl-outer-toggle-wrap">
+          <button class="tl-outer-toggle" aria-expanded="false" aria-controls="tl-collapsible">
+            <div class="tl-outer-toggle__left">
+              <span class="tl-outer-toggle__label">Werdegang</span>
+              <span class="tl-outer-toggle__title">Bildung <span class="tl-amp">&</span> Erfahrung</span>
+            </div>
+            <span class="tl-outer-toggle__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </span>
           </button>
         </div>
-      </div>
-    </section>
-    
-    <!-- ======================== TIMELINE ======================== -->
-    <section class="work-section mint wave-cream">
-      <div class="container">
-        <!-- Timeline Content -->
-        <div class="timeline-collapsible" style="height: 0; overflow: hidden;">
 
-        <div class="timeline-wrapper max-w-[1200px] mx-auto">
-          <div class="timeline-line"></div>
-          <div class="timeline-events relative z-[2]">
+        <!-- COLLAPSIBLE -->
+        <div class="tl-collapsible" id="tl-collapsible" style="max-height:0;overflow:hidden;">
+          <div class="tl-accordion">
 
-            <!-- 2025 -->
-            <div class="timeline-event" data-side="left">
-              <div class="event-marker"></div>
-              <div class="event-content">
-                <div class="event-card">
-                  <span class="block text-3xl font-bold text-[var(--burgundy)] tracking-tight mb-1">2025</span>
-                  <h4 class="text-base font-semibold mb-3 leading-snug">Technische Berufsmaturität</h4>
-                  <button class="event-toggle inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-white border border-[var(--burgundy)] rounded-full px-3 py-1 hover:bg-[var(--burgundy)] hover:text-white transition-all" aria-expanded="false">
-                    Mehr <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                  </button>
-                  <div class="event-description mt-3">
-                    <p class="text-sm leading-relaxed text-[var(--off-black)]">Mit der Abgabe meiner interdisziplinären Arbeit zum Thema ‚Die Illusion der freien Meinung‘ schloss ich meine Ausbildung ab. Die Arbeit analysiert die biologischen und psychologischen Ursprünge der Meinungsbildung sowie die zentrale Frage nach der Möglichkeit von Demokratie. Untersucht wurden neurowissenschaftliche Faktoren wie hormonelle Steuerung, genetische Präferenzen und transgenerationale Traumata sowie soziologische Einflüsse durch kollektive Glaubenssysteme und unbewusste Triebe. Abschliessend wird die gezielte Beeinflussung durch Social Media und Künstliche Intelligenz auf die individuelle Autonomie und die damit verbundene Gefährdung demokratischer Prozesse beleuchtet.</p>
-                    <span class="block text-xs italic text-[var(--mint)] pt-2 mt-2 border-t border-[var(--mint)]">Oktober 2025</span>
-                  </div>
+            <div class="tl-row">
+              <button class="tl-trigger" aria-expanded="false">
+                <span class="tl-trigger__year">2025</span>
+                <span class="tl-trigger__title">Technische Berufsmaturität</span>
+                <span class="tl-trigger__meta">Oktober 2025</span>
+                <span class="tl-trigger__icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+              </button>
+              <div class="tl-panel">
+                <div class="tl-panel__inner">
+                  <div class="tl-panel__tag"><i class="fa-solid fa-graduation-cap"></i> Abschluss</div>
+                  <p>Mit der Abgabe meiner interdisziplinären Arbeit zum Thema <em>„Die Illusion der freien Meinung"</em> schloss ich meine Ausbildung ab. Neuroplastizität, transgenerationale Traumata, kollektive Glaubenssysteme — und die Gefährdung demokratischer Prozesse durch KI und Social Media.</p>
                 </div>
               </div>
             </div>
 
-            <!-- 2023 -->
-            <div class="timeline-event" data-side="right">
-              <div class="event-marker"></div>
-              <div class="event-content">
-                <div class="event-card">
-                  <span class="block text-3xl font-bold text-[var(--burgundy)] tracking-tight mb-1">2023</span>
-                  <h4 class="text-base font-semibold mb-3 leading-snug">Mediamatikerin EFZ</h4>
-                  <button class="event-toggle inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-white border border-[var(--burgundy)] rounded-full px-3 py-1 hover:bg-[var(--burgundy)] hover:text-white transition-all" aria-expanded="false">
-                    Mehr <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                  </button>
-                  <div class="event-description mt-3">
-                    <p class="text-sm leading-relaxed text-[var(--off-black)]">Nach vier Jahren Ausbildung zur Mediamatikerin durfte ich im Rahmen meiner IPA für die Werbeagentur <a href="https://komthur.ch" target="_blank" rel="noopener noreferrer">Komthur</a> ein umfassendes Online-Marketing-Konzept entwickeln. Dazu gehörten Marktanalyse, Zielgruppendefinition mit Personas, ein UI/UX-Website-Redesign sowie eine Performance-Strategie aus SEO, SEA und Mediaplanung für Google, LinkedIn und Meta. Ergänzt wurde das Ganze durch einen halbjährlichen Social-Media-Plan und passende Content-Templates.</p>
-                    <span class="block text-xs italic text-[var(--mint)] pt-2 mt-2 border-t border-[var(--mint)]">Juli 2023</span>
-                  </div>
+            <div class="tl-row">
+              <button class="tl-trigger" aria-expanded="false">
+                <span class="tl-trigger__year">2023</span>
+                <span class="tl-trigger__title">Mediamatikerin EFZ</span>
+                <span class="tl-trigger__meta">Juli 2023</span>
+                <span class="tl-trigger__icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+              </button>
+              <div class="tl-panel">
+                <div class="tl-panel__inner">
+                  <div class="tl-panel__tag"><i class="fa-solid fa-certificate"></i> IPA bei Komthur</div>
+                  <p>Vier Jahre Ausbildung culminierten in einer IPA für <a href="https://komthur.ch" target="_blank" rel="noopener noreferrer">Komthur</a>: Marktanalyse, Personas, UI/UX-Redesign, SEO/SEA-Strategie für Google, LinkedIn und Meta plus halbjährlicher Social-Media-Plan.</p>
                 </div>
               </div>
             </div>
 
-            <!-- 2022 -->
-            <div class="timeline-event" data-side="left">
-              <div class="event-marker"></div>
-              <div class="event-content">
-                <div class="event-card">
-                  <span class="block text-3xl font-bold text-[var(--burgundy)] tracking-tight mb-1">2022</span>
-                  <h4 class="text-base font-semibold mb-3 leading-snug">Social Media Management</h4>
-                  <button class="event-toggle inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-white border border-[var(--burgundy)] rounded-full px-3 py-1 hover:bg-[var(--burgundy)] hover:text-white transition-all" aria-expanded="false">
-                    Mehr <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                  </button>
-                  <div class="event-description mt-3">
-                    <p class="text-sm leading-relaxed text-[var(--off-black)]">Im zweiten Lehrjahr der praktischen Ausbildung bei der SBW Neue Medien umfasste mein Aufgabenbereich die Konzeption und Umsetzung zielgruppengerechter Social-Media-Inhalte für Instagram und TikTok. Für interne und externe Projekte durfte ich zudem in den Bereichen Design und Animation mein Wissen vertiefen.</p>
-                    <span class="block text-xs italic text-[var(--mint)] pt-2 mt-2 border-t border-[var(--mint)]">SBW Neue Medien, Romanshorn</span>
-                  </div>
+            <div class="tl-row">
+              <button class="tl-trigger" aria-expanded="false">
+                <span class="tl-trigger__year">2022</span>
+                <span class="tl-trigger__title">Social Media Management</span>
+                <span class="tl-trigger__meta">SBW Neue Medien, Romanshorn</span>
+                <span class="tl-trigger__icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+              </button>
+              <div class="tl-panel">
+                <div class="tl-panel__inner">
+                  <div class="tl-panel__tag"><i class="fa-brands fa-instagram"></i> Content Creation</div>
+                  <p>Konzeption und Umsetzung zielgruppengerechter Social-Media-Inhalte für Instagram und TikTok. Vertiefung in Design und Animation für interne und externe Projekte.</p>
                 </div>
               </div>
             </div>
 
-            <!-- 2021 -->
-            <div class="timeline-event" data-side="right">
-              <div class="event-marker"></div>
-              <div class="event-content">
-                <div class="event-card">
-                  <span class="block text-3xl font-bold text-[var(--burgundy)] tracking-tight mb-1">2021</span>
-                  <h4 class="text-base font-semibold mb-3 leading-snug">Sportmarketing</h4>
-                  <button class="event-toggle inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-white border border-[var(--burgundy)] rounded-full px-3 py-1 hover:bg-[var(--burgundy)] hover:text-white transition-all" aria-expanded="false">
-                    Mehr <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                  </button>
-                  <div class="event-description mt-3">
-                    <p class="text-sm leading-relaxed text-[var(--off-black)]">Praktikumsjahr im Bereich Sportmarketing. Erstellen von Festführern, Sponsoring-Materialien und Bandenanimationen für große Sportevents wie die Schweizermeisterschaft im Kunstturnen.</p>
-                    <span class="block text-xs italic text-[var(--mint)] pt-2 mt-2 border-t border-[var(--mint)]">Win-4 Winterthur</span>
-                  </div>
+            <div class="tl-row">
+              <button class="tl-trigger" aria-expanded="false">
+                <span class="tl-trigger__year">2021</span>
+                <span class="tl-trigger__title">Sportmarketing</span>
+                <span class="tl-trigger__meta">Win-4 Winterthur</span>
+                <span class="tl-trigger__icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+              </button>
+              <div class="tl-panel">
+                <div class="tl-panel__inner">
+                  <div class="tl-panel__tag"><i class="fa-solid fa-trophy"></i> Events</div>
+                  <p>Festführer, Sponsoring-Materialien und Bandenanimationen für grosse Sportevents — darunter die Schweizer Meisterschaft im Kunstturnen.</p>
                 </div>
               </div>
             </div>
 
-            <!-- 2019 -->
-            <div class="timeline-event" data-side="left">
-              <div class="event-marker"></div>
-              <div class="event-content">
-                <div class="event-card">
-                  <span class="block text-3xl font-bold text-[var(--burgundy)] tracking-tight mb-1">2019</span>
-                  <h4 class="text-base font-semibold mb-3 leading-snug">Ausbildung zur Mediamatikerin</h4>
-                  <button class="event-toggle inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-white border border-[var(--burgundy)] rounded-full px-3 py-1 hover:bg-[var(--burgundy)] hover:text-white transition-all" aria-expanded="false">
-                    Mehr <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                  </button>
-                  <div class="event-description mt-3">
-                    <p class="text-sm leading-relaxed text-[var(--off-black)]">Beginn meiner zweijährigen schulischen Ausbildung zur Mediamatikerin.</p>
-                    <span class="block text-xs italic text-[var(--mint)] pt-2 mt-2 border-t border-[var(--mint)]">SBW Neue Medien</span>
-                  </div>
+            <div class="tl-row">
+              <button class="tl-trigger" aria-expanded="false">
+                <span class="tl-trigger__year">2019</span>
+                <span class="tl-trigger__title">Ausbildung Mediamatikerin</span>
+                <span class="tl-trigger__meta">SBW Neue Medien</span>
+                <span class="tl-trigger__icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+              </button>
+              <div class="tl-panel">
+                <div class="tl-panel__inner">
+                  <div class="tl-panel__tag"><i class="fa-solid fa-school"></i> Start</div>
+                  <p>Beginn der vierjährigen Ausbildung zur Mediamatikerin an der SBW Neue Medien — der Beginn von allem.</p>
                 </div>
               </div>
             </div>
 
-            <!-- 2018 -->
-            <div class="timeline-event" data-side="right">
-              <div class="event-marker"></div>
-              <div class="event-content">
-                <div class="event-card">
-                  <span class="block text-3xl font-bold text-[var(--burgundy)] tracking-tight mb-1">2018</span>
-                  <h4 class="text-base font-semibold mb-3 leading-snug">Praktikum Social Media</h4>
-                  <button class="event-toggle inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-white border border-[var(--burgundy)] rounded-full px-3 py-1 hover:bg-[var(--burgundy)] hover:text-white transition-all" aria-expanded="false">
-                    Mehr <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                  </button>
-                  <div class="event-description mt-3">
-                    <p class="text-sm leading-relaxed text-[var(--off-black)]">Bei meinem Praktikum in der Kommunikationsabteilung bei Hillsong Germany durfte ich die Mediaverantwortung für den Young & Free-Bereich übernehmen. Das Aufgabenfeld umfasste Social-Media-Management mit Fokus auf Instagram: Erstellung von Event-Trailern, Screen-Designs, Flyern sowie Foto- und Videoproduktionen für verschiedene Kanäle. Erste Erfahrungen entstanden mit Adobe Premiere, Photoshop, InDesign sowie in Fotografie und Videografie. Dieses Praktikum legte den Grundstein für die Leidenschaft für Animation, Design und Social-Media-Management.</p>
-                    <span class="block text-xs italic text-[var(--mint)] pt-2 mt-2 border-t border-[var(--mint)]">Hillsong, Konstanz</span>
-                  </div>
+            <div class="tl-row">
+              <button class="tl-trigger" aria-expanded="false">
+                <span class="tl-trigger__year">2018</span>
+                <span class="tl-trigger__title">Praktikum Social Media</span>
+                <span class="tl-trigger__meta">Hillsong, Konstanz</span>
+                <span class="tl-trigger__icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+              </button>
+              <div class="tl-panel">
+                <div class="tl-panel__inner">
+                  <div class="tl-panel__tag"><i class="fa-solid fa-camera"></i> Der Anfang</div>
+                  <p>Mediaverantwortung für den Young & Free-Bereich bei Hillsong Germany. Event-Trailer, Screen-Designs, Flyer, Foto- und Videoproduktion. Erste Schritte mit Premiere, Photoshop, InDesign. Das Praktikum, das den Grundstein legte.</p>
                 </div>
               </div>
             </div>
 
           </div>
         </div>
-      </div>
-    <!-- ======================== SKILLS & MBTI ======================== -->
-      <div class="container">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <!-- MBTI Widget -->
-          <div>
-            <div class="flex items-center justify-between mb-6">
-              <h3 class="text-[var(--mauve)] mb-0">MBTI Persönlichkeit</h3>
-              <span class="text-xs font-bold uppercase tracking-widest text-[var(--burgundy)] border border-[var(--burgundy)] rounded-full px-3 py-1">INTP‑A</span>
-            </div>
 
-            <ul class="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8 list-none p-0" id="mbtiList">
-              <li class="mbti-item flex flex-col items-center gap-2 cursor-pointer" data-aspect="Introvertiert" data-percent="51" tabindex="0">
-                <svg viewBox="0 0 100 100" class="mbti-svg w-20 h-20" aria-hidden="true">
-                  <circle cx="50" cy="50" r="45"></circle>
-                  <circle cx="50" cy="50" r="45" class="mbti-progress"></circle>
-                </svg>
-                <span class="text-sm font-semibold text-[var(--white)]">51%</span>
-                <span class="text-xs text-[var(--mint)]">Introvertiert</span>
-               </li>
-               <!-- Ensure this closing tag corresponds to an opened <li> tag -->
-
-              <li class="mbti-item flex flex-col items-center gap-2 cursor-pointer" data-aspect="Intuitiv" data-percent="95" tabindex="0">
-                <svg viewBox="0 0 100 100" class="mbti-svg w-20 h-20" aria-hidden="true">
-                  <circle cx="50" cy="50" r="45"></circle>
-                  <circle cx="50" cy="50" r="45" class="mbti-progress"></circle>
-                </svg>
-                <span class="text-sm font-semibold text-[var(--white)]">95%</span>
-                <span class="text-xs text-[var(--mint)]">Intuitiv</span>
-              </li>
-
-              <li class="mbti-item flex flex-col items-center gap-2 cursor-pointer" data-aspect="Analytisch" data-percent="74" tabindex="0">
-                <svg viewBox="0 0 100 100" class="mbti-svg w-20 h-20" aria-hidden="true">
-                  <circle cx="50" cy="50" r="45"></circle>
-                  <circle cx="50" cy="50" r="45" class="mbti-progress"></circle>
-                </svg>
-                <span class="text-sm font-semibold text-[var(--white)]">74%</span>
-                <span class="text-xs text-[var(--mint)]">Analytisch</span>
-              </li>
-
-              <li class="mbti-item flex flex-col items-center gap-2 cursor-pointer" data-aspect="Kreativ" data-percent="100" tabindex="0">
-                <svg viewBox="0 0 100 100" class="mbti-svg w-20 h-20" aria-hidden="true">
-                  <circle cx="50" cy="50" r="45"></circle>
-                  <circle cx="50" cy="50" r="45" class="mbti-progress"></circle>
-                </svg>
-                <span class="text-sm font-semibold text-[var(--white)]">100%</span>
-                <span class="text-xs text-[var(--mint)]">Kreativ</span>
-              </li>
-            </ul>
-
-            <!-- MBTI Info Box -->
-            <div class="bg-white/5 border border-white/10 rounded-lg p-6 hover:bg-white/8 transition-all duration-500 group relative overflow-hidden" id="mbtiInfo">
-              <div class="absolute inset-0 bg-gradient-to-r from-[var(--burgundy)]/5 to-[var(--mauve)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div class="relative z-10">
-                <div class="flex items-center justify-between mb-4">
-                  <h5 class="text-lg font-bold text-[var(--mauve)] group-hover:text-[var(--burgundy)] transition-colors duration-300">Der Logiker</h5>
-                  <div class="w-2 h-2 bg-[var(--burgundy)] rounded-full animate-pulse"></div>
-                </div>
-                <p class="text-sm text-[var(--white)] leading-relaxed mb-6 group-hover:text-white transition-colors duration-300">Neugierig. Unabhängig. Analytisch. INTPs analysieren komplexe Systeme und finden kreative Lösungen—Pioniere neuer Ideen.</p>
-                
-                <details class="mb-4 group/mbti-details">
-                  <summary class="text-xs font-bold uppercase tracking-wider text-[var(--burgundy)] mb-3 flex items-center justify-between cursor-pointer list-none">
-                    <div class="flex items-center gap-2">
-                      <i class="fas fa-brain text-sm"></i>
-                      Charaktereigenschaften
-                    </div>
-                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 group-open/mbti-details:rotate-180"></i>
-                  </summary>
-                  <ul class="space-y-3 pb-4">
-                    <li class="trait-item flex items-start gap-3 p-2 rounded hover:bg-white/5 transition-all duration-300 cursor-pointer group/item">
-                      <div class="w-1.5 h-1.5 bg-[var(--burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
-                      <span class="text-sm text-[var(--white)] group-hover/item:text-white transition-colors duration-300">Analytisch und logisch denkend</span>
-                    </li>
-                    <li class="trait-item flex items-start gap-3 p-2 rounded hover:bg-white/5 transition-all duration-300 cursor-pointer group/item">
-                      <div class="w-1.5 h-1.5 bg-[var(--burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
-                      <span class="text-sm text-[var(--white)] group-hover/item:text-white transition-colors duration-300">Neugierig und an tiefem Verständnis interessiert</span>
-                    </li>
-                    <li class="trait-item flex items-start gap-3 p-2 rounded hover:bg-white/5 transition-all duration-300 cursor-pointer group/item">
-                      <div class="w-1.5 h-1.5 bg-[var(--burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
-                      <span class="text-sm text-[var(--white)] group-hover/item:text-white transition-colors duration-300">Unabhängig und eigenständig in ihren Ideen</span>
-                    </li>
-                    <li class="trait-item flex items-start gap-3 p-2 rounded hover:bg-white/5 transition-all duration-300 cursor-pointer group/item">
-                      <div class="w-1.5 h-1.5 bg-[var(--burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
-                      <span class="text-sm text-[var(--white)] group-hover/item:text-white transition-colors duration-300">Manchmal abwesend oder unpraktisch im Alltag</span>
-                    </li>
-                    <li class="trait-item flex items-start gap-3 p-2 rounded hover:bg-white/5 transition-all duration-300 cursor-pointer group/item">
-                      <div class="w-1.5 h-1.5 bg-[var(--burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
-                      <span class="text-sm text-[var(--white)] group-hover/item:text-white transition-colors duration-300">Können mit sozialen Konventionen Schwierigkeiten haben</span>
-                    </li>
-                    <li class="trait-item flex items-start gap-3 p-2 rounded hover:bg-white/5 transition-all duration-300 cursor-pointer group/item">
-                      <div class="w-1.5 h-1.5 bg-[var(--burgundy)] rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
-                      <span class="text-sm text-[var(--white)] group-hover/item:text-white transition-colors duration-300">Lieben intellektuelle Herausforderungen und Problemlösen</span>
-                    </li>
-                  </ul>
-                </details>
-                
-                <details class="border-t border-white/10 pt-3 mt-4 group/mbti-details-2">
-                  <summary class="text-xs font-bold uppercase tracking-wider text-[var(--burgundy)] mb-2 flex items-center justify-between cursor-pointer list-none">
-                    <div class="flex items-center gap-2">
-                      <i class="fas fa-lightbulb text-sm"></i>
-                     Like minds
-                    </div>
-                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 group-open/mbti-details-2:rotate-180"></i>
-                  </summary>
-                  <p class="text-sm text-[var(--white)] group-hover:text-white transition-colors duration-300 pb-2">Albert Einstein · Nikola Tesla · Marie Curie</p>
-                </details>
-              </div>
-            </div>
-          </div>
-
-          <!-- Technical & Soft Skills -->
-          <div class="space-y-10">
-            <!-- Technical Skills -->
-            <div>
-              <h3 class="text-[var(--mauve)] mb-6">Technical Skills</h3>
-              <ul class="space-y-6 list-none p-0" id="techSkills">
-                <li data-percent="95">
-                  <div class="skill-label-wrapper">
-                    <span class="skill-name">Adobe InDesign</span>
-                    <span class="skill-percent-text">95%</span>
-                  </div>
-                  <div class="skills-bar"><div class="bar"></div></div>
-                </li>
-                <li data-percent="98">
-                  <div class="skill-label-wrapper">
-                    <span class="skill-name">Photoshop</span>
-                    <span class="skill-percent-text">98%</span>
-                  </div>
-                  <div class="skills-bar"><div class="bar"></div></div>
-                </li>
-                <li data-percent="92">
-                  <div class="skill-label-wrapper">
-                    <span class="skill-name">Premiere Pro</span>
-                    <span class="skill-percent-text">92%</span>
-                  </div>
-                  <div class="skills-bar"><div class="bar"></div></div>
-                </li>
-                <li data-percent="90">
-                  <div class="skill-label-wrapper">
-                    <span class="skill-name">After Effects</span>
-                    <span class="skill-percent-text">90%</span>
-                  </div>
-                  <div class="skills-bar"><div class="bar"></div></div>
-                </li>
-                <li data-percent="85">
-                  <div class="skill-label-wrapper">
-                    <span class="skill-name">Frontend (HTML, CSS, JS)</span>
-                    <span class="skill-percent-text">85%</span>
-                  </div>
-                  <div class="skills-bar"><div class="bar"></div></div>
-                </li>
-                <li data-percent="75">
-                  <div class="skill-label-wrapper">
-                    <span class="skill-name">Backend (NodeJS, PHP)</span>
-                    <span class="skill-percent-text">75%</span>
-                  </div>
-                  <div class="skills-bar"><div class="bar"></div></div>
-                </li>
-                <li data-percent="80">
-                  <div class="skill-label-wrapper">
-                    <span class="skill-name">Marketing & Social Media</span>
-                    <span class="skill-percent-text">80%</span>
-                  </div>
-                  <div class="skills-bar"><div class="bar"></div></div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
+    <!-- ═══════════════════════════════════════
+         BÜCHER & MUSIK
+    ═══════════════════════════════════════ -->
+    <section class="about-favorites wave-foot" id="favorites" aria-label="Bücher und Musik">
+      <div class="about-favorites__inner">
 
-    <!-- ======================== NAHRUNG FÜR DEN KREATIVEN GEIST ======================== -->
-    <section class="work-section bg-cream creative-fuel-section wave-foot" id="favorites">
-      <div class="container px-4">
-      <!-- Section Header -->
-
-      <div class="creative-fuel-header">
-        <div class="fav-col-header">
-      
-          <!-- Linke Spalte: Text -->
-          <div class="fav-col-header-text">
-            <span class="fav-eyebrow" style="display: block; text-align: center;">Gelesene Bücher</span>
-            <h2 class="fav-col-title" style="text-transform: none;">Meine <em>Favoriten</em></h2>
-            <p class="fav-col-desc">Ein Einblick in die Bücher, die mich besonders geprägt haben – vor allem Psychothriller, True Crime und Geschichten mit psychologischer Tiefe.</p>
+        <!-- ── BOOKS ─────────────────────── -->
+        <div class="fav-books-hero">
+          <div class="fav-books-hero__text">
+            <span class="about-eyebrow">Gelesene Bücher</span>
+            <h2 class="fav-section-title">Meine <em>Favoriten</em></h2>
+            <p class="fav-section-desc">Ein Einblick in die Bücher, die mich geprägt haben — Psychothriller, True Crime, Geschichten mit Tiefe.</p>
+            <a href="https://www.goodreads.com/user/year_in_books/2025/86919904" target="_blank" rel="noopener noreferrer" class="fav-goodreads-btn">
+              <span>Goodreads Wrapped 2025</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
           </div>
-      
-          <!-- Rechte Spalte: Counter -->
-          <div class="reading-counter-boxes">
-            <div class="counter-box counter-box--2024">
-              <div class="counter-box-inner">
-                <span class="counter-eyebrow">2024</span>
-                <span class="counter-num counter" data-target="52">52</span>
-                <span class="counter-label">Bücher</span>
+          <div class="fav-books-hero__counter">
+            <div class="big-counter">
+              <div class="big-counter__box">
+                <span class="big-counter__year">2024</span>
+                <span class="big-counter__num" data-target="52">0</span>
+                <span class="big-counter__unit">Bücher</span>
+              </div>
+              <div class="big-counter__box big-counter__box--accent">
+                <span class="big-counter__year">2025</span>
+                <span class="big-counter__num" data-target="104">0</span>
+                <span class="big-counter__unit">Bücher</span>
               </div>
             </div>
-            <div class="counter-box counter-box--2025">
-              <div class="counter-box-inner">
-                <span class="counter-eyebrow">2025</span>
-                <span class="counter-num counter" data-target="104">104</span>
-                <span class="counter-label">Bücher</span>
-              </div>
-            </div>
-          </div>
-      
-        </div>
-      </div>
-      <!-- ===== BOOKS FIRST ===== -->
-      <div class="fav-books-section">
-    
-          <ul class="book-list">
-              <!-- Book 1: Fourth Wing -->
-              <li class="book-entry">
-                <div class="book-entry__cover">
-                  <div class="book-3d">
-                    <ul class="hardcover-front">
-                      <li><img src="assets/images/about/fw-cover.webp" alt="Fourth Wing" /></li>
-                      <li></li>
-                    </ul>
-                    <ul class="page">
-                      <li><span class="page-text">Violet Sorrengail sollte ein ruhiges Leben unter Büchern führen – doch auf Befehl ihrer Mutter wird sie ans Basgiath War College geschickt, wo Drachenreiter ausgebildet werden.</span></li>
-                      <li><span class="page-text">Zwischen brutalen Prüfungen, tödlicher Konkurrenz und politischen Intrigen muss sie beweisen, dass Intelligenz ebenso mächtig sein kann wie rohe Stärke.</span></li>
-                      <li><span class="page-text">Es geht um Macht, Loyalität – und die Frage, wem man in einem System trauen kann, das auf Kontrolle aufgebaut ist.</span></li>
-                    </ul>
-                    <ul class="hardcover-back"><li></li><li></li></ul>
-                    <ul class="book-spine"><li></li><li></li></ul>
-                  </div>
-                </div>
-                <div class="book-entry__meta">
-                  <span class="book-genre-tag">Fantasy · Empyrean-Reihe</span>
-                  <h4 class="book-title-main">Fourth Wing</h4>
-                  <p class="book-author-main">von Rebecca Yarros</p>
-                  <div class="book-rating">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                  </div>
-                  <p class="book-blurb">Mein erstes Buch im Jahr 2025 hat die Messlatte unschlagbar hoch gelegt – eine Welt, die in den Bann zieht und so schnell nicht loslässt.</p>
-                  <button class="review-btn" aria-expanded="false">
-                    Rezension lesen
-                    <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                  </button>
-                  <div class="review-body">
-                    <p>Von der ersten Seite an zog mich die dreiteilige Empyrean-Reihe in ihren Bann. Obwohl Fantasy nicht meinem üblichen Genre entspricht, mangelte es diesem Buch keinesfalls an Spannung. Die Welt des Basgiath War College ist komplex und fesselnd aufgebaut – die Dynamik zwischen den Charakteren, die ständige Bedrohung und die überraschenden Wendungen haben mich bis zur letzten Seite nicht losgelassen. Fourth Wing hat mein Herz erobert und mich in ganz neue fantastische Welten katapultiert.</p>
-                  </div>
-                </div>
-              </li>
-
-              <!-- Book 2: A Good Girl's Guide to Murder -->
-              <li class="book-entry">
-                <div class="book-entry__cover">
-                  <div class="book-3d">
-                    <ul class="hardcover-front">
-                      <li><img src="assets/images/about/agggtm-cover.webp" alt="A Good Girl's Guide to Murder" /></li>
-                      <li></li>
-                    </ul>
-                    <ul class="page">
-                      <li><span class="page-text">Fünf Jahre nach einem vermeintlich gelösten Mordfall beschliesst Pip Fitz-Amobi, die Geschichte für ihr Abschluss­projekt neu aufzurollen.</span></li>
-                      <li><span class="page-text">Je tiefer Pip recherchiert, desto mehr Widersprüche entdeckt sie – nicht jeder will, dass die Vergangenheit erneut aufgedeckt wird.</span></li>
-                      <li><span class="page-text">Was als Schulprojekt beginnt, entwickelt sich zu einer gefährlichen Suche nach Wahrheit.</span></li>
-                    </ul>
-                    <ul class="hardcover-back"><li></li><li></li></ul>
-                    <ul class="book-spine"><li></li><li></li></ul>
-                  </div>
-                </div>
-                <div class="book-entry__meta">
-                  <span class="book-genre-tag">Young Adult · Mystery</span>
-                  <h4 class="book-title-main">A Good Girl's Guide to Murder</h4>
-                  <p class="book-author-main">von Holly Jackson</p>
-                  <div class="book-rating">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                  </div>
-                  <p class="book-blurb">Die Reihe hätte es alleinstehend wohl nicht in meine Top&nbsp;3 geschafft – doch Band drei verleiht ihr einen Flair, dem ich so noch nie begegnet bin.</p>
-                  <button class="review-btn" aria-expanded="false">
-                    Rezension lesen
-                    <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                  </button>
-                  <div class="review-body">
-                    <p>Besonders einprägend fand ich Jacksons Fähigkeit, komplexe Charaktere aufzubauen, Einblicke in die Psyche dieser zu vermitteln und die anschliessende Kapitulation anzubahnen. Die Entwicklung der Hauptprotagonistin war so unerwartet, dass sie einen bleibenden Eindruck hinterlassen hat – und mich dazu gebracht hat, alle drei Bände in einem Zug zu lesen.</p>
-                  </div>
-                </div>
-              </li>
-              <!-- Book 3: Reminders of Him -->
-              <li class="book-entry">
-                <div class="book-entry__cover">
-                  <div class="book-3d">
-                    <ul class="hardcover-front">
-                      <li><img src="assets/images/about/roh-cover.jpg" alt="Reminders of Him" /></li>
-                      <li></li>
-                    </ul>
-                    <ul class="page">
-                      <li><span class="page-text">Nach fünf Jahren im Gefängnis kehrt Kenna Rowan in eine Stadt zurück, die ihr nie verziehen hat.</span></li>
-                      <li><span class="page-text">Gefühle entstehen dort, wo sie eigentlich keinen Platz haben dürften.</span></li>
-                      <li><span class="page-text">Die Geschichte handelt von Schuld und der Frage, ob ein einziger Fehler ein ganzes Leben definieren darf.</span></li>
-                    </ul>
-                    <ul class="hardcover-back"><li></li><li></li></ul>
-                    <ul class="book-spine"><li></li><li></li></ul>
-                  </div>
-                </div>
-                <div class="book-entry__meta">
-                  <span class="book-genre-tag">Contemporary Romance</span>
-                  <h4 class="book-title-main">Reminders of Him</h4>
-                  <p class="book-author-main">von Colleen Hoover</p>
-                  <div class="book-rating">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                  </div>
-                  <p class="book-blurb">Die Bücher, die mich zu Tränen gerührt haben, kann ich an einer Hand abzählen – dieses ist eines davon.</p>
-                  <button class="review-btn" aria-expanded="false">
-                    Rezension lesen
-                    <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                  </button>
-                  <div class="review-body">
-                    <p>Was mich so berührt hat, war nicht nur die tragische Ausgangslage, sondern die schonungslose Ehrlichkeit, mit der dieser schmale Grat zwischen Schicksal und Schuld gezeichnet wird. Der innere Kampf zwischen Hoffnung und Selbstverurteilung war intensiv und bewegend. Eine emotionale Achterbahnfahrt, die tief unter die Haut geht und noch lange nachhallt.</p>
-                  </div>
-                </div>
-              </li>
-
-            </ul>
-            <!-- End book-list -->
-        </div>
-        <!-- End fav-books-section -->
-
-<div class="goodreads-cta-inner">
-  <div class="goodreads-cta-left">
-    <span class="fav-eyebrow">Goodreads Wrapped 2025</span>
-    <h3 class="goodreads-cta-title">Tops, Flops &amp;<br><em>alles dazwischen.</em></h3>
-    <p style="font-family: var(--work); font-size: 0.82rem; color: var(--off-black); margin: 0.3rem 0 0; font-weight: 300; line-height: 1.5;">
-      Alle 104 Bücher — unzensiert bewertet.
-    </p>
-  </div>
-
-  <div class="goodreads-cta-right">
-    <a href="https://www.goodreads.com/user/year_in_books/2025/86919904"
-       target="_blank" rel="noopener noreferrer"
-       class="goodreads-btn-arrow">
-      <span>Zum Goodreads-Profil</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
-      </svg>
-    </a>
-  </div>
-</div>
-
-</div>
-
-<div class="spotify-section-header">
-  <span class="fav-eyebrow">Spotify Wrapped 2025</span>
-  <h2 class="fav-col-title">Auf <em>Dauerschleife</em></h2>
-</div>
-
-          <div class="vinyl-grid-large">
-            <!-- Record 1 -->
-            <div class="vinyl-card-large">
-              <div class="record-container">
-                <div class="album"><img src="assets/images/branding/runaway.jpeg" alt="Runaway Album"></div>
-                <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
-              </div>
-              <div class="vinyl-meta">
-                <span class="vinyl-genre">Hip-Hop / Soul</span>
-                <p class="vinyl-title">Runaway</p>
-                <span class="vinyl-artist">Kanye West</span>
-              </div>
-            </div>
-            <!-- Record 2 -->
-            <div class="vinyl-card-large">
-              <div class="record-container">
-                <div class="album"><img src="assets/images/branding/mordaufex.jpg" alt="Mord auf Ex"></div>
-                <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
-              </div>
-              <div class="vinyl-meta">
-                <span class="vinyl-genre">True Crime</span>
-                <p class="vinyl-title">Mord auf Ex</p>
-                <span class="vinyl-artist">Lynn & Leo</span>
-              </div>
-            </div>
-            <!-- Record 3 -->
-            <div class="vinyl-card-large">
-              <div class="record-container">
-                <div class="album"><img src="assets/images/branding/fear.jpeg" alt="Fear Album"></div>
-                <div class="record"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="Vinyl"></div>
-              </div>
-              <div class="vinyl-meta">
-                <span class="vinyl-genre">Rap</span>
-                <p class="vinyl-title">FEAR</p>
-                <span class="vinyl-artist">NF</span>
-              </div>
-            </div>
-         
+            <p class="big-counter__note"><i class="fa-solid fa-arrow-trend-up"></i> +100% YoY</p>
           </div>
         </div>
-        <!-- End vinyl section -->
+
+        <ul class="book-list" role="list">
+          <li class="book-entry">
+            <div class="book-entry__cover">
+              <div class="book-3d">
+                <ul class="hardcover-front"><li><img src="assets/images/about/fw-cover.webp" alt="Fourth Wing Cover" loading="lazy"></li><li></li></ul>
+                <ul class="page">
+                  <li><span class="page-text">Violet Sorrengail sollte ein ruhiges Leben unter Büchern führen – doch auf Befehl ihrer Mutter wird sie ans Basgiath War College geschickt.</span></li>
+                  <li><span class="page-text">Zwischen brutalen Prüfungen und politischen Intrigen muss sie beweisen, dass Intelligenz mächtiger ist als rohe Stärke.</span></li>
+                  <li><span class="page-text">Macht, Loyalität — und die Frage, wem man trauen kann.</span></li>
+                </ul>
+                <ul class="hardcover-back"><li></li><li></li></ul>
+                <ul class="book-spine"><li></li><li></li></ul>
+              </div>
+            </div>
+            <div class="book-entry__meta">
+              <span class="book-genre-tag">Fantasy</span>
+              <h4 class="book-title-main">Fourth Wing</h4>
+              <p class="book-author-main">Rebecca Yarros</p>
+              <div class="book-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <p class="book-blurb">Mein erstes Buch 2025 — hat die Messlatte unschlagbar hoch gelegt.</p>
+              <button class="review-btn" aria-expanded="false">Rezension <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button>
+              <div class="review-body" aria-hidden="true"><p>Von der ersten Seite an zog mich die Empyrean-Reihe in ihren Bann. Die Dynamik zwischen den Charakteren, die ständige Bedrohung und die überraschenden Wendungen haben mich bis zur letzten Seite nicht losgelassen.</p></div>
+            </div>
+          </li>
+
+          <li class="book-entry">
+            <div class="book-entry__cover">
+              <div class="book-3d">
+                <ul class="hardcover-front"><li><img src="assets/images/about/agggtm-cover.webp" alt="A Good Girl's Guide to Murder Cover" loading="lazy"></li><li></li></ul>
+                <ul class="page">
+                  <li><span class="page-text">Fünf Jahre nach einem vermeintlich gelösten Mordfall beschliesst Pip, die Geschichte neu aufzurollen.</span></li>
+                  <li><span class="page-text">Je tiefer sie recherchiert, desto mehr Widersprüche entdeckt sie.</span></li>
+                  <li><span class="page-text">Was als Schulprojekt beginnt, wird zur gefährlichen Suche nach Wahrheit.</span></li>
+                </ul>
+                <ul class="hardcover-back"><li></li><li></li></ul>
+                <ul class="book-spine"><li></li><li></li></ul>
+              </div>
+            </div>
+            <div class="book-entry__meta">
+              <span class="book-genre-tag">Mystery</span>
+              <h4 class="book-title-main">A Good Girl's Guide to Murder</h4>
+              <p class="book-author-main">Holly Jackson</p>
+              <div class="book-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <p class="book-blurb">Band drei verleiht der Reihe einen Flair, dem ich so noch nie begegnet bin.</p>
+              <button class="review-btn" aria-expanded="false">Rezension <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button>
+              <div class="review-body" aria-hidden="true"><p>Besonders einprägend fand ich Jacksons Fähigkeit, komplexe Charaktere aufzubauen und die Entwicklung der Hauptprotagonistin so unerwartet zu gestalten, dass sie einen bleibenden Eindruck hinterlassen hat.</p></div>
+            </div>
+          </li>
+
+          <li class="book-entry">
+            <div class="book-entry__cover">
+              <div class="book-3d">
+                <ul class="hardcover-front"><li><img src="assets/images/about/roh-cover.jpg" alt="Reminders of Him Cover" loading="lazy"></li><li></li></ul>
+                <ul class="page">
+                  <li><span class="page-text">Nach fünf Jahren im Gefängnis kehrt Kenna in eine Stadt zurück, die ihr nie verziehen hat.</span></li>
+                  <li><span class="page-text">Gefühle entstehen dort, wo sie keinen Platz haben dürften.</span></li>
+                  <li><span class="page-text">Darf ein einziger Fehler ein ganzes Leben definieren?</span></li>
+                </ul>
+                <ul class="hardcover-back"><li></li><li></li></ul>
+                <ul class="book-spine"><li></li><li></li></ul>
+              </div>
+            </div>
+            <div class="book-entry__meta">
+              <span class="book-genre-tag">Romance</span>
+              <h4 class="book-title-main">Reminders of Him</h4>
+              <p class="book-author-main">Colleen Hoover</p>
+              <div class="book-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <p class="book-blurb">Die Bücher, die mich zu Tränen gerührt haben, kann ich an einer Hand abzählen.</p>
+              <button class="review-btn" aria-expanded="false">Rezension <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button>
+              <div class="review-body" aria-hidden="true"><p>Die schonungslose Ehrlichkeit, mit der dieser schmale Grat zwischen Schicksal und Schuld gezeichnet wird — eine emotionale Achterbahnfahrt, die tief unter die Haut geht.</p></div>
+            </div>
+          </li>
+        </ul>
+
+        <!-- VINYL -->
+        <div class="fav-vinyl-header">
+          <span class="about-eyebrow">Spotify Wrapped 2025</span>
+          <h2 class="fav-section-title">Auf <em>Dauerschleife</em></h2>
+        </div>
+
+        <div class="vinyl-grid">
+          <div class="vinyl-card" data-preview="https://p.scdn.co/mp3-preview/04650f23cc3c01e1b20ca97a7282abd15c380baa" data-title="Runaway" data-artist="Kanye West">
+            <div class="vinyl-card__visual">
+              <div class="vinyl-card__album"><img src="assets/images/branding/runaway.jpeg" alt="Runaway – Kanye West" loading="lazy"></div>
+              <div class="vinyl-card__disc"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="" aria-hidden="true"></div>
+              <button class="vinyl-card__play" aria-label="Hörprobe abspielen">
+                <svg class="vinyl-play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="vinyl-stop-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="6" width="4" height="12"/><rect x="14" y="6" width="4" height="12"/></svg>
+              </button>
+            </div>
+            <div class="vinyl-card__meta">
+              <span class="vinyl-genre">Hip-Hop / Soul</span>
+              <p class="vinyl-title">Runaway</p>
+              <span class="vinyl-artist">Kanye West</span>
+            </div>
+          </div>
+
+          <div class="vinyl-card" data-preview="" data-title="Mord auf Ex" data-artist="Lynn &amp; Leo">
+            <div class="vinyl-card__visual">
+              <div class="vinyl-card__album"><img src="assets/images/branding/mordaufex.jpg" alt="Mord auf Ex Podcast" loading="lazy"></div>
+              <div class="vinyl-card__disc"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="" aria-hidden="true"></div>
+              <button class="vinyl-card__play" aria-label="Hörprobe abspielen">
+                <svg class="vinyl-play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="vinyl-stop-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="6" width="4" height="12"/><rect x="14" y="6" width="4" height="12"/></svg>
+              </button>
+            </div>
+            <div class="vinyl-card__meta">
+              <span class="vinyl-genre">True Crime Podcast</span>
+              <p class="vinyl-title">Mord auf Ex</p>
+              <span class="vinyl-artist">Lynn &amp; Leo</span>
+            </div>
+          </div>
+
+          <div class="vinyl-card" data-preview="https://p.scdn.co/mp3-preview/9e02be99cca6aa79c3af9ab4a3bc3b60e949c8cb" data-title="FEAR." data-artist="NF">
+            <div class="vinyl-card__visual">
+              <div class="vinyl-card__album"><img src="assets/images/branding/fear.jpeg" alt="FEAR – NF" loading="lazy"></div>
+              <div class="vinyl-card__disc"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="" aria-hidden="true"></div>
+              <button class="vinyl-card__play" aria-label="Hörprobe abspielen">
+                <svg class="vinyl-play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="vinyl-stop-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="6" width="4" height="12"/><rect x="14" y="6" width="4" height="12"/></svg>
+              </button>
+            </div>
+            <div class="vinyl-card__meta">
+              <span class="vinyl-genre">Rap</span>
+              <p class="vinyl-title">FEAR.</p>
+              <span class="vinyl-artist">NF</span>
+            </div>
+          </div>
+        </div>
+        <audio id="vinyl-audio" preload="none" aria-hidden="true"></audio>
 
       </div>
     </section>
-    <!-- ======================== END CREATIVE FUEL ======================== -->
-  </div>
-</div>
+
   </main>
 
-  <!-- ======================== FOOTER ======================== -->
+  <!-- FOOTER -->
   <footer class="site-footer" aria-label="Seitenende">
     <div class="page-container footer-inner">
       <div class="footer-copy">&copy; 2026 Design &amp; Development by Khadija Okbi</div>
       <div class="footer-socials" aria-label="Soziale Netzwerke">
         <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
-          <svg width="24" height="24" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" fill="currentColor"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z"/></svg>
         </a>
         <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M6.5 9.5v8.5M6.5 7.5v.01M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M6.5 9.5v8.5M6.5 7.5v.01M10.5 17.5v-6c0-1.1.9-2 2-2s2 .9 2 2v6M10.5 11.5h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 7.5c.5 0 .9.04 1.3.12v3.38a4.2 4.2 0 0 1-2.3-.64v5.64A4.86 4.86 0 0 1 11 20a4.86 4.86 0 0 1-4.86-4.86 4.86 4.86 0 0 1 4.86-4.86c.28 0 .55.03.81.08V7.5h.19c1.14 0 2.09.37 2.99 1.03V7.5z" fill="currentColor"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 7.5c.5 0 .9.04 1.3.12v3.38a4.2 4.2 0 0 1-2.3-.64v5.64A4.86 4.86 0 0 1 11 20a4.86 4.86 0 0 1-4.86-4.86 4.86 4.86 0 0 1 4.86-4.86c.28 0 .55.03.81.08V7.5h.19c1.14 0 2.09.37 2.99 1.03V7.5z" fill="currentColor"/></svg>
         </a>
         <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M3.5 7.5l8.5 5 8.5-5" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M12 21.5v-10" stroke="currentColor" stroke-width="1.1" fill="none"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2.5L3.5 7v10L12 21.5l8.5-4.5V7L12 2.5z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M3.5 7.5l8.5 5 8.5-5M12 21.5v-10" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
         </a>
       </div>
       <div class="footer-links">
@@ -751,216 +642,240 @@
     </div>
   </footer>
 
-  <!-- ======================== JAVASCRIPT ======================== -->
+  <script defer src="assets/js/preloader.js"></script>
   <script>
   'use strict';
-
   document.addEventListener('DOMContentLoaded', () => {
 
-    // ── Sticky Header ──
+    // ── Sticky Header ──────────────────────────
     const header = document.querySelector('.site-header');
-    const updateHeader = () => header?.classList.toggle('is-solid', window.scrollY > 100);
-    window.addEventListener('scroll', updateHeader, { passive: true });
-    updateHeader();
+    const onScroll = () => header?.classList.toggle('is-solid', window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
-    // ── Smooth Scroll ──
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', e => {
-        const href = link.getAttribute('href');
-        if (!href || href === '#') return;
-        const target = document.querySelector(href);
-        if (!target) return;
+    // ── Smooth Scroll ──────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const t = document.querySelector(a.getAttribute('href'));
+        if (!t) return;
         e.preventDefault();
-        window.scrollTo({ top: target.offsetTop - 72, behavior: 'smooth' });
+        window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth' });
       });
     });
 
-    // ── Intersection Observer (alle Scroll-Animationen) ──
-    const scrollObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          scrollObserver.unobserve(entry.target);
-        }
+    // ── Generic scroll-reveal ──────────────────
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); revealObs.unobserve(e.target); }
       });
-    }, { threshold: 0.2, rootMargin: '0px 0px -80px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-    // Timeline Events
-    document.querySelectorAll('.timeline-event').forEach((ev, i) => {
-      ev.style.transitionDelay = `${i * 0.1}s`;
-      scrollObserver.observe(ev);
+    document.querySelectorAll(
+      '.komp-card, .book-entry, .vinyl-card, .about-me__card, .about-me__pills, .tl-row, .big-counter__item, .pill'
+    ).forEach((el, i) => {
+      el.style.transitionDelay = `${(i % 4) * 0.08}s`;
+      revealObs.observe(el);
     });
 
-    // Book Entries - On Scroll Animation (staggered reveal)
-    document.querySelectorAll('.book-entry').forEach((book, i) => {
-      scrollObserver.observe(book);
+    // ── Timeline accordion ─────────────────────
+    document.querySelectorAll('.tl-trigger').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const row = this.closest('.tl-row');
+        const panel = row.querySelector('.tl-panel');
+        const open = this.getAttribute('aria-expanded') === 'true';
+
+        // Close all others
+        document.querySelectorAll('.tl-row.is-open').forEach(r => {
+          if (r !== row) {
+            r.classList.remove('is-open');
+            r.querySelector('.tl-trigger').setAttribute('aria-expanded', 'false');
+            const p = r.querySelector('.tl-panel');
+            p.style.maxHeight = '0';
+          }
+        });
+
+        this.setAttribute('aria-expanded', String(!open));
+        row.classList.toggle('is-open', !open);
+        panel.style.maxHeight = open ? '0' : panel.scrollHeight + 'px';
+      });
     });
 
-    // ── Review Accordion ──
+    // ── Book review accordion ──────────────────
     document.querySelectorAll('.review-btn').forEach(btn => {
       btn.addEventListener('click', function () {
         const body = this.nextElementSibling;
-        const isOpen = body.classList.contains('is-open');
-        // Close all others
+        const open = body.classList.contains('is-open');
         document.querySelectorAll('.review-body.is-open').forEach(b => {
           b.classList.remove('is-open');
           b.previousElementSibling.setAttribute('aria-expanded', 'false');
         });
-        // Toggle current
-        if (!isOpen) {
-          body.classList.add('is-open');
-          this.setAttribute('aria-expanded', 'true');
-        }
+        if (!open) { body.classList.add('is-open'); this.setAttribute('aria-expanded', 'true'); }
+        else { this.setAttribute('aria-expanded', 'false'); }
       });
     });
 
-    // ── Timeline Toggle ──
-    document.querySelectorAll('.event-toggle').forEach(btn => {
-      btn.addEventListener('click', function () {
-        const card = this.closest('.event-card');
-        const desc = card.querySelector('.event-description');
-        const expanded = this.getAttribute('aria-expanded') === 'true';
-        const icon = this.querySelector('svg');
+    // ── Counter animation ─────────────────────
+    const counterObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = +el.dataset.target;
+        let start = null;
+        const step = ts => {
+          if (!start) start = ts;
+          const p = Math.min((ts - start) / 2200, 1);
+          const ease = 1 - Math.pow(1 - p, 4);
+          el.textContent = Math.floor(target * ease);
+          if (p < 1) requestAnimationFrame(step);
+          else el.textContent = target;
+        };
+        requestAnimationFrame(step);
+        counterObs.unobserve(el);
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('.big-counter__num').forEach(el => counterObs.observe(el));
 
-        if (!expanded) {
-          this.setAttribute('aria-expanded', 'true');
-          desc.style.maxHeight = desc.scrollHeight + 'px';
-          desc.classList.add('open');
-          if (icon) icon.style.transform = 'rotate(180deg)';
+    // ── Vinyl audio ───────────────────────────
+    const audio = document.getElementById('vinyl-audio');
+    let currentCard = null;
+    document.querySelectorAll('.vinyl-card__play').forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const card = this.closest('.vinyl-card');
+        const src = card.dataset.preview;
+        const playIcon = this.querySelector('.vinyl-play-icon');
+        const stopIcon = this.querySelector('.vinyl-stop-icon');
+        if (currentCard && currentCard !== card) {
+          currentCard.querySelector('.vinyl-play-icon').style.display = '';
+          currentCard.querySelector('.vinyl-stop-icon').style.display = 'none';
+          currentCard.classList.remove('is-playing');
+        }
+        if (audio.paused || currentCard !== card) {
+          if (!src) { btn.classList.add('no-preview'); setTimeout(() => btn.classList.remove('no-preview'), 800); return; }
+          audio.src = src; audio.play().catch(() => {});
+          playIcon.style.display = 'none'; stopIcon.style.display = '';
+          card.classList.add('is-playing'); currentCard = card;
         } else {
-          this.setAttribute('aria-expanded', 'false');
-          desc.style.maxHeight = '0';
-          desc.classList.remove('open');
-          if (icon) icon.style.transform = 'rotate(0deg)';
+          audio.pause(); audio.currentTime = 0;
+          playIcon.style.display = ''; stopIcon.style.display = 'none';
+          card.classList.remove('is-playing'); currentCard = null;
         }
       });
     });
+    audio.addEventListener('ended', () => {
+      if (currentCard) {
+        currentCard.querySelector('.vinyl-play-icon').style.display = '';
+        currentCard.querySelector('.vinyl-stop-icon').style.display = 'none';
+        currentCard.classList.remove('is-playing'); currentCard = null;
+      }
+    });
 
-    // ── Timeline Section Toggle ──
-    const timelineToggleBtn = document.querySelector('.timeline-toggle-btn');
-    const timelineCollapsible = document.querySelector('.timeline-collapsible');
-    
-    if (timelineToggleBtn && timelineCollapsible) {
-      timelineToggleBtn.addEventListener('click', function() {
-        const isExpanded = this.getAttribute('aria-expanded') === 'true';
-        
-        if (!isExpanded) {
-          // Open timeline
-          this.setAttribute('aria-expanded', 'true');
-          timelineCollapsible.style.height = timelineCollapsible.scrollHeight + 'px';
-          
-          // Remove inline height after transition to allow responsive resizing
-          setTimeout(() => {
-            if (this.getAttribute('aria-expanded') === 'true') {
-              timelineCollapsible.style.height = 'auto';
-            }
-          }, 600);
-        } else {
-          // Close timeline
-          timelineCollapsible.style.height = timelineCollapsible.scrollHeight + 'px';
-          // Force reflow
-          timelineCollapsible.offsetHeight;
-          this.setAttribute('aria-expanded', 'false');
-          timelineCollapsible.style.height = '0';
-        }
+    // ── GSAP About Me cinematic entrance ──────
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Portrait reveal
+      gsap.fromTo('.about-me__portrait', {
+        scale: 1.08,
+        opacity: 0,
+        filter: 'blur(8px)',
+      }, {
+        scale: 1,
+        opacity: 1,
+        filter: 'blur(0px)',
+        duration: 1.4,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: '.about-me', start: 'top 80%' }
+      });
+
+      // Badge pop in
+      gsap.fromTo('.about-me__badge', {
+        opacity: 0, scale: 0.7, y: 20
+      }, {
+        opacity: 1, scale: 1, y: 0,
+        duration: 0.7, ease: 'back.out(1.7)', delay: 0.5,
+        scrollTrigger: { trigger: '.about-me', start: 'top 75%' }
+      });
+
+      // Text lines stagger
+      gsap.fromTo('.about-me__header, .about-me__quote, .about-me__body p', {
+        opacity: 0, y: 40
+      }, {
+        opacity: 1, y: 0,
+        duration: 0.9,
+        ease: 'power3.out',
+        stagger: 0.12,
+        scrollTrigger: { trigger: '.about-me__right', start: 'top 80%' }
+      });
+
+      // Cards stagger
+      gsap.fromTo('.about-me__card', {
+        opacity: 0, y: 30, scale: 0.96
+      }, {
+        opacity: 1, y: 0, scale: 1,
+        duration: 0.7,
+        ease: 'power2.out',
+        stagger: 0.12,
+        scrollTrigger: { trigger: '.about-me__cards', start: 'top 85%' }
+      });
+
+      // Komp cards cinematic entrance
+      gsap.fromTo('.komp-card', {
+        opacity: 0, y: 50, rotateX: 8
+      }, {
+        opacity: 1, y: 0, rotateX: 0,
+        duration: 0.9,
+        ease: 'power3.out',
+        stagger: 0.1,
+        scrollTrigger: { trigger: '.komp-grid', start: 'top 80%' }
+      });
+
+      // Timeline rows
+      gsap.fromTo('.tl-row', {
+        opacity: 0, x: -30
+      }, {
+        opacity: 1, x: 0,
+        duration: 0.7,
+        ease: 'power2.out',
+        stagger: 0.08,
+        scrollTrigger: { trigger: '.tl-accordion', start: 'top 80%' }
+      });
+
+      // Big counter number reveal
+      gsap.fromTo('.big-counter', {
+        opacity: 0, scale: 0.9
+      }, {
+        opacity: 1, scale: 1,
+        duration: 1.1,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: '.fav-books-hero', start: 'top 75%' }
+      });
+
+      // Vinyl cards
+      gsap.fromTo('.vinyl-card', {
+        opacity: 0, y: 40
+      }, {
+        opacity: 1, y: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        stagger: 0.15,
+        scrollTrigger: { trigger: '.vinyl-grid', start: 'top 80%' }
+      });
+
+      // Pill items stagger
+      gsap.fromTo('.pill', {
+        opacity: 0, x: -20
+      }, {
+        opacity: 1, x: 0,
+        duration: 0.6,
+        ease: 'back.out(1.4)',
+        stagger: 0.1,
+        scrollTrigger: { trigger: '.about-me__pills', start: 'top 85%' }
       });
     }
 
-    // ── MBTI Circle Animation ──
-    const mbtiObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const item = entry.target;
-          const percent = parseFloat(item.dataset.percent);
-          const circle = item.querySelector('.mbti-progress');
-          if (!circle) return;
-
-          const r = 45;
-          const circ = 2 * Math.PI * r;
-          const offset = circ * (1 - percent / 100);
-
-          circle.style.strokeDasharray = circ.toFixed(3);
-          circle.style.strokeDashoffset = circ.toFixed(3);
-
-          setTimeout(() => {
-            circle.style.strokeDashoffset = offset.toFixed(3);
-          }, 150);
-
-          mbtiObserver.unobserve(item);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.mbti-item').forEach(item => mbtiObserver.observe(item));
-
-    // ── Skill Bars Animation ──
-    const skillObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const li = entry.target;
-          const bar = li.querySelector('.bar');
-          const percent = li.dataset.percent;
-          if (bar && percent) {
-            bar.style.width = `${percent}%`;
-          }
-          skillObserver.unobserve(li);
-        }
-      });
-    }, { threshold: 0.3 });
-
-    document.querySelectorAll('#techSkills li, #softSkills li').forEach(li => skillObserver.observe(li));
-
-// Counter Animation
-class CounterAnimator {
-        constructor(element, target, duration = 2000) {
-            this.element = element;
-            this.target = parseInt(target);
-            this.duration = duration;
-            this.current = 0;
-            this.startTime = null;
-        }
-
-        animate(timestamp) {
-            if (!this.startTime) this.startTime = timestamp;
-            const progress = Math.min((timestamp - this.startTime) / this.duration, 1);
-            const easeOut = 1 - Math.pow(1 - progress, 2);
-            this.current = Math.floor(this.target * easeOut);
-            this.element.textContent = this.current;
-
-            if (progress < 1) {
-                requestAnimationFrame((ts) => this.animate(ts));
-            } else {
-                this.element.textContent = this.target;
-            }
-        }
-
-        start() {
-            requestAnimationFrame((ts) => this.animate(ts));
-        }
-    }
-
-    // Initialize on scroll
-    const counters = document.querySelectorAll('.counter');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                const animator = new CounterAnimator(counter, counter.dataset.target, 2000);
-                animator.start();
-                observer.unobserve(counter);
-            }
-        });
-    }, { threshold: 0.3 });
-
-    counters.forEach(counter => observer.observe(counter));
-
-    console.log('3D Books 2025 loaded!');
-
-    console.log('🎯 About page initialized!');
   });
   </script>
 
-<script defer src="assets/js/typography-reveal.js"></script>
-<script defer src="assets/js/preloader.js"></script>
 </body>
 </html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thai Express — Bestellung bestätigt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+
+    <nav class="topbar">
+      <a href="/" class="topbar__brand">
+        <div class="topbar__lotus">🪷</div>
+        <div>
+          <div class="topbar__name">Thai Express</div>
+          <div class="topbar__sub">Takeaway · Zürich</div>
+        </div>
+      </a>
+    </nav>
+
+    <div class="success-wrap">
+      <div class="success-card">
+        <div class="success-card__icon">✓</div>
+        <span class="label-caps" style="display:block;margin-bottom:0.6rem;">Zahlung erfolgreich</span>
+        <h1>Danke für deine Bestellung!</h1>
+        <p id="order-msg">
+          Deine Bestellung wurde angenommen und wird jetzt frisch zubereitet.
+          Du erhältst eine Bestätigung per E-Mail.
+        </p>
+        <a href="/">Neue Bestellung aufgeben</a>
+      </div>
+    </div>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const orderId = params.get("order_id");
+      if (orderId) {
+        document.getElementById("order-msg").textContent =
+          `Bestellung #${orderId} wurde bezahlt und wird frisch zubereitet. Du erhältst E-Mail & SMS Updates zum Status deiner Bestellung.`;
+      }
+    </script>
+  </body>
+</html>

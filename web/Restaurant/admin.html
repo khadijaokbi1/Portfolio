@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thai Express — Küchen Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+
+    <!-- ── Topbar ── -->
+    <nav class="topbar">
+      <a href="/" class="topbar__brand">
+        <div class="topbar__lotus">🪷</div>
+        <div>
+          <div class="topbar__name">Thai Express</div>
+          <div class="topbar__sub">Küchen Admin</div>
+        </div>
+      </a>
+      <div class="topbar__right">
+        <a href="/" style="font-size:0.8rem;color:var(--muted);text-decoration:none;">← Zurück zur Bestellung</a>
+      </div>
+    </nav>
+
+    <!-- ── Hero ── -->
+    <header class="hero">
+      <div class="hero__inner">
+        <p class="hero__eyebrow">Kitchen Dashboard · Live</p>
+        <h1>Bestellungen &<br /><em>Zeitfenster</em></h1>
+        <p class="hero__sub">
+          Verwalte alle eingehenden Bestellungen, ändere Status und
+          behalte die Slot-Auslastung im Überblick.
+        </p>
+      </div>
+    </header>
+
+    <!-- ── Main Layout ── -->
+    <main class="layout admin-layout" style="grid-template-columns:1fr;">
+
+      <!-- Login -->
+      <section class="admin-section">
+        <div class="section-head">
+          <span class="label-caps">Zugang</span>
+          <h2>Admin Login</h2>
+          <p>Token wird nur lokal im Browser gespeichert.</p>
+        </div>
+        <form id="admin-auth" class="order-form">
+          <div class="form-field">
+            <label for="admin-token">Admin Token</label>
+            <input id="admin-token" type="password" required placeholder="••••••••••••" />
+          </div>
+          <button type="submit" style="background:linear-gradient(135deg,var(--ink) 0%,#3a1a0a 100%);color:var(--gold-light);border-radius:var(--r-md);padding:0.8rem 1.5rem;font-weight:600;">
+            Verbinden
+          </button>
+        </form>
+      </section>
+
+    </main>
+
+    <!-- ── Slot Auslastung + Orders ── -->
+    <div style="display:grid;gap:1.2rem;padding:0 1.5rem 1.5rem;max-width:1400px;margin:0 auto;" id="dashboard" hidden>
+
+      <!-- Slot Auslastung -->
+      <section class="admin-section">
+        <div class="section-head">
+          <span class="label-caps">Kapazität</span>
+          <h2>Slot-Auslastung</h2>
+          <p>Aktive Last pro Abholfenster.</p>
+        </div>
+        <form id="slot-form" class="order-form" style="display:flex;gap:0.6rem;align-items:flex-end;margin-bottom:1rem;">
+          <div class="form-field" style="margin:0;flex:1;">
+            <label for="slot-date">Datum</label>
+            <input id="slot-date" type="date" />
+          </div>
+          <button type="submit" style="background:var(--cream-deep);color:var(--ink);border:1px solid var(--border-strong);border-radius:var(--r-sm);padding:0.55rem 1.1rem;font-weight:600;white-space:nowrap;height:2.6rem;">
+            Laden
+          </button>
+        </form>
+        <div id="slot-list" class="live-orders"></div>
+      </section>
+
+      <!-- Bestellungen -->
+      <section class="admin-section">
+        <div class="section-head">
+          <span class="label-caps">Bestellungen</span>
+          <h2>Offene Bestellungen</h2>
+          <p>Statuswechsel benachrichtigt Kunde per E-Mail / SMS.</p>
+        </div>
+        <div id="admin-orders" class="live-orders"></div>
+      </section>
+
+    </div>
+
+    <!-- ── Footer ── -->
+    <footer class="footer">
+      <a href="/">← Zurück zur Bestellung</a>
+    </footer>
+
+    <script src="admin.js"></script>
+  </body>
+</html>
