@@ -34,17 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Sticky Header — solid erst nach Hero-Section (80vh), auf Unterseiten nach 60px
+  // Sticky Header
   const header = document.querySelector('.site-header');
   const heroSection = document.getElementById('hero');
+
   const updateHeader = () => {
-    const threshold = heroSection
-      ? heroSection.offsetHeight - 10
-      : 60;
+    const threshold = heroSection ? heroSection.offsetHeight - 10 : 60;
     header?.classList.toggle('is-solid', window.scrollY >= threshold);
   };
 
-  window.addEventListener('scroll', updateHeader);
+  window.addEventListener('scroll', updateHeader, { passive: true });
   updateHeader();
 
   // Mobile Menu Toggle

@@ -9,7 +9,7 @@
     height: 100vh;
     min-height: 600px;
     overflow: hidden;
-    background: var(--bg-dark);
+    background: var(--darkgreen);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,7 +55,7 @@
 }
 
 .project-hero-title {
-    font-family: var(--font-subtitle);
+    font-family: var(--outfit);
     font-size: clamp(2.5rem, 8vw, 6rem);
     font-weight: 700;
     color: white;
@@ -66,7 +66,7 @@
 
 .project-hero-subtitle {
     font-size: clamp(1rem, 2vw, 1.5rem);
-    color: var(--text-primary-light);
+    color: var(--white);
     max-width: 800px;
     margin: 0 auto 2rem;
     line-height: 1.6;
@@ -83,7 +83,7 @@
 }
 
 .project-meta span {
-    color: var(--text-primary-light);
+    color: var(--white);
     font-size: 0.9rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -92,7 +92,7 @@
 
 /* Content Sections */
 .project-content-wrapper {
-    background: var(--bg-secondary);
+    background: var(--white);
 }
 
 .project-container {
@@ -106,16 +106,16 @@
 }
 
 .project-section h2 {
-    font-family: var(--font-subtitle);
+    font-family: var(--outfit);
     font-size: clamp(2rem, 5vw, 3.5rem);
-    color: var(--accent-burgundy);
+    color: var(--burgundy);
     margin-bottom: 2rem;
 }
 
 .project-section h3 {
-    font-family: var(--font-body);
+    font-family: var(--work);
     font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-    color: var(--text-secondary);
+    color: var(--off-black);
     margin-bottom: 2rem;
     font-weight: 600;
 }
@@ -123,7 +123,7 @@
 .project-section p {
     font-size: clamp(1rem, 1.5vw, 1.1rem);
     line-height: 1.8;
-    color: var(--text-secondary);
+    color: var(--off-black);
     margin-bottom: 1.5rem;
 }
 
@@ -154,7 +154,7 @@
     background: rgba(255, 255, 255, 0.6);
     padding: 2rem;
     border-radius: 8px;
-    border-left: 4px solid var(--accent-burgundy);
+    border-left: 4px solid var(--burgundy);
     transition: all 0.3s ease;
 }
 
@@ -166,7 +166,7 @@
 .info-card h4 {
     font-size: 1.1rem;
     font-weight: 700;
-    color: var(--accent-burgundy);
+    color: var(--burgundy);
     margin-bottom: 0.5rem;
 }
 
@@ -212,16 +212,16 @@
 }
 
 .stat-number {
-    font-family: var(--font-subtitle);
+    font-family: var(--outfit);
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
-    color: var(--accent-burgundy);
+    color: var(--burgundy);
     margin-bottom: 0.5rem;
 }
 
 .stat-label {
     font-size: 0.9rem;
-    color: var(--text-secondary);
+    color: var(--off-black);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -251,7 +251,7 @@
     position: absolute;
     top: 1rem;
     right: 1rem;
-    font-family: var(--font-subtitle);
+    font-family: var(--outfit);
     font-size: 3rem;
     color: rgba(110, 59, 73, 0.15);
     font-weight: 700;
@@ -260,14 +260,14 @@
 .process-step h4 {
     font-size: 1.3rem;
     font-weight: 700;
-    color: var(--accent-burgundy);
+    color: var(--burgundy);
     margin-bottom: 1rem;
 }
 
 /* Dark Section Variant */
 .project-section.dark {
-    background: var(--bg-dark);
-    color: var(--text-primary-light);
+    background: var(--darkgreen);
+    color: var(--white);
 }
 
 .project-section.dark h2,
@@ -289,7 +289,7 @@
     max-width: 800px;
     margin: 0 auto;
     padding: clamp(3rem, 6vw, 5rem);
-    background: linear-gradient(135deg, var(--accent-burgundy) 0%, #5a2f3b 100%);
+    background: linear-gradient(135deg, var(--burgundy) 0%, #5a2f3b 100%);
     border-radius: 20px;
     color: white;
 }
@@ -309,7 +309,7 @@
     display: inline-block;
     padding: 1rem 3rem;
     background: white;
-    color: var(--accent-burgundy);
+    color: var(--burgundy);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -331,7 +331,7 @@
     padding: 4rem 1.5rem;
     max-width: 1400px;
     margin: 0 auto;
-    background: var(--bg-secondary);
+    background: var(--white);
 }
 
 .nav-project {
@@ -350,7 +350,7 @@
 .nav-project:hover {
     transform: translateY(-8px);
     box-shadow: 0 15px 40px rgba(110, 59, 73, 0.2);
-    border-color: var(--accent-burgundy);
+    border-color: var(--burgundy);
 }
 
 .nav-label {
@@ -358,15 +358,15 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--accent-burgundy);
+    color: var(--burgundy);
     margin-bottom: 0.5rem;
 }
 
 .nav-title {
-    font-family: var(--font-display);
+    font-family: var(--playfair);
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--black);
     font-style: italic;
 }
 

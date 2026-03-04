@@ -14,24 +14,18 @@
   font-family: 'Higuen';
   src: url('../fonts/Higuen.woff2') format('woff2');
   font-weight: 400 900;
-  font-display: swap;
+  playfair: swap;
 }
 
 /* ── 2. CSS-VARIABLEN ──────────────────────────────── */
 :root {
   /* Klare Rollen */
-  --font-h1:      'Higuen', serif;
-  --font-h2:      'Higuen', serif;
-  --font-h3:      'Playfair Display', Georgia, serif;
-  --font-body:    'Work Sans', system-ui, sans-serif;
-  --font-ui:      'Outfit', system-ui, sans-serif;
+  --higuen:      'Higuen', serif;
+  --playfair:      'Playfair Display', serif;
+  --work:    'Work Sans', system-ui, sans-serif;
+  --outfit:      'Outfit', system-ui, sans-serif;
 
   /* Legacy-Aliases — damit alte Selektoren nicht brechen */
-  --font-higuen:   var(--font-h1);
-  --font-display:  var(--font-h3);
-  --font-subtitel: var(--font-ui);
-  --font-subtitle: var(--font-ui);
-  --font-titel:    var(--font-ui);
 
   /* Typographic Scale */
   --text-xs:      11px;
@@ -44,21 +38,17 @@
   --text-hero:    clamp(96px, 13vw, 200px);    /* H1 Hero Index */
 
   /* Kontrast-Farben */
-  --contrast-on-dark:  rgba(245,245,245,0.92);   /* off-white auf dunklem BG */
-  --contrast-on-light: #2D2D2D;   /* off-black auf hellem BG  */
+  --contrast-on-dark:  rgba(245,245,245,0.92);   /* white auf dunklem BG */
+  --contrast-on-light: #525252;   /* off-black auf hellem BG  */
 }
 
 /* ── 3. H1 — Higuen 800 ────────────────────────────── */
-h1,
-.h1,
-.hero-top,
-.hero-bottom,
 .page-title,
 .hero-title,
 .hero-title-large,
 .hero-h1,
 .sbw-intro-title {
-  font-family: var(--font-h1) !important;
+  font-family: var(--higuen) !important;
   font-weight: 800 !important;
   font-size: var(--text-2xl) !important;
   text-transform: uppercase !important;
@@ -68,13 +58,7 @@ h1,
 }
 
 /* Hero-Spezial: noch grösser auf der Startseite */
-.hero-section h1,
-.hero-section .hero-top,
-.hero-section .hero-bottom {
-  font-size: var(--text-hero) !important;
-  letter-spacing: 0.08em !important;
-  line-height: 0.88 !important;
-}
+
 
 /* ── 4. H2 — Higuen 700 ────────────────────────────── */
 h2,
@@ -85,13 +69,13 @@ section h2,
 .selected-projects,
 .fav-col-title,
 .visionary-title {
-  font-family: var(--font-h2) !important;
-  font-weight: 700 !important;
-  font-size: var(--text-xl) !important;
+  font-family: var(--higuen) !important;
+  font-weight: 900 !important;
+  font-size: var(--text-2xl) !important;
   text-transform: uppercase !important;
   letter-spacing: 0.08em !important;
   line-height: 0.94 !important;
-  color: var(--contrast-on-light);
+  color: var(--darkgreen);
 }
 
 /* H2 em-Akzent — Playfair italic als eleganter Kontrast */
@@ -104,7 +88,7 @@ h2 em,
 .fav-col-title em,
 .visionary-title em,
 .selected-projects em {
-  font-family: 'Playfair Display', Georgia, serif !important;
+  font-family: 'Playfair Display' !important;
   font-style: italic !important;
   font-weight: 700 !important;
   text-transform: none !important;
@@ -131,7 +115,7 @@ section h4,
 .project-section h4,
 .blog-title,
 .goodreads-cta-title {
-  font-family: var(--font-h3) !important;
+  font-family: var(--playfair) !important;
   font-weight: 700 !important;
   text-transform: none !important;
   letter-spacing: 0.01em !important;
@@ -168,7 +152,7 @@ blockquote,
 .feat-exc,
 .fav-col-desc,
 .q-text {
-  font-family: var(--font-body) !important;
+  font-family: var(--work) !important;
 }
 
 /* ── 7. EYEBROWS & LABELS — Outfit ─────────────────── */
@@ -207,7 +191,7 @@ summary,
 .wc-link,
 .cc-link,
 .btn-site {
-  font-family: var(--font-ui) !important;
+  font-family: var(--outfit) !important;
   text-transform: uppercase !important;
   letter-spacing: 0.16em !important;
   font-weight: 600 !important;
@@ -263,9 +247,9 @@ summary,
 .section-blog h1,        .section-blog h2,
 .section-web h1,         .section-web h2,
 .section-collections h1, .section-collections h2,
-.work-section.bg-dark h1, .work-section.bg-dark h2,
+.work-section.darkgreen h1, .work-section.darkgreen h2,
 .work-section.mint h1,    .work-section.mint h2,
-.bg-dark h1,             .bg-dark h2,
+.darkgreen h1,             .darkgreen h2,
 .darkgreen h1,           .darkgreen h2,
 [style*="background:var(--darkgreen)"] h1,
 [style*="background:var(--burgundy)"] h1 {
@@ -277,7 +261,7 @@ summary,
 .section--green h3,      .section--green h4,
 .section--burgundy h3,   .section--burgundy h4,
 .hero-section h3,
-.work-section.bg-dark h3, .work-section.bg-dark h4,
+.work-section.darkgreen h3, .work-section.darkgreen h4,
 .section-blog h3,        .section-blog h4,
 .section-web h3,         .section-web h4,
 .section-collections h3, .section-collections h4 {
@@ -343,30 +327,25 @@ summary,
   /* Cormorant Garamond → Playfair Display */
   --serif:        'Playfair Display', Georgia, serif !important;
   --font-serif:   'Playfair Display', Georgia, serif !important;
-  --font-display: 'Playfair Display', Georgia, serif !important;
+  --playfair: 'Playfair Display', Georgia, serif !important;
   --font-alt:     'Playfair Display', Georgia, serif !important;
 
   /* Tenor Sans → Outfit */
   --tenor:        'Outfit', system-ui, sans-serif !important;
   --font-tenor:   'Outfit', system-ui, sans-serif !important;
-  --font-titel:   'Outfit', system-ui, sans-serif !important;
   --font-sub:     'Outfit', system-ui, sans-serif !important;
-  --font-subtitel:'Outfit', system-ui, sans-serif !important;
-  --font-subtitle:'Outfit', system-ui, sans-serif !important;
-  --font-ui:      'Outfit', system-ui, sans-serif !important;
+  --outfit:       'Outfit', system-ui, sans-serif !important;
 
   /* Work Sans bleibt als body — aber auch hier sauber gesetzt */
-  --font-body:    'Work Sans', system-ui, sans-serif !important;
+  --work:    'Work Sans', system-ui, sans-serif !important;
 }
 
 /* — Element-Level: font-family direkt überschreiben — */
 
 /* Basis: Work Sans als Default für alles ausser Headings */
-body,
 p,
 li,
 span,
-div,
 td,
 input,
 textarea,
@@ -397,6 +376,43 @@ h3, h4, h5, h6,
 blockquote,
 .hero-h1 .row--accent span {
   font-family: 'Playfair Display', Georgia, serif !important;
+}
+
+/* NEU: Playfair — Ligaturen erzwingen */
+/* Aktiviert common + discretionary ligatures überall, wo Playfair verwendet wird */
+/* Inkl. .playfair, blog-title, inline styles und Klassen mit 'playfair' im Namen */
+h3, h4, h5, h6,
+.h3, .h4,
+.hero-title-main,
+.about-heading,
+.cat-t,
+.cta-h,
+.tt-title,
+.sc-title,
+.sc-subtitle,
+.films-title,
+.sbw-intro-title,
+.strategy-headline,
+.gallery-title,
+.t-display,
+.quote-text,
+.quote-mark,
+.featured-text h3,
+.sc-title,
+.film-meta-title,
+blockquote,
+.hero-h1 .row--accent span,
+.playfair,
+.blog-title,
+.goodreads-cta-title,
+[style*="var(--playfair)"],
+[style*="Playfair Display"],
+[class*="playfair"],
+[class*="Playfair"] {
+  font-variant-ligatures: common-ligatures discretionary-ligatures !important;
+  -webkit-font-variant-ligatures: common-ligatures discretionary-ligatures !important;
+  font-feature-settings: "liga" 1, "dlig" 1 !important;
+  -webkit-font-feature-settings: "liga" 1, "dlig" 1 !important;
 }
 
 /* H1 / H2 → Higuen */
@@ -510,6 +526,7 @@ h2 *:not(em),
 .hero-top,
 .hero-bottom,
 .hero-title-large,
-.page-title {
+.page-title,
+.we-make {
   font-family: 'Higuen', serif !important;
 }

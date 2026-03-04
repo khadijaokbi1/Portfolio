@@ -18,8 +18,8 @@
 
    :root {
     /* Core design tokens (standalone, no main.css dependency) */
-    --black:        #0A0A0A;
-    --off-black:    #2D2D2D;
+    --black:        #2D2D2D;
+    --off-black:    #525252;
     --white:        #F5F5F5;
     --darkgreen:    #314A51;
     --mint:         #56686A;
@@ -34,10 +34,10 @@
     --space-3: 1.5rem;
 
     /* Typography tokens moved to assets/css/typography-global.css */
-    /* --font-body:     'Work Sans', sans-serif; */
-    /* --font-display:  'Playfair Display', serif; */
-    /* --font-subtitel: 'Outfit', sans-serif; */
-    /* --font-titel:    'Tenor Sans', sans-serif; */
+    /* --work:     'Work Sans', sans-serif; */
+    /* --playfair:  'Playfair Display', serif; */
+    /* --outfit: 'Outfit', sans-serif; */
+    /* --playfair:    'Tenor Sans', sans-serif; */
 
     /* ── Hero figure sizing ── */
     --hero-fig-top:          clamp(15%, 16.6vh, 20.2%);
@@ -53,7 +53,7 @@
   }
   
   html {
-    font-family: var(--font-body);
+    font-family: var(--work);
     background: var(--black);
     color: var(--white);
     line-height: 1.6;
@@ -111,7 +111,7 @@
   .hero-top, .hero-bottom,
   .about-hero-top, .about-hero-bottom {
     position: absolute; left: 50%;
-    font-family: var(--font-display);
+    font-family: var(--playfair);
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.22em;
@@ -190,13 +190,13 @@
   }
   
   .work-section.mint h2,
-  .work-section.bg-dark h2 {
+  .work-section.darkgreen h2 {
     color: var(--white);
     text-transform: none;
   }
   
   .work-section.mint h3,
-  .work-section.bg-dark h3 {
+  .work-section.darkgreen h3 {
     color: rgba(235, 225, 209, 0.9);
   }
   
@@ -261,7 +261,7 @@
   }
   
   .event-card span:first-child {
-    font-family: var(--font-display);
+    font-family: var(--playfair);
     font-size: clamp(1.8rem, 9cqi, 2.5rem);
     color: rgba(245,245,245,0.95); font-weight: 400; font-style: italic;
     letter-spacing: -0.02em; display: block; margin-bottom: 0.5rem;
@@ -297,7 +297,7 @@
   .timeline-toggle-text { flex: 1; }
   
   .timeline-toggle-label {
-    font-family: var(--font-subtitel);
+    font-family: var(--outfit);
     font-size: var(--text-xs);
     font-weight: 600;
     letter-spacing: 0.28em;
@@ -307,7 +307,7 @@
   }
   
   .timeline-toggle-title {
-    font-family: var(--font-display);
+    font-family: var(--playfair);
     font-size: clamp(1.8rem, 5vw, 3rem);
     font-weight: 400;
     font-style: italic;
@@ -345,8 +345,8 @@
   .skills-bar .bar { background: var(--burgundy); height: 100%; width: 0%; border-radius: 100px; }
   
   .skill-label-wrapper { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.5rem; }
-  .skill-name         { font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; color: var(--white); letter-spacing: 0.02em; }
-  .skill-percent-text { font-family: var(--font-display); font-size: 0.8rem; font-weight: 400; font-style: italic; color: var(--burgundy); opacity: 0.8; }
+  .skill-name         { font-family: var(--work); font-size: 0.9rem; font-weight: 600; color: var(--white); letter-spacing: 0.02em; }
+  .skill-percent-text { font-family: var(--playfair); font-size: 0.8rem; font-weight: 400; font-style: italic; color: var(--burgundy); opacity: 0.8; }
   
   /* =========================================
      5. CREATIVE FUEL / BOOKS
@@ -377,7 +377,7 @@
   .record-container:hover .record { transform: translateX(30px) rotateZ(360deg); }
   
   .creative-fuel-section {
-    background: var(--bg-secondary);
+    background: var(--white);
     padding: clamp(5rem, 13vh, 9rem) 0 clamp(8rem, 18vh, 14rem);
     position: relative;
     overflow: visible;
@@ -393,7 +393,7 @@
   .creative-fuel-header { text-align: center; margin-bottom: clamp(4rem, 10vh, 7rem); position: relative; z-index: 2; }
   
   .fuel-title {
-    font-family: var(--font-display);
+    font-family: var(--playfair);
     font-style: italic;
     font-size: clamp(2.5rem, 7vw, 4.5rem);
     font-weight: 400;
@@ -403,12 +403,12 @@
     line-height: 1.1;
     text-transform: none;
   }
-  .fuel-subtitle { font-family: var(--font-body); font-size: clamp(1rem, 2.5vw, 1.3rem); color: var(--text-secondary); font-weight: 300; max-width: 700px; margin: 0 auto; font-style: italic; }
+  .fuel-subtitle { font-family: var(--work); font-size: clamp(1rem, 2.5vw, 1.3rem); color: var(--off-black); font-weight: 300; max-width: 700px; margin: 0 auto; font-style: italic; }
   
   .fuel-subsection { margin-bottom: clamp(5rem, 12vh, 8rem); position: relative; }
   
   .subsection-title {
-    font-family: var(--font-display);
+    font-family: var(--playfair);
     font-size: clamp(1.8rem, 5vw, 2.5rem);
     color: var(--white);
     text-align: center;
@@ -417,7 +417,7 @@
     text-transform: none;
     letter-spacing: -0.01em;
   }
-  .subsection-desc { text-align: center; font-size: clamp(0.9rem, 2vw, 1.1rem); color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; font-weight: 300; font-style: italic; }
+  .subsection-desc { text-align: center; font-size: clamp(0.9rem, 2vw, 1.1rem); color: var(--off-black); max-width: 600px; margin: 0 auto 2rem; font-weight: 300; font-style: italic; }
   
   .fuel-divider { width: 72px; height: 1px; background: var(--burgundy); margin: clamp(4rem, 10vh, 6rem) 0; opacity: 0.4; }
   
@@ -448,8 +448,8 @@
   
   @keyframes popUp { to { opacity: 1; transform: translateY(0) scale(1); } }
   
-  .stat-number-main { font-family: var(--font-display); font-size: clamp(2.2rem, 6vw, 3rem); font-weight: 400; font-style: italic; color: var(--burgundy); display: block; margin-bottom: 0.5rem; }
-  .stat-label-main  { font-family: var(--font-subtitel); font-size: var(--text-xs); color: var(--text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; }
+  .stat-number-main { font-family: var(--playfair); font-size: clamp(2.2rem, 6vw, 3rem); font-weight: 400; font-style: italic; color: var(--burgundy); display: block; margin-bottom: 0.5rem; }
+  .stat-label-main  { font-family: var(--outfit); font-size: var(--text-xs); color: var(--off-black); font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; }
   
   .books-align {
     clear: both; margin: clamp(2rem, 6vh, 4rem) auto; width: 100%;
@@ -511,7 +511,7 @@
     display: flex; align-items: center; justify-content: center;
     transition: transform 0.8s ease;
   }
-  .page-text { font-family: var(--font-display); font-size: clamp(0.5rem, 1.2vw, 0.75rem); line-height: 1.6; color: #333; text-align: left; opacity: 0.8; font-style: italic; max-width: 90%; }
+  .page-text { font-family: var(--playfair); font-size: clamp(0.5rem, 1.2vw, 0.75rem); line-height: 1.6; color: #333; text-align: left; opacity: 0.8; font-style: italic; max-width: 90%; }
   .page li:nth-child(1) { -webkit-transform: rotateY(-28deg); transform: rotateY(-28deg); }
   .page li:nth-child(2) { -webkit-transform: rotateY(-30deg); transform: rotateY(-30deg); }
   .page li:nth-child(3) { -webkit-transform: rotateY(-32deg); transform: rotateY(-32deg); }
@@ -540,9 +540,9 @@
   .hardcover-front li:first-child:before { -webkit-transform: rotateY(90deg) translateZ(155px) translateX(2px); transform: rotateY(90deg) translateZ(155px) translateX(2px); }
   
   .figcaption-main { padding: 1.5rem 0 0; text-align: center; position: relative; width: 100%; }
-  .figcaption-main h1 { font-family: var(--font-display); font-size: clamp(1.1rem, 3vw, 1.4rem); margin: 0 0 0.3rem; font-weight: 700; color: var(--white); text-transform: none; }
-  .figcaption-main > span { font-family: var(--font-subtitel); font-size: var(--text-xs); color: var(--burgundy); padding: 0.4rem 0 0.8rem; display: block; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; }
-  .figcaption-main p { color: var(--text-secondary); line-height: 1.6; font-size: 0.85rem; margin: 0; font-weight: 300; }
+  .figcaption-main h1 { font-family: var(--playfair); font-size: clamp(1.1rem, 3vw, 1.4rem); margin: 0 0 0.3rem; font-weight: 700; color: var(--white); text-transform: none; }
+  .figcaption-main > span { font-family: var(--outfit); font-size: var(--text-xs); color: var(--burgundy); padding: 0.4rem 0 0.8rem; display: block; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; }
+  .figcaption-main p { color: var(--off-black); line-height: 1.6; font-size: 0.85rem; margin: 0; font-weight: 300; }
   .rating-main { display: inline-block; font-size: 0.9rem; color: var(--burgundy); font-weight: 700; margin-top: 0.5rem; }
   
   .goodreads-section {
@@ -569,7 +569,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-    font-family: var(--font-subtitel);
+    font-family: var(--outfit);
     font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -684,7 +684,7 @@
   }
   
   .fav-eyebrow {
-    font-family: var(--font-subtitel);
+    font-family: var(--outfit);
     display: inline-block;
     font-size: var(--text-xs);
     font-weight: 600;
@@ -698,7 +698,7 @@
   }
   
   .fav-col-title {
-    font-family: var(--font-display);
+    font-family: var(--playfair);
     font-size: clamp(1.4rem, 2.6vw, 2rem);
     font-weight: 600;
     color: var(--off-black);
@@ -708,7 +708,7 @@
     white-space: nowrap;
   }
   .fav-col-title em { font-style: italic; color: var(--burgundy); font-weight: 400; }
-  .fav-col-desc { font-family: var(--font-body); font-size: 0.87rem; color: var(--text-secondary); line-height: 1.72; font-weight: 300; max-width: 44ch; }
+  .fav-col-desc { font-family: var(--work); font-size: 0.87rem; color: var(--off-black); line-height: 1.72; font-weight: 300; max-width: 44ch; }
   .spotify-section-header {
     display: flex;
     flex-direction: column;
@@ -749,7 +749,7 @@
   .counter-box-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 0.15rem; }
   
   .counter-eyebrow {
-    font-family: var(--font-subtitel);
+    font-family: var(--outfit);
     font-size: 0.5rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -758,19 +758,19 @@
     opacity: 0.75;
   }
   .counter-num {
-    font-family: var(--font-display);
+    font-family: var(--playfair);
     font-style: italic;
     font-weight: 400;
     font-size: clamp(2rem, 4.5vw, 3rem);
-    color: var(--text-secondary);
+    color: var(--off-black);
     line-height: 0.95;
     letter-spacing: -0.03em;
   }
   .counter-box--2025 .counter-num { color: var(--burgundy); }
   .counter-label {
-    font-family: var(--font-subtitel);
+    font-family: var(--outfit);
     font-size: 0.5rem;
-    color: var(--text-secondary);
+    color: var(--off-black);
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.18em;
@@ -788,7 +788,7 @@
   .book-entry__meta { text-align: center; width: 100%; }
   
   .book-genre-tag {
-    font-family: var(--font-subtitel);
+    font-family: var(--outfit);
     display: inline-block;
     font-size: var(--text-xs);
     font-weight: 600;
@@ -801,7 +801,7 @@
     margin-bottom: 0.7rem;
   }
   .book-title-main {
-    font-family: var(--font-display);
+    font-family: var(--playfair);
     font-size: clamp(1.05rem, 2.2vw, 1.45rem);
     font-weight: 600;
     color: var(--off-black);
@@ -810,16 +810,16 @@
     text-align: center;
     text-transform: none;
   }
-  .book-author-main { font-family: var(--font-subtitel); font-size: var(--text-xs); color: var(--burgundy); font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; margin: 0 0 0.65rem; }
+  .book-author-main { font-family: var(--outfit); font-size: var(--text-xs); color: var(--burgundy); font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; margin: 0 0 0.65rem; }
   .book-rating      { display: flex; gap: 0.22rem; margin-bottom: 0.75rem; justify-content: center; }
   .book-rating i    { font-size: 0.68rem; color: var(--burgundy); }
-  .book-blurb       { font-family: var(--font-body); font-size: 0.82rem; color: var(--text-secondary); line-height: 1.68; font-weight: 300; margin: 0 0 1rem; max-width: 48ch; }
+  .book-blurb       { font-family: var(--work); font-size: 0.82rem; color: var(--off-black); line-height: 1.68; font-weight: 300; margin: 0 0 1rem; max-width: 48ch; }
   
   .review-btn {
     display: inline-flex; align-items: center; gap: 0.45rem;
     background: none; border: 1px solid rgba(110,59,73,0.4);
     color: var(--burgundy);
-    font-family: var(--font-subtitel);
+    font-family: var(--outfit);
     font-size: var(--text-xs);
     font-weight: 600;
     text-transform: uppercase; letter-spacing: 0.15em;
@@ -832,7 +832,7 @@
   
   .review-body { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out, padding-top 0.3s ease; }
   .review-body.is-open { max-height: 600px; opacity: 1; padding-top: 1rem; }
-  .review-body p { font-family: var(--font-body); font-size: 0.8rem; color: var(--text-secondary); line-height: 1.78; font-weight: 300; font-style: italic; border-left: 2px solid rgba(110,59,73,0.22); padding-left: 1rem; margin: 0; }
+  .review-body p { font-family: var(--work); font-size: 0.8rem; color: var(--off-black); line-height: 1.78; font-weight: 300; font-style: italic; border-left: 2px solid rgba(110,59,73,0.22); padding-left: 1rem; margin: 0; }
   
   /* ── VINYL GRID ── */
   .vinyl-grid-large {
@@ -852,7 +852,7 @@
   
   .vinyl-meta   { text-align: center; }
   .vinyl-genre {
-    font-family: var(--font-subtitel);
+    font-family: var(--outfit);
     display: block;
     font-size: var(--text-xs);
     font-weight: 600;
@@ -863,7 +863,7 @@
     margin-bottom: 0.4rem;
   }
   .vinyl-title {
-    font-family: var(--font-display);
+    font-family: var(--playfair);
     font-size: clamp(1.1rem, 2.2vw, 1.5rem);
     font-weight: 600;
     color: var(--off-black);
@@ -871,7 +871,7 @@
     text-transform: none;
     line-height: 1.2;
   }
-  .vinyl-artist { font-family: var(--font-body); font-size: 0.82rem; color: var(--text-secondary); font-style: italic; }
+  .vinyl-artist { font-family: var(--work); font-size: 0.82rem; color: var(--off-black); font-style: italic; }
   
   /* =========================================
      7. PERSONALITY SECTION
@@ -880,7 +880,7 @@
   .personality-section { padding: clamp(4rem, 12vh, 8rem) 0; background: var(--off-black); position: relative; }
   
   .personality-title {
-    font-family: var(--font-display);
+    font-family: var(--playfair);
     font-size: clamp(2.5rem, 8vw, 4rem);
     font-weight: 400;
     font-style: italic;
@@ -893,7 +893,7 @@
   }
   @keyframes titleReveal { to { opacity: 1; transform: translateY(0) skewY(0deg); } }
   
-  .personality-intro { font-family: var(--font-body); font-size: 1.1rem; line-height: 1.7; color: var(--text-secondary); margin: 0 auto 3rem; max-width: 800px; text-align: center; }
+  .personality-intro { font-family: var(--work); font-size: 1.1rem; line-height: 1.7; color: var(--off-black); margin: 0 auto 3rem; max-width: 800px; text-align: center; }
   
   .personality-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
   
@@ -917,7 +917,7 @@
   
   .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
   .card-header h3 {
-    font-family: var(--font-display);
+    font-family: var(--playfair);
     font-size: 1.25rem;
     font-weight: 400;
     font-style: italic;
@@ -928,9 +928,9 @@
   }
   .card-header i  { font-size: 1.5rem; color: var(--mauve); opacity: 0.7; }
   
-  .card-desc  { font-family: var(--font-body); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1rem; color: var(--text-secondary); }
+  .card-desc  { font-family: var(--work); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1rem; color: var(--off-black); }
   .traits-list { list-style: none; padding: 0; margin: 0; }
-  .traits-list li { font-family: var(--font-body); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; padding-left: 1rem; position: relative; color: var(--white); }
+  .traits-list li { font-family: var(--work); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; padding-left: 1rem; position: relative; color: var(--white); }
   .traits-list li::before { content: '•'; position: absolute; left: 0; color: var(--burgundy); font-weight: bold; }
   .traits-list li strong  { color: var(--burgundy); font-weight: 600; }
   
@@ -962,14 +962,14 @@
     color: var(--off-black);
   }
   .grid .h-full:first-child .profile-card .uppercase-label {
-    font-family: var(--font-subtitel);
+    font-family: var(--outfit);
     color: var(--darkgreen);
     font-size: var(--text-xs);
     letter-spacing: 0.22em;
     text-transform: uppercase;
   }
   .grid .h-full:first-child .profile-card h3 {
-    font-family: var(--font-display);
+    font-family: var(--playfair);
     font-weight: 400;
     font-style: italic;
     color: var(--off-black);
@@ -978,7 +978,7 @@
   }
   .grid .h-full:first-child .profile-card h3 .italic { color: var(--burgundy); }
   .grid .h-full:first-child .profile-card p {
-    font-family: var(--font-body);
+    font-family: var(--work);
     color: rgba(45,45,45,0.75);
     font-size: 0.88rem;
     line-height: 1.72;
@@ -989,14 +989,14 @@
     color: var(--white);
   }
   .grid .h-full:last-child .profile-card .uppercase-label {
-    font-family: var(--font-subtitel);
+    font-family: var(--outfit);
     color: rgba(181,161,158,0.8);
     font-size: var(--text-xs);
     letter-spacing: 0.22em;
     text-transform: uppercase;
   }
   .grid .h-full:last-child .profile-card h3 {
-    font-family: var(--font-display);
+    font-family: var(--playfair);
     font-weight: 400;
     font-style: italic;
     color: var(--white);
@@ -1004,7 +1004,7 @@
     letter-spacing: 0;
   }
   .grid .h-full:last-child .profile-card p {
-    font-family: var(--font-body);
+    font-family: var(--work);
     color: rgba(245,245,245,0.82);
     font-size: 0.88rem;
     line-height: 1.72;
@@ -1012,7 +1012,7 @@
   .grid .h-full:last-child .profile-card i { color: rgba(181,161,158,0.7); }
   
   .profile-card .text-xs {
-    font-family: var(--font-subtitel);
+    font-family: var(--outfit);
     font-size: var(--text-xs);
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -1033,7 +1033,7 @@
   .section-about-me { background-color: var(--mint); }
   
   .visionary-title {
-    font-family: var(--font-higuen);
+    font-family: var(--higuen);
     font-size: clamp(3rem, 8vw, 6.5rem);
     text-transform: uppercase;
     letter-spacing: 0.12em;
@@ -1051,14 +1051,14 @@
   .arch-mask:hover img { transform: scale(1.02); }
   
   .uppercase-label {
-    font-family: var(--font-subtitel);
+    font-family: var(--outfit);
     font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: 0.2em;
     font-weight: 600;
   }
   
-  .italic { font-family: var(--font-display); font-style: italic; }
+  .italic { font-family: var(--playfair); font-style: italic; }
   
   :focus-visible { outline: 2px solid rgba(110,59,73,0.5); outline-offset: 3px; }
   
@@ -1191,7 +1191,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    font-family: var(--font-subtitel);
+    font-family: var(--outfit);
     font-size: var(--text-xs);
     font-weight: 600;
     text-transform: uppercase;

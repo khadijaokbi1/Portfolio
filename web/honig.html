@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imkerei Müller – Honig & Schnaps</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--honey:#E8A020;--honey-dark:#C4780A;--honey-light:#F5C842;--amber:#D4600A;--cream:#FFF8E7;--brown:#3D2008;--text:#2A1A08}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;align-items:center;justify-content:space-between;padding:16px 60px;background:rgba(255,248,231,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,160,32,0.18)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:900;color:var(--amber);display:flex;align-items:center;gap:9px;letter-spacing:-.01em}
+.nav-logo span{color:var(--brown)}
+.nav-logo-icon{width:28px;height:28px;color:var(--amber)}
+.nav-links{display:flex;gap:30px;list-style:none}.nav-links a{text-decoration:none;color:var(--text);font-size:.88rem;font-weight:500;transition:color .3s;letter-spacing:.01em}.nav-links a:hover{color:var(--amber)}
+.nav-cta{background:var(--amber)!important;color:white!important;padding:9px 22px;border-radius:50px;letter-spacing:.02em}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 60px 60px;position:relative;overflow:hidden;background:linear-gradient(135deg,#FFF8E7 0%,#FFF0C4 50%,#FDEAA0 100%)}
+.blob1{position:absolute;bottom:-80px;left:-80px;width:520px;height:520px;background:var(--honey);border-radius:63% 37% 54% 46%/55% 48% 52% 45%;opacity:.18;animation:blob 8s ease-in-out infinite alternate}
+.blob2{position:absolute;top:-60px;right:-60px;width:380px;height:380px;background:var(--honey-light);border-radius:40% 60% 35% 65%;opacity:.13;animation:blob 11s ease-in-out infinite alternate-reverse}
+@keyframes blob{from{border-radius:63% 37% 54% 46%/55% 48% 52% 45%}to{border-radius:40% 60% 35% 65%/45% 60% 40% 55%}}
+.hero-content{flex:1;max-width:600px;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--amber);border-radius:50px;padding:6px 18px;font-size:.78rem;letter-spacing:2px;color:var(--amber);margin-bottom:24px;font-weight:600;text-transform:uppercase}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,6vw,5.2rem);font-weight:900;line-height:1.05;color:var(--amber);margin-bottom:22px}
+.hero h1 em{font-style:italic;color:var(--brown)}
+.hero p{font-size:1.06rem;line-height:1.85;color:#6B4C2A;margin-bottom:38px;max-width:460px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.hero-visual{flex:1;display:flex;justify-content:center;align-items:center;z-index:2;position:relative}
+.hex-grid{position:absolute;top:0;right:-40px;display:grid;grid-template-columns:repeat(5,64px);gap:4px;transform:rotate(-15deg);opacity:.1}
+.hex{width:64px;height:74px;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);background:var(--honey)}
+.hex:nth-child(odd){background:var(--honey-light)}
+.big-circle{width:300px;height:300px;background:radial-gradient(circle at 30% 30%,var(--honey-light),var(--honey));border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 30px 80px rgba(232,160,32,.4);animation:float 4s ease-in-out infinite;z-index:2;overflow:hidden}
+.big-circle img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:50px;font-weight:600;font-size:.92rem;text-decoration:none;transition:all .3s;cursor:pointer;border:none;font-family:'Inter',sans-serif;letter-spacing:.01em}
+.btn-primary{background:var(--amber);color:white;box-shadow:0 8px 30px rgba(196,120,10,.32)}
+.btn-primary:hover{background:var(--honey-dark);transform:translateY(-3px)}
+.btn-outline{background:transparent;color:var(--amber);border:2px solid var(--amber)}
+.btn-outline:hover{background:var(--amber);color:white;transform:translateY(-3px)}
+
+/* WAVE DIVIDERS */
+.drip{overflow:hidden;line-height:0;display:block}.drip svg{display:block;width:100%}
+
+/* SECTIONS */
+section{padding:100px 60px}
+.s-badge{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--amber);border-radius:50px;padding:5px 16px;font-size:.72rem;letter-spacing:2px;color:var(--amber);margin-bottom:14px;font-weight:600;text-transform:uppercase}
+h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3.2rem);font-weight:800;color:var(--amber);margin-bottom:18px;line-height:1.15}
+
+/* PRODUCTS */
+#produkte{background:white}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-top:50px}
+.product-card{border-radius:24px;overflow:hidden;box-shadow:0 8px 36px rgba(0,0,0,.07);background:white;position:relative;transition:transform .3s,box-shadow .3s}
+.product-card:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,.13)}
+.product-img{height:220px;overflow:hidden;position:relative}
+.product-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.product-card:hover .product-img img{transform:scale(1.06)}
+.product-body{padding:26px}
+.product-body h3{font-family:'Playfair Display',serif;font-size:1.42rem;color:var(--brown);margin-bottom:8px}
+.product-body p{font-size:.88rem;color:#7A5C3A;line-height:1.75;margin-bottom:18px}
+.price-tags{display:flex;gap:10px;flex-wrap:wrap}
+.price-tag{background:var(--cream);border:1.5px solid var(--honey);border-radius:50px;padding:5px 14px;font-size:.8rem;font-weight:600;color:var(--amber)}
+.p-badge{position:absolute;top:14px;right:14px;background:var(--amber);color:white;border-radius:50px;padding:4px 13px;font-size:.72rem;font-weight:700;letter-spacing:.04em;z-index:2}
+
+/* ABOUT */
+#ueber-uns{background:var(--cream);display:flex;gap:70px;align-items:center;flex-wrap:wrap}
+.about-images{flex:1;min-width:260px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.abox{border-radius:20px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.abox:first-child{grid-column:span 2;aspect-ratio:2/1;border-radius:22px}
+.abox:nth-child(2){aspect-ratio:1}
+.abox:nth-child(3){aspect-ratio:1}
+.abox img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.abox:hover img{transform:scale(1.04)}
+.about-text{flex:1;min-width:260px}
+.about-text p{font-size:1rem;line-height:1.87;color:#6B4C2A;margin-bottom:14px}
+.stats{display:flex;gap:36px;margin-top:32px;flex-wrap:wrap}
+.stat-n{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:900;color:var(--amber);line-height:1}
+.stat-l{font-size:.8rem;color:#9A7050;font-weight:500;margin-top:3px;letter-spacing:.03em}
+
+/* PROCESS */
+#entstehung{background:var(--brown);color:white;text-align:center}
+#entstehung h2{color:var(--honey-light)}
+#entstehung .s-badge{border-color:var(--honey);color:var(--honey-light)}
+.process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:26px;margin-top:56px}
+.step{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:36px 22px;transition:background .3s,transform .3s;cursor:default}
+.step:hover{background:rgba(232,160,32,.14);transform:translateY(-6px)}
+.step-num{width:46px;height:46px;background:var(--honey);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;color:var(--brown);margin:0 auto 18px}
+.step-icon{width:36px;height:36px;margin:0 auto 12px;color:var(--honey-light);display:flex;align-items:center;justify-content:center}
+.step h4{font-family:'Playfair Display',serif;font-size:1.06rem;color:var(--honey-light);margin-bottom:9px}
+.step p{font-size:.84rem;color:rgba(255,255,255,.58);line-height:1.72}
+
+/* SCHNAPS */
+#schnaps{background:linear-gradient(135deg,#FFF3DC,#FFE8B4)}
+.schnaps-layout{display:flex;gap:70px;align-items:center;flex-wrap:wrap}
+.schnaps-text{flex:1;min-width:260px}
+.schnaps-text p{font-size:1rem;line-height:1.87;color:#6B4C2A;margin-bottom:14px}
+.schnaps-badges{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}
+.schnaps-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(212,96,10,.08);border:1.5px solid var(--amber);border-radius:50px;padding:6px 16px;font-size:.78rem;font-weight:600;color:var(--amber)}
+.schnaps-badge svg{width:14px;height:14px}
+.bottles{flex:1;min-width:260px;display:flex;justify-content:center}
+.bottle-showcase{display:flex;gap:24px;align-items:flex-end}
+.bottle{text-align:center;cursor:default;transition:transform .35s}
+.bottle:hover{transform:translateY(-14px) rotate(3deg)}
+.bottle-img-wrap{width:90px;height:140px;border-radius:16px;overflow:hidden;margin:0 auto;box-shadow:0 12px 36px rgba(0,0,0,.16)}
+.bottle-img-wrap img{width:100%;height:100%;object-fit:cover}
+.bottle-label{background:var(--amber);color:white;padding:5px 13px;border-radius:50px;font-size:.73rem;font-weight:700;margin-top:10px;display:inline-block;letter-spacing:.04em}
+.bottle-price{display:block;font-size:.9rem;font-weight:700;color:var(--brown);margin-top:6px}
+
+/* CONTACT */
+#kontakt{background:var(--cream)}
+.contact-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:70px;align-items:start}
+.contact-info p{font-size:.98rem;line-height:1.82;color:#6B4C2A;margin-bottom:32px}
+.contact-details{display:flex;flex-direction:column;gap:18px}
+.contact-item{display:flex;align-items:center;gap:14px}
+.c-icon{width:46px;height:46px;background:white;border:1.5px solid var(--honey);border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--amber)}
+.c-icon svg{width:20px;height:20px}
+.c-text strong{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--amber);font-weight:700;margin-bottom:2px}
+.c-text span{font-size:.92rem;color:var(--text)}
+.contact-form{background:white;border-radius:26px;padding:42px;box-shadow:0 10px 50px rgba(0,0,0,.07)}
+.contact-form h3{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--brown);margin-bottom:8px}
+.contact-form .form-sub{font-size:.88rem;color:#9A7050;margin-bottom:28px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{margin-bottom:16px;display:flex;flex-direction:column}
+.form-group label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--amber);margin-bottom:7px}
+.form-group input,.form-group select,.form-group textarea{padding:12px 16px;border:1.5px solid rgba(232,160,32,.22);border-radius:12px;background:var(--cream);font-family:'Inter',sans-serif;font-size:.91rem;color:var(--text);outline:none;transition:border-color .3s;resize:vertical}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--honey);box-shadow:0 0 0 3px rgba(232,160,32,.1)}
+.form-group.full{grid-column:span 2}
+.submit-btn{width:100%;background:var(--amber);color:white;border:none;padding:15px;border-radius:12px;font-family:'Inter',sans-serif;font-size:.96rem;font-weight:700;cursor:pointer;transition:all .3s;box-shadow:0 6px 25px rgba(196,120,10,.28);display:flex;align-items:center;justify-content:center;gap:9px;letter-spacing:.02em}
+.submit-btn:hover{background:var(--honey-dark);transform:translateY(-2px)}
+.submit-btn svg{width:18px;height:18px}
+.success-msg{display:none;text-align:center;padding:16px 18px;background:#E8F5E0;border-radius:12px;color:#2D6A1A;font-weight:600;margin-top:14px;font-size:.9rem}
+
+/* FOOTER */
+footer{background:var(--brown);color:white;padding:60px 60px 30px}
+.footer-top{display:flex;justify-content:space-between;gap:36px;margin-bottom:46px;flex-wrap:wrap}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1.65rem;font-weight:900;color:var(--honey-light);display:flex;align-items:center;gap:10px}
+.footer-brand-wrap p{font-size:.84rem;color:rgba(255,255,255,.48);margin-top:8px;font-family:'Inter',sans-serif;font-weight:400;max-width:240px;line-height:1.72}
+.footer-col h4{font-size:.72rem;text-transform:uppercase;letter-spacing:1.8px;color:var(--honey);margin-bottom:14px;font-weight:700}
+.footer-col ul{list-style:none}.footer-col li{margin-bottom:9px}
+.footer-col a{text-decoration:none;color:rgba(255,255,255,.52);font-size:.86rem;transition:color .3s}.footer-col a:hover{color:var(--honey-light)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:22px;text-align:center;font-size:.8rem;color:rgba(255,255,255,.32);letter-spacing:.03em}
+
+/* TOAST */
+.toast{position:fixed;bottom:28px;right:28px;background:var(--amber);color:white;padding:14px 24px;border-radius:14px;font-weight:600;font-size:.9rem;z-index:9999;transform:translateY(100px);opacity:0;transition:all .4s;box-shadow:0 8px 30px rgba(196,120,10,.4);pointer-events:none;display:flex;align-items:center;gap:9px}
+.toast svg{width:18px;height:18px}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* ANIMATIONS */
+.fade-in{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+.fade-in.visible{opacity:1;transform:none}
+.fade-left{opacity:0;transform:translateX(-32px);transition:opacity .7s ease,transform .7s ease}
+.fade-left.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:800px){
+  nav{padding:14px 20px}.nav-links{display:none}
+  section{padding:70px 20px}
+  .hero{padding:100px 20px 60px;flex-direction:column;text-align:center}.hero-visual{display:none}.hero-btns{justify-content:center}
+  #ueber-uns{flex-direction:column;padding:70px 20px}
+  .schnaps-layout{flex-direction:column}
+  .contact-layout{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}.form-group.full{grid-column:span 1}
+  footer{padding:40px 20px 20px}.footer-top{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+  Vielen Dank! Ich melde mich bald.
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12c0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4-4-1.79-4-4z"/><path d="M12 8V2M12 22v-6M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M16 12h6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/></svg>
+    <span>Imkerei</span>&nbsp;Müller
+  </div>
+  <ul class="nav-links">
+    <li><a href="#produkte">Produkte</a></li>
+    <li><a href="#ueber-uns">Über uns</a></li>
+    <li><a href="#entstehung">Entstehung</a></li>
+    <li><a href="#schnaps">Schnaps</a></li>
+    <li><a href="#kontakt" class="nav-cta">Bestellen</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="blob1"></div>
+  <div class="blob2"></div>
+  <div class="hero-content fade-in">
+    <div class="hero-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      Direkt aus Ihrem Garten
+    </div>
+    <h1>Honig &<br><em>mehr</em> aus<br>der Nachbarschaft</h1>
+    <p>Ihr Nachbarsimker – reiner Gartenhonig, handgemachter Birnen- & Quittenschnaps. Frisch, regional, mit Liebe gemacht.</p>
+    <div class="hero-btns">
+      <a href="#produkte" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Unsere Produkte
+      </a>
+      <a href="#kontakt" class="btn btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Jetzt bestellen
+      </a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hex-grid">
+      <div class="hex"></div><div class="hex"></div><div class="hex"></div><div class="hex"></div><div class="hex"></div>
+      <div class="hex"></div><div class="hex"></div><div class="hex"></div><div class="hex"></div><div class="hex"></div>
+      <div class="hex"></div><div class="hex"></div><div class="hex"></div><div class="hex"></div><div class="hex"></div>
+      <div class="hex"></div><div class="hex"></div><div class="hex"></div><div class="hex"></div><div class="hex"></div>
+    </div>
+    <div class="big-circle">
+      <img src="https://images.unsplash.com/photo-1587049352851-8d4e89133924?w=600&q=80&fit=crop" alt="Honig im Glas">
+    </div>
+  </div>
+</section>
+
+<!-- WAVE: hero (#FDEAA0 gradient) → produkte (white) -->
+<div class="drip" style="background:#FDEAA0">
+  <svg viewBox="0 0 1440 72" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0 L0,72 L1440,72 L1440,0 Q1380,56 1320,36 Q1260,16 1200,48 Q1140,72 1080,44 Q1020,16 960,48 Q900,72 840,44 Q780,16 720,48 Q660,72 600,44 Q540,16 480,48 Q420,72 360,44 Q300,16 240,48 Q180,72 120,44 Q60,16 0,0 Z" fill="white"/></svg>
+</div>
+
+<!-- PRODUKTE -->
+<section id="produkte">
+  <div class="fade-in">
+    <div class="s-badge">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      Produkte
+    </div>
+    <h2>Vom Garten<br>auf Ihren Tisch</h2>
+    <p style="color:#6B4C2A;line-height:1.82;max-width:520px">Alles handgemacht, ohne Zusätze, in kleinen Mengen – deshalb besonders begehrt.</p>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card fade-in">
+      <div class="p-badge">Bestseller</div>
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1555211652-5c6222f971f2?w=600&q=80&fit=crop" alt="Gartenhonig">
+      </div>
+      <div class="product-body">
+        <h3>Gartenhonig</h3>
+        <p>Direkt von den Bienen aus Ihrem Garten – mild, aromatisch, unbehandelt. Jedes Glas ein kleines Stück Natur.</p>
+        <div class="price-tags"><span class="price-tag">250g – CHF 10.–</span><span class="price-tag">500g – CHF 15.–</span></div>
+      </div>
+    </div>
+
+    <div class="product-card fade-in">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&q=80&fit=crop" alt="Birnenschnaps">
+      </div>
+      <div class="product-body">
+        <h3>Birnenschnaps</h3>
+        <p>Selbst gebrannt aus reifen Gartenbirnen. Fruchtig, weich und mit feinem Birnenaroma – ideal nach dem Essen.</p>
+        <div class="price-tags"><span class="price-tag">0.5L – CHF 28.–</span><span class="price-tag">0.35L – CHF 20.–</span></div>
+      </div>
+    </div>
+
+    <div class="product-card fade-in">
+      <div class="p-badge">Saisonal</div>
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=600&q=80&fit=crop" alt="Quittenschnaps">
+      </div>
+      <div class="product-body">
+        <h3>Quittenschnaps</h3>
+        <p>Handgemacht aus goldenen Gartenquitten – intensiv duftend, elegant und perfekt als Digestif.</p>
+        <div class="price-tags"><span class="price-tag">0.5L – CHF 30.–</span><span class="price-tag">0.35L – CHF 22.–</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WAVE: produkte (white) → ueber-uns (cream) -->
+<div class="drip" style="background:white">
+  <svg viewBox="0 0 1440 72" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,72 L1440,72 L1440,0 Q1380,52 1320,28 Q1260,4 1200,40 Q1140,68 1080,40 Q1020,12 960,44 Q900,68 840,40 Q780,12 720,44 Q660,68 600,40 Q540,12 480,44 Q420,68 360,40 Q300,12 240,44 Q180,68 120,40 Q60,12 0,48 L0,72 Z" fill="#FFF8E7"/></svg>
+</div>
+
+<!-- ÜBER UNS -->
+<section id="ueber-uns">
+  <div class="about-images fade-left">
+    <div class="abox"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80&fit=crop" alt="Bienen auf Wabe"></div>
+    <div class="abox"><img src="https://images.unsplash.com/photo-1587049352851-8d4e89133924?w=500&q=80&fit=crop" alt="Honig Glas"></div>
+    <div class="abox"><img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=500&q=80&fit=crop" alt="Garten Haus"></div>
+  </div>
+  <div class="about-text fade-in">
+    <div class="s-badge">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      Über uns
+    </div>
+    <h2>Ihr Nachbar,<br>Ihr Imker</h2>
+    <p>Seit über 15 Jahren halte ich Bienen in unserem Garten – aus Leidenschaft und Liebe zur Natur. Was als Hobby begann, ist heute ein kleines Handwerk, das ich mit meiner Familie teile.</p>
+    <p>Neben dem Honig destillieren wir jedes Jahr unsere Birnen und Quitten zu feinem Schnaps – alles nach alten Rezepten, mit viel Geduld und ohne Kompromisse.</p>
+    <p>Die Bienen fliegen direkt in Ihren Gärten – sie kennen jede Blüte in unserer Nachbarschaft. Das schmeckt man.</p>
+    <div class="stats">
+      <div><div class="stat-n">15+</div><div class="stat-l">Jahre Imkerei</div></div>
+      <div><div class="stat-n">8</div><div class="stat-l">Bienenvölker</div></div>
+      <div><div class="stat-n">100%</div><div class="stat-l">Regional & Bio</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE: ueber-uns (cream #FFF8E7) → entstehung (brown) -->
+<div class="drip" style="background:#FFF8E7">
+  <svg viewBox="0 0 1440 72" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0 L0,72 L1440,72 L1440,0 Q1380,56 1320,32 Q1260,8 1200,44 Q1140,72 1080,44 Q1020,16 960,48 Q900,72 840,44 Q780,16 720,48 Q660,72 600,44 Q540,16 480,48 Q420,72 360,44 Q300,16 240,48 Q180,72 120,44 Q60,16 0,0 Z" fill="#3D2008"/></svg>
+</div>
+
+<!-- ENTSTEHUNG -->
+<section id="entstehung">
+  <div class="s-badge">
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    Vom Nektar zum Glas
+  </div>
+  <h2>Wie Honig entsteht</h2>
+  <div class="process-grid">
+
+    <div class="step fade-in">
+      <div class="step-num">1</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h4>Blütensammlung</h4>
+      <p>Die Bienen sammeln Nektar aus tausenden Blüten in unseren Gärten und der Umgebung.</p>
+    </div>
+
+    <div class="step fade-in">
+      <div class="step-num">2</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h4>Im Bienenstock</h4>
+      <p>Der Nektar wird in Waben eingelagert, umgewandelt und durch Flügelschlagen getrocknet.</p>
+    </div>
+
+    <div class="step fade-in">
+      <div class="step-num">3</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </div>
+      <h4>Ernte & Kontrolle</h4>
+      <p>Nur vollreifer, verdeckelter Honig wird geerntet – mit größter Sorgfalt für Qualität und Bienen.</p>
+    </div>
+
+    <div class="step fade-in">
+      <div class="step-num">4</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+      </div>
+      <h4>Abfüllung</h4>
+      <p>Kalt geschleudert, ungefiltert und direkt ins Glas – keine Zusätze, kein Erhitzen.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- WAVE: entstehung (brown) → schnaps (#FFF3DC) -->
+<div class="drip" style="background:#3D2008">
+  <svg viewBox="0 0 1440 72" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,72 L1440,72 L1440,0 Q1380,54 1320,30 Q1260,6 1200,42 Q1140,68 1080,40 Q1020,12 960,46 Q900,70 840,42 Q780,14 720,46 Q660,70 600,42 Q540,14 480,46 Q420,70 360,42 Q300,14 240,46 Q180,70 120,42 Q60,14 0,50 L0,72 Z" fill="#FFF3DC"/></svg>
+</div>
+
+<!-- SCHNAPS -->
+<section id="schnaps">
+  <div class="schnaps-layout">
+    <div class="schnaps-text fade-in">
+      <div class="s-badge">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Selbst gebrannt
+      </div>
+      <h2>Birnen- &<br>Quittenschnaps</h2>
+      <p>Was wir nicht als Obst verkaufen, destillieren wir. Mit einer kleinen Kupferbrennblase und viel Zeit entstehen feine Brände, die den Charakter unserer Gartenbäume widerspiegeln.</p>
+      <p>Beide Sorten sind limitiert – sobald der Jahrgang vergriffen ist, warten wir bis zur nächsten Ernte. Also lieber früh reservieren!</p>
+      <div class="schnaps-badges">
+        <span class="schnaps-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          Birnenbrand
+        </span>
+        <span class="schnaps-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          Quittenbrand
+        </span>
+        <span class="schnaps-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          Honiglikör auf Anfrage
+        </span>
+      </div>
+      <a href="#kontakt" class="btn btn-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+        Jetzt reservieren
+      </a>
+    </div>
+    <div class="bottles fade-in">
+      <div class="bottle-showcase">
+        <div class="bottle">
+          <div class="bottle-img-wrap"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=300&q=80&fit=crop" alt="Birnenschnaps"></div>
+          <div class="bottle-label">Birne</div>
+          <span class="bottle-price">ab CHF 20.–</span>
+        </div>
+        <div class="bottle" style="transform:translateY(-22px)">
+          <div class="bottle-img-wrap"><img src="https://images.unsplash.com/photo-1587049352851-8d4e89133924?w=300&q=80&fit=crop" alt="Honiglikör"></div>
+          <div class="bottle-label">Honiglikör</div>
+          <span class="bottle-price">auf Anfrage</span>
+        </div>
+        <div class="bottle">
+          <div class="bottle-img-wrap"><img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=300&q=80&fit=crop" alt="Quittenschnaps"></div>
+          <div class="bottle-label">Quitte</div>
+          <span class="bottle-price">ab CHF 22.–</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE: schnaps (#FFE8B4) → kontakt (cream #FFF8E7) -->
+<div class="drip" style="background:#FFE8B4">
+  <svg viewBox="0 0 1440 72" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0 L0,72 L1440,72 L1440,0 Q1380,56 1320,32 Q1260,8 1200,44 Q1140,72 1080,44 Q1020,16 960,48 Q900,72 840,44 Q780,16 720,48 Q660,72 600,44 Q540,16 480,48 Q420,72 360,44 Q300,16 240,48 Q180,72 120,44 Q60,16 0,0 Z" fill="#FFF8E7"/></svg>
+</div>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="contact-layout">
+    <div class="contact-info fade-in">
+      <div class="s-badge">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Kontakt
+      </div>
+      <h2>Bestellen oder<br>vorbeikommen</h2>
+      <p>Schreiben Sie mir eine Nachricht oder klingeln Sie einfach. Abholung zuhause ist immer willkommen – solange der Vorrat reicht!</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="c-text"><strong>Adresse</strong><span>Musterstrasse 12, 8280 Kreuzlingen</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div class="c-text"><strong>Telefon</strong><span>+41 78 123 45 67</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="c-text"><strong>E-Mail</strong><span>honig@imkerei-mueller.ch</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="c-text"><strong>Abholung</strong><span>Mo – Sa, 8:00 – 18:00 Uhr</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form fade-in">
+      <h3>Nachricht senden</h3>
+      <p class="form-sub">Ich antworte in der Regel innerhalb von 24 Stunden.</p>
+      <div class="form-row">
+        <div class="form-group"><label>Vorname</label><input type="text" id="f-vor" placeholder="Max"></div>
+        <div class="form-group"><label>Nachname</label><input type="text" placeholder="Mustermann"></div>
+      </div>
+      <div class="form-group"><label>E-Mail</label><input type="email" id="f-mail" placeholder="ihre@email.ch"></div>
+      <div class="form-group">
+        <label>Ich interessiere mich für</label>
+        <select>
+          <option value="">Bitte wählen...</option>
+          <option>Gartenhonig</option>
+          <option>Birnenschnaps</option>
+          <option>Quittenschnaps</option>
+          <option>Honiglikör</option>
+          <option>Alle Produkte</option>
+        </select>
+      </div>
+      <div class="form-group full"><label>Nachricht</label><textarea rows="4" placeholder="Menge, Abholdatum, Fragen..."></textarea></div>
+      <button class="submit-btn" onclick="sendForm()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Nachricht absenden
+      </button>
+      <div class="success-msg" id="success-msg">Vielen Dank! Ich melde mich innerhalb von 24 Stunden.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE: kontakt (cream #FFF8E7) → footer (brown) -->
+<div class="drip" style="background:#FFF8E7">
+  <svg viewBox="0 0 1440 72" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0 L0,72 L1440,72 L1440,0 Q1380,56 1320,28 Q1260,4 1200,42 Q1140,70 1080,42 Q1020,14 960,46 Q900,70 840,42 Q780,14 720,46 Q660,70 600,42 Q540,14 480,46 Q420,70 360,42 Q300,14 240,46 Q180,70 120,42 Q60,14 0,0 Z" fill="#3D2008"/></svg>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand-wrap">
+      <div class="footer-brand">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--honey-light)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12c0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4-4-1.79-4-4z"/></svg>
+        Imkerei Müller
+      </div>
+      <p>Honig & Schnaps direkt aus Ihrer Nachbarschaft in Kreuzlingen. Mit Liebe gemacht seit 2009.</p>
+    </div>
+    <div class="footer-col"><h4>Produkte</h4><ul><li><a href="#produkte">Gartenhonig</a></li><li><a href="#schnaps">Birnenschnaps</a></li><li><a href="#schnaps">Quittenschnaps</a></li><li><a href="#schnaps">Honiglikör</a></li></ul></div>
+    <div class="footer-col"><h4>Info</h4><ul><li><a href="#ueber-uns">Über uns</a></li><li><a href="#entstehung">Entstehung</a></li><li><a href="#kontakt">Kontakt</a></li></ul></div>
+    <div class="footer-col"><h4>Kontakt</h4><ul><li><a href="#">Kreuzlingen, TG</a></li><li><a href="#">+41 78 123 45 67</a></li><li><a href="#">honig@imkerei-mueller.ch</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2025 Imkerei Müller, Kreuzlingen · Handgemacht mit Leidenschaft</div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.12});
+document.querySelectorAll('.fade-in,.fade-left').forEach(el => obs.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+
+function sendForm() {
+  const vor = document.getElementById('f-vor').value.trim();
+  const mail = document.getElementById('f-mail').value.trim();
+  if(!vor || !mail){ alert('Bitte Vorname und E-Mail ausfüllen.'); return; }
+  document.getElementById('success-msg').style.display = 'block';
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
+</script>
+</body>
+</html>

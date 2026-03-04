@@ -21,60 +21,39 @@
 @font-face {
   font-family: 'Higuen';
   src: url('../fonts/Higuen.woff2') format('woff2');
-  font-weight: 400;
-  font-display: swap;
+  font-weight: 400, 900;
+  playfair: swap;
 }
 
-@font-face {
-  font-family: 'OT Neglige';
-  src: url('../fonts/OTNeglige-L.woff2') format('woff2');
-  font-weight: 500;
-  font-display: swap;
-}
+
 
 :root {
   /* ── Colors ── */
-  --black:        #0A0A0A;
-  --off-black:    #2D2D2D;
+  --black:        #2D2D2D;
+  --off-black:    #525252;
   --white:        #F5F5F5;
   --darkgreen:    #314A51;
   --mint:         #56686A;
   --burgundy:     #6E3B49;
   --mauve:        #B5A19E;
-
-  /* Aliases kept for backward-compat */
-  --bg-primary:        var(--black);
-  --bg-secondary:      var(--white);
-  --bg-accent:         var(--white);
-  --bg-dark:           var(--darkgreen);
-  --text-primary:      var(--black);
-  --text-primary-light:var(--white);
-  --text-secondary:    #525252;
-  --text-tertiary:     var(--mint);
-  --accent-primary:    var(--off-black);
-  --accent-secondary:  var(--mint);
-  --accent-burgundy:   var(--burgundy);
-  --border-light:      var(--mint);
-  --border-default:    var(--burgundy);
+  --burgundy:     #6E3B49; /* Ensure this variable is defined */
 
   /* ── Typographic Scale ── */
   --text-xs:       11px;   /* Eyebrows, Tags   → Outfit  */
-  --text-sm:       13px;   /* Captions, Meta   → Outfit / Work Sans */
+  --text-sm:       13px;   /* Captions, Meta   → Outfit */
   --text-base:     16px;   /* Body             → Work Sans */
   --text-md:       18px;   /* Lead-Text        → Work Sans */
-  --text-lg:       24px;   /* H3               → OT Neglige */
-  --text-xl:       42px;   /* H2               → OT Neglige */
+  --text-lg:       24px;   /* H3               → Playfair */
+  --text-xl:       42px;   /* H2               → Higuen */
   --text-2xl:      64px;   /* H1 Subpages      → Higuen */
   --text-3xl-min:  64px;   /* H1 Index min     → Higuen */
   --text-3xl-max: 140px;   /* H1 Index max     → Higuen */
 
   /* ── Font Roles ── */
-  --font-body:     'Work Sans', sans-serif;
-  --font-display:  'OT Neglige', 'Le Jour', serif;
-  --font-higuen:   'Higuen', serif;
-  --font-subtitel: 'Outfit', sans-serif;
-  --font-subtitle: 'Outfit', sans-serif; /* alias for legacy selectors */
-  --font-titel:    'Tenor Sans', sans-serif;
+  --work:     'Work Sans', sans-serif;
+  --outfit: 'Outfit', sans-serif;
+  --playfair:  'Playfair Display', serif;
+  --higuen:   'Higuen', serif;
 
   /* ── Body Typography ── */
   --body-font-size:   var(--text-base);
@@ -123,10 +102,10 @@
 html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
-  font-family: var(--font-body);
+  font-family: var(--work);
   font-size: var(--body-font-size);
   line-height: var(--body-line-height);
-  background: var(--bg-secondary);
+  background: var(--white);
   color: var(--off-black);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -167,14 +146,25 @@ small,
 .text-meta,
 .lead,
 .text-lead {
-  font-family: var(--font-body);
+  font-family: var(--work);
 }
 
 /* Strong global lock — Higuen für alle H1/H2 (bleibt als Absicherung) */
 body h1,
 body h2,
 body section h2 {
-  font-family: var(--font-h1) !important;
+  font-family: var(--higuen) !important;
+}
+
+/* NEU: Playfair — Ligaturen überall dort erzwingen, wo Playfair verwendet wird */
+.playfair,
+.blog-title,
+.read-more,
+.section-blog h2 {
+  font-variant-ligatures: common-ligatures discretionary-ligatures !important;
+  -webkit-font-variant-ligatures: common-ligatures discretionary-ligatures !important;
+  font-feature-settings: "liga" 1, "dlig" 1 !important;
+  -webkit-font-feature-settings: "liga" 1, "dlig" 1 !important;
 }
 
 /* =========================================
@@ -185,7 +175,7 @@ body section h2 {
 .eyebrow,
 .eyebrow-pill,
 .eyebrow-circle {
-  font-family: var(--font-subtitel);
+  font-family: var(--outfit);
   font-size: var(--text-xs);
   font-weight: 600;
   text-transform: uppercase;
@@ -229,7 +219,7 @@ body section h2 {
 .project-hero-subtitle,
 .sc-subtitle,
 [class*="subtitle"] {
-  font-family: var(--font-subtitel);
+  font-family: var(--outfit);
   text-transform: uppercase;
   letter-spacing: 0.16em;
   font-weight: 600;
@@ -257,7 +247,7 @@ h2.title-neglige {
 .section--green .title-neglige,
 .section--burgundy .title-neglige,
 .darkgreen .title-neglige {
-  color: var(--off-white) !important;
+  color: var(--white) !important;
 }
 
 .section--light .title-neglige,
@@ -273,7 +263,7 @@ h2.title-neglige {
 .section--green h2,
 .section--burgundy h1,
 .section--burgundy h2 {
-  color: var(--off-white);
+  color: var(--white);
 }
 
 /* Global masked line reveal */
@@ -304,7 +294,7 @@ h2.title-neglige {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem 1.5rem;
-  font-family: var(--font-subtitel);
+  font-family: var(--outfit);
   font-size: var(--text-sm);
   text-transform: uppercase;
   letter-spacing: 0.18em;
@@ -343,7 +333,7 @@ h2.title-neglige {
 
 .site-header.is-solid {
   background: rgba(49, 74, 81, 0.95);
-  border-bottom: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--mint);
   backdrop-filter: blur(10px);
   box-shadow: var(--shadow-sm);
 }
@@ -375,12 +365,14 @@ h2.title-neglige {
 .nav { display: flex; gap: 2rem; align-items: center; }
 
 .nav-link {
-  font-family: var(--font-titel);
+  font-family: var(--playfair);
+  font-variant-ligatures: common-ligatures discretionary-ligatures;
+  font-feature-settings: "liga" 1, "dlig" 1 !important;
   font-size: var(--text-xs);
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: var(--text-primary-light);
+  color: var(--white);
   position: relative;
   padding-bottom: var(--space-1);
   transition: all var(--speed-base);
@@ -404,13 +396,13 @@ h2.title-neglige {
    ========================================= */
 
 .site-footer {
-  background: var(--bg-dark);
+  background: var(--darkgreen);
   padding: clamp(60px, 7vw, 100px) 0 clamp(40px, 5vw, 60px);
   border-top: 2px solid rgba(110, 59, 73, 0.3);
   position: relative;
   overflow: hidden;
   text-align: center;
-  color: var(--text-secondary);
+  color: var(--off-black);
 }
 
 .site-footer::before {
@@ -432,9 +424,9 @@ h2.title-neglige {
 }
 
 .footer-copy {
-  font-family: var(--font-body);
+  font-family: var(--work);
   font-size: clamp(0.85rem, 1vw, 1rem);
-  color: var (--text-primary-light);
+  color: var(--white);
   letter-spacing: 0.02em;
   font-weight: 400;
   opacity: 0.9;
@@ -451,7 +443,7 @@ h2.title-neglige {
 }
 
 .social-link {
-  color: var(--text-primary-light);
+  color: var(--white);
   width: 44px; height: 44px;
   display: flex;
   align-items: center;
@@ -481,12 +473,12 @@ h2.title-neglige {
   position: absolute;
   bottom: -28px; left: 50%;
   transform: translateX(-50%) translateY(5px);
-  font-family: var(--font-subtitel);
+  font-family: var(--outfit);
   font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--text-primary-light);
+  color: var(--white);
   opacity: 0;
   pointer-events: none;
   white-space: nowrap;
@@ -509,12 +501,14 @@ h2.title-neglige {
 }
 
 .footer-link {
-  font-family: var(--font-titel);
+  font-family: var(--playfair);
+  font-variant-ligatures: common-ligatures discretionary-ligatures;
+  font-feature-settings: "liga" 1, "dlig" 1 !important;
   font-size: clamp(0.7rem, 0.9vw, 0.8rem);
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--text-primary-light);
+  color: var(--white);
   text-decoration: none;
   position: relative;
   padding: 0.5rem 0;
@@ -606,7 +600,7 @@ h2.title-neglige {
 .section-projects::after,
 .section-carousel::after,
 .section-blog::after,
-.work-section.bg-dark::after,
+.work-section.darkgreen::after,
 .work-section.bg-cream::after,
 .work-section.mint::after,
 .bg-burgundy::after {
@@ -669,16 +663,16 @@ h2.title-neglige {
 /* Blog → Dark */
 .section-blog::after {
   height: 20vh;
-  background-color: var(--bg-dark);
+  background-color: var(--darkgreen);
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,133.3C672,128,768,160,864,186.7C960,213,1056,235,1152,224C1248,213,1344,171,1392,149.3L1440,128L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,133.3C672,128,768,160,864,186.7C960,213,1056,235,1152,224C1248,213,1344,171,1392,149.3L1440,128L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
   z-index: 10;
 }
 
 /* Dark → Cream */
-.work-section.bg-dark::after {
+.work-section.darkgreen::after {
   height: 23vh;
-  background-color: var(--bg-secondary);
+  background-color: var(--white);
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
   z-index: 4;
@@ -687,7 +681,7 @@ h2.title-neglige {
 /* Mint → Cream */
 .work-section.mint::after {
   height: 20vh;
-  background-color: var(--bg-secondary);
+  background-color: var(--white);
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
   z-index: 4;
@@ -696,7 +690,7 @@ h2.title-neglige {
 /* Cream → Dark */
 .work-section.bg-cream::after {
   height: 20vh;
-  background-color: var(--bg-dark);
+  background-color: var(--bg-mint);
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
   z-index: 4;
@@ -705,7 +699,7 @@ h2.title-neglige {
 /* Burgundy → Footer */
 .bg-burgundy::after {
   height: 20vh;
-  background-color: var(--bg-dark);
+  background-color: var(--darkgreen);
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
   z-index: 10;
@@ -728,11 +722,11 @@ h2.title-neglige {
 }
 
 .wave-cream path {
-  fill: var(--bg-secondary);
+  fill: var(--white);
 }
 
 .wave-dark path {
-  fill: var(--bg-dark);
+  fill: var(--darkgreen);
 }
 
 .wave-burgundy path {
@@ -758,7 +752,7 @@ h2.title-neglige {
 }
 
 .work-section.bg-cream   { background-color: var(--white);    color: var(--off-black); }
-.work-section.bg-dark    { background-color: var(--darkgreen); color: var(--white); }
+.work-section.darkgreen    { background-color: var(--darkgreen); color: var(--white); }
 .work-section.bg-burgundy { background-color: var(--burgundy); color: var(--white); }
 
 /* Layout helpers */
@@ -779,7 +773,7 @@ h2.title-neglige {
 
 .section-header p { margin-bottom: var(--space-between-body-cta); }
 
-/* ── LIGHT section (white / off-white background) ── */
+/* ── LIGHT section (white / white background) ── */
 .section--light {
   background-color: var(--white);
   color: var(--off-black);
@@ -866,7 +860,7 @@ h2.title-neglige {
 .section--burgundy h1,
 .section--burgundy h2,
 .section--burgundy h3,
-.section--burgundy h4 { color: var (--white); }
+.section--burgundy h4 { color: var(--white); }
 
 .section--burgundy p,
 .section--burgundy .text-body { color: var(--white); }
@@ -899,15 +893,15 @@ h2.title-neglige {
   padding: 8rem 0;
   background: var(--burgundy);
   position: relative;
-  min-height: 90vh;
+  min-height: 80vh;
 }
 
-.section-blog .bg-burgundy { background: transparent; }
+.bg-burgundy { background:var(--burgundy); }
 
 /* Override section h2 for blog — white on burgundy */
 .section-blog h2 {
   color: var(--white);
-  font-family: var(--font-display);
+  font-family: var(--playfair);
   text-transform: none;
   opacity: 1;
   transform: none;
@@ -915,7 +909,7 @@ h2.title-neglige {
 }
 
 .section-blog h2 em {
-  font-family: 'Abril Fatface', serif;
+  font-family: 'Playfair Display', serif;
   font-style: italic;
   color: var(--mauve);
   text-transform: uppercase;
@@ -938,7 +932,6 @@ h2.title-neglige {
 
 .blog-thumb {
   height: 20vh;
-  min-height: 160px;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -955,7 +948,9 @@ h2.title-neglige {
 }
 
 .blog-title {
-  font-family: var(--font-display);
+  font-family: var(--playfair);
+  font-variant-ligatures: common-ligatures discretionary-ligatures;
+  font-feature-settings: "liga" 1, "dlig" 1 !important;
   font-size: 1rem;
   font-weight: 600;
   font-style: normal;
@@ -965,15 +960,15 @@ h2.title-neglige {
 }
 
 .blog-title em {
-  font-family: 'Abril Fatface', serif;
+  font-family: 'Playfair Display', serif;
   font-style: italic;
   color: var(--burgundy);
   text-transform: uppercase;
 }
 
 .blog-teaser {
-  font-family: var(--font-body);
-  color: var(--text-secondary);
+  font-family: var(--work);
+  color: var(--off-black);
   font-size: 0.82rem;
   line-height: 1.6;
   margin-bottom: 1rem;
@@ -983,7 +978,9 @@ h2.title-neglige {
 .read-more {
   display: inline-block;
   margin-top: auto;
-  font-family: var(--font-titel);
+  font-family: var(--playfair);
+  font-variant-ligatures: common-ligatures discretionary-ligatures;
+  font-feature-settings: "liga" 1, "dlig" 1 !important;
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: 0.18em;
@@ -1001,7 +998,7 @@ h2.title-neglige {
   background: var(--burgundy);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform var(--speed-base) var (--easing-decelerate);
+  transition: transform var(--speed-base) var(--easing-decelerate);
 }
 .read-more:hover::after { transform: scaleX(1); }
 .read-more:hover { color: var(--burgundy); }

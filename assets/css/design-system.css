@@ -36,11 +36,11 @@
   --burg-20:    rgba(110,59,73,.20);
   --burg-10:    rgba(110,59,73,.10);
 
-  --font-h1:    'Higuen', serif;
-  --font-h2:    'Higuen', serif;
+  --higuen:    'Higuen', serif;
+  --higuen:    'Higuen', serif;
   --font-serif: 'Playfair Display', Georgia, serif;
-  --font-body:  'Work Sans', system-ui, sans-serif;
-  --font-ui:    'Outfit', system-ui, sans-serif;
+  --work:  'Work Sans', system-ui, sans-serif;
+  --outfit:    'Outfit', system-ui, sans-serif;
 
   --section-py:  clamp(5.5rem, 12vh, 10rem);
   --container-w: 85vw;
@@ -80,7 +80,7 @@
   --cac: var(--mauve); --cr:  rgba(245,245,245,.22);
   --ccard: var(--white-08); --ccb: var(--white-15);
 }
-.bg-darkgreen {
+.darkgreengreen {
   background-color: var(--darkgreen);
   --ct:  var(--white); --csb: rgba(245,245,245,.85);
   --cb:  rgba(245,245,245,.72); --cbg: var(--mauve);
@@ -94,7 +94,7 @@
   --cac: var(--mauve); --cr:  rgba(245,245,245,.22);
   --ccard: var(--white-08); --ccb: var(--white-15);
 }
-.bg-dark {
+.darkgreen {
   background-color: var(--darkgreen);
   --ct:  var(--white); --csb: rgba(245,245,245,.85);
   --cb:  rgba(245,245,245,.72); --cbg: var(--mauve);
@@ -134,7 +134,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.85rem;
-  font-family: var(--font-ui);
+  font-family: var(--outfit);
   font-size: clamp(0.46rem, 0.72vw, 0.56rem);
   font-weight: 600;
   letter-spacing: 0.42em;
@@ -197,7 +197,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.85rem;
-  font-family: var(--font-ui);
+  font-family: var(--outfit);
   font-size: clamp(0.44rem, 0.7vw, 0.54rem);
   font-weight: 600;
   letter-spacing: 0.50em;
@@ -216,7 +216,7 @@
 }
 
 .work-hero-title {
-  font-family: var(--font-h1);
+  font-family: var(--higuen);
   font-weight: 800;
   font-size: clamp(3rem, 9vw, 9rem);
   text-transform: uppercase;
@@ -253,7 +253,7 @@
 }
 
 .work-hero-scroll-label {
-  font-family: var(--font-ui);
+  font-family: var(--outfit);
   font-size: 0.42rem;
   letter-spacing: 0.55em;
   text-transform: uppercase;
@@ -297,7 +297,7 @@
 }
 
 .work-intro h1 {
-  font-family: var(--font-h1) !important;
+  font-family: var(--higuen) !important;
   font-weight: 800 !important;
   font-size: clamp(3.2rem, 9vw, 10rem) !important;
   text-transform: uppercase !important;
@@ -317,7 +317,7 @@
 }
 
 .work-intro-subtitle {
-  font-family: var(--font-body);
+  font-family: var(--work);
   font-size: clamp(0.92rem, 1.3vw, 1.06rem);
   line-height: 1.82;
   font-weight: 300;
@@ -355,7 +355,7 @@
 }
 
 .work-meta-label {
-  font-family: var(--font-ui);
+  font-family: var(--outfit);
   font-size: 0.42rem;
   letter-spacing: 0.38em;
   text-transform: uppercase;
@@ -364,7 +364,7 @@
 }
 
 .work-meta-value {
-  font-family: var(--font-body);
+  font-family: var(--work);
   font-size: 0.88rem;
   font-weight: 500;
   color: var(--csb, var(--mint));
@@ -408,7 +408,7 @@
 .stat-box:hover::before { transform: scaleX(1); }
 
 .stat-number {
-  font-family: var(--font-h1);
+  font-family: var(--higuen);
   font-size: clamp(2.4rem, 5vw, 3.6rem);
   font-weight: 800;
   line-height: 1;
@@ -418,7 +418,7 @@
 }
 
 .stat-label {
-  font-family: var(--font-ui);
+  font-family: var(--outfit);
   font-size: 0.46rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
@@ -427,7 +427,7 @@
 }
 
 .stat-desc {
-  font-family: var(--font-body);
+  font-family: var(--work);
   font-size: 0.82rem;
   line-height: 1.7;
   color: var(--cb, rgba(49,74,81,.70));
@@ -466,7 +466,7 @@
 .section-center h2 { max-width: 18ch; text-align: center; }
 
 .section-lead {
-  font-family: var(--font-body);
+  font-family: var(--work);
   font-size: clamp(0.92rem, 1.3vw, 1.06rem);
   line-height: 1.82;
   font-weight: 300;
@@ -515,7 +515,7 @@
 .ds-card:hover::after { transform: scaleX(1); }
 
 .ds-card-number {
-  font-family: var(--font-h1);
+  font-family: var(--higuen);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
   color: var(--cac, var(--burgundy));
@@ -533,7 +533,7 @@
 }
 
 .ds-card p {
-  font-family: var(--font-body);
+  font-family: var(--work);
   font-size: clamp(0.84rem, 1.1vw, 0.94rem);
   line-height: 1.78;
   color: var(--cb, rgba(49,74,81,.75));
@@ -578,7 +578,7 @@
 }
 
 .ds-feature h4 {
-  font-family: var(--font-ui);
+  font-family: var(--outfit);
   font-size: 0.52rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -587,7 +587,7 @@
 }
 
 .ds-feature p {
-  font-family: var(--font-body);
+  font-family: var(--work);
   font-size: 0.86rem;
   line-height: 1.72;
   color: var(--cb, rgba(49,74,81,.75));
@@ -600,7 +600,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.8rem;
-  font-family: var(--font-ui);
+  font-family: var(--outfit);
   font-size: 0.52rem;
   font-weight: 600;
   letter-spacing: 0.32em;
@@ -631,21 +631,21 @@
 .ds-btn span { position: relative; z-index: 1; }
 
 .bg-mint .ds-btn,
-.bg-darkgreen .ds-btn,
-.bg-dark .ds-btn,
+.darkgreengreen .ds-btn,
+.darkgreen .ds-btn,
 .bg-burgundy .ds-btn {
   border-color: var(--white-60);
   color: var(--white);
 }
 .bg-mint .ds-btn::before,
-.bg-darkgreen .ds-btn::before,
-.bg-dark .ds-btn::before,
+.darkgreengreen .ds-btn::before,
+.darkgreen .ds-btn::before,
 .bg-burgundy .ds-btn::before {
   background: var(--white-90);
 }
 .bg-mint .ds-btn:hover,
-.bg-darkgreen .ds-btn:hover,
-.bg-dark .ds-btn:hover,
+.darkgreengreen .ds-btn:hover,
+.darkgreen .ds-btn:hover,
 .bg-burgundy .ds-btn:hover {
   color: var(--darkgreen);
 }
@@ -719,7 +719,7 @@
 }
 
 .ds-divider-text {
-  font-family: var(--font-ui);
+  font-family: var(--outfit);
   font-size: 0.44rem;
   letter-spacing: 0.45em;
   text-transform: uppercase;
@@ -748,7 +748,7 @@
 }
 
 .ds-progress-label {
-  font-family: var(--font-ui);
+  font-family: var(--outfit);
   font-size: 0.5rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -757,7 +757,7 @@
 }
 
 .ds-progress-value {
-  font-family: var(--font-h1);
+  font-family: var(--higuen);
   font-size: 1rem;
   font-weight: 800;
   color: var(--cac, var(--burgundy));

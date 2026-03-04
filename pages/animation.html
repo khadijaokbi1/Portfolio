@@ -20,23 +20,23 @@
     <!-- AUSKOMMENTIERT - CSS wird bereits über Tailwind CSS geladen -->
  <style>
         :root {
-            --bg-primary: #000;
-            --bg-secondary: #F5F5F5;
-            --accent-burgundy: #6E3B49;
-            --font-body: 'Outfit', sans-serif;
-            --font-display: 'Playfair Display', serif;
+            --black: #000;
+            --white: #F5F5F5;
+            --burgundy: #6E3B49;
+            --work: 'Outfit', sans-serif;
+            --playfair: 'Playfair Display', serif;
         }
 
         body {
-            background-color: var(--bg-primary);
+            background-color: var(--black);
             color: white;
-            font-family: var(--font-body);
+            font-family: var(--work);
             overflow-x: hidden;
             margin: 0;
             padding-top: 72px;
         }
 
-        .font-display { font-family: var(--font-display); }
+        .playfair { font-family: var(--playfair); }
         .work-page-wrapper { padding-top: 0; }
 
         /* --- WAVES --- */
@@ -47,7 +47,7 @@
             left: 0;
             width: 100%;
             height: 23vh;
-            background-color: var(--bg-secondary);
+            background-color: var(--white);
             mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
             -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,122.7C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z' fill='black'%3E%3C/path%3E%3C/svg%3E");
             mask-size: 100% 100%;
@@ -153,8 +153,8 @@
         }
 
         .nav-btn:hover {
-            background: var(--accent-burgundy);
-            border-color: var(--accent-burgundy);
+            background: var(--burgundy);
+            border-color: var(--burgundy);
         }
 
     </style>
@@ -185,9 +185,9 @@
     </div>
 </section>
         <!-- VIDEO CAROUSEL SECTION -->
-        <section class="py-40 bg-[#F5F5F5] text-[#0A0A0A] relative min-h-screen">
+        <section class="py-40 bg-[#F5F5F5] text-[#2D2D2D] relative min-h-screen">
             <div class="container mx-auto px-6 mb-20 text-center">
-                <h2 class="font-display italic text-5xl md:text-8xl mb-6">Visual <br/><span class="italic text-[#6E3B49]">Storytelling</span></h2>
+                <h2 class="playfair italic text-5xl md:text-8xl mb-6">Visual <br/><span class="italic text-[#6E3B49]">Storytelling</span></h2>
                 <p class="font-mono text-xs uppercase tracking-[0.4em] text-[#56686A]">Video Production // Social Media // 1080x1920</p>
             </div>
 

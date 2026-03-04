@@ -1,107 +1,61 @@
 'use strict';
 
-// ScrollTrigger einmalig registrieren
-gsap.registerPlugin(ScrollTrigger);
-
 // =========================================
-// HERO PARALLAX
+// HELPER FUNCTIONS
 // =========================================
-const initHeroParallax = () => {
+function initHeroParallax() {
   const hero = document.querySelector('.hero-section');
   if (!hero) return;
-
-  gsap.fromTo('.hero-bg-image',
-    { scale: 1.08 },
-    { scale: 1, duration: 2.2, ease: 'power2.out' }
-  );
-
+  gsap.fromTo('.hero-bg-image', { scale: 1.08 }, { scale: 1, duration: 2.2, ease: 'power2.out' });
   gsap.to('.hero-bg-image', {
-    yPercent: -20,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.hero-section',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 1.5
-    }
+    yPercent: -20, ease: 'none',
+    scrollTrigger: { trigger: '.hero-section', start: 'top top', end: 'bottom top', scrub: 1.5 }
   });
-};
+}
 
-// =========================================
-// PROJECT FILTER
-// =========================================
-const initProjectFilter = () => {
+function initProjectFilter() {
   const projectCards = [...document.querySelectorAll('.project-card')];
   if (!projectCards.length) return;
-
   document.querySelectorAll('.section-projects .filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.section-projects .filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
       const filter = btn.dataset.filter;
-
       projectCards.forEach(card => {
         gsap.to(card, { opacity: 0, y: 20, duration: 0.3, ease: 'power2.in' });
       });
-
       setTimeout(() => {
         projectCards.forEach((card, index) => {
           const show = filter === 'all' || card.dataset.category === filter;
           card.style.display = show ? 'block' : 'none';
           if (show) {
-            gsap.fromTo(card,
-              { opacity: 0, y: 30 },
-              { opacity: 1, y: 0, duration: 0.5, delay: index * 0.05, ease: 'power3.out' }
-            );
+            gsap.fromTo(card, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, delay: index * 0.05, ease: 'power3.out' });
           }
         });
         ScrollTrigger.refresh();
       }, 300);
     });
   });
-};
+}
 
-// =========================================
-// PROJECT CARDS ANIMATION
-// =========================================
-const initProjectCards = () => {
+function initProjectCards() {
   const cards = document.querySelectorAll('.project-card');
   if (!cards.length) return;
-
-  gsap.fromTo(cards,
-    { opacity: 0, y: 40 },
-    {
-      opacity: 1, y: 0,
-      duration: 1.2, ease: 'expo.out',
-      stagger: 0.08, clearProps: 'all',
-      scrollTrigger: {
-        trigger: '.projects-grid',
-        start: 'top 90%',
-        once: true,
-        toggleActions: 'play none none none'
-      }
-    }
-  );
-
+  gsap.fromTo(cards, { opacity: 0, y: 40 }, {
+    opacity: 1, y: 0, duration: 1.2, ease: 'expo.out', stagger: 0.08, clearProps: 'all',
+    scrollTrigger: { trigger: '.projects-grid', start: 'top 90%', once: true, toggleActions: 'play none none none' }
+  });
   cards.forEach(card => {
     card.addEventListener('mouseenter', () => gsap.to(card, { y: -8, duration: 0.5, ease: 'power1.out' }));
     card.addEventListener('mouseleave', () => gsap.to(card, { y: 0,  duration: 0.5, ease: 'power1.out' }));
   });
-};
+}
 
-// =========================================
-// PARALLAX IMAGES — intentionally empty
-// =========================================
-const initParallaxImages = () => {};
+function initParallaxImages() {}
 
-// =========================================
-// BLOG FILTER
-// =========================================
-const initBlogFilter = () => {
+function initBlogFilter() {
   const blogCards = [...document.querySelectorAll('.blog-card')];
   if (!blogCards.length) return;
-
   document.querySelectorAll('.section-blog .filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.section-blog .filter-btn').forEach(b => b.classList.remove('active'));
@@ -113,18 +67,14 @@ const initBlogFilter = () => {
       ScrollTrigger.refresh();
     });
   });
-};
+}
 
-// =========================================
-// BLOG MODALS
-// =========================================
-const initBlogModals = () => {
+function initBlogModals() {
   document.querySelectorAll('.read-more').forEach(btn => {
     btn.addEventListener('click', () => {
       document.getElementById(btn.dataset.target)?.classList.add('open');
     });
   });
-
   document.querySelectorAll('.modal').forEach(modal => {
     modal.addEventListener('click', e => {
       if (e.target.classList.contains('modal') || e.target.classList.contains('modal-close')) {
@@ -132,41 +82,30 @@ const initBlogModals = () => {
       }
     });
   });
-};
+}
 
-// =========================================
-// SKILL BARS
-// =========================================
-const initSkillBars = () => {
+function initSkillBars() {
   document.querySelectorAll('.skills-bar li').forEach(li => {
     const bar = li.querySelector('.bar');
     if (!bar) return;
     gsap.to(bar, {
-      width: `${li.dataset.percent || 0}%`,
-      duration: 1.4, ease: 'power2.out',
+      width: `${li.dataset.percent || 0}%`, duration: 1.4, ease: 'power2.out',
       scrollTrigger: { trigger: li, start: 'top 85%', once: true }
     });
   });
-};
+}
 
-// =========================================
-// CAROUSEL
-// =========================================
-const initCarousel = () => {
+function initCarousel() {
   const carousel = document.querySelector('.carousel');
   if (!carousel) return;
-
   const slides = gsap.utils.toArray('.carousel-item');
   const nextBtn = document.getElementById('moveRight');
   const prevBtn = document.getElementById('moveLeft');
   if (!slides.length) return;
-
   let current = 0, isAnimating = false;
-
   slides.forEach((slide, i) => {
     gsap.set(slide, { xPercent: i === 0 ? 0 : 100, opacity: i === 0 ? 1 : 0, zIndex: slides.length - i });
   });
-
   function goToSlide(index, direction = 1) {
     if (isAnimating || index === current) return;
     isAnimating = true;
@@ -180,21 +119,16 @@ const initCarousel = () => {
     .to(currentSlide, { xPercent: direction > 0 ? -100 : 100 }, 0)
     .to(nextSlide,    { xPercent: 0 }, 0);
   }
-
   nextBtn?.addEventListener('click', () => goToSlide((current + 1) % slides.length, 1));
   prevBtn?.addEventListener('click', () => goToSlide((current - 1 + slides.length) % slides.length, -1));
-
   let autoplay = setInterval(() => goToSlide((current + 1) % slides.length, 1), 6000);
   carousel.addEventListener('mouseenter', () => clearInterval(autoplay));
   carousel.addEventListener('mouseleave', () => {
     autoplay = setInterval(() => goToSlide((current + 1) % slides.length, 1), 6000);
   });
-};
+}
 
-// =========================================
-// ALBUM COVERS
-// =========================================
-const initAlbumCovers = () => {
+function initAlbumCovers() {
   document.querySelectorAll('.record-container').forEach(container => {
     const album  = container.querySelector('.album');
     const record = container.querySelector('.record');
@@ -205,12 +139,21 @@ const initAlbumCovers = () => {
     container.addEventListener('mouseenter', () => tl.play());
     container.addEventListener('mouseleave', () => tl.reverse());
   });
-};
+}
 
 // =========================================
 // DOM READY
 // =========================================
 document.addEventListener('DOMContentLoaded', () => {
+
+  // ── Plugins sicher registrieren ─────────────────────────────
+  if (typeof gsap === 'undefined') {
+    console.warn('GSAP nicht geladen – Animationen deaktiviert.');
+    return;
+  }
+  gsap.registerPlugin(ScrollTrigger);
+  if (typeof ScrollSmoother !== 'undefined') gsap.registerPlugin(ScrollSmoother);
+  if (typeof SplitText     !== 'undefined') gsap.registerPlugin(SplitText);
 
   // ── Standard inits (all pages) ──────────────────────────────
   setTimeout(() => {
@@ -232,13 +175,21 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', buildGrid);
   }
 
+  // ── Hero portrait parallax ───────────────────────────────────
+  if (document.querySelector('.hero-bilder')) {
+    gsap.to('.hero-bilder', {
+      yPercent: 12, ease: 'none',
+      scrollTrigger: { trigger: '.hero-section', start: 'top top', end: 'bottom top', scrub: true }
+    });
+  }
+
   // ── Photography section animations (index only) ─────────────
   const photoSection = document.querySelector('.section-photography');
   if (!photoSection) return;
 
   if (document.querySelector('.typed-text-display')) {
     new Typed('.typed-text-display', {
-      strings: ['', 'visuals.', 'campaigns.', 'motion.', 'brands.'],
+      strings: ['', 'marketing.', 'visual art.', 'motion design.', 'full-stack.'],
       typeSpeed: 100, backSpeed: 42, loop: true
     });
   }
@@ -257,11 +208,14 @@ document.addEventListener('DOMContentLoaded', () => {
     .to(cta,      { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, '-=0.35');
 
   if (weMake) {
-    const split = new SplitType(weMake, { types: 'chars' });
-    gsap.from(split.chars, {
-      y: 40, opacity: 0, stagger: 0.04, duration: 0.55, ease: 'power3.out',
-      scrollTrigger: { trigger: weMake, start: 'top 82%', once: true }
-    });
+    // SplitType (unpkg) mit Guard
+    if (typeof SplitType !== 'undefined') {
+      const split = new SplitType(weMake, { types: 'chars' });
+      gsap.from(split.chars, {
+        y: 40, opacity: 0, stagger: 0.04, duration: 0.55, ease: 'power3.out',
+        scrollTrigger: { trigger: weMake, start: 'top 82%', once: true }
+      });
+    }
   }
 
   const boxes = photoSection.querySelectorAll('.main-grid .box');
@@ -278,14 +232,6 @@ document.addEventListener('DOMContentLoaded', () => {
     rotation: 30, y: -20,
     scrollTrigger: { trigger: photoSection, start: 'top bottom', end: 'bottom top', scrub: 2 }
   });
-
-  // ── Hero portrait parallax ───────────────────────────────────
-  if (document.querySelector('.hero-bilder')) {
-    gsap.to('.hero-bilder', {
-      yPercent: 12, ease: 'none',
-      scrollTrigger: { trigger: '.hero-section', start: 'top top', end: 'bottom top', scrub: true }
-    });
-  }
 
   // ── Blog cards fade-in ───────────────────────────────────────
   gsap.utils.toArray('.blog-card').forEach((card, i) => {
@@ -404,15 +350,15 @@ function buildGrid() {
       94%,96%             { left:${S}px;   top:${S}px;   width:${WIDE}px; }
     }
     @keyframes box-6 {
-      0%,90%,100%            { left:0;        top:${S*2}px; width:${C}px; }
-      2.5%,12.5%             { left:0;        top:${S}px;   width:${C}px; }
-      15%,25%                { left:0;        top:0;        width:${C}px; }
-      27.5%,37.5%            { left:${S}px;   top:0;        width:${C}px; }
-      40%,50%                { left:${S*2}px; top:0;        width:${C}px; }
-      52.5%,54.5%,60.5%,62.5%{ left:${S*2}px; top:${S}px;  width:${C}px; }
-      56.5%,58.5%            { left:${S}px;   top:${S}px;   width:${WIDE}px; }
-      65%,75%                { left:${S*2}px; top:${S*2}px; width:${C}px; }
-      77.5%,87.5%            { left:${S}px;   top:${S*2}px; width:${C}px; }
+      0%,90%,100%             { left:0;        top:${S*2}px; width:${C}px; }
+      2.5%,12.5%              { left:0;        top:${S}px;   width:${C}px; }
+      15%,25%                 { left:0;        top:0;        width:${C}px; }
+      27.5%,37.5%             { left:${S}px;   top:0;        width:${C}px; }
+      40%,50%                 { left:${S*2}px; top:0;        width:${C}px; }
+      52.5%,54.5%,60.5%,62.5% { left:${S*2}px; top:${S}px;  width:${C}px; }
+      56.5%,58.5%             { left:${S}px;   top:${S}px;   width:${WIDE}px; }
+      65%,75%                 { left:${S*2}px; top:${S*2}px; width:${C}px; }
+      77.5%,87.5%             { left:${S}px;   top:${S*2}px; width:${C}px; }
     }
     @keyframes box-7 {
       0%,90%,100%     { left:${S}px;   top:${S*2}px; width:${C}px; }
@@ -426,15 +372,15 @@ function buildGrid() {
       77.5%,87.5%     { left:${S*2}px; top:${S*2}px; width:${C}px; }
     }
     @keyframes box-8 {
-      0%,90%,100%             { left:${S*2}px; top:${S*2}px; width:${C}px;    border-radius:9999px; }
-      2.5%,12.5%              { left:${S}px;   top:${S*2}px; width:${C}px; }
-      15%,25%                 { left:0;        top:${S*2}px; width:${C}px; }
-      27.5%,37.5%             { left:0;        top:${S}px;   width:${C}px; }
-      40%,50%                 { left:0;        top:0;        width:${C}px; }
-      52.5%,62.5%             { left:${S}px;   top:0;        width:${C}px; }
-      65%,75%                 { left:${S*2}px; top:0;        width:${C}px; }
-      77.5%,79.5%,85.5%,87.5% { left:${S*2}px; top:${S}px;  width:${C}px;    border-radius:50%; }
-      81.5%,83.5%             { left:${S}px;   top:${S}px;   width:${WIDE}px; border-radius:9999px; }
+      0%,90%,100%              { left:${S*2}px; top:${S*2}px; width:${C}px;    border-radius:9999px; }
+      2.5%,12.5%               { left:${S}px;   top:${S*2}px; width:${C}px; }
+      15%,25%                  { left:0;        top:${S*2}px; width:${C}px; }
+      27.5%,37.5%              { left:0;        top:${S}px;   width:${C}px; }
+      40%,50%                  { left:0;        top:0;        width:${C}px; }
+      52.5%,62.5%              { left:${S}px;   top:0;        width:${C}px; }
+      65%,75%                  { left:${S*2}px; top:0;        width:${C}px; }
+      77.5%,79.5%,85.5%,87.5%  { left:${S*2}px; top:${S}px;  width:${C}px;    border-radius:50%; }
+      81.5%,83.5%              { left:${S}px;   top:${S}px;   width:${WIDE}px; border-radius:9999px; }
     }
   `;
 

@@ -48,15 +48,15 @@
     /* ─── TOKENS ─── */
     :root {
       --white:   #F5F5F5;
-      --off-white:#F5F5F5;
-      --off-black:#2D2D2D;
+      --white:#F5F5F5;
+      --off-black:#525252;
       --burg:    #6E3B49;
       --mint:    #56686A;
       --teal:    #314A51;
       --mauve:   #B5A19E;
-      --cream:   var(--off-white);
-      --bone:    var(--off-white);
-      --parch:   var(--off-white);
+      --cream:   var(--white);
+      --bone:    var(--white);
+      --parch:   var(--white);
       --text:    var(--off-black);
       --text-40: rgba(45,40,37,.4);
       --text-60: rgba(45,40,37,.6);
@@ -621,122 +621,6 @@
       background: linear-gradient(to right, transparent, rgba(110,59,73,.1) 30%, rgba(110,59,73,.1) 70%, transparent);
     }
 
-    /* ─── FOOTER ─── */
-    .site-footer {
-      background: var(--teal);
-      color: var(--cream);
-      padding-block: clamp(1.2rem, 2.5vw, 2rem);
-      border-top: none;
-      position: relative;
-      z-index: 2;
-      text-align: center;
-    }
-    .footer-wave-divider {
-      position: relative;
-      background: var(--mint);
-      height: 0;
-      overflow: visible;
-      isolation: isolate;
-      margin-top: clamp(2.5rem, 6vh, 5rem);
-    }
-    .footer-wave-divider.wave-foot {
-      padding-bottom: 18vh;
-    }
-    .footer-wave-divider.wave-foot::after {
-      content: "";
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 100%;
-      height: 18vh;
-      background-color: var(--teal);
-      pointer-events: none;
-      z-index: 1;
-      mask-size: 100% 100%;
-      -webkit-mask-size: 100% 100%;
-      mask-repeat: no-repeat;
-      -webkit-mask-repeat: no-repeat;
-      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,260 C200,200 400,140 600,160 C800,180 960,280 1160,300 C1300,314 1390,280 1440,260 L1440,400 Z'/%3E%3C/svg%3E");
-      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,260 C200,200 400,140 600,160 C800,180 960,280 1160,300 C1300,314 1390,280 1440,260 L1440,400 Z'/%3E%3C/svg%3E");
-    }
-    .footer-inner {
-      max-width: 85vw;
-      margin-inline: auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(0.6rem, 1.5vw, 1rem);
-      text-align: center;
-    }
-    .footer-copy {
-      font-family: var(--tenor);
-      font-size: clamp(0.68rem, 0.9vw, 0.8rem);
-      letter-spacing: 0.04em;
-      opacity: 0.85;
-      color: var(--cream);
-    }
-    .footer-socials {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(1rem, 2.5vw, 2rem);
-      flex-wrap: wrap;
-    }
-    .social-link {
-      width: 36px;
-      height: 36px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--cream);
-      background: transparent;
-      transition: transform .2s ease, border-color .2s ease;
-      cursor: none;
-    }
-    .social-link svg { width: 16px; height: 16px; color: var(--cream); }
-    .social-link:hover { transform: translateY(-2px); }
-    .footer-links {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: clamp(0.8rem, 2vw, 1.5rem);
-    }
-    .footer-link {
-      font-family: var(--tenor);
-      font-size: clamp(0.6rem, 0.85vw, 0.72rem);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--cream);
-      text-decoration: none;
-      position: relative;
-      padding: 0.25rem 0;
-      transition: color .2s ease;
-      cursor: none;
-    }
-    .footer-link:not(.contact-btn)::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      width: 0;
-      height: 1px;
-      background: var(--burg);
-      transition: width .25s ease;
-    }
-    .footer-link:not(.contact-btn):hover::after { width: 100%; }
-    .footer-link.contact-btn {
-      padding: 0.55rem 1.8rem;
-      border-radius: 999px;
-      border: 1px solid rgba(235, 225, 209, 0.55);
-      background: rgba(235, 225, 209, 0.06);
-    }
-    .footer-link.contact-btn:hover {
-      background: rgba(235, 225, 209, 0.14);
-      transform: translateY(-1px);
-    }
 
     /* ─── SCROLL REVEAL ─── */
     .js-up { opacity: 0; transform: translateY(36px); }
