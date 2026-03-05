@@ -3,6 +3,19 @@
    High-End Editorial Design System
    ======================================== */
 
+/* ========== PLAYFAIR DISPLAY LIGATUREN ========== */
+/* Force discretionary & common ligatures for all Playfair Display text */
+.hero-title-large,
+h1, h2, h3, h4, h5, h6,
+[style*="var(--playfair)"],
+[style*="'Playfair Display'"],
+[style*="Playfair Display"] {
+  font-variant-ligatures: common-ligatures discretionary-ligatures !important;
+  -webkit-font-variant-ligatures: common-ligatures discretionary-ligatures !important;
+  font-feature-settings: "liga" 1, "dlig" 1 !important;
+  -webkit-font-feature-settings: "liga" 1, "dlig" 1 !important;
+}
+
 /* ========== 1. DESIGN SYSTEM ========== */
 @font-face {
     font-family: 'Higuen';

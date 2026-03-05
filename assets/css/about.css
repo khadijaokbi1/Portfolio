@@ -22,12 +22,12 @@ html { overflow-x: hidden; }
   font-family: var(--outfit);
   display: inline-block;
   font-size: 0.6rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.32em;
   color: var(--burgundy);
-  border: 1px solid rgba(110,59,73,0.35);
-  padding: 0.36em 1.2em;
+  border: 1.7px solid var(--burgundy);
+  padding: 0.56em 2.2em;
   border-radius: 999px;
   margin-bottom: 1rem;
 }

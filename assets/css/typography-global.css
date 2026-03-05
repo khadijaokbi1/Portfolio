@@ -139,19 +139,7 @@ h3 em, h4 em, h5 em, h6 em,
 
 /* ── 6. FLIESSTEXT — Work Sans ──────────────────────── */
 body,
-p,
-li,
-td,
-blockquote,
-.text-body,
-.text-meta,
-.lead,
-.text-lead,
-.blog-teaser,
-.work-hero-desc,
-.feat-exc,
-.fav-col-desc,
-.q-text {
+p {
   font-family: var(--work) !important;
 }
 

@@ -7,7 +7,7 @@
     <title>Lehre | SBW Neuen Medien</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -42,19 +42,78 @@ body {
 
 /* ── HERO ── */
 .sbw-hero-section {
-    height: 80vh;
+    height: 100vh;
     position: relative;
     overflow: hidden;
     background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 .video-container {
     position: absolute;
     inset: 0;
     width: 100%; height: 100%;
+    z-index: 1;
 }
 .video-container video {
     width: 100%; height: 100%;
     object-fit: cover;
+    animation: fadeInVideo 1.2s ease-out;
+}
+.video-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.5) 100%);
+    z-index: 2;
+}
+@keyframes fadeInVideo {
+    from { opacity: 0.85; filter: brightness(0.95); }
+    to { opacity: 1; filter: brightness(1); }
+}
+.work-hero-overlay {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    margin-bottom: 4rem;
+}
+.work-hero-eyebrow {
+    font-family: var(--outfit);
+    font-size: clamp(0.5rem, 1vw, 0.65rem);
+    letter-spacing: 0.6em;
+    text-transform: uppercase;
+    color: rgba(245,245,245,0.6);
+    margin-bottom: 1.5rem;
+    display: block;
+    animation: slideUpFade 1s ease-out 0.2s both;
+}
+.work-hero-title {
+    font-family: var(--playfair);
+    font-size: clamp(2.5rem, 10vw, 7rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #F5F5F5;
+    margin: 0;
+    animation: slideUpFade 1s ease-out 0.4s both;
+}
+.work-hero-title em {
+    display: block;
+    font-style: italic;
+    font-size: 0.95em;
+    color: rgba(245,245,245,0.65);
+    letter-spacing: 0.04em;
+}
+@keyframes slideUpFade {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 .sbw-hero-cta {
     position: absolute;
@@ -66,6 +125,7 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 0.9rem;
+    animation: slideUpFade 1s ease-out 0.6s both;
 }
 .sbw-scroll-btn {
     display: flex; flex-direction: column;
@@ -469,7 +529,7 @@ body {
 
 /* ── GALLERY ── */
 .section-gallery {
-    background: #314A51;
+    background: var(--darkgreen);
     padding: clamp(7rem,16vh,12rem) 0;
     position: relative;
     overflow: visible;
@@ -824,94 +884,152 @@ body {
 /* ── FILMS ── */
 .section-films {
     background: var(--mint);
-    padding: clamp(5rem,14vh,10rem) 0 clamp(6rem,16vh,11rem);
-    position: relative; overflow: visible;
+    padding: clamp(6rem,16vh,11rem) 0 clamp(7rem,18vh,12rem);
+    position: relative;
+    overflow: visible;
 }
 .section-films::before {
-    content: ''; position: absolute;
-    top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg,transparent,rgba(245,245,245,0.25),transparent);
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(245,245,245,0.3), transparent);
+}
+.section-films::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245,245,245,0.15), transparent);
 }
 .films-label {
     font-family: var(--work);
-    font-size: 0.6rem; letter-spacing: 0.5em;
+    font-size: clamp(0.5rem, 1vw, 0.65rem);
+    letter-spacing: 0.6em;
     text-transform: uppercase;
-    color: rgba(245,245,245,0.45); margin-bottom: 1.5rem;
+    color: rgba(245,245,245,0.55);
+    margin-bottom: 2rem;
+    display: block;
+    animation: slideUpFade 0.8s ease-out;
 }
 .films-title {
     font-family: var(--playfair);
-    font-size: clamp(3rem,8vw,7rem);
-    font-weight: 400; font-style: italic;
-    line-height: 0.9; letter-spacing: -0.02em;
+    font-size: clamp(2.5rem, 9vw, 7rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
     color: #F5F5F5;
-    margin-bottom: clamp(3rem,8vh,6rem);
+    margin-bottom: clamp(4rem,10vh,7rem);
+    animation: slideUpFade 0.8s ease-out 0.1s both;
 }
-.films-title em { color: rgba(245,245,245,0.35); font-style: normal; }
+.films-title em {
+    color: rgba(245,245,245,0.45);
+    font-style: normal;
+    letter-spacing: 0.03em;
+    display: inline;
+}
 
 /* Grid */
 .films-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 3px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.2rem, 2.5vw, 2.5rem);
+    animation: slideUpFade 0.8s ease-out 0.2s both;
 }
-@media (max-width:768px) { .films-grid { grid-template-columns: 1fr; } }
+@media (max-width:1024px) {
+    .films-grid { gap: clamp(1rem, 2vw, 1.8rem); }
+}
+@media (max-width:768px) {
+    .films-grid {
+        grid-template-columns: 1fr;
+        gap: clamp(1.5rem, 3vh, 2rem);
+    }
+}
 
 /* Scroll-reveal für einzelne Panels */
 .film-panel {
-    position: relative; aspect-ratio: 16/9;
-    overflow: hidden; cursor: none; background: #111;
-    opacity: 0; transform: translateY(40px);
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    cursor: none;
+    background: #111;
+    border-radius: clamp(0.8rem, 1.5vw, 1.2rem);
+    opacity: 0;
+    transform: translateY(50px);
     transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1),
-                transform 0.75s cubic-bezier(0.16,1,0.3,1);
+                transform 0.75s cubic-bezier(0.16,1,0.3,1),
+                box-shadow 0.5s ease;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
 }
-.film-panel.fp-visible { opacity: 1; transform: translateY(0); }
-.film-panel:nth-child(2) { transition-delay: 0.12s; }
+.film-panel.fp-visible {
+    opacity: 1;
+    transform: translateY(0);
+    box-shadow: 0 24px 48px rgba(0,0,0,0.35);
+}
+.film-panel:nth-child(2) { transition-delay: 0.15s; }
 
 .film-panel iframe {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    border: none; display: none; z-index: 5;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: none;
+    z-index: 5;
+    border-radius: clamp(0.8rem, 1.5vw, 1.2rem);
 }
-.film-panel.playing iframe { display: block; }
+.film-panel.playing iframe {
+    display: block;
+}
 .film-panel.playing .film-overlay {
-    opacity: 0; pointer-events: none;
-    transform: scale(1.02);
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.98);
 }
 
 /* Overlay */
 .film-overlay {
-    position: absolute; inset: 0; z-index: 10;
-    display: flex; flex-direction: column;
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    padding: clamp(1.5rem,4vw,2.5rem);
+    padding: clamp(1.8rem, 5vw, 3rem);
     background: linear-gradient(
-        160deg,
-        rgba(5,5,5,0.55) 0%,
-        rgba(5,5,5,0.15) 45%,
-        rgba(5,5,5,0.72) 100%
+        165deg,
+        rgba(5,5,5,0.6) 0%,
+        rgba(5,5,5,0.2) 40%,
+        rgba(5,5,5,0.75) 100%
     );
-    transition: background 0.55s ease, opacity 0.6s ease, transform 0.6s ease;
+    backdrop-filter: blur(2px);
+    transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
 }
 .film-panel:hover .film-overlay {
     background: linear-gradient(
-        160deg,
-        rgba(5,5,5,0.35) 0%,
-        rgba(5,5,5,0.05) 45%,
-        rgba(5,5,5,0.55) 100%
+        165deg,
+        rgba(5,5,5,0.45) 0%,
+        rgba(5,5,5,0.1) 40%,
+        rgba(5,5,5,0.65) 100%
     );
 }
 
 /* Thumbnail */
 .film-overlay-thumb {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%; object-fit: cover;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     z-index: 1;
-    filter: grayscale(55%) brightness(0.62);
-    transition: filter 0.75s ease,
-                transform 1s cubic-bezier(0.25,0.46,0.45,0.94);
+    filter: grayscale(60%) brightness(0.65) saturate(0.3);
+    transition: filter 0.8s cubic-bezier(0.34,1.56,0.64,1),
+                transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .film-panel:hover .film-overlay-thumb {
-    filter: grayscale(15%) brightness(0.78);
-    transform: scale(1.05);
+    filter: grayscale(20%) brightness(0.85) saturate(1);
+    transform: scale(1.08);
 }
 
 /* Big ghost number */
@@ -934,39 +1052,62 @@ body {
 .film-panel:hover .film-meta { transform: translateY(0); }
 
 .film-meta-tag {
-    font-family: var(--work); font-size: 0.55rem;
-    letter-spacing: 0.4em; text-transform: uppercase;
-    color: rgba(245,245,245,0.4); margin-bottom: 0.5rem; display: block;
+    font-family: var(--work);
+    font-size: clamp(0.45rem, 0.8vw, 0.58rem);
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: rgba(245,245,245,0.45);
+    margin-bottom: 0.7rem;
+    display: block;
     transition: color 0.35s;
 }
-.film-panel:hover .film-meta-tag { color: rgba(245,245,245,0.65); }
+.film-panel:hover .film-meta-tag {
+    color: rgba(245,245,245,0.75);
+}
 
 .film-meta-title {
     font-family: var(--playfair);
-    font-size: clamp(1.1rem,2.5vw,1.7rem); font-style: italic;
-    color: #F5F5F5; line-height: 1.2; display: block;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-style: italic;
+    font-weight: 400;
+    color: #F5F5F5;
+    line-height: 1.25;
+    display: block;
+    letter-spacing: -0.015em;
 }
 
 /* Duration badge — neu */
 .film-duration {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    margin-top: 0.7rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
     font-family: var(--outfit);
-    font-size: 0.48rem; letter-spacing: 0.3em; text-transform: uppercase;
-    color: rgba(245,245,245,0.35);
-    border: 1px solid rgba(245,245,245,0.12);
-    padding: 0.3rem 0.7rem;
+    font-size: clamp(0.42rem, 0.7vw, 0.52rem);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(245,245,245,0.45);
+    border: 1px solid rgba(245,245,245,0.18);
+    padding: 0.45rem 1rem;
     border-radius: 100px;
-    opacity: 0; transform: translateY(8px);
-    transition: opacity 0.4s ease 0.05s, transform 0.4s ease 0.05s;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s cubic-bezier(0.34,1.56,0.64,1) 0.08s,
+                transform 0.4s cubic-bezier(0.34,1.56,0.64,1) 0.08s;
+    background: rgba(255,255,255,0.04);
 }
 .film-duration::before {
     content: '';
-    width: 5px; height: 5px; border-radius: 50%;
-    background: rgba(245,245,245,0.5);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(245,245,245,0.6);
     flex-shrink: 0;
 }
-.film-panel:hover .film-duration { opacity: 1; transform: translateY(0); }
+.film-panel:hover .film-duration {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 /* Play area */
 .film-play-area {
@@ -977,15 +1118,20 @@ body {
 
 /* Play Button mit Ripple */
 .film-play-btn {
-    width: clamp(52px,8vw,68px); height: clamp(52px,8vw,68px);
+    width: clamp(56px, 9vw, 72px);
+    height: clamp(56px, 9vw, 72px);
     border-radius: 50%;
-    border: 1px solid rgba(245,245,245,0.3);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
-    transition: border-color 0.35s,
-                background 0.35s,
-                transform 0.45s cubic-bezier(0.34,1.56,0.64,1);
+    border: 1.5px solid rgba(245,245,245,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
     flex-shrink: 0;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 .film-play-btn::after {
     content: '';
@@ -1006,18 +1152,26 @@ body {
     position: relative; z-index: 1;
 }
 .film-panel:hover .film-play-btn {
-    border-color: rgba(245,245,245,0.8);
-    background: rgba(255,255,255,0.1);
-    transform: scale(1.14);
+    border-color: rgba(245,245,245,0.9);
+    background: rgba(255,255,255,0.15);
+    transform: scale(1.18);
+    box-shadow: 0 0 24px rgba(245,245,245,0.2);
 }
 
 .film-bottom-label {
-    font-family: var(--work); font-size: 0.5rem;
-    letter-spacing: 0.35em; text-transform: uppercase;
-    color: rgba(245,245,245,0.25); text-align: right; line-height: 1.6;
+    font-family: var(--work);
+    font-size: clamp(0.42rem, 0.7vw, 0.55rem);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(245,245,245,0.35);
+    text-align: right;
+    line-height: 1.6;
     transition: color 0.35s;
+    font-weight: 300;
 }
-.film-panel:hover .film-bottom-label { color: rgba(245,245,245,0.5); }
+.film-panel:hover .film-bottom-label {
+    color: rgba(245,245,245,0.65);
+}
 
 /* Custom Cursor */
 .film-cursor {
@@ -1041,14 +1195,94 @@ body {
 
 /* Divider */
 .film-divider {
-    margin-top: clamp(2.5rem,6vh,4rem);
-    display: flex; align-items: center; gap: 2rem;
+    margin-top: clamp(4rem, 12vh, 8rem);
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    animation: slideUpFade 0.8s ease-out 0.3s both;
 }
-.film-divider-line { flex: 1; height: 1px; background: rgba(245,245,245,0.12); }
+.film-divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245,245,245,0.15), transparent);
+}
 .film-divider-text {
-    font-family: var(--work); font-size: 0.52rem;
-    letter-spacing: 0.45em; text-transform: uppercase;
-    color: rgba(245,245,245,0.28); white-space: nowrap;
+    font-family: var(--work);
+    font-size: clamp(0.5rem, 0.85vw, 0.58rem);
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: rgba(245,245,245,0.35);
+    white-space: nowrap;
+    font-weight: 300;
+}
+
+/* ─── RESPONSIVE MOBILE ─── */
+@media (max-width: 768px) {
+    /* Hero Mobile */
+    .sbw-hero-section {
+        height: 100vh;
+        padding: 2rem;
+    }
+    .work-hero-overlay {
+        padding: 0 1rem;
+        margin-bottom: 3.5rem;
+    }
+    .work-hero-title {
+        letter-spacing: -0.02em;
+    }
+    .sbw-scroll-arrow {
+        width: 44px;
+        height: 44px;
+    }
+
+    /* Films Mobile */
+    .film-divider {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    .film-divider-line {
+        width: 60px;
+        margin-inline: auto;
+    }
+    .film-divider-text {
+        white-space: normal;
+    }
+    
+    .film-panel {
+        aspect-ratio: auto;
+        min-height: 320px;
+    }
+    .film-overlay {
+        padding: clamp(1.5rem, 4vw, 2rem);
+    }
+}
+
+@media (max-width: 480px) {
+    /* Hero Extra Small */
+    .sbw-hero-section {
+        justify-content: flex-end;
+        padding-bottom: 6rem;
+    }
+    .work-hero-eyebrow {
+        font-size: 0.48rem;
+        letter-spacing: 0.5em;
+        margin-bottom: 1rem;
+    }
+    .sbw-hero-cta {
+        bottom: 2rem;
+    }
+    
+    /* Films Extra Small */
+    .film-overlay {
+        padding: clamp(1.2rem, 3vw, 1.5rem);
+    }
+    .film-meta {
+        gap: 0.3rem;
+    }
+    .film-meta-tag {
+        margin-bottom: 0.4rem;
+    }
 }
 </style>
 </head>
@@ -1079,16 +1313,13 @@ body {
         </nav>
     </div>
 </header>
-
 <main>
-
 <!-- ═══ HERO ═══ -->
-<section class="sbw-hero-section wave-cream">
-    <div class="video-container opacity-50"></div>
+<section class="sbw-hero-section wave-mint">
+    <div class="video-container">
         <video autoplay muted loop playsinline>
             <source src="../video/petrichor_hero.mp4" type="video/mp4">
         </video>
-        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70"></div>
     </div>
     <div class="work-hero-overlay">
         <span class="work-hero-eyebrow">4 Jahre Lehre // 2020 – 2024</span>
@@ -1103,39 +1334,13 @@ body {
                 </svg>
             </div>
         </a>
-    </div>
+    </div>   
 </section>
 
-<!-- ═══ INTRO ═══ -->
-<section class="sbw-intro wave-mint" id="sbw-intro">
-    <div class="container" style="text-align:center;display:flex;flex-direction:column;align-items:center;">
-        <span class="ds-badge" style="--cbg:#6E3B49">4 Jahre Lehre // 2020 – 2024</span>
-        <h1 class="sbw-intro-title" style="text-align:center;">SBW<br><em>Neue Medien.</em></h1>
-        <p class="sbw-intro-text" style="text-align:center;">Die Grundsteine meiner kreativen Reise. Von Modulen bis hin zu echten Kundenprojekten — vier Jahre, in denen Design, Code und Strategie zur zweiten Sprache wurden.</p>
-        <div class="work-meta-row" style="justify-content:center;border-top:1px solid rgba(110,59,73,0.15);padding-top:2rem;margin-bottom:3rem">
-          <div class="work-meta-item">
-            <span class="work-meta-label" style="color:#6E3B49">Abschluss</span>
-            <span class="work-meta-value" style="color:#314A51">Mediamatikerin EFZ</span>
-          </div>
-          <div class="work-meta-item">
-            <span class="work-meta-label" style="color:#6E3B49">Dauer</span>
-            <span class="work-meta-value" style="color:#314A51">2020 – 2024</span>
-          </div>
-          <div class="work-meta-item"></div>
-            <span class="work-meta-label" style="color:#6E3B49">Ort</span>
-            <span class="work-meta-value" style="color:#314A51">Zürich</span>
-          </div>
-        </div>
-        <nav class="sbw-section-nav" style="justify-content:center;" aria-label="Sektionen">
-            <a href="#showcase"        class="sbw-nav-anchor"><span class="sbw-nav-num">01</span><span class="sbw-nav-label">Projekte</span></a>
-            <a href="#tiktok-strategy" class="sbw-nav-anchor"><span class="sbw-nav-num">02</span><span class="sbw-nav-label">TikTok Strategie</span></a>
-            <a href="#films"           class="sbw-nav-anchor"><span class="sbw-nav-num">03</span><span class="sbw-nav-label">Film &amp; Video</span></a>
-        </nav>
-    </div>
-</section>
+
 
 <!-- ═══ SHOWCASE — iPhone Video Slider ═══ -->
-<section class="section-showcase wave-dark" id="showcase"></section>
+<section class="section-showcase wave-dark" id="showcase">
     <div class="sc-bg-num" aria-hidden="true">01</div>
 
     <div class="container" style="position:relative;z-index:2;width:100%;">
@@ -1253,7 +1458,55 @@ body {
             <div class="sc-dot"    data-idx="2"></div>
         </div>
 
-    </div><!-- /container -->
+    </div>
+    <div class="section-films" id="films">
+    <!-- Custom Cursor -->
+    <div class="film-cursor" id="filmCursor">Play</div>
+
+    <div class="container">
+        <p class="films-label">Film &amp; Produktion</p>
+        <h2 class="films-title">Animationen <em><br>&amp; Filme</em></h2>
+        <div class="films-grid">
+            <div class="film-panel" data-vid="WT0xxpXWebc">
+                <img class="film-overlay-thumb" src="../assets/images/sbw/showcase_sbw_thumb_2.png" alt="Film 01" onerror="this.src='https://i.ytimg.com/vi/WT0xxpXWebc/hqdefault.jpg'">
+                <span class="film-index">01</span>
+                <div class="film-overlay">
+                    <div class="film-meta">
+                        <span class="film-meta-tag">Film · 01</span>
+                        <span class="film-meta-title">Berufsbild<br>Mediamatiker</span>
+                        <span class="film-duration">3:45</span>
+                    </div>
+                    <div class="film-play-area">
+                        <button class="film-play-btn" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+                        <span class="film-bottom-label">Klicken zum<br>Ansehen</span>
+                    </div>
+                </div>
+                <iframe data-src="https://www.youtube-nocookie.com/embed/WT0xxpXWebc?autoplay=1&rel=0&modestbranding=1" frameborder="0" allow="autoplay;encrypted-media;picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="film-panel" data-vid="byE_WHPkp-Y">
+                <img class="film-overlay-thumb" src="../assets/images/sbw/showcase_sbw_thumb_1.png" alt="Film 02" onerror="this.src='https://i.ytimg.com/vi/byE_WHPkp-Y/hqdefault.jpg'">
+                <span class="film-index">02</span>
+                <div class="film-overlay">
+                    <div class="film-meta">
+                        <span class="film-meta-tag">Film · 02</span>
+                        <span class="film-meta-title">Animation<br>Urbangardening</span>
+                        <span class="film-duration">2:30</span>
+                    </div>
+                    <div class="film-play-area">
+                        <button class="film-play-btn" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+                        <span class="film-bottom-label">Klicken zum<br>Ansehen</span>
+                    </div>
+                </div>
+                <iframe data-src="https://www.youtube-nocookie.com/embed/byE_WHPkp-Y?autoplay=1&rel=0&modestbranding=1" frameborder="0" allow="autoplay;encrypted-media;picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="film-divider">
+            <div class="film-divider-line"></div>
+            <span class="film-divider-text">SBW Neuen Medien — 2020 – 2024</span>
+            <div class="film-divider-line"></div>
+        </div>
+    </div>
+</div>
 </section>
 
 <!-- ═══ GALLERY ═══ -->
@@ -1335,7 +1588,7 @@ body {
 </section>
 
 <!-- ═══ STRATEGY ═══ -->
-<section class="section-strategy wave-mint" id="tiktok-strategy">
+<section class="section-strategy wave-foot" id="tiktok-strategy">
     <div class="container">
         <div class="strategy-header">
             <span class="strategy-eyebrow">Social Media Management</span>
@@ -1363,55 +1616,7 @@ body {
     </div>
 </section>
 
-<!-- ═══ FILMS ═══ -->
-<section class="section-films wave-foot" id="films">
-    <!-- Custom Cursor -->
-    <div class="film-cursor" id="filmCursor">Play</div>
 
-    <div class="container">
-        <p class="films-label">Film &amp; Produktion</p>
-        <h2 class="films-title">Animationen <em><br>&amp; Filme</em></h2>
-        <div class="films-grid">
-            <div class="film-panel" data-vid="WT0xxpXWebc">
-                <img class="film-overlay-thumb" src="../assets/images/sbw/showcase_sbw_thumb_2.png" alt="Film 01" onerror="this.src='https://i.ytimg.com/vi/WT0xxpXWebc/hqdefault.jpg'">
-                <span class="film-index">01</span>
-                <div class="film-overlay">
-                    <div class="film-meta">
-                        <span class="film-meta-tag">Film · 01</span>
-                        <span class="film-meta-title">Berufsbild<br>Mediamatiker</span>
-                        <span class="film-duration">3:45</span>
-                    </div>
-                    <div class="film-play-area">
-                        <button class="film-play-btn" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-                        <span class="film-bottom-label">Klicken zum<br>Ansehen</span>
-                    </div>
-                </div>
-                <iframe data-src="https://www.youtube-nocookie.com/embed/WT0xxpXWebc?autoplay=1&rel=0&modestbranding=1" frameborder="0" allow="autoplay;encrypted-media;picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="film-panel" data-vid="byE_WHPkp-Y">
-                <img class="film-overlay-thumb" src="../assets/images/sbw/showcase_sbw_thumb_1.png" alt="Film 02" onerror="this.src='https://i.ytimg.com/vi/byE_WHPkp-Y/hqdefault.jpg'">
-                <span class="film-index">02</span>
-                <div class="film-overlay">
-                    <div class="film-meta">
-                        <span class="film-meta-tag">Film · 02</span>
-                        <span class="film-meta-title">Animation<br>Urbangardening</span>
-                        <span class="film-duration">2:30</span>
-                    </div>
-                    <div class="film-play-area">
-                        <button class="film-play-btn" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-                        <span class="film-bottom-label">Klicken zum<br>Ansehen</span>
-                    </div>
-                </div>
-                <iframe data-src="https://www.youtube-nocookie.com/embed/byE_WHPkp-Y?autoplay=1&rel=0&modestbranding=1" frameborder="0" allow="autoplay;encrypted-media;picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="film-divider">
-            <div class="film-divider-line"></div>
-            <span class="film-divider-text">SBW Neuen Medien — 2020 – 2024</span>
-            <div class="film-divider-line"></div>
-        </div>
-    </div>
-</section>
 
 <!-- Footer -->
 <footer class="site-footer" aria-label="Seitenende">
@@ -1443,6 +1648,30 @@ body {
 
 <script src="work-header.js"></script>
 <script>
+// ════════════════════════════════════════
+//  HERO VIDEO — Smooth Loop Transition
+// ════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+    const heroVideo = document.querySelector('.sbw-hero-section .video-container video');
+    if (heroVideo) {
+        // Sanfte Loop-Transition mit Fade
+        heroVideo.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        }, false);
+        
+        // Sichere Autoplay
+        heroVideo.playbackRate = 1;
+        const playPromise = heroVideo.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                heroVideo.muted = true;
+                heroVideo.play();
+            });
+        }
+    }
+});
+
 gsap.registerPlugin(ScrollTrigger);
 
 // ── Header scroll ──

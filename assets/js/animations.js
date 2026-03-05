@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (document.querySelector('.typed-text-display')) {
     new Typed('.typed-text-display', {
-      strings: ['', 'marketing.', 'visual art.', 'motion design.', 'full-stack.'],
+      strings: ['', 'marketing.', 'design.', 'animation.', 'web dev.'],
       typeSpeed: 100, backSpeed: 42, loop: true
     });
   }

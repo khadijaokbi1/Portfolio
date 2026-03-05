@@ -11,6 +11,20 @@
 */
 
 /* =========================================
+   PLAYFAIR DISPLAY LIGATUREN
+   ========================================= */
+/* Force discretionary & common ligatures globally */
+h1, h2, h3, h4, h5, h6,
+[style*="var(--playfair)"],
+[style*="'Playfair Display'"],
+[style*="Playfair Display"] {
+  font-variant-ligatures: common-ligatures discretionary-ligatures !important;
+  -webkit-font-variant-ligatures: common-ligatures discretionary-ligatures !important;
+  font-feature-settings: "liga" 1, "dlig" 1 !important;
+  -webkit-font-feature-settings: "liga" 1, "dlig" 1 !important;
+}
+
+/* =========================================
    1. SMOOTH / PARALLAX FIXES
    ========================================= */
 
@@ -239,10 +253,8 @@
   align-items: center;
   overflow: visible;
   background-color: var(--mint);
-  padding-bottom: 200px;
+  padding-bottom: 20px;
 }
-
-
 
 /* Inner layout */
 .photo-inner {
@@ -393,13 +405,13 @@
 /* Orbit labels — Tenor Sans, caps */
 .box > span {
   position: absolute; display: block; z-index: 5;
-  font-family: var(--playfair);    /* Tenor Sans */
+  font-family: var(--outfit);    /* Tenor Sans */
   text-transform: uppercase;
   letter-spacing: 0.15em;
   color: var(--mauve); opacity: 0.9;
   white-space: nowrap;
   font-size: clamp(8px, 0.65vw, 11px);
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .box .bg-img { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; }
@@ -476,9 +488,10 @@
    ========================================= */
 
 .section-projects {
-  padding: 6rem 0;
+  padding: 8rem 0;
   position: relative;
   overflow: visible;
+  background: var(--white);
 }
 
 /* Filter bar — Outfit buttons */
@@ -490,9 +503,9 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  border: 2px solid var(--mint);
+  border: 1.5px solid var(--burgundy);
   background: transparent;
-  color: var(--mint);
+  color: var(--burgundy);
   cursor: pointer;
   padding: 0.6rem 1rem;
   transition: all var(--speed-base) var(--easing-decelerate);
@@ -501,7 +514,7 @@
   background: var(--burgundy); color: var(--white);
   transform: translateY(-2px);
 }
-.filter-btn.active { background: var(--mint); color: var(--white); }
+.filter-btn.active { background: var(--burgundy); color: var(--white); }
 
 .projects-grid {
   display: grid;
@@ -532,7 +545,7 @@
   aspect-ratio: 1;
   background: var(--white);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  box-shadow:  0 10px 10px rgba(0,0,0,0.2);
   cursor: pointer;
   transition: box-shadow 0.3s ease;
 }
@@ -564,25 +577,30 @@
 
 /* Project button — Tenor Sans, caps */
 .project-btn {
-  font-family: var(--playfair);
+  font-family: var(--outfit);
   font-size: var(--text-xs);
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   padding: 0.7rem 1.6rem;
-  border: 1.5px solid var(--white);
-  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: var(--white);
   cursor: pointer;
-  transition: background-color var(--speed-base), color var (--speed-base), border-color var(--speed-base);
+  font-weight: 600;
+  transition: background-color var(--speed-base), color var(--speed-base), border-color var(--speed-base), backdrop-filter var(--speed-base);
 }
-.project-btn:hover { background: var(--white); color: var(--mint); border-color: var(--white); }
+.project-btn:hover { background: var(--white); color: var(--burgundy); border-color: rgba(255, 255, 255, 0.5); backdrop-filter: blur(0px); }
 
 @media (max-width: 480px) {
   .project-btn {
-    padding: 0.45rem 1.1rem;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
+    padding: 0.3rem 0.3rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    white-space: nowrap;
   }
 }
 

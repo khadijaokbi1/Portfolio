@@ -37,8 +37,7 @@
 }
 
 .site-header.is-solid {
-  background: rgba(49, 74, 81, 0.96);
-  border-bottom: 1px solid rgba(235, 225, 209, 0.35);
+  background: var(--mint);
   backdrop-filter: blur(14px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
@@ -89,16 +88,16 @@
 .nav-link {
   font-family: var(--outfit);
   font-size: clamp(0.6rem, 0.95vw, 0.7rem);
-  font-weight: 400;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: #F5F5F5 !important;
+  color: var(--white) !important;
   position: relative;
   padding-block: 0.2rem;
   padding-inline: 0.1rem;
   line-height: 1;
   transition: opacity 200ms ease;
-  opacity: 0.85;
+  opacity: 1;
 }
 
 .nav-link::after {
@@ -138,13 +137,14 @@
   }
   .logo { width: 30px; height: 30px; }
   .nav { gap: clamp(0.6rem, 2vw, 1rem); }
-  .nav-link { font-size: 0.58rem; letter-spacing: 0.16em; }
+  .nav-link { font-size: 0.7rem; letter-spacing: 0.16em; }
 }
 
 @media (max-width: 480px) {
   .nav-bar { height: 50px; }
   .nav { gap: 0.5rem; }
-  .nav-link { font-size: 0.53rem; letter-spacing: 0.13em; }
+  .nav-link { font-size: 0.62rem; letter-spacing: 0.13em; }
+   .logo { width: 25px; height: 25px; }
 }
 
 /* =========================================
