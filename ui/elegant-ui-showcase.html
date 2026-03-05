@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elegant UI Showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #f7f4ef;
+    --blush: #e8d5c4;
+    --rose: #c9a99a;
+    --dusty: #b08a80;
+    --dark: #2a1f1a;
+    --gold: #c9a96e;
+    --smoke: #9a9090;
+  }
+
+  html, body { width: 100%; min-height: 100vh; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    color: var(--dark);
+    cursor: none;
+    overflow-x: hidden;
+  }
+
+  /* ── CUSTOM CURSOR ── */
+  #cursor-dot {
+    width: 6px; height: 6px;
+    background: var(--dark);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.08s ease, background 0.3s;
+  }
+  #cursor-ring {
+    width: 32px; height: 32px;
+    border: 1px solid var(--dark);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s cubic-bezier(.23,1,.32,1),
+                height 0.4s cubic-bezier(.23,1,.32,1),
+                border-color 0.3s,
+                background 0.3s;
+  }
+  body.cursor-hover #cursor-ring {
+    width: 56px; height: 56px;
+    border-color: var(--gold);
+    background: rgba(201,169,110,0.08);
+  }
+  body.cursor-hover #cursor-dot { background: var(--gold); }
+
+  body.cursor-text #cursor-ring {
+    width: 80px; height: 80px;
+    background: var(--dark);
+    border-color: var(--dark);
+  }
+  body.cursor-text #cursor-dot { background: var(--cream); }
+
+  /* ── NAV TABS ── */
+  #nav-tabs {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 200;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+    gap: 2px;
+    background: rgba(247,244,239,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,169,110,0.2);
+  }
+  .tab-btn {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--smoke);
+    background: none; border: none;
+    padding: 8px 16px;
+    cursor: none;
+    position: relative;
+    transition: color 0.3s;
+  }
+  .tab-btn::after {
+    content: '';
+    position: absolute; bottom: 4px; left: 16px; right: 16px;
+    height: 1px; background: var(--gold);
+    transform: scaleX(0); transition: transform 0.4s cubic-bezier(.23,1,.32,1);
+  }
+  .tab-btn:hover, .tab-btn.active { color: var(--dark); }
+  .tab-btn.active::after { transform: scaleX(1); }
+
+  /* ── SECTIONS ── */
+  .section {
+    display: none; min-height: 100vh;
+    padding: 100px 40px 60px;
+  }
+  .section.active { display: flex; flex-direction: column; align-items: center; }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(28px, 4vw, 42px);
+    letter-spacing: 0.06em;
+    color: var(--dark);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .section-sub {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--smoke);
+    margin-bottom: 60px;
+    text-align: center;
+  }
+
+  /* ════════════════════════════════
+     SECTION 1 — BURGER MENUS
+  ════════════════════════════════ */
+  .burger-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 40px;
+    width: 100%; max-width: 900px;
+  }
+  .burger-card {
+    background: white;
+    border: 1px solid rgba(201,169,110,0.15);
+    padding: 40px 32px;
+    display: flex; flex-direction: column; align-items: center; gap: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .burger-card::before {
+    content: attr(data-label);
+    position: absolute; top: 16px; right: 16px;
+    font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--smoke);
+  }
+  .burger-label {
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--smoke);
+  }
+
+  /* Burger 1 — Classic Lines */
+  .burger-1 { width: 36px; height: 24px; display: flex; flex-direction: column; justify-content: space-between; cursor: none; }
+  .burger-1 span {
+    display: block; height: 1px; background: var(--dark);
+    transition: all 0.5s cubic-bezier(.23,1,.32,1);
+    transform-origin: center;
+  }
+  .burger-1.open span:nth-child(1) { transform: translateY(11.5px) rotate(45deg); }
+  .burger-1.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .burger-1.open span:nth-child(3) { transform: translateY(-11.5px) rotate(-45deg); }
+
+  /* Burger 2 — Stagger Slide */
+  .burger-2 { width: 36px; height: 22px; display: flex; flex-direction: column; justify-content: space-between; cursor: none; }
+  .burger-2 span {
+    display: block; height: 1px; background: var(--dark);
+    transition: all 0.4s cubic-bezier(.23,1,.32,1);
+  }
+  .burger-2 span:nth-child(1) { width: 100%; }
+  .burger-2 span:nth-child(2) { width: 70%; margin-left: auto; }
+  .burger-2 span:nth-child(3) { width: 40%; margin-left: auto; }
+  .burger-2.open span:nth-child(1) { transform: translateY(10px) rotate(45deg); width: 100%; }
+  .burger-2.open span:nth-child(2) { opacity: 0; width: 0; }
+  .burger-2.open span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); width: 100%; }
+
+  /* Burger 3 — Dot Matrix */
+  .burger-3 {
+    width: 30px; height: 30px;
+    display: grid; grid-template-columns: repeat(3,8px);
+    grid-template-rows: repeat(3,8px);
+    gap: 3px; cursor: none;
+  }
+  .burger-3 span {
+    display: block; border-radius: 50%;
+    background: var(--dark);
+    transition: all 0.5s cubic-bezier(.23,1,.32,1);
+  }
+  .burger-3.open span { background: var(--gold); }
+  .burger-3.open span:nth-child(1) { transform: translate(19px,19px); }
+  .burger-3.open span:nth-child(3) { transform: translate(-19px,19px); }
+  .burger-3.open span:nth-child(7) { transform: translate(19px,-19px); }
+  .burger-3.open span:nth-child(9) { transform: translate(-19px,-19px); }
+  .burger-3.open span:nth-child(5) { transform: scale(1.5); }
+
+  /* Burger 4 — Morph Circle */
+  .burger-4 {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--dark);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 5px;
+    cursor: none;
+    transition: all 0.5s cubic-bezier(.23,1,.32,1);
+  }
+  .burger-4 span { display: block; width: 16px; height: 1px; background: var(--dark); transition: all 0.5s cubic-bezier(.23,1,.32,1); }
+  .burger-4.open { background: var(--dark); }
+  .burger-4.open span { background: var(--cream); }
+  .burger-4.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .burger-4.open span:nth-child(2) { opacity: 0; }
+  .burger-4.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  /* ── DROPDOWN OVERLAY ── */
+  #menu-overlay {
+    position: fixed; inset: 0; z-index: 500;
+    background: var(--dark);
+    clip-path: circle(0% at calc(100% - 60px) 60px);
+    transition: clip-path 0.8s cubic-bezier(.23,1,.32,1);
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+  }
+  #menu-overlay.open {
+    clip-path: circle(150% at calc(100% - 60px) 60px);
+    pointer-events: all;
+  }
+  .overlay-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; max-width: 800px; width: 100%;
+    padding: 60px;
+    opacity: 0; transform: translateY(30px);
+    transition: all 0.5s 0.3s cubic-bezier(.23,1,.32,1);
+  }
+  #menu-overlay.open .overlay-inner { opacity: 1; transform: none; }
+
+  .menu-category {
+    padding: 30px;
+    border-left: 1px solid rgba(247,244,239,0.1);
+  }
+  .menu-category:nth-child(1), .menu-category:nth-child(2) {
+    border-top: none;
+  }
+  .cat-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .cat-title::before { content: ''; display: block; width: 20px; height: 1px; background: var(--gold); }
+  .menu-link {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 300;
+    color: rgba(247,244,239,0.6);
+    text-decoration: none;
+    padding: 6px 0;
+    cursor: none;
+    transition: all 0.3s;
+    position: relative;
+    letter-spacing: 0.02em;
+  }
+  .menu-link::after {
+    content: '→';
+    position: absolute; right: 0;
+    opacity: 0; transform: translateX(-8px);
+    transition: all 0.3s;
+    font-size: 14px;
+    color: var(--gold);
+  }
+  .menu-link:hover { color: var(--cream); padding-left: 8px; }
+  .menu-link:hover::after { opacity: 1; transform: none; }
+
+  .overlay-close {
+    position: absolute; top: 30px; right: 30px;
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: none;
+    color: var(--cream);
+    font-size: 20px;
+    border: 1px solid rgba(247,244,239,0.2);
+    border-radius: 50%;
+    transition: all 0.3s;
+    background: none; outline: none;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .overlay-close:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* Floating burger trigger */
+  #nav-burger {
+    position: fixed; top: 24px; right: 30px;
+    z-index: 600;
+    background: none; border: none; cursor: none;
+    display: none;
+  }
+  #nav-burger.show { display: block; }
+
+  /* ════════════════════════════════
+     SECTION 2 — CTAs
+  ════════════════════════════════ */
+  .cta-grid {
+    display: flex; flex-wrap: wrap; gap: 30px;
+    justify-content: center; max-width: 900px;
+  }
+
+  /* CTA 1 — Underline Reveal */
+  .cta-1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: none; border: none; cursor: none;
+    padding: 12px 0;
+    position: relative;
+  }
+  .cta-1::before, .cta-1::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0;
+    height: 1px; width: 100%;
+  }
+  .cta-1::before { background: rgba(42,31,26,0.15); }
+  .cta-1::after {
+    background: var(--gold);
+    transform: scaleX(0); transform-origin: right;
+    transition: transform 0.5s cubic-bezier(.23,1,.32,1);
+  }
+  .cta-1:hover::after { transform: scaleX(1); transform-origin: left; }
+
+  /* CTA 2 — Border Fill */
+  .cta-2 {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: none;
+    border: 1px solid var(--dark);
+    padding: 14px 36px;
+    cursor: none;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.5s;
+  }
+  .cta-2::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--dark);
+    transform: translateX(-101%);
+    transition: transform 0.5s cubic-bezier(.23,1,.32,1);
+  }
+  .cta-2 span { position: relative; z-index: 1; }
+  .cta-2:hover { color: var(--cream); }
+  .cta-2:hover::before { transform: none; }
+
+  /* CTA 3 — Gold Glow Pill */
+  .cta-3 {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: var(--dark);
+    border: none;
+    border-radius: 40px;
+    padding: 14px 36px;
+    cursor: none;
+    position: relative;
+    transition: all 0.4s cubic-bezier(.23,1,.32,1);
+  }
+  .cta-3::after {
+    content: '';
+    position: absolute; inset: -1px;
+    border-radius: 40px;
+    background: linear-gradient(135deg, var(--gold), transparent, var(--rose));
+    opacity: 0;
+    transition: opacity 0.4s;
+    z-index: -1;
+  }
+  .cta-3:hover { transform: translateY(-2px); box-shadow: 0 20px 40px rgba(42,31,26,0.15); }
+  .cta-3:hover::after { opacity: 1; }
+
+  /* CTA 4 — Scroll Arrow */
+  .cta-scroll {
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    cursor: none; background: none; border: none; color: var(--dark);
+  }
+  .cta-scroll-text {
+    font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--smoke);
+    transition: color 0.3s;
+  }
+  .cta-scroll-arrow {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, var(--dark), transparent);
+    position: relative;
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { transform: scaleY(1); opacity: 1; }
+    50% { transform: scaleY(0.7); opacity: 0.4; }
+  }
+  .cta-scroll:hover .cta-scroll-text { color: var(--gold); }
+
+  /* CTA 5 — Magnetic hover word */
+  .cta-hover-word {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--dark);
+    background: none; border: none;
+    cursor: none;
+    position: relative;
+    padding: 10px 20px;
+    transition: all 0.4s cubic-bezier(.23,1,.32,1);
+  }
+  .cta-hover-word::before {
+    content: '';
+    position: absolute; inset: 0;
+    border: 1px solid transparent;
+    transition: border-color 0.4s, transform 0.4s cubic-bezier(.23,1,.32,1);
+    transform: scale(0.85);
+  }
+  .cta-hover-word:hover::before {
+    border-color: var(--gold);
+    transform: scale(1.05);
+  }
+  .cta-hover-word:hover { color: var(--gold); transform: scale(1.05); }
+
+  /* CTA 6 — Animated "click here" dashed circle */
+  .cta-circle {
+    width: 100px; height: 100px;
+    position: relative;
+    cursor: none; background: none; border: none;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cta-circle svg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    animation: rotateSlow 10s linear infinite;
+  }
+  @keyframes rotateSlow { to { transform: rotate(360deg); } }
+  .cta-circle-inner {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-style: italic;
+    color: var(--dark);
+    text-align: center;
+    line-height: 1.3;
+    z-index: 1;
+  }
+  .cta-circle:hover .cta-circle-inner { color: var(--gold); }
+  .cta-circle:hover svg { animation-duration: 3s; }
+
+  /* ════════════════════════════════
+     SECTION 3 — CURSORS
+  ════════════════════════════════ */
+  .cursor-showcase {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px; width: 100%; max-width: 900px;
+  }
+  .cursor-card {
+    background: white;
+    border: 1px solid rgba(201,169,110,0.15);
+    padding: 40px 24px;
+    display: flex; flex-direction: column; align-items: center; gap: 20px;
+    cursor: none;
+    transition: all 0.4s cubic-bezier(.23,1,.32,1);
+  }
+  .cursor-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .cursor-demo {
+    width: 60px; height: 60px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .cursor-name {
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--smoke); text-align: center;
+  }
+  .cursor-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px; color: var(--smoke); text-align: center;
+  }
+
+  /* Cursor demos (static illustrations) */
+  .cd-dot { width: 8px; height: 8px; background: var(--dark); border-radius: 50%; }
+  .cd-ring { width: 32px; height: 32px; border: 1px solid var(--dark); border-radius: 50%; position: relative; }
+  .cd-ring .cd-dot { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+  .cd-cross { width: 20px; height: 20px; position: relative; }
+  .cd-cross::before, .cd-cross::after { content: ''; position: absolute; background: var(--dark); }
+  .cd-cross::before { width: 1px; height: 100%; left: 50%; top: 0; }
+  .cd-cross::after { height: 1px; width: 100%; top: 50%; left: 0; }
+  .cd-feather {
+    width: 30px; height: 50px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 50'%3E%3Cpath d='M15 48 Q5 30 8 10 Q15 0 22 10 Q25 30 15 48Z' fill='none' stroke='%232a1f1a' stroke-width='1'/%3E%3Cline x1='15' y1='48' x2='15' y2='10' stroke='%232a1f1a' stroke-width='0.5'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+  .cd-star {
+    width: 40px; height: 40px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpolygon points='20,2 24,15 38,15 27,23 31,37 20,29 9,37 13,23 2,15 16,15' fill='none' stroke='%232a1f1a' stroke-width='1'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+  .cd-petal {
+    width: 40px; height: 40px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cellipse cx='20' cy='20' rx='6' ry='14' fill='none' stroke='%232a1f1a' stroke-width='1'/%3E%3Cellipse cx='20' cy='20' rx='14' ry='6' fill='none' stroke='%232a1f1a' stroke-width='1'/%3E%3Cellipse cx='20' cy='20' rx='10' ry='10' transform='rotate(45,20,20)' fill='none' stroke='%23c9a96e' stroke-width='0.5'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+
+  /* ════════════════════════════════
+     SECTION 4 — ALL MENUS COMBINED
+  ════════════════════════════════ */
+  .menu-styles-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px; width: 100%; max-width: 1000px;
+  }
+  .menu-style-card {
+    background: white;
+    border: 1px solid rgba(201,169,110,0.15);
+    overflow: hidden;
+    position: relative;
+  }
+  .msc-preview {
+    height: 220px;
+    display: flex; align-items: flex-start; justify-content: flex-end;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .msc-label {
+    padding: 16px 20px;
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--smoke);
+    border-top: 1px solid rgba(201,169,110,0.1);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  /* Style A — Slide from right */
+  .menu-a-bg { background: #f0ebe3; }
+  .menu-a-drawer {
+    position: absolute; inset: 0;
+    background: var(--dark);
+    transform: translateX(100%);
+    transition: transform 0.6s cubic-bezier(.23,1,.32,1);
+    display: flex; flex-direction: column; justify-content: center; padding: 24px;
+    gap: 8px;
+  }
+  .menu-a-drawer.open { transform: none; }
+  .menu-a-drawer a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; color: rgba(247,244,239,0.7);
+    text-decoration: none; display: block;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(247,244,239,0.08);
+    transition: color 0.2s, padding-left 0.3s;
+  }
+  .menu-a-drawer a:hover { color: var(--cream); padding-left: 8px; }
+
+  /* Style B — Fade + Blur */
+  .menu-b-bg { background: linear-gradient(135deg, #f7f4ef, #ede0d4); }
+  .menu-b-overlay {
+    position: absolute; inset: 0;
+    background: rgba(42,31,26,0.92);
+    backdrop-filter: blur(20px);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(.23,1,.32,1);
+    display: flex; flex-direction: column; justify-content: center; padding: 24px;
+    gap: 8px;
+  }
+  .menu-b-overlay.open { opacity: 1; pointer-events: all; }
+  .menu-b-overlay a {
+    font-family: 'Jost', sans-serif; font-weight: 200;
+    font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(247,244,239,0.6); text-decoration: none; display: block;
+    padding: 5px 0;
+    transition: all 0.3s;
+  }
+  .menu-b-overlay a:hover { color: var(--gold); letter-spacing: 0.25em; }
+
+  /* Style C — Curtain Drop */
+  .menu-c-bg { background: #f2ece4; }
+  .menu-c-curtain {
+    position: absolute; inset: 0;
+    background: var(--blush);
+    clip-path: polygon(0 0, 100% 0, 100% 0%, 0 0%);
+    transition: clip-path 0.6s cubic-bezier(.23,1,.32,1);
+    display: flex; flex-direction: column; justify-content: center; padding: 24px;
+    gap: 8px;
+  }
+  .menu-c-curtain.open {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .menu-c-curtain a {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 20px;
+    color: var(--dark); text-decoration: none; display: block;
+    padding: 3px 0;
+    transition: color 0.2s;
+  }
+  .menu-c-curtain a:hover { color: var(--dusty); }
+
+  /* Trigger buttons in cards */
+  .trigger-btn {
+    background: none; border: 1px solid var(--dark);
+    padding: 6px 14px;
+    font-family: 'Jost', sans-serif; font-weight: 200;
+    font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--dark); cursor: none;
+    transition: all 0.3s;
+  }
+  .trigger-btn:hover { background: var(--dark); color: var(--cream); }
+
+  /* ── GOLD LINE DIVIDER ── */
+  .gold-line {
+    width: 40px; height: 1px;
+    background: var(--gold);
+    margin: 0 auto 40px;
+  }
+
+  /* ── FOOTER NAV ── */
+  .section-footer {
+    margin-top: 60px;
+    text-align: center;
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(154,144,144,0.5);
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- Navigation Tabs -->
+<nav id="nav-tabs">
+  <button class="tab-btn active" data-target="s-burgers">Burger Menus</button>
+  <button class="tab-btn" data-target="s-ctas">CTAs</button>
+  <button class="tab-btn" data-target="s-cursors">Cursors</button>
+  <button class="tab-btn" data-target="s-styles">Menu Styles</button>
+</nav>
+
+<!-- Full Menu Overlay (for Burger 4) -->
+<div id="menu-overlay">
+  <button class="overlay-close" id="overlay-close">✕</button>
+  <div class="overlay-inner">
+    <div class="menu-category">
+      <div class="cat-title">Design</div>
+      <a href="#" class="menu-link">Brand Identity</a>
+      <a href="#" class="menu-link">Visual Direction</a>
+      <a href="#" class="menu-link">Editorial</a>
+      <a href="#" class="menu-link">Packaging</a>
+    </div>
+    <div class="menu-category">
+      <div class="cat-title">Animation</div>
+      <a href="#" class="menu-link">Motion Design</a>
+      <a href="#" class="menu-link">UI Transitions</a>
+      <a href="#" class="menu-link">After Effects</a>
+      <a href="#" class="menu-link">Lottie</a>
+    </div>
+    <div class="menu-category">
+      <div class="cat-title">Marketing</div>
+      <a href="#" class="menu-link">Campaign Strategy</a>
+      <a href="#" class="menu-link">Social Content</a>
+      <a href="#" class="menu-link">Art Direction</a>
+    </div>
+    <div class="menu-category">
+      <div class="cat-title">Web</div>
+      <a href="#" class="menu-link">Development</a>
+      <a href="#" class="menu-link">Interaction Design</a>
+      <a href="#" class="menu-link">Webflow</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 1 — BURGER MENUS ══ -->
+<section id="s-burgers" class="section active">
+  <h2 class="section-title">Burger Menus</h2>
+  <div class="gold-line"></div>
+  <p class="section-sub">Click any icon — watch it transform</p>
+
+  <div class="burger-grid">
+
+    <!-- Card 1 -->
+    <div class="burger-card" data-label="Classic">
+      <div class="burger-1" id="b1">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="burger-label">Classic Lines</div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="burger-card" data-label="Stepped">
+      <div class="burger-2" id="b2">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="burger-label">Staggered Lengths</div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="burger-card" data-label="Matrix">
+      <div class="burger-3" id="b3">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
+      <div class="burger-label">Dot Matrix</div>
+    </div>
+
+    <!-- Card 4 — opens overlay -->
+    <div class="burger-card" data-label="Overlay">
+      <div class="burger-4" id="b4">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="burger-label">Circle → Full Menu</div>
+    </div>
+
+  </div>
+  <p class="section-footer">© ui elements — feminine luxury collection</p>
+</section>
+
+<!-- ══ SECTION 2 — CTAs ══ -->
+<section id="s-ctas" class="section">
+  <h2 class="section-title">Call to Action</h2>
+  <div class="gold-line"></div>
+  <p class="section-sub">Interactive elements — hover & explore</p>
+
+  <div class="cta-grid">
+
+    <button class="cta-1">View Projects</button>
+    <button class="cta-1">Hover Me</button>
+
+    <button class="cta-2"><span>Explore Collection</span></button>
+    <button class="cta-2"><span>Click Here</span></button>
+
+    <button class="cta-3">Start a Project</button>
+    <button class="cta-3">Get in Touch</button>
+
+    <button class="cta-hover-word">hover me.</button>
+    <button class="cta-hover-word">discover.</button>
+
+    <button class="cta-scroll">
+      <span class="cta-scroll-text">Scroll Down</span>
+      <div class="cta-scroll-arrow"></div>
+    </button>
+
+    <button class="cta-circle">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="circle-path" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"/>
+        </defs>
+        <text font-family="'Cormorant Garamond', serif" font-size="11" fill="#9a9090" letter-spacing="4">
+          <textPath href="#circle-path">click here · explore · click here · </textPath>
+        </text>
+      </svg>
+      <div class="cta-circle-inner">✦</div>
+    </button>
+
+  </div>
+  <p class="section-footer">© ui elements — feminine luxury collection</p>
+</section>
+
+<!-- ══ SECTION 3 — CURSORS ══ -->
+<section id="s-cursors" class="section">
+  <h2 class="section-title">Cursor Styles</h2>
+  <div class="gold-line"></div>
+  <p class="section-sub">Hover cards to preview active states</p>
+
+  <div class="cursor-showcase">
+
+    <div class="cursor-card" data-cursor="default">
+      <div class="cursor-demo">
+        <div class="cd-ring"><div class="cd-dot"></div></div>
+      </div>
+      <div class="cursor-name">Dot + Ring</div>
+      <div class="cursor-desc">Active on this page — expands on hover</div>
+    </div>
+
+    <div class="cursor-card" data-cursor="cross">
+      <div class="cursor-demo">
+        <div class="cd-cross"></div>
+      </div>
+      <div class="cursor-name">Fine Crosshair</div>
+      <div class="cursor-desc">Precision editorial cursor</div>
+    </div>
+
+    <div class="cursor-card" data-cursor="feather">
+      <div class="cursor-demo">
+        <div class="cd-feather"></div>
+      </div>
+      <div class="cursor-name">Feather Quill</div>
+      <div class="cursor-desc">Romantic & handcrafted feel</div>
+    </div>
+
+    <div class="cursor-card" data-cursor="star">
+      <div class="cursor-demo">
+        <div class="cd-star"></div>
+      </div>
+      <div class="cursor-name">Star / Asterisk</div>
+      <div class="cursor-desc">Playful luxury — rotates on move</div>
+    </div>
+
+    <div class="cursor-card" data-cursor="petal">
+      <div class="cursor-demo">
+        <div class="cd-petal"></div>
+      </div>
+      <div class="cursor-name">Petal</div>
+      <div class="cursor-desc">Organic feminine — dual ellipse</div>
+    </div>
+
+    <div class="cursor-card" data-cursor="text">
+      <div class="cursor-demo">
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--gold)">✦</div>
+      </div>
+      <div class="cursor-name">Gold Charm</div>
+      <div class="cursor-desc">Decorative symbol cursor</div>
+    </div>
+
+  </div>
+  <p class="section-footer">© ui elements — feminine luxury collection</p>
+</section>
+
+<!-- ══ SECTION 4 — MENU STYLES ══ -->
+<section id="s-styles" class="section">
+  <h2 class="section-title">Navigation Styles</h2>
+  <div class="gold-line"></div>
+  <p class="section-sub">Three distinct menu animations</p>
+
+  <div class="menu-styles-grid">
+
+    <!-- Style A -->
+    <div class="menu-style-card">
+      <div class="msc-preview menu-a-bg">
+        <button class="burger-1" id="ma-trigger" style="position:relative;z-index:2;">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="menu-a-drawer" id="ma-drawer">
+          <a href="#">Design</a>
+          <a href="#">Animation</a>
+          <a href="#">Marketing</a>
+          <a href="#">Web</a>
+        </div>
+      </div>
+      <div class="msc-label">
+        <span>Slide from Right</span>
+        <button class="trigger-btn" onclick="toggleMenuA()">Toggle</button>
+      </div>
+    </div>
+
+    <!-- Style B -->
+    <div class="menu-style-card">
+      <div class="msc-preview menu-b-bg">
+        <button class="burger-2" id="mb-trigger" style="position:relative;z-index:2;">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="menu-b-overlay" id="mb-overlay">
+          <a href="#">Design</a>
+          <a href="#">Animation</a>
+          <a href="#">Marketing</a>
+          <a href="#">Web</a>
+        </div>
+      </div>
+      <div class="msc-label">
+        <span>Blur Fade Overlay</span>
+        <button class="trigger-btn" onclick="toggleMenuB()">Toggle</button>
+      </div>
+    </div>
+
+    <!-- Style C -->
+    <div class="menu-style-card">
+      <div class="msc-preview menu-c-bg">
+        <button class="burger-4" id="mc-trigger" style="position:relative;z-index:2;">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="menu-c-curtain" id="mc-curtain">
+          <a href="#">Design</a>
+          <a href="#">Animation</a>
+          <a href="#">Marketing</a>
+          <a href="#">Web</a>
+        </div>
+      </div>
+      <div class="msc-label">
+        <span>Curtain Drop</span>
+        <button class="trigger-btn" onclick="toggleMenuC()">Toggle</button>
+      </div>
+    </div>
+
+  </div>
+  <p class="section-footer">© ui elements — feminine luxury collection</p>
+</section>
+
+<script>
+// ── CURSOR ──
+const dot = document.getElementById('cursor-dot');
+const ring = document.getElementById('cursor-ring');
+let mx = -100, my = -100, rx = -100, ry = -100;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx + 'px';
+  dot.style.top = my + 'px';
+});
+
+(function animCursor() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animCursor);
+})();
+
+// Hover states
+document.querySelectorAll('button, a, [data-cursor]').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    if (el.dataset.cursor === 'text') {
+      document.body.classList.add('cursor-text');
+    } else {
+      document.body.classList.add('cursor-hover');
+    }
+  });
+  el.addEventListener('mouseleave', () => {
+    document.body.classList.remove('cursor-hover', 'cursor-text');
+  });
+});
+
+// ── TABS ──
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.target).classList.add('active');
+  });
+});
+
+// ── BURGER TOGGLES (section 1) ──
+['b1','b2','b3','b4'].forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('click', () => {
+    el.classList.toggle('open');
+    if (id === 'b4') {
+      document.getElementById('menu-overlay').classList.toggle('open');
+    }
+  });
+});
+
+document.getElementById('overlay-close').addEventListener('click', () => {
+  document.getElementById('menu-overlay').classList.remove('open');
+  document.getElementById('b4').classList.remove('open');
+});
+
+// ── MENU STYLE TOGGLES ──
+function toggleMenuA() {
+  const t = document.getElementById('ma-trigger');
+  const d = document.getElementById('ma-drawer');
+  t.classList.toggle('open');
+  d.classList.toggle('open');
+}
+function toggleMenuB() {
+  const t = document.getElementById('mb-trigger');
+  const o = document.getElementById('mb-overlay');
+  t.classList.toggle('open');
+  o.classList.toggle('open');
+}
+function toggleMenuC() {
+  const t = document.getElementById('mc-trigger');
+  const c = document.getElementById('mc-curtain');
+  t.classList.toggle('open');
+  c.classList.toggle('open');
+}
+
+// Sync card triggers
+document.getElementById('ma-trigger').addEventListener('click', toggleMenuA);
+document.getElementById('mb-trigger').addEventListener('click', toggleMenuB);
+document.getElementById('mc-trigger').addEventListener('click', toggleMenuC);
+</script>
+</body>
+</html>

@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khadija Okbi — Decorative Elements</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&family=Outfit:wght@200;300;400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dg:#314A51; --mint:#56686A; --burg:#6E3B49;
+  --mauve:#B5A19E; --blush:#D4B9B5; --white:#F5F5F5; --off:#525252;
+  --ease:cubic-bezier(.16,1,.3,1); --bounce:cubic-bezier(.34,1.56,.64,1);
+}
+html,body{width:100%;min-height:100vh;overflow-x:hidden}
+body{background:var(--white);font-family:'Outfit',sans-serif;color:var(--off);cursor:none}
+
+/* cursor */
+#cd{width:6px;height:6px;background:var(--burg);border-radius:50%;position:fixed;top:0;left:0;z-index:9999;transform:translate(-50%,-50%);pointer-events:none}
+#cr{width:26px;height:26px;border:1.5px solid var(--burg);border-radius:50%;position:fixed;top:0;left:0;z-index:9998;transform:translate(-50%,-50%);pointer-events:none;transition:width .4s var(--ease),height .4s var(--ease),border-color .3s,background .3s}
+body.hov #cr{width:52px;height:52px;border-color:var(--mint);background:rgba(86,104,106,.06)}
+body.hov #cd{background:var(--mint)}
+body.clk #cr{transform:translate(-50%,-50%) scale(.7);background:rgba(110,59,73,.12)}
+
+/* tabs */
+#tabs{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(245,245,245,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(110,59,73,.1);display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0;padding:12px}
+.tb{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(82,82,82,.45);background:none;border:none;padding:7px 14px;cursor:none;position:relative;transition:color .3s;white-space:nowrap}
+.tb::after{content:'';position:absolute;bottom:2px;left:14px;right:14px;height:1px;background:var(--burg);transform:scaleX(0);transition:transform .4s var(--ease)}
+.tb:hover,.tb.on{color:var(--off)}
+.tb.on::after{transform:scaleX(1)}
+
+/* sections */
+.sec{display:none;min-height:100vh;padding:86px 20px 80px;flex-direction:column;align-items:center}
+.sec.on{display:flex}
+.sh{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(22px,3vw,36px);letter-spacing:.06em;color:var(--dg);text-align:center;margin-bottom:4px}
+.gl{width:32px;height:1px;background:var(--burg);margin:10px auto 6px}
+.ss{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--mauve);text-align:center;margin-bottom:44px}
+
+/* grid wrapper */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;width:100%;max-width:1080px;background:rgba(181,161,158,.12)}
+.cell{background:var(--white);padding:44px 24px 28px;display:flex;flex-direction:column;align-items:center;gap:16px;cursor:none;transition:background .3s}
+.cell:hover{background:#faf8f5}
+.lbl{font-size:7.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--mauve);text-align:center}
+
+/* ─────────────────────────────────────
+   SECTION 1 — HERO ROTATING ELEMENTS
+───────────────────────────────────── */
+
+/* A — Brand flower replacing circle-ring.svg */
+.hero-flower{position:relative;display:flex;align-items:center;justify-content:center;width:80px;height:80px}
+.hf-rot{animation:rotCW 18s linear infinite;position:absolute;inset:0}
+.hf-rot-rev{animation:rotCCW 14s linear infinite;position:absolute;inset:0}
+@keyframes rotCW{to{transform:rotate(360deg)}}
+@keyframes rotCCW{to{transform:rotate(-360deg)}}
+.hf-center{position:absolute;width:10px;height:10px;background:var(--burg);border-radius:50%}
+
+/* B — Dash circle replacement */
+.dash-rose{width:90px;height:90px;position:relative;display:flex;align-items:center;justify-content:center}
+.dash-rose svg{width:100%;height:100%;animation:rotCW 22s linear infinite}
+.dash-rose-dot{position:absolute;width:6px;height:6px;background:var(--mauve);border-radius:50%}
+
+/* C — Triple ring (bg-circle-h-line replacement) */
+.triple-ring{position:relative;width:90px;height:56px;display:flex;align-items:center;justify-content:center}
+.tr-ring{position:absolute;border-radius:50%;border:1px solid var(--mauve);opacity:.35}
+.tr-ring:nth-child(1){width:56px;height:56px;animation:ringBreath 4s ease-in-out infinite}
+.tr-ring:nth-child(2){width:72px;height:36px;animation:ringBreath 4s ease-in-out infinite .5s}
+.tr-ring:nth-child(3){width:88px;height:22px;animation:ringBreath 4s ease-in-out infinite 1s}
+@keyframes ringBreath{0%,100%{opacity:.25}50%{opacity:.55}}
+
+/* D — Petal spinner */
+.petal-spin{width:80px;height:80px;position:relative;display:flex;align-items:center;justify-content:center}
+.ps-inner{animation:rotCW 12s linear infinite}
+.ps-dot{position:absolute;width:8px;height:8px;background:var(--burg);border-radius:50%}
+
+/* E — Dotted orbit */
+.orbit{width:88px;height:88px;position:relative;display:flex;align-items:center;justify-content:center}
+.orbit svg{animation:rotCW 20s linear infinite;position:absolute;inset:0;width:100%;height:100%}
+.orbit-center{position:absolute;width:12px;height:12px;border:1.5px solid var(--burg);border-radius:50%}
+
+/* F — Star of petals */
+.star-petals{width:80px;height:80px;position:relative;display:flex;align-items:center;justify-content:center}
+.star-petals svg{animation:rotCW 25s linear infinite}
+
+/* ─────────────────────────────────────
+   SECTION 2 — BUTTERFLIES
+───────────────────────────────────── */
+
+/* 2D line art butterfly */
+.butterfly-2d{cursor:none;display:flex;align-items:center;justify-content:center}
+.butterfly-2d svg{width:100px;height:80px;transition:transform .3s}
+.wing-l,.wing-r{transform-origin:center;transition:transform .6s var(--ease)}
+.butterfly-2d:hover .wing-l{transform:rotate(-25deg) scaleY(.8)}
+.butterfly-2d:hover .wing-r{transform:rotate(25deg) scaleY(.8)}
+
+/* Flying butterfly on scroll/hover */
+.butterfly-fly{width:100px;height:80px;position:relative;cursor:none}
+.butterfly-fly svg{width:100%;height:100%}
+.bfw-l{transform-origin:50% 55%;animation:wingFlap 1.4s ease-in-out infinite alternate}
+.bfw-r{transform-origin:50% 55%;animation:wingFlap 1.4s ease-in-out infinite alternate-reverse}
+@keyframes wingFlap{from{transform:scaleX(1)}to{transform:scaleX(.15)}}
+
+/* 3D-feel butterfly */
+.butterfly-3d{width:120px;height:100px;cursor:none;display:flex;align-items:center;justify-content:center}
+.butterfly-3d svg{width:100%;height:100%}
+.b3-wing-l{transform-origin:60% 50%;animation:wing3dL 2.2s cubic-bezier(.4,0,.6,1) infinite alternate}
+.b3-wing-r{transform-origin:40% 50%;animation:wing3dR 2.2s cubic-bezier(.4,0,.6,1) infinite alternate}
+@keyframes wing3dL{from{transform:perspective(300px) rotateY(-5deg) scaleX(1)}to{transform:perspective(300px) rotateY(-60deg) scaleX(.3)}}
+@keyframes wing3dR{from{transform:perspective(300px) rotateY(5deg) scaleX(1)}to{transform:perspective(300px) rotateY(60deg) scaleX(.3)}}
+
+/* Hover-only flap */
+.butterfly-hover{width:100px;height:80px;cursor:none}
+.butterfly-hover svg{width:100%;height:100%}
+.bhw-l,.bhw-r{transform-origin:center 55%}
+.butterfly-hover:hover .bhw-l{animation:wingFlap .35s ease-in-out infinite alternate}
+.butterfly-hover:hover .bhw-r{animation:wingFlap .35s ease-in-out infinite alternate-reverse}
+
+/* Scroll-triggered float */
+.butterfly-float{cursor:none;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px}
+.butterfly-float svg{width:80px;height:64px;animation:floatUp 3s ease-in-out infinite}
+@keyframes floatUp{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-12px) rotate(2deg)}}
+
+/* ─────────────────────────────────────
+   SECTION 3 — FLORAL LINE ART FILLERS
+───────────────────────────────────── */
+
+/* Divider sprig */
+.sprig-div{display:flex;align-items:center;gap:12px;width:100%;max-width:400px}
+.sprig-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--mauve))}
+.sprig-line.r{background:linear-gradient(90deg,var(--mauve),transparent)}
+
+/* Corner flourish */
+.corner-fl{position:relative;width:80px;height:80px}
+
+/* Trailing vine */
+.vine{width:100%;max-width:300px;overflow:visible}
+
+/* Quote box */
+.quote-flora{border:1px solid rgba(181,161,158,.3);padding:28px 24px 20px;position:relative;max-width:320px;text-align:center}
+.quote-flora .qf-corner{position:absolute;width:24px;height:24px;opacity:.4}
+.quote-flora .qf-corner svg{width:100%;height:100%}
+.qf-tl{top:-1px;left:-1px}
+.qf-tr{top:-1px;right:-1px;transform:rotate(90deg)}
+.qf-bl{bottom:-1px;left:-1px;transform:rotate(-90deg)}
+.qf-br{bottom:-1px;right:-1px;transform:rotate(180deg)}
+.qf-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--dg);line-height:1.5;margin:8px 0}
+.qf-attr{font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--mauve)}
+
+/* Tag pill with flower */
+.flora-tag{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(110,59,73,.3);padding:5px 14px;border-radius:999px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--burg);cursor:none;transition:all .3s}
+.flora-tag:hover{background:var(--burg);color:#fff;border-color:var(--burg)}
+.flora-tag svg{width:12px;height:12px;transition:transform .5s var(--ease)}
+.flora-tag:hover svg{transform:rotate(180deg)}
+
+/* Stat box with floral accent */
+.flora-stat{padding:24px 20px;border:1px solid rgba(181,161,158,.2);position:relative;text-align:center;cursor:none;overflow:hidden;transition:border-color .3s;background:#fff}
+.flora-stat:hover{border-color:rgba(110,59,73,.3)}
+.fs-accent{position:absolute;top:-8px;right:-8px;opacity:.07;pointer-events:none}
+.fs-num{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--dg);line-height:1}
+.fs-label{font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--mauve);margin-top:4px}
+
+/* Section eyebrow with petals */
+.petal-eyebrow{display:flex;align-items:center;gap:10px;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--burg)}
+.pe-bloom{display:flex;gap:3px;align-items:center}
+.pe-bloom span{display:inline-block;width:5px;height:8px;border-radius:50%;background:var(--mauve);opacity:.5}
+.pe-bloom span:nth-child(2){height:11px;opacity:.8;background:var(--burg)}
+.pe-bloom span:nth-child(3){height:7px;opacity:.5}
+
+/* Connector dots & line */
+.connector{display:flex;align-items:center;gap:0;width:100%;max-width:360px}
+.conn-dot{width:5px;height:5px;border-radius:50%;background:var(--mauve);flex-shrink:0}
+.conn-line{flex:1;height:1px;background:linear-gradient(90deg,var(--mauve),rgba(181,161,158,.1))}
+.conn-bloom{flex-shrink:0}
+
+/* ─────────────────────────────────────
+   SECTION 4 — CONTAINER / BOX STYLES
+───────────────────────────────────── */
+
+.box-a{border:1px solid rgba(181,161,158,.25);padding:28px;position:relative;max-width:280px;cursor:none;transition:border-color .4s}
+.box-a:hover{border-color:rgba(110,59,73,.35)}
+.box-a::before,.box-a::after{content:'';position:absolute;width:16px;height:16px;border-color:var(--burg);border-style:solid;border-width:0;transition:border-width .4s var(--ease)}
+.box-a::before{top:-1px;left:-1px;border-top-width:1.5px;border-left-width:1.5px}
+.box-a::after{bottom:-1px;right:-1px;border-bottom-width:1.5px;border-right-width:1.5px}
+.box-a-inner{position:relative}
+.box-a-inner::before,.box-a-inner::after{content:'';position:absolute;width:16px;height:16px;border-color:var(--burg);border-style:solid;border-width:0;transition:border-width .4s var(--ease)}
+.box-a-inner::before{top:-29px;right:-29px;border-top-width:1.5px;border-right-width:1.5px}
+.box-a-inner::after{bottom:-29px;left:-29px;border-bottom-width:1.5px;border-left-width:1.5px}
+.box-a:hover::before,.box-a:hover::after,.box-a:hover .box-a-inner::before,.box-a:hover .box-a-inner::after{border-width:1.5px}
+
+.box-b{position:relative;padding:28px;max-width:280px;cursor:none}
+.box-b::before{content:'';position:absolute;inset:0;border:1px solid rgba(181,161,158,.2);transform:rotate(1.5deg);transition:transform .5s var(--ease)}
+.box-b::after{content:'';position:absolute;inset:0;border:1px solid rgba(110,59,73,.12);transform:rotate(-1deg);transition:transform .5s var(--ease)}
+.box-b:hover::before{transform:rotate(3deg)}
+.box-b:hover::after{transform:rotate(-2.5deg)}
+.box-b-inner{position:relative;z-index:1}
+
+.box-c{padding:28px;max-width:280px;background:var(--dg);position:relative;overflow:hidden;cursor:none}
+.box-c-bloom{position:absolute;bottom:-20px;right:-20px;opacity:.06}
+.box-c-content{position:relative;z-index:1;color:var(--white)}
+
+.box-d{padding:28px;max-width:280px;position:relative;cursor:none}
+.box-d-frame{position:absolute;inset:0;pointer-events:none}
+/* animated dashes */
+.box-d-frame rect{fill:none;stroke:var(--mauve);stroke-width:1;stroke-dasharray:6 4;stroke-dashoffset:0;animation:dashAnim 8s linear infinite}
+@keyframes dashAnim{to{stroke-dashoffset:-100}}
+
+.box-e{padding:28px;max-width:280px;border:1px solid rgba(181,161,158,.2);position:relative;cursor:none;overflow:hidden;background:#fff;transition:box-shadow .4s}
+.box-e::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--burg),var(--mauve),var(--burg));transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.box-e:hover::before{transform:scaleX(1)}
+.box-e:hover{box-shadow:0 12px 40px rgba(0,0,0,.06)}
+
+/* shared box typography */
+.bx-eyebrow{font-size:7.5px;letter-spacing:.25em;text-transform:uppercase;color:var(--mauve);margin-bottom:8px}
+.bx-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--dg);line-height:1.3;margin-bottom:8px}
+.bx-body{font-size:12px;color:var(--off);opacity:.7;line-height:1.7}
+.bx-white{color:rgba(245,245,245,.8) !important}
+.bx-white-t{color:rgba(245,245,245,.9) !important}
+
+/* ── full width demo ── */
+.full-demo{width:100%;max-width:1080px}
+</style>
+</head>
+<body>
+<div id="cd"></div><div id="cr"></div>
+
+<nav id="tabs">
+  <button class="tb on" data-t="s-hero">① Hero SVGs</button>
+  <button class="tb" data-t="s-butterflies">② Schmetterlinge</button>
+  <button class="tb" data-t="s-floral">③ Floral Filler</button>
+  <button class="tb" data-t="s-boxes">④ Container Boxes</button>
+</nav>
+
+<!-- ════════════════════════════
+     SECTION 1 — HERO SVGs
+════════════════════════════ -->
+<section id="s-hero" class="sec on">
+  <h2 class="sh">Hero Rotating Elements</h2>
+  <div class="gl"></div>
+  <p class="ss">Ersatz für circle-ring.svg & dash-circle.svg — in deinen Farben</p>
+
+  <!-- LIVE DEMO wie im Hero -->
+  <div style="width:100%;max-width:1080px;background:var(--mint);border-radius:2px;padding:60px 40px;margin-bottom:32px;position:relative;overflow:hidden;min-height:300px;display:flex;align-items:center;justify-content:center">
+
+    <!-- bg-circle-h-line replacement: 3 concentric oval rings -->
+    <div style="position:absolute;left:6%;top:50%;transform:translateY(-50%)">
+      <div class="triple-ring">
+        <div class="tr-ring"></div>
+        <div class="tr-ring"></div>
+        <div class="tr-ring"></div>
+      </div>
+    </div>
+
+    <!-- Center: rotating flower -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2">
+      <div class="hero-flower" style="width:120px;height:120px">
+        <svg class="hf-rot" viewBox="0 0 120 120" fill="none">
+          <!-- 6 petals outer -->
+          <ellipse cx="60" cy="60" rx="10" ry="34" fill="none" stroke="rgba(181,161,158,.4)" stroke-width="1"/>
+          <ellipse cx="60" cy="60" rx="10" ry="34" fill="none" stroke="rgba(181,161,158,.4)" stroke-width="1" transform="rotate(60 60 60)"/>
+          <ellipse cx="60" cy="60" rx="10" ry="34" fill="none" stroke="rgba(181,161,158,.4)" stroke-width="1" transform="rotate(120 60 60)"/>
+          <!-- outer ring -->
+          <circle cx="60" cy="60" r="46" fill="none" stroke="rgba(181,161,158,.15)" stroke-width=".8" stroke-dasharray="3 5"/>
+        </svg>
+        <svg class="hf-rot-rev" viewBox="0 0 120 120" fill="none" style="position:absolute;inset:0">
+          <!-- 6 petals inner -->
+          <ellipse cx="60" cy="60" rx="7" ry="22" fill="none" stroke="rgba(212,185,181,.5)" stroke-width=".8" transform="rotate(30 60 60)"/>
+          <ellipse cx="60" cy="60" rx="7" ry="22" fill="none" stroke="rgba(212,185,181,.5)" stroke-width=".8" transform="rotate(90 60 60)"/>
+          <ellipse cx="60" cy="60" rx="7" ry="22" fill="none" stroke="rgba(212,185,181,.5)" stroke-width=".8" transform="rotate(150 60 60)"/>
+        </svg>
+        <div class="hf-center" style="width:14px;height:14px;box-shadow:0 0 0 4px rgba(110,59,73,.2)"></div>
+      </div>
+      <span style="font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(245,245,245,.35)">hero element</span>
+    </div>
+
+    <!-- bg-dash-circle replacement: dotted rose -->
+    <div style="position:absolute;right:6%;top:50%;transform:translateY(-50%)">
+      <div class="dash-rose" style="width:110px;height:110px">
+        <svg viewBox="0 0 110 110" fill="none">
+          <!-- outer dashed circle -->
+          <circle cx="55" cy="55" r="50" fill="none" stroke="rgba(181,161,158,.35)" stroke-width="1" stroke-dasharray="4 5"/>
+          <!-- 8 tick marks (like your original dash-circle) -->
+          <line x1="55" y1="5" x2="55" y2="14" stroke="rgba(181,161,158,.4)" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="55" y1="5" x2="55" y2="14" stroke="rgba(181,161,158,.4)" stroke-width="1.2" stroke-linecap="round" transform="rotate(45 55 55)"/>
+          <line x1="55" y1="5" x2="55" y2="14" stroke="rgba(181,161,158,.4)" stroke-width="1.2" stroke-linecap="round" transform="rotate(90 55 55)"/>
+          <line x1="55" y1="5" x2="55" y2="14" stroke="rgba(181,161,158,.4)" stroke-width="1.2" stroke-linecap="round" transform="rotate(135 55 55)"/>
+          <line x1="55" y1="5" x2="55" y2="14" stroke="rgba(181,161,158,.4)" stroke-width="1.2" stroke-linecap="round" transform="rotate(180 55 55)"/>
+          <line x1="55" y1="5" x2="55" y2="14" stroke="rgba(181,161,158,.4)" stroke-width="1.2" stroke-linecap="round" transform="rotate(225 55 55)"/>
+          <line x1="55" y1="5" x2="55" y2="14" stroke="rgba(181,161,158,.4)" stroke-width="1.2" stroke-linecap="round" transform="rotate(270 55 55)"/>
+          <line x1="55" y1="5" x2="55" y2="14" stroke="rgba(181,161,158,.4)" stroke-width="1.2" stroke-linecap="round" transform="rotate(315 55 55)"/>
+          <!-- inner flower -->
+          <ellipse cx="55" cy="55" rx="6" ry="18" fill="none" stroke="rgba(181,161,158,.5)" stroke-width=".8"/>
+          <ellipse cx="55" cy="55" rx="6" ry="18" fill="none" stroke="rgba(181,161,158,.5)" stroke-width=".8" transform="rotate(60 55 55)"/>
+          <ellipse cx="55" cy="55" rx="6" ry="18" fill="none" stroke="rgba(181,161,158,.5)" stroke-width=".8" transform="rotate(120 55 55)"/>
+          <circle cx="55" cy="55" r="4" fill="rgba(110,59,73,.4)"/>
+        </svg>
+        <div class="dash-rose-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Variants grid -->
+  <div class="grid" style="max-width:1080px">
+
+    <div class="cell">
+      <div class="hero-flower" style="width:80px;height:80px">
+        <svg class="hf-rot" viewBox="0 0 80 80" fill="none">
+          <ellipse cx="40" cy="40" rx="7" ry="24" fill="none" stroke="rgba(181,161,158,.5)" stroke-width="1"/>
+          <ellipse cx="40" cy="40" rx="7" ry="24" fill="none" stroke="rgba(181,161,158,.5)" stroke-width="1" transform="rotate(60 40 40)"/>
+          <ellipse cx="40" cy="40" rx="7" ry="24" fill="none" stroke="rgba(181,161,158,.5)" stroke-width="1" transform="rotate(120 40 40)"/>
+          <circle cx="40" cy="40" r="30" fill="none" stroke="rgba(181,161,158,.15)" stroke-width=".6" stroke-dasharray="2 4"/>
+        </svg>
+        <div class="hf-center"></div>
+      </div>
+      <div class="lbl">Petal Ring Slow</div>
+    </div>
+
+    <div class="cell">
+      <div class="petal-spin">
+        <svg class="ps-inner" viewBox="0 0 80 80" fill="none">
+          <ellipse cx="40" cy="40" rx="5" ry="20" fill="none" stroke="rgba(110,59,73,.4)" stroke-width="1" transform="rotate(0 40 40)"/>
+          <ellipse cx="40" cy="40" rx="5" ry="20" fill="none" stroke="rgba(110,59,73,.4)" stroke-width="1" transform="rotate(45 40 40)"/>
+          <ellipse cx="40" cy="40" rx="5" ry="20" fill="none" stroke="rgba(110,59,73,.4)" stroke-width="1" transform="rotate(90 40 40)"/>
+          <ellipse cx="40" cy="40" rx="5" ry="20" fill="none" stroke="rgba(110,59,73,.4)" stroke-width="1" transform="rotate(135 40 40)"/>
+          <circle cx="40" cy="40" r="28" fill="none" stroke="rgba(181,161,158,.2)" stroke-width=".8" stroke-dasharray="3 3"/>
+        </svg>
+        <div class="ps-dot"></div>
+      </div>
+      <div class="lbl">8-Petal Burg</div>
+    </div>
+
+    <div class="cell">
+      <div class="orbit">
+        <svg viewBox="0 0 88 88" fill="none">
+          <circle cx="44" cy="44" r="40" fill="none" stroke="rgba(181,161,158,.25)" stroke-width=".8" stroke-dasharray="2 6"/>
+          <!-- travelling dot -->
+          <circle cx="44" cy="4" r="3" fill="rgba(110,59,73,.5)"/>
+          <!-- small petals at cardinal -->
+          <path d="M44 14 Q46 9 44 4 Q42 9 44 14Z" fill="none" stroke="rgba(181,161,158,.4)" stroke-width=".7"/>
+          <path d="M44 14 Q46 9 44 4 Q42 9 44 14Z" fill="none" stroke="rgba(181,161,158,.4)" stroke-width=".7" transform="rotate(90 44 44)"/>
+          <path d="M44 14 Q46 9 44 4 Q42 9 44 14Z" fill="none" stroke="rgba(181,161,158,.4)" stroke-width=".7" transform="rotate(180 44 44)"/>
+          <path d="M44 14 Q46 9 44 4 Q42 9 44 14Z" fill="none" stroke="rgba(181,161,158,.4)" stroke-width=".7" transform="rotate(270 44 44)"/>
+        </svg>
+        <div class="orbit-center"></div>
+      </div>
+      <div class="lbl">Dotted Orbit</div>
+    </div>
+
+    <div class="cell">
+      <div class="star-petals">
+        <svg viewBox="0 0 80 80" fill="none" width="80" height="80">
+          <!-- 12 petals like a chrysanthemum -->
+          <ellipse cx="40" cy="40" rx="4" ry="18" fill="none" stroke="rgba(181,161,158,.6)" stroke-width=".9" transform="rotate(0 40 40)"/>
+          <ellipse cx="40" cy="40" rx="4" ry="18" fill="none" stroke="rgba(181,161,158,.6)" stroke-width=".9" transform="rotate(30 40 40)"/>
+          <ellipse cx="40" cy="40" rx="4" ry="18" fill="none" stroke="rgba(181,161,158,.6)" stroke-width=".9" transform="rotate(60 40 40)"/>
+          <ellipse cx="40" cy="40" rx="4" ry="18" fill="none" stroke="rgba(181,161,158,.6)" stroke-width=".9" transform="rotate(90 40 40)"/>
+          <ellipse cx="40" cy="40" rx="4" ry="18" fill="none" stroke="rgba(181,161,158,.6)" stroke-width=".9" transform="rotate(120 40 40)"/>
+          <ellipse cx="40" cy="40" rx="4" ry="18" fill="none" stroke="rgba(181,161,158,.6)" stroke-width=".9" transform="rotate(150 40 40)"/>
+          <circle cx="40" cy="40" r="5" fill="none" stroke="var(--burg)" stroke-width="1"/>
+          <circle cx="40" cy="40" r="2" fill="var(--burg)"/>
+        </svg>
+      </div>
+      <div class="lbl">Chrysanthemum</div>
+    </div>
+
+    <div class="cell">
+      <div class="triple-ring">
+        <div class="tr-ring"></div>
+        <div class="tr-ring"></div>
+        <div class="tr-ring"></div>
+      </div>
+      <div class="lbl">Triple Breathing Rings</div>
+    </div>
+
+    <div class="cell">
+      <!-- asterisk spinner -->
+      <div style="width:70px;height:70px;position:relative;display:flex;align-items:center;justify-content:center">
+        <svg width="70" height="70" viewBox="0 0 70 70" fill="none" style="animation:rotCW 10s linear infinite;position:absolute">
+          <line x1="35" y1="5" x2="35" y2="65" stroke="rgba(181,161,158,.4)" stroke-width=".8" stroke-linecap="round"/>
+          <line x1="5" y1="35" x2="65" y2="35" stroke="rgba(181,161,158,.4)" stroke-width=".8" stroke-linecap="round"/>
+          <line x1="10" y1="10" x2="60" y2="60" stroke="rgba(181,161,158,.4)" stroke-width=".8" stroke-linecap="round"/>
+          <line x1="60" y1="10" x2="10" y2="60" stroke="rgba(181,161,158,.4)" stroke-width=".8" stroke-linecap="round"/>
+        </svg>
+        <div style="width:8px;height:8px;background:var(--burg);border-radius:50%;position:absolute"></div>
+      </div>
+      <div class="lbl">Asterisk Spin</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     SECTION 2 — BUTTERFLIES
+════════════════════════════ -->
+<section id="s-butterflies" class="sec">
+  <h2 class="sh">Schmetterlinge</h2>
+  <div class="gl"></div>
+  <p class="ss">Line Art · 3D Flap · Hover · Float — in deinen Farben</p>
+
+  <div class="grid" style="max-width:1080px">
+
+    <!-- 2D line art hover-flap -->
+    <div class="cell">
+      <div class="butterfly-2d">
+        <svg viewBox="0 0 120 90" fill="none" width="120" height="90">
+          <!-- body -->
+          <ellipse class="" cx="60" cy="48" rx="3.5" ry="16" fill="var(--burg)" opacity=".7"/>
+          <!-- antennae -->
+          <path d="M60 32 Q52 18 48 12" stroke="var(--mauve)" stroke-width=".9" stroke-linecap="round" fill="none"/>
+          <circle cx="48" cy="12" r="2" fill="var(--mauve)"/>
+          <path d="M60 32 Q68 18 72 12" stroke="var(--mauve)" stroke-width=".9" stroke-linecap="round" fill="none"/>
+          <circle cx="72" cy="12" r="2" fill="var(--mauve)"/>
+          <!-- left wings -->
+          <g class="wing-l">
+            <path d="M58 38 Q30 10 12 28 Q8 48 30 52 Q46 56 58 50Z" fill="none" stroke="var(--dg)" stroke-width="1.2"/>
+            <path d="M58 46 Q32 52 24 68 Q36 76 52 64 Q58 58 58 50Z" fill="none" stroke="var(--mint)" stroke-width=".9" opacity=".6"/>
+            <!-- wing veins -->
+            <path d="M58 42 Q40 28 24 30" stroke="rgba(86,104,106,.25)" stroke-width=".6" fill="none"/>
+            <path d="M58 46 Q40 44 28 52" stroke="rgba(86,104,106,.2)" stroke-width=".6" fill="none"/>
+          </g>
+          <!-- right wings -->
+          <g class="wing-r">
+            <path d="M62 38 Q90 10 108 28 Q112 48 90 52 Q74 56 62 50Z" fill="none" stroke="var(--dg)" stroke-width="1.2"/>
+            <path d="M62 46 Q88 52 96 68 Q84 76 68 64 Q62 58 62 50Z" fill="none" stroke="var(--mint)" stroke-width=".9" opacity=".6"/>
+            <path d="M62 42 Q80 28 96 30" stroke="rgba(86,104,106,.25)" stroke-width=".6" fill="none"/>
+            <path d="M62 46 Q80 44 92 52" stroke="rgba(86,104,106,.2)" stroke-width=".6" fill="none"/>
+          </g>
+        </svg>
+      </div>
+      <div class="lbl">Hover → Flügel öffnen</div>
+    </div>
+
+    <!-- Continuous flap -->
+    <div class="cell">
+      <div class="butterfly-fly">
+        <svg viewBox="0 0 120 90" fill="none" width="120" height="90">
+          <ellipse cx="60" cy="48" rx="3.5" ry="16" fill="var(--burg)" opacity=".7"/>
+          <path d="M60 32 Q52 18 48 12" stroke="var(--mauve)" stroke-width=".9" stroke-linecap="round" fill="none"/>
+          <circle cx="48" cy="12" r="2" fill="var(--mauve)"/>
+          <path d="M60 32 Q68 18 72 12" stroke="var(--mauve)" stroke-width=".9" stroke-linecap="round" fill="none"/>
+          <circle cx="72" cy="12" r="2" fill="var(--mauve)"/>
+          <g class="bfw-l">
+            <path d="M58 38 Q30 10 12 28 Q8 48 30 52 Q46 56 58 50Z" fill="rgba(49,74,81,.08)" stroke="var(--dg)" stroke-width="1.2"/>
+            <path d="M58 46 Q32 52 24 68 Q36 76 52 64 Q58 58 58 50Z" fill="rgba(86,104,106,.05)" stroke="var(--mint)" stroke-width=".9"/>
+          </g>
+          <g class="bfw-r">
+            <path d="M62 38 Q90 10 108 28 Q112 48 90 52 Q74 56 62 50Z" fill="rgba(49,74,81,.08)" stroke="var(--dg)" stroke-width="1.2"/>
+            <path d="M62 46 Q88 52 96 68 Q84 76 68 64 Q62 58 62 50Z" fill="rgba(86,104,106,.05)" stroke="var(--mint)" stroke-width=".9"/>
+          </g>
+        </svg>
+      </div>
+      <div class="lbl">Kontinuierlicher Flügelschlag</div>
+    </div>
+
+    <!-- 3D perspective flap -->
+    <div class="cell">
+      <div class="butterfly-3d">
+        <svg viewBox="0 0 140 100" fill="none" width="140" height="100">
+          <ellipse cx="70" cy="54" rx="3.5" ry="18" fill="var(--burg)" opacity=".8"/>
+          <path d="M70 36 Q62 20 57 13" stroke="var(--mauve)" stroke-width=".9" fill="none" stroke-linecap="round"/>
+          <circle cx="57" cy="13" r="2.5" fill="var(--mauve)"/>
+          <path d="M70 36 Q78 20 83 13" stroke="var(--mauve)" stroke-width=".9" fill="none" stroke-linecap="round"/>
+          <circle cx="83" cy="13" r="2.5" fill="var(--mauve)"/>
+          <g class="b3-wing-l">
+            <path d="M67 44 Q38 12 15 30 Q10 52 35 58 Q52 62 67 55Z" fill="rgba(110,59,73,.12)" stroke="var(--burg)" stroke-width="1.3"/>
+            <path d="M67 52 Q38 58 28 76 Q42 86 60 72 Q67 64 67 55Z" fill="rgba(181,161,158,.1)" stroke="var(--mauve)" stroke-width="1"/>
+            <!-- spots -->
+            <circle cx="35" cy="38" r="4" fill="none" stroke="rgba(110,59,73,.3)" stroke-width=".8"/>
+            <circle cx="42" cy="62" r="3" fill="none" stroke="rgba(181,161,158,.4)" stroke-width=".7"/>
+          </g>
+          <g class="b3-wing-r">
+            <path d="M73 44 Q102 12 125 30 Q130 52 105 58 Q88 62 73 55Z" fill="rgba(110,59,73,.12)" stroke="var(--burg)" stroke-width="1.3"/>
+            <path d="M73 52 Q102 58 112 76 Q98 86 80 72 Q73 64 73 55Z" fill="rgba(181,161,158,.1)" stroke="var(--mauve)" stroke-width="1"/>
+            <circle cx="105" cy="38" r="4" fill="none" stroke="rgba(110,59,73,.3)" stroke-width=".8"/>
+            <circle cx="98" cy="62" r="3" fill="none" stroke="rgba(181,161,158,.4)" stroke-width=".7"/>
+          </g>
+        </svg>
+      </div>
+      <div class="lbl">3D Perspective Flap</div>
+    </div>
+
+    <!-- Floating gentle -->
+    <div class="cell">
+      <div class="butterfly-float">
+        <svg viewBox="0 0 100 80" fill="none" width="100" height="80">
+          <ellipse cx="50" cy="43" rx="3" ry="14" fill="var(--burg)" opacity=".6"/>
+          <path d="M50 29 Q44 17 40 10" stroke="var(--blush)" stroke-width=".8" fill="none" stroke-linecap="round"/>
+          <circle cx="40" cy="10" r="1.8" fill="var(--blush)"/>
+          <path d="M50 29 Q56 17 60 10" stroke="var(--blush)" stroke-width=".8" fill="none" stroke-linecap="round"/>
+          <circle cx="60" cy="10" r="1.8" fill="var(--blush)"/>
+          <!-- wings simplified, always open -->
+          <path d="M48 35 Q26 10 10 24 Q7 40 26 44 Q38 48 48 43Z" fill="rgba(212,185,181,.2)" stroke="var(--blush)" stroke-width="1"/>
+          <path d="M48 42 Q26 48 20 62 Q30 70 44 58 Q48 52 48 43Z" fill="rgba(181,161,158,.15)" stroke="var(--mauve)" stroke-width=".8"/>
+          <path d="M52 35 Q74 10 90 24 Q93 40 74 44 Q62 48 52 43Z" fill="rgba(212,185,181,.2)" stroke="var(--blush)" stroke-width="1"/>
+          <path d="M52 42 Q74 48 80 62 Q70 70 56 58 Q52 52 52 43Z" fill="rgba(181,161,158,.15)" stroke="var(--mauve)" stroke-width=".8"/>
+        </svg>
+        <span style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--mauve)">sanft schwebend</span>
+      </div>
+      <div class="lbl">Gentle Float</div>
+    </div>
+
+    <!-- Hover-only flap -->
+    <div class="cell">
+      <div class="butterfly-hover">
+        <svg viewBox="0 0 100 80" fill="none" width="100" height="80">
+          <ellipse cx="50" cy="43" rx="3" ry="14" fill="var(--mint)" opacity=".8"/>
+          <path d="M50 29 Q44 18 41 11" stroke="var(--mint)" stroke-width=".9" fill="none" stroke-linecap="round"/>
+          <circle cx="41" cy="11" r="2" fill="var(--mint)"/>
+          <path d="M50 29 Q56 18 59 11" stroke="var(--mint)" stroke-width=".9" fill="none" stroke-linecap="round"/>
+          <circle cx="59" cy="11" r="2" fill="var(--mint)"/>
+          <g class="bhw-l">
+            <path d="M48 36 Q28 12 12 26 Q8 42 28 46 Q40 50 48 44Z" fill="rgba(86,104,106,.1)" stroke="var(--mint)" stroke-width="1.1"/>
+            <path d="M48 43 Q28 50 20 64 Q32 72 46 60 Q48 54 48 44Z" fill="rgba(86,104,106,.07)" stroke="var(--dg)" stroke-width=".9"/>
+          </g>
+          <g class="bhw-r">
+            <path d="M52 36 Q72 12 88 26 Q92 42 72 46 Q60 50 52 44Z" fill="rgba(86,104,106,.1)" stroke="var(--mint)" stroke-width="1.1"/>
+            <path d="M52 43 Q72 50 80 64 Q68 72 54 60 Q52 54 52 44Z" fill="rgba(86,104,106,.07)" stroke="var(--dg)" stroke-width=".9"/>
+          </g>
+        </svg>
+      </div>
+      <div class="lbl">Hover → schnell flattern</div>
+    </div>
+
+    <!-- Large decorative corner butterfly -->
+    <div class="cell">
+      <div style="position:relative;width:120px;height:100px">
+        <svg viewBox="0 0 120 100" fill="none" width="120" height="100" style="animation:floatUp 4s ease-in-out infinite">
+          <ellipse cx="60" cy="56" rx="3.5" ry="17" fill="var(--burg)" opacity=".75"/>
+          <path d="M60 38 Q52 24 47 16" stroke="var(--mauve)" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <circle cx="47" cy="16" r="2.5" fill="var(--mauve)"/>
+          <path d="M60 38 Q68 24 73 16" stroke="var(--mauve)" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <circle cx="73" cy="16" r="2.5" fill="var(--mauve)"/>
+          <path d="M57 45 Q28 14 8 32 Q3 54 30 59 Q46 64 57 56Z" fill="rgba(110,59,73,.07)" stroke="var(--burg)" stroke-width="1.3"/>
+          <path d="M57 54 Q28 62 18 80 Q32 90 52 76 Q57 68 57 56Z" fill="rgba(181,161,158,.1)" stroke="var(--mauve)" stroke-width="1"/>
+          <path d="M63 45 Q92 14 112 32 Q117 54 90 59 Q74 64 63 56Z" fill="rgba(110,59,73,.07)" stroke="var(--burg)" stroke-width="1.3"/>
+          <path d="M63 54 Q92 62 102 80 Q88 90 68 76 Q63 68 63 56Z" fill="rgba(181,161,158,.1)" stroke="var(--mauve)" stroke-width="1"/>
+          <!-- decorative dots -->
+          <circle cx="28" cy="42" r="3.5" fill="none" stroke="rgba(110,59,73,.35)" stroke-width="1"/>
+          <circle cx="92" cy="42" r="3.5" fill="none" stroke="rgba(110,59,73,.35)" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="lbl">Float + Burg Detail</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     SECTION 3 — FLORAL FILLERS
+════════════════════════════ -->
+<section id="s-floral" class="sec">
+  <h2 class="sh">Floral Filler Elements</h2>
+  <div class="gl"></div>
+  <p class="ss">Divider · Eyebrows · Tags · Boxen mit Blüten-Akzenten</p>
+
+  <div style="display:flex;flex-direction:column;align-items:center;gap:32px;width:100%;max-width:800px">
+
+    <!-- Petal eyebrows -->
+    <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center">
+      <div class="petal-eyebrow"><div class="pe-bloom"><span></span><span></span><span></span></div>Design</div>
+      <div class="petal-eyebrow" style="color:var(--mint)"><div class="pe-bloom"><span style="background:var(--mint)"></span><span style="background:var(--mint)"></span><span style="background:var(--mint)"></span></div>Animation</div>
+      <div class="petal-eyebrow" style="color:var(--dg)"><div class="pe-bloom"><span style="background:var(--dg)"></span><span style="background:var(--dg)"></span><span style="background:var(--dg)"></span></div>Marketing</div>
+    </div>
+
+    <!-- Flora tags -->
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+      <div class="flora-tag">
+        <svg viewBox="0 0 12 12" fill="none"><ellipse cx="6" cy="6" rx="2" ry="5" fill="none" stroke="currentColor" stroke-width=".8"/><ellipse cx="6" cy="6" rx="5" ry="2" fill="none" stroke="currentColor" stroke-width=".8"/></svg>
+        Design
+      </div>
+      <div class="flora-tag">
+        <svg viewBox="0 0 12 12" fill="none"><ellipse cx="6" cy="6" rx="2" ry="5" fill="none" stroke="currentColor" stroke-width=".8"/><ellipse cx="6" cy="6" rx="5" ry="2" fill="none" stroke="currentColor" stroke-width=".8"/></svg>
+        Animation
+      </div>
+      <div class="flora-tag">
+        <svg viewBox="0 0 12 12" fill="none"><ellipse cx="6" cy="6" rx="2" ry="5" fill="none" stroke="currentColor" stroke-width=".8"/><ellipse cx="6" cy="6" rx="5" ry="2" fill="none" stroke="currentColor" stroke-width=".8"/></svg>
+        Marketing
+      </div>
+      <div class="flora-tag">
+        <svg viewBox="0 0 12 12" fill="none"><ellipse cx="6" cy="6" rx="2" ry="5" fill="none" stroke="currentColor" stroke-width=".8"/><ellipse cx="6" cy="6" rx="5" ry="2" fill="none" stroke="currentColor" stroke-width=".8"/></svg>
+        Web
+      </div>
+    </div>
+
+    <!-- Sprig dividers -->
+    <div style="width:100%;display:flex;flex-direction:column;gap:16px">
+      <div class="sprig-div">
+        <div class="sprig-line"></div>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <ellipse cx="12" cy="12" rx="3" ry="8" fill="none" stroke="var(--mauve)" stroke-width=".9"/>
+          <ellipse cx="12" cy="12" rx="8" ry="3" fill="none" stroke="var(--mauve)" stroke-width=".9"/>
+          <circle cx="12" cy="12" r="2" fill="var(--burg)" opacity=".5"/>
+        </svg>
+        <div class="sprig-line r"></div>
+      </div>
+      <div class="sprig-div">
+        <div class="sprig-line"></div>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2 Q12 6 10 10 Q8 6 10 2Z" fill="none" stroke="var(--mauve)" stroke-width=".8"/>
+          <path d="M10 2 Q12 6 10 10 Q8 6 10 2Z" fill="none" stroke="var(--mauve)" stroke-width=".8" transform="rotate(60 10 10)"/>
+          <path d="M10 2 Q12 6 10 10 Q8 6 10 2Z" fill="none" stroke="var(--mauve)" stroke-width=".8" transform="rotate(120 10 10)"/>
+          <path d="M10 2 Q12 6 10 10 Q8 6 10 2Z" fill="none" stroke="var(--mauve)" stroke-width=".8" transform="rotate(180 10 10)"/>
+          <path d="M10 2 Q12 6 10 10 Q8 6 10 2Z" fill="none" stroke="var(--mauve)" stroke-width=".8" transform="rotate(240 10 10)"/>
+          <path d="M10 2 Q12 6 10 10 Q8 6 10 2Z" fill="none" stroke="var(--mauve)" stroke-width=".8" transform="rotate(300 10 10)"/>
+          <circle cx="10" cy="10" r="1.5" fill="var(--burg)" opacity=".6"/>
+        </svg>
+        <div class="sprig-line r"></div>
+      </div>
+      <!-- vine divider -->
+      <svg width="100%" height="24" viewBox="0 0 400 24" fill="none" preserveAspectRatio="none" style="max-width:400px;margin:0 auto">
+        <path d="M0 12 Q50 4 100 12 Q150 20 200 12 Q250 4 300 12 Q350 20 400 12" stroke="rgba(181,161,158,.4)" stroke-width="1" fill="none"/>
+        <circle cx="100" cy="12" r="3" fill="none" stroke="var(--mauve)" stroke-width=".8"/>
+        <circle cx="200" cy="12" r="4" fill="none" stroke="var(--burg)" stroke-width=".9"/>
+        <circle cx="300" cy="12" r="3" fill="none" stroke="var(--mauve)" stroke-width=".8"/>
+        <!-- tiny leaves at nodes -->
+        <path d="M200 12 Q196 7 192 8" stroke="rgba(181,161,158,.5)" stroke-width=".7" fill="none"/>
+        <path d="M200 12 Q204 7 208 8" stroke="rgba(181,161,158,.5)" stroke-width=".7" fill="none"/>
+      </svg>
+    </div>
+
+    <!-- Quote box -->
+    <div class="quote-flora">
+      <div class="qf-corner qf-tl"><svg viewBox="0 0 24 24" fill="none"><path d="M0 24 L0 0 L24 0" stroke="var(--burg)" stroke-width="1.2" fill="none"/></svg></div>
+      <div class="qf-corner qf-tr"><svg viewBox="0 0 24 24" fill="none"><path d="M0 24 L0 0 L24 0" stroke="var(--burg)" stroke-width="1.2" fill="none"/></svg></div>
+      <div class="qf-corner qf-bl"><svg viewBox="0 0 24 24" fill="none"><path d="M0 24 L0 0 L24 0" stroke="var(--burg)" stroke-width="1.2" fill="none"/></svg></div>
+      <div class="qf-corner qf-br"><svg viewBox="0 0 24 24" fill="none"><path d="M0 24 L0 0 L24 0" stroke="var(--burg)" stroke-width="1.2" fill="none"/></svg></div>
+      <div style="font-size:28px;color:var(--mauve);font-family:'Cormorant Garamond',serif;line-height:1;margin-bottom:6px">"</div>
+      <p class="qf-text">Design is where science and art break even.</p>
+      <div class="sprig-div" style="margin:10px 0 6px"><div class="sprig-line"></div>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3" fill="none" stroke="var(--mauve)" stroke-width=".8"/><circle cx="8" cy="8" r="1" fill="var(--burg)"/></svg>
+      <div class="sprig-line r"></div></div>
+      <div class="qf-attr">Khadija Okbi</div>
+    </div>
+
+    <!-- Connector -->
+    <div class="connector">
+      <div class="conn-dot"></div>
+      <div class="conn-line"></div>
+      <div class="conn-bloom">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <ellipse cx="9" cy="9" rx="2.5" ry="7" fill="none" stroke="var(--burg)" stroke-width=".9"/>
+          <ellipse cx="9" cy="9" rx="7" ry="2.5" fill="none" stroke="var(--burg)" stroke-width=".9"/>
+          <circle cx="9" cy="9" r="2" fill="var(--burg)" opacity=".5"/>
+        </svg>
+      </div>
+      <div class="conn-line" style="background:linear-gradient(90deg,rgba(181,161,158,.1),var(--mauve))"></div>
+      <div class="conn-dot"></div>
+    </div>
+
+    <!-- Stat boxes -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;width:100%">
+      <div class="flora-stat">
+        <svg class="fs-accent" width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <ellipse cx="40" cy="40" rx="8" ry="28" fill="none" stroke="var(--burg)" stroke-width="1"/>
+          <ellipse cx="40" cy="40" rx="28" ry="8" fill="none" stroke="var(--burg)" stroke-width="1"/>
+        </svg>
+        <div class="fs-num">48+</div>
+        <div class="fs-label">Projekte</div>
+      </div>
+      <div class="flora-stat">
+        <svg class="fs-accent" width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <ellipse cx="40" cy="40" rx="8" ry="28" fill="none" stroke="var(--mint)" stroke-width="1"/>
+          <ellipse cx="40" cy="40" rx="28" ry="8" fill="none" stroke="var(--mint)" stroke-width="1"/>
+        </svg>
+        <div class="fs-num" style="color:var(--mint)">3</div>
+        <div class="fs-label">Jahre Erfahrung</div>
+      </div>
+      <div class="flora-stat">
+        <svg class="fs-accent" width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <ellipse cx="40" cy="40" rx="8" ry="28" fill="none" stroke="var(--mauve)" stroke-width="1"/>
+          <ellipse cx="40" cy="40" rx="28" ry="8" fill="none" stroke="var(--mauve)" stroke-width="1"/>
+        </svg>
+        <div class="fs-num" style="color:var(--burg)">∞</div>
+        <div class="fs-label">Ideen</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     SECTION 4 — CONTAINER BOXES
+════════════════════════════ -->
+<section id="s-boxes" class="sec">
+  <h2 class="sh">Container Boxes</h2>
+  <div class="gl"></div>
+  <p class="ss">5 Stile — alle hover-interaktiv</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;width:100%;max-width:1080px">
+
+    <div class="box-a"><div class="box-a-inner">
+      <div class="bx-eyebrow">Design · 2024</div>
+      <div class="bx-title">Corner Reveal Box</div>
+      <p class="bx-body">Hover aktiviert Ecken — elegant und präzise.</p>
+    </div></div>
+
+    <div class="box-b"><div class="box-b-inner">
+      <div class="bx-eyebrow">Animation</div>
+      <div class="bx-title">Stacked Rotation Box</div>
+      <p class="bx-body">Zwei überlagerte Rahmen drehen sich leicht.</p>
+    </div></div>
+
+    <div class="box-c">
+      <svg class="box-c-bloom" width="120" height="120" viewBox="0 0 120 120" fill="none">
+        <ellipse cx="60" cy="60" rx="10" ry="40" fill="none" stroke="white" stroke-width="1"/>
+        <ellipse cx="60" cy="60" rx="10" ry="40" fill="none" stroke="white" stroke-width="1" transform="rotate(60 60 60)"/>
+        <ellipse cx="60" cy="60" rx="10" ry="40" fill="none" stroke="white" stroke-width="1" transform="rotate(120 60 60)"/>
+      </svg>
+      <div class="box-c-content">
+        <div class="bx-eyebrow bx-white">Web · Darkgreen</div>
+        <div class="bx-title bx-white-t">Dark Bloom Box</div>
+        <p class="bx-body bx-white">Blüten-SVG als Ghost-Hintergrund.</p>
+      </div>
+    </div>
+
+    <div class="box-d">
+      <svg class="box-d-frame" width="100%" height="100%" preserveAspectRatio="none">
+        <rect x="1" y="1" width="calc(100% - 2)" height="calc(100% - 2)" rx="0" ry="0" width="98%" height="calc(100% - 2px)"/>
+      </svg>
+      <div style="position:relative;z-index:1">
+        <div class="bx-eyebrow">Marketing</div>
+        <div class="bx-title">Animated Dash Border</div>
+        <p class="bx-body">Der gestrichelte Rahmen bewegt sich kontinuierlich.</p>
+      </div>
+    </div>
+
+    <div class="box-e">
+      <div class="bx-eyebrow">Brand</div>
+      <div class="bx-title">Top Line Reveal</div>
+      <p class="bx-body">Hover zieht eine Linie von links nach rechts. Clean und modern.</p>
+    </div>
+
+  </div>
+</section>
+
+<script>
+const cd=document.getElementById('cd'),cr=document.getElementById('cr');
+let mx=-100,my=-100,rx=-100,ry=-100;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px'});
+(function t(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(t)})();
+document.querySelectorAll('[class*="cell"],[class*="box"],[class*="butterfly"],[class*="flora"],[class*="pn-"],.tb').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
+document.addEventListener('mousedown',()=>document.body.classList.add('clk'));
+document.addEventListener('mouseup',()=>document.body.classList.remove('clk'));
+document.querySelectorAll('.tb').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.tb').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.sec').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>

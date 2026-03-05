@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khadija — Filler Library</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dg:#314A51;--mint:#56686A;--burg:#6E3B49;
+  --mauve:#B5A19E;--blush:#D4B9B5;--cream:#F5F0EA;--off:#525252;
+  --gold:rgba(181,161,158,.55);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+html,body{width:100%;min-height:100vh;overflow-x:hidden}
+body{background:var(--cream);font-family:'Outfit',sans-serif;color:var(--off);cursor:none}
+
+/* cursor */
+#cd{width:5px;height:5px;background:var(--burg);border-radius:50%;position:fixed;z-index:9999;transform:translate(-50%,-50%);pointer-events:none;transition:background .2s}
+#cr{width:24px;height:24px;border:1px solid var(--burg);border-radius:50%;position:fixed;z-index:9998;transform:translate(-50%,-50%);pointer-events:none;transition:all .4s var(--ease)}
+body.hov #cr{width:44px;height:44px;border-color:var(--mint);background:rgba(86,104,106,.05)}
+
+/* ── TABS ── */
+#tabs{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(245,240,234,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(181,161,158,.2);display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:2px;padding:10px 12px}
+.tb{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(82,82,82,.4);background:none;border:none;padding:6px 12px;cursor:none;position:relative;transition:color .3s;white-space:nowrap}
+.tb.on,.tb:hover{color:var(--off)}
+.tb.on::after{content:'';position:absolute;bottom:0;left:12px;right:12px;height:1px;background:var(--burg)}
+
+/* ── SECTIONS ── */
+.sec{display:none;min-height:100vh;padding:72px 20px 80px;flex-direction:column;align-items:center}
+.sec.on{display:flex}
+.sh{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(20px,2.5vw,32px);letter-spacing:.08em;color:var(--dg);text-align:center;margin-bottom:4px}
+.gl{width:28px;height:1px;background:var(--burg);margin:8px auto 5px}
+.ss{font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--mauve);text-align:center;margin-bottom:36px}
+
+/* ── GRID ── */
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1px;width:100%;max-width:1100px;background:rgba(181,161,158,.15)}
+.g.wide{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.c{background:var(--cream);padding:36px 16px 20px;display:flex;flex-direction:column;align-items:center;gap:12px;cursor:none;transition:background .3s}
+.c:hover{background:#fff}
+.lbl{font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:rgba(181,161,158,.7);text-align:center;line-height:1.5}
+
+/* ── ANIMATIONS ── */
+@keyframes rotCW{to{transform:rotate(360deg)}}
+@keyframes rotCCW{to{transform:rotate(-360deg)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes pulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+@keyframes dash{to{stroke-dashoffset:-40}}
+@keyframes twinkle{0%,100%{opacity:.2;transform:scale(.7)}40%{opacity:1;transform:scale(1.1)}80%{opacity:.5;transform:scale(.9)}}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes shimmer{0%{stroke-dashoffset:0}100%{stroke-dashoffset:-80}}
+@keyframes moonrise{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
+@keyframes waveFlow{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes blink{0%,90%,100%{transform:scaleY(1)}95%{transform:scaleY(0.1)}}
+@keyframes unfurl{from{stroke-dashoffset:200}to{stroke-dashoffset:0}}
+@keyframes petalOpen{0%,100%{transform:rotate(0deg) scaleY(.7)}50%{transform:rotate(5deg) scaleY(1)}}
+
+/* ── SPARKLE system ── */
+.spark{animation:twinkle var(--dur,2s) ease-in-out var(--del,0s) infinite}
+
+/* ── BUTTERFLY (realistic 3D) ── */
+.bf-body{transform-origin:center}
+.bf-wL{transform-origin:100% 50%}
+.bf-wR{transform-origin:0% 50%}
+.bf-wrap-anim .bf-wL{animation:flapL var(--speed,1.8s) cubic-bezier(.45,0,.55,1) infinite alternate}
+.bf-wrap-anim .bf-wR{animation:flapR var(--speed,1.8s) cubic-bezier(.45,0,.55,1) infinite alternate}
+.bf-hover-only .bf-wL,.bf-hover-only .bf-wR{transition:transform .5s var(--ease)}
+.bf-hover-only:hover .bf-wL{animation:flapL .6s cubic-bezier(.45,0,.55,1) infinite alternate}
+.bf-hover-only:hover .bf-wR{animation:flapR .6s cubic-bezier(.45,0,.55,1) infinite alternate}
+@keyframes flapL{from{transform:perspective(400px) rotateY(0deg) scaleX(1)}to{transform:perspective(400px) rotateY(-62deg) scaleX(.85)}}
+@keyframes flapR{from{transform:perspective(400px) rotateY(0deg) scaleX(1)}to{transform:perspective(400px) rotateY(62deg) scaleX(.85)}}
+
+/* ── MOTH ── */
+@keyframes mothFlap{from{transform:perspective(300px) rotateY(0deg)}to{transform:perspective(300px) rotateY(-70deg)}}
+@keyframes mothFlapR{from{transform:perspective(300px) rotateY(0deg)}to{transform:perspective(300px) rotateY(70deg)}}
+
+/* ── TEXT FILLERS ── */
+.tf-marquee{overflow:hidden;white-space:nowrap;width:100%;max-width:300px}
+.tf-inner{display:inline-flex;gap:0;animation:waveFlow 12s linear infinite}
+.tf-word{font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(181,161,158,.5);padding:0 16px}
+.tf-word span{color:var(--burg)}
+
+.vertical-text{writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:11px;letter-spacing:.15em;color:rgba(181,161,158,.5);line-height:1}
+
+.arc-text{font-size:7.5px;letter-spacing:.28em;text-transform:uppercase;fill:var(--mauve)}
+.arc-text-burg{fill:rgba(110,59,73,.5)}
+
+.micro-label{font-size:7px;letter-spacing:.35em;text-transform:uppercase;color:rgba(181,161,158,.45);display:flex;align-items:center;gap:8px}
+.micro-label::before,.micro-label::after{content:'';display:block;width:16px;height:1px;background:rgba(181,161,158,.3)}
+
+/* ── BOHO SHAPES ── */
+.boho-arch{transition:transform .4s var(--ease)}
+.c:hover .boho-arch{transform:translateY(-3px)}
+.c:hover .rot-hover{animation:rotCW 4s linear infinite}
+.c:hover .pulse-hover{animation:pulse .8s ease-in-out infinite}
+.c:hover .float-hover{animation:float 2s ease-in-out infinite}
+
+</style>
+</head>
+<body>
+<div id="cd"></div><div id="cr"></div>
+
+<nav id="tabs">
+  <button class="tb on" data-t="s1">① Schmetterlinge 3D</button>
+  <button class="tb" data-t="s2">② Boho Shapes</button>
+  <button class="tb" data-t="s3">③ Florals & Botanik</button>
+  <button class="tb" data-t="s4">④ Stars & Moon</button>
+  <button class="tb" data-t="s5">⑤ Text Fillers</button>
+  <button class="tb" data-t="s6">⑥ Geometric</button>
+  <button class="tb" data-t="s7">⑦ Frames & Labels</button>
+</nav>
+
+<!-- ══════════════════════════════════
+     ① REALISTIC 3D BUTTERFLIES
+══════════════════════════════════ -->
+<section id="s1" class="sec on">
+  <h2 class="sh">Schmetterlinge — realistisch & 3D</h2>
+  <div class="gl"></div>
+  <p class="ss">Echte Flügelanatomie · Hover oder Dauerflap · Lebensechte Bewegung</p>
+<div class="g wide" style="max-width:1100px">
+
+<!-- BF A: Mauve Glasswing — semi-transparent, realistic -->
+<div class="c">
+  <div class="bf-hover-only" style="cursor:none;animation:float 5s ease-in-out infinite">
+    <svg width="140" height="120" viewBox="0 0 140 120" overflow="visible">
+      <!-- LEFT WING GROUP -->
+      <g class="bf-wL">
+        <!-- Forewing: large, pointed apex, realistic outline -->
+        <path d="M67 57 C60 44 40 18 20 16 C6 15 2 30 8 46 C14 60 42 68 67 64Z"
+          fill="rgba(181,161,158,.18)" stroke="var(--burg)" stroke-width="1.4" stroke-linejoin="round"/>
+        <!-- Hindwing: scalloped lower edge -->
+        <path d="M67 64 C52 74 28 86 16 80 C7 75 12 62 28 60 C44 58 60 62 67 64Z"
+          fill="rgba(212,185,181,.22)" stroke="var(--mauve)" stroke-width="1.2"/>
+        <!-- Wing veins radiating from body -->
+        <path d="M67 58 C56 48 38 30 22 24" stroke="rgba(110,59,73,.18)" stroke-width=".7" fill="none"/>
+        <path d="M67 61 C54 56 34 48 18 48" stroke="rgba(110,59,73,.14)" stroke-width=".6" fill="none"/>
+        <path d="M67 63 C56 60 40 58 24 60" stroke="rgba(181,161,158,.2)" stroke-width=".5" fill="none"/>
+        <!-- Hindwing vein -->
+        <path d="M67 64 C54 70 38 74 26 72" stroke="rgba(181,161,158,.18)" stroke-width=".6" fill="none"/>
+        <!-- Eyespot — concentric rings -->
+        <circle cx="28" cy="32" r="8" fill="none" stroke="rgba(110,59,73,.2)" stroke-width="1"/>
+        <circle cx="28" cy="32" r="4.5" fill="none" stroke="rgba(110,59,73,.25)" stroke-width=".9"/>
+        <circle cx="28" cy="32" r="2" fill="rgba(110,59,73,.3)"/>
+        <!-- Small hindwing spot -->
+        <circle cx="30" cy="70" r="4" fill="none" stroke="rgba(181,161,158,.3)" stroke-width=".8"/>
+        <circle cx="30" cy="70" r="1.5" fill="rgba(181,161,158,.35)"/>
+        <!-- Marginal dots along wing edge -->
+        <circle cx="8" cy="38" r="1.8" fill="rgba(110,59,73,.2)"/>
+        <circle cx="6" cy="50" r="1.4" fill="rgba(110,59,73,.18)"/>
+        <circle cx="10" cy="60" r="1.6" fill="rgba(181,161,158,.3)"/>
+      </g>
+      <!-- RIGHT WING GROUP (mirror) -->
+      <g class="bf-wR">
+        <path d="M73 57 C80 44 100 18 120 16 C134 15 138 30 132 46 C126 60 98 68 73 64Z"
+          fill="rgba(181,161,158,.18)" stroke="var(--burg)" stroke-width="1.4" stroke-linejoin="round"/>
+        <path d="M73 64 C88 74 112 86 124 80 C133 75 128 62 112 60 C96 58 80 62 73 64Z"
+          fill="rgba(212,185,181,.22)" stroke="var(--mauve)" stroke-width="1.2"/>
+        <path d="M73 58 C84 48 102 30 118 24" stroke="rgba(110,59,73,.18)" stroke-width=".7" fill="none"/>
+        <path d="M73 61 C86 56 106 48 122 48" stroke="rgba(110,59,73,.14)" stroke-width=".6" fill="none"/>
+        <path d="M73 63 C84 60 100 58 116 60" stroke="rgba(181,161,158,.2)" stroke-width=".5" fill="none"/>
+        <path d="M73 64 C86 70 102 74 114 72" stroke="rgba(181,161,158,.18)" stroke-width=".6" fill="none"/>
+        <circle cx="112" cy="32" r="8" fill="none" stroke="rgba(110,59,73,.2)" stroke-width="1"/>
+        <circle cx="112" cy="32" r="4.5" fill="none" stroke="rgba(110,59,73,.25)" stroke-width=".9"/>
+        <circle cx="112" cy="32" r="2" fill="rgba(110,59,73,.3)"/>
+        <circle cx="110" cy="70" r="4" fill="none" stroke="rgba(181,161,158,.3)" stroke-width=".8"/>
+        <circle cx="110" cy="70" r="1.5" fill="rgba(181,161,158,.35)"/>
+        <circle cx="132" cy="38" r="1.8" fill="rgba(110,59,73,.2)"/>
+        <circle cx="134" cy="50" r="1.4" fill="rgba(110,59,73,.18)"/>
+        <circle cx="130" cy="60" r="1.6" fill="rgba(181,161,158,.3)"/>
+      </g>
+      <!-- BODY: segmented, realistic -->
+      <ellipse cx="70" cy="62" rx="2.8" ry="22" fill="var(--dg)" opacity=".82"/>
+      <line x1="70" y1="56" x2="70" y2="82" stroke="rgba(245,245,245,.12)" stroke-width=".6" stroke-dasharray="2 2.5"/>
+      <ellipse cx="70" cy="48" rx="4" ry="6" fill="var(--dg)" opacity=".9"/>
+      <circle cx="70" cy="41" r="4.5" fill="var(--dg)"/>
+      <!-- Eye highlight -->
+      <circle cx="68" cy="40" r="1.2" fill="rgba(245,245,245,.25)"/>
+      <!-- Antennae: curved with club -->
+      <path d="M70 37 Q64 26 58 16 Q56 11 56 8" stroke="var(--dg)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+      <circle cx="56" cy="7" r="3" fill="var(--dg)"/>
+      <circle cx="56" cy="7" r="1.2" fill="rgba(212,185,181,.35)"/>
+      <path d="M70 37 Q76 26 82 16 Q84 11 84 8" stroke="var(--dg)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+      <circle cx="84" cy="7" r="3" fill="var(--dg)"/>
+      <circle cx="84" cy="7" r="1.2" fill="rgba(212,185,181,.35)"/>
+      <!-- Legs (suggestion) -->
+      <path d="M68 70 Q60 75 56 80" stroke="rgba(49,74,81,.25)" stroke-width=".6" fill="none"/>
+      <path d="M72 70 Q80 75 84 80" stroke="rgba(49,74,81,.25)" stroke-width=".6" fill="none"/>
+    </svg>
+  </div>
+  <div class="lbl">Hover → flattern<br>Mauve Glasswing</div>
+</div>
+
+<!-- BF B: Dark Morpho — Darkgreen, continuous slow flap -->
+<div class="c">
+  <div class="bf-wrap-anim" style="--speed:2.2s;animation:float 6s ease-in-out infinite;cursor:none">
+    <svg width="150" height="125" viewBox="0 0 150 125" overflow="visible">
+      <g class="bf-wL">
+        <path d="M72 60 C62 44 34 12 12 16 C-2 20 0 42 10 58 C20 72 50 78 72 70Z"
+          fill="rgba(49,74,81,.2)" stroke="var(--dg)" stroke-width="1.5"/>
+        <path d="M72 70 C52 82 22 96 10 88 C0 82 8 66 28 64 C48 62 66 68 72 70Z"
+          fill="rgba(86,104,106,.18)" stroke="var(--mint)" stroke-width="1.2"/>
+        <!-- Iridescent wing sheen hint -->
+        <path d="M72 60 C58 50 36 32 18 26" stroke="rgba(86,104,106,.2)" stroke-width=".8" fill="none"/>
+        <path d="M72 64 C56 60 34 54 16 56" stroke="rgba(86,104,106,.15)" stroke-width=".6" fill="none"/>
+        <path d="M72 68 C58 66 40 64 24 66" stroke="rgba(86,104,106,.12)" stroke-width=".5" fill="none"/>
+        <!-- Large eyespot -->
+        <circle cx="24" cy="34" r="10" fill="none" stroke="rgba(86,104,106,.22)" stroke-width="1.2"/>
+        <circle cx="24" cy="34" r="6" fill="none" stroke="rgba(49,74,81,.3)" stroke-width="1"/>
+        <circle cx="24" cy="34" r="2.5" fill="rgba(49,74,81,.4)"/>
+        <!-- Highlight on eyespot -->
+        <circle cx="22" cy="32" r="1.2" fill="rgba(245,245,245,.2)"/>
+        <circle cx="28" cy="78" r="5" fill="none" stroke="rgba(86,104,106,.25)" stroke-width=".9"/>
+        <circle cx="28" cy="78" r="2" fill="rgba(86,104,106,.2)"/>
+        <!-- Scalloped edge -->
+        <circle cx="8" cy="48" r="2" fill="rgba(86,104,106,.2)"/>
+        <circle cx="6" cy="60" r="1.5" fill="rgba(86,104,106,.18)"/>
+        <circle cx="12" cy="70" r="1.8" fill="rgba(86,104,106,.2)"/>
+      </g>
+      <g class="bf-wR">
+        <path d="M78 60 C88 44 116 12 138 16 C152 20 150 42 140 58 C130 72 100 78 78 70Z"
+          fill="rgba(49,74,81,.2)" stroke="var(--dg)" stroke-width="1.5"/>
+        <path d="M78 70 C98 82 128 96 140 88 C150 82 142 66 122 64 C102 62 84 68 78 70Z"
+          fill="rgba(86,104,106,.18)" stroke="var(--mint)" stroke-width="1.2"/>
+        <path d="M78 60 C92 50 114 32 132 26" stroke="rgba(86,104,106,.2)" stroke-width=".8" fill="none"/>
+        <path d="M78 64 C94 60 116 54 134 56" stroke="rgba(86,104,106,.15)" stroke-width=".6" fill="none"/>
+        <path d="M78 68 C92 66 110 64 126 66" stroke="rgba(86,104,106,.12)" stroke-width=".5" fill="none"/>
+        <circle cx="126" cy="34" r="10" fill="none" stroke="rgba(86,104,106,.22)" stroke-width="1.2"/>
+        <circle cx="126" cy="34" r="6" fill="none" stroke="rgba(49,74,81,.3)" stroke-width="1"/>
+        <circle cx="126" cy="34" r="2.5" fill="rgba(49,74,81,.4)"/>
+        <circle cx="124" cy="32" r="1.2" fill="rgba(245,245,245,.2)"/>
+        <circle cx="122" cy="78" r="5" fill="none" stroke="rgba(86,104,106,.25)" stroke-width=".9"/>
+        <circle cx="122" cy="78" r="2" fill="rgba(86,104,106,.2)"/>
+        <circle cx="142" cy="48" r="2" fill="rgba(86,104,106,.2)"/>
+        <circle cx="144" cy="60" r="1.5" fill="rgba(86,104,106,.18)"/>
+        <circle cx="138" cy="70" r="1.8" fill="rgba(86,104,106,.2)"/>
+      </g>
+      <ellipse cx="75" cy="68" rx="2.8" ry="24" fill="var(--dg)" opacity=".88"/>
+      <line x1="75" y1="60" x2="75" y2="90" stroke="rgba(245,245,245,.1)" stroke-width=".5" stroke-dasharray="2 3"/>
+      <ellipse cx="75" cy="52" rx="4.2" ry="6" fill="var(--dg)"/>
+      <circle cx="75" cy="44" r="4.8" fill="var(--dg)"/>
+      <circle cx="73" cy="43" r="1.4" fill="rgba(245,245,245,.2)"/>
+      <path d="M75 40 Q68 28 62 16 Q60 10 60 7" stroke="var(--dg)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <circle cx="60" cy="6" r="3.2" fill="var(--dg)"/>
+      <circle cx="60" cy="6" r="1.2" fill="rgba(181,161,158,.3)"/>
+      <path d="M75 40 Q82 28 88 16 Q90 10 90 7" stroke="var(--dg)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <circle cx="90" cy="6" r="3.2" fill="var(--dg)"/>
+      <circle cx="90" cy="6" r="1.2" fill="rgba(181,161,158,.3)"/>
+    </svg>
+  </div>
+  <div class="lbl">Sanfter Dauerflap<br>Dark Morpho</div>
+</div>
+
+<!-- BF C: Moth — wider wings, feathery antennae, boho style -->
+<div class="c" style="background:var(--dg)">
+  <div class="bf-wrap-anim" style="--speed:3s;cursor:none">
+    <svg width="140" height="120" viewBox="0 0 140 120" overflow="visible">
+      <!-- Moths have broader, more symmetrical wings -->
+      <g class="bf-wL">
+        <path d="M68 58 C56 46 30 22 12 24 C0 26 0 44 10 56 C20 66 46 70 68 66Z"
+          fill="rgba(212,185,181,.15)" stroke="rgba(212,185,181,.6)" stroke-width="1.4"/>
+        <path d="M68 66 C48 76 24 84 14 78 C6 73 12 60 30 58 C46 56 62 62 68 66Z"
+          fill="rgba(181,161,158,.1)" stroke="rgba(181,161,158,.5)" stroke-width="1.1"/>
+        <!-- Moon phases on wings (boho moth) -->
+        <circle cx="30" cy="36" r="10" fill="none" stroke="rgba(245,245,245,.18)" stroke-width="1"/>
+        <circle cx="35" cy="36" r="8" fill="rgba(49,74,81,.6)" stroke="none"/>
+        <!-- Stars on wing -->
+        <path d="M18 52 L19 49 L20 52 L23 52 L21 54 L22 57 L19 55 L16 57 L17 54 L15 52Z" fill="rgba(245,245,245,.2)" stroke="none"/>
+        <circle cx="50" cy="64" r="3" fill="none" stroke="rgba(245,245,245,.2)" stroke-width=".7"/>
+      </g>
+      <g class="bf-wR">
+        <path d="M72 58 C84 46 110 22 128 24 C140 26 140 44 130 56 C120 66 94 70 72 66Z"
+          fill="rgba(212,185,181,.15)" stroke="rgba(212,185,181,.6)" stroke-width="1.4"/>
+        <path d="M72 66 C92 76 116 84 126 78 C134 73 128 60 110 58 C94 56 78 62 72 66Z"
+          fill="rgba(181,161,158,.1)" stroke="rgba(181,161,158,.5)" stroke-width="1.1"/>
+        <circle cx="110" cy="36" r="10" fill="none" stroke="rgba(245,245,245,.18)" stroke-width="1"/>
+        <circle cx="105" cy="36" r="8" fill="rgba(49,74,81,.6)" stroke="none"/>
+        <path d="M122 52 L123 49 L124 52 L127 52 L125 54 L126 57 L123 55 L120 57 L121 54 L119 52Z" fill="rgba(245,245,245,.2)"/>
+        <circle cx="90" cy="64" r="3" fill="none" stroke="rgba(245,245,245,.2)" stroke-width=".7"/>
+      </g>
+      <ellipse cx="70" cy="63" rx="3" ry="20" fill="rgba(245,245,245,.7)"/>
+      <ellipse cx="70" cy="48" rx="4.5" ry="5.5" fill="rgba(245,245,245,.8)"/>
+      <circle cx="70" cy="42" r="5" fill="rgba(245,245,245,.8)"/>
+      <!-- Feathery antennae (moth style — broader) -->
+      <path d="M70 38 Q62 28 54 18" stroke="rgba(245,245,245,.5)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <!-- Feather lines off antenna -->
+      <path d="M66 32 Q62 30 60 28" stroke="rgba(245,245,245,.25)" stroke-width=".7" fill="none"/>
+      <path d="M62 26 Q58 24 56 22" stroke="rgba(245,245,245,.2)" stroke-width=".6" fill="none"/>
+      <path d="M70 38 Q78 28 86 18" stroke="rgba(245,245,245,.5)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <path d="M74 32 Q78 30 80 28" stroke="rgba(245,245,245,.25)" stroke-width=".7" fill="none"/>
+      <path d="M78 26 Q82 24 84 22" stroke="rgba(245,245,245,.2)" stroke-width=".6" fill="none"/>
+    </svg>
+  </div>
+  <div class="lbl" style="color:rgba(212,185,181,.5)">Boho Moth · auf Dunkel</div>
+</div>
+
+<!-- BF D: Small cute Blush, fast hover flap -->
+<div class="c">
+  <div class="bf-hover-only" style="cursor:none;animation:float 4s ease-in-out infinite">
+    <svg width="100" height="86" viewBox="0 0 100 86" overflow="visible">
+      <g class="bf-wL">
+        <path d="M47 43 C40 33 22 12 8 14 C0 16 0 28 6 38 C12 48 30 52 47 48Z"
+          fill="rgba(212,185,181,.3)" stroke="var(--blush)" stroke-width="1.3"/>
+        <path d="M47 48 C34 56 16 64 8 60 C2 56 8 46 20 44 C32 42 42 46 47 48Z"
+          fill="rgba(181,161,158,.22)" stroke="var(--mauve)" stroke-width="1.1"/>
+        <path d="M45 36 C34 28 20 20 12 22" stroke="rgba(181,161,158,.22)" stroke-width=".7" fill="none"/>
+        <circle cx="18" cy="22" r="5" fill="none" stroke="rgba(110,59,73,.25)" stroke-width=".9"/>
+        <circle cx="18" cy="22" r="2" fill="rgba(110,59,73,.22)"/>
+        <circle cx="16" cy="52" r="3" fill="none" stroke="rgba(181,161,158,.3)" stroke-width=".7"/>
+      </g>
+      <g class="bf-wR">
+        <path d="M53 43 C60 33 78 12 92 14 C100 16 100 28 94 38 C88 48 70 52 53 48Z"
+          fill="rgba(212,185,181,.3)" stroke="var(--blush)" stroke-width="1.3"/>
+        <path d="M53 48 C66 56 84 64 92 60 C98 56 92 46 80 44 C68 42 58 46 53 48Z"
+          fill="rgba(181,161,158,.22)" stroke="var(--mauve)" stroke-width="1.1"/>
+        <path d="M55 36 C66 28 80 20 88 22" stroke="rgba(181,161,158,.22)" stroke-width=".7" fill="none"/>
+        <circle cx="82" cy="22" r="5" fill="none" stroke="rgba(110,59,73,.25)" stroke-width=".9"/>
+        <circle cx="82" cy="22" r="2" fill="rgba(110,59,73,.22)"/>
+        <circle cx="84" cy="52" r="3" fill="none" stroke="rgba(181,161,158,.3)" stroke-width=".7"/>
+      </g>
+      <ellipse cx="50" cy="47" rx="2.4" ry="16" fill="var(--burg)" opacity=".75"/>
+      <ellipse cx="50" cy="34" rx="3.5" ry="4.5" fill="var(--burg)" opacity=".8"/>
+      <circle cx="50" cy="29" r="3.8" fill="var(--burg)" opacity=".85"/>
+      <path d="M50 26 Q46 18 42 12" stroke="var(--burg)" stroke-width=".9" fill="none" stroke-linecap="round" opacity=".75"/>
+      <circle cx="41" cy="11" r="2.2" fill="var(--burg)" opacity=".75"/>
+      <path d="M50 26 Q54 18 58 12" stroke="var(--burg)" stroke-width=".9" fill="none" stroke-linecap="round" opacity=".75"/>
+      <circle cx="59" cy="11" r="2.2" fill="var(--burg)" opacity=".75"/>
+    </svg>
+  </div>
+  <div class="lbl">Klein & süss · Hover<br>Blush Pastell</div>
+</div>
+
+<!-- BF E: Open wings resting, top-down view -->
+<div class="c">
+  <div class="bf-hover-only" style="cursor:none">
+    <svg width="130" height="105" viewBox="0 0 130 105" overflow="visible">
+      <!-- Open/resting position — slightly more open, 3D sense -->
+      <g class="bf-wL" style="transform:perspective(600px) rotateY(-15deg)">
+        <path d="M62 54 C52 40 26 10 8 14 C-4 18 -2 38 8 52 C18 64 44 70 62 64Z"
+          fill="rgba(110,59,73,.16)" stroke="var(--burg)" stroke-width="1.5"/>
+        <path d="M62 64 C44 76 18 88 8 82 C0 77 6 62 24 60 C40 58 56 62 62 64Z"
+          fill="rgba(181,161,158,.2)" stroke="var(--mauve)" stroke-width="1.2"/>
+        <path d="M60 46 C46 36 26 22 12 22" stroke="rgba(110,59,73,.15)" stroke-width=".7" fill="none"/>
+        <path d="M61 54 C48 50 28 46 12 48" stroke="rgba(110,59,73,.12)" stroke-width=".6" fill="none"/>
+        <circle cx="20" cy="28" r="8" fill="none" stroke="rgba(110,59,73,.22)" stroke-width="1"/>
+        <circle cx="20" cy="28" r="4" fill="none" stroke="rgba(110,59,73,.28)" stroke-width=".8"/>
+        <circle cx="20" cy="28" r="1.8" fill="rgba(110,59,73,.35)"/>
+        <circle cx="20" cy="28" r=".7" fill="rgba(245,245,245,.3)"/>
+        <circle cx="22" cy="72" r="5" fill="none" stroke="rgba(181,161,158,.3)" stroke-width=".9"/>
+        <circle cx="22" cy="72" r="2" fill="rgba(181,161,158,.25)"/>
+      </g>
+      <g class="bf-wR" style="transform:perspective(600px) rotateY(15deg)">
+        <path d="M68 54 C78 40 104 10 122 14 C134 18 132 38 122 52 C112 64 86 70 68 64Z"
+          fill="rgba(110,59,73,.16)" stroke="var(--burg)" stroke-width="1.5"/>
+        <path d="M68 64 C86 76 112 88 122 82 C130 77 124 62 106 60 C90 58 74 62 68 64Z"
+          fill="rgba(181,161,158,.2)" stroke="var(--mauve)" stroke-width="1.2"/>
+        <path d="M70 46 C84 36 104 22 118 22" stroke="rgba(110,59,73,.15)" stroke-width=".7" fill="none"/>
+        <path d="M69 54 C82 50 102 46 118 48" stroke="rgba(110,59,73,.12)" stroke-width=".6" fill="none"/>
+        <circle cx="110" cy="28" r="8" fill="none" stroke="rgba(110,59,73,.22)" stroke-width="1"/>
+        <circle cx="110" cy="28" r="4" fill="none" stroke="rgba(110,59,73,.28)" stroke-width=".8"/>
+        <circle cx="110" cy="28" r="1.8" fill="rgba(110,59,73,.35)"/>
+        <circle cx="110" cy="28" r=".7" fill="rgba(245,245,245,.3)"/>
+        <circle cx="108" cy="72" r="5" fill="none" stroke="rgba(181,161,158,.3)" stroke-width=".9"/>
+        <circle cx="108" cy="72" r="2" fill="rgba(181,161,158,.25)"/>
+      </g>
+      <ellipse cx="65" cy="60" rx="2.8" ry="20" fill="var(--dg)" opacity=".85"/>
+      <ellipse cx="65" cy="46" rx="4" ry="5.5" fill="var(--dg)"/>
+      <circle cx="65" cy="40" r="4.6" fill="var(--dg)"/>
+      <circle cx="63.5" cy="39" r="1.3" fill="rgba(245,245,245,.22)"/>
+      <path d="M65 36 Q59 25 53 14 Q51 9 51 6" stroke="var(--dg)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+      <circle cx="51" cy="5" r="3" fill="var(--dg)"/>
+      <circle cx="51" cy="5" r="1.1" fill="rgba(212,185,181,.4)"/>
+      <path d="M65 36 Q71 25 77 14 Q79 9 79 6" stroke="var(--dg)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+      <circle cx="79" cy="5" r="3" fill="var(--dg)"/>
+      <circle cx="79" cy="5" r="1.1" fill="rgba(212,185,181,.4)"/>
+    </svg>
+  </div>
+  <div class="lbl">Ruhend 3D · Hover flattern<br>Burg + Mauve</div>
+</div>
+
+<!-- BF F: Tiny pair — two small butterflies -->
+<div class="c">
+  <div style="cursor:none;position:relative;width:110px;height:100px">
+    <!-- First butterfly, upper left -->
+    <div class="bf-wrap-anim" style="--speed:1.9s;position:absolute;top:0;left:0;animation:float 4s ease-in-out infinite">
+      <svg width="70" height="58" viewBox="0 0 100 86" overflow="visible">
+        <g class="bf-wL">
+          <path d="M47 43 C40 33 22 12 8 14 C0 16 0 28 6 38 C12 48 30 52 47 48Z" fill="rgba(212,185,181,.28)" stroke="var(--blush)" stroke-width="1.4"/>
+          <path d="M47 48 C34 56 16 64 8 60 C2 56 8 46 20 44 C32 42 42 46 47 48Z" fill="rgba(181,161,158,.2)" stroke="var(--mauve)" stroke-width="1.1"/>
+          <circle cx="18" cy="22" r="4.5" fill="none" stroke="rgba(110,59,73,.22)" stroke-width=".8"/>
+          <circle cx="18" cy="22" r="1.8" fill="rgba(110,59,73,.2)"/>
+        </g>
+        <g class="bf-wR">
+          <path d="M53 43 C60 33 78 12 92 14 C100 16 100 28 94 38 C88 48 70 52 53 48Z" fill="rgba(212,185,181,.28)" stroke="var(--blush)" stroke-width="1.4"/>
+          <path d="M53 48 C66 56 84 64 92 60 C98 56 92 46 80 44 C68 42 58 46 53 48Z" fill="rgba(181,161,158,.2)" stroke="var(--mauve)" stroke-width="1.1"/>
+          <circle cx="82" cy="22" r="4.5" fill="none" stroke="rgba(110,59,73,.22)" stroke-width=".8"/>
+          <circle cx="82" cy="22" r="1.8" fill="rgba(110,59,73,.2)"/>
+        </g>
+        <ellipse cx="50" cy="47" rx="2.2" ry="15" fill="var(--burg)" opacity=".72"/>
+        <circle cx="50" cy="30" r="3.5" fill="var(--burg)" opacity=".78"/>
+        <path d="M50 27 Q46 19 43 13" stroke="var(--burg)" stroke-width=".8" fill="none" stroke-linecap="round" opacity=".7"/>
+        <circle cx="42" cy="12" r="2" fill="var(--burg)" opacity=".7"/>
+        <path d="M50 27 Q54 19 57 13" stroke="var(--burg)" stroke-width=".8" fill="none" stroke-linecap="round" opacity=".7"/>
+        <circle cx="58" cy="12" r="2" fill="var(--burg)" opacity=".7"/>
+      </svg>
+    </div>
+    <!-- Second butterfly, lower right, slight delay -->
+    <div class="bf-wrap-anim" style="--speed:2.4s;position:absolute;bottom:0;right:0;animation:float 4s ease-in-out .8s infinite">
+      <svg width="58" height="48" viewBox="0 0 100 86" overflow="visible">
+        <g class="bf-wL">
+          <path d="M47 43 C40 33 22 12 8 14 C0 16 0 28 6 38 C12 48 30 52 47 48Z" fill="rgba(49,74,81,.18)" stroke="var(--dg)" stroke-width="1.4"/>
+          <path d="M47 48 C34 56 16 64 8 60 C2 56 8 46 20 44 C32 42 42 46 47 48Z" fill="rgba(86,104,106,.14)" stroke="var(--mint)" stroke-width="1.1"/>
+        </g>
+        <g class="bf-wR">
+          <path d="M53 43 C60 33 78 12 92 14 C100 16 100 28 94 38 C88 48 70 52 53 48Z" fill="rgba(49,74,81,.18)" stroke="var(--dg)" stroke-width="1.4"/>
+          <path d="M53 48 C66 56 84 64 92 60 C98 56 92 46 80 44 C68 42 58 46 53 48Z" fill="rgba(86,104,106,.14)" stroke="var(--mint)" stroke-width="1.1"/>
+        </g>
+        <ellipse cx="50" cy="47" rx="2" ry="15" fill="var(--dg)" opacity=".8"/>
+        <circle cx="50" cy="30" r="3.5" fill="var(--dg)" opacity=".85"/>
+        <path d="M50 27 Q46 19 43 13" stroke="var(--dg)" stroke-width=".8" fill="none" stroke-linecap="round"/>
+        <circle cx="42" cy="12" r="2" fill="var(--dg)"/>
+        <path d="M50 27 Q54 19 57 13" stroke="var(--dg)" stroke-width=".8" fill="none" stroke-linecap="round"/>
+        <circle cx="58" cy="12" r="2" fill="var(--dg)"/>
+      </svg>
+    </div>
+  </div>
+  <div class="lbl">Zwei Schmetterlinge<br>gestaffelt</div>
+</div>
+
+</div><!-- /grid -->
+</section>
+
+<!-- ══════════════════════════════════
+     ② BOHO SHAPES
+══════════════════════════════════ -->
+<section id="s2" class="sec">
+  <h2 class="sh">Boho Shapes</h2>
+  <div class="gl"></div>
+  <p class="ss">Arches · Rainbows · Orbits · Abstrakt geometrisch</p>
+<div class="g">
+
+<div class="c"><svg width="60" height="54" viewBox="0 0 60 54" fill="none">
+  <path d="M4 50 Q4 4 30 4 Q56 4 56 50" stroke="var(--mauve)" stroke-width="1.2" fill="none" class="boho-arch"/>
+  <path d="M10 50 Q10 12 30 12 Q50 12 50 50" stroke="rgba(181,161,158,.6)" stroke-width=".9" fill="none"/>
+  <path d="M16 50 Q16 20 30 20 Q44 20 44 50" stroke="rgba(181,161,158,.4)" stroke-width=".7" fill="none"/>
+  <path d="M22 50 Q22 28 30 28 Q38 28 38 50" stroke="rgba(181,161,158,.25)" stroke-width=".6" fill="none"/>
+</svg><div class="lbl">Rainbow Arch</div></div>
+
+<div class="c"><svg width="52" height="68" viewBox="0 0 52 68" fill="none">
+  <ellipse cx="26" cy="36" rx="22" ry="30" fill="none" stroke="var(--mauve)" stroke-width="1.2"/>
+  <ellipse cx="26" cy="36" rx="16" ry="24" fill="none" stroke="rgba(181,161,158,.5)" stroke-width=".8" stroke-dasharray="3 4"/>
+  <circle cx="26" cy="36" r="2" fill="var(--burg)" opacity=".4"/>
+  <circle cx="26" cy="8" r="1.5" fill="var(--mauve)" opacity=".6"/>
+</svg><div class="lbl">Oval Frame</div></div>
+
+<div class="c"><svg width="64" height="56" viewBox="0 0 64 56" fill="none">
+  <path d="M4 52 L4 32 Q4 4 32 4 Q60 4 60 32 L60 52" stroke="var(--mauve)" stroke-width="1.2" fill="none"/>
+  <path d="M10 52 L10 34 Q10 12 32 12 Q54 12 54 34 L54 52" stroke="rgba(181,161,158,.5)" stroke-width=".8" fill="none"/>
+</svg><div class="lbl">Portal Arch</div></div>
+
+<div class="c"><div class="rot-hover" style="width:54px;height:54px;display:flex;align-items:center;justify-content:center">
+<svg width="54" height="54" viewBox="0 0 54 54" fill="none">
+  <ellipse cx="27" cy="27" rx="24" ry="10" fill="none" stroke="var(--mauve)" stroke-width="1"/>
+  <ellipse cx="27" cy="27" rx="24" ry="10" fill="none" stroke="rgba(181,161,158,.5)" stroke-width=".8" transform="rotate(60 27 27)"/>
+  <ellipse cx="27" cy="27" rx="24" ry="10" fill="none" stroke="rgba(181,161,158,.3)" stroke-width=".7" transform="rotate(120 27 27)"/>
+  <circle cx="27" cy="27" r="3" fill="none" stroke="var(--burg)" stroke-width=".9"/>
+</svg></div><div class="lbl">Orbit Sphere<br>hover → rotiert</div></div>
+
+<div class="c"><svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+  <path d="M28 4 C28 4 50 28 28 52 C6 28 28 4 28 4Z" fill="none" stroke="var(--mauve)" stroke-width="1.1"/>
+  <path d="M4 28 C4 28 28 50 52 28 C28 6 4 28 4 28Z" fill="none" stroke="rgba(181,161,158,.5)" stroke-width=".9"/>
+  <circle cx="28" cy="28" r="4" fill="none" stroke="var(--burg)" stroke-width=".8"/>
+  <circle cx="28" cy="28" r="1.5" fill="var(--burg)" opacity=".5"/>
+</svg><div class="lbl">Vesica / Mandorla</div></div>
+
+<div class="c"><svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+  <!-- Spirograph-style -->
+  <path d="M30 8 Q46 10 52 24 Q58 38 48 50 Q38 62 22 56 Q6 50 6 34 Q6 18 20 10 Q26 7 30 8Z" fill="none" stroke="var(--mauve)" stroke-width="1"/>
+  <path d="M30 14 Q42 16 47 28 Q52 40 43 49 Q34 58 20 53 Q8 48 10 35 Q12 22 24 16 Q27 14 30 14Z" fill="none" stroke="rgba(181,161,158,.4)" stroke-width=".7"/>
+  <circle cx="30" cy="30" r="4" fill="none" stroke="var(--burg)" stroke-width=".8"/>
+</svg><div class="lbl">Organic Loop</div></div>
+
+<div class="c"><svg width="64" height="28" viewBox="0 0 64 28" fill="none">
+  <!-- Wave lines -->
+  <path d="M0 8 Q8 2 16 8 Q24 14 32 8 Q40 2 48 8 Q56 14 64 8" stroke="var(--mauve)" stroke-width="1.1" fill="none"/>
+  <path d="M0 16 Q8 10 16 16 Q24 22 32 16 Q40 10 48 16 Q56 22 64 16" stroke="rgba(181,161,158,.5)" stroke-width=".8" fill="none"/>
+  <path d="M0 24 Q8 18 16 24 Q24 30 32 24 Q40 18 48 24 Q56 30 64 24" stroke="rgba(181,161,158,.25)" stroke-width=".6" fill="none"/>
+</svg><div class="lbl">Triple Wave</div></div>
+
+<div class="c"><svg width="58" height="58" viewBox="0 0 58 58" fill="none" style="animation:rotCW 25s linear infinite">
+  <path d="M29 2 L32 20 L46 8 L36 22 L55 22 L38 29 L55 36 L36 36 L46 50 L32 38 L29 56 L26 38 L12 50 L22 36 L3 36 L20 29 L3 22 L22 22 L12 8 L26 20Z" fill="none" stroke="rgba(181,161,158,.45)" stroke-width="1" stroke-linejoin="round"/>
+  <circle cx="29" cy="29" r="4" fill="none" stroke="var(--burg)" stroke-width=".8"/>
+</svg><div class="lbl">Starburst rotiert</div></div>
+
+<div class="c"><svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+  <!-- Spiraling inward -->
+  <path d="M28 4 Q52 4 52 28 Q52 52 28 52 Q4 52 4 28 Q4 10 20 6 Q36 2 44 14 Q52 26 40 38 Q28 50 16 42 Q4 34 12 22 Q20 10 32 14 Q44 18 44 28" stroke="var(--mauve)" stroke-width="1" fill="none"/>
+</svg><div class="lbl">Spiral Shell</div></div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════════════
+     ③ FLORALS & BOTANIK
+══════════════════════════════════ -->
+<section id="s3" class="sec">
+  <h2 class="sh">Florals & Botanik</h2>
+  <div class="gl"></div>
+  <p class="ss">Line Art · Tulpen · Pfingstrosen · Sprigs · botanische Details</p>
+<div class="g">
+
+<div class="c"><svg width="44" height="80" viewBox="0 0 44 80" fill="none" class="float-hover">
+  <!-- Peony -->
+  <line x1="22" y1="80" x2="22" y2="50" stroke="var(--mauve)" stroke-width="1"/>
+  <path d="M22 50 Q16 45 14 36 Q18 38 22 44 Q26 38 30 36 Q28 45 22 50Z" fill="none" stroke="var(--burg)" stroke-width="1.1"/>
+  <path d="M22 44 Q14 38 12 28 Q18 32 22 38 Q26 32 32 28 Q30 38 22 44Z" fill="none" stroke="var(--burg)" stroke-width="1"/>
+  <path d="M22 38 Q13 30 12 18 Q18 24 22 30 Q26 24 32 18 Q31 30 22 38Z" fill="none" stroke="rgba(110,59,73,.6)" stroke-width=".9"/>
+  <ellipse cx="22" cy="16" rx="6" ry="8" fill="none" stroke="var(--mauve)" stroke-width=".8"/>
+  <ellipse cx="22" cy="14" rx="4" ry="5" fill="none" stroke="rgba(181,161,158,.5)" stroke-width=".7"/>
+  <!-- Leaves -->
+  <path d="M22 60 Q12 56 10 48" fill="none" stroke="var(--mint)" stroke-width=".9"/>
+  <path d="M22 60 Q32 56 34 48" fill="none" stroke="var(--mint)" stroke-width=".9"/>
+</svg><div class="lbl">Pfingstrose</div></div>
+
+<div class="c"><svg width="50" height="86" viewBox="0 0 50 86" fill="none" class="float-hover">
+  <!-- Tulip botanical -->
+  <line x1="25" y1="86" x2="25" y2="56" stroke="var(--mauve)" stroke-width="1.1"/>
+  <path d="M25 56 C16 50 10 38 14 28 C18 18 24 14 25 14 C26 14 32 18 36 28 C40 38 34 50 25 56Z" fill="none" stroke="var(--burg)" stroke-width="1.3"/>
+  <!-- Petal lines inside tulip -->
+  <path d="M25 52 C19 44 16 34 18 26" stroke="rgba(110,59,73,.2)" stroke-width=".7" fill="none"/>
+  <path d="M25 52 C31 44 34 34 32 26" stroke="rgba(110,59,73,.2)" stroke-width=".7" fill="none"/>
+  <!-- Leaves -->
+  <path d="M25 70 Q12 66 8 55 Q16 56 25 64Z" fill="none" stroke="var(--mint)" stroke-width=".9"/>
+  <path d="M25 64 Q38 60 42 48 Q34 52 25 60Z" fill="none" stroke="var(--mint)" stroke-width=".9"/>
+</svg><div class="lbl">Tulpe</div></div>
+
+<div class="c"><svg width="60" height="90" viewBox="0 0 60 90" fill="none" class="float-hover">
+  <!-- Lily -->
+  <line x1="30" y1="90" x2="30" y2="60" stroke="var(--mauve)" stroke-width="1.1"/>
+  <path d="M30 60 Q18 48 12 35 Q20 38 28 50 Q30 55 30 60Z" fill="none" stroke="var(--burg)" stroke-width="1.2"/>
+  <path d="M30 60 Q42 48 48 35 Q40 38 32 50 Q30 55 30 60Z" fill="none" stroke="var(--burg)" stroke-width="1.2"/>
+  <path d="M30 60 Q14 54 10 40 Q20 44 28 54Z" fill="none" stroke="rgba(110,59,73,.5)" stroke-width="1"/>
+  <path d="M30 60 Q46 54 50 40 Q40 44 32 54Z" fill="none" stroke="rgba(110,59,73,.5)" stroke-width="1"/>
+  <path d="M30 55 Q24 44 24 34 Q28 38 30 48Z" fill="none" stroke="rgba(181,161,158,.4)" stroke-width=".8"/>
+  <path d="M30 55 Q36 44 36 34 Q32 38 30 48Z" fill="none" stroke="rgba(181,161,158,.4)" stroke-width=".8"/>
+  <circle cx="30" cy="30" r="3" fill="var(--burg)" opacity=".3"/>
+  <!-- stamens -->
+  <line x1="30" y1="30" x2="26" y2="22" stroke="rgba(181,161,158,.5)" stroke-width=".7"/>
+  <circle cx="26" cy="21" r="1.5" fill="rgba(181,161,158,.5)"/>
+  <line x1="30" y1="30" x2="34" y2="22" stroke="rgba(181,161,158,.5)" stroke-width=".7"/>
+  <circle cx="34" cy="21" r="1.5" fill="rgba(181,161,158,.5)"/>
+  <!-- leaves -->
+  <path d="M30 75 Q18 72 14 62" stroke="var(--mint)" stroke-width=".9" fill="none"/>
+  <path d="M30 68 Q42 65 46 55" stroke="var(--mint)" stroke-width=".9" fill="none"/>
+</svg><div class="lbl">Lilie</div></div>
+
+<div class="c"><svg width="70" height="90" viewBox="0 0 70 90" fill="none" class="float-hover">
+  <!-- Botanical sprig with multiple flowers -->
+  <path d="M35 90 Q32 70 30 50 Q28 30 32 12" stroke="var(--mauve)" stroke-width="1.1" fill="none"/>
+  <!-- Berries/buds -->
+  <circle cx="32" cy="12" r="4" fill="none" stroke="var(--burg)" stroke-width="1"/>
+  <circle cx="24" cy="22" r="3" fill="none" stroke="rgba(110,59,73,.5)" stroke-width=".9"/>
+  <path d="M30 22 L24 22" stroke="var(--mauve)" stroke-width=".7"/>
+  <circle cx="42" cy="30" r="2.5" fill="none" stroke="rgba(110,59,73,.4)" stroke-width=".8"/>
+  <path d="M32 30 L42 30" stroke="var(--mauve)" stroke-width=".7"/>
+  <!-- leaves alternate -->
+  <path d="M30 42 Q18 38 16 28 Q22 32 30 40Z" fill="none" stroke="var(--mint)" stroke-width=".9"/>
+  <path d="M31 52 Q44 48 46 38 Q40 42 31 50Z" fill="none" stroke="var(--mint)" stroke-width=".9"/>
+  <path d="M30 64 Q18 60 16 50 Q22 54 30 62Z" fill="none" stroke="rgba(86,104,106,.6)" stroke-width=".8"/>
+  <path d="M31 74 Q44 70 46 60 Q40 64 31 72Z" fill="none" stroke="rgba(86,104,106,.6)" stroke-width=".8"/>
+</svg><div class="lbl">Botanischer Sprig</div></div>
+
+<div class="c"><svg width="68" height="68" viewBox="0 0 68 68" fill="none">
+  <!-- Wreath circle -->
+  <circle cx="34" cy="34" r="28" fill="none" stroke="rgba(181,161,158,.2)" stroke-width=".6"/>
+  <!-- Leaves around circle -->
+  <path d="M34 6 Q30 12 34 18 Q38 12 34 6Z" fill="none" stroke="var(--mint)" stroke-width=".9"/>
+  <path d="M34 6 Q30 12 34 18 Q38 12 34 6Z" fill="none" stroke="var(--mint)" stroke-width=".9" transform="rotate(45 34 34)"/>
+  <path d="M34 6 Q30 12 34 18 Q38 12 34 6Z" fill="none" stroke="var(--mint)" stroke-width=".9" transform="rotate(90 34 34)"/>
+  <path d="M34 6 Q30 12 34 18 Q38 12 34 6Z" fill="none" stroke="var(--mint)" stroke-width=".9" transform="rotate(135 34 34)"/>
+  <path d="M34 6 Q30 12 34 18 Q38 12 34 6Z" fill="none" stroke="var(--mint)" stroke-width=".9" transform="rotate(180 34 34)"/>
+  <path d="M34 6 Q30 12 34 18 Q38 12 34 6Z" fill="none" stroke="var(--mint)" stroke-width=".9" transform="rotate(225 34 34)"/>
+  <path d="M34 6 Q30 12 34 18 Q38 12 34 6Z" fill="none" stroke="var(--mint)" stroke-width=".9" transform="rotate(270 34 34)"/>
+  <path d="M34 6 Q30 12 34 18 Q38 12 34 6Z" fill="none" stroke="var(--mint)" stroke-width=".9" transform="rotate(315 34 34)"/>
+  <!-- Center bloom -->
+  <circle cx="34" cy="34" r="8" fill="none" stroke="var(--burg)" stroke-width=".9"/>
+  <circle cx="34" cy="34" r="4" fill="none" stroke="rgba(110,59,73,.4)" stroke-width=".7"/>
+  <circle cx="34" cy="34" r="1.5" fill="var(--burg)" opacity=".4"/>
+</svg><div class="lbl">Blätterkranz</div></div>
+
+<div class="c"><svg width="56" height="80" viewBox="0 0 56 80" fill="none" class="float-hover">
+  <!-- Wildflower -->
+  <line x1="28" y1="80" x2="28" y2="44" stroke="var(--mauve)" stroke-width="1"/>
+  <!-- Petals -->
+  <ellipse cx="28" cy="26" rx="5" ry="14" fill="none" stroke="var(--blush)" stroke-width="1.1" transform="rotate(0 28 26)"/>
+  <ellipse cx="28" cy="26" rx="5" ry="14" fill="none" stroke="var(--blush)" stroke-width="1.1" transform="rotate(45 28 26)"/>
+  <ellipse cx="28" cy="26" rx="5" ry="14" fill="none" stroke="var(--blush)" stroke-width="1.1" transform="rotate(90 28 26)"/>
+  <ellipse cx="28" cy="26" rx="5" ry="14" fill="none" stroke="var(--blush)" stroke-width="1.1" transform="rotate(135 28 26)"/>
+  <circle cx="28" cy="26" r="6" fill="none" stroke="var(--burg)" stroke-width="1"/>
+  <circle cx="28" cy="26" r="3" fill="var(--burg)" opacity=".3"/>
+  <!-- leaves -->
+  <path d="M28 58 Q18 54 16 45" stroke="var(--mint)" stroke-width=".9" fill="none"/>
+  <path d="M28 66 Q38 62 40 53" stroke="var(--mint)" stroke-width=".9" fill="none"/>
+</svg><div class="lbl">Wildblume</div></div>
+
+<div class="c"><svg width="80" height="56" viewBox="0 0 80 56" fill="none">
+  <!-- Horizontal branch -->
+  <path d="M4 36 Q20 28 40 30 Q60 32 76 24" stroke="var(--mauve)" stroke-width="1.1" fill="none"/>
+  <!-- Leaves -->
+  <path d="M16 32 Q12 22 18 16 Q20 24 16 32Z" fill="none" stroke="var(--mint)" stroke-width=".9"/>
+  <path d="M28 30 Q30 18 36 14 Q34 22 28 30Z" fill="none" stroke="var(--mint)" stroke-width=".9"/>
+  <path d="M44 30 Q40 20 44 14 Q46 22 44 30Z" fill="none" stroke="rgba(86,104,106,.6)" stroke-width=".8"/>
+  <path d="M58 26 Q58 14 64 10 Q62 18 58 26Z" fill="none" stroke="rgba(86,104,106,.6)" stroke-width=".8"/>
+  <!-- Berries -->
+  <circle cx="22" cy="44" r="3" fill="none" stroke="var(--burg)" stroke-width=".9"/>
+  <path d="M22 44 L22 36" stroke="var(--mauve)" stroke-width=".7"/>
+  <circle cx="50" cy="42" r="2.5" fill="none" stroke="rgba(110,59,73,.5)" stroke-width=".8"/>
+  <path d="M50 42 L52 34" stroke="var(--mauve)" stroke-width=".7"/>
+</svg><div class="lbl">Horizontalzweig</div></div>
+
+<div class="c"><svg width="52" height="52" viewBox="0 0 52 52" fill="none" style="animation:rotCW 30s linear infinite">
+  <!-- 6-petal chrysanthemum detailed -->
+  <ellipse cx="26" cy="26" rx="5" ry="18" fill="none" stroke="rgba(181,161,158,.6)" stroke-width="1.1" transform="rotate(0 26 26)"/>
+  <ellipse cx="26" cy="26" rx="5" ry="18" fill="none" stroke="rgba(181,161,158,.6)" stroke-width="1.1" transform="rotate(30 26 26)"/>
+  <ellipse cx="26" cy="26" rx="5" ry="18" fill="none" stroke="rgba(181,161,158,.6)" stroke-width="1.1" transform="rotate(60 26 26)"/>
+  <ellipse cx="26" cy="26" rx="5" ry="18" fill="none" stroke="rgba(181,161,158,.6)" stroke-width="1.1" transform="rotate(90 26 26)"/>
+  <ellipse cx="26" cy="26" rx="5" ry="18" fill="none" stroke="rgba(181,161,158,.6)" stroke-width="1.1" transform="rotate(120 26 26)"/>
+  <ellipse cx="26" cy="26" rx="5" ry="18" fill="none" stroke="rgba(181,161,158,.6)" stroke-width="1.1" transform="rotate(150 26 26)"/>
+  <circle cx="26" cy="26" r="5" fill="none" stroke="var(--burg)" stroke-width=".9"/>
+  <circle cx="26" cy="26" r="2" fill="var(--burg)" opacity=".45"/>
+</svg><div class="lbl">Chrysantheme rotiert</div></div>
+
+<div class="c"><svg width="66" height="82" viewBox="0 0 66 82" fill="none" class="float-hover">
+  <!-- Rose simplified but detailed -->
+  <line x1="33" y1="82" x2="33" y2="58" stroke="var(--mauve)" stroke-width="1.1"/>
+  <!-- Thorns -->
+  <path d="M33 72 L26 68" stroke="rgba(86,104,106,.5)" stroke-width=".8" fill="none"/>
+  <path d="M33 64 L40 60" stroke="rgba(86,104,106,.5)" stroke-width=".8" fill="none"/>
+  <!-- Rose head -->
+  <circle cx="33" cy="36" r="18" fill="none" stroke="rgba(181,161,158,.25)" stroke-width=".5"/>
+  <path d="M33 54 C20 50 14 40 16 30 C18 20 26 14 33 14 C40 14 48 20 50 30 C52 40 46 50 33 54Z" fill="none" stroke="var(--burg)" stroke-width="1.3"/>
+  <path d="M33 50 C22 46 18 38 20 30 C22 22 28 18 33 18 C38 18 44 22 46 30 C48 38 44 46 33 50Z" fill="none" stroke="rgba(110,59,73,.55)" stroke-width="1"/>
+  <path d="M33 44 C26 42 22 36 24 30 C26 24 30 20 33 20 C36 20 40 24 42 30 C44 36 40 42 33 44Z" fill="none" stroke="rgba(110,59,73,.35)" stroke-width=".9"/>
+  <ellipse cx="33" cy="28" rx="8" ry="10" fill="none" stroke="rgba(181,161,158,.4)" stroke-width=".7"/>
+  <path d="M33 24 C30 22 28 24 30 28 C32 32 33 34 33 34 C33 34 34 32 36 28 C38 24 36 22 33 24Z" fill="none" stroke="rgba(181,161,158,.5)" stroke-width=".7"/>
+  <!-- Leaves -->
+  <path d="M33 58 Q20 54 18 44 Q26 48 33 56Z" fill="none" stroke="var(--mint)" stroke-width="1"/>
+  <path d="M33 62 Q46 58 48 48 Q40 52 33 60Z" fill="none" stroke="var(--mint)" stroke-width="1"/>
+</svg><div class="lbl">Rose</div></div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════════════
+     ④ STARS & MOON
+══════════════════════════════════ -->
+<section id="s4" class="sec">
+  <h2 class="sh">Stars, Moon & Celestial</h2>
+  <div class="gl"></div>
+  <p class="ss">Funkeln · Mondphasen · Sonnenstrahlen · boho celestial</p>
+<div class="g">
+
+<div class="c">
+<!-- 4-point sparkle cluster -->
+<svg width="70" height="60" viewBox="0 0 70 60" fill="none">
+  <path d="M35 4 L37 18 L50 20 L37 22 L35 36 L33 22 L20 20 L33 18Z" fill="var(--mauve)" opacity=".8" class="spark" style="--dur:2.2s;--del:0s"/>
+  <path d="M14 12 L15 20 L22 21 L15 22 L14 30 L13 22 L6 21 L13 20Z" fill="rgba(181,161,158,.5)" class="spark" style="--dur:1.8s;--del:.4s"/>
+  <path d="M58 8 L59 14 L64 15 L59 16 L58 22 L57 16 L52 15 L57 14Z" fill="rgba(181,161,158,.4)" class="spark" style="--dur:2.5s;--del:.9s"/>
+  <circle cx="52" cy="42" r="2" fill="rgba(181,161,158,.4)" class="spark" style="--dur:1.6s;--del:.2s"/>
+  <circle cx="18" cy="46" r="1.5" fill="rgba(110,59,73,.3)" class="spark" style="--dur:2s;--del:.7s"/>
+  <circle cx="62" cy="52" r="1.2" fill="rgba(181,161,158,.3)" class="spark" style="--dur:1.4s;--del:1.1s"/>
+</svg>
+<div class="lbl">Sparkle Cluster</div></div>
+
+<div class="c">
+<!-- Crescent moon -->
+<svg width="56" height="56" viewBox="0 0 56 56" fill="none" style="animation:moonrise 4s ease-in-out infinite">
+  <circle cx="28" cy="28" r="22" fill="none" stroke="var(--mauve)" stroke-width="1.2"/>
+  <circle cx="36" cy="24" r="18" fill="var(--cream)" stroke="none"/>
+  <!-- Stars near moon -->
+  <path d="M10 14 L11 18 L14 19 L11 20 L10 24 L9 20 L6 19 L9 18Z" fill="rgba(181,161,158,.45)"/>
+  <circle cx="46" cy="44" r="1.5" fill="rgba(181,161,158,.4)"/>
+  <circle cx="8" cy="38" r="1.2" fill="rgba(181,161,158,.3)"/>
+</svg>
+<div class="lbl">Mondsichel schwebt</div></div>
+
+<div class="c">
+<!-- Moon phases row -->
+<svg width="90" height="24" viewBox="0 0 90 24" fill="none">
+  <circle cx="12" cy="12" r="9" fill="none" stroke="var(--mauve)" stroke-width="1"/>
+  <!-- Waxing crescent -->
+  <circle cx="36" cy="12" r="9" fill="none" stroke="var(--mauve)" stroke-width="1"/>
+  <circle cx="40" cy="12" r="8" fill="var(--cream)" stroke="none"/>
+  <!-- Quarter -->
+  <circle cx="60" cy="12" r="9" fill="none" stroke="var(--mauve)" stroke-width="1"/>
+  <rect x="60" y="3" width="9" height="18" fill="var(--cream)"/>
+  <!-- Full moon -->
+  <circle cx="84" cy="12" r="8" fill="none" stroke="rgba(181,161,158,.5)" stroke-width="1"/>
+  <circle cx="84" cy="12" r="6" fill="rgba(181,161,158,.12)"/>
+</svg>
+<div class="lbl">Mondphasen</div></div>
+
+<div class="c">
+<!-- Sunburst -->
+<svg width="58" height="58" viewBox="0 0 58 58" fill="none">
+  <circle cx="29" cy="29" r="8" fill="rgba(181,161,158,.2)" stroke="var(--mauve)" stroke-width="1"/>
+  <line x1="29" y1="4" x2="29" y2="18" stroke="var(--mauve)" stroke-width="1" stroke-linecap="round"/>
+  <line x1="29" y1="40" x2="29" y2="54" stroke="var(--mauve)" stroke-width="1" stroke-linecap="round"/>
+  <line x1="4" y1="29" x2="18" y2="29" stroke="var(--mauve)" stroke-width="1" stroke-linecap="round"/>
+  <line x1="40" y1="29" x2="54" y2="29" stroke="var(--mauve)" stroke-width="1" stroke-linecap="round"/>
+  <line x1="12" y1="12" x2="22" y2="22" stroke="rgba(181,161,158,.6)" stroke-width=".9" stroke-linecap="round"/>
+  <line x1="36" y1="36" x2="46" y2="46" stroke="rgba(181,161,158,.6)" stroke-width=".9" stroke-linecap="round"/>
+  <line x1="46" y1="12" x2="36" y2="22" stroke="rgba(181,161,158,.6)" stroke-width=".9" stroke-linecap="round"/>
+  <line x1="12" y1="46" x2="22" y2="36" stroke="rgba(181,161,158,.6)" stroke-width=".9" stroke-linecap="round"/>
+  <line x1="29" y1="4" x2="29" y2="18" stroke="rgba(181,161,158,.3)" stroke-width=".6" stroke-linecap="round" transform="rotate(22.5 29 29)"/>
+  <line x1="29" y1="4" x2="29" y2="18" stroke="rgba(181,161,158,.3)" stroke-width=".6" stroke-linecap="round" transform="rotate(67.5 29 29)"/>
+  <line x1="29" y1="4" x2="29" y2="18" stroke="rgba(181,161,158,.3)" stroke-width=".6" stroke-linecap="round" transform="rotate(112.5 29 29)"/>
+  <line x1="29" y1="4" x2="29" y2="18" stroke="rgba(181,161,158,.3)" stroke-width=".6" stroke-linecap="round" transform="rotate(157.5 29 29)"/>
+</svg>
+<div class="lbl">Sunburst</div></div>
+
+<div class="c">
+<!-- Diamond -->
+<svg width="44" height="52" viewBox="0 0 44 52" fill="none" class="pulse-hover">
+  <path d="M22 4 L40 20 L22 48 L4 20Z" fill="none" stroke="var(--mauve)" stroke-width="1.2"/>
+  <path d="M4 20 L22 4 L40 20" fill="none" stroke="rgba(181,161,158,.4)" stroke-width=".8"/>
+  <line x1="4" y1="20" x2="40" y2="20" stroke="rgba(181,161,158,.3)" stroke-width=".7"/>
+  <line x1="22" y1="4" x2="22" y2="48" stroke="rgba(181,161,158,.2)" stroke-width=".6"/>
+  <line x1="4" y1="20" x2="22" y2="48" stroke="rgba(181,161,158,.2)" stroke-width=".5"/>
+  <line x1="40" y1="20" x2="22" y2="48" stroke="rgba(181,161,158,.2)" stroke-width=".5"/>
+</svg>
+<div class="lbl">Diamant<br>hover → pulsiert</div></div>
+
+<div class="c">
+<!-- 6-point star sparkle big -->
+<svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+  <path d="M28 2 L30.5 22 L50 24 L30.5 26 L28 46 L25.5 26 L6 24 L25.5 22Z" fill="var(--burg)" opacity=".25" class="spark" style="--dur:3s;--del:0s"/>
+  <path d="M28 6 L30 22 L44 24 L30 26 L28 42 L26 26 L12 24 L26 22Z" fill="none" stroke="var(--mauve)" stroke-width="1"/>
+  <!-- smaller secondary sparkles -->
+  <path d="M50 8 L51 14 L56 15 L51 16 L50 22 L49 16 L44 15 L49 14Z" fill="rgba(181,161,158,.35)" class="spark" style="--dur:2s;--del:.5s"/>
+  <path d="M6 38 L7 42 L10 43 L7 44 L6 48 L5 44 L2 43 L5 42Z" fill="rgba(181,161,158,.3)" class="spark" style="--dur:1.8s;--del:1s"/>
+</svg>
+<div class="lbl">4-Point Star + Tiny</div></div>
+
+<div class="c">
+<!-- Eye of Providence boho -->
+<svg width="64" height="40" viewBox="0 0 64 40" fill="none">
+  <path d="M4 20 Q20 4 32 4 Q44 4 60 20 Q44 36 32 36 Q20 36 4 20Z" fill="none" stroke="var(--mauve)" stroke-width="1.1"/>
+  <!-- Lashes -->
+  <line x1="32" y1="4" x2="32" y2="0" stroke="rgba(181,161,158,.4)" stroke-width=".8"/>
+  <line x1="44" y1="7" x2="46" y2="3" stroke="rgba(181,161,158,.3)" stroke-width=".7"/>
+  <line x1="20" y1="7" x2="18" y2="3" stroke="rgba(181,161,158,.3)" stroke-width=".7"/>
+  <circle cx="32" cy="20" r="10" fill="none" stroke="var(--dg)" stroke-width="1" class="blink" style="transform-origin:32px 20px;animation:blink 5s ease-in-out infinite"/>
+  <circle cx="32" cy="20" r="6" fill="rgba(49,74,81,.15)"/>
+  <circle cx="32" cy="20" r="3" fill="var(--dg)" opacity=".5"/>
+  <circle cx="30" cy="18" r="1.2" fill="rgba(245,245,245,.3)"/>
+  <line x1="32" y1="36" x2="32" y2="40" stroke="rgba(181,161,158,.4)" stroke-width=".8"/>
+</svg>
+<div class="lbl">Boho Eye · blinzelt</div></div>
+
+<div class="c">
+<!-- Constellation -->
+<svg width="74" height="64" viewBox="0 0 74 64" fill="none">
+  <circle cx="20" cy="14" r="2.5" fill="var(--mauve)" opacity=".6"/>
+  <circle cx="42" cy="8" r="3" fill="var(--mauve)" opacity=".7"/>
+  <circle cx="58" cy="22" r="2" fill="rgba(181,161,158,.5)"/>
+  <circle cx="50" cy="40" r="2.5" fill="var(--mauve)" opacity=".6"/>
+  <circle cx="28" cy="50" r="2" fill="rgba(181,161,158,.45)"/>
+  <circle cx="10" cy="38" r="1.8" fill="rgba(181,161,158,.4)"/>
+  <circle cx="36" cy="28" r="1.5" fill="rgba(110,59,73,.35)"/>
+  <!-- Lines -->
+  <line x1="20" y1="14" x2="42" y2="8" stroke="rgba(181,161,158,.25)" stroke-width=".6" stroke-dasharray="2 3"/>
+  <line x1="42" y1="8" x2="58" y2="22" stroke="rgba(181,161,158,.25)" stroke-width=".6" stroke-dasharray="2 3"/>
+  <line x1="58" y1="22" x2="50" y2="40" stroke="rgba(181,161,158,.25)" stroke-width=".6" stroke-dasharray="2 3"/>
+  <line x1="50" y1="40" x2="28" y2="50" stroke="rgba(181,161,158,.25)" stroke-width=".6" stroke-dasharray="2 3"/>
+  <line x1="28" y1="50" x2="10" y2="38" stroke="rgba(181,161,158,.25)" stroke-width=".6" stroke-dasharray="2 3"/>
+  <line x1="10" y1="38" x2="20" y2="14" stroke="rgba(181,161,158,.25)" stroke-width=".6" stroke-dasharray="2 3"/>
+  <line x1="20" y1="14" x2="36" y2="28" stroke="rgba(181,161,158,.2)" stroke-width=".5" stroke-dasharray="2 3"/>
+</svg>
+<div class="lbl">Konstellation</div></div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════════════
+     ⑤ TEXT FILLERS
+══════════════════════════════════ -->
+<section id="s5" class="sec">
+  <h2 class="sh">Text Fillers</h2>
+  <div class="gl"></div>
+  <p class="ss">Vertikal · Circular · Marquee · Micro-Labels · Typografisch</p>
+<div class="g wide">
+
+<div class="c">
+<!-- Circular text SVG -->
+<svg width="100" height="100" viewBox="0 0 100 100" style="animation:rotCW 18s linear infinite">
+  <path id="circ1" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0" fill="none"/>
+  <text class="arc-text">
+    <textPath href="#circ1" startOffset="0%">Khadija Okbi · Design · Kreativität ·&nbsp;</textPath>
+  </text>
+</svg>
+<div class="lbl">Kreistext rotiert</div></div>
+
+<div class="c">
+<!-- Vertical italic -->
+<div style="height:80px;display:flex;align-items:center;justify-content:center">
+  <span class="vertical-text">Design · Kreativität · Stil</span>
+</div>
+<div class="lbl">Vertical Italic</div></div>
+
+<div class="c">
+<!-- Marquee -->
+<div style="height:60px;display:flex;align-items:center;overflow:hidden;width:100%;max-width:220px">
+  <div class="tf-marquee">
+    <div class="tf-inner">
+      <span class="tf-word">Design <span>✦</span></span>
+      <span class="tf-word">Animation <span>✦</span></span>
+      <span class="tf-word">Marketing <span>✦</span></span>
+      <span class="tf-word">Web <span>✦</span></span>
+      <span class="tf-word">Design <span>✦</span></span>
+      <span class="tf-word">Animation <span>✦</span></span>
+      <span class="tf-word">Marketing <span>✦</span></span>
+      <span class="tf-word">Web <span>✦</span></span>
+    </div>
+  </div>
+</div>
+<div class="lbl">Horizontal Marquee</div></div>
+
+<div class="c">
+<!-- Micro labels stack -->
+<div style="display:flex;flex-direction:column;gap:8px;align-items:center">
+  <div class="micro-label">Design</div>
+  <div class="micro-label">Animation</div>
+  <div class="micro-label">Web</div>
+</div>
+<div class="lbl">Micro Labels + Linie</div></div>
+
+<div class="c">
+<!-- Ghost number large -->
+<div style="font-family:'Cormorant Garamond',serif;font-size:72px;line-height:1;color:rgba(181,161,158,.15);letter-spacing:-.02em;font-weight:300">01</div>
+<div class="lbl">Ghost Number</div></div>
+
+<div class="c">
+<!-- Year vertical -->
+<div style="display:flex;align-items:center;gap:6px">
+  <div style="width:1px;height:50px;background:rgba(181,161,158,.3)"></div>
+  <span style="writing-mode:vertical-rl;transform:rotate(180deg);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(181,161,158,.5)">2024</span>
+</div>
+<div class="lbl">Jahr vertikal</div></div>
+
+<div class="c">
+<!-- Arch text arc SVG -->
+<svg width="110" height="56" viewBox="0 0 110 56">
+  <path id="archpath" d="M10 50 Q55 5 100 50" fill="none"/>
+  <text class="arc-text-burg" font-family="Cormorant Garamond, serif" font-style="italic" font-size="9.5" letter-spacing="3">
+    <textPath href="#archpath" startOffset="50%" text-anchor="middle">Creative Direction</textPath>
+  </text>
+</svg>
+<div class="lbl">Arch Curved Text</div></div>
+
+<div class="c">
+<!-- Available badge -->
+<div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+  <div style="display:flex;align-items:center;gap:5px">
+    <div style="width:5px;height:5px;border-radius:50%;background:var(--mint);animation:pulse 2s ease-in-out infinite"></div>
+    <span style="font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--mint)">Verfügbar</span>
+  </div>
+  <div style="font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:rgba(181,161,158,.5)">for projects</div>
+</div>
+<div class="lbl">Status Badge</div></div>
+
+<div class="c">
+<!-- Italic serif statement -->
+<div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--dg);opacity:.6;text-align:center;line-height:1.4">Design<br>ist Liebe</div>
+<div class="lbl">Italic Statement</div></div>
+
+<div class="c">
+<!-- ✦ separator text -->
+<div style="display:flex;flex-direction:column;gap:4px;align-items:center">
+  <span style="font-size:7.5px;letter-spacing:.3em;text-transform:uppercase;color:rgba(181,161,158,.5)">✦ Khadija ✦</span>
+  <span style="font-size:7px;letter-spacing:.22em;text-transform:uppercase;color:rgba(181,161,158,.35)">Okbi · Design</span>
+</div>
+<div class="lbl">Name mit Stern</div></div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════════════
+     ⑥ GEOMETRIC
+══════════════════════════════════ -->
+<section id="s6" class="sec">
+  <h2 class="sh">Geometric</h2>
+  <div class="gl"></div>
+  <p class="ss">Spirale · Gitter · Ringe · moderne Formen</p>
+<div class="g">
+
+<div class="c"><svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+  <!-- Concentric squares rotated -->
+  <rect x="10" y="10" width="40" height="40" fill="none" stroke="rgba(181,161,158,.4)" stroke-width=".8" transform="rotate(0 30 30)"/>
+  <rect x="15" y="15" width="30" height="30" fill="none" stroke="rgba(181,161,158,.35)" stroke-width=".7" transform="rotate(15 30 30)"/>
+  <rect x="20" y="20" width="20" height="20" fill="none" stroke="rgba(181,161,158,.3)" stroke-width=".7" transform="rotate(30 30 30)"/>
+  <rect x="25" y="25" width="10" height="10" fill="none" stroke="var(--burg)" stroke-width=".8" transform="rotate(45 30 30)"/>
+  <circle cx="30" cy="30" r="2" fill="var(--burg)" opacity=".4"/>
+</svg><div class="lbl">Nested Squares</div></div>
+
+<div class="c"><svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+  <!-- Grid of dots -->
+  <circle cx="12" cy="12" r="1.5" fill="rgba(181,161,158,.4)"/>
+  <circle cx="24" cy="12" r="1.5" fill="rgba(181,161,158,.4)"/>
+  <circle cx="36" cy="12" r="1.5" fill="rgba(181,161,158,.4)"/>
+  <circle cx="48" cy="12" r="1.5" fill="rgba(181,161,158,.4)"/>
+  <circle cx="12" cy="24" r="1.5" fill="rgba(181,161,158,.4)"/>
+  <circle cx="24" cy="24" r="2" fill="var(--burg)" opacity=".4"/>
+  <circle cx="36" cy="24" r="1.5" fill="rgba(181,161,158,.4)"/>
+  <circle cx="48" cy="24" r="1.5" fill="rgba(181,161,158,.4)"/>
+  <circle cx="12" cy="36" r="1.5" fill="rgba(181,161,158,.4)"/>
+  <circle cx="24" cy="36" r="1.5" fill="rgba(181,161,158,.4)"/>
+  <circle cx="36" cy="36" r="2" fill="var(--mauve)" opacity=".5"/>
+  <circle cx="48" cy="36" r="1.5" fill="rgba(181,161,158,.4)"/>
+  <circle cx="12" cy="48" r="1.5" fill="rgba(181,161,158,.4)"/>
+  <circle cx="24" cy="48" r="1.5" fill="rgba(181,161,158,.4)"/>
+  <circle cx="36" cy="48" r="1.5" fill="rgba(181,161,158,.4)"/>
+  <circle cx="48" cy="48" r="2" fill="var(--mint)" opacity=".4"/>
+</svg><div class="lbl">Dot Grid</div></div>
+
+<div class="c"><svg width="60" height="60" viewBox="0 0 60 60" fill="none" style="animation:rotCW 20s linear infinite">
+  <!-- Spirograph -->
+  <circle cx="30" cy="30" r="26" fill="none" stroke="rgba(181,161,158,.15)" stroke-width=".5"/>
+  <circle cx="30" cy="30" r="18" fill="none" stroke="rgba(181,161,158,.2)" stroke-width=".5"/>
+  <circle cx="30" cy="30" r="10" fill="none" stroke="rgba(181,161,158,.25)" stroke-width=".5"/>
+  <path d="M30 4 Q54 10 56 30 Q54 50 30 56 Q6 50 4 30 Q6 10 30 4Z" fill="none" stroke="var(--mauve)" stroke-width=".9"/>
+  <circle cx="30" cy="30" r="3" fill="none" stroke="var(--burg)" stroke-width=".8"/>
+</svg><div class="lbl">Orbit rings</div></div>
+
+<div class="c"><svg width="66" height="40" viewBox="0 0 66 40" fill="none">
+  <!-- Horizontal stacked lines with variation -->
+  <line x1="0" y1="4" x2="66" y2="4" stroke="rgba(181,161,158,.5)" stroke-width="1"/>
+  <line x1="8" y1="12" x2="58" y2="12" stroke="rgba(181,161,158,.4)" stroke-width=".8"/>
+  <line x1="0" y1="20" x2="66" y2="20" stroke="rgba(181,161,158,.3)" stroke-width=".6" stroke-dasharray="4 4"/>
+  <line x1="12" y1="28" x2="54" y2="28" stroke="rgba(181,161,158,.25)" stroke-width=".6"/>
+  <line x1="0" y1="36" x2="66" y2="36" stroke="rgba(181,161,158,.15)" stroke-width=".5"/>
+</svg><div class="lbl">Line Stack</div></div>
+
+<div class="c"><svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+  <!-- Cross/plus with dots -->
+  <line x1="30" y1="4" x2="30" y2="56" stroke="rgba(181,161,158,.3)" stroke-width=".8"/>
+  <line x1="4" y1="30" x2="56" y2="30" stroke="rgba(181,161,158,.3)" stroke-width=".8"/>
+  <circle cx="30" cy="4" r="2" fill="var(--mauve)" opacity=".5"/>
+  <circle cx="30" cy="56" r="2" fill="var(--mauve)" opacity=".5"/>
+  <circle cx="4" cy="30" r="2" fill="var(--mauve)" opacity=".5"/>
+  <circle cx="56" cy="30" r="2" fill="var(--mauve)" opacity=".5"/>
+  <circle cx="30" cy="30" r="5" fill="none" stroke="var(--burg)" stroke-width=".9"/>
+  <circle cx="30" cy="30" r="2" fill="var(--burg)" opacity=".4"/>
+</svg><div class="lbl">Cross + Bloom</div></div>
+
+<div class="c"><svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+  <!-- 3D cube wireframe light -->
+  <rect x="16" y="20" width="28" height="24" fill="none" stroke="var(--mauve)" stroke-width="1"/>
+  <path d="M16 20 L24 12 L52 12 L44 20" fill="none" stroke="rgba(181,161,158,.5)" stroke-width=".8"/>
+  <path d="M44 20 L52 12 L52 36 L44 44" fill="none" stroke="rgba(181,161,158,.4)" stroke-width=".8"/>
+  <line x1="16" y1="20" x2="24" y2="12" stroke="rgba(181,161,158,.5)" stroke-width=".8"/>
+</svg><div class="lbl">Cube Wireframe</div></div>
+
+<div class="c"><svg width="64" height="28" viewBox="0 0 64 28" fill="none" style="animation:rotCW 8s linear infinite">
+  <!-- Infinity figure-8 -->
+  <path d="M32 14 C32 14 20 2 12 6 C4 10 4 18 12 22 C20 26 32 14 32 14 C32 14 44 2 52 6 C60 10 60 18 52 22 C44 26 32 14 32 14Z" fill="none" stroke="var(--mauve)" stroke-width="1.1"/>
+</svg><div class="lbl">Infinity rotiert</div></div>
+
+<div class="c"><svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+  <!-- Hexagon -->
+  <path d="M30 4 L52 17 L52 43 L30 56 L8 43 L8 17Z" fill="none" stroke="var(--mauve)" stroke-width="1.1"/>
+  <path d="M30 12 L46 21 L46 39 L30 48 L14 39 L14 21Z" fill="none" stroke="rgba(181,161,158,.4)" stroke-width=".7"/>
+  <circle cx="30" cy="30" r="6" fill="none" stroke="var(--burg)" stroke-width=".8"/>
+</svg><div class="lbl">Hexagon</div></div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════════════
+     ⑦ FRAMES & LABELS
+══════════════════════════════════ -->
+<section id="s7" class="sec">
+  <h2 class="sh">Frames & Labels</h2>
+  <div class="gl"></div>
+  <p class="ss">Bögen · Badges · Etiketten · dekorative Rahmen</p>
+<div class="g wide">
+
+<div class="c"><div style="position:relative;width:120px;height:90px;display:flex;align-items:center;justify-content:center">
+  <svg width="120" height="90" viewBox="0 0 120 90" fill="none" style="position:absolute;inset:0">
+    <path d="M6 84 L6 22 Q6 6 20 6 L100 6 Q114 6 114 22 L114 84" stroke="var(--mauve)" stroke-width="1.1" fill="none"/>
+    <circle cx="6" cy="84" r="2" fill="var(--mauve)" opacity=".5"/>
+    <circle cx="114" cy="84" r="2" fill="var(--mauve)" opacity=".5"/>
+    <!-- arch sparkle -->
+    <circle cx="60" cy="6" r="2" fill="var(--burg)" opacity=".4"/>
+  </svg>
+  <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--dg);text-align:center;z-index:1">Portfolio<br>2024</div>
+</div><div class="lbl">Arch Frame mit Text</div></div>
+
+<div class="c"><div style="position:relative;width:130px;height:70px;display:flex;align-items:center;justify-content:center">
+  <svg width="130" height="70" viewBox="0 0 130 70" fill="none" style="position:absolute;inset:0">
+    <rect x="3" y="3" width="124" height="64" rx="0" fill="none" stroke="rgba(181,161,158,.25)" stroke-width="1"/>
+    <rect x="7" y="7" width="116" height="56" rx="0" fill="none" stroke="rgba(181,161,158,.15)" stroke-width=".6"/>
+    <!-- corner ornaments -->
+    <path d="M3 18 L3 3 L18 3" fill="none" stroke="var(--burg)" stroke-width="1.2"/>
+    <path d="M112 3 L127 3 L127 18" fill="none" stroke="var(--burg)" stroke-width="1.2"/>
+    <path d="M3 52 L3 67 L18 67" fill="none" stroke="var(--burg)" stroke-width="1.2"/>
+    <path d="M112 67 L127 67 L127 52" fill="none" stroke="var(--burg)" stroke-width="1.2"/>
+  </svg>
+  <div style="font-size:8px;letter-spacing:.28em;text-transform:uppercase;color:var(--dg);z-index:1">Khadija Okbi</div>
+</div><div class="lbl">Corner Frame</div></div>
+
+<div class="c"><div style="position:relative;width:130px;height:130px;display:flex;align-items:center;justify-content:center">
+  <svg width="130" height="130" viewBox="0 0 130 130" fill="none" style="position:absolute;inset:0">
+    <circle cx="65" cy="65" r="58" fill="none" stroke="rgba(181,161,158,.3)" stroke-width="1"/>
+    <circle cx="65" cy="65" r="50" fill="none" stroke="rgba(181,161,158,.15)" stroke-width=".5" stroke-dasharray="2 5"/>
+    <!-- Botanical at top & bottom -->
+    <path d="M65 8 Q62 14 65 20 Q68 14 65 8Z" fill="none" stroke="var(--mauve)" stroke-width=".9"/>
+    <path d="M65 8 Q62 14 65 20 Q68 14 65 8Z" fill="none" stroke="var(--mauve)" stroke-width=".9" transform="rotate(90 65 65)"/>
+    <path d="M65 8 Q62 14 65 20 Q68 14 65 8Z" fill="none" stroke="rgba(181,161,158,.4)" stroke-width=".7" transform="rotate(180 65 65)"/>
+    <path d="M65 8 Q62 14 65 20 Q68 14 65 8Z" fill="none" stroke="rgba(181,161,158,.4)" stroke-width=".7" transform="rotate(270 65 65)"/>
+  </svg>
+  <div style="text-align:center;z-index:1">
+    <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--dg)">Design</div>
+    <div style="font-size:7px;letter-spacing:.25em;text-transform:uppercase;color:var(--mauve);margin-top:2px">Studio</div>
+  </div>
+</div><div class="lbl">Botanischer Kreisrahmen</div></div>
+
+<div class="c"><div style="background:var(--dg);padding:14px 22px;position:relative">
+  <div style="font-size:7.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(181,161,158,.6);margin-bottom:3px">ESTD.</div>
+  <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:rgba(245,245,245,.85);letter-spacing:.06em">2022</div>
+  <div style="position:absolute;top:6px;right:8px">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1 L6.8 4.2 L10 5 L6.8 5.8 L6 9 L5.2 5.8 L2 5 L5.2 4.2Z" fill="rgba(181,161,158,.4)"/></svg>
+  </div>
+</div><div class="lbl">Dark Badge</div></div>
+
+<div class="c"><div style="border:1px solid rgba(181,161,158,.25);padding:12px 20px;display:flex;align-items:center;gap:10px;max-width:200px">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <ellipse cx="10" cy="10" rx="3" ry="8" fill="none" stroke="var(--burg)" stroke-width=".9"/>
+    <ellipse cx="10" cy="10" rx="8" ry="3" fill="none" stroke="var(--burg)" stroke-width=".9"/>
+    <circle cx="10" cy="10" r="1.8" fill="var(--burg)" opacity=".4"/>
+  </svg>
+  <div>
+    <div style="font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:var(--mauve)">Kategorie</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--dg)">Branding</div>
+  </div>
+</div><div class="lbl">Inline Category Tag</div></div>
+
+<div class="c"><div style="display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(181,161,158,.2);padding-bottom:8px;max-width:200px;width:100%">
+  <div style="width:28px;height:28px;border:1px solid rgba(181,161,158,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1 L8 5 L12 6 L8 7 L7 11 L6 7 L2 6 L6 5Z" fill="var(--mauve)" opacity=".7"/></svg>
+  </div>
+  <div style="font-size:10px;color:var(--dg);font-family:'Cormorant Garamond',serif;font-style:italic">Design Direction</div>
+</div><div class="lbl">List Item mit Icon</div></div>
+
+<div class="c">
+<!-- Stamp / seal -->
+<div style="position:relative;width:90px;height:90px;display:flex;align-items:center;justify-content:center">
+  <svg width="90" height="90" viewBox="0 0 90 90" fill="none" style="position:absolute;inset:0;animation:rotCW 30s linear infinite">
+    <!-- Scalloped seal edge -->
+    <path d="M45 4 Q52 0 58 4 Q64 0 70 4 Q76 2 80 8 Q86 10 86 18 Q90 22 88 28 Q92 34 88 40 Q90 46 86 52 Q88 58 82 62 Q82 68 76 72 Q74 78 68 80 Q64 86 58 86 Q52 90 46 88 Q40 92 34 88 Q28 90 24 84 Q18 84 14 78 Q8 76 8 70 Q2 66 4 60 Q0 54 4 48 Q2 42 6 36 Q2 30 6 24 Q6 18 12 14 Q12 8 18 6 Q22 0 28 2 Q34 -2 40 2Z" fill="none" stroke="rgba(181,161,158,.35)" stroke-width=".8"/>
+  </svg>
+  <div style="text-align:center;z-index:1">
+    <div style="font-size:6.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--mauve)">Premium</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:11px;color:var(--dg)">Design</div>
+    <div style="font-size:6px;letter-spacing:.18em;text-transform:uppercase;color:rgba(181,161,158,.6)">Studio</div>
+  </div>
+</div>
+<div class="lbl">Seal / Stamp rotiert</div></div>
+
+</div>
+</section>
+
+<script>
+const cd=document.getElementById('cd'),cr=document.getElementById('cr');
+let mx=-100,my=-100,rx=-100,ry=-100;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px'});
+(function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('*').forEach(el=>{
+  if(el.style&&getComputedStyle(el).cursor==='none'){
+    el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+  }
+});
+document.querySelectorAll('.c,.bf-wrap-anim,.bf-hover-only,.boho-arch,.rot-hover,.pulse-hover').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
+document.querySelectorAll('.tb').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.tb').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.sec').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
