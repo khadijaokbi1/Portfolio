@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dash Circle Picker</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --burg:#6E3B49;--mauve:#B5A19E;--mint:#56686A;--cream:#F5F0EA;
+  --dg:#314A51;--blush:#D4B9B5;--off:#525252;
+}
+body{background:#1a1a1a;font-family:'Outfit',sans-serif;color:var(--cream)}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(26,26,26,.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(181,161,158,.15);display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px;padding:12px 16px}
+button{font-siopen /Users/khadijaokbi/Documents/GitHub/Portfolio/ui/decisions.htmlze:8.5px;letter-spacing:.22em;text-transform:uppercase;border:1px solid rgba(181,161,158,.2);background:none;color:rgba(245,240,234,.35);padding:8px 18px;cursor:pointer;transition:all .3s;font-family:'Outfit',sans-serif}
+button.on{border-color:var(--mauve);color:var(--cream);background:rgba(181,161,158,.08)}
+button:hover{color:var(--cream);border-color:rgba(181,161,158,.5)}
+
+.view{display:none;padding-top:64px}
+.view.on{display:block}
+
+.lbl-bar{text-align:center;padding:20px;font-size:8px;letter-spacing:.28em;text-transform:uppercase;color:rgba(181,161,158,.45)}
+
+.section-photography{background:var(--mint);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 40px;position:relative;overflow:hidden}
+.photo-inner{display:flex;align-items:center;justify-content:space-between;gap:60px;width:100%;max-width:1080px}
+.photo-left{flex:1;max-width:380px;display:flex;flex-direction:column;gap:20px}
+.photo-eyebrow{font-size:8.5px;letter-spacing:.28em;text-transform:uppercase;color:rgba(245,240,234,.5)}
+.we-make{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5vw,68px);font-weight:300;font-style:italic;color:rgba(245,240,234,.92);line-height:1.05}
+.typed-line-wrap{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,52px);font-style:italic;color:var(--blush);opacity:.8;min-height:1.2em}
+.photo-left p{font-size:12px;line-height:1.8;color:rgba(245,240,234,.5);max-width:320px}
+.photo-cta{display:inline-flex;align-items:center;gap:10px;font-size:8.5px;letter-spacing:.25em;text-transform:uppercase;color:rgba(245,240,234,.7);border-bottom:1px solid rgba(181,161,158,.3);padding-bottom:4px;width:fit-content}
+
+.photo-right{flex-shrink:0}
+.main-grid{position:relative;width:420px;height:420px;flex-shrink:0;overflow:visible}
+
+@media(max-width:900px){
+  .photo-inner{flex-direction:column;align-items:center}
+  .main-grid{width:min(380px,80vw);height:min(380px,80vw)}
+  .photo-left{max-width:100%;align-items:center;text-align:center}
+}
+
+.box{position:absolute;border:1px solid rgba(181,161,158,.22);background:rgba(49,74,81,.4);border-radius:4px;overflow:hidden;transition:border-color .3s;display:flex;align-items:center;justify-content:center}
+.box>span{font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,234,.5);z-index:2;position:relative}
+.box .bg-img{position:absolute;inset:0;overflow:hidden}
+.box .bg-img img{width:100%;height:100%;object-fit:cover;filter:saturate(.7) brightness(.85);transition:all .4s}
+.box:hover .bg-img img{filter:saturate(1) brightness(1);transform:scale(1.05)}
+
+.bg-line{position:absolute;inset:0;overflow:hidden;display:flex;flex-direction:column;justify-content:space-around;pointer-events:none;opacity:.15;z-index:0}
+.bg-line img{width:200%;animation:26s linear infinite;filter:invert(1) sepia(1) saturate(.2)}
+.bg-line img:nth-child(1){animation-name:wave-first}
+.bg-line img:nth-child(2){animation-name:wave-second}
+@keyframes wave-first{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes wave-second{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+
+.bg-dash-circle{position:absolute;bottom:-35px;right:-13px;z-index:2;width:clamp(80px,12vw,150px);aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+.bg-dash-circle svg{width:100%;height:100%;opacity:.7}
+.bg-dash-circle__dot{position:absolute;width:6px;height:6px;background:var(--mauve);border-radius:50%}
+
+.bg-circle-h-line{position:absolute;bottom:42px;left:-68px;z-index:1;width:70px;height:60px;pointer-events:none;display:flex;align-items:center;justify-content:center}
+
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.75)}40%{opacity:1;transform:scale(1.15)}80%{opacity:.55;transform:scale(.95)}}
+.spark{animation:twinkle var(--dur,2s) ease-in-out var(--del,0s) infinite;transform-box:fill-box;transform-origin:center}
+
+@keyframes rotCW{to{transform:rotate(360deg)}}
+@keyframes rotCCW{to{transform:rotate(-360deg)}}
+@keyframes circle-rotate{to{transform:rotate(360deg)}}
+
+.opt-a svg{animation:circle-rotate 22s linear infinite}
+.hf-outer{animation:rotCW 18s linear infinite;position:absolute;inset:0;width:100%;height:100%}
+.hf-inner{animation:rotCCW 14s linear infinite;position:absolute;inset:0;width:100%;height:100%}
+.hf-dot{position:absolute;width:10px;height:10px;background:var(--burg);border-radius:50%;box-shadow:0 0 0 4px rgba(110,59,73,.2)}
+.opt-c svg{animation:circle-rotate 25s linear infinite}
+.opt-d-svg{animation:circle-rotate 10s linear infinite;position:absolute}
+.opt-d-dot{position:absolute;width:8px;height:8px;background:var(--burg);border-radius:50%}
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="on" data-v="a">① Dash Rose (aktuell)</button>
+  <button data-v="b">② Hero Flower</button>
+  <button data-v="c">③ Chrysanthemum</button>
+  <button data-v="d">④ Asterisk Spin</button>
+</nav>
+
+<!-- SPARKLE TEMPLATE (wiederverwendet in allen Views) -->
+<template id="sparkle-tpl">
+  <div class="bg-circle-h-line">
+    <svg width="70" height="60" viewBox="0 0 70 60" fill="none">
+      <path d="M35 4 L37 18 L50 20 L37 22 L35 36 L33 22 L20 20 L33 18Z" fill="rgba(110,59,73,.85)" class="spark" style="--dur:2.2s;--del:0s"/>
+      <path d="M14 12 L15 20 L22 21 L15 22 L14 30 L13 22 L6 21 L13 20Z" fill="rgba(181,161,158,.6)" class="spark" style="--dur:1.8s;--del:.4s"/>
+      <path d="M58 8 L59 14 L64 15 L59 16 L58 22 L57 16 L52 15 L57 14Z" fill="rgba(181,161,158,.5)" class="spark" style="--dur:2.5s;--del:.9s"/>
+      <circle cx="52" cy="42" r="2" fill="rgba(181,161,158,.5)" class="spark" style="--dur:1.6s;--del:.2s"/>
+      <circle cx="18" cy="46" r="1.5" fill="rgba(110,59,73,.4)" class="spark" style="--dur:2s;--del:.7s"/>
+      <circle cx="62" cy="52" r="1.2" fill="rgba(181,161,158,.4)" class="spark" style="--dur:1.4s;--del:1.1s"/>
+    </svg>
+  </div>
+</template>
+
+<!-- ══ VIEW A ══ -->
+<div class="view on" id="view-a">
+  <div class="lbl-bar">① Dash Rose — aktuell im Portfolio</div>
+  <section class="section-photography">
+    <div class="photo-inner">
+      <div class="photo-left">
+        <div class="photo-eyebrow">Creative Direction</div>
+        <div class="we-make">we make</div>
+        <div class="typed-line-wrap">design.</div>
+        <p>Mediamatikerin spezialisiert auf Design, Marketing, Social Media & Motion.</p>
+        <div class="photo-cta">Projekte ansehen →</div>
+      </div>
+      <div class="photo-right">
+        <div class="main-grid" style="width:420px;height:420px">
+          <div class="bg-line"><img src="https://www.yudiz.com/codepen/photography-banner/wave.svg" alt=""><img src="https://www.yudiz.com/codepen/photography-banner/wave.svg" alt=""></div>
+          <div class="box" style="left:0;top:0;width:120px;height:120px"><span>Fotografie</span></div>
+          <div class="box" style="left:140px;top:0;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/hero_foto.jpg" alt=""></div></div>
+          <div class="box" style="left:280px;top:0;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/hero_beauty.jpg" alt=""></div><span>Design</span></div>
+          <div class="box" style="left:0;top:140px;width:120px;height:120px"><span>Marketing</span></div>
+          <div class="box" style="left:280px;top:140px;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/sm_konzept.jpg" alt=""></div></div>
+          <div class="box" style="left:0;top:280px;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/hero_honey.png" alt=""></div></div>
+          <div class="box" style="left:140px;top:280px;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/hero_ani.jpg" alt=""></div></div>
+          <div class="box" style="left:280px;top:280px;width:120px;height:120px"><span>Animation</span></div>
+          <div class="bg-circle-h-line"><svg width="70" height="60" viewBox="0 0 70 60" fill="none"><path d="M35 4 L37 18 L50 20 L37 22 L35 36 L33 22 L20 20 L33 18Z" fill="rgba(110,59,73,.85)" class="spark" style="--dur:2.2s;--del:0s"/><path d="M14 12 L15 20 L22 21 L15 22 L14 30 L13 22 L6 21 L13 20Z" fill="rgba(181,161,158,.6)" class="spark" style="--dur:1.8s;--del:.4s"/><path d="M58 8 L59 14 L64 15 L59 16 L58 22 L57 16 L52 15 L57 14Z" fill="rgba(181,161,158,.5)" class="spark" style="--dur:2.5s;--del:.9s"/><circle cx="52" cy="42" r="2" fill="rgba(181,161,158,.5)" class="spark" style="--dur:1.6s;--del:.2s"/><circle cx="18" cy="46" r="1.5" fill="rgba(110,59,73,.4)" class="spark" style="--dur:2s;--del:.7s"/><circle cx="62" cy="52" r="1.2" fill="rgba(181,161,158,.4)" class="spark" style="--dur:1.4s;--del:1.1s"/></svg></div>
+          <div class="bg-dash-circle opt-a">
+            <svg viewBox="0 0 110 110" fill="none">
+              <circle cx="55" cy="55" r="50" fill="none" stroke="rgba(181,161,158,.35)" stroke-width="1" stroke-dasharray="4 5"/>
+              <line x1="55" y1="5" x2="55" y2="14" stroke="rgba(181,161,158,.4)" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="55" y1="5" x2="55" y2="14" stroke="rgba(181,161,158,.4)" stroke-width="1.2" stroke-linecap="round" transform="rotate(45 55 55)"/>
+              <line x1="55" y1="5" x2="55" y2="14" stroke="rgba(181,161,158,.4)" stroke-width="1.2" stroke-linecap="round" transform="rotate(90 55 55)"/>
+              <line x1="55" y1="5" x2="55" y2="14" stroke="rgba(181,161,158,.4)" stroke-width="1.2" stroke-linecap="round" transform="rotate(135 55 55)"/>
+              <line x1="55" y1="5" x2="55" y2="14" stroke="rgba(181,161,158,.4)" stroke-width="1.2" stroke-linecap="round" transform="rotate(180 55 55)"/>
+              <line x1="55" y1="5" x2="55" y2="14" stroke="rgba(181,161,158,.4)" stroke-width="1.2" stroke-linecap="round" transform="rotate(225 55 55)"/>
+              <line x1="55" y1="5" x2="55" y2="14" stroke="rgba(181,161,158,.4)" stroke-width="1.2" stroke-linecap="round" transform="rotate(270 55 55)"/>
+              <line x1="55" y1="5" x2="55" y2="14" stroke="rgba(181,161,158,.4)" stroke-width="1.2" stroke-linecap="round" transform="rotate(315 55 55)"/>
+              <ellipse cx="55" cy="55" rx="6" ry="18" fill="none" stroke="rgba(181,161,158,.5)" stroke-width=".8"/>
+              <ellipse cx="55" cy="55" rx="6" ry="18" fill="none" stroke="rgba(181,161,158,.5)" stroke-width=".8" transform="rotate(60 55 55)"/>
+              <ellipse cx="55" cy="55" rx="6" ry="18" fill="none" stroke="rgba(181,161,158,.5)" stroke-width=".8" transform="rotate(120 55 55)"/>
+              <circle cx="55" cy="55" r="4" fill="rgba(110,59,73,.4)"/>
+            </svg>
+            <div class="bg-dash-circle__dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══ VIEW B ══ -->
+<div class="view" id="view-b">
+  <div class="lbl-bar">② Hero Flower — 2× gegenläufig</div>
+  <section class="section-photography">
+    <div class="photo-inner">
+      <div class="photo-left">
+        <div class="photo-eyebrow">Creative Direction</div>
+        <div class="we-make">we make</div>
+        <div class="typed-line-wrap">design.</div>
+        <p>Mediamatikerin spezialisiert auf Design, Marketing, Social Media & Motion.</p>
+        <div class="photo-cta">Projekte ansehen →</div>
+      </div>
+      <div class="photo-right">
+        <div class="main-grid" style="width:420px;height:420px">
+          <div class="bg-line"><img src="https://www.yudiz.com/codepen/photography-banner/wave.svg" alt=""><img src="https://www.yudiz.com/codepen/photography-banner/wave.svg" alt=""></div>
+          <div class="box" style="left:0;top:0;width:120px;height:120px"><span>Fotografie</span></div>
+          <div class="box" style="left:140px;top:0;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/hero_foto.jpg" alt=""></div></div>
+          <div class="box" style="left:280px;top:0;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/hero_beauty.jpg" alt=""></div><span>Design</span></div>
+          <div class="box" style="left:0;top:140px;width:120px;height:120px"><span>Marketing</span></div>
+          <div class="box" style="left:280px;top:140px;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/sm_konzept.jpg" alt=""></div></div>
+          <div class="box" style="left:0;top:280px;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/hero_honey.png" alt=""></div></div>
+          <div class="box" style="left:140px;top:280px;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/hero_ani.jpg" alt=""></div></div>
+          <div class="box" style="left:280px;top:280px;width:120px;height:120px"><span>Animation</span></div>
+          <div class="bg-circle-h-line"><svg width="70" height="60" viewBox="0 0 70 60" fill="none"><path d="M35 4 L37 18 L50 20 L37 22 L35 36 L33 22 L20 20 L33 18Z" fill="rgba(110,59,73,.85)" class="spark" style="--dur:2.2s;--del:0s"/><path d="M14 12 L15 20 L22 21 L15 22 L14 30 L13 22 L6 21 L13 20Z" fill="rgba(181,161,158,.6)" class="spark" style="--dur:1.8s;--del:.4s"/><path d="M58 8 L59 14 L64 15 L59 16 L58 22 L57 16 L52 15 L57 14Z" fill="rgba(181,161,158,.5)" class="spark" style="--dur:2.5s;--del:.9s"/><circle cx="52" cy="42" r="2" fill="rgba(181,161,158,.5)" class="spark" style="--dur:1.6s;--del:.2s"/><circle cx="18" cy="46" r="1.5" fill="rgba(110,59,73,.4)" class="spark" style="--dur:2s;--del:.7s"/><circle cx="62" cy="52" r="1.2" fill="rgba(181,161,158,.4)" class="spark" style="--dur:1.4s;--del:1.1s"/></svg></div>
+          <div class="bg-dash-circle" style="display:flex;align-items:center;justify-content:center">
+            <svg class="hf-outer" viewBox="0 0 150 150" fill="none">
+              <ellipse cx="75" cy="75" rx="10" ry="42" fill="none" stroke="rgba(181,161,158,.45)" stroke-width="1"/>
+              <ellipse cx="75" cy="75" rx="10" ry="42" fill="none" stroke="rgba(181,161,158,.45)" stroke-width="1" transform="rotate(60 75 75)"/>
+              <ellipse cx="75" cy="75" rx="10" ry="42" fill="none" stroke="rgba(181,161,158,.45)" stroke-width="1" transform="rotate(120 75 75)"/>
+              <circle cx="75" cy="75" r="60" fill="none" stroke="rgba(181,161,158,.15)" stroke-width=".8" stroke-dasharray="3 5"/>
+            </svg>
+            <svg class="hf-inner" viewBox="0 0 150 150" fill="none">
+              <ellipse cx="75" cy="75" rx="7" ry="28" fill="none" stroke="rgba(212,185,181,.55)" stroke-width=".9" transform="rotate(30 75 75)"/>
+              <ellipse cx="75" cy="75" rx="7" ry="28" fill="none" stroke="rgba(212,185,181,.55)" stroke-width=".9" transform="rotate(90 75 75)"/>
+              <ellipse cx="75" cy="75" rx="7" ry="28" fill="none" stroke="rgba(212,185,181,.55)" stroke-width=".9" transform="rotate(150 75 75)"/>
+            </svg>
+            <div class="hf-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══ VIEW C ══ -->
+<div class="view" id="view-c">
+  <div class="lbl-bar">③ Chrysanthemum — 12 Blütenblätter rotierend</div>
+  <section class="section-photography">
+    <div class="photo-inner">
+      <div class="photo-left">
+        <div class="photo-eyebrow">Creative Direction</div>
+        <div class="we-make">we make</div>
+        <div class="typed-line-wrap">design.</div>
+        <p>Mediamatikerin spezialisiert auf Design, Marketing, Social Media & Motion.</p>
+        <div class="photo-cta">Projekte ansehen →</div>
+      </div>
+      <div class="photo-right">
+        <div class="main-grid" style="width:420px;height:420px">
+          <div class="bg-line"><img src="https://www.yudiz.com/codepen/photography-banner/wave.svg" alt=""><img src="https://www.yudiz.com/codepen/photography-banner/wave.svg" alt=""></div>
+          <div class="box" style="left:0;top:0;width:120px;height:120px"><span>Fotografie</span></div>
+          <div class="box" style="left:140px;top:0;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/hero_foto.jpg" alt=""></div></div>
+          <div class="box" style="left:280px;top:0;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/hero_beauty.jpg" alt=""></div><span>Design</span></div>
+          <div class="box" style="left:0;top:140px;width:120px;height:120px"><span>Marketing</span></div>
+          <div class="box" style="left:280px;top:140px;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/sm_konzept.jpg" alt=""></div></div>
+          <div class="box" style="left:0;top:280px;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/hero_honey.png" alt=""></div></div>
+          <div class="box" style="left:140px;top:280px;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/hero_ani.jpg" alt=""></div></div>
+          <div class="box" style="left:280px;top:280px;width:120px;height:120px"><span>Animation</span></div>
+          <div class="bg-circle-h-line"><svg width="70" height="60" viewBox="0 0 70 60" fill="none"><path d="M35 4 L37 18 L50 20 L37 22 L35 36 L33 22 L20 20 L33 18Z" fill="rgba(110,59,73,.85)" class="spark" style="--dur:2.2s;--del:0s"/><path d="M14 12 L15 20 L22 21 L15 22 L14 30 L13 22 L6 21 L13 20Z" fill="rgba(181,161,158,.6)" class="spark" style="--dur:1.8s;--del:.4s"/><path d="M58 8 L59 14 L64 15 L59 16 L58 22 L57 16 L52 15 L57 14Z" fill="rgba(181,161,158,.5)" class="spark" style="--dur:2.5s;--del:.9s"/><circle cx="52" cy="42" r="2" fill="rgba(181,161,158,.5)" class="spark" style="--dur:1.6s;--del:.2s"/><circle cx="18" cy="46" r="1.5" fill="rgba(110,59,73,.4)" class="spark" style="--dur:2s;--del:.7s"/><circle cx="62" cy="52" r="1.2" fill="rgba(181,161,158,.4)" class="spark" style="--dur:1.4s;--del:1.1s"/></svg></div>
+          <div class="bg-dash-circle opt-c">
+            <svg viewBox="0 0 110 110" fill="none" width="100%" height="100%">
+              <ellipse cx="55" cy="55" rx="5" ry="24" fill="none" stroke="rgba(181,161,158,.65)" stroke-width=".9"/>
+              <ellipse cx="55" cy="55" rx="5" ry="24" fill="none" stroke="rgba(181,161,158,.65)" stroke-width=".9" transform="rotate(30 55 55)"/>
+              <ellipse cx="55" cy="55" rx="5" ry="24" fill="none" stroke="rgba(181,161,158,.65)" stroke-width=".9" transform="rotate(60 55 55)"/>
+              <ellipse cx="55" cy="55" rx="5" ry="24" fill="none" stroke="rgba(181,161,158,.65)" stroke-width=".9" transform="rotate(90 55 55)"/>
+              <ellipse cx="55" cy="55" rx="5" ry="24" fill="none" stroke="rgba(181,161,158,.65)" stroke-width=".9" transform="rotate(120 55 55)"/>
+              <ellipse cx="55" cy="55" rx="5" ry="24" fill="none" stroke="rgba(181,161,158,.65)" stroke-width=".9" transform="rotate(150 55 55)"/>
+              <circle cx="55" cy="55" r="7" fill="none" stroke="var(--burg)" stroke-width="1"/>
+              <circle cx="55" cy="55" r="3" fill="var(--burg)"/>
+            </svg>
+            <div class="bg-dash-circle__dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══ VIEW D ══ -->
+<div class="view" id="view-d">
+  <div class="lbl-bar">④ Asterisk Spin — minimal</div>
+  <section class="section-photography">
+    <div class="photo-inner">
+      <div class="photo-left">
+        <div class="photo-eyebrow">Creative Direction</div>
+        <div class="we-make">we make</div>
+        <div class="typed-line-wrap">design.</div>
+        <p>Mediamatikerin spezialisiert auf Design, Marketing, Social Media & Motion.</p>
+        <div class="photo-cta">Projekte ansehen →</div>
+      </div>
+      <div class="photo-right">
+        <div class="main-grid" style="width:420px;height:420px">
+          <div class="bg-line"><img src="https://www.yudiz.com/codepen/photography-banner/wave.svg" alt=""><img src="https://www.yudiz.com/codepen/photography-banner/wave.svg" alt=""></div>
+          <div class="box" style="left:0;top:0;width:120px;height:120px"><span>Fotografie</span></div>
+          <div class="box" style="left:140px;top:0;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/hero_foto.jpg" alt=""></div></div>
+          <div class="box" style="left:280px;top:0;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/hero_beauty.jpg" alt=""></div><span>Design</span></div>
+          <div class="box" style="left:0;top:140px;width:120px;height:120px"><span>Marketing</span></div>
+          <div class="box" style="left:280px;top:140px;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/sm_konzept.jpg" alt=""></div></div>
+          <div class="box" style="left:0;top:280px;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/hero_honey.png" alt=""></div></div>
+          <div class="box" style="left:140px;top:280px;width:120px;height:120px"><div class="bg-img"><img src="../assets/images/hero/hero_ani.jpg" alt=""></div></div>
+          <div class="box" style="left:280px;top:280px;width:120px;height:120px"><span>Animation</span></div>
+          <div class="bg-circle-h-line"><svg width="70" height="60" viewBox="0 0 70 60" fill="none"><path d="M35 4 L37 18 L50 20 L37 22 L35 36 L33 22 L20 20 L33 18Z" fill="rgba(110,59,73,.85)" class="spark" style="--dur:2.2s;--del:0s"/><path d="M14 12 L15 20 L22 21 L15 22 L14 30 L13 22 L6 21 L13 20Z" fill="rgba(181,161,158,.6)" class="spark" style="--dur:1.8s;--del:.4s"/><path d="M58 8 L59 14 L64 15 L59 16 L58 22 L57 16 L52 15 L57 14Z" fill="rgba(181,161,158,.5)" class="spark" style="--dur:2.5s;--del:.9s"/><circle cx="52" cy="42" r="2" fill="rgba(181,161,158,.5)" class="spark" style="--dur:1.6s;--del:.2s"/><circle cx="18" cy="46" r="1.5" fill="rgba(110,59,73,.4)" class="spark" style="--dur:2s;--del:.7s"/><circle cx="62" cy="52" r="1.2" fill="rgba(181,161,158,.4)" class="spark" style="--dur:1.4s;--del:1.1s"/></svg></div>
+          <div class="bg-dash-circle" style="display:flex;align-items:center;justify-content:center">
+            <svg class="opt-d-svg" viewBox="0 0 150 150" fill="none" width="100%" height="100%">
+              <line x1="75" y1="8"  x2="75"  y2="142" stroke="rgba(181,161,158,.45)" stroke-width=".9" stroke-linecap="round"/>
+              <line x1="8"  y1="75" x2="142" y2="75"  stroke="rgba(181,161,158,.45)" stroke-width=".9" stroke-linecap="round"/>
+              <line x1="20" y1="20" x2="130" y2="130" stroke="rgba(181,161,158,.45)" stroke-width=".9" stroke-linecap="round"/>
+              <line x1="130" y1="20" x2="20" y2="130" stroke="rgba(181,161,158,.45)" stroke-width=".9" stroke-linecap="round"/>
+              <circle cx="75" cy="75" r="55" fill="none" stroke="rgba(181,161,158,.12)" stroke-width=".8" stroke-dasharray="3 6"/>
+            </svg>
+            <div class="opt-d-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+document.querySelectorAll('nav button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('on'));
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('on'));
+    btn.classList.add('on');
+    document.getElementById('view-' + btn.dataset.v).classList.add('on');
+    window.scrollTo({top:0,behavior:'instant'});
+  });
+});
+</script>
+</body>
+</html>

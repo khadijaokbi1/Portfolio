@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Frontend & Motion Design: Beginner Hub</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP für Animationen -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            DEFAULT: '#3b82f6', // blue-500
+                            dark: '#1e3a8a',    // blue-900
+                            accent: '#10b981'   // emerald-500
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Eigener Scrollbar für den Editor-Look */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-300 font-sans antialiased selection:bg-brand selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 font-bold text-white flex items-center gap-2">
+                    <span class="text-2xl">🚀</span> Beginner Hub
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#werkzeug" class="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">🛠️ Werkzeug</a>
+                        <a href="#github" class="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">🏗️ GitHub</a>
+                        <a href="#styling" class="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">🎨 Styling & Motion</a>
+                        <a href="#ausbau" class="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">📈 Ausbau-Plan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto text-center">
+        <div class="inline-block mb-4 px-4 py-1.5 rounded-full border border-brand/30 bg-brand/10 text-brand-accent text-sm font-mono animate-pulse">
+            v1.0.0 - Bereit für deinen Start
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6 mt-4">
+            Von "Keine Ahnung" zu <br class="hidden sm:block">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-brand-accent">Interaktiven Designs</span>
+        </h1>
+        <p class="mt-4 max-w-2xl text-lg sm:text-xl text-slate-400 mx-auto">
+            Willkommen in deiner neuen Schaltzentrale. Diese Guideline hilft dir, Web-Projekte zu bauen und zu hosten, auch wenn du gerade erst anfängst und dich überfordert fühlst.
+        </p>
+        <div class="mt-10 flex justify-center gap-4">
+            <a href="#werkzeug" class="px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-brand hover:bg-blue-600 transition-all hover:scale-105 shadow-[0_0_20px_rgba(59,130,246,0.5)]">
+                Starten
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-32">
+
+        <!-- Teil 1: Werkzeug -->
+        <section id="werkzeug" class="scroll-mt-24 gs-reveal">
+            <h2 class="text-3xl font-bold text-white mb-2 border-b border-slate-800 pb-4 flex items-center gap-3">
+                <span class="p-2 bg-slate-800 rounded-lg">🛠️</span> Teil 1: Das Werkzeug
+            </h2>
+            <p class="text-slate-400 mb-8 mt-4 text-lg">VS Code ist dein Editor, aber <strong class="text-white">GitHub Copilot</strong> ist dein Gehirn-Upgrade.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Copilot Modi -->
+                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6 hover:border-brand/50 transition-colors">
+                    <h3 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">🤖 Copilot Agenten & Modi</h3>
+                    <ul class="space-y-4">
+                        <li class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+                            <span class="text-brand-accent font-mono text-sm block mb-1">Cmd/Strg + I</span>
+                            <strong class="text-white">Der "Inline Chat":</strong> Für kleine Änderungen direkt in der Code-Zeile.
+                            <div class="text-sm text-slate-500 mt-2">💡 <i class="text-slate-400">"Mach das responsiv mit Tailwind"</i></div>
+                        </li>
+                        <li class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+                            <span class="text-brand-accent font-mono text-sm block mb-1">Copilot Edits</span>
+                            <strong class="text-white">Der "Architekt":</strong> Bearbeitet mehrere Dateien gleichzeitig.
+                            <div class="text-sm text-slate-500 mt-2">💡 <i class="text-slate-400">"Erstelle eine Navbar, verknüpfe index.html und styles.css"</i></div>
+                        </li>
+                        <li class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+                            <span class="text-brand-accent font-mono text-sm block mb-1">@workspace</span>
+                            <strong class="text-white">Der Projekt-Kenner:</strong> Kennt alle deine Dateien.
+                            <div class="text-sm text-slate-500 mt-2">💡 <i class="text-slate-400">"@workspace Erkläre die Animationen hier."</i></div>
+                        </li>
+                        <li class="p-3 bg-slate-900 rounded-lg border border-slate-800 border-l-4 border-l-red-500">
+                            <span class="text-brand-accent font-mono text-sm block mb-1">@terminal</span>
+                            <strong class="text-white">Der Retter in der Not:</strong> Hilft bei roten Fehlermeldungen.
+                            <div class="text-sm text-slate-500 mt-2">💡 <i class="text-slate-400">"@terminal Warum schlägt das fehl?"</i></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- VS Code Extensions -->
+                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6 hover:border-brand/50 transition-colors flex flex-col">
+                    <h3 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">🔌 VS Code Geheimwaffen</h3>
+                    <div class="space-y-4 flex-grow">
+                        <div class="flex gap-4 items-start">
+                            <div class="w-10 h-10 rounded-lg bg-slate-700 flex items-center justify-center text-xl shrink-0">✨</div>
+                            <div>
+                                <strong class="text-white block">Prettier</strong>
+                                <span class="text-sm text-slate-400">Formatiert deinen Code automatisch und macht ihn ordentlich. Nie wieder Chaos!</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="w-10 h-10 rounded-lg bg-slate-700 flex items-center justify-center text-xl shrink-0">🌊</div>
+                            <div>
+                                <strong class="text-white block">Tailwind IntelliSense</strong>
+                                <span class="text-sm text-slate-400">Schlägt dir Farben, Abstände und Klassen direkt beim Tippen vor.</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="w-10 h-10 rounded-lg bg-slate-700 flex items-center justify-center text-xl shrink-0">👁️</div>
+                            <div>
+                                <strong class="text-white block">Live Preview</strong>
+                                <span class="text-sm text-slate-400">Zeigt dein fertiges Design direkt in einem Fenster in VS Code an, während du tippst.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teil 2: GitHub -->
+        <section id="github" class="scroll-mt-24 gs-reveal">
+            <h2 class="text-3xl font-bold text-white mb-2 border-b border-slate-800 pb-4 flex items-center gap-3">
+                <span class="p-2 bg-slate-800 rounded-lg">🏗️</span> Teil 2: GitHub für absolute Anfänger
+            </h2>
+            <p class="text-slate-400 mb-8 mt-4 text-lg">GitHub ist wie "Google Drive für Code", aber mit einer <strong class="text-white">Zeitmaschine</strong> (Versionierung).</p>
+
+            <div class="relative border-l-2 border-slate-700 ml-3 md:ml-6 space-y-8 pb-8">
+                <!-- Step 1 -->
+                <div class="relative pl-8">
+                    <div class="absolute w-6 h-6 bg-brand rounded-full -left-[13px] top-1 border-4 border-slate-900"></div>
+                    <h3 class="text-xl font-bold text-white">Repository (Repo)</h3>
+                    <p class="text-slate-400 mt-1">Dein Projekt-Ordner auf der GitHub-Cloud. Hier lebt dein Code online.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="relative pl-8">
+                    <div class="absolute w-6 h-6 bg-brand rounded-full -left-[13px] top-1 border-4 border-slate-900"></div>
+                    <h3 class="text-xl font-bold text-white">Codespace <span class="text-xs bg-brand/20 text-brand px-2 py-1 rounded ml-2 align-middle">Geheimtipp</span></h3>
+                    <p class="text-slate-400 mt-1">Kein Bock auf lokale Installationen? Klick auf GitHub auf <code>Code > Codespaces</code>. Es öffnet sich ein komplett fertig eingestelltes VS Code direkt in deinem Browser!</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="relative pl-8">
+                    <div class="absolute w-6 h-6 bg-brand rounded-full -left-[13px] top-1 border-4 border-slate-900"></div>
+                    <h3 class="text-xl font-bold text-white">Commit</h3>
+                    <p class="text-slate-400 mt-1">Ein "Speicherpunkt" in deiner Zeitmaschine.</p>
+                    <div class="mt-2 p-3 bg-slate-800 rounded-lg border border-slate-700 text-sm">
+                        <strong class="text-brand-accent">KI-Hack:</strong> Copilot kann deine Commit-Nachrichten für dich schreiben! Klick einfach auf das kleine ✨ Funkeln-Icon im Source-Control-Tab.
+                    </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="relative pl-8">
+                    <div class="absolute w-6 h-6 bg-brand rounded-full -left-[13px] top-1 border-4 border-slate-900"></div>
+                    <h3 class="text-xl font-bold text-white">Push</h3>
+                    <p class="text-slate-400 mt-1">Deine lokalen Änderungen (Commits) hoch ins Internet schieben, damit sie sicher auf GitHub liegen.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teil 3: Styling & Motion -->
+        <section id="styling" class="scroll-mt-24 gs-reveal">
+            <h2 class="text-3xl font-bold text-white mb-2 border-b border-slate-800 pb-4 flex items-center gap-3">
+                <span class="p-2 bg-slate-800 rounded-lg">🎨</span> Teil 3: Styling & Motion "Cheatsheet"
+            </h2>
+            <p class="text-slate-400 mb-8 mt-4 text-lg">Da du im Bereich UI/UX und Motion startest, sind das deine Abkürzungen.</p>
+
+            <!-- Interaktiver Playground -->
+            <div class="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden shadow-2xl">
+                <div class="bg-slate-800 px-4 py-3 border-b border-slate-700 flex justify-between items-center">
+                    <span class="font-mono text-sm text-slate-400">playground.html</span>
+                    <div class="flex gap-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <!-- Code Controls -->
+                    <div class="p-6 border-r border-slate-700 bg-slate-800/30">
+                        <h4 class="text-white font-semibold mb-4">Klicke, um Klassen anzuwenden:</h4>
+                        
+                        <div class="space-y-4">
+                            <!-- Tailwind: Flexbox -->
+                            <div>
+                                <p class="text-sm text-slate-400 mb-2">1. Das Element perfekt zentrieren (Endgegner):</p>
+                                <button onclick="toggleClasses('demo-box-container', 'flex justify-center items-center')" class="w-full text-left p-3 rounded bg-slate-800 hover:bg-slate-700 border border-slate-600 font-mono text-sm text-brand-accent transition-colors active:scale-95">
+                                    + flex justify-center items-center
+                                </button>
+                            </div>
+
+                            <!-- Tailwind: Hover & Transition -->
+                            <div>
+                                <p class="text-sm text-slate-400 mb-2">2. Einen weichen "Pop" Effekt beim Drüberfahren:</p>
+                                <button onclick="toggleClasses('demo-box', 'hover:scale-110 transition-all')" class="w-full text-left p-3 rounded bg-slate-800 hover:bg-slate-700 border border-slate-600 font-mono text-sm text-purple-400 transition-colors active:scale-95">
+                                    + hover:scale-110 transition-all
+                                </button>
+                            </div>
+
+                            <!-- Tailwind: Animation -->
+                            <div>
+                                <p class="text-sm text-slate-400 mb-2">3. Fertiger Hüpf-Effekt:</p>
+                                <button onclick="toggleClasses('demo-box', 'animate-bounce')" class="w-full text-left p-3 rounded bg-slate-800 hover:bg-slate-700 border border-slate-600 font-mono text-sm text-yellow-400 transition-colors active:scale-95">
+                                    + animate-bounce
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Output -->
+                    <div class="p-6 bg-[#0f172a] relative min-h-[300px]" id="demo-area">
+                        <div class="absolute top-2 right-2 text-xs text-slate-500 font-mono">Live Preview</div>
+                        
+                        <!-- Das Container-Element -->
+                        <div id="demo-box-container" class="w-full h-full border-2 border-dashed border-slate-700 rounded p-4">
+                            
+                            <!-- Das Box-Element -->
+                            <div id="demo-box" class="w-24 h-24 bg-gradient-to-br from-brand to-purple-600 rounded-xl shadow-lg flex items-center justify-center text-white font-bold cursor-pointer">
+                                Box
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GSAP Section -->
+            <div class="mt-8 bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+                <h3 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">🎬 Motion mit GSAP (GreenSock)</h3>
+                <p class="text-slate-400 mb-4">Wenn du komplexe Animationen willst, die z.B. auf Scrollen reagieren. <br>Binde es per Script-Link (CDN) ein und frag Copilot:</p>
+                
+                <div class="bg-slate-900 p-4 rounded-lg border border-slate-700 font-mono text-sm text-green-400 flex justify-between items-center group cursor-pointer" onclick="copyText('gsap-prompt')">
+                    <span id="gsap-prompt">"gsap scrolltrigger move #box from left to right while scrolling"</span>
+                    <button class="opacity-0 group-hover:opacity-100 transition-opacity text-slate-400 hover:text-white" title="Kopieren">📋</button>
+                </div>
+                
+                <!-- GSAP Demo Box -->
+                <div class="mt-6 overflow-hidden bg-slate-900 rounded-lg p-4 border border-slate-800">
+                    <div class="text-xs text-slate-500 mb-2 font-mono">GSAP Scroll-Demo (Scrolle weiter runter 👇)</div>
+                    <div id="gsap-demo-box" class="w-16 h-16 bg-brand-accent rounded-lg flex items-center justify-center text-white shadow-lg">🚀</div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Teil 4: Ausbau-Plan -->
+        <section id="ausbau" class="scroll-mt-24 gs-reveal mb-24">
+            <h2 class="text-3xl font-bold text-white mb-2 border-b border-slate-800 pb-4 flex items-center gap-3">
+                <span class="p-2 bg-slate-800 rounded-lg">📈</span> Teil 4: Ausbau-Plan für später
+            </h2>
+            <p class="text-slate-400 mb-8 mt-4 text-lg">Wenn du die Basics (HTML/Tailwind/Copilot) kannst, sind das deine nächsten Meilensteine:</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="p-5 bg-slate-800/40 border border-slate-700 rounded-xl hover:bg-slate-800 transition-colors">
+                    <div class="text-3xl mb-3">🧊</div>
+                    <h4 class="text-white font-bold mb-2">Interaktives 3D</h4>
+                    <p class="text-sm text-slate-400">Lerne, wie man <strong>Spline</strong> Szenen einbindet, um beeindruckende 3D-Websites zu bauen.</p>
+                </div>
+                
+                <div class="p-5 bg-slate-800/40 border border-slate-700 rounded-xl hover:bg-slate-800 transition-colors">
+                    <div class="text-3xl mb-3">⚡</div>
+                    <h4 class="text-white font-bold mb-2">Frameworks</h4>
+                    <p class="text-sm text-slate-400">Schau dir <strong>Next.js</strong> an. Es ist heute der absolute Standard für moderne Web-Apps.</p>
+                </div>
+
+                <div class="p-5 bg-slate-800/40 border border-slate-700 rounded-xl hover:bg-slate-800 transition-colors">
+                    <div class="text-3xl mb-3">🗄️</div>
+                    <h4 class="text-white font-bold mb-2">Backend-Light</h4>
+                    <p class="text-sm text-slate-400">Nutze <strong>Supabase</strong>, wenn du Daten (wie User-Accounts) speichern willst, ohne Datenbank-Experte zu sein.</p>
+                </div>
+
+                <div class="p-5 bg-slate-800/40 border border-slate-700 rounded-xl hover:bg-slate-800 transition-colors">
+                    <div class="text-3xl mb-3">🧠</div>
+                    <h4 class="text-white font-bold mb-2">Eigene Agenten</h4>
+                    <p class="text-sm text-slate-400">Baue dir eigene Copilot-Instructions, die genau deinen persönlichen Design-Stil kennen.</p>
+                </div>
+            </div>
+
+            <!-- Snippet Quellen -->
+            <div class="mt-12">
+                <h3 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">🔗 Wichtige Snippet-Quellen</h3>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://uiverse.io" target="_blank" class="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-brand-accent hover:border-brand-accent transition-colors flex items-center gap-2">
+                        <span>Uiverse.io</span>
+                        <span class="text-xs text-slate-400">(Fertige UI-Elemente)</span>
+                    </a>
+                    <a href="https://tailwindcomponents.com" target="_blank" class="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-blue-400 hover:border-blue-400 transition-colors flex items-center gap-2">
+                        <span>TailwindComponents</span>
+                    </a>
+                    <a href="https://animista.net" target="_blank" class="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-pink-400 hover:border-pink-400 transition-colors flex items-center gap-2">
+                        <span>Animista</span>
+                        <span class="text-xs text-slate-400">(CSS Animation Generator)</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-slate-800 py-8 text-center text-slate-500 text-sm">
+        <p>Erstellt mit KI für die nächste Generation von Entwicklern & Designern.</p>
+    </footer>
+
+    <!-- Interaktive Scripte -->
+    <script>
+        // --- Tailwind Playground Logik ---
+        function toggleClasses(elementId, classesString) {
+            const el = document.getElementById(elementId);
+            const classes = classesString.split(' ');
+            
+            classes.forEach(cls => {
+                if (el.classList.contains(cls)) {
+                    el.classList.remove(cls);
+                } else {
+                    el.classList.add(cls);
+                }
+            });
+            
+            // Visuelles Feedback auf dem Button
+            event.currentTarget.classList.toggle('bg-slate-700');
+            event.currentTarget.classList.toggle('border-brand');
+        }
+
+        // --- Copy to Clipboard ---
+        function copyText(elementId) {
+            const text = document.getElementById(elementId).innerText.replace(/"/g, ''); // Quotes entfernen für sauberen Text
+            navigator.clipboard.writeText(text).then(() => {
+                // Temporäres Feedback
+                const originalText = document.getElementById(elementId).innerText;
+                document.getElementById(elementId).innerText = "Kopiert! ✅";
+                setTimeout(() => {
+                    document.getElementById(elementId).innerText = originalText;
+                }, 2000);
+            });
+        }
+
+        // --- GSAP Animationen ---
+        document.addEventListener("DOMContentLoaded", (event) => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Fade-in Animation für die Sektionen beim Scrollen
+            gsap.utils.toArray('.gs-reveal').forEach(function(elem) {
+                gsap.fromTo(elem, 
+                    { y: 50, opacity: 0 }, 
+                    {
+                        scrollTrigger: {
+                            trigger: elem,
+                            start: "top 85%", // Startet wenn das Element zu 85% im Viewport ist
+                        },
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.8,
+                        ease: "power2.out"
+                    }
+                );
+            });
+
+            // Die Demo-Animation aus dem Guide nachgebaut
+            gsap.to("#gsap-demo-box", {
+                scrollTrigger: {
+                    trigger: "#gsap-demo-box",
+                    start: "top 80%",
+                    end: "top 20%",
+                    scrub: 1, // Macht die Animation abhängig von der Scroll-Position (Scrubbing)
+                },
+                x: "calc(100vw - 12rem)", // Bewegt sich nach rechts (responsive)
+                rotation: 360,
+                ease: "none"
+            });
+        });
+    </script>
+</body>
+</html>

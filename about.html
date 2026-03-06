@@ -63,9 +63,28 @@
     <!-- ═══════════════════════════════════════
          HERO
     ═══════════════════════════════════════ -->
-    <section class="about-hero wave-cream" id="hero" aria-label="Hero">
-      <div class="about-hero__bg"></div>
+    <section class="about-hero wave-mauve" id="hero" aria-label="Hero">
+      <div class="about-hero_bg"></div>
       <div class="about-hero__overlay"></div>
+
+      <!-- ✦ NEU: Grain Textur -->
+      <div class="about-hero__grain" aria-hidden="true"></div>
+
+      <!-- ✦ NEU: Radiales Vignette -->
+      <div class="about-hero__vignette" aria-hidden="true"></div>
+
+      <!-- ✦ NEU: Schwebende Sparkles oben-rechts -->
+      <div class="about-hero__sparkles" aria-hidden="true">
+        <svg class="hero-spark" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M11 1 L12.4 8.6 L20 10 L12.4 11.4 L11 19 L9.6 11.4 L2 10 L9.6 8.6Z" fill="rgba(181,161,158,0.55)"/>
+        </svg>
+        <svg class="hero-spark" width="13" height="13" viewBox="0 0 13 13" fill="none" style="margin-left:18px">
+          <path d="M6.5 0.5 L7.4 4.6 L11.5 5.5 L7.4 6.4 L6.5 10.5 L5.6 6.4 L1.5 5.5 L5.6 4.6Z" fill="rgba(181,161,158,0.38)"/>
+        </svg>
+        <svg class="hero-spark" width="8" height="8" viewBox="0 0 8 8" fill="none" style="margin-left:5px">
+          <path d="M4 0.5 L4.6 3 L7.5 3.5 L4.6 4 L4 6.5 L3.4 4 L0.5 3.5 L3.4 3Z" fill="rgba(181,161,158,0.25)"/>
+        </svg>
+      </div>
 
       <!-- Floating index tags — tell the story of the page -->
       <div class="about-hero__index" aria-hidden="true">
@@ -84,7 +103,26 @@
         <p class="about-hero__sub">Design. Code. Strategie. Alles mit Seele.</p>
       </div>
 
-      <!-- Scroll hint -->
+      <!-- ✦ NEU: Rotierende Blume ersetzt scroll-line -->
+      <div class="about-hero__flower" aria-hidden="true">
+        <div style="position:relative;width:44px;height:44px">
+          <svg class="flower-ring-outer" viewBox="0 0 44 44" fill="none" width="44" height="44" style="position:absolute;inset:0">
+            <ellipse cx="22" cy="22" rx="3.5" ry="13" fill="none" stroke="rgba(181,161,158,0.48)" stroke-width="0.9"/>
+            <ellipse cx="22" cy="22" rx="3.5" ry="13" fill="none" stroke="rgba(181,161,158,0.48)" stroke-width="0.9" transform="rotate(60 22 22)"/>
+            <ellipse cx="22" cy="22" rx="3.5" ry="13" fill="none" stroke="rgba(181,161,158,0.48)" stroke-width="0.9" transform="rotate(120 22 22)"/>
+            <circle cx="22" cy="22" r="18" fill="none" stroke="rgba(181,161,158,0.1)" stroke-width="0.6" stroke-dasharray="2 4"/>
+          </svg>
+          <svg class="flower-ring-inner" viewBox="0 0 44 44" fill="none" width="44" height="44" style="position:absolute;inset:0">
+            <ellipse cx="22" cy="22" rx="2.5" ry="8" fill="none" stroke="rgba(212,185,181,0.3)" stroke-width="0.7" transform="rotate(30 22 22)"/>
+            <ellipse cx="22" cy="22" rx="2.5" ry="8" fill="none" stroke="rgba(212,185,181,0.3)" stroke-width="0.7" transform="rotate(90 22 22)"/>
+            <ellipse cx="22" cy="22" rx="2.5" ry="8" fill="none" stroke="rgba(212,185,181,0.3)" stroke-width="0.7" transform="rotate(150 22 22)"/>
+          </svg>
+          <div class="flower-center-dot"></div>
+        </div>
+        <span class="hero-scroll-label">Scroll</span>
+      </div>
+
+      <!-- Scroll hint (hidden via CSS, flower takes over) -->
       <div class="about-hero__scroll" aria-hidden="true">
         <div class="about-hero__scroll-line"></div>
       </div>
@@ -93,7 +131,7 @@
     <!-- ═══════════════════════════════════════
          ABOUT ME — cinematic editorial
     ═══════════════════════════════════════ -->
-    <section class="about-me wave-dark" id="about-me" aria-label="Über mich">
+    <section class="about-me wave-mint" id="about-me" aria-label="Über mich">
       <div class="about-me__inner">
 
         <!-- LEFT COL — portrait + identity pills -->
@@ -109,6 +147,42 @@
             <!-- Decorative corners -->
             <div class="deco-corner deco-corner--tl" aria-hidden="true"></div>
             <div class="deco-corner deco-corner--br" aria-hidden="true"></div>
+
+            <!-- ✦ NEU: Schmetterling neben Portrait -->
+            <div class="portrait-butterfly" aria-hidden="true">
+              <div>
+                <svg width="68" height="58" viewBox="0 0 100 86" fill="none" overflow="visible">
+                  <g class="bf-wL">
+                    <path d="M47 43 C40 33 22 12 8 14 C0 16 0 28 6 38 C12 48 30 52 47 48Z"
+                      fill="rgba(181,161,158,0.17)" stroke="rgba(110,59,73,0.5)" stroke-width="1.3"/>
+                    <path d="M47 48 C34 56 16 64 8 60 C2 56 8 46 20 44 C32 42 42 46 47 48Z"
+                      fill="rgba(212,185,181,0.12)" stroke="rgba(181,161,158,0.45)" stroke-width="1"/>
+                    <path d="M45 36 C34 28 20 20 12 22" stroke="rgba(110,59,73,0.13)" stroke-width="0.6" fill="none"/>
+                    <circle cx="18" cy="22" r="5" fill="none" stroke="rgba(110,59,73,0.18)" stroke-width="0.8"/>
+                    <circle cx="18" cy="22" r="2" fill="rgba(110,59,73,0.15)"/>
+                    <circle cx="16" cy="52" r="3" fill="none" stroke="rgba(181,161,158,0.22)" stroke-width="0.7"/>
+                  </g>
+                  <g class="bf-wR">
+                    <path d="M53 43 C60 33 78 12 92 14 C100 16 100 28 94 38 C88 48 70 52 53 48Z"
+                      fill="rgba(181,161,158,0.17)" stroke="rgba(110,59,73,0.5)" stroke-width="1.3"/>
+                    <path d="M53 48 C66 56 84 64 92 60 C98 56 92 46 80 44 C68 42 58 46 53 48Z"
+                      fill="rgba(212,185,181,0.12)" stroke="rgba(181,161,158,0.45)" stroke-width="1"/>
+                    <path d="M55 36 C66 28 80 20 88 22" stroke="rgba(110,59,73,0.13)" stroke-width="0.6" fill="none"/>
+                    <circle cx="82" cy="22" r="5" fill="none" stroke="rgba(110,59,73,0.18)" stroke-width="0.8"/>
+                    <circle cx="82" cy="22" r="2" fill="rgba(110,59,73,0.15)"/>
+                    <circle cx="84" cy="52" r="3" fill="none" stroke="rgba(181,161,158,0.22)" stroke-width="0.7"/>
+                  </g>
+                  <!-- Body -->
+                  <ellipse cx="50" cy="47" rx="2" ry="14" fill="rgba(49,74,81,0.65)"/>
+                  <circle cx="50" cy="30" r="3.2" fill="rgba(49,74,81,0.7)"/>
+                  <!-- Antennae -->
+                  <path d="M50 27 Q46 19 42 13" stroke="rgba(49,74,81,0.52)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+                  <circle cx="41" cy="12" r="1.8" fill="rgba(49,74,81,0.52)"/>
+                  <path d="M50 27 Q54 19 58 13" stroke="rgba(49,74,81,0.52)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+                  <circle cx="59" cy="12" r="1.8" fill="rgba(49,74,81,0.52)"/>
+                </svg>
+              </div>
+            </div>
           </div>
 
           <!-- Personality chips -->
@@ -181,36 +255,6 @@
 
         </div>
       </div>
-
-      <!-- Full-width marquee — skill strip -->
-      <div class="skills-marquee" aria-hidden="true">
-        <div class="skills-marquee__track">
-          <span>Photoshop</span><span class="dot">·</span>
-          <span>Illustrator</span><span class="dot">·</span>
-          <span>After Effects</span><span class="dot">·</span>
-          <span>Premiere Pro</span><span class="dot">·</span>
-          <span>HTML · CSS · JS</span><span class="dot">·</span>
-          <span>Python · Flask</span><span class="dot">·</span>
-          <span>GSAP</span><span class="dot">·</span>
-          <span>Figma</span><span class="dot">·</span>
-          <span>SEO · SEA</span><span class="dot">·</span>
-          <span>Procreate</span><span class="dot">·</span>
-          <span>Stripe API</span><span class="dot">·</span>
-          <span>Tailwind</span><span class="dot">·</span>
-          <span>Photoshop</span><span class="dot">·</span>
-          <span>Illustrator</span><span class="dot">·</span>
-          <span>After Effects</span><span class="dot">·</span>
-          <span>Premiere Pro</span><span class="dot">·</span>
-          <span>HTML · CSS · JS</span><span class="dot">·</span>
-          <span>Python · Flask</span><span class="dot">·</span>
-          <span>GSAP</span><span class="dot">·</span>
-          <span>Figma</span><span class="dot">·</span>
-          <span>SEO · SEA</span><span class="dot">·</span>
-          <span>Procreate</span><span class="dot">·</span>
-          <span>Stripe API</span><span class="dot">·</span>
-          <span>Tailwind</span><span class="dot">·</span>
-        </div>
-      </div>
     </section>
 
     <!-- ═══════════════════════════════════════
@@ -220,13 +264,62 @@
       <div class="about-komp__inner">
 
         <header class="about-komp__header">
+             <!-- ✦ NEU: ✦ Stern-Separatoren im Marquee -->
+      <div class="skills-marquee" aria-hidden="true">
+        <div class="skills-marquee__track">
+          <span>Photoshop</span><span class="dot">·</span>
+          <span>Illustrator</span><span class="dot">·</span>
+          <span>After Effects</span><span class="star-sep">✦</span>
+          <span>Premiere Pro</span><span class="dot">·</span>
+          <span>HTML · CSS · JS</span><span class="dot">·</span>
+          <span>Python · Flask</span><span class="star-sep">✦</span>
+          <span>GSAP</span><span class="dot">·</span>
+          <span>Figma</span><span class="dot">·</span>
+          <span>SEO · SEA</span><span class="star-sep">✦</span>
+          <span>Procreate</span><span class="dot">·</span>
+          <span>Stripe API</span><span class="dot">·</span>
+          <span>Tailwind</span><span class="star-sep">✦</span>
+          <!-- Duplicate for seamless loop -->
+          <span>Photoshop</span><span class="dot">·</span>
+          <span>Illustrator</span><span class="dot">·</span>
+          <span>After Effects</span><span class="star-sep">✦</span>
+          <span>Premiere Pro</span><span class="dot">·</span>
+          <span>HTML · CSS · JS</span><span class="dot">·</span>
+          <span>Python · Flask</span><span class="star-sep">✦</span>
+          <span>GSAP</span><span class="dot">·</span>
+          <span>Figma</span><span class="dot">·</span>
+          <span>SEO · SEA</span><span class="star-sep">✦</span>
+          <span>Procreate</span><span class="dot">·</span>
+          <span>Stripe API</span><span class="dot">·</span>
+          <span>Tailwind</span><span class="star-sep">✦</span>
+        </div>
+      </div>
           <span class="about-eyebrow">Was ich kann</span>
-          <h2 class="about-komp__title">Meine <em>Kompetenzen</em></h2>
+          <!-- ✦ NEU: Botanische Sprigs neben Titel -->
+          <div class="komp-title-row">
+            <svg class="komp-sprig" width="18" height="50" viewBox="0 0 18 50" fill="none" aria-hidden="true">
+              <line x1="9" y1="50" x2="9" y2="5" stroke="rgba(181,161,158,1)" stroke-width="0.8"/>
+              <path d="M9 34 Q3 30 4 22 Q7 27 9 34Z" fill="none" stroke="rgba(181,161,158,1)" stroke-width="0.85"/>
+              <path d="M9 34 Q15 30 14 22 Q11 27 9 34Z" fill="none" stroke="rgba(181,161,158,1)" stroke-width="0.85"/>
+              <path d="M9 20 Q3 16 4 8 Q7 13 9 20Z" fill="none" stroke="rgba(181,161,158,1)" stroke-width="0.75"/>
+              <path d="M9 20 Q15 16 14 8 Q11 13 9 20Z" fill="none" stroke="rgba(181,161,158,1)" stroke-width="0.75"/>
+              <circle cx="9" cy="5" r="2.8" fill="none" stroke="rgba(110,59,73,1)" stroke-width="0.8"/>
+              <circle cx="9" cy="5" r="1.1" fill="rgba(110,59,73,0.7)"/>
+            </svg>
+            <h2 class="about-komp__title">Meine <em>Kompetenzen</em></h2>
+            <svg class="komp-sprig" width="18" height="50" viewBox="0 0 18 50" fill="none" aria-hidden="true" style="transform:scaleX(-1)">
+              <line x1="9" y1="50" x2="9" y2="5" stroke="rgba(181,161,158,1)" stroke-width="0.8"/>
+              <path d="M9 34 Q3 30 4 22 Q7 27 9 34Z" fill="none" stroke="rgba(181,161,158,1)" stroke-width="0.85"/>
+              <path d="M9 34 Q15 30 14 22 Q11 27 9 34Z" fill="none" stroke="rgba(181,161,158,1)" stroke-width="0.85"/>
+              <path d="M9 20 Q3 16 4 8 Q7 13 9 20Z" fill="none" stroke="rgba(181,161,158,1)" stroke-width="0.75"/>
+              <path d="M9 20 Q15 16 14 8 Q11 13 9 20Z" fill="none" stroke="rgba(181,161,158,1)" stroke-width="0.75"/>
+              <circle cx="9" cy="5" r="2.8" fill="none" stroke="rgba(110,59,73,1)" stroke-width="0.8"/>
+              <circle cx="9" cy="5" r="1.1" fill="rgba(110,59,73,0.7)"/>
+            </svg>
+          </div>
         </header>
 
         <div class="komp-grid">
-
-          <!-- Design -->
           <div class="komp-card" data-color="burgundy">
             <div class="komp-card__top">
               <span class="komp-card__num">01</span>
@@ -241,15 +334,10 @@
               <li>Illustrationen & Procreate</li>
             </ul>
             <div class="komp-card__tools">
-              <span>Photoshop</span>
-              <span>Illustrator</span>
-              <span>InDesign</span>
-              <span>Figma</span>
-              <span>Procreate</span>
+              <span>Photoshop</span><span>Illustrator</span><span>InDesign</span><span>Figma</span><span>Procreate</span>
             </div>
           </div>
 
-          <!-- Development -->
           <div class="komp-card" data-color="mint">
             <div class="komp-card__top">
               <span class="komp-card__num">02</span>
@@ -264,15 +352,10 @@
               <li>Tailwind, REST APIs</li>
             </ul>
             <div class="komp-card__tools">
-              <span>HTML/CSS</span>
-              <span>JavaScript</span>
-              <span>GSAP</span>
-              <span>Python</span>
-              <span>Tailwind</span>
+              <span>HTML/CSS</span><span>JavaScript</span><span>GSAP</span><span>Python</span><span>Tailwind</span>
             </div>
           </div>
 
-          <!-- Motion -->
           <div class="komp-card" data-color="mauve">
             <div class="komp-card__top">
               <span class="komp-card__num">03</span>
@@ -287,13 +370,10 @@
               <li>Event-Trailer & Bandenanimationen</li>
             </ul>
             <div class="komp-card__tools">
-              <span>Premiere Pro</span>
-              <span>After Effects</span>
-              <span>DaVinci</span>
+              <span>Premiere Pro</span><span>After Effects</span><span>DaVinci</span>
             </div>
           </div>
 
-          <!-- Marketing -->
           <div class="komp-card" data-color="dark">
             <div class="komp-card__top">
               <span class="komp-card__num">04</span>
@@ -308,19 +388,15 @@
               <li>Mediaplanung & Budgetierung</li>
             </ul>
             <div class="komp-card__tools">
-              <span>Google Ads</span>
-              <span>Meta Ads</span>
-              <span>LinkedIn</span>
-              <span>Analytics</span>
+              <span>Google Ads</span><span>Meta Ads</span><span>LinkedIn</span><span>Analytics</span>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
     <!-- ═══════════════════════════════════════
-         TIMELINE — visual two-column with center line
+         TIMELINE
     ═══════════════════════════════════════ -->
     <section class="about-timeline wave-cream" id="timeline" aria-label="Werdegang">
       <div class="vis-timeline__container">
@@ -331,7 +407,6 @@
           <p class="about-timeline__sub">Von der ersten Kamera bis zum ersten Deploy.</p>
         </header>
 
-        <!-- OUTER TOGGLE -->
         <div class="vis-tl-toggle-wrap">
           <button class="vis-tl-toggle-btn" aria-expanded="false">
             <div class="vis-tl-toggle-content">
@@ -348,117 +423,68 @@
           </button>
         </div>
 
-        <!-- COLLAPSIBLE -->
         <div class="vis-tl-collapsible" style="height:0; overflow:hidden;">
           <div class="vis-tl-wrapper">
             <div class="vis-tl-line"></div>
 
-            <!-- 2025 -->
             <div class="vis-tl-event" data-side="left">
               <div class="vis-event-marker"></div>
-              <div class="vis-event-content">
-                <div class="vis-event-card">
-                  <span>2025</span>
-                  <h4>Technische Berufsmaturität</h4>
-                  <button class="vis-event-toggle" aria-expanded="false">
-                    Mehr <svg style="width:12px;height:12px;flex-shrink:0;transition:transform 0.3s" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                  </button>
-                  <div class="vis-event-description">
-                    <p>Mit der Abgabe meiner interdisziplinären Arbeit zum Thema <em>„Die Illusion der freien Meinung"</em> schloss ich meine Ausbildung ab. Die Arbeit analysiert die biologischen und psychologischen Ursprünge der Meinungsbildung sowie die zentrale Frage nach der Möglichkeit von Demokratie. Untersucht wurden neurowissenschaftliche Faktoren wie hormonelle Steuerung, genetische Präferenzen und transgenerationale Traumata sowie soziologische Einflüsse durch kollektive Glaubenssysteme und unbewusste Triebe.</p>
-                    <span>Oktober 2025</span>
-                  </div>
-                </div>
-              </div>
+              <div class="vis-event-content"><div class="vis-event-card">
+                <span>2025</span>
+                <h4>Technische Berufsmaturität</h4>
+                <button class="vis-event-toggle" aria-expanded="false">Mehr <svg style="width:12px;height:12px;flex-shrink:0;transition:transform 0.3s" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+                <div class="vis-event-description"><p>Mit der Abgabe meiner interdisziplinären Arbeit zum Thema <em>„Die Illusion der freien Meinung"</em> schloss ich meine Ausbildung ab. Die Arbeit analysiert die biologischen und psychologischen Ursprünge der Meinungsbildung sowie die zentrale Frage nach der Möglichkeit von Demokratie. Untersucht wurden neurowissenschaftliche Faktoren wie hormonelle Steuerung, genetische Präferenzen und transgenerationale Traumata sowie soziologische Einflüsse durch kollektive Glaubenssysteme und unbewusste Triebe.</p><span>Oktober 2025</span></div>
+              </div></div>
             </div>
 
-            <!-- 2023 -->
             <div class="vis-tl-event" data-side="right">
               <div class="vis-event-marker"></div>
-              <div class="vis-event-content">
-                <div class="vis-event-card">
-                  <span>2023</span>
-                  <h4>Mediamatikerin EFZ</h4>
-                  <button class="vis-event-toggle" aria-expanded="false">
-                    Mehr <svg style="width:12px;height:12px;flex-shrink:0;transition:transform 0.3s" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                  </button>
-                  <div class="vis-event-description">
-                    <p>Nach vier Jahren Ausbildung zur Mediamatikerin durfte ich im Rahmen meiner IPA, für die Werbeagentur Komthur, ein umfassendes Online-Marketing-Konzept entwickeln. Dieses basierte auf einer strategischen Marktanalyse und Zielgruppendefinition mittels Personas sowie einem vollständigen UI/UX-Website-Redesign. Die Performance-Marketing-Strategie kombinierte SEO- und SEA-Optimierungen mit budgetierter Mediaplanung auf Google, LinkedIn und Meta.</p>
-                    <span>Juli 2023</span>
-                  </div>
-                </div>
-              </div>
+              <div class="vis-event-content"><div class="vis-event-card">
+                <span>2023</span>
+                <h4>Mediamatikerin EFZ</h4>
+                <button class="vis-event-toggle" aria-expanded="false">Mehr <svg style="width:12px;height:12px;flex-shrink:0;transition:transform 0.3s" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+                <div class="vis-event-description"><p>Nach vier Jahren Ausbildung zur Mediamatikerin durfte ich im Rahmen meiner IPA, für die Werbeagentur Komthur, ein umfassendes Online-Marketing-Konzept entwickeln. Dieses basierte auf einer strategischen Marktanalyse und Zielgruppendefinition mittels Personas sowie einem vollständigen UI/UX-Website-Redesign. Die Performance-Marketing-Strategie kombinierte SEO- und SEA-Optimierungen mit budgetierter Mediaplanung auf Google, LinkedIn und Meta.</p><span>Juli 2023</span></div>
+              </div></div>
             </div>
 
-            <!-- 2022 -->
             <div class="vis-tl-event" data-side="left">
               <div class="vis-event-marker"></div>
-              <div class="vis-event-content">
-                <div class="vis-event-card">
-                  <span>2022</span>
-                  <h4>Social Media Management</h4>
-                  <button class="vis-event-toggle" aria-expanded="false">
-                    Mehr <svg style="width:12px;height:12px;flex-shrink:0;transition:transform 0.3s" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                  </button>
-                  <div class="vis-event-description">
-                    <p>Im zweiten Lehrjahr der praktischen Ausbildung bei der SBW Neue Medien umfasste mein Aufgabenbereich die Konzeption und Umsetzung zielgruppengerechter Social-Media-Inhalte für Instagram und TikTok. Für interne und externe Projekte durfte ich zudem in den Bereichen Design und Animation mein Wissen vertiefen.</p>
-                    <span>SBW Neue Medien, Romanshorn</span>
-                  </div>
-                </div>
-              </div>
+              <div class="vis-event-content"><div class="vis-event-card">
+                <span>2022</span>
+                <h4>Social Media Management</h4>
+                <button class="vis-event-toggle" aria-expanded="false">Mehr <svg style="width:12px;height:12px;flex-shrink:0;transition:transform 0.3s" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+                <div class="vis-event-description"><p>Im zweiten Lehrjahr der praktischen Ausbildung bei der SBW Neue Medien umfasste mein Aufgabenbereich die Konzeption und Umsetzung zielgruppengerechter Social-Media-Inhalte für Instagram und TikTok. Für interne und externe Projekte durfte ich zudem in den Bereichen Design und Animation mein Wissen vertiefen.</p><span>SBW Neue Medien, Romanshorn</span></div>
+              </div></div>
             </div>
 
-            <!-- 2021 -->
             <div class="vis-tl-event" data-side="right">
               <div class="vis-event-marker"></div>
-              <div class="vis-event-content">
-                <div class="vis-event-card">
-                  <span>2021</span>
-                  <h4>Sportmarketing</h4>
-                  <button class="vis-event-toggle" aria-expanded="false">
-                    Mehr <svg style="width:12px;height:12px;flex-shrink:0;transition:transform 0.3s" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                  </button>
-                  <div class="vis-event-description">
-                    <p>Praktikumsjahr im Bereich Sportmarketing. Erstellen von Festführern, Sponsoring-Materialien und Bandenanimationen für große Sportevents wie die Schweizermeisterschaft im Kunstturnen.</p>
-                    <span>Win-4 Winterthur</span>
-                  </div>
-                </div>
-              </div>
+              <div class="vis-event-content"><div class="vis-event-card">
+                <span>2021</span>
+                <h4>Sportmarketing</h4>
+                <button class="vis-event-toggle" aria-expanded="false">Mehr <svg style="width:12px;height:12px;flex-shrink:0;transition:transform 0.3s" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+                <div class="vis-event-description"><p>Praktikumsjahr im Bereich Sportmarketing. Erstellen von Festführern, Sponsoring-Materialien und Bandenanimationen für große Sportevents wie die Schweizermeisterschaft im Kunstturnen.</p><span>Win-4 Winterthur</span></div>
+              </div></div>
             </div>
 
-            <!-- 2019 -->
             <div class="vis-tl-event" data-side="left">
               <div class="vis-event-marker"></div>
-              <div class="vis-event-content">
-                <div class="vis-event-card">
-                  <span>2019</span>
-                  <h4>Ausbildung zur Mediamatikerin</h4>
-                  <button class="vis-event-toggle" aria-expanded="false">
-                    Mehr <svg style="width:12px;height:12px;flex-shrink:0;transition:transform 0.3s" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                  </button>
-                  <div class="vis-event-description">
-                    <p>Beginn der zweijährigen schulischen Ausbildung.</p>
-                    <span>SBW Neue Medien</span>
-                  </div>
-                </div>
-              </div>
+              <div class="vis-event-content"><div class="vis-event-card">
+                <span>2019</span>
+                <h4>Ausbildung zur Mediamatikerin</h4>
+                <button class="vis-event-toggle" aria-expanded="false">Mehr <svg style="width:12px;height:12px;flex-shrink:0;transition:transform 0.3s" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+                <div class="vis-event-description"><p>Beginn der zweijährigen schulischen Ausbildung.</p><span>SBW Neue Medien</span></div>
+              </div></div>
             </div>
 
-            <!-- 2018 -->
             <div class="vis-tl-event" data-side="right">
               <div class="vis-event-marker"></div>
-              <div class="vis-event-content">
-                <div class="vis-event-card">
-                  <span>2018</span>
-                  <h4>Praktikum Social Media</h4>
-                  <button class="vis-event-toggle" aria-expanded="false">
-                    Mehr <svg style="width:12px;height:12px;flex-shrink:0;transition:transform 0.3s" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                  </button>
-                  <div class="vis-event-description">
-                    <p>Bei meinem Praktikum in der Kommunikationsabteilung bei Hillsong Germany durfte ich die Mediaverantwortung für den Young &amp; Free-Bereich übernehmen. Das Aufgabenfeld umfasste Social-Media-Management mit Fokus auf Instagram: Erstellung von Event-Trailern, Screen-Designs, Flyern sowie Foto- und Videoproduktionen. Erste Erfahrungen entstanden mit Adobe Premiere, Photoshop, InDesign sowie in Fotografie und Videografie.</p>
-                    <span>Hillsong, Konstanz</span>
-                  </div>
-                </div>
-              </div>
+              <div class="vis-event-content"><div class="vis-event-card">
+                <span>2018</span>
+                <h4>Praktikum Social Media</h4>
+                <button class="vis-event-toggle" aria-expanded="false">Mehr <svg style="width:12px;height:12px;flex-shrink:0;transition:transform 0.3s" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+                <div class="vis-event-description"><p>Bei meinem Praktikum in der Kommunikationsabteilung bei Hillsong Germany durfte ich die Mediaverantwortung für den Young &amp; Free-Bereich übernehmen. Das Aufgabenfeld umfasste Social-Media-Management mit Fokus auf Instagram: Erstellung von Event-Trailern, Screen-Designs, Flyern sowie Foto- und Videoproduktionen. Erste Erfahrungen entstanden mit Adobe Premiere, Photoshop, InDesign sowie in Fotografie und Videografie.</p><span>Hillsong, Konstanz</span></div>
+              </div></div>
             </div>
 
           </div>
@@ -473,10 +499,23 @@
     <section class="about-favorites wave-foot" id="favorites" aria-label="Bücher und Musik">
       <div class="about-favorites__inner">
 
-        <!-- ── BOOKS ─────────────────────── -->
         <div class="fav-books-hero">
           <div class="fav-books-hero__text">
-            <span class="about-eyebrow">Gelesene Bücher</span>
+
+            <!-- ✦ NEU: Botanischer Sprig neben Eyebrow -->
+            <div class="fav-eyebrow-row">
+              <span class="about-eyebrow">Gelesene Bücher</span>
+              <svg class="fav-sprig" width="14" height="40" viewBox="0 0 14 40" fill="none" aria-hidden="true">
+                <line x1="7" y1="40" x2="7" y2="3" stroke="rgba(181,161,158,1)" stroke-width="0.8"/>
+                <path d="M7 27 Q2 24 3 17 Q5 22 7 27Z" fill="none" stroke="rgba(181,161,158,1)" stroke-width="0.8"/>
+                <path d="M7 27 Q12 24 11 17 Q9 22 7 27Z" fill="none" stroke="rgba(181,161,158,1)" stroke-width="0.8"/>
+                <path d="M7 15 Q2 12 3 5 Q5 10 7 15Z" fill="none" stroke="rgba(181,161,158,0.7)" stroke-width="0.7"/>
+                <path d="M7 15 Q12 12 11 5 Q9 10 7 15Z" fill="none" stroke="rgba(181,161,158,0.7)" stroke-width="0.7"/>
+                <circle cx="7" cy="3" r="2.2" fill="none" stroke="rgba(110,59,73,1)" stroke-width="0.8"/>
+                <circle cx="7" cy="3" r="0.9" fill="rgba(110,59,73,0.65)"/>
+              </svg>
+            </div>
+
             <h2 class="fav-section-title">Meine <em>Favoriten</em></h2>
             <p class="fav-section-desc">Ein Einblick in die Bücher, die mich geprägt haben — Psychothriller, True Crime, Geschichten mit Tiefe.</p>
             <a href="https://www.goodreads.com/user/year_in_books/2025/86919904" target="_blank" rel="noopener noreferrer" class="fav-goodreads-btn">
@@ -502,18 +541,16 @@
 
         <ul class="book-list" role="list">
           <li class="book-entry">
-            <div class="book-entry__cover">
-              <div class="book-3d">
-                <ul class="hardcover-front"><li><img src="assets/images/about/fw-cover.webp" alt="Fourth Wing Cover" loading="lazy"></li><li></li></ul>
-                <ul class="page">
-                  <li><span class="page-text">Violet Sorrengail sollte ein ruhiges Leben unter Büchern führen – doch auf Befehl ihrer Mutter wird sie ans Basgiath War College geschickt.</span></li>
-                  <li><span class="page-text">Zwischen brutalen Prüfungen und politischen Intrigen muss sie beweisen, dass Intelligenz mächtiger ist als rohe Stärke.</span></li>
-                  <li><span class="page-text">Macht, Loyalität — und die Frage, wem man trauen kann.</span></li>
-                </ul>
-                <ul class="hardcover-back"><li></li><li></li></ul>
-                <ul class="book-spine"><li></li><li></li></ul>
-              </div>
-            </div>
+            <div class="book-entry__cover"><div class="book-3d">
+              <ul class="hardcover-front"><li><img src="assets/images/about/fw-cover.webp" alt="Fourth Wing Cover" loading="lazy"></li><li></li></ul>
+              <ul class="page">
+                <li><span class="page-text">Violet Sorrengail sollte ein ruhiges Leben unter Büchern führen – doch auf Befehl ihrer Mutter wird sie ans Basgiath War College geschickt.</span></li>
+                <li><span class="page-text">Zwischen brutalen Prüfungen und politischen Intrigen muss sie beweisen, dass Intelligenz mächtiger ist als rohe Stärke.</span></li>
+                <li><span class="page-text">Macht, Loyalität — und die Frage, wem man trauen kann.</span></li>
+              </ul>
+              <ul class="hardcover-back"><li></li><li></li></ul>
+              <ul class="book-spine"><li></li><li></li></ul>
+            </div></div>
             <div class="book-entry__meta">
               <span class="book-genre-tag">Fantasy</span>
               <h4 class="book-title-main">Fourth Wing</h4>
@@ -526,18 +563,16 @@
           </li>
 
           <li class="book-entry">
-            <div class="book-entry__cover">
-              <div class="book-3d">
-                <ul class="hardcover-front"><li><img src="assets/images/about/agggtm-cover.webp" alt="A Good Girl's Guide to Murder Cover" loading="lazy"></li><li></li></ul>
-                <ul class="page">
-                  <li><span class="page-text">Fünf Jahre nach einem vermeintlich gelösten Mordfall beschliesst Pip, die Geschichte neu aufzurollen.</span></li>
-                  <li><span class="page-text">Je tiefer sie recherchiert, desto mehr Widersprüche entdeckt sie.</span></li>
-                  <li><span class="page-text">Was als Schulprojekt beginnt, wird zur gefährlichen Suche nach Wahrheit.</span></li>
-                </ul>
-                <ul class="hardcover-back"><li></li><li></li></ul>
-                <ul class="book-spine"><li></li><li></li></ul>
-              </div>
-            </div>
+            <div class="book-entry__cover"><div class="book-3d">
+              <ul class="hardcover-front"><li><img src="assets/images/about/agggtm-cover.webp" alt="A Good Girl's Guide to Murder Cover" loading="lazy"></li><li></li></ul>
+              <ul class="page">
+                <li><span class="page-text">Fünf Jahre nach einem vermeintlich gelösten Mordfall beschliesst Pip, die Geschichte neu aufzurollen.</span></li>
+                <li><span class="page-text">Je tiefer sie recherchiert, desto mehr Widersprüche entdeckt sie.</span></li>
+                <li><span class="page-text">Was als Schulprojekt beginnt, wird zur gefährlichen Suche nach Wahrheit.</span></li>
+              </ul>
+              <ul class="hardcover-back"><li></li><li></li></ul>
+              <ul class="book-spine"><li></li><li></li></ul>
+            </div></div>
             <div class="book-entry__meta">
               <span class="book-genre-tag">Mystery</span>
               <h4 class="book-title-main">A Good Girl's Guide to Murder</h4>
@@ -550,18 +585,16 @@
           </li>
 
           <li class="book-entry">
-            <div class="book-entry__cover">
-              <div class="book-3d">
-                <ul class="hardcover-front"><li><img src="assets/images/about/roh-cover.jpg" alt="Reminders of Him Cover" loading="lazy"></li><li></li></ul>
-                <ul class="page">
-                  <li><span class="page-text">Nach fünf Jahren im Gefängnis kehrt Kenna in eine Stadt zurück, die ihr nie verziehen hat.</span></li>
-                  <li><span class="page-text">Gefühle entstehen dort, wo sie keinen Platz haben dürften.</span></li>
-                  <li><span class="page-text">Darf ein einziger Fehler ein ganzes Leben definieren?</span></li>
-                </ul>
-                <ul class="hardcover-back"><li></li><li></li></ul>
-                <ul class="book-spine"><li></li><li></li></ul>
-              </div>
-            </div>
+            <div class="book-entry__cover"><div class="book-3d">
+              <ul class="hardcover-front"><li><img src="assets/images/about/roh-cover.jpg" alt="Reminders of Him Cover" loading="lazy"></li><li></li></ul>
+              <ul class="page">
+                <li><span class="page-text">Nach fünf Jahren im Gefängnis kehrt Kenna in eine Stadt zurück, die ihr nie verziehen hat.</span></li>
+                <li><span class="page-text">Gefühle entstehen dort, wo sie keinen Platz haben dürften.</span></li>
+                <li><span class="page-text">Darf ein einziger Fehler ein ganzes Leben definieren?</span></li>
+              </ul>
+              <ul class="hardcover-back"><li></li><li></li></ul>
+              <ul class="book-spine"><li></li><li></li></ul>
+            </div></div>
             <div class="book-entry__meta">
               <span class="book-genre-tag">Romance</span>
               <h4 class="book-title-main">Reminders of Him</h4>
@@ -579,7 +612,7 @@
           <span class="about-eyebrow">Spotify Wrapped 2025</span>
           <h2 class="fav-section-title">Auf <em>Dauerschleife</em></h2>
         </div>
-
+        <div class="container">
         <div class="vinyl-grid">
           <div class="vinyl-card" data-preview="https://p.scdn.co/mp3-preview/04650f23cc3c01e1b20ca97a7282abd15c380baa" data-title="Runaway" data-artist="Kanye West">
             <div class="vinyl-card__visual">
@@ -590,11 +623,7 @@
                 <svg class="vinyl-stop-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="6" width="4" height="12"/><rect x="14" y="6" width="4" height="12"/></svg>
               </button>
             </div>
-            <div class="vinyl-card__meta">
-              <span class="vinyl-genre">Hip-Hop / Soul</span>
-              <p class="vinyl-title">Runaway</p>
-              <span class="vinyl-artist">Kanye West</span>
-            </div>
+            <div class="vinyl-card__meta"><span class="vinyl-genre">Hip-Hop / Soul</span><p class="vinyl-title">Runaway</p><span class="vinyl-artist">Kanye West</span></div>
           </div>
 
           <div class="vinyl-card" data-preview="" data-title="Mord auf Ex" data-artist="Lynn &amp; Leo">
@@ -606,11 +635,7 @@
                 <svg class="vinyl-stop-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="6" width="4" height="12"/><rect x="14" y="6" width="4" height="12"/></svg>
               </button>
             </div>
-            <div class="vinyl-card__meta">
-              <span class="vinyl-genre">True Crime Podcast</span>
-              <p class="vinyl-title">Mord auf Ex</p>
-              <span class="vinyl-artist">Lynn &amp; Leo</span>
-            </div>
+            <div class="vinyl-card__meta"><span class="vinyl-genre">True Crime Podcast</span><p class="vinyl-title">Mord auf Ex</p><span class="vinyl-artist">Lynn &amp; Leo</span></div>
           </div>
 
           <div class="vinyl-card" data-preview="https://p.scdn.co/mp3-preview/9e02be99cca6aa79c3af9ab4a3bc3b60e949c8cb" data-title="FEAR." data-artist="NF">
@@ -622,15 +647,11 @@
                 <svg class="vinyl-stop-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="6" width="4" height="12"/><rect x="14" y="6" width="4" height="12"/></svg>
               </button>
             </div>
-            <div class="vinyl-card__meta">
-              <span class="vinyl-genre">Rap</span>
-              <p class="vinyl-title">FEAR.</p>
-              <span class="vinyl-artist">NF</span>
-            </div>
+            <div class="vinyl-card__meta"><span class="vinyl-genre">Rap</span><p class="vinyl-title">FEAR.</p><span class="vinyl-artist">NF</span></div>
           </div>
         </div>
         <audio id="vinyl-audio" preload="none" aria-hidden="true"></audio>
-
+</div>
       </div>
     </section>
 
@@ -640,6 +661,17 @@
   <footer class="site-footer" aria-label="Seitenende">
     <div class="page-container footer-inner">
       <div class="footer-copy">&copy; 2026 Design &amp; Development by Khadija Okbi</div>
+
+      <!-- ✦ NEU: Kleine rotierende Blume im Footer -->
+      <div class="footer-flower" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <ellipse cx="8" cy="8" rx="2" ry="6" fill="none" stroke="currentColor" stroke-width="0.8"/>
+          <ellipse cx="8" cy="8" rx="2" ry="6" fill="none" stroke="currentColor" stroke-width="0.8" transform="rotate(60 8 8)"/>
+          <ellipse cx="8" cy="8" rx="2" ry="6" fill="none" stroke="currentColor" stroke-width="0.8" transform="rotate(120 8 8)"/>
+          <circle cx="8" cy="8" r="1.8" fill="none" stroke="currentColor" stroke-width="0.7"/>
+        </svg>
+      </div>
+
       <div class="footer-socials" aria-label="Soziale Netzwerke">
         <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.44-2.71 5.42-5.29 5.7.42.36.8 1.07.8 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z"/></svg>
@@ -697,28 +729,14 @@
       revealObs.observe(el);
     });
 
-    // ── Timeline accordion ─────────────────────
-    document.querySelectorAll('.tl-trigger').forEach(btn => {
-      btn.addEventListener('click', function () {
-        const row = this.closest('.tl-row');
-        const panel = row.querySelector('.tl-panel');
-        const open = this.getAttribute('aria-expanded') === 'true';
-
-        // Close all others
-        document.querySelectorAll('.tl-row.is-open').forEach(r => {
-          if (r !== row) {
-            r.classList.remove('is-open');
-            r.querySelector('.tl-trigger').setAttribute('aria-expanded', 'false');
-            const p = r.querySelector('.tl-panel');
-            p.style.maxHeight = '0';
-          }
-        });
-
-        this.setAttribute('aria-expanded', String(!open));
-        row.classList.toggle('is-open', !open);
-        panel.style.maxHeight = open ? '0' : panel.scrollHeight + 'px';
+    // ── ✦ NEU: Quote border draw on scroll ────
+    const rightColObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); rightColObs.unobserve(e.target); }
       });
-    });
+    }, { threshold: 0.2 });
+    const rightCol = document.querySelector('.about-me__right');
+    if (rightCol) rightColObs.observe(rightCol);
 
     // ── Book review accordion ──────────────────
     document.querySelectorAll('.review-btn').forEach(btn => {
@@ -734,7 +752,7 @@
       });
     });
 
-    // ── Counter animation ─────────────────────
+    // ── Counter animation ──────────────────────
     const counterObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (!e.isIntersecting) return;
@@ -755,7 +773,7 @@
     }, { threshold: 0.4 });
     document.querySelectorAll('.big-counter__num').forEach(el => counterObs.observe(el));
 
-    // ── Vinyl audio ───────────────────────────
+    // ── Vinyl audio ────────────────────────────
     const audio = document.getElementById('vinyl-audio');
     let currentCard = null;
     document.querySelectorAll('.vinyl-card__play').forEach(btn => {
@@ -790,129 +808,33 @@
       }
     });
 
-    // ── GSAP About Me cinematic entrance ──────
+    // ── GSAP cinematic entrance ────────────────
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
-
-      // Portrait reveal
-      gsap.fromTo('.about-me__portrait', {
-        scale: 1.08,
-        opacity: 0,
-        filter: 'blur(8px)',
-      }, {
-        scale: 1,
-        opacity: 1,
-        filter: 'blur(0px)',
-        duration: 1.4,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.about-me', start: 'top 80%' }
-      });
-
-      // Badge pop in
-      gsap.fromTo('.about-me__badge', {
-        opacity: 0, scale: 0.7, y: 20
-      }, {
-        opacity: 1, scale: 1, y: 0,
-        duration: 0.7, ease: 'back.out(1.7)', delay: 0.5,
-        scrollTrigger: { trigger: '.about-me', start: 'top 75%' }
-      });
-
-      // Text lines stagger
-      gsap.fromTo('.about-me__header, .about-me__quote, .about-me__body p', {
-        opacity: 0, y: 40
-      }, {
-        opacity: 1, y: 0,
-        duration: 0.9,
-        ease: 'power3.out',
-        stagger: 0.12,
-        scrollTrigger: { trigger: '.about-me__right', start: 'top 80%' }
-      });
-
-      // Cards stagger
-      gsap.fromTo('.about-me__card', {
-        opacity: 0, y: 30, scale: 0.96
-      }, {
-        opacity: 1, y: 0, scale: 1,
-        duration: 0.7,
-        ease: 'power2.out',
-        stagger: 0.12,
-        scrollTrigger: { trigger: '.about-me__cards', start: 'top 85%' }
-      });
-
-      // Komp cards cinematic entrance
-      gsap.fromTo('.komp-card', {
-        opacity: 0, y: 50, rotateX: 8
-      }, {
-        opacity: 1, y: 0, rotateX: 0,
-        duration: 0.9,
-        ease: 'power3.out',
-        stagger: 0.1,
-        scrollTrigger: { trigger: '.komp-grid', start: 'top 80%' }
-      });
-
-      // Timeline rows
-      gsap.fromTo('.tl-row', {
-        opacity: 0, x: -30
-      }, {
-        opacity: 1, x: 0,
-        duration: 0.7,
-        ease: 'power2.out',
-        stagger: 0.08,
-        scrollTrigger: { trigger: '.tl-accordion', start: 'top 80%' }
-      });
-
-      // Big counter number reveal
-      gsap.fromTo('.big-counter', {
-        opacity: 0, scale: 0.9
-      }, {
-        opacity: 1, scale: 1,
-        duration: 1.1,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.fav-books-hero', start: 'top 75%' }
-      });
-
-      // Vinyl cards
-      gsap.fromTo('.vinyl-card', {
-        opacity: 0, y: 40
-      }, {
-        opacity: 1, y: 0,
-        duration: 0.8,
-        ease: 'power2.out',
-        stagger: 0.15,
-        scrollTrigger: { trigger: '.vinyl-grid', start: 'top 80%' }
-      });
-
-      // Pill items stagger
-      gsap.fromTo('.pill', {
-        opacity: 0, x: -20
-      }, {
-        opacity: 1, x: 0,
-        duration: 0.6,
-        ease: 'back.out(1.4)',
-        stagger: 0.1,
-        scrollTrigger: { trigger: '.about-me__pills', start: 'top 85%' }
-      });
+      gsap.fromTo('.about-me__portrait', { scale: 1.08, opacity: 0, filter: 'blur(8px)' }, { scale: 1, opacity: 1, filter: 'blur(0px)', duration: 1.4, ease: 'power3.out', scrollTrigger: { trigger: '.about-me', start: 'top 80%' } });
+      gsap.fromTo('.about-me__badge', { opacity: 0, scale: 0.7, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: 'back.out(1.7)', delay: 0.5, scrollTrigger: { trigger: '.about-me', start: 'top 75%' } });
+      gsap.fromTo('.about-me__header, .about-me__quote, .about-me__body p', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.12, scrollTrigger: { trigger: '.about-me__right', start: 'top 80%' } });
+      gsap.fromTo('.about-me__card', { opacity: 0, y: 30, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'power2.out', stagger: 0.12, scrollTrigger: { trigger: '.about-me__cards', start: 'top 85%' } });
+      gsap.fromTo('.komp-card', { opacity: 0, y: 50, rotateX: 8 }, { opacity: 1, y: 0, rotateX: 0, duration: 0.9, ease: 'power3.out', stagger: 0.1, scrollTrigger: { trigger: '.komp-grid', start: 'top 80%' } });
+      gsap.fromTo('.tl-row', { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out', stagger: 0.08, scrollTrigger: { trigger: '.tl-accordion', start: 'top 80%' } });
+      gsap.fromTo('.big-counter', { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: '.fav-books-hero', start: 'top 75%' } });
+      gsap.fromTo('.vinyl-card', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.15, scrollTrigger: { trigger: '.vinyl-grid', start: 'top 80%' } });
+      gsap.fromTo('.pill', { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.6, ease: 'back.out(1.4)', stagger: 0.1, scrollTrigger: { trigger: '.about-me__pills', start: 'top 85%' } });
     }
 
     // ── Timeline OUTER toggle ──────────────────
     const outerBtn = document.querySelector('.vis-tl-toggle-btn');
     const outerPanel = document.querySelector('.vis-tl-collapsible');
-
     if (outerBtn && outerPanel) {
       outerBtn.addEventListener('click', function () {
         const isOpen = this.getAttribute('aria-expanded') === 'true';
-
         if (!isOpen) {
           this.setAttribute('aria-expanded', 'true');
           outerPanel.style.height = outerPanel.scrollHeight + 'px';
-          setTimeout(() => {
-            if (outerBtn.getAttribute('aria-expanded') === 'true') {
-              outerPanel.style.height = 'auto';
-            }
-          }, 700);
+          setTimeout(() => { if (outerBtn.getAttribute('aria-expanded') === 'true') outerPanel.style.height = 'auto'; }, 700);
         } else {
           outerPanel.style.height = outerPanel.scrollHeight + 'px';
-          outerPanel.offsetHeight; // force reflow
+          outerPanel.offsetHeight;
           this.setAttribute('aria-expanded', 'false');
           outerPanel.style.height = '0';
         }
@@ -926,7 +848,6 @@
         const desc = card.querySelector('.vis-event-description');
         const isOpen = this.getAttribute('aria-expanded') === 'true';
         const icon = this.querySelector('svg');
-
         if (!isOpen) {
           this.setAttribute('aria-expanded', 'true');
           desc.style.maxHeight = desc.scrollHeight + 'px';

@@ -50,7 +50,10 @@ h1, h2, h3, h4, h5, h6,
   position: absolute;
   inset: -30% 0;
   z-index: 1;
-  background: url('../images/hero/hintergrund.jpg') center/cover no-repeat;
+  background-image: url('../images/hero/hintergrund.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   will-change: transform;
 }
 
@@ -433,28 +436,54 @@ h1, h2, h3, h4, h5, h6,
 .bg-line img:nth-child(2) { animation-name: wave-second; }
 
 .bg-dash-circle {
-  position: absolute; bottom: -35px; right: -13px; z-index: -1;
-  width: 150px; aspect-ratio: 1;
+  position: absolute;
+  bottom: -60px;
+  right: -40px;
+  z-index: 10;
+  width: clamp(80px, 12vw, 150px);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.bg-dash-circle img {
-  width: 100%; height: 100%; object-fit: cover;
-  animation: circle-rotate 18s linear infinite;
-  filter: invert(1) sepia(1) saturate(0.6) hue-rotate(300deg) brightness(0.55);
-  opacity: 0.5;
+.bg-dash-circle svg {
+  width: 100%;
+  height: 100%;
+  animation: circle-rotate 22s linear infinite;
+  opacity: 0.8;
+}
+.bg-dash-circle__dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--mauve);
+  border-radius: 50%;
 }
 
 .bg-circle-h-line {
-  position: absolute; bottom: 42px; left: -68px; z-index: 1;
-  width: 181px; height: 111px;
+  position: absolute;
+  bottom: 400px;
+  left: -50px;
+  z-index: 1;
+  width: 70px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }
-.bg-circle-h-line img {
-  width: 100%; max-width: 100%; height: auto; position: absolute; left: 0;
-  filter: invert(1) sepia(1) saturate(0.4) hue-rotate(280deg) brightness(0.5);
-  opacity: 0.45;
+
+/* Sparkle twinkle — aus filler-library */
+@keyframes twinkle {
+  0%,  100% { opacity: .25; transform: scale(.75); }
+  40%        { opacity: 1;   transform: scale(1.15); }
+  80%        { opacity: .55; transform: scale(.95); }
 }
-.bg-circle-h-line img:nth-child(1) { top: 0;   animation: ring-top    2.5s linear infinite; }
-.bg-circle-h-line img:nth-child(2) { top: 50%; transform: translateY(-50%); }
-.bg-circle-h-line img:nth-child(3) { bottom: 0; animation: ring-bottom 2.5s linear infinite; }
+.spark {
+  animation: twinkle var(--dur, 2s) ease-in-out var(--del, 0s) infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
 
 /* Keyframes */
 @keyframes wave-first {
