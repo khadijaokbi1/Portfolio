@@ -2943,7 +2943,7 @@ h2 {
 
 .showcase-eyebrow {
     display: inline-block;
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     font-size: 0.65rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -3036,7 +3036,7 @@ h2 {
 }
 
 .sea-box-label {
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     font-size: 0.62rem;
     font-weight: 600;
     text-transform: uppercase;

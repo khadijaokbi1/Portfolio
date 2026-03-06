@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Khadija — Component Hub</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&family=tenor:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -20,7 +20,7 @@
   --ease:cubic-bezier(.16,1,.3,1);
   --sidebar: 280px;
 }
-html,body{height:100%;overflow:hidden;font-family:'Outfit',sans-serif}
+html,body{height:100%;overflow:hidden;font-family:'Tenor Sans',sans-serif}
 body{background:var(--cream);color:var(--dark);display:grid;grid-template-columns:var(--sidebar) 1fr;grid-template-rows:1fr; transition: all 0.3s var(--ease);}
 
 /* ════ SIDEBAR ════ */
@@ -29,7 +29,7 @@ body{background:var(--cream);color:var(--dark);display:grid;grid-template-column
 .sidebar-head h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:20px;letter-spacing:.05em;color:var(--dg)}
 .sidebar-head p{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--mauve);margin-top:3px}
 .search-wrap{padding:10px 12px;border-bottom:1px solid rgba(0,0,0,.04)}
-.search{width:100%;padding:7px 11px;border:1px solid rgba(0,0,0,.08);border-radius:6px;font-family:'Outfit',sans-serif;font-size:11.5px;color:var(--dark);background:var(--cream);outline:none;transition:border-color .2s}
+.search{width:100%;padding:7px 11px;border:1px solid rgba(0,0,0,.08);border-radius:6px;font-family:'Tenor Sans',sans-serif;font-size:11.5px;color:var(--dark);background:var(--cream);outline:none;transition:border-color .2s}
 .search::placeholder{color:var(--mauve)}.search:focus{border-color:var(--burg)}
 .nav{flex:1;overflow-y:auto;padding:8px}
 .nav::-webkit-scrollbar{width:3px}.nav::-webkit-scrollbar-thumb{background:rgba(181,161,158,.3);border-radius:99px}
@@ -576,7 +576,7 @@ function getPositionCSS(){
 
 // Build typography CSS block
 function getTypoCSS(){
-  const font = getInputValue('set-font', "'Outfit', sans-serif");
+  const font = getInputValue('set-font', "'Tenor Sans', sans-serif");
   const size = getInputValue('set-fontsize', '16px');
   const fw = getSegVal('seg-fw') || '400';
   const italic = g('tog-italic')?.classList.contains('on') ? 'italic' : 'normal';

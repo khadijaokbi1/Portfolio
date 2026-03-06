@@ -55,7 +55,7 @@
 }
 
 .project-hero-title {
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     font-size: clamp(2.5rem, 8vw, 6rem);
     font-weight: 700;
     color: white;
@@ -106,7 +106,7 @@
 }
 
 .project-section h2 {
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     font-size: clamp(2rem, 5vw, 3.5rem);
     color: var(--burgundy);
     margin-bottom: 2rem;
@@ -212,7 +212,7 @@
 }
 
 .stat-number {
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
     color: var(--burgundy);
@@ -251,7 +251,7 @@
     position: absolute;
     top: 1rem;
     right: 1rem;
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     font-size: 3rem;
     color: rgba(110, 59, 73, 0.15);
     font-weight: 700;

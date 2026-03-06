@@ -7,7 +7,9 @@
     <title>Lehre | SBW Neuen Medien</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Tenor+Sans&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -26,7 +28,7 @@
     --cream: #F5F5F5;
     --work: 'Work Sans', sans-serif;
     --playfair: 'Playfair Display', serif;
-    --outfit: 'Outfit', sans-serif;
+    --tenor: 'Tenor Sans', sans-serif;
     --playfair: 'Tenor Sans', sans-serif;
 }
 *,*::before,*::after { box-sizing: border-box; }
@@ -85,7 +87,7 @@ body {
     margin-bottom: 4rem;
 }
 .work-hero-eyebrow {
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     font-size: clamp(0.5rem, 1vw, 0.65rem);
     letter-spacing: 0.6em;
     text-transform: uppercase;
@@ -133,7 +135,7 @@ body {
     text-decoration: none;
 }
 .sbw-scroll-label {
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     font-size: 0.52rem; letter-spacing: 0.55em;
     text-transform: uppercase;
     color: rgba(245,245,245,0.35);
@@ -165,7 +167,7 @@ body {
     overflow: visible;
 }
 .sbw-intro-badge {
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     font-size: 0.58rem; letter-spacing: 0.5em;
     text-transform: uppercase;
     color: #6E3B49;
@@ -273,7 +275,7 @@ body {
 }
 .sc-eyebrow-block { display: flex; flex-direction: column; gap: 0.2rem; }
 .sc-eyebrow-key {
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     font-size: 0.44rem; letter-spacing: 0.52em;
     text-transform: uppercase;
     color: rgba(245,245,245,0.35);
@@ -438,7 +440,7 @@ body {
 }
 .phone-video-loc-label {
     font-size: 6px; color: rgba(255,255,255,0.45);
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     text-transform: uppercase; letter-spacing: 0.2em;
 }
 .phone-video-loc-name {
@@ -548,7 +550,7 @@ body {
 }
 .gallery-eyebrow {
     display: inline-block;
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     font-size: 0.5rem; letter-spacing: 0.6em;
     text-transform: uppercase;
     color: rgba(245,245,245,0.5);
@@ -606,7 +608,7 @@ body {
 }
 .meta-block { display: flex; flex-direction: column; gap: 0.4rem; }
 .meta-label {
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     font-size: 0.46rem; letter-spacing: 0.5em;
     text-transform: uppercase;
     color: rgba(245,245,245,0.28);
@@ -722,7 +724,7 @@ body {
 .gallery-nav-btn:active { transform: scale(0.94); }
 .gallery-scroll-hint {
     text-align: center; margin-top: 2rem;
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     font-size: 0.48rem; letter-spacing: 0.4em;
     text-transform: uppercase;
     color: rgba(245,245,245,0.2);
@@ -753,7 +755,7 @@ body {
 .section-strategy > .container { position: relative; z-index: 1; }
 .strategy-header { margin-bottom: clamp(4rem,10vh,7rem); }
 .strategy-eyebrow {
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     font-size: 0.6rem; font-weight: 400;
     letter-spacing: 0.6em; text-transform: uppercase;
     color: rgba(245,245,245,0.5);
@@ -810,7 +812,7 @@ body {
 .strategy-item.active  .st-number { color: rgba(245,245,245,0.6); transform: translateY(0.1em); }
 .st-text { display: flex; flex-direction: column; gap: 0.4rem; }
 .st-label {
-    font-family: var(--outfit); font-size: 0.52rem;
+    font-family: var(--tenor); font-size: 0.52rem;
     font-weight: 400; letter-spacing: 0.5em;
     text-transform: uppercase; color: rgba(245,245,245,0.4);
     transition: color 0.4s;
@@ -852,7 +854,7 @@ body {
 }
 .sc-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.4rem; }
 .sc-tag {
-    font-family: var(--outfit); font-size: 0.52rem;
+    font-family: var(--tenor); font-size: 0.52rem;
     font-weight: 400; letter-spacing: 0.28em; text-transform: uppercase;
     color: rgba(245,245,245,0.55); border: 1px solid rgba(245,245,245,0.2);
     padding: 0.45rem 1rem;
@@ -861,7 +863,7 @@ body {
 .sc-tag:hover { border-color: rgba(245,245,245,0.5); color: var(--cream); background: rgba(245,245,245,0.06); }
 .sc-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; }
 .sc-pill {
-    font-family: var (--outfit); font-size: 0.5rem;
+    font-family: var (--tenor); font-size: 0.5rem;
     font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase;
     color: rgba(245,245,245,0.45); border: 1px solid rgba(245,245,245,0.15);
     padding: 0.35rem 0.75rem;
@@ -1082,7 +1084,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     margin-top: 1rem;
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     font-size: clamp(0.42rem, 0.7vw, 0.52rem);
     letter-spacing: 0.35em;
     text-transform: uppercase;
@@ -1181,7 +1183,7 @@ body {
     background: rgba(245,245,245,0.92);
     color: #314A51;
     display: flex; align-items: center; justify-content: center;
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     font-size: 0.42rem; letter-spacing: 0.2em; text-transform: uppercase;
     font-weight: 600;
     pointer-events: none;

@@ -279,9 +279,9 @@ h1, h2, h3, h4, h5, h6,
   gap: clamp(1rem, 1.8vh, 1.8rem);
 }
 
-/* Eyebrow — Outfit, xs, caps, wide tracking */
+/* Eyebrow — tenor, xs, caps, wide tracking */
 .photo-eyebrow {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: var(--text-xs);
   font-weight: 600;
   letter-spacing: 0.25em;
@@ -356,7 +356,7 @@ h1, h2, h3, h4, h5, h6,
 
 .photo-cta .linktext {
   display: inline-block;
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: var(--text-xs);
   font-weight: 600;
   text-transform: uppercase;
@@ -408,7 +408,7 @@ h1, h2, h3, h4, h5, h6,
 /* Orbit labels — Tenor Sans, caps */
 .box > span {
   position: absolute; display: block; z-index: 5;
-  font-family: var(--outfit);    /* Tenor Sans */
+  font-family: var(--tenor);    /* Tenor Sans */
   text-transform: uppercase;
   letter-spacing: 0.15em;
   color: var(--mauve); opacity: 0.9;
@@ -523,11 +523,11 @@ h1, h2, h3, h4, h5, h6,
   background: var(--white);
 }
 
-/* Filter bar — Outfit buttons */
+/* Filter bar — tenor buttons */
 .filter-bar { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-3) 0 var(--space-6); }
 
 .filter-btn {
-  font-family: var(--outfit);   /* Outfit */
+  font-family: var(--tenor);   /* tenor */
   font-size: var(--text-xs);
   font-weight: 700;
   text-transform: uppercase;
@@ -606,7 +606,7 @@ h1, h2, h3, h4, h5, h6,
 
 /* Project button — Tenor Sans, caps */
 .project-btn {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: var(--text-xs);
   font-weight: 400;
   text-transform: uppercase;
@@ -633,10 +633,10 @@ h1, h2, h3, h4, h5, h6,
   }
 }
 
-/* Project category badge — Outfit eyebrow */
+/* Project category badge — tenor eyebrow */
 .project-category {
   position: absolute; top: 1rem; left: 1rem;
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: var(--text-xs);
   font-weight: 600;
   text-transform: uppercase;

@@ -16,7 +16,7 @@
     --higuen:   'Higuen', serif;
     --playfair: 'Playfair Display', Georgia, serif;
     --work:     'Work Sans', system-ui, sans-serif;
-    --outfit:   'Outfit', system-ui, sans-serif;
+    --tenor:   'Tenor Sans', system-ui, sans-serif;
   
     /* ── Allowed Solid Colors ── */
     --black:      #2D2D2D;
@@ -212,7 +212,7 @@
     font-family: var(--work);
   }
   
-  /* Eyebrows, Labels, Buttons, Navigation — Outfit */
+  /* Eyebrows, Labels, Buttons, Navigation — tenor */
   .eyebrow, .eyebrow-pill, .eyebrow-circle, .photo-eyebrow,
   .fav-eyebrow, .counter-eyebrow, .blog-cat, .nav-link,
   .footer-link, .footer-copy, .meta-inline, .stat-label-main,
@@ -234,13 +234,13 @@
   .tt-prof-name, .tt-cell-views,
   [class*="eyebrow"], [class*="label"], [class*="tag"],
   [class*="meta"], [class*="caption"] {
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     text-transform: uppercase;
     letter-spacing: 0.16em;
     font-weight: 600;
   }
   
-  /* Sizes for Outfit Elements */
+  /* Sizes for tenor Elements */
   .eyebrow, .eyebrow-pill, .eyebrow-circle, .photo-eyebrow,
   .fav-eyebrow, .counter-eyebrow, .blog-cat, .feat-tag,
   .wc-type, .cc-type, .cv-tag, .vinyl-genre, .book-genre-tag,
@@ -283,7 +283,7 @@
   /* Meta inline row */
   .meta-inline {
     display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem;
-    font-family: var(--outfit); font-size: var(--text-sm);
+    font-family: var(--tenor); font-size: var(--text-sm);
     text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.85;
   }
   
@@ -414,20 +414,20 @@
   
   .loader__meta, .loader__edition { position: absolute; bottom: clamp(2.2rem, 4.5vw, 3.2rem); z-index: 2; opacity: 0; transform: translateY(6px); }
   .loader__meta { left: clamp(2rem, 5vw, 4rem); display: flex; flex-direction: column; gap: .25rem; }
-  .loader__meta span { font-family: var(--outfit); font-size: .58rem; letter-spacing: .32em; text-transform: uppercase; color: rgba(110,59,73,.35); }
+  .loader__meta span { font-family: var(--tenor); font-size: .58rem; letter-spacing: .32em; text-transform: uppercase; color: rgba(110,59,73,.35); }
   .loader__edition { right: clamp(2rem, 5vw, 4rem); font-family: var(--playfair); font-style: italic; font-size: clamp(.62rem, 1.4vw, .72rem); color: rgba(110,59,73,.35); }
   
   .loader__center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2; pointer-events: none; padding: 0 1.5rem 8vh; }
-  .loader__eyebrow { font-family: var(--outfit); font-size: clamp(.52rem, 1.1vw, .62rem); letter-spacing: .55em; text-transform: uppercase; color: rgba(110,59,73,.35); opacity: 0; transform: translateY(10px); margin-bottom: 1.8rem; display: flex; align-items: center; gap: .9rem; }
+  .loader__eyebrow { font-family: var(--tenor); font-size: clamp(.52rem, 1.1vw, .62rem); letter-spacing: .55em; text-transform: uppercase; color: rgba(110,59,73,.35); opacity: 0; transform: translateY(10px); margin-bottom: 1.8rem; display: flex; align-items: center; gap: .9rem; }
   .loader__eyebrow i { display: inline-block; width: 22px; height: 1px; background: rgba(110,59,73,.35); }
   .loader__headline { text-align: center; line-height: 1.05; }
   .loader__headline-line { display: block; overflow: hidden; }
   .loader__headline-line span { display: block; transform: translateY(108%); font-family: var(--higuen); font-size: clamp(2.4rem, 7.5vw, 6rem); letter-spacing: .1em; text-transform: uppercase; color: var(--burgundy); }
   .loader__headline-line.is--italic span { font-family: var(--playfair); font-style: italic; font-size: clamp(1.9rem, 5.5vw, 4.4rem); color: var(--mauve); letter-spacing: .04em; text-transform: none; }
-  .loader__tagline { font-family: var(--outfit); font-size: clamp(.58rem, 1.2vw, .68rem); font-weight: 300; letter-spacing: .42em; text-transform: uppercase; color: rgba(110,59,73,.5); margin-top: 2rem; opacity: 0; text-align: center; }
+  .loader__tagline { font-family: var(--tenor); font-size: clamp(.58rem, 1.2vw, .68rem); font-weight: 300; letter-spacing: .42em; text-transform: uppercase; color: rgba(110,59,73,.5); margin-top: 2rem; opacity: 0; text-align: center; }
   
   .loader__progress-wrap { position: absolute; bottom: clamp(2.2rem, 4.5vw, 3.2rem); left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: .6rem; opacity: 0; white-space: nowrap; }
-  .loader__percent { font-family: var(--outfit); font-size: clamp(.58rem, 1.2vw, .68rem); letter-spacing: .42em; color: rgba(110,59,73,.55); font-variant-numeric: tabular-nums; }
+  .loader__percent { font-family: var(--tenor); font-size: clamp(.58rem, 1.2vw, .68rem); letter-spacing: .42em; color: rgba(110,59,73,.55); font-variant-numeric: tabular-nums; }
   .loader__riser { position: absolute; top: 100%; left: 0; width: 100%; height: calc(100vh + 160px); display: flex; flex-direction: column; z-index: 3; will-change: top; }
   .loader__wave-svg { width: 100%; height: 160px; flex-shrink: 0; display: block; color: var(--mint); }
   .loader__wave-path { fill: currentColor; }
@@ -444,7 +444,7 @@
   .divider--dark  { background-color: var(--divider-dark); }
   .ds-divider { display: flex; align-items: center; gap: 1.2rem; max-width: var(--container-w); margin-inline: auto; padding-inline: clamp(1rem, 5vw, 3rem); }
   .ds-divider-line { flex: 1; height: 1px; background: var(--cr, var(--mauve-40)); }
-  .ds-divider-text { font-family: var(--outfit); font-size: 0.44rem; letter-spacing: 0.45em; text-transform: uppercase; color: var(--cbg, var(--burgundy)); white-space: nowrap; }
+  .ds-divider-text { font-family: var(--tenor); font-size: 0.44rem; letter-spacing: 0.45em; text-transform: uppercase; color: var(--cbg, var(--burgundy)); white-space: nowrap; }
   
   .mlr-line { display: block; overflow: hidden; }
   .mlr-line + .mlr-line { margin-top: 0.05em; }
@@ -510,7 +510,7 @@
   .section-rule { width: 48px; height: 1px; border: none; background: var(--cr, var(--mauve-40)); margin: .3rem auto; }
   
   /* ── 12. COMPONENTS (Cards, Stats, Buttons) ─────── */
-  .ds-badge, .section-badge { display: inline-flex; align-items: center; gap: 0.85rem; font-family: var(--outfit); font-size: clamp(0.46rem, 0.72vw, 0.56rem); font-weight: 600; letter-spacing: 0.42em; text-transform: uppercase; color: var(--cbg, var(--burgundy)); }
+  .ds-badge, .section-badge { display: inline-flex; align-items: center; gap: 0.85rem; font-family: var(--tenor); font-size: clamp(0.46rem, 0.72vw, 0.56rem); font-weight: 600; letter-spacing: 0.42em; text-transform: uppercase; color: var(--cbg, var(--burgundy)); }
   .ds-badge::before, .section-badge::before { content: ""; display: inline-block; width: 28px; height: 1px; background: currentColor; flex-shrink: 0; }
   
   .work-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: clamp(1rem, 2vw, 1.6rem); max-width: var(--container-w); margin-inline: auto; padding-inline: clamp(1rem, 5vw, 3rem); }
@@ -519,7 +519,7 @@
   .stat-box:hover { border-color: var(--cac, var(--burgundy)); transform: translateY(-4px); }
   .stat-box:hover::before { transform: scaleX(1); }
   .stat-number { font-family: var(--higuen); font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 800; line-height: 1; color: var(--ct, var(--darkgreen)); letter-spacing: -0.02em; margin-bottom: 0.5rem; }
-  .stat-label { font-family: var(--outfit); font-size: 0.46rem; letter-spacing: 0.35em; text-transform: uppercase; font-weight: 600; color: var(--cbg, var(--burgundy)); }
+  .stat-label { font-family: var(--tenor); font-size: 0.46rem; letter-spacing: 0.35em; text-transform: uppercase; font-weight: 600; color: var(--cbg, var(--burgundy)); }
   .stat-desc { font-family: var(--work); font-size: 0.82rem; line-height: 1.7; color: var(--cb, rgba(49,74,81,.70)); margin-top: 0.6rem; }
   .stat-icon { width: 42px; height: 42px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--cac, var(--burgundy)); color: var(--white); font-size: 1.1rem; transition: transform 350ms var(--ease-bounce); }
   .stat-box:hover .stat-icon { transform: scale(1.12) rotate(-6deg); }
@@ -588,7 +588,7 @@
     color: var(--white);
   }
   .ds-feature h4 {
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     font-size: 0.52rem;
     letter-spacing: 0.24em;
     text-transform: uppercase;
@@ -606,7 +606,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.8rem;
-    font-family: var(--outfit);
+    font-family: var(--tenor);
     font-size: 0.52rem;
     font-weight: 600;
     letter-spacing: 0.32em;
@@ -657,7 +657,7 @@
   .ds-progress { max-width: var(--container-w); margin-inline: auto; padding-inline: clamp(1rem, 5vw, 3rem); }
   .ds-progress-item { margin-bottom: 1.8rem; }
   .ds-progress-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: .5rem; }
-  .ds-progress-label { font-family: var(--outfit); font-size: 0.5rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 600; color: var(--ct, var(--darkgreen)); }
+  .ds-progress-label { font-family: var(--tenor); font-size: 0.5rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 600; color: var(--ct, var(--darkgreen)); }
   .ds-progress-value { font-family: var(--higuen); font-size: 1rem; font-weight: 800; color: var(--cac, var(--burgundy)); }
   .ds-progress-track { height: 3px; background: var(--cr, var(--mauve-20)); position: relative; overflow: hidden; }
   .ds-progress-fill { height: 100%; background: var(--cac, var(--burgundy)); width: 0; transition: width 1.2s var(--ease); }
@@ -678,7 +678,7 @@
   }
   .work-hero-eyebrow {
     display: inline-flex; align-items: center; gap: 0.85rem;
-    font-family: var(--outfit); font-size: clamp(0.44rem, 0.7vw, 0.54rem);
+    font-family: var(--tenor); font-size: clamp(0.44rem, 0.7vw, 0.54rem);
     font-weight: 600; letter-spacing: 0.50em; text-transform: uppercase; color: var(--white-60);
     animation: heroSlide .9s var(--ease) .15s both;
   }
@@ -701,7 +701,7 @@
     z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
     animation: heroSlide 1s var(--ease) .55s both;
   }
-  .work-hero-scroll-label { font-family: var(--outfit); font-size: 0.42rem; letter-spacing: 0.55em; text-transform: uppercase; color: var(--white-35); }
+  .work-hero-scroll-label { font-family: var(--tenor); font-size: 0.42rem; letter-spacing: 0.55em; text-transform: uppercase; color: var(--white-35); }
   .work-hero-scroll-line { width: 1px; height: 32px; background: linear-gradient(to bottom, var(--white-60), transparent); animation: sPulse 2.4s ease-in-out infinite; }
   
   @keyframes heroSlide { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
@@ -726,7 +726,7 @@
   
   .work-meta-row { display: flex; align-items: flex-start; justify-content: center; gap: clamp(2rem, 5vw, 4rem); flex-wrap: wrap; padding-top: 1.8rem; border-top: 1px solid var(--cr, var(--mauve-40)); width: 100%; max-width: 680px; }
   .work-meta-item { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
-  .work-meta-label { font-family: var(--outfit); font-size: 0.42rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--cbg, var(--burgundy)); font-weight: 600; }
+  .work-meta-label { font-family: var(--tenor); font-size: 0.42rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--cbg, var(--burgundy)); font-weight: 600; }
   .work-meta-value { font-family: var(--work); font-size: 0.88rem; font-weight: 500; color: var(--csb, var(--mint)); letter-spacing: 0.01em; }
   
   /* ── 15. FOOTER & UNIFIED WAVES ─────────────────── */
@@ -739,7 +739,7 @@
   }
   .site-footer::before { display: none; }
   .footer-inner { max-width: 85vw; margin-inline: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(0.6rem, 1.5vw, 1rem); text-align: center; }
-  .footer-copy { font-family: var(--outfit); font-size: clamp(0.68rem, 0.9vw, 0.8rem); letter-spacing: 0.04em; opacity: 0.85; color: var(--white); order: 1; }
+  .footer-copy { font-family: var(--tenor); font-size: clamp(0.68rem, 0.9vw, 0.8rem); letter-spacing: 0.04em; opacity: 0.85; color: var(--white); order: 1; }
   
   .footer-socials { display: flex; align-items: center; justify-content: center; gap: clamp(1rem, 2.5vw, 2rem); flex-wrap: wrap; order: 2; }
   .social-link {
@@ -754,7 +754,7 @@
   
   .footer-links { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: clamp(0.8rem, 2vw, 1.5rem); order: 3; }
   .footer-link {
-    font-family: var(--outfit); font-size: clamp(0.6rem, 0.85vw, 0.72rem);
+    font-family: var(--tenor); font-size: clamp(0.6rem, 0.85vw, 0.72rem);
     font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--white); position: relative; padding-block: 0.25rem; transition: all 0.3s ease;
   }
@@ -799,9 +799,9 @@
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,260 C200,200 400,140 600,180 C800,220 1000,320 1200,300 C1320,288 1400,270 1440,260 L1440,400 Z'/%3E%3C/svg%3E"); 
   }
 
-/* ── 13. BUTTONS & INTERACTIVE (Outfit & Work) ──── */
+/* ── 13. BUTTONS & INTERACTIVE (tenor & Work) ──── */
 .btn-site, .read-more, .wc-link, .cc-link {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   text-transform: uppercase;
   letter-spacing: 0.18em;
   font-weight: 600;
@@ -833,7 +833,7 @@
 .ds-progress-item { margin-bottom: 1.8rem; }
 .ds-progress-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: .5rem; }
 .ds-progress-label {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: 0.5rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -889,7 +889,7 @@
   color: var(--white);
 }
 .footer-link {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -910,7 +910,7 @@
   font-feature-settings: "liga" 1, "dlig" 1;
 }
 .loader__percent {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-weight: 600;
 }
 

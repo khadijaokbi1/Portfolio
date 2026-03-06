@@ -16,7 +16,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -63,7 +63,7 @@
     <!-- ═══════════════════════════════════════
          HERO
     ═══════════════════════════════════════ -->
-    <section class="about-hero wave-mauve" id="hero" aria-label="Hero">
+    <section class="about-hero wave-dark" id="hero" aria-label="Hero">
       <div class="about-hero_bg"></div>
       <div class="about-hero__overlay"></div>
 
@@ -497,48 +497,29 @@
          BÜCHER & MUSIK
     ═══════════════════════════════════════ -->
     <section class="about-favorites wave-foot" id="favorites" aria-label="Bücher und Musik">
-      <div class="about-favorites__inner">
-
-        <div class="fav-books-hero">
-          <div class="fav-books-hero__text">
-
-            <!-- ✦ NEU: Botanischer Sprig neben Eyebrow -->
-            <div class="fav-eyebrow-row">
-              <span class="about-eyebrow">Gelesene Bücher</span>
-              <svg class="fav-sprig" width="14" height="40" viewBox="0 0 14 40" fill="none" aria-hidden="true">
-                <line x1="7" y1="40" x2="7" y2="3" stroke="rgba(181,161,158,1)" stroke-width="0.8"/>
-                <path d="M7 27 Q2 24 3 17 Q5 22 7 27Z" fill="none" stroke="rgba(181,161,158,1)" stroke-width="0.8"/>
-                <path d="M7 27 Q12 24 11 17 Q9 22 7 27Z" fill="none" stroke="rgba(181,161,158,1)" stroke-width="0.8"/>
-                <path d="M7 15 Q2 12 3 5 Q5 10 7 15Z" fill="none" stroke="rgba(181,161,158,0.7)" stroke-width="0.7"/>
-                <path d="M7 15 Q12 12 11 5 Q9 10 7 15Z" fill="none" stroke="rgba(181,161,158,0.7)" stroke-width="0.7"/>
-                <circle cx="7" cy="3" r="2.2" fill="none" stroke="rgba(110,59,73,1)" stroke-width="0.8"/>
-                <circle cx="7" cy="3" r="0.9" fill="rgba(110,59,73,0.65)"/>
-              </svg>
-            </div>
-
-            <h2 class="fav-section-title">Meine <em>Favoriten</em></h2>
-            <p class="fav-section-desc">Ein Einblick in die Bücher, die mich geprägt haben — Psychothriller, True Crime, Geschichten mit Tiefe.</p>
-            <a href="https://www.goodreads.com/user/year_in_books/2025/86919904" target="_blank" rel="noopener noreferrer" class="fav-goodreads-btn">
+        <header class="about-timeline__header">
+          <span class="about-eyebrow about-eyebrow--light">Creative Fuel</span>
+          <h2 class="about-komp__title">Meine <em>Favoriten</em></h2>
+          <p class="about-timeline__sub">Bücher & Musik, die mein 2025 geprägt haben.</p>
+           <a href="https://www.goodreads.com/user/year_in_books/2025/86919904" target="_blank" rel="noopener noreferrer" class="fav-goodreads-btn">
               <span>Goodreads Wrapped 2025</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
-          </div>
-          <div class="fav-books-hero__counter">
+        </header>
+     <div class="fav-books-hero__counter">
             <div class="big-counter">
               <div class="big-counter__box">
                 <span class="big-counter__year">2024</span>
                 <span class="big-counter__num" data-target="52">0</span>
                 <span class="big-counter__unit">Bücher</span>
               </div>
-              <div class="big-counter__box big-counter__box--accent">
+              <div class="big-counter__box">
                 <span class="big-counter__year">2025</span>
                 <span class="big-counter__num" data-target="104">0</span>
                 <span class="big-counter__unit">Bücher</span>
               </div>
             </div>
           </div>
-        </div>
-
         <ul class="book-list" role="list">
           <li class="book-entry">
             <div class="book-entry__cover"><div class="book-3d">
@@ -556,9 +537,8 @@
               <h4 class="book-title-main">Fourth Wing</h4>
               <p class="book-author-main">Rebecca Yarros</p>
               <div class="book-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-              <p class="book-blurb">Mein erstes Buch 2025 — hat die Messlatte unschlagbar hoch gelegt.</p>
               <button class="review-btn" aria-expanded="false">Rezension <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button>
-              <div class="review-body" aria-hidden="true"><p>Von der ersten Seite an zog mich die Empyrean-Reihe in ihren Bann. Die Dynamik zwischen den Charakteren, die ständige Bedrohung und die überraschenden Wendungen haben mich bis zur letzten Seite nicht losgelassen.</p></div>
+              <div class="review-body" aria-hidden="true"><p>Mein erstes Buch 2025 — hat die Messlatte unschlagbar hoch gelegt. Von der ersten Seite an zog mich die Empyrean-Reihe in ihren Bann. Die Dynamik zwischen den Charakteren, die ständige Bedrohung und die überraschenden Wendungen haben mich bis zur letzten Seite nicht losgelassen.</p></div>
             </div>
           </li>
 
@@ -578,9 +558,8 @@
               <h4 class="book-title-main">A Good Girl's Guide to Murder</h4>
               <p class="book-author-main">Holly Jackson</p>
               <div class="book-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-              <p class="book-blurb">Band drei verleiht der Reihe einen Flair, dem ich so noch nie begegnet bin.</p>
               <button class="review-btn" aria-expanded="false">Rezension <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button>
-              <div class="review-body" aria-hidden="true"><p>Besonders einprägend fand ich Jacksons Fähigkeit, komplexe Charaktere aufzubauen und die Entwicklung der Hauptprotagonistin so unerwartet zu gestalten, dass sie einen bleibenden Eindruck hinterlassen hat.</p></div>
+              <div class="review-body" aria-hidden="true"><p>Band drei verleiht der Reihe einen Flair, dem ich so noch nie begegnet bin. Besonders einprägend fand ich Jacksons Fähigkeit, komplexe Charaktere aufzubauen und die Entwicklung der Hauptprotagonistin so unerwartet zu gestalten, dass sie einen bleibenden Eindruck hinterlassen hat.</p></div>
             </div>
           </li>
 
@@ -600,9 +579,8 @@
               <h4 class="book-title-main">Reminders of Him</h4>
               <p class="book-author-main">Colleen Hoover</p>
               <div class="book-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-              <p class="book-blurb">Die Bücher, die mich zu Tränen gerührt haben, kann ich an einer Hand abzählen.</p>
               <button class="review-btn" aria-expanded="false">Rezension <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button>
-              <div class="review-body" aria-hidden="true"><p>Die schonungslose Ehrlichkeit, mit der dieser schmale Grat zwischen Schicksal und Schuld gezeichnet wird — eine emotionale Achterbahnfahrt, die tief unter die Haut geht.</p></div>
+              <div class="review-body" aria-hidden="true"><p>Die Bücher, die mich zu Tränen gerührt haben, kann ich an einer Hand abzählen. Die schonungslose Ehrlichkeit, mit der dieser schmale Grat zwischen Schicksal und Schuld gezeichnet wird — eine emotionale Achterbahnfahrt, die tief unter die Haut geht.</p></div>
             </div>
           </li>
         </ul>
@@ -623,19 +601,19 @@
                 <svg class="vinyl-stop-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="6" width="4" height="12"/><rect x="14" y="6" width="4" height="12"/></svg>
               </button>
             </div>
-            <div class="vinyl-card__meta"><span class="vinyl-genre">Hip-Hop / Soul</span><p class="vinyl-title">Runaway</p><span class="vinyl-artist">Kanye West</span></div>
+            <div class="vinyl-card__meta"><span class="vinyl-genre"> Hip Hop</span><p class="vinyl-title">Runaway</p><span class="vinyl-artist">Kanye West</span></div>
           </div>
 
-          <div class="vinyl-card" data-preview="" data-title="Mord auf Ex" data-artist="Lynn &amp; Leo">
+          <div class="vinyl-card" data-preview="" data-title="Benzin" data-artist="Kane">
             <div class="vinyl-card__visual">
-              <div class="vinyl-card__album"><img src="assets/images/branding/mordaufex.jpg" alt="Mord auf Ex Podcast" loading="lazy"></div>
+              <div class="vinyl-card__album"><img src="assets/images/about/kane-vinyl.png" alt="Kane Benzin" loading="lazy"></div>
               <div class="vinyl-card__disc"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Record2.png" alt="" aria-hidden="true"></div>
               <button class="vinyl-card__play" aria-label="Hörprobe abspielen">
                 <svg class="vinyl-play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
                 <svg class="vinyl-stop-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="6" width="4" height="12"/><rect x="14" y="6" width="4" height="12"/></svg>
               </button>
             </div>
-            <div class="vinyl-card__meta"><span class="vinyl-genre">True Crime Podcast</span><p class="vinyl-title">Mord auf Ex</p><span class="vinyl-artist">Lynn &amp; Leo</span></div>
+            <div class="vinyl-card__meta"><span class="vinyl-genre">R&B</span><p class="vinyl-title">Benzin</p><span class="vinyl-artist">Kane</span></div>
           </div>
 
           <div class="vinyl-card" data-preview="https://p.scdn.co/mp3-preview/9e02be99cca6aa79c3af9ab4a3bc3b60e949c8cb" data-title="FEAR." data-artist="NF">

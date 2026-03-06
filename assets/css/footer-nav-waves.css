@@ -86,7 +86,7 @@
 }
 
 .nav-link {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: clamp(0.6rem, 0.95vw, 0.7rem);
   font-weight: 500;
   text-transform: uppercase;
@@ -179,7 +179,7 @@
 }
 
 .footer-copy {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: clamp(0.68rem, 0.9vw, 0.8rem);
   letter-spacing: 0.04em;
   opacity: 0.85;
@@ -238,7 +238,7 @@
 }
 
 .footer-link {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: clamp(0.6rem, 0.85vw, 0.72rem);
   font-weight: 400;
   letter-spacing: 0.2em;

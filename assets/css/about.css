@@ -32,7 +32,7 @@ html {
   
   /* ─── 1. EYEBROW ───────────────────────── */
   .about-eyebrow {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   display: inline-block;
   font-size: 0.6rem;
   font-weight: 700;
@@ -211,7 +211,7 @@ html {
   }
   
   .hero-scroll-label {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: 6.5px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
@@ -289,7 +289,7 @@ html {
   }
   
   .hero-index__label {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: 0.6rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -336,7 +336,7 @@ html {
   }
   
   .about-hero__eyebrow {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: clamp(0.5rem, 0.9vw, 0.65rem);
   font-weight: 500;
   text-transform: uppercase;
@@ -399,7 +399,7 @@ html {
   
   /* ─── 3. ABOUT ME — CINEMATIC ──────────── */
   .about-me {
-  background: var(--mauve);
+  background: var(--darkgreen);
   padding: clamp(6rem, 14vh, 11rem) 0 0;
   position: relative;
   overflow: hidden;
@@ -480,7 +480,7 @@ html {
   }
   
   .badge__role {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: 0.62rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -637,7 +637,7 @@ html {
   }
   
   .pill__label {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: 0.52rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -832,7 +832,7 @@ html {
   }
   
   .card__eyebrow {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: 0.54rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -1049,8 +1049,8 @@ html {
   /* 4-col grid */
   .komp-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
+  grid-template-columns: repeat(2, 2fr);
+  gap: 1rem;
   border: 1px solid rgba(45, 45, 45, 0.1);
   }
   
@@ -1183,7 +1183,7 @@ html {
   }
   
   .komp-card__sub {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: 0.6rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -1253,7 +1253,7 @@ html {
   }
   
   .komp-card__tools span {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: 0.58rem;
   font-weight: 500;
   letter-spacing: 0.06em;
@@ -1406,7 +1406,7 @@ html {
   }
   
   .vis-tl-toggle-label {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: 0.5rem;
   font-weight: 400;
   letter-spacing: 0.55em;
@@ -1600,7 +1600,7 @@ html {
   }
   
   .vis-event-card h4 {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: clamp(0.7rem, 1.2vw, 0.85rem);
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -1672,7 +1672,7 @@ html {
   
   /* ─── 7. FAVORITES ─────────────────────── */
   .about-favorites {
-  background: var(--cream, #f7f3ee);
+  background: var(--white);
   padding: clamp(6rem, 14vh, 11rem) 0 clamp(7rem, 16vh, 13rem);
   }
   
@@ -1682,11 +1682,10 @@ html {
   }
   
   .fav-books-hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(3rem, 6vw, 6rem);
-  align-items: center;
-  margin-bottom: clamp(4rem, 9vh, 7rem);
+      display: flex;
+justify-content: center;
+    margin: 0 auto;
+  margin-bottom: clamp(1rem, 2vh, 3rem);
   }
   
   .fav-books-hero__text {
@@ -1747,7 +1746,7 @@ html {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: 0.6rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -1776,14 +1775,15 @@ html {
   .big-counter {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: rgba(45, 45, 45, 0.1);
+  gap: 3rem;
   width: 100%;
-  max-width: 420px;
+  max-width: 520px;
+  margin-bottom: 5rem;
   }
   
   .big-counter__box {
-  background: var(--darkgreen);
+  background: transparent;
+  border: 3px solid var(--mauve);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1814,10 +1814,6 @@ html {
   transform: translateY(-4px);
   }
   
-  .big-counter__box--accent {
-  background: var(--burgundy);
-  }
-  
   .big-counter__box--accent .big-counter__year,
   .big-counter__box--accent .big-counter__unit {
   color: rgba(245, 245, 245, 0.7);
@@ -1828,7 +1824,7 @@ html {
   }
   
   .big-counter__year {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: 0.58rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -1838,18 +1834,18 @@ html {
   }
   
   .big-counter__num {
-  font-family: var(--playfair);
+  font-family: var(--tenor);
   font-size: clamp(3.5rem, 8vw, 6rem);
+  font-weight: 600;
   font-style: italic;
-  font-weight: 400;
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: 0.03em;
   color: var(--mauve);
   display: block;
   }
   
   .big-counter__unit {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: 0.56rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -1865,7 +1861,6 @@ html {
   margin: 0 0 clamp(5rem, 12vh, 9rem);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(3rem, 6vw, 5rem);
   }
   
   .book-entry {
@@ -2082,7 +2077,7 @@ html {
   }
   
   .book-genre-tag {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   display: inline-block;
   font-size: 0.56rem;
   font-weight: 600;
@@ -2107,7 +2102,7 @@ html {
   }
   
   .book-author-main {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: 0.6rem;
   color: var(--burgundy);
   font-weight: 600;
@@ -2145,7 +2140,7 @@ html {
   background: none;
   border: 1px solid rgba(110, 59, 73, 0.35);
   color: var(--burgundy);
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   font-size: 0.56rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -2369,7 +2364,7 @@ html {
   }
   
   .vinyl-genre {
-  font-family: var(--outfit);
+  font-family: var(--tenor);
   display: block;
   font-size: 0.56rem;
   font-weight: 600;

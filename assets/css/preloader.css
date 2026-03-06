@@ -93,7 +93,7 @@ body.is-loading main {
   opacity: 0; transform: translateY(6px);
 }
 .loader__meta span {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Tenor Sans', sans-serif;
   font-size: .58rem;
   letter-spacing: .32em;
   text-transform: uppercase;
@@ -124,7 +124,7 @@ body.is-loading main {
 }
 
 .loader__eyebrow {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Tenor Sans', sans-serif;
   font-size: clamp(.52rem, 1.1vw, .62rem);
   letter-spacing: .55em;
   text-transform: uppercase;
@@ -168,7 +168,7 @@ body.is-loading main {
 
 /* Tagline */
 .loader__tagline {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Tenor Sans', sans-serif;
   font-size: clamp(.58rem, 1.2vw, .68rem);
   font-weight: 300;
   letter-spacing: .42em;
@@ -191,7 +191,7 @@ body.is-loading main {
   white-space: nowrap;
 }
 .loader__percent {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Tenor Sans', sans-serif;
   font-size: clamp(.58rem, 1.2vw, .68rem);
   letter-spacing: .42em;
   color: rgba(110,59,73,.55);

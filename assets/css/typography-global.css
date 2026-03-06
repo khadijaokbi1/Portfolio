@@ -5,7 +5,7 @@
    H1          → Higuen  800  (local)        sehr gross, Kontrast auto
    H2          → Higuen  700  (local)        gross, Kontrast auto
    H3–H6       → Playfair Display 700/900    elegant serif, italic als Akzent
-   Eyebrows    → Outfit  600                 uppercase, tight tracking
+   Eyebrows    → tenor  600                 uppercase, tight tracking
    Fliesstext  → Work Sans 400/500           überall ausser /web/
    ========================================= */
 
@@ -23,7 +23,7 @@
   --higuen:      'Higuen', serif;
   --playfair:      'Playfair Display', serif;
   --work:    'Work Sans', system-ui, sans-serif;
-  --outfit:      'Outfit', system-ui, sans-serif;
+  --tenor:      'Tenor Sans', system-ui, sans-serif;
 
   /* Legacy-Aliases — damit alte Selektoren nicht brechen */
 
@@ -143,7 +143,7 @@ p {
   font-family: var(--work) !important;
 }
 
-/* ── 7. EYEBROWS & LABELS — Outfit ─────────────────── */
+/* ── 7. EYEBROWS & LABELS — tenor ─────────────────── */
 .eyebrow,
 .eyebrow-pill,
 .eyebrow-circle,
@@ -179,7 +179,7 @@ summary,
 .wc-link,
 .cc-link,
 .btn-site {
-  font-family: var(--outfit) !important;
+  font-family: var(--tenor) !important;
   text-transform: uppercase !important;
   letter-spacing: 0.16em !important;
   font-weight: 600 !important;
@@ -304,7 +304,7 @@ summary,
 }
 
 /* ══════════════════════════════════════════════════════
-   11. FONT LOCK — Nur Higuen · Playfair Display · Outfit
+   11. FONT LOCK — Nur Higuen · Playfair Display · tenor
        Alle anderen Schriften werden hier überschrieben.
    ══════════════════════════════════════════════════════ */
 
@@ -318,11 +318,11 @@ summary,
   --playfair: 'Playfair Display', Georgia, serif !important;
   --font-alt:     'Playfair Display', Georgia, serif !important;
 
-  /* Tenor Sans → Outfit */
-  --tenor:        'Outfit', system-ui, sans-serif !important;
-  --font-tenor:   'Outfit', system-ui, sans-serif !important;
-  --font-sub:     'Outfit', system-ui, sans-serif !important;
-  --outfit:       'Outfit', system-ui, sans-serif !important;
+  /* Tenor Sans → tenor */
+  --tenor:        'Tenor Sans', system-ui, sans-serif !important;
+  --font-tenor:   'Tenor Sans', system-ui, sans-serif !important;
+  --font-sub:     'Tenor Sans', system-ui, sans-serif !important;
+  --tenor:       'Tenor Sans', system-ui, sans-serif !important;
 
   /* Work Sans bleibt als body — aber auch hier sauber gesetzt */
   --work:    'Work Sans', system-ui, sans-serif !important;
@@ -425,7 +425,7 @@ h2, .h2,
   font-family: 'Playfair Display', Georgia, serif !important;
 }
 
-/* Labels / Nav / Buttons → Outfit */
+/* Labels / Nav / Buttons → tenor */
 .nav-link,
 .nav-links a,
 .footer-link,
@@ -479,7 +479,7 @@ button,
 [class*="tag"],
 [class*="meta"],
 [class*="caption"] {
-  font-family: 'Outfit', system-ui, sans-serif !important;
+  font-family: 'Tenor Sans', system-ui, sans-serif !important;
 }
 
 /* Sonderfälle: Zahlen-Akzente im Display-Stil → Playfair italic */
