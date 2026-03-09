@@ -4,25 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Khadija Okbi | AS Calcio Kreuzlingen – Social-Media & Web Konzept</title>
-    <meta name="description" content="Social-Media-Konzept, visuelles Styling, Content-Ideen, Trikot-Designs und SK Neu Webseite für AS Calcio Kreuzlingen." />
+    <meta name="description" content="Social-Media-Konzept, visuelles Branding, Content-Strategie und SK Neu Webseite für AS Calcio Kreuzlingen." />
     <link rel="icon" type="image/png" href="../assets/images/branding/logo_white.png" />
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Tenor+Sans&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,900;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- GSAP -->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <!-- Styles -->
+    <!-- Portfolio base assets -->
     <link rel="stylesheet" href="../assets/css/preloader.css" />
     <link rel="stylesheet" href="../assets/css/typography-global.css" />
     <link rel="stylesheet" href="../assets/css/design-system.css" />
     <link rel="stylesheet" href="../assets/css/main.css" />
     <link rel="stylesheet" href="../assets/css/footer-nav-waves.css" />
-    <link rel="stylesheet" href="style/ipa.css" />
-    <!-- Google tag -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-B415ZJNKNW"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -30,838 +26,675 @@
       gtag('js', new Date());
       gtag('config', 'G-B415ZJNKNW');
     </script>
+
     <style>
-      /* ── Calcio-specific overrides ── */
+      /* ═══════════════════════════════════════════════════
+         AS CALCIO KREUZLINGEN — DESIGN TOKENS
+         Brand: Hellblau (Sky Blue) · Base: White/Off-White
+      ═══════════════════════════════════════════════════ */
       :root {
-        --calcio-red:    #C8102E;
-        --calcio-black:  #0D0D0D;
-        --calcio-white:  #F5F5F5;
-        --calcio-gold:   #D4AF37;
-        --calcio-grey:   #2A2A2A;
+        --sky:        #00A3E4;
+        --sky-mid:    #38B6E8;
+        --sky-light:  #EBF7FD;
+        --sky-deep:   #0078AE;
+        --sky-xlight: #F5FBFE;
+        --navy:       #06192E;
+        --white:      #FFFFFF;
+        --off:        #F4F8FB;
+        --border-sky: #BCDFF0;
+        --muted:      #547080;
+        --ease:       cubic-bezier(0.16, 1, 0.3, 1);
+        --barlow:     'Barlow Condensed', sans-serif;
+        --playfair:   'Playfair Display', serif;
+        --work:       'Work Sans', sans-serif;
       }
 
-      .highlight-calcio { color: var(--calcio-red); font-style: italic; }
-      .highlight-gold   { color: var(--calcio-gold); font-style: italic; }
+      /* Accents override */
+      .sky-text   { color: var(--sky); }
+      .navy-text  { color: var(--navy); }
+      .sky-italic { color: var(--sky); font-style: italic; }
 
-      /* Hero – static gradient instead of video */
-      .calcio-hero {
-        position: relative;
-        width: 100%;
-        height: 100vh;
-        overflow: hidden;
-        background: var(--calcio-black);
-        display: flex; align-items: center; justify-content: center;
+      /* ═══ KINETIC TITLE ANIMATIONS ═══ */
+      /* Uses the same .mlr-ready / .mlr-line / .mlr-inner system as the portfolio */
+      /* (typography-reveal.js will wrap h1/h2 automatically) */
+
+      /* Extra kinetic: tracking expand on eyebrows */
+      @keyframes trackExpand {
+        from { letter-spacing: 0em; opacity: 0; }
+        to   { letter-spacing: 0.22em; opacity: 1; }
       }
-      .calcio-hero-bg {
-        position: absolute; inset: 0;
-        background:
-          radial-gradient(ellipse 80% 60% at 20% 50%, rgba(200,16,46,.35) 0%, transparent 60%),
-          radial-gradient(ellipse 60% 80% at 80% 60%, rgba(212,175,55,.12) 0%, transparent 55%),
-          repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 40px,
-            rgba(255,255,255,.015) 40px,
-            rgba(255,255,255,.015) 41px
-          );
+      .anim-track-in {
+        animation: trackExpand 1s var(--ease) forwards;
+        animation-play-state: paused;
       }
-      .calcio-hero-number {
-        position: absolute;
-        font-family: 'Playfair Display', serif;
-        font-size: clamp(18rem, 35vw, 32rem);
-        font-weight: 900;
-        color: rgba(255,255,255,.03);
-        line-height: 1;
-        user-select: none;
-        top: 50%; left: 50%;
-        transform: translate(-50%,-50%);
-        white-space: nowrap;
+      .is-visible .anim-track-in { animation-play-state: running; }
+
+      /* Reveal helper (used on cards & paragraphs) */
+      [data-reveal] {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity .8s var(--ease), transform .8s var(--ease);
       }
-      .calcio-hero-content {
-        position: relative; z-index: 2;
-        text-align: center;
-        padding: 0 2rem;
-      }
-      .calcio-hero-badge {
-        display: inline-block;
-        border: 1px solid rgba(200,16,46,.6);
-        color: rgba(245,245,245,.7);
-        font-family: 'Work Sans', sans-serif;
-        font-size: .7rem;
-        letter-spacing: .2em;
-        text-transform: uppercase;
-        padding: .45rem 1.4rem;
-        border-radius: 50px;
+      [data-reveal].is-visible { opacity: 1; transform: none; }
+      [data-reveal].d1 { transition-delay: .1s; }
+      [data-reveal].d2 { transition-delay: .2s; }
+      [data-reveal].d3 { transition-delay: .3s; }
+      [data-reveal].d4 { transition-delay: .4s; }
+
+      /* Line draw */
+      .sky-line {
+        display: block; height: 3px;
+        background: linear-gradient(to right, var(--sky), var(--sky-mid), transparent);
+        width: 0;
+        transition: width 1.2s var(--ease);
         margin-bottom: 2rem;
       }
-      .calcio-hero-title {
-        font-family: 'Playfair Display', serif;
-        font-size: clamp(2.8rem, 7vw, 6rem);
-        font-weight: 700;
-        color: #fff;
-        line-height: 1.05;
+      .is-visible .sky-line,
+      .sky-line.drawn { width: 60px; }
+
+      /* ═══ HERO ═══ */
+      .calc-hero {
+        position: relative;
+        min-height: 100vh;
+        overflow: hidden;
+        background: var(--off);
+        display: flex; align-items: flex-end;
+        padding-bottom: 6rem;
+      }
+      .calc-hero-bg {
+        position: absolute; inset: 0;
+        background:
+          radial-gradient(ellipse 80% 60% at 75% 30%, rgba(0,163,228,.14) 0%, transparent 60%),
+          radial-gradient(ellipse 50% 70% at 10% 70%, rgba(0,163,228,.08) 0%, transparent 55%),
+          var(--off);
+      }
+      /* Diagonal stripe element */
+      .calc-hero-stripe {
+        position: absolute;
+        top: 0; right: 0; bottom: 0;
+        width: 5px;
+        background: linear-gradient(to bottom, var(--sky) 0%, transparent 100%);
+      }
+      /* Giant ghost type */
+      .calc-hero-ghost {
+        position: absolute;
+        right: -2vw; top: 50%;
+        transform: translateY(-50%);
+        font-family: var(--barlow);
+        font-size: clamp(14rem, 25vw, 22rem);
+        font-weight: 900;
+        text-transform: uppercase;
+        color: rgba(0,163,228,.06);
+        line-height: .85;
+        user-select: none; pointer-events: none;
+        letter-spacing: -.03em;
+        white-space: nowrap;
+      }
+      .calc-hero-content {
+        position: relative; z-index: 2;
+        max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+        width: 100%;
+      }
+      .calc-eyebrow-wrap {
+        display: flex; align-items: center; gap: .75rem;
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+      }
+      .calc-eyebrow-line {
+        width: 32px; height: 2px;
+        background: var(--sky);
+        animation: drawLine .8s var(--ease) .4s both;
+      }
+      @keyframes drawLine { from{width:0} to{width:32px} }
+      .calc-eyebrow {
+        font-family: var(--work);
+        font-size: .68rem; font-weight: 700;
+        letter-spacing: .22em; text-transform: uppercase;
+        color: var(--sky);
+      }
+      .calc-hero-title {
+        font-family: var(--barlow);
+        font-size: clamp(4rem, 9vw, 8.5rem);
+        font-weight: 900;
+        text-transform: uppercase;
+        color: var(--navy);
+        line-height: .9;
+        letter-spacing: -.01em;
         margin-bottom: 1.5rem;
       }
-      .calcio-hero-title em {
-        color: var(--calcio-red);
-        font-style: italic;
+      .calc-hero-title .sky-line-word { color: var(--sky); }
+      .calc-hero-title .italic-word { font-style: italic; }
+      .calc-hero-sub {
+        font-family: var(--work);
+        font-size: 1rem; font-weight: 300; color: var(--muted);
+        max-width: 480px; line-height: 1.75; margin-bottom: 2.5rem;
       }
-      .calcio-hero-sub {
-        font-family: 'Work Sans', sans-serif;
-        font-size: 1rem;
-        color: rgba(255,255,255,.55);
-        max-width: 520px;
-        margin: 0 auto;
-        line-height: 1.8;
-      }
-      .calcio-hero-scroll {
-        position: absolute; bottom: 2.5rem; left: 50%;
-        transform: translateX(-50%);
-        z-index: 2;
+      .calc-hero-scroll {
+        position: absolute; bottom: 2.5rem; right: 2.5rem; z-index: 2;
         display: flex; flex-direction: column; align-items: center; gap: .5rem;
       }
-      .calcio-hero-scroll span {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .65rem;
-        letter-spacing: .2em;
-        text-transform: uppercase;
-        color: rgba(255,255,255,.4);
+      .calc-hero-scroll span {
+        font-family: var(--work);
+        font-size: .55rem; letter-spacing: .22em; text-transform: uppercase;
+        color: var(--muted); writing-mode: vertical-lr;
       }
-      .calcio-hero-scroll-line {
+      .calc-hero-scroll-line {
         width: 1px; height: 40px;
-        background: linear-gradient(to bottom, rgba(200,16,46,.6), transparent);
-        animation: scrollLine 2s ease-in-out infinite;
+        background: linear-gradient(to bottom, var(--sky), transparent);
+        animation: scrollPulse 2.2s ease-in-out infinite;
       }
-      @keyframes scrollLine {
-        0%,100%{opacity:1;transform:scaleY(1)}
-        50%{opacity:.4;transform:scaleY(.6)}
-      }
+      @keyframes scrollPulse { 0%,100%{opacity:1} 50%{opacity:.25} }
 
-      /* ── Sticky nav ── */
-      .calcio-sticky-nav {
+      /* ═══ STICKY NAV ═══ */
+      .calc-sticky-nav {
         position: sticky; top: 0; z-index: 90;
-        background: rgba(13,13,13,.95);
+        background: rgba(244,248,251,.96);
         backdrop-filter: blur(16px);
-        border-bottom: 1px solid rgba(200,16,46,.2);
+        border-bottom: 1px solid var(--border-sky);
+        box-shadow: 0 2px 16px rgba(0,163,228,.06);
       }
       .csn-inner {
         max-width: 1200px; margin: 0 auto;
-        padding: .9rem 2rem;
-        display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;
+        padding: .85rem 2rem;
+        display: flex; gap: 1.75rem; align-items: center; flex-wrap: wrap;
       }
       .csn-link {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
-        color: rgba(255,255,255,.5);
-        text-decoration: none;
-        display: flex; align-items: center; gap: .5rem;
-        transition: color .25s;
-        padding: .3rem 0;
+        font-family: var(--work);
+        font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 700;
+        color: var(--muted); text-decoration: none;
+        display: flex; align-items: center; gap: .45rem;
         border-bottom: 2px solid transparent;
+        padding: .25rem 0; transition: color .25s, border-color .25s;
       }
       .csn-link:hover, .csn-link.active {
-        color: var(--calcio-red);
-        border-bottom-color: var(--calcio-red);
+        color: var(--sky); border-bottom-color: var(--sky);
       }
 
-      /* ── Dark editorial sections ── */
-      .section-calcio-dark {
-        background: var(--calcio-black);
-        color: #fff;
-        padding: clamp(4rem, 10vh, 7rem) 0;
-      }
-      .section-calcio-red {
-        background: var(--calcio-red);
-        color: #fff;
-        padding: clamp(4rem, 10vh, 7rem) 0;
-      }
-      .section-calcio-grey {
-        background: var(--calcio-grey);
-        color: #fff;
-        padding: clamp(4rem, 10vh, 7rem) 0;
-      }
-      .section-calcio-light {
-        background: #f8f8f8;
-        color: #111;
-        padding: clamp(4rem, 10vh, 7rem) 0;
-      }
+      /* ═══ SECTION WRAPPERS ═══ */
+      .sec-white  { background: var(--white); padding: clamp(4rem,10vh,7rem) 0; }
+      .sec-off    { background: var(--off); padding: clamp(4rem,10vh,7rem) 0; }
+      .sec-sky    { background: var(--sky-light); padding: clamp(4rem,10vh,7rem) 0; }
+      .sec-navy   { background: var(--navy); padding: clamp(4rem,10vh,7rem) 0; }
 
-      .calcio-container {
+      .calc-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+      /* Section header */
+      .calc-hdr { margin-bottom: 3rem; }
+      .calc-hdr-eyebrow {
+        font-family: var(--work);
+        font-size: .68rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+        color: var(--sky); display: block; margin-bottom: .75rem;
+      }
+      .calc-hdr h2 {
+        font-family: var(--barlow);
+        font-size: clamp(2.2rem, 4.5vw, 4rem);
+        font-weight: 900; text-transform: uppercase;
+        letter-spacing: -.01em;
+        color: var(--navy); line-height: .95;
+      }
+      .sec-navy .calc-hdr h2 { color: #fff; }
+      .calc-hdr h2 em { color: var(--sky); font-style: italic; }
+      .calc-hdr p {
+        font-family: var(--work);
+        font-size: .95rem; line-height: 1.75; color: var(--muted);
+        max-width: 580px; margin-top: 1rem;
+      }
+      .sec-navy .calc-hdr p { color: rgba(255,255,255,.55); }
+
+      /* Project intro strip (reuse portfolio .work-intro style) */
+      .calc-intro-strip {
+        background: var(--white);
+        padding: clamp(3rem, 8vh, 6rem) 0;
+        border-bottom: 1px solid var(--border-sky);
+      }
+      .calc-intro-inner {
         max-width: 1200px; margin: 0 auto; padding: 0 2rem;
       }
-
-      .calcio-section-header { margin-bottom: 3rem; }
-      .calcio-eyebrow {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .7rem; letter-spacing: .22em; text-transform: uppercase;
-        color: var(--calcio-red); margin-bottom: .75rem; display: block;
+      .calc-intro-inner .ds-badge {
+        background: var(--sky-light);
+        color: var(--sky-deep);
+        border: 1px solid var(--border-sky);
+        font-family: var(--work);
+        font-size: .68rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+        padding: .4rem 1rem; border-radius: 50px;
+        display: inline-block; margin-bottom: 1.5rem;
       }
-      .calcio-eyebrow-gold {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .7rem; letter-spacing: .22em; text-transform: uppercase;
-        color: var(--calcio-gold); margin-bottom: .75rem; display: block;
-      }
-      .calcio-section-header h2 {
-        font-family: 'Playfair Display', serif;
-        font-size: clamp(2rem, 4vw, 3.2rem);
-        font-weight: 700; line-height: 1.1;
-        padding-top: 0;
-      }
-      .calcio-section-header p {
-        margin-top: 1rem;
-        font-family: 'Work Sans', sans-serif;
-        font-size: 1rem; line-height: 1.75;
-        color: rgba(255,255,255,.65);
-        max-width: 600px;
-      }
-      .calcio-section-header.light p { color: rgba(0,0,0,.6); }
-
-      /* ── Styleguide swatches ── */
-      .swatch-row {
-        display: flex; gap: 1.5rem; flex-wrap: wrap;
-        margin-bottom: 2.5rem;
-      }
-      .swatch {
-        flex: 1; min-width: 120px; border-radius: 12px;
-        overflow: hidden; box-shadow: 0 8px 28px rgba(0,0,0,.35);
-      }
-      .swatch-color { height: 80px; }
-      .swatch-label {
-        padding: .75rem 1rem;
-        background: rgba(255,255,255,.05);
-        font-family: 'Work Sans', sans-serif;
-        font-size: .75rem;
-      }
-      .swatch-label strong { display: block; font-weight: 600; margin-bottom: .15rem; }
-      .swatch-label span { color: rgba(255,255,255,.5); font-size: .7rem; }
-
-      .typo-showcase {
-        display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
-        margin-top: 2rem;
-      }
-      .typo-item {
-        background: rgba(255,255,255,.04);
-        border: 1px solid rgba(255,255,255,.08);
-        border-radius: 12px; padding: 2rem;
-      }
-      .typo-sample-large {
-        font-family: 'Playfair Display', serif;
-        font-size: 2.8rem; font-weight: 700;
-        line-height: 1; margin-bottom: .75rem;
-        color: #fff;
-      }
-      .typo-sample-body {
-        font-family: 'Work Sans', sans-serif;
-        font-size: 1.5rem; font-weight: 300;
-        color: rgba(255,255,255,.7);
-        margin-bottom: .75rem;
-      }
-      .typo-meta {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .72rem; letter-spacing: .12em;
-        color: rgba(255,255,255,.4);
-        text-transform: uppercase;
-      }
-
-      /* ── Content Category Cards ── */
-      .content-cats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
-      }
-      .content-cat-card {
-        background: rgba(255,255,255,.04);
-        border: 1px solid rgba(255,255,255,.08);
-        border-radius: 16px;
-        padding: 2rem 1.5rem;
-        position: relative;
-        overflow: hidden;
-        transition: transform .3s, box-shadow .3s;
-      }
-      .content-cat-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 16px 48px rgba(200,16,46,.15);
-      }
-      .content-cat-card::before {
-        content: '';
-        position: absolute; top: 0; left: 0; right: 0;
-        height: 3px;
-        background: var(--calcio-red);
-      }
-      .content-cat-num {
-        font-family: 'Playfair Display', serif;
-        font-size: 3rem; font-weight: 900;
-        color: rgba(200,16,46,.15);
-        line-height: 1; margin-bottom: 1rem;
-      }
-      .content-cat-card h3 {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.15rem; margin-bottom: .75rem;
-      }
-      .content-cat-card p {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .875rem; line-height: 1.65;
-        color: rgba(255,255,255,.6);
-      }
-      .content-cat-icon {
-        font-size: 1.4rem; color: var(--calcio-red);
-        margin-bottom: 1rem; display: block;
-      }
-
-      /* ── Strategy Table ── */
-      .strategy-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
-      }
-      .strategy-item {
-        background: rgba(255,255,255,.05);
-        border: 1px solid rgba(200,16,46,.2);
-        border-radius: 14px;
-        padding: 1.75rem;
-      }
-      .strategy-item-icon {
-        width: 44px; height: 44px;
-        background: rgba(200,16,46,.15);
-        border-radius: 10px;
-        display: flex; align-items: center; justify-content: center;
-        font-size: 1.1rem; color: var(--calcio-red);
+      .calc-intro-inner h1 {
+        font-family: var(--barlow);
+        font-size: clamp(3rem, 6vw, 5.5rem);
+        font-weight: 900; text-transform: uppercase;
+        letter-spacing: -.01em; color: var(--navy); line-height: .95;
         margin-bottom: 1.25rem;
       }
-      .strategy-item h4 {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.1rem; margin-bottom: .6rem;
+      .calc-intro-inner h1 em { color: var(--sky); font-style: italic; }
+      .calc-intro-sub {
+        font-family: var(--work);
+        font-size: 1.05rem; font-weight: 300; color: var(--muted);
+        max-width: 600px; line-height: 1.75; margin-bottom: 2rem;
       }
-      .strategy-item p {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .875rem; line-height: 1.65;
-        color: rgba(255,255,255,.6);
+      .calc-meta-rule {
+        border: none; border-top: 2px solid var(--sky-light);
+        margin-bottom: 2rem;
+      }
+      .calc-meta-row {
+        display: flex; gap: 3rem; flex-wrap: wrap;
+      }
+      .calc-meta-item {}
+      .calc-meta-label {
+        font-family: var(--work);
+        font-size: .65rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+        color: var(--sky); display: block; margin-bottom: .3rem;
+      }
+      .calc-meta-value {
+        font-family: var(--work);
+        font-size: .9rem; font-weight: 500; color: var(--navy);
       }
 
-      /* ── Instagram post mockup grid ── */
+      /* ═══ STYLEGUIDE ═══ */
+      .swatch-row {
+        display: flex; gap: 1.25rem; flex-wrap: wrap; margin-bottom: 3rem;
+      }
+      .swatch {
+        flex: 1; min-width: 120px;
+        border-radius: 14px; overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,.06);
+        border: 1px solid var(--border-sky);
+      }
+      .swatch-col { height: 80px; }
+      .swatch-lbl {
+        padding: .75rem 1rem; background: var(--white);
+        font-family: var(--work); font-size: .75rem;
+      }
+      .swatch-lbl strong { display: block; font-weight: 700; color: var(--navy); }
+      .swatch-lbl span { color: var(--muted); font-size: .68rem; }
+
+      .typo-grid {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+        margin-top: 2rem;
+      }
+      .typo-card {
+        background: var(--white); border: 1px solid var(--border-sky);
+        border-radius: 14px; padding: 2rem;
+      }
+      .typo-display {
+        font-family: var(--barlow);
+        font-size: 2.5rem; font-weight: 900; text-transform: uppercase;
+        color: var(--navy); margin-bottom: .6rem;
+        letter-spacing: -.01em;
+      }
+      .typo-display.sky-text { color: var(--sky); }
+      .typo-body-sample {
+        font-family: var(--work);
+        font-size: 1.4rem; font-weight: 300; color: var(--muted);
+        margin-bottom: .6rem;
+      }
+      .typo-meta {
+        font-family: var(--work);
+        font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      /* ═══ SOCIAL / STRATEGY ═══ */
+      .strat-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+        gap: 1.25rem; margin-top: 2rem;
+      }
+      .strat-card {
+        background: var(--white); border: 1px solid var(--border-sky);
+        border-radius: 14px; padding: 1.75rem;
+        transition: transform .3s, box-shadow .3s;
+      }
+      .strat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,163,228,.1); }
+      .strat-icon {
+        width: 44px; height: 44px;
+        background: var(--sky-light); border-radius: 12px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.1rem; color: var(--sky); margin-bottom: 1rem;
+      }
+      .strat-card h4 {
+        font-family: var(--barlow);
+        font-size: 1.1rem; font-weight: 900; text-transform: uppercase;
+        letter-spacing: .04em; color: var(--navy); margin-bottom: .5rem;
+      }
+      .strat-card p {
+        font-family: var(--work);
+        font-size: .85rem; line-height: 1.65; color: var(--muted);
+      }
+
+      /* ═══ STATS ═══ */
+      .calc-stats-row {
+        display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+        gap: 1.25rem; margin-top: 2rem;
+      }
+      .calc-stat {
+        text-align: center; padding: 1.75rem 1rem;
+        background: var(--white); border: 1px solid var(--border-sky);
+        border-radius: 14px;
+      }
+      .sec-sky .calc-stat { background: rgba(255,255,255,.7); }
+      .calc-stat-num {
+        font-family: var(--barlow);
+        font-size: 2.6rem; font-weight: 900; color: var(--sky); line-height: 1;
+        margin-bottom: .4rem;
+      }
+      .calc-stat-lbl {
+        font-family: var(--work);
+        font-size: .68rem; letter-spacing: .18em; text-transform: uppercase;
+        color: var(--muted); font-weight: 600;
+      }
+
+      /* ═══ CONTENT CATEGORIES ═══ */
+      .cat-grid {
+        display: grid; grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
+        gap: 1.25rem; margin-top: 2rem;
+      }
+      .cat-card {
+        background: var(--white); border: 1px solid var(--border-sky);
+        border-radius: 16px; padding: 1.75rem 1.5rem;
+        position: relative; overflow: hidden;
+        transition: transform .3s, box-shadow .3s;
+      }
+      .cat-card:hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(0,163,228,.12); }
+      .cat-card::before {
+        content:''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+        background: var(--sky);
+      }
+      .cat-num {
+        font-family: var(--barlow);
+        font-size: 3.5rem; font-weight: 900; color: rgba(0,163,228,.1);
+        line-height: 1; margin-bottom: .75rem;
+      }
+      .cat-card h3 {
+        font-family: var(--barlow);
+        font-size: 1.1rem; font-weight: 900; text-transform: uppercase;
+        letter-spacing: .04em; color: var(--navy); margin-bottom: .6rem;
+      }
+      .cat-card p {
+        font-family: var(--work);
+        font-size: .82rem; line-height: 1.6; color: var(--muted);
+      }
+      .cat-icon { color: var(--sky); font-size: 1.3rem; display: block; margin-bottom: .75rem; }
+
+      /* ═══ INSTAGRAM GRID MOCKUP ═══ */
       .insta-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: .5rem;
-        max-width: 540px;
-        margin: 2rem auto;
-        border-radius: 12px;
-        overflow: hidden;
+        display: grid; grid-template-columns: repeat(3,1fr); gap: .4rem;
+        border-radius: 12px; overflow: hidden; max-width: 500px;
       }
       .insta-post {
-        aspect-ratio: 1;
-        position: relative;
-        overflow: hidden;
-        cursor: pointer;
-        background: var(--calcio-grey);
+        aspect-ratio: 1; position: relative; overflow: hidden; cursor: pointer;
       }
-      .insta-post:hover .insta-hover { opacity: 1; }
       .insta-post-inner {
         width: 100%; height: 100%;
         display: flex; align-items: center; justify-content: center;
-        flex-direction: column; gap: .4rem;
-        padding: 1rem;
-        text-align: center;
+        flex-direction: column; gap: .4rem; padding: .75rem; text-align: center;
       }
-      .insta-post-icon { font-size: 1.4rem; color: rgba(255,255,255,.5); }
-      .insta-post-label {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .65rem; letter-spacing: .1em;
-        text-transform: uppercase;
-        color: rgba(255,255,255,.4);
+      .ip-icon { font-size: 1.3rem; color: rgba(255,255,255,.6); }
+      .ip-lbl {
+        font-family: var(--work); font-size: .6rem; letter-spacing: .1em;
+        text-transform: uppercase; color: rgba(255,255,255,.4);
       }
-      .insta-hover {
+      .ip-hover {
         position: absolute; inset: 0;
-        background: rgba(200,16,46,.75);
+        background: rgba(0,163,228,.8);
         display: flex; align-items: center; justify-content: center;
-        flex-direction: column; gap: .5rem;
+        flex-direction: column; gap: .4rem;
         opacity: 0; transition: opacity .3s;
       }
-      .insta-hover span {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .7rem; color: #fff;
-        letter-spacing: .12em; text-transform: uppercase;
-      }
-      /* Color-coded post types */
-      .post-matchday { background: linear-gradient(135deg, #1a0a0d 0%, #3a0812 100%); }
-      .post-training  { background: linear-gradient(135deg, #0a100a 0%, #152215 100%); }
-      .post-player    { background: linear-gradient(135deg, #0d0d14 0%, #1a1a2e 100%); }
-      .post-community { background: linear-gradient(135deg, #100a00 0%, #2a1800 100%); }
-      .post-merch     { background: linear-gradient(135deg, #14100a 0%, #2e2014 100%); }
-      .post-squad     { background: linear-gradient(135deg, #100a14 0%, #200a2e 100%); }
-      .post-quote     { background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); }
-      .post-trophy    { background: linear-gradient(135deg, #130d00 0%, #2e2000 100%); }
-      .post-countdown { background: linear-gradient(135deg, #14000a 0%, #2e0014 100%); }
+      .ip-hover span { font-family: var(--work); font-size: .65rem; color: #fff; letter-spacing: .12em; text-transform: uppercase; }
+      .insta-post:hover .ip-hover { opacity: 1; }
+      /* post bg types */
+      .pt-match   { background: linear-gradient(135deg,#0a1428,#0369A1); }
+      .pt-train   { background: linear-gradient(135deg,#0a1a14,#065f46); }
+      .pt-player  { background: linear-gradient(135deg,#0a0a14,#1e3a8a); }
+      .pt-merch   { background: linear-gradient(135deg,#0a0a0a,#1a1a1a); }
+      .pt-comm    { background: linear-gradient(135deg,#0a0a0a,#00A3E4); }
+      .pt-trophy  { background: linear-gradient(135deg,#1a1200,#92400e); }
+      .pt-squad   { background: linear-gradient(135deg,#0a1428,#0284c7); }
+      .pt-quote   { background: linear-gradient(135deg,#06192E,#0369A1); }
+      .pt-count   { background: linear-gradient(135deg,#0a0a1a,#00A3E4); }
 
-      /* ── Phone mockup ── */
-      .phone-mockup-wrap {
-        display: flex; justify-content: center;
-        padding: 2rem 0;
-      }
-      .phone-device {
-        width: 240px;
-        background: #1a1a1a;
-        border-radius: 36px;
-        border: 3px solid #333;
-        box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.05);
-        overflow: hidden;
-        position: relative;
-      }
-      .phone-notch-bar {
-        height: 28px;
-        background: #111;
-        display: flex; align-items: center; justify-content: center;
-      }
-      .phone-notch-pill {
-        width: 80px; height: 10px;
-        background: #000;
-        border-radius: 8px;
-      }
-      .phone-screen-content {
-        background: #0d0d0d;
-        min-height: 460px;
-        padding: .75rem;
-        position: relative;
+      /* Phone mockup */
+      .phone-wrap { display: flex; justify-content: center; }
+      .phone {
+        width: 220px; background: #f0f4f8;
+        border-radius: 36px; border: 3px solid #d0dde5;
+        box-shadow: 0 24px 60px rgba(0,0,0,.12), 0 0 0 1px rgba(0,163,228,.1);
         overflow: hidden;
       }
-      .phone-insta-header {
-        display: flex; align-items: center; gap: .6rem;
-        margin-bottom: .75rem;
-      }
-      .phone-avatar {
-        width: 28px; height: 28px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      .phone-bar {
+        height: 26px; background: #e8eef2;
         display: flex; align-items: center; justify-content: center;
-        font-size: .6rem; font-weight: 700; color: #fff;
+      }
+      .phone-pill { width: 70px; height: 9px; background: #c8d8e2; border-radius: 8px; }
+      .phone-screen { background: #fff; min-height: 420px; padding: .7rem; }
+      .phone-ig-head {
+        display: flex; align-items: center; gap: .5rem; margin-bottom: .65rem;
+      }
+      .phone-av {
+        width: 26px; height: 26px; border-radius: 50%;
+        background: linear-gradient(135deg, var(--sky), var(--sky-deep));
+        display: flex; align-items: center; justify-content: center;
+        font-family: var(--barlow); font-size: .6rem; font-weight: 900; color: #fff;
         flex-shrink: 0;
       }
-      .phone-username {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .7rem; font-weight: 600; color: #fff;
-        flex: 1;
+      .phone-uname {
+        font-family: var(--work); font-size: .68rem; font-weight: 600; color: var(--navy); flex: 1;
       }
       .phone-post-img {
         width: 100%; aspect-ratio: 1;
-        background: linear-gradient(135deg, #1a0506 0%, #3d0c10 50%, #200810 100%);
-        border-radius: 6px;
-        display: flex; align-items: center; justify-content: center;
-        flex-direction: column; gap: .5rem;
-        margin-bottom: .6rem;
-        position: relative;
-        overflow: hidden;
+        background: linear-gradient(135deg, var(--sky-light), var(--sky));
+        border-radius: 6px; margin-bottom: .55rem;
+        display: flex; align-items: center; justify-content: center; flex-direction: column; gap: .4rem;
       }
-      .phone-post-crest {
-        font-size: 2rem;
-        filter: drop-shadow(0 0 12px rgba(200,16,46,.6));
+      .phone-post-emoji { font-size: 1.8rem; }
+      .phone-post-tag {
+        font-family: var(--barlow); font-size: .7rem; font-weight: 900; text-transform: uppercase;
+        color: var(--navy); letter-spacing: .08em;
       }
-      .phone-post-caption {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .6rem; line-height: 1.5;
-        color: rgba(255,255,255,.7);
-      }
-      .phone-post-actions {
-        display: flex; gap: .75rem; padding: .3rem 0;
-      }
-      .phone-action-icon { font-size: .85rem; color: rgba(255,255,255,.7); }
+      .phone-actions { display: flex; gap: .65rem; padding: .25rem 0; }
+      .phone-action-icon { font-size: .8rem; color: var(--navy); }
+      .phone-caption { font-family: var(--work); font-size: .58rem; line-height: 1.5; color: #333; }
 
-      /* ── SK Neu Calendar mockup ── */
-      .calendar-mockup {
-        background: #fff;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 20px 60px rgba(0,0,0,.25);
-        max-width: 700px;
-        margin: 2rem auto 0;
+      /* ═══ HASHTAG CLOUD ═══ */
+      .hashtag-cloud { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
+      .h-pill {
+        font-family: var(--work); font-size: .78rem; font-weight: 600;
+        padding: .4rem 1rem; border-radius: 50px;
+        background: rgba(0,163,228,.08); border: 1px solid rgba(0,163,228,.25);
+        color: var(--sky-deep); transition: background .2s, color .2s;
       }
-      .cal-header {
-        background: var(--calcio-black);
-        padding: 1.25rem 1.75rem;
-        display: flex; align-items: center; justify-content: space-between;
-      }
-      .cal-header-title {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.1rem; color: #fff;
-      }
-      .cal-header-nav {
-        display: flex; gap: .5rem;
-      }
-      .cal-nav-btn {
-        width: 30px; height: 30px;
-        background: rgba(255,255,255,.1);
-        border: none; border-radius: 8px;
-        color: #fff; cursor: pointer;
-        display: flex; align-items: center; justify-content: center;
-        font-size: .8rem; transition: background .2s;
-      }
-      .cal-nav-btn:hover { background: rgba(200,16,46,.4); }
-      .cal-days-row {
-        display: grid; grid-template-columns: repeat(7, 1fr);
-        background: #f5f5f5;
-      }
-      .cal-day-label {
-        text-align: center; padding: .6rem .25rem;
-        font-family: 'Work Sans', sans-serif;
-        font-size: .65rem; letter-spacing: .1em;
-        text-transform: uppercase; color: #888;
-        font-weight: 600;
-      }
-      .cal-grid {
-        display: grid; grid-template-columns: repeat(7, 1fr);
-        border-top: 1px solid #eee;
-      }
-      .cal-cell {
-        border-right: 1px solid #eee;
-        border-bottom: 1px solid #eee;
-        padding: .5rem .4rem;
-        min-height: 60px;
-        position: relative;
-      }
-      .cal-cell:nth-child(7n) { border-right: none; }
-      .cal-date {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .72rem; font-weight: 600; color: #333;
-        margin-bottom: .25rem;
-      }
-      .cal-cell.other-month .cal-date { color: #ccc; }
-      .cal-cell.today { background: rgba(200,16,46,.05); }
-      .cal-cell.today .cal-date {
-        background: var(--calcio-red);
-        color: #fff;
-        width: 22px; height: 22px;
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        font-size: .68rem;
-      }
-      .cal-event {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .58rem; font-weight: 600;
-        padding: .15rem .4rem;
-        border-radius: 4px;
-        margin-top: .15rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .cal-event.home { background: rgba(200,16,46,.15); color: var(--calcio-red); }
-      .cal-event.away { background: rgba(13,13,13,.08); color: #333; }
-      .cal-event.cup  { background: rgba(212,175,55,.2); color: #8a6d00; }
+      .h-pill:hover { background: var(--sky); color: #fff; }
 
-      /* ── Trikot design card ── */
-      .trikot-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 2rem;
-        margin-top: 2rem;
-      }
-      .trikot-card {
-        background: rgba(255,255,255,.04);
-        border: 1px solid rgba(255,255,255,.08);
-        border-radius: 16px;
-        overflow: hidden;
+      /* ═══ KIT DESIGNS ═══ */
+      .kit-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1.75rem; margin-top: 2rem; }
+      .kit-card {
+        background: var(--white); border: 1px solid var(--border-sky);
+        border-radius: 16px; overflow: hidden;
         transition: transform .3s, box-shadow .3s;
       }
-      .trikot-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 20px 50px rgba(200,16,46,.2);
-      }
-      .trikot-visual {
-        padding: 3rem 2rem 2rem;
+      .kit-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,163,228,.15); }
+      .kit-visual {
+        padding: 2.5rem 2rem 2rem;
         display: flex; align-items: center; justify-content: center;
-        min-height: 200px;
-        position: relative;
+        min-height: 190px; position: relative;
       }
-      .trikot-svg {
-        width: 100px; height: 120px;
-        filter: drop-shadow(0 8px 24px rgba(0,0,0,.4));
+      .kit-svg { width: 90px; height: 110px; filter: drop-shadow(0 8px 18px rgba(0,0,0,.12)); }
+      .kit-edition-badge {
+        position: absolute; bottom: .75rem; left: 50%; transform: translateX(-50%);
+        font-family: var(--work); font-size: .6rem; letter-spacing: .18em; text-transform: uppercase;
+        background: rgba(0,0,0,.06); color: var(--muted);
+        padding: .25rem .75rem; border-radius: 20px; white-space: nowrap;
       }
-      .trikot-badge-label {
-        position: absolute; bottom: 1rem; left: 50%;
-        transform: translateX(-50%);
-        font-family: 'Work Sans', sans-serif;
-        font-size: .65rem; letter-spacing: .18em;
-        text-transform: uppercase;
-        background: rgba(0,0,0,.5);
-        color: rgba(255,255,255,.7);
-        padding: .3rem .8rem;
-        border-radius: 20px;
-        white-space: nowrap;
+      .kit-info { padding: 1.25rem 1.5rem; border-top: 1px solid var(--border-sky); }
+      .kit-info h4 {
+        font-family: var(--barlow); font-size: 1rem; font-weight: 900;
+        text-transform: uppercase; letter-spacing: .06em; color: var(--navy); margin-bottom: .3rem;
       }
-      .trikot-info {
-        padding: 1.25rem 1.5rem;
-        border-top: 1px solid rgba(255,255,255,.06);
-      }
-      .trikot-info h4 {
-        font-family: 'Playfair Display', serif;
-        font-size: 1rem; margin-bottom: .35rem;
-      }
-      .trikot-info p {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .8rem; color: rgba(255,255,255,.5);
-        line-height: 1.5;
-      }
+      .kit-info p { font-family: var(--work); font-size: .8rem; color: var(--muted); line-height: 1.5; }
 
-      /* ── Hashtag cloud ── */
-      .hashtag-cloud {
-        display: flex; flex-wrap: wrap; gap: .75rem;
-        margin-top: 1.5rem;
+      /* ═══ SK NEU MOCKUP ═══ */
+      .skneu-browser {
+        background: var(--white);
+        border-radius: 16px; overflow: hidden;
+        box-shadow: 0 16px 56px rgba(0,0,0,.1);
+        max-width: 800px; margin: 2rem auto 0;
+        border: 1px solid var(--border-sky);
       }
-      .hashtag-pill {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .78rem;
-        padding: .4rem 1rem;
-        border-radius: 50px;
-        background: rgba(200,16,46,.12);
-        border: 1px solid rgba(200,16,46,.3);
-        color: rgba(255,255,255,.75);
-        transition: background .2s, color .2s;
+      .skneu-chrome {
+        background: #EAEEF1; padding: .65rem 1rem;
+        display: flex; align-items: center; gap: .65rem;
+        border-bottom: 1px solid #D5DCE0;
       }
-      .hashtag-pill:hover {
-        background: var(--calcio-red);
-        color: #fff;
+      .skneu-dots { display: flex; gap: .35rem; }
+      .sdot { width: 11px; height: 11px; border-radius: 50%; }
+      .sdot.r { background: #FF5F57; }
+      .sdot.y { background: #FEBC2E; }
+      .sdot.g { background: #28C840; }
+      .skneu-bar {
+        flex: 1; background: #fff; border: 1px solid #ccc; border-radius: 5px;
+        padding: .25rem .65rem;
+        font-family: var(--work); font-size: .68rem; color: #888;
       }
-
-      /* ── Accordion (optimization plan style) ── */
-      .calcio-accordion { border: 1px solid rgba(255,255,255,.08); border-radius: 12px; overflow: hidden; }
-      .ca-item { border-bottom: 1px solid rgba(255,255,255,.06); }
-      .ca-item:last-child { border-bottom: none; }
-      .ca-trigger {
-        width: 100%; background: none; border: none; cursor: pointer;
-        padding: 1.25rem 1.5rem;
-        display: flex; align-items: center; gap: 1rem;
-        color: #fff;
-        text-align: left;
-        transition: background .2s;
-      }
-      .ca-trigger:hover { background: rgba(200,16,46,.08); }
-      .ca-num {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.1rem; color: var(--calcio-red);
-        min-width: 36px;
-      }
-      .ca-title {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .9rem; font-weight: 600; flex: 1;
-      }
-      .ca-arrow { font-size: .8rem; color: rgba(255,255,255,.4); transition: transform .3s; }
-      .ca-item.open .ca-arrow { transform: rotate(180deg); }
-      .ca-body {
-        display: none;
-        padding: 0 1.5rem 1.5rem 3.75rem;
-      }
-      .ca-item.open .ca-body { display: block; }
-      .ca-body p {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .875rem; line-height: 1.7;
-        color: rgba(255,255,255,.6);
-      }
-
-      /* ── Metric stats ── */
-      .calcio-stats-row {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
-      }
-      .calcio-stat {
-        text-align: center;
-        padding: 2rem 1rem;
-        background: rgba(255,255,255,.04);
-        border: 1px solid rgba(200,16,46,.2);
-        border-radius: 14px;
-      }
-      .calcio-stat-number {
-        font-family: 'Playfair Display', serif;
-        font-size: 2.8rem; font-weight: 900;
-        color: var(--calcio-red);
-        line-height: 1;
-        margin-bottom: .5rem;
-      }
-      .calcio-stat-label {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .72rem; letter-spacing: .12em;
-        text-transform: uppercase;
-        color: rgba(255,255,255,.5);
-      }
-
-      /* ── SKNeu site preview ── */
-      .skneu-preview {
-        background: #fff;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 20px 70px rgba(0,0,0,.3);
-        max-width: 860px;
-        margin: 2rem auto 0;
-        border: 1px solid rgba(0,0,0,.1);
-      }
-      .skneu-browser-bar {
-        background: #f0f0f0;
-        padding: .75rem 1rem;
-        display: flex; align-items: center; gap: .75rem;
-        border-bottom: 1px solid #ddd;
-      }
-      .skneu-dots { display: flex; gap: .4rem; }
-      .skneu-dot {
-        width: 12px; height: 12px; border-radius: 50%;
-      }
-      .skneu-dot.red { background: #ff5f56; }
-      .skneu-dot.yellow { background: #ffbd2e; }
-      .skneu-dot.green { background: #27c93f; }
-      .skneu-url-bar {
-        flex: 1; background: #fff;
-        border: 1px solid #ddd; border-radius: 6px;
-        padding: .3rem .75rem;
-        font-family: 'Work Sans', sans-serif;
-        font-size: .72rem; color: #666;
-      }
-      .skneu-site-body {
-        background: var(--calcio-black);
-        padding: 0;
-      }
-      .skneu-site-hero {
-        background: linear-gradient(135deg, #0d0d0d 0%, #1a0407 50%, #0d0d0d 100%);
-        padding: 2rem;
-        border-bottom: 1px solid rgba(200,16,46,.2);
+      .skneu-content { background: var(--off); }
+      .skneu-topbar {
+        background: var(--navy); padding: 1.25rem 1.75rem;
         display: flex; align-items: center; justify-content: space-between;
         flex-wrap: wrap; gap: 1rem;
       }
-      .skneu-logo-area h3 {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.4rem; color: #fff;
+      .skneu-brand h3 {
+        font-family: var(--barlow); font-size: 1.3rem; font-weight: 900;
+        text-transform: uppercase; letter-spacing: .06em; color: #fff;
       }
-      .skneu-logo-area span {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .7rem; letter-spacing: .2em;
-        text-transform: uppercase;
-        color: var(--calcio-red);
+      .skneu-brand span {
+        font-family: var(--work); font-size: .6rem; letter-spacing: .2em;
+        text-transform: uppercase; color: var(--sky);
       }
-      .skneu-nav-preview {
-        display: flex; gap: 1.5rem;
+      .skneu-nav-items { display: flex; gap: 1.5rem; }
+      .skneu-ni {
+        font-family: var(--barlow); font-size: .75rem; font-weight: 700;
+        text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.5);
       }
-      .skneu-nav-item {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .72rem; letter-spacing: .1em;
-        text-transform: uppercase; color: rgba(255,255,255,.5);
-      }
-      .skneu-site-content {
-        padding: 2rem;
-        display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      .skneu-body {
+        padding: 1.75rem;
+        display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
       }
       .skneu-widget {
-        background: rgba(255,255,255,.04);
-        border: 1px solid rgba(255,255,255,.08);
-        border-radius: 10px;
-        padding: 1.25rem;
+        background: var(--white); border: 1px solid var(--border-sky);
+        border-radius: 10px; padding: 1.1rem;
       }
       .skneu-widget h4 {
-        font-family: 'Playfair Display', serif;
-        font-size: .95rem; color: #fff;
-        margin-bottom: 1rem; padding-top: 0;
+        font-family: var(--barlow); font-size: .9rem; font-weight: 900;
+        text-transform: uppercase; letter-spacing: .06em; color: var(--navy); margin-bottom: .9rem;
       }
-      .skneu-match-row {
+      .sw-row {
         display: flex; align-items: center; gap: .5rem;
-        padding: .5rem 0;
-        border-bottom: 1px solid rgba(255,255,255,.05);
+        padding: .4rem 0; border-bottom: 1px solid var(--border-sky);
       }
-      .skneu-match-row:last-child { border-bottom: none; }
-      .skneu-match-date {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .65rem; color: rgba(255,255,255,.4);
-        min-width: 50px;
-      }
-      .skneu-match-teams {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .72rem; color: rgba(255,255,255,.8);
-        flex: 1;
-      }
-      .skneu-match-badge {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .58rem;
-        padding: .15rem .45rem;
-        border-radius: 4px;
-        font-weight: 600;
-      }
-      .skneu-match-badge.home {
-        background: rgba(200,16,46,.2);
-        color: var(--calcio-red);
-      }
-      .skneu-match-badge.away {
-        background: rgba(255,255,255,.08);
-        color: rgba(255,255,255,.5);
-      }
-      .skneu-player-list { display: flex; flex-direction: column; gap: .5rem; }
-      .skneu-player-row {
-        display: flex; align-items: center; gap: .75rem;
-        padding: .4rem 0;
-        border-bottom: 1px solid rgba(255,255,255,.05);
-      }
-      .skneu-player-row:last-child { border-bottom: none; }
-      .skneu-player-num {
-        width: 24px; height: 24px;
-        background: var(--calcio-red);
-        border-radius: 6px;
+      .sw-row:last-child { border-bottom: none; }
+      .sw-date { font-family: var(--work); font-size: .62rem; color: var(--muted); min-width: 48px; }
+      .sw-teams { font-family: var(--barlow); font-size: .78rem; font-weight: 700; text-transform: uppercase; color: var(--navy); flex: 1; letter-spacing: .04em; }
+      .sw-badge { font-family: var(--barlow); font-size: .6rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .15rem .4rem; border-radius: 4px; }
+      .sw-badge.h { background: var(--sky-light); color: var(--sky-deep); }
+      .sw-badge.a { background: var(--off); color: var(--muted); }
+      .sw-badge.t { background: rgba(212,175,55,.12); color: #9a7300; }
+      .sw-player { display: flex; align-items: center; gap: .65rem; padding: .35rem 0; border-bottom: 1px solid var(--border-sky); }
+      .sw-player:last-child { border-bottom: none; }
+      .sw-pnum {
+        width: 22px; height: 22px; background: var(--sky); border-radius: 6px;
         display: flex; align-items: center; justify-content: center;
-        font-family: 'Work Sans', sans-serif;
-        font-size: .65rem; font-weight: 700; color: #fff;
-        flex-shrink: 0;
+        font-family: var(--barlow); font-size: .65rem; font-weight: 900; color: #fff; flex-shrink: 0;
       }
-      .skneu-player-name {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .72rem; color: rgba(255,255,255,.8);
-        flex: 1;
-      }
-      .skneu-player-pos {
-        font-family: 'Work Sans', sans-serif;
-        font-size: .62rem; color: rgba(255,255,255,.35);
-        letter-spacing: .08em; text-transform: uppercase;
-      }
+      .sw-pname { font-family: var(--barlow); font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; color: var(--navy); flex: 1; }
+      .sw-ppos { font-family: var(--work); font-size: .6rem; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
 
-      /* ── CTA strip ── */
-      .calcio-cta-strip {
-        background: var(--calcio-red);
-        padding: 4rem 2rem;
+      /* ═══ CALENDAR MOCKUP ═══ */
+      .cal-mockup {
+        background: var(--white); border-radius: 14px; overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0,0,0,.06); max-width: 680px; margin: 2rem auto 0;
+        border: 1px solid var(--border-sky);
+      }
+      .cal-head { background: var(--navy); padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+      .cal-title { font-family: var(--barlow); font-size: 1rem; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; color: #fff; }
+      .cal-nav-btns { display: flex; gap: .4rem; }
+      .cal-nb {
+        width: 26px; height: 26px; background: rgba(255,255,255,.1); border: none; border-radius: 6px;
+        color: rgba(255,255,255,.6); font-size: .7rem;
+        display: flex; align-items: center; justify-content: center; cursor: pointer;
+        transition: background .2s;
+      }
+      .cal-nb:hover { background: var(--sky); color: #fff; }
+      .cal-days { display: grid; grid-template-columns: repeat(7,1fr); background: var(--sky-light); border-bottom: 1px solid var(--border-sky); }
+      .cal-dl { text-align: center; padding: .55rem .2rem; font-family: var(--barlow); font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--sky-deep); }
+      .cal-grid { display: grid; grid-template-columns: repeat(7,1fr); }
+      .cal-c { border-right: 1px solid var(--border-sky); border-bottom: 1px solid var(--border-sky); padding: .45rem .35rem; min-height: 54px; }
+      .cal-c:nth-child(7n) { border-right: none; }
+      .cal-c.dim .cal-d { color: #c8d8e2; }
+      .cal-d { font-family: var(--barlow); font-size: .75rem; font-weight: 700; color: var(--navy); margin-bottom: .18rem; }
+      .cal-c.today .cal-d { background: var(--sky); color: #fff; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .62rem; }
+      .cal-ev { font-family: var(--barlow); font-size: .55rem; font-weight: 700; letter-spacing: .04em; padding: .1rem .3rem; border-radius: 3px; margin-top: .1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .cal-ev.h { background: var(--sky-light); color: var(--sky-deep); }
+      .cal-ev.a { background: var(--off); color: var(--muted); }
+
+      /* ═══ ACCORDION ═══ */
+      .calc-acc { border: 1px solid var(--border-sky); border-radius: 14px; overflow: hidden; }
+      .ca-item { border-bottom: 1px solid var(--border-sky); }
+      .ca-item:last-child { border-bottom: none; }
+      .ca-btn {
+        width: 100%; background: none; border: none; cursor: pointer;
+        padding: 1.2rem 1.5rem;
+        display: flex; align-items: center; gap: 1rem;
+        color: var(--navy); text-align: left;
+        transition: background .2s;
+      }
+      .ca-btn:hover { background: var(--sky-xlight); }
+      .ca-num { font-family: var(--barlow); font-size: 1.1rem; font-weight: 900; color: var(--sky); min-width: 32px; }
+      .ca-title { font-family: var(--barlow); font-size: .9rem; font-weight: 900; text-transform: uppercase; letter-spacing: .06em; flex: 1; }
+      .ca-arrow { font-size: .75rem; color: var(--muted); transition: transform .3s; }
+      .ca-item.open .ca-arrow { transform: rotate(180deg); }
+      .ca-body { display: none; padding: 0 1.5rem 1.25rem 4rem; }
+      .ca-item.open .ca-body { display: block; }
+      .ca-body p { font-family: var(--work); font-size: .875rem; line-height: 1.72; color: var(--muted); }
+
+      /* ═══ CTA STRIP ═══ */
+      .calc-cta {
+        background: var(--sky);
+        padding: clamp(3.5rem, 8vh, 6rem) 2rem;
         text-align: center;
       }
-      .calcio-cta-strip h2 {
-        font-family: 'Playfair Display', serif;
-        font-size: clamp(1.8rem, 4vw, 3rem);
-        color: #fff; margin-bottom: 1rem; padding-top: 0;
+      .calc-cta h2 {
+        font-family: var(--barlow);
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        font-weight: 900; text-transform: uppercase;
+        letter-spacing: -.01em; color: #fff; margin-bottom: 1rem;
       }
-      .calcio-cta-strip p {
-        font-family: 'Work Sans', sans-serif;
+      .calc-cta p {
+        font-family: var(--work);
         font-size: 1rem; color: rgba(255,255,255,.8);
-        max-width: 500px; margin: 0 auto 2rem; line-height: 1.7;
+        max-width: 460px; margin: 0 auto 2rem; line-height: 1.72;
       }
-      .calcio-cta-btn {
+      .calc-cta-btn {
         display: inline-flex; align-items: center; gap: .6rem;
-        background: #fff; color: var(--calcio-red);
-        font-family: 'Work Sans', sans-serif;
-        font-size: .78rem; font-weight: 700;
-        letter-spacing: .1em; text-transform: uppercase;
-        padding: .9rem 2.2rem; border-radius: 4px;
-        text-decoration: none;
+        background: #fff; color: var(--sky);
+        font-family: var(--barlow);
+        font-size: .95rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase;
+        padding: .9rem 2.2rem; border-radius: 6px;
         transition: transform .2s, box-shadow .2s;
+        box-shadow: 0 4px 20px rgba(0,0,0,.12);
       }
-      .calcio-cta-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 28px rgba(0,0,0,.2);
-      }
+      .calc-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,.2); }
 
       /* Responsive */
       @media (max-width: 768px) {
-        .typo-showcase { grid-template-columns: 1fr; }
-        .insta-grid { max-width: 100%; }
-        .skneu-site-content { grid-template-columns: 1fr; }
-        .skneu-nav-preview { display: none; }
-        .skneu-site-hero { flex-direction: column; }
+        .typo-grid { grid-template-columns: 1fr; }
+        .skneu-body { grid-template-columns: 1fr; }
+        .skneu-nav-items { display: none; }
+        .calc-meta-row { gap: 2rem; }
       }
     </style>
   </head>
   <body class="is-loading">
 
-    <!-- SUB PRELOADER -->
+    <!-- PRELOADER -->
     <div class="loader loader--sub" id="loaderSub">
       <div class="loader__riser" id="loaderSubRiser">
         <svg class="loader__wave-svg" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
@@ -875,8 +708,8 @@
     <header class="site-header" id="top">
       <div class="container nav-bar">
         <a href="../index.html" class="logo">
-          <img src="../assets/images/branding/logo_black.png" alt="Khadija Okbi Logo" width="45">
-          <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi Logo" width="45" class="logo-onscroll">
+          <img src="../assets/images/branding/logo_black.png" alt="Khadija Okbi" width="45">
+          <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi" width="45" class="logo-onscroll">
         </a>
         <nav class="nav">
           <a href="../index.html#hero" class="nav-link">Home</a>
@@ -889,451 +722,357 @@
 
     <main>
 
-      <!-- ══════════════════════════════════════
+      <!-- ════════════════════════════════
            HERO
-      ══════════════════════════════════════ -->
-      <section class="calcio-hero" id="hero">
-        <div class="calcio-hero-bg"></div>
-        <div class="calcio-hero-number">09</div>
-        <div class="calcio-hero-content">
-          <span class="calcio-hero-badge">Social Media &amp; Web Konzept · 2025</span>
-          <h1 class="calcio-hero-title">AS Calcio<br><em>Kreuzlingen.</em></h1>
-          <p class="calcio-hero-sub">Modernes Branding, urban &amp; dynamisch — Fussball trifft digitale Identität.</p>
+      ════════════════════════════════ -->
+      <section class="calc-hero" id="hero">
+        <div class="calc-hero-bg"></div>
+        <div class="calc-hero-stripe"></div>
+        <div class="calc-hero-ghost">CALCIO</div>
+        <div class="calc-hero-content">
+          <div class="calc-eyebrow-wrap">
+            <div class="calc-eyebrow-line"></div>
+            <span class="calc-eyebrow">Social Media &amp; Web Konzept · 2025</span>
+          </div>
+          <h1 class="calc-hero-title">
+            AS<br>
+            <span class="sky-line-word">Calcio</span><br>
+            <span class="italic-word" style="color:var(--sky-deep)">Kreuzlingen.</span>
+          </h1>
+          <p class="calc-hero-sub">Urban. Dynamisch. Hellblau. — Fussball trifft digitale Identität.</p>
         </div>
-        <div class="calcio-hero-scroll">
+        <div class="calc-hero-scroll">
           <span>Entdecken</span>
-          <div class="calcio-hero-scroll-line"></div>
+          <div class="calc-hero-scroll-line"></div>
         </div>
       </section>
 
-      <!-- ══════════════════════════════════════
+      <!-- ════════════════════════════════
            PROJECT INTRO
-      ══════════════════════════════════════ -->
-      <section class="work-intro bg-white wave-dark">
-        <div class="work-intro-inner">
+      ════════════════════════════════ -->
+      <div class="calc-intro-strip">
+        <div class="calc-intro-inner">
           <span class="ds-badge">Social Media &amp; Web Konzept 2025</span>
           <h1>AS Calcio <em>Kreuzlingen.</em></h1>
-          <p class="work-intro-subtitle">Modernes, ästhetisches, jugendliches Branding für den Fussballverein — von der Social-Media-Strategie über visuelles Styling bis hin zur interaktiven Vereinswebseite für SK Neu.</p>
-          <hr class="work-intro-rule">
-          <div class="work-meta-row">
-            <div class="work-meta-item">
-              <span class="work-meta-label">Kunde</span>
-              <span class="work-meta-value">AS Calcio Kreuzlingen</span>
+          <p class="calc-intro-sub">Modernes, ästhetisches Branding für den Fussballverein — von der Instagram-Strategie über das visuelle Styling bis zur interaktiven Vereinswebseite für SK Neu.</p>
+          <hr class="calc-meta-rule">
+          <div class="calc-meta-row">
+            <div class="calc-meta-item">
+              <span class="calc-meta-label">Kunde</span>
+              <span class="calc-meta-value">AS Calcio Kreuzlingen</span>
             </div>
-            <div class="work-meta-item">
-              <span class="work-meta-label">Bereich</span>
-              <span class="work-meta-value">Marketing · Branding · Web</span>
+            <div class="calc-meta-item">
+              <span class="calc-meta-label">Bereich</span>
+              <span class="calc-meta-value">Marketing · Branding · Web</span>
             </div>
-            <div class="work-meta-item">
-              <span class="work-meta-label">Jahr</span>
-              <span class="work-meta-value">2025</span>
+            <div class="calc-meta-item">
+              <span class="calc-meta-label">Jahr</span>
+              <span class="calc-meta-value">2025</span>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <!-- ══════════════════════════════════════
+      <!-- ════════════════════════════════
            STICKY NAV
-      ══════════════════════════════════════ -->
-      <nav class="calcio-sticky-nav" id="calciostickynav">
+      ════════════════════════════════ -->
+      <nav class="calc-sticky-nav" id="calciostickynav">
         <div class="csn-inner">
-          <a href="#styleguide-section" class="csn-link"><i class="fa-solid fa-palette"></i><span>Styleguide</span></a>
-          <a href="#social-section" class="csn-link"><i class="fa-brands fa-instagram"></i><span>Social Media</span></a>
-          <a href="#content-section" class="csn-link"><i class="fa-solid fa-grid"></i><span>Content</span></a>
-          <a href="#trikot-section" class="csn-link"><i class="fa-solid fa-shirt"></i><span>Trikots</span></a>
-          <a href="#skneu-section" class="csn-link"><i class="fa-solid fa-globe"></i><span>SK Neu</span></a>
-          <a href="#strategie-section" class="csn-link"><i class="fa-solid fa-chart-line"></i><span>Strategie</span></a>
+          <a href="#styleguide" class="csn-link"><i class="fa-solid fa-palette"></i><span>Styleguide</span></a>
+          <a href="#social" class="csn-link"><i class="fa-brands fa-instagram"></i><span>Social Media</span></a>
+          <a href="#content" class="csn-link"><i class="fa-solid fa-grid"></i><span>Content</span></a>
+          <a href="#kits" class="csn-link"><i class="fa-solid fa-shirt"></i><span>Kits</span></a>
+          <a href="#skneu" class="csn-link"><i class="fa-solid fa-globe"></i><span>SK Neu</span></a>
+          <a href="#strategie" class="csn-link"><i class="fa-solid fa-chart-line"></i><span>Strategie</span></a>
         </div>
       </nav>
 
-      <!-- ══════════════════════════════════════
+      <!-- ════════════════════════════════
            STYLEGUIDE
-      ══════════════════════════════════════ -->
-      <section class="section-calcio-dark" id="styleguide-section">
-        <div class="calcio-container">
+      ════════════════════════════════ -->
+      <section class="sec-white" id="styleguide">
+        <div class="calc-container">
 
-          <div class="calcio-section-header">
-            <span class="calcio-eyebrow">Visuelles Styling</span>
-            <h2>Style<span class="highlight-calcio">guide.</span></h2>
-            <p>Clean, minimalistisch, urban — kontrastreiche Farben und hochwertige Typografie für visuelle Konsistenz auf allen Kanälen.</p>
+          <div class="calc-hdr">
+            <span class="calc-hdr-eyebrow">Visuelles Styling</span>
+            <h2>Style<em>guide.</em></h2>
+            <p>Clean, minimalistisch, dynamisch — AS Calcio's Hellblau als Leitfarbe mit hochwertiger Typografie.</p>
           </div>
 
-          <!-- Color Palette -->
-          <h3 style="font-family:'Playfair Display',serif; font-size:1.3rem; margin-bottom:1.5rem; color:#fff;">Farbpalette</h3>
-          <div class="swatch-row">
+          <!-- Colors -->
+          <h3 style="font-family:var(--barlow);font-size:1.3rem;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--navy);margin-bottom:1.5rem;">Farbpalette</h3>
+          <div class="swatch-row" data-reveal>
             <div class="swatch">
-              <div class="swatch-color" style="background:#C8102E;"></div>
-              <div class="swatch-label">
-                <strong>Calcio Red</strong>
-                <span>#C8102E</span>
-              </div>
+              <div class="swatch-col" style="background:#00A3E4;"></div>
+              <div class="swatch-lbl"><strong>AS Calcio Blue</strong><span>#00A3E4</span></div>
             </div>
             <div class="swatch">
-              <div class="swatch-color" style="background:#0D0D0D;"></div>
-              <div class="swatch-label">
-                <strong>Pitch Black</strong>
-                <span>#0D0D0D</span>
-              </div>
+              <div class="swatch-col" style="background:#06192E;"></div>
+              <div class="swatch-lbl"><strong style="color:#fff;background:#06192E;display:block;padding:.25rem 0;">Deep Navy</strong><span>#06192E</span></div>
             </div>
             <div class="swatch">
-              <div class="swatch-color" style="background:#F5F5F5;"></div>
-              <div class="swatch-label" style="color:#111;">
-                <strong style="color:#111;">Clean White</strong>
-                <span style="color:#666;">#F5F5F5</span>
-              </div>
+              <div class="swatch-col" style="background:#FFFFFF;border:1px solid #e0ecf4;"></div>
+              <div class="swatch-lbl"><strong>Pure White</strong><span>#FFFFFF</span></div>
             </div>
             <div class="swatch">
-              <div class="swatch-color" style="background:#D4AF37;"></div>
-              <div class="swatch-label">
-                <strong>Trophy Gold</strong>
-                <span>#D4AF37</span>
-              </div>
+              <div class="swatch-col" style="background:#EBF7FD;"></div>
+              <div class="swatch-lbl"><strong>Sky Light</strong><span>#EBF7FD</span></div>
             </div>
             <div class="swatch">
-              <div class="swatch-color" style="background:#2A2A2A;"></div>
-              <div class="swatch-label">
-                <strong>Urban Grey</strong>
-                <span>#2A2A2A</span>
-              </div>
+              <div class="swatch-col" style="background:#0078AE;"></div>
+              <div class="swatch-lbl"><strong>Sky Deep</strong><span>#0078AE</span></div>
             </div>
           </div>
 
           <!-- Typography -->
-          <h3 style="font-family:'Playfair Display',serif; font-size:1.3rem; margin-bottom:1.5rem; margin-top:3rem; color:#fff;">Typografie</h3>
-          <div class="typo-showcase">
-            <div class="typo-item">
-              <div class="typo-sample-large">Playfair Display</div>
-              <div class="typo-meta">Headlines · Serif · Display</div>
-              <p style="font-family:'Work Sans',sans-serif; font-size:.85rem; color:rgba(255,255,255,.5); margin-top:.75rem; line-height:1.6;">Eleganz trifft Stärke. Für Schlagzeilen, Titel und emotionale Momente.</p>
+          <h3 style="font-family:var(--barlow);font-size:1.3rem;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--navy);margin-bottom:1.5rem;margin-top:3rem;">Typografie</h3>
+          <div class="typo-grid" data-reveal>
+            <div class="typo-card">
+              <div class="typo-display sky-text">BARLOW CONDENSED</div>
+              <div class="typo-meta">Headlines · Condensed Bold · Display</div>
+              <p style="font-family:var(--work);font-size:.85rem;color:var(--muted);margin-top:.75rem;line-height:1.65;">Kraft und Kompaktheit. Für Schlagzeilen, Titelzeilen und alles was Impact braucht.</p>
             </div>
-            <div class="typo-item">
-              <div class="typo-sample-body">Work Sans Light</div>
+            <div class="typo-card">
+              <div class="typo-body-sample">Work Sans Light</div>
               <div class="typo-meta">Body Copy · Sans-Serif · UI</div>
-              <p style="font-family:'Work Sans',sans-serif; font-size:.85rem; color:rgba(255,255,255,.5); margin-top:.75rem; line-height:1.6;">Klar, modern, sportlich. Für Captions, Beschreibungen und alle UI-Texte.</p>
+              <p style="font-family:var(--work);font-size:.85rem;color:var(--muted);margin-top:.75rem;line-height:1.65;">Klar, modern, sportlich. Für Captions, Beschreibungen und alle Interface-Texte.</p>
             </div>
           </div>
 
         </div>
       </section>
 
-      <!-- ══════════════════════════════════════
+      <!-- ════════════════════════════════
            SOCIAL MEDIA KONZEPT
-      ══════════════════════════════════════ -->
-      <section class="section-calcio-grey" id="social-section">
-        <div class="calcio-container">
+      ════════════════════════════════ -->
+      <section class="sec-sky" id="social">
+        <div class="calc-container">
 
-          <div class="calcio-section-header">
-            <span class="calcio-eyebrow">Instagram Strategie</span>
-            <h2>Social Media <span class="highlight-calcio">Konzept.</span></h2>
-            <p>Einheitliche Bildsprache, emotionale Momente, Teamgeist — mindestens 3 Posts pro Woche mit konsistenter visueller Identität.</p>
+          <div class="calc-hdr">
+            <span class="calc-hdr-eyebrow">Instagram Strategie</span>
+            <h2>Social Media <em>Konzept.</em></h2>
+            <p>Einheitliche Bildsprache, emotionale Momente, Teamgeist — mindestens 3 Posts pro Woche.</p>
           </div>
 
-          <div class="calcio-stats-row">
-            <div class="calcio-stat">
-              <div class="calcio-stat-number">3×</div>
-              <div class="calcio-stat-label">Posts / Woche</div>
-            </div>
-            <div class="calcio-stat">
-              <div class="calcio-stat-number">5</div>
-              <div class="calcio-stat-label">Content-Kategorien</div>
-            </div>
-            <div class="calcio-stat">
-              <div class="calcio-stat-number">Daily</div>
-              <div class="calcio-stat-label">Stories Updates</div>
-            </div>
-            <div class="calcio-stat">
-              <div class="calcio-stat-number">IG</div>
-              <div class="calcio-stat-label">Primärplattform</div>
-            </div>
+          <div class="calc-stats-row" data-reveal>
+            <div class="calc-stat"><div class="calc-stat-num">3×</div><div class="calc-stat-lbl">Posts / Woche</div></div>
+            <div class="calc-stat"><div class="calc-stat-num">5</div><div class="calc-stat-lbl">Kategorien</div></div>
+            <div class="calc-stat"><div class="calc-stat-num">Daily</div><div class="calc-stat-lbl">Stories</div></div>
+            <div class="calc-stat"><div class="calc-stat-num">IG</div><div class="calc-stat-lbl">Primärplattform</div></div>
           </div>
 
-          <!-- Platform strategy -->
-          <div class="strategy-grid" style="margin-top:3rem;">
-            <div class="strategy-item">
-              <div class="strategy-item-icon"><i class="fa-brands fa-instagram"></i></div>
-              <h4>Instagram Feed</h4>
-              <p>Hochwertige, konsistente Bilder und Reels mit einheitlichem visuellen Raster. Fokus auf Emotionen und Teamgeist.</p>
+          <div class="strat-grid" style="margin-top:3rem;">
+            <div class="strat-card" data-reveal>
+              <div class="strat-icon"><i class="fa-brands fa-instagram"></i></div>
+              <h4>Feed</h4>
+              <p>Hochwertige, konsistente Bilder und Reels mit einheitlichem visuellen Raster. Hellblau als Leitmotiv.</p>
             </div>
-            <div class="strategy-item">
-              <div class="strategy-item-icon"><i class="fa-solid fa-circle-play"></i></div>
+            <div class="strat-card" data-reveal class="d1">
+              <div class="strat-icon"><i class="fa-solid fa-circle-play"></i></div>
               <h4>Reels & Video</h4>
-              <p>Behind-the-Scenes, Matchday Highlights, Trainings-Skills — kurze, packende Clips im urbanen Stil à la @brooklynfootballclub.</p>
+              <p>Matchday Highlights, Trainings-Skills, Behind-the-Scenes — kurze, packende Clips im urbanen Stil.</p>
             </div>
-            <div class="strategy-item">
-              <div class="strategy-item-icon"><i class="fa-solid fa-bolt"></i></div>
+            <div class="strat-card" data-reveal class="d2">
+              <div class="strat-icon"><i class="fa-solid fa-bolt"></i></div>
               <h4>Stories</h4>
-              <p>Echtzeit-Updates, Umfragen, Q&amp;A-Sessions und interaktive Challenges für maximale Community-Einbindung.</p>
+              <p>Echtzeit-Updates, Umfragen, Q&amp;A-Sessions und Challenges für maximale Community-Bindung.</p>
             </div>
-            <div class="strategy-item">
-              <div class="strategy-item-icon"><i class="fa-solid fa-hashtag"></i></div>
+            <div class="strat-card" data-reveal class="d3">
+              <div class="strat-icon"><i class="fa-solid fa-hashtag"></i></div>
               <h4>Hashtag-Strategie</h4>
-              <p>Lokale + zielgruppenspezifische Tags: #asCalcioKreuzlingen, #juniorfussball, #nachwuchskicker, #fussballschweiz.</p>
+              <p>Lokale + zielgruppenspezifische Tags: #asCalcioKreuzlingen, #juniorfussball, #nachwuchskicker.</p>
             </div>
           </div>
 
-          <!-- Hashtag cloud -->
-          <div class="hashtag-cloud">
-            <span class="hashtag-pill">#asCalcioKreuzlingen</span>
-            <span class="hashtag-pill">#juniorfussball</span>
-            <span class="hashtag-pill">#nachwuchskicker</span>
-            <span class="hashtag-pill">#fussballschweiz</span>
-            <span class="hashtag-pill">#kreuzlingen</span>
-            <span class="hashtag-pill">#bodensee</span>
-            <span class="hashtag-pill">#matchday</span>
-            <span class="hashtag-pill">#trainingsvibes</span>
-            <span class="hashtag-pill">#footballfamily</span>
-            <span class="hashtag-pill">#SKNeu</span>
-            <span class="hashtag-pill">#calcio</span>
-            <span class="hashtag-pill">#jugendfoerderung</span>
+          <div class="hashtag-cloud" data-reveal>
+            <span class="h-pill">#asCalcioKreuzlingen</span>
+            <span class="h-pill">#juniorfussball</span>
+            <span class="h-pill">#nachwuchskicker</span>
+            <span class="h-pill">#fussballschweiz</span>
+            <span class="h-pill">#kreuzlingen</span>
+            <span class="h-pill">#bodensee</span>
+            <span class="h-pill">#matchday</span>
+            <span class="h-pill">#trainingsvibes</span>
+            <span class="h-pill">#footballfamily</span>
+            <span class="h-pill">#SKNeu</span>
+            <span class="h-pill">#hellblau</span>
+            <span class="h-pill">#jugendfoerderung</span>
           </div>
 
         </div>
       </section>
 
-      <!-- ══════════════════════════════════════
+      <!-- ════════════════════════════════
            CONTENT KATEGORIEN
-      ══════════════════════════════════════ -->
-      <section class="section-calcio-dark" id="content-section">
-        <div class="calcio-container">
+      ════════════════════════════════ -->
+      <section class="sec-white" id="content">
+        <div class="calc-container">
 
-          <div class="calcio-section-header">
-            <span class="calcio-eyebrow">Content Planung</span>
-            <h2>Content <span class="highlight-calcio">Kategorien.</span></h2>
-            <p>Fünf strategische Inhaltssäulen — jede mit klarer Aussage und emotionalem Mehrwert für die Community.</p>
+          <div class="calc-hdr">
+            <span class="calc-hdr-eyebrow">Content Planung</span>
+            <h2>Content <em>Kategorien.</em></h2>
+            <p>Fünf strategische Inhaltssäulen — jede mit klarer Aussage und emotionalem Mehrwert.</p>
           </div>
 
-          <div class="content-cats-grid">
-            <div class="content-cat-card">
-              <span class="content-cat-icon"><i class="fa-solid fa-futbol"></i></span>
-              <div class="content-cat-num">01</div>
+          <div class="cat-grid">
+            <div class="cat-card" data-reveal>
+              <span class="cat-icon"><i class="fa-solid fa-futbol"></i></span>
+              <div class="cat-num">01</div>
               <h3>Matchday &amp; Turniere</h3>
-              <p>Spielübersichten, Live-Ergebnisse, Highlight-Clips, Turnier-Specials und Pokal-Momente.</p>
+              <p>Spielübersichten, Live-Ergebnisse, Highlight-Clips und Turnier-Specials.</p>
             </div>
-            <div class="content-cat-card">
-              <span class="content-cat-icon"><i class="fa-solid fa-dumbbell"></i></span>
-              <div class="content-cat-num">02</div>
+            <div class="cat-card" data-reveal class="d1">
+              <span class="cat-icon"><i class="fa-solid fa-dumbbell"></i></span>
+              <div class="cat-num">02</div>
               <h3>Trainings-Vibes</h3>
-              <p>Behind-the-Scenes, Skill-Moves, Fortschritte, Motivationsmomente direkt vom Trainingsplatz.</p>
+              <p>Behind-the-Scenes, Skill-Moves, Fortschritte und Motivationsmomente.</p>
             </div>
-            <div class="content-cat-card">
-              <span class="content-cat-icon"><i class="fa-solid fa-star"></i></span>
-              <div class="content-cat-num">03</div>
+            <div class="cat-card" data-reveal class="d2">
+              <span class="cat-icon"><i class="fa-solid fa-star"></i></span>
+              <div class="cat-num">03</div>
               <h3>Spieler-Porträts</h3>
-              <p>Kinder &amp; Jugendliche im Fokus — besondere Skills, persönliche Geschichten, Teamspirit.</p>
+              <p>Kinder &amp; Jugendliche im Fokus — Skills, Geschichten, Teamspirit.</p>
             </div>
-            <div class="content-cat-card">
-              <span class="content-cat-icon"><i class="fa-solid fa-users"></i></span>
-              <div class="content-cat-num">04</div>
-              <h3>Community &amp; Interaktion</h3>
-              <p>Umfragen, Q&amp;A-Sessions, Challenges und Community-Building via Stories &amp; Kommentare.</p>
+            <div class="cat-card" data-reveal class="d3">
+              <span class="cat-icon"><i class="fa-solid fa-users"></i></span>
+              <div class="cat-num">04</div>
+              <h3>Community</h3>
+              <p>Umfragen, Q&amp;A, Challenges und Community-Building via Stories.</p>
             </div>
-            <div class="content-cat-card">
-              <span class="content-cat-icon"><i class="fa-solid fa-shirt"></i></span>
-              <div class="content-cat-num">05</div>
-              <h3>Trikots &amp; Merchandise</h3>
-              <p>Neue Kit-Releases, Teamfarben, Turnier-Editionen und Merchandise-Präsentationen.</p>
+            <div class="cat-card" data-reveal class="d4">
+              <span class="cat-icon"><i class="fa-solid fa-shirt"></i></span>
+              <div class="cat-num">05</div>
+              <h3>Trikots &amp; Merch</h3>
+              <p>Kit-Releases, Teamfarben, Turnier-Editionen und Shop-Präsentationen.</p>
             </div>
           </div>
 
-          <!-- Instagram Grid Mockup -->
+          <!-- Feed mockup -->
           <div style="margin-top:4rem;">
-            <div class="calcio-section-header">
-              <span class="calcio-eyebrow">Feed-Vorschau</span>
-              <h2>Instagram <span class="highlight-calcio">Grid.</span></h2>
-              <p>Einheitliche visuelle Sprache — jedes Post-Format folgt dem Farbsystem und dem typografischen Raster.</p>
+            <div class="calc-hdr">
+              <span class="calc-hdr-eyebrow">Feed-Vorschau</span>
+              <h2>Instagram <em>Grid.</em></h2>
             </div>
-
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start; margin-top:2rem;">
-
-              <!-- Phone mockup -->
-              <div class="phone-mockup-wrap">
-                <div class="phone-device">
-                  <div class="phone-notch-bar">
-                    <div class="phone-notch-pill"></div>
-                  </div>
-                  <div class="phone-screen-content">
-                    <div class="phone-insta-header">
-                      <div class="phone-avatar">AC</div>
-                      <span class="phone-username">as.calcio.kreuzlingen</span>
-                      <i class="fa-solid fa-ellipsis" style="color:rgba(255,255,255,.4);font-size:.75rem;"></i>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;" data-reveal>
+              <div class="phone-wrap">
+                <div class="phone">
+                  <div class="phone-bar"><div class="phone-pill"></div></div>
+                  <div class="phone-screen">
+                    <div class="phone-ig-head">
+                      <div class="phone-av">AC</div>
+                      <span class="phone-uname">as.calcio.kreuzlingen</span>
+                      <i class="fa-solid fa-ellipsis" style="font-size:.72rem;color:var(--muted)"></i>
                     </div>
                     <div class="phone-post-img">
-                      <div class="phone-post-crest">⚽</div>
-                      <span style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#fff;">MATCHDAY</span>
-                      <span style="font-family:'Work Sans',sans-serif;font-size:.6rem;color:rgba(255,255,255,.5);letter-spacing:.15em;text-transform:uppercase;">AS Calcio vs FC Kreuzlingen</span>
+                      <div class="phone-post-emoji">⚽</div>
+                      <span class="phone-post-tag">Matchday</span>
                     </div>
-                    <div class="phone-post-actions">
+                    <div class="phone-actions">
                       <i class="fa-regular fa-heart phone-action-icon"></i>
                       <i class="fa-regular fa-comment phone-action-icon"></i>
                       <i class="fa-regular fa-paper-plane phone-action-icon"></i>
                     </div>
-                    <p class="phone-post-caption"><strong style="color:#fff;">as.calcio.kreuzlingen</strong> Heute ist der Tag! 🔴⚽ Wir kämpfen für jeden Ball. #ASCalcio #Matchday</p>
+                    <p class="phone-caption"><strong style="color:var(--navy)">as.calcio.kreuzlingen</strong> Heute kämpfen wir für jeden Ball! 🔵⚽ #ASCalcio #Matchday #Hellblau</p>
                   </div>
                 </div>
               </div>
-
-              <!-- Grid preview -->
               <div>
                 <div class="insta-grid">
-                  <div class="insta-post post-matchday">
-                    <div class="insta-post-inner">
-                      <span class="insta-post-icon"><i class="fa-solid fa-futbol"></i></span>
-                      <span class="insta-post-label">Matchday</span>
-                    </div>
-                    <div class="insta-hover"><i class="fa-solid fa-futbol" style="font-size:1.4rem;color:#fff;"></i><span>Matchday</span></div>
-                  </div>
-                  <div class="insta-post post-player">
-                    <div class="insta-post-inner">
-                      <span class="insta-post-icon"><i class="fa-solid fa-star"></i></span>
-                      <span class="insta-post-label">Spieler</span>
-                    </div>
-                    <div class="insta-hover"><i class="fa-solid fa-star" style="font-size:1.4rem;color:#fff;"></i><span>Porträt</span></div>
-                  </div>
-                  <div class="insta-post post-training">
-                    <div class="insta-post-inner">
-                      <span class="insta-post-icon"><i class="fa-solid fa-dumbbell"></i></span>
-                      <span class="insta-post-label">Training</span>
-                    </div>
-                    <div class="insta-hover"><i class="fa-solid fa-dumbbell" style="font-size:1.4rem;color:#fff;"></i><span>Training</span></div>
-                  </div>
-                  <div class="insta-post post-merch">
-                    <div class="insta-post-inner">
-                      <span class="insta-post-icon"><i class="fa-solid fa-shirt"></i></span>
-                      <span class="insta-post-label">Merch</span>
-                    </div>
-                    <div class="insta-hover"><i class="fa-solid fa-shirt" style="font-size:1.4rem;color:#fff;"></i><span>Merch</span></div>
-                  </div>
-                  <div class="insta-post post-community">
-                    <div class="insta-post-inner">
-                      <span class="insta-post-icon"><i class="fa-solid fa-users"></i></span>
-                      <span class="insta-post-label">Community</span>
-                    </div>
-                    <div class="insta-hover"><i class="fa-solid fa-users" style="font-size:1.4rem;color:#fff;"></i><span>Community</span></div>
-                  </div>
-                  <div class="insta-post post-trophy">
-                    <div class="insta-post-inner">
-                      <span class="insta-post-icon"><i class="fa-solid fa-trophy"></i></span>
-                      <span class="insta-post-label">Turnier</span>
-                    </div>
-                    <div class="insta-hover"><i class="fa-solid fa-trophy" style="font-size:1.4rem;color:#fff;"></i><span>Turnier</span></div>
-                  </div>
-                  <div class="insta-post post-squad">
-                    <div class="insta-post-inner">
-                      <span class="insta-post-icon"><i class="fa-solid fa-people-group"></i></span>
-                      <span class="insta-post-label">Squad</span>
-                    </div>
-                    <div class="insta-hover"><i class="fa-solid fa-people-group" style="font-size:1.4rem;color:#fff;"></i><span>Squad</span></div>
-                  </div>
-                  <div class="insta-post post-quote">
-                    <div class="insta-post-inner">
-                      <span class="insta-post-icon"><i class="fa-solid fa-quote-left"></i></span>
-                      <span class="insta-post-label">Quote</span>
-                    </div>
-                    <div class="insta-hover"><i class="fa-solid fa-quote-left" style="font-size:1.4rem;color:#fff;"></i><span>Zitat</span></div>
-                  </div>
-                  <div class="insta-post post-countdown">
-                    <div class="insta-post-inner">
-                      <span class="insta-post-icon"><i class="fa-solid fa-clock"></i></span>
-                      <span class="insta-post-label">Countdown</span>
-                    </div>
-                    <div class="insta-hover"><i class="fa-solid fa-clock" style="font-size:1.4rem;color:#fff;"></i><span>Countdown</span></div>
-                  </div>
+                  <div class="insta-post pt-match"><div class="insta-post-inner"><span class="ip-icon"><i class="fa-solid fa-futbol"></i></span><span class="ip-lbl">Match</span></div><div class="ip-hover"><i class="fa-solid fa-futbol" style="font-size:1.2rem;color:#fff;"></i><span>Matchday</span></div></div>
+                  <div class="insta-post pt-player"><div class="insta-post-inner"><span class="ip-icon"><i class="fa-solid fa-star"></i></span><span class="ip-lbl">Spieler</span></div><div class="ip-hover"><i class="fa-solid fa-star" style="font-size:1.2rem;color:#fff;"></i><span>Porträt</span></div></div>
+                  <div class="insta-post pt-train"><div class="insta-post-inner"><span class="ip-icon"><i class="fa-solid fa-dumbbell"></i></span><span class="ip-lbl">Training</span></div><div class="ip-hover"><i class="fa-solid fa-dumbbell" style="font-size:1.2rem;color:#fff;"></i><span>Training</span></div></div>
+                  <div class="insta-post pt-merch"><div class="insta-post-inner"><span class="ip-icon"><i class="fa-solid fa-shirt"></i></span><span class="ip-lbl">Merch</span></div><div class="ip-hover"><i class="fa-solid fa-shirt" style="font-size:1.2rem;color:#fff;"></i><span>Merch</span></div></div>
+                  <div class="insta-post pt-comm"><div class="insta-post-inner"><span class="ip-icon"><i class="fa-solid fa-users"></i></span><span class="ip-lbl">Community</span></div><div class="ip-hover"><i class="fa-solid fa-users" style="font-size:1.2rem;color:#fff;"></i><span>Community</span></div></div>
+                  <div class="insta-post pt-trophy"><div class="insta-post-inner"><span class="ip-icon"><i class="fa-solid fa-trophy"></i></span><span class="ip-lbl">Turnier</span></div><div class="ip-hover"><i class="fa-solid fa-trophy" style="font-size:1.2rem;color:#fff;"></i><span>Turnier</span></div></div>
+                  <div class="insta-post pt-squad"><div class="insta-post-inner"><span class="ip-icon"><i class="fa-solid fa-people-group"></i></span><span class="ip-lbl">Squad</span></div><div class="ip-hover"><i class="fa-solid fa-people-group" style="font-size:1.2rem;color:#fff;"></i><span>Squad</span></div></div>
+                  <div class="insta-post pt-quote"><div class="insta-post-inner"><span class="ip-icon"><i class="fa-solid fa-quote-left"></i></span><span class="ip-lbl">Quote</span></div><div class="ip-hover"><i class="fa-solid fa-quote-left" style="font-size:1.2rem;color:#fff;"></i><span>Zitat</span></div></div>
+                  <div class="insta-post pt-count"><div class="insta-post-inner"><span class="ip-icon"><i class="fa-solid fa-clock"></i></span><span class="ip-lbl">Countdown</span></div><div class="ip-hover"><i class="fa-solid fa-clock" style="font-size:1.2rem;color:#fff;"></i><span>Countdown</span></div></div>
                 </div>
-                <p style="font-family:'Work Sans',sans-serif;font-size:.72rem;color:rgba(255,255,255,.4);text-align:center;margin-top:.75rem;">@as.calcio.kreuzlingen — Feed-Konzept</p>
+                <p style="font-family:var(--work);font-size:.7rem;color:var(--muted);text-align:center;margin-top:.6rem;">@as.calcio.kreuzlingen — Feed-Konzept</p>
               </div>
-
             </div>
           </div>
 
         </div>
       </section>
 
-      <!-- ══════════════════════════════════════
-           TRIKOT DESIGNS
-      ══════════════════════════════════════ -->
-      <section class="section-calcio-grey" id="trikot-section">
-        <div class="calcio-container">
+      <!-- ════════════════════════════════
+           KIT DESIGNS
+      ════════════════════════════════ -->
+      <section class="sec-off" id="kits">
+        <div class="calc-container">
 
-          <div class="calcio-section-header">
-            <span class="calcio-eyebrow-gold">Trikot &amp; Merchandise Design</span>
-            <h2>Kit <span class="highlight-gold">Konzept.</span></h2>
-            <p>Drei Trikot-Varianten für die Saison — Home, Away und Turnier-Edition. Jedes Kit folgt dem Brand-System mit klaren Farbreferenzen.</p>
+          <div class="calc-hdr">
+            <span class="calc-hdr-eyebrow">Trikot &amp; Merchandise</span>
+            <h2>Kit <em>Konzept.</em></h2>
+            <p>Drei Trikot-Varianten — Home, Away und Turnier-Edition, alle im AS Calcio Hellblau Brand-System.</p>
           </div>
 
-          <div class="trikot-grid">
+          <div class="kit-grid">
             <!-- Home Kit -->
-            <div class="trikot-card">
-              <div class="trikot-visual" style="background: linear-gradient(135deg, #1a0407 0%, #3d0c10 100%);">
-                <svg class="trikot-svg" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Jersey body -->
-                  <path d="M20,10 L10,30 L5,80 L95,80 L90,30 L80,10 L60,5 C60,5 55,18 50,18 C45,18 40,5 40,5 Z" fill="#C8102E" stroke="#8a0d21" stroke-width="1"/>
-                  <!-- Collar -->
-                  <path d="M40,5 C40,5 44,18 50,18 C56,18 60,5 60,5 L62,0 L38,0 Z" fill="#0D0D0D"/>
-                  <!-- Sleeve stripes -->
-                  <line x1="10" y1="30" x2="5" y2="80" stroke="#fff" stroke-width="2" opacity=".3"/>
-                  <line x1="90" y1="30" x2="95" y2="80" stroke="#fff" stroke-width="2" opacity=".3"/>
-                  <!-- Number -->
-                  <text x="50" y="60" font-family="serif" font-size="22" font-weight="900" fill="white" text-anchor="middle">9</text>
-                  <!-- Sponsor line -->
-                  <text x="50" y="75" font-family="sans-serif" font-size="6" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="2">CALCIO</text>
-                  <!-- Shorts -->
-                  <rect x="25" y="82" width="20" height="32" rx="2" fill="#0D0D0D"/>
-                  <rect x="55" y="82" width="20" height="32" rx="2" fill="#0D0D0D"/>
+            <div class="kit-card" data-reveal>
+              <div class="kit-visual" style="background:linear-gradient(135deg,var(--sky-light),#BAE6FD);">
+                <svg class="kit-svg" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20,10 L10,30 L5,80 L95,80 L90,30 L80,10 L60,5 C60,5 55,18 50,18 C45,18 40,5 40,5 Z" fill="#00A3E4" stroke="#0078AE" stroke-width="1"/>
+                  <path d="M40,5 C40,5 44,18 50,18 C56,18 60,5 60,5 L62,0 L38,0 Z" fill="#06192E"/>
+                  <line x1="10" y1="30" x2="5" y2="80" stroke="#fff" stroke-width="2" opacity=".4"/>
+                  <line x1="90" y1="30" x2="95" y2="80" stroke="#fff" stroke-width="2" opacity=".4"/>
+                  <text x="50" y="58" font-family="sans-serif" font-size="22" font-weight="900" fill="white" text-anchor="middle">9</text>
+                  <text x="50" y="73" font-family="sans-serif" font-size="6" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="2">CALCIO</text>
+                  <rect x="25" y="82" width="20" height="32" rx="2" fill="#fff" stroke="#BAE6FD" stroke-width="1"/>
+                  <rect x="55" y="82" width="20" height="32" rx="2" fill="#fff" stroke="#BAE6FD" stroke-width="1"/>
                 </svg>
-                <span class="trikot-badge-label">Home Kit</span>
+                <span class="kit-edition-badge">Home Kit</span>
               </div>
-              <div class="trikot-info">
-                <h4>Home — Rot/Schwarz</h4>
-                <p>Klassisches Rot auf tiefem Schwarz. Vereinsfarben in purem Kontrast.</p>
+              <div class="kit-info">
+                <h4>Home — Hellblau / Weiss</h4>
+                <p>Klassisches Hellblau mit weissen Akzenten. Die Vereinsfarben in purem Ausdruck.</p>
               </div>
             </div>
-
             <!-- Away Kit -->
-            <div class="trikot-card">
-              <div class="trikot-visual" style="background: linear-gradient(135deg, #1a1a1a 0%, #2e2e2e 100%);">
-                <svg class="trikot-svg" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20,10 L10,30 L5,80 L95,80 L90,30 L80,10 L60,5 C60,5 55,18 50,18 C45,18 40,5 40,5 Z" fill="#F5F5F5" stroke="#ccc" stroke-width="1"/>
-                  <path d="M40,5 C40,5 44,18 50,18 C56,18 60,5 60,5 L62,0 L38,0 Z" fill="#C8102E"/>
-                  <line x1="10" y1="30" x2="5" y2="80" stroke="#C8102E" stroke-width="2" opacity=".5"/>
-                  <line x1="90" y1="30" x2="95" y2="80" stroke="#C8102E" stroke-width="2" opacity=".5"/>
-                  <text x="50" y="60" font-family="serif" font-size="22" font-weight="900" fill="#C8102E" text-anchor="middle">9</text>
-                  <text x="50" y="75" font-family="sans-serif" font-size="6" fill="rgba(200,16,46,0.6)" text-anchor="middle" letter-spacing="2">CALCIO</text>
-                  <rect x="25" y="82" width="20" height="32" rx="2" fill="#C8102E"/>
-                  <rect x="55" y="82" width="20" height="32" rx="2" fill="#C8102E"/>
+            <div class="kit-card" data-reveal class="d1">
+              <div class="kit-visual" style="background:linear-gradient(135deg,#f8fafb,#e8f2f8);">
+                <svg class="kit-svg" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20,10 L10,30 L5,80 L95,80 L90,30 L80,10 L60,5 C60,5 55,18 50,18 C45,18 40,5 40,5 Z" fill="#F5F9FC" stroke="#BAE6FD" stroke-width="1.5"/>
+                  <path d="M40,5 C40,5 44,18 50,18 C56,18 60,5 60,5 L62,0 L38,0 Z" fill="#00A3E4"/>
+                  <line x1="10" y1="30" x2="5" y2="80" stroke="#00A3E4" stroke-width="2" opacity=".5"/>
+                  <line x1="90" y1="30" x2="95" y2="80" stroke="#00A3E4" stroke-width="2" opacity=".5"/>
+                  <text x="50" y="58" font-family="sans-serif" font-size="22" font-weight="900" fill="#00A3E4" text-anchor="middle">9</text>
+                  <text x="50" y="73" font-family="sans-serif" font-size="6" fill="rgba(0,120,174,0.6)" text-anchor="middle" letter-spacing="2">CALCIO</text>
+                  <rect x="25" y="82" width="20" height="32" rx="2" fill="#00A3E4"/>
+                  <rect x="55" y="82" width="20" height="32" rx="2" fill="#00A3E4"/>
                 </svg>
-                <span class="trikot-badge-label">Away Kit</span>
+                <span class="kit-edition-badge">Away Kit</span>
               </div>
-              <div class="trikot-info">
-                <h4>Away — Weiss/Rot</h4>
-                <p>Clean white mit Rot-Akzenten. Minimalistisch und zeitlos modern.</p>
+              <div class="kit-info">
+                <h4>Away — Weiss / Hellblau</h4>
+                <p>Purist-Weiss mit Hellblau-Details. Clean, modern, zeitlos.</p>
               </div>
             </div>
-
             <!-- Turnier Edition -->
-            <div class="trikot-card">
-              <div class="trikot-visual" style="background: linear-gradient(135deg, #100d00 0%, #2a2000 100%);">
-                <svg class="trikot-svg" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20,10 L10,30 L5,80 L95,80 L90,30 L80,10 L60,5 C60,5 55,18 50,18 C45,18 40,5 40,5 Z" fill="#0D0D0D" stroke="#D4AF37" stroke-width="1.5"/>
-                  <path d="M40,5 C40,5 44,18 50,18 C56,18 60,5 60,5 L62,0 L38,0 Z" fill="#D4AF37"/>
-                  <line x1="10" y1="30" x2="5" y2="80" stroke="#D4AF37" stroke-width="2" opacity=".6"/>
-                  <line x1="90" y1="30" x2="95" y2="80" stroke="#D4AF37" stroke-width="2" opacity=".6"/>
-                  <text x="50" y="60" font-family="serif" font-size="22" font-weight="900" fill="#D4AF37" text-anchor="middle">9</text>
-                  <text x="50" y="75" font-family="sans-serif" font-size="6" fill="rgba(212,175,55,0.7)" text-anchor="middle" letter-spacing="2">CALCIO</text>
-                  <rect x="25" y="82" width="20" height="32" rx="2" fill="#0D0D0D" stroke="#D4AF37" stroke-width="1"/>
-                  <rect x="55" y="82" width="20" height="32" rx="2" fill="#0D0D0D" stroke="#D4AF37" stroke-width="1"/>
+            <div class="kit-card" data-reveal class="d2">
+              <div class="kit-visual" style="background:linear-gradient(135deg,#06192E,#0369A1);">
+                <svg class="kit-svg" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20,10 L10,30 L5,80 L95,80 L90,30 L80,10 L60,5 C60,5 55,18 50,18 C45,18 40,5 40,5 Z" fill="#06192E" stroke="#00A3E4" stroke-width="1.5"/>
+                  <path d="M40,5 C40,5 44,18 50,18 C56,18 60,5 60,5 L62,0 L38,0 Z" fill="#00A3E4"/>
+                  <line x1="10" y1="30" x2="5" y2="80" stroke="#38B6E8" stroke-width="2" opacity=".6"/>
+                  <line x1="90" y1="30" x2="95" y2="80" stroke="#38B6E8" stroke-width="2" opacity=".6"/>
+                  <text x="50" y="58" font-family="sans-serif" font-size="22" font-weight="900" fill="#38B6E8" text-anchor="middle">9</text>
+                  <text x="50" y="73" font-family="sans-serif" font-size="6" fill="rgba(56,182,232,0.7)" text-anchor="middle" letter-spacing="2">CALCIO</text>
+                  <rect x="25" y="82" width="20" height="32" rx="2" fill="#06192E" stroke="#00A3E4" stroke-width="1"/>
+                  <rect x="55" y="82" width="20" height="32" rx="2" fill="#06192E" stroke="#00A3E4" stroke-width="1"/>
                 </svg>
-                <span class="trikot-badge-label">Turnier Edition</span>
+                <span class="kit-edition-badge" style="color:#fff;background:rgba(0,163,228,.2);">Turnier Edition</span>
               </div>
-              <div class="trikot-info">
-                <h4>Turnier — Schwarz/Gold</h4>
-                <p>Limitierte Turnier-Edition. Schwarz trifft Gold für besondere Anlässe.</p>
+              <div class="kit-info">
+                <h4>Turnier — Navy / Hellblau</h4>
+                <p>Limitiertes Turnier-Kit. Tiefes Navy trifft leuchtendes Blau.</p>
               </div>
             </div>
           </div>
 
-          <!-- Merch Link -->
-          <div style="text-align:center; margin-top:3rem;">
-            <a href="../web/calcio-kreuzlingen.html" class="calcio-cta-btn" style="background:rgba(212,175,55,.15);color:var(--calcio-gold);border:1px solid rgba(212,175,55,.3);">
+          <div style="text-align:center;margin-top:2.5rem;" data-reveal>
+            <a href="../web/calcio-kreuzlingen.html" style="display:inline-flex;align-items:center;gap:.6rem;font-family:var(--barlow);font-size:.9rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;background:var(--sky-light);color:var(--sky-deep);border:1.5px solid rgba(0,163,228,.3);padding:.7rem 1.75rem;border-radius:6px;transition:all .25s;">
               <i class="fa-solid fa-bag-shopping"></i> Zum Merchandise-Shop
             </a>
           </div>
@@ -1341,174 +1080,81 @@
         </div>
       </section>
 
-      <!-- ══════════════════════════════════════
-           SK NEU WEBSITE KONZEPT
-      ══════════════════════════════════════ -->
-      <section class="section-calcio-dark" id="skneu-section">
-        <div class="calcio-container">
+      <!-- ════════════════════════════════
+           SK NEU WEBSITE
+      ════════════════════════════════ -->
+      <section class="sec-white" id="skneu">
+        <div class="calc-container">
 
-          <div class="calcio-section-header">
-            <span class="calcio-eyebrow">Webseiten-Konzept</span>
-            <h2>SK Neu <span class="highlight-calcio">Website.</span></h2>
-            <p>Kinetische Typografie, Bewegungseffekte, klare Struktur — direkt auf der Startseite: Wer spielt wann, wo, gegen wen. Interaktiver Kalender und Live-Spielplan.</p>
+          <div class="calc-hdr">
+            <span class="calc-hdr-eyebrow">Webseiten-Konzept</span>
+            <h2>SK Neu <em>Website.</em></h2>
+            <p>Klare Struktur, mobile-first — direkt auf der Startseite: Wer spielt wann, wo, gegen wen. Interaktiver Kalender und Live-Spielplan.</p>
           </div>
 
-          <!-- Site preview mockup -->
-          <div class="skneu-preview">
-            <div class="skneu-browser-bar">
-              <div class="skneu-dots">
-                <div class="skneu-dot red"></div>
-                <div class="skneu-dot yellow"></div>
-                <div class="skneu-dot green"></div>
-              </div>
-              <div class="skneu-url-bar">as-calcio-kreuzlingen.ch/sk-neu</div>
+          <div class="skneu-browser" data-reveal>
+            <div class="skneu-chrome">
+              <div class="skneu-dots"><div class="sdot r"></div><div class="sdot y"></div><div class="sdot g"></div></div>
+              <div class="skneu-bar">as-calcio-kreuzlingen.ch/sk-neu</div>
             </div>
-            <div class="skneu-site-body">
-              <div class="skneu-site-hero">
-                <div class="skneu-logo-area">
-                  <h3>AS Calcio Kreuzlingen</h3>
-                  <span>SK Neu — Spielplan &amp; Mannschaft</span>
-                </div>
-                <div class="skneu-nav-preview">
-                  <span class="skneu-nav-item">Spielplan</span>
-                  <span class="skneu-nav-item">Turnier</span>
-                  <span class="skneu-nav-item">Aufstellung</span>
-                  <span class="skneu-nav-item">Shop</span>
+            <div class="skneu-content">
+              <div class="skneu-topbar">
+                <div class="skneu-brand"><h3>AS Calcio Kreuzlingen</h3><span>SK Neu · Spielplan &amp; Mannschaft</span></div>
+                <div class="skneu-nav-items">
+                  <span class="skneu-ni">Spielplan</span>
+                  <span class="skneu-ni">Turnier</span>
+                  <span class="skneu-ni">Aufstellung</span>
+                  <span class="skneu-ni">Shop</span>
                 </div>
               </div>
-              <div class="skneu-site-content">
-                <!-- Match schedule widget -->
+              <div class="skneu-body">
                 <div class="skneu-widget">
                   <h4>⚽ Nächste Spiele</h4>
-                  <div class="skneu-match-row">
-                    <span class="skneu-match-date">15. Jun</span>
-                    <span class="skneu-match-teams">SK Neu vs FC Konstanz</span>
-                    <span class="skneu-match-badge home">Heim</span>
-                  </div>
-                  <div class="skneu-match-row">
-                    <span class="skneu-match-date">22. Jun</span>
-                    <span class="skneu-match-teams">FC Kreuzlingen vs SK Neu</span>
-                    <span class="skneu-match-badge away">Auswärts</span>
-                  </div>
-                  <div class="skneu-match-row">
-                    <span class="skneu-match-date">29. Jun</span>
-                    <span class="skneu-match-teams">SK Neu vs SV Singen</span>
-                    <span class="skneu-match-badge home">Heim</span>
-                  </div>
-                  <div class="skneu-match-row">
-                    <span class="skneu-match-date">06. Jul</span>
-                    <span class="skneu-match-teams">Sommer-Turnier 2025</span>
-                    <span class="skneu-match-badge" style="background:rgba(212,175,55,.2);color:#c9a700;">Turnier</span>
-                  </div>
+                  <div class="sw-row"><span class="sw-date">15. Jun</span><span class="sw-teams">SK Neu vs FC Konstanz</span><span class="sw-badge h">Heim</span></div>
+                  <div class="sw-row"><span class="sw-date">22. Jun</span><span class="sw-teams">FC Kreuzlingen vs SK Neu</span><span class="sw-badge a">Auswärts</span></div>
+                  <div class="sw-row"><span class="sw-date">29. Jun</span><span class="sw-teams">SK Neu vs SV Singen</span><span class="sw-badge h">Heim</span></div>
+                  <div class="sw-row"><span class="sw-date">06. Jul</span><span class="sw-teams">Sommer-Turnier 2025</span><span class="sw-badge t">Turnier</span></div>
                 </div>
-                <!-- Squad widget -->
                 <div class="skneu-widget">
                   <h4>👥 Mannschaft SK Neu</h4>
-                  <div class="skneu-player-list">
-                    <div class="skneu-player-row">
-                      <div class="skneu-player-num">1</div>
-                      <span class="skneu-player-name">Marco Bianchi</span>
-                      <span class="skneu-player-pos">TW</span>
-                    </div>
-                    <div class="skneu-player-row">
-                      <div class="skneu-player-num">5</div>
-                      <span class="skneu-player-name">Luca Ferretti</span>
-                      <span class="skneu-player-pos">IV</span>
-                    </div>
-                    <div class="skneu-player-row">
-                      <div class="skneu-player-num">8</div>
-                      <span class="skneu-player-name">Tim Müller</span>
-                      <span class="skneu-player-pos">ZM</span>
-                    </div>
-                    <div class="skneu-player-row">
-                      <div class="skneu-player-num">9</div>
-                      <span class="skneu-player-name">Nico Rossi</span>
-                      <span class="skneu-player-pos">ST</span>
-                    </div>
-                    <div class="skneu-player-row">
-                      <div class="skneu-player-num">11</div>
-                      <span class="skneu-player-name">Jonas Weber</span>
-                      <span class="skneu-player-pos">LA</span>
-                    </div>
-                  </div>
+                  <div class="sw-player"><div class="sw-pnum">1</div><span class="sw-pname">Marco Bianchi</span><span class="sw-ppos">TW</span></div>
+                  <div class="sw-player"><div class="sw-pnum">5</div><span class="sw-pname">Luca Ferretti</span><span class="sw-ppos">IV</span></div>
+                  <div class="sw-player"><div class="sw-pnum">8</div><span class="sw-pname">Tim Weber</span><span class="sw-ppos">ZM</span></div>
+                  <div class="sw-player"><div class="sw-pnum">9</div><span class="sw-pname">Nico Rossi</span><span class="sw-ppos">ST</span></div>
+                  <div class="sw-player"><div class="sw-pnum">11</div><span class="sw-pname">Jonas Hoffmann</span><span class="sw-ppos">LA</span></div>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- Calendar mockup -->
-          <div style="margin-top:3rem;">
-            <div class="calcio-section-header">
-              <span class="calcio-eyebrow">Interaktiver Kalender</span>
-              <h2>Spielplan <span class="highlight-calcio">Kalender.</span></h2>
+          <div style="margin-top:3.5rem;">
+            <div class="calc-hdr">
+              <span class="calc-hdr-eyebrow">Interaktiver Kalender</span>
+              <h2>Spielplan <em>Kalender.</em></h2>
             </div>
-
-            <div class="calendar-mockup">
-              <div class="cal-header">
-                <span class="cal-header-title">Juni 2025</span>
-                <div class="cal-header-nav">
-                  <button class="cal-nav-btn"><i class="fa-solid fa-chevron-left"></i></button>
-                  <button class="cal-nav-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="cal-mockup" data-reveal>
+              <div class="cal-head">
+                <span class="cal-title">Juni 2025</span>
+                <div class="cal-nav-btns">
+                  <button class="cal-nb"><i class="fa-solid fa-chevron-left"></i></button>
+                  <button class="cal-nb"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
               </div>
-              <div class="cal-days-row">
-                <div class="cal-day-label">Mo</div>
-                <div class="cal-day-label">Di</div>
-                <div class="cal-day-label">Mi</div>
-                <div class="cal-day-label">Do</div>
-                <div class="cal-day-label">Fr</div>
-                <div class="cal-day-label">Sa</div>
-                <div class="cal-day-label">So</div>
+              <div class="cal-days">
+                <div class="cal-dl">Mo</div><div class="cal-dl">Di</div><div class="cal-dl">Mi</div>
+                <div class="cal-dl">Do</div><div class="cal-dl">Fr</div><div class="cal-dl">Sa</div><div class="cal-dl">So</div>
               </div>
               <div class="cal-grid">
-                <div class="cal-cell other-month"><div class="cal-date">26</div></div>
-                <div class="cal-cell other-month"><div class="cal-date">27</div></div>
-                <div class="cal-cell other-month"><div class="cal-date">28</div></div>
-                <div class="cal-cell other-month"><div class="cal-date">29</div></div>
-                <div class="cal-cell other-month"><div class="cal-date">30</div></div>
-                <div class="cal-cell other-month"><div class="cal-date">31</div></div>
-                <div class="cal-cell"><div class="cal-date">1</div></div>
-
-                <div class="cal-cell"><div class="cal-date">2</div></div>
-                <div class="cal-cell"><div class="cal-date">3</div></div>
-                <div class="cal-cell"><div class="cal-date">4</div></div>
-                <div class="cal-cell"><div class="cal-date">5</div></div>
-                <div class="cal-cell"><div class="cal-date">6</div></div>
-                <div class="cal-cell"><div class="cal-date">7</div></div>
-                <div class="cal-cell"><div class="cal-date">8</div></div>
-
-                <div class="cal-cell"><div class="cal-date">9</div></div>
-                <div class="cal-cell"><div class="cal-date">10</div></div>
-                <div class="cal-cell"><div class="cal-date">11</div></div>
-                <div class="cal-cell"><div class="cal-date">12</div></div>
-                <div class="cal-cell"><div class="cal-date">13</div></div>
-                <div class="cal-cell"><div class="cal-date">14</div></div>
-                <div class="cal-cell">
-                  <div class="cal-date">15</div>
-                  <div class="cal-event home">SK Neu Heim</div>
-                </div>
-
-                <div class="cal-cell"><div class="cal-date">16</div></div>
-                <div class="cal-cell"><div class="cal-date">17</div></div>
-                <div class="cal-cell"><div class="cal-date">18</div></div>
-                <div class="cal-cell today"><div class="cal-date">19</div></div>
-                <div class="cal-cell"><div class="cal-date">20</div></div>
-                <div class="cal-cell"><div class="cal-date">21</div></div>
-                <div class="cal-cell">
-                  <div class="cal-date">22</div>
-                  <div class="cal-event away">Auswärts</div>
-                </div>
-
-                <div class="cal-cell"><div class="cal-date">23</div></div>
-                <div class="cal-cell"><div class="cal-date">24</div></div>
-                <div class="cal-cell"><div class="cal-date">25</div></div>
-                <div class="cal-cell"><div class="cal-date">26</div></div>
-                <div class="cal-cell"><div class="cal-date">27</div></div>
-                <div class="cal-cell"><div class="cal-date">28</div></div>
-                <div class="cal-cell">
-                  <div class="cal-date">29</div>
-                  <div class="cal-event home">SK Neu Heim</div>
-                </div>
+                <div class="cal-c dim"><div class="cal-d">26</div></div><div class="cal-c dim"><div class="cal-d">27</div></div><div class="cal-c dim"><div class="cal-d">28</div></div><div class="cal-c dim"><div class="cal-d">29</div></div><div class="cal-c dim"><div class="cal-d">30</div></div><div class="cal-c dim"><div class="cal-d">31</div></div><div class="cal-c"><div class="cal-d">1</div></div>
+                <div class="cal-c"><div class="cal-d">2</div></div><div class="cal-c"><div class="cal-d">3</div></div><div class="cal-c"><div class="cal-d">4</div></div><div class="cal-c"><div class="cal-d">5</div></div><div class="cal-c"><div class="cal-d">6</div></div><div class="cal-c"><div class="cal-d">7</div></div><div class="cal-c"><div class="cal-d">8</div></div>
+                <div class="cal-c"><div class="cal-d">9</div></div><div class="cal-c"><div class="cal-d">10</div></div><div class="cal-c"><div class="cal-d">11</div></div><div class="cal-c"><div class="cal-d">12</div></div><div class="cal-c"><div class="cal-d">13</div></div><div class="cal-c"><div class="cal-d">14</div></div>
+                <div class="cal-c"><div class="cal-d">15</div><div class="cal-ev h">SK Neu H</div></div>
+                <div class="cal-c"><div class="cal-d">16</div></div><div class="cal-c"><div class="cal-d">17</div></div><div class="cal-c"><div class="cal-d">18</div></div><div class="cal-c today"><div class="cal-d">19</div></div><div class="cal-c"><div class="cal-d">20</div></div><div class="cal-c"><div class="cal-d">21</div></div>
+                <div class="cal-c"><div class="cal-d">22</div><div class="cal-ev a">Auswärts</div></div>
+                <div class="cal-c"><div class="cal-d">23</div></div><div class="cal-c"><div class="cal-d">24</div></div><div class="cal-c"><div class="cal-d">25</div></div><div class="cal-c"><div class="cal-d">26</div></div><div class="cal-c"><div class="cal-d">27</div></div><div class="cal-c"><div class="cal-d">28</div></div>
+                <div class="cal-c"><div class="cal-d">29</div><div class="cal-ev h">SK Neu H</div></div>
+                <div class="cal-c dim"><div class="cal-d">30</div></div>
               </div>
             </div>
           </div>
@@ -1516,98 +1162,55 @@
         </div>
       </section>
 
-      <!-- ══════════════════════════════════════
-           STRATEGIE & UMSETZUNGSPLAN
-      ══════════════════════════════════════ -->
-      <section class="section-calcio-grey" id="strategie-section">
-        <div class="calcio-container">
+      <!-- ════════════════════════════════
+           STRATEGIE
+      ════════════════════════════════ -->
+      <section class="sec-sky" id="strategie">
+        <div class="calc-container">
 
-          <div class="calcio-section-header">
-            <span class="calcio-eyebrow">Strategische Ausrichtung</span>
-            <h2>Umsetzungs<span class="highlight-calcio">plan.</span></h2>
-            <p>Sechs strategische Felder — von der Content-Planung bis zur technischen Umsetzung der Website.</p>
+          <div class="calc-hdr">
+            <span class="calc-hdr-eyebrow">Strategische Ausrichtung</span>
+            <h2>Umsetzungs<em>plan.</em></h2>
+            <p>Sechs strategische Felder — von der Content-Planung bis zur technischen Umsetzung.</p>
           </div>
 
-          <div class="calcio-accordion" id="calcioAccordion">
-
+          <div class="calc-acc" data-reveal id="calcAcc">
             <div class="ca-item open">
-              <button class="ca-trigger">
-                <span class="ca-num">01</span>
-                <span class="ca-title">Brand Identity &amp; Visual System</span>
-                <span class="ca-arrow"><i class="fa-solid fa-chevron-down"></i></span>
-              </button>
-              <div class="ca-body">
-                <p>Einheitliches Markensystem mit Farbpalette, Typografie und grafischen Elementen. Alle Kanäle — Instagram, Website, Trikots — folgen einem konsistenten visuellen Raster. Moodboard orientiert sich an urbanen Fussballclubs wie @brooklynfootballclub.</p>
-              </div>
+              <button class="ca-btn"><span class="ca-num">01</span><span class="ca-title">Brand Identity &amp; Visual System</span><span class="ca-arrow"><i class="fa-solid fa-chevron-down"></i></span></button>
+              <div class="ca-body"><p>Einheitliches Markensystem mit Hellblau-Palette, Barlow Condensed Typografie und grafischen Elementen. Alle Kanäle — Instagram, Website, Trikots — folgen einem konsistenten visuellen Raster.</p></div>
             </div>
-
             <div class="ca-item">
-              <button class="ca-trigger">
-                <span class="ca-num">02</span>
-                <span class="ca-title">Content-Kalender &amp; Posting-Rhythmus</span>
-                <span class="ca-arrow"><i class="fa-solid fa-chevron-down"></i></span>
-              </button>
-              <div class="ca-body">
-                <p>Wöchentlicher Content-Plan: mindestens 3 Feed-Posts (Mo/Mi/Sa), tägliche Stories, monatliche Reels. Matchdays erhalten spezielle Post-Serien (Vorschau → Live-Update → Highlights). Themenwochen für Trikot-Releases und Turnier-Ankündigungen.</p>
-              </div>
+              <button class="ca-btn"><span class="ca-num">02</span><span class="ca-title">Content-Kalender &amp; Posting-Rhythmus</span><span class="ca-arrow"><i class="fa-solid fa-chevron-down"></i></span></button>
+              <div class="ca-body"><p>Wöchentlicher Content-Plan: mindestens 3 Feed-Posts (Mo/Mi/Sa), tägliche Stories, monatliche Reels. Matchdays erhalten spezielle Post-Serien. Themenwochen für Trikot-Releases und Turnier-Ankündigungen.</p></div>
             </div>
-
             <div class="ca-item">
-              <button class="ca-trigger">
-                <span class="ca-num">03</span>
-                <span class="ca-title">Spieler-Porträts &amp; Storytelling</span>
-                <span class="ca-arrow"><i class="fa-solid fa-chevron-down"></i></span>
-              </button>
-              <div class="ca-body">
-                <p>Regelmässige Spieler-Porträts für Kinder und Jugendliche — persönliche Geschichten, Lieblingsmomente, Karriereziele. Format: kurzes Interview-Video (Reel 30-60 Sek.) + statischer Feed-Post als Zusammenfassung. Stärkt Identifikation und Community-Bindung.</p>
-              </div>
+              <button class="ca-btn"><span class="ca-num">03</span><span class="ca-title">Spieler-Porträts &amp; Storytelling</span><span class="ca-arrow"><i class="fa-solid fa-chevron-down"></i></span></button>
+              <div class="ca-body"><p>Regelmässige Spieler-Porträts für Kinder und Jugendliche — Format: kurzes Interview-Video (Reel 30-60 Sek.) + statischer Feed-Post. Stärkt Identifikation und Community-Bindung.</p></div>
             </div>
-
             <div class="ca-item">
-              <button class="ca-trigger">
-                <span class="ca-num">04</span>
-                <span class="ca-title">SK Neu — Interaktiver Spielplan</span>
-                <span class="ca-arrow"><i class="fa-solid fa-chevron-down"></i></span>
-              </button>
-              <div class="ca-body">
-                <p>Webseite mit interaktivem Kalender, Spielplan-Übersicht und Aufstellungs-Karten. Startseite zeigt sofort: wer spielt wann, wo, gegen wen. Kinetische Typografie und Bewegungseffekte für ein modernes, dynamisches Erlebnis. Mobile-First, unter 3 Sek. Ladezeit.</p>
-              </div>
+              <button class="ca-btn"><span class="ca-num">04</span><span class="ca-title">SK Neu — Interaktiver Spielplan</span><span class="ca-arrow"><i class="fa-solid fa-chevron-down"></i></span></button>
+              <div class="ca-body"><p>Webseite mit interaktivem Kalender, Spielplan-Übersicht und Aufstellungs-Karten. Startseite zeigt sofort: wer spielt wann, wo, gegen wen. Mobile-First, unter 3 Sek. Ladezeit.</p></div>
             </div>
-
             <div class="ca-item">
-              <button class="ca-trigger">
-                <span class="ca-num">05</span>
-                <span class="ca-title">Trikot &amp; Merchandise-Releases</span>
-                <span class="ca-arrow"><i class="fa-solid fa-chevron-down"></i></span>
-              </button>
-              <div class="ca-body">
-                <p>Geplante Kit-Launches als Event: Teaser-Posts → Reveal-Reel → Bestell-Link im Bio. Merchandise-Shop direkt in die Website integriert. Limitierte Turnier-Editionen als Drop-Strategie mit Countdown in den Stories.</p>
-              </div>
+              <button class="ca-btn"><span class="ca-num">05</span><span class="ca-title">Trikot &amp; Merchandise-Releases</span><span class="ca-arrow"><i class="fa-solid fa-chevron-down"></i></span></button>
+              <div class="ca-body"><p>Geplante Kit-Launches als Event: Teaser-Posts → Reveal-Reel → Bestell-Link im Bio. Merchandise-Shop direkt in die Website integriert. Limitierte Turnier-Editionen als Drop-Strategie.</p></div>
             </div>
-
             <div class="ca-item">
-              <button class="ca-trigger">
-                <span class="ca-num">06</span>
-                <span class="ca-title">Community-Building &amp; Interaktion</span>
-                <span class="ca-arrow"><i class="fa-solid fa-chevron-down"></i></span>
-              </button>
-              <div class="ca-body">
-                <p>Regelmässige Challenges, Polls und Q&amp;A-Sessions via Stories. Eltern und Fans aktiv einbinden: Foto-Challenges (#MeinCAlcio), Fan-Stimmen der Woche, Kommentar-Highlights. Ziel: loyale, aktive Community, die den Verein online repräsentiert.</p>
-              </div>
+              <button class="ca-btn"><span class="ca-num">06</span><span class="ca-title">Community-Building &amp; Interaktion</span><span class="ca-arrow"><i class="fa-solid fa-chevron-down"></i></span></button>
+              <div class="ca-body"><p>Regelmässige Challenges, Polls und Q&amp;A-Sessions via Stories. Eltern und Fans aktiv einbinden: Foto-Challenges (#MeinCalcio), Fan-Stimmen der Woche, Kommentar-Highlights.</p></div>
             </div>
-
           </div>
 
         </div>
       </section>
 
-      <!-- ══════════════════════════════════════
+      <!-- ════════════════════════════════
            CTA
-      ══════════════════════════════════════ -->
-      <div class="calcio-cta-strip">
-        <h2>Zum Vereins-<em>Website</em></h2>
-        <p>Entdecke die vollständige AS Calcio Kreuzlingen Website mit interaktivem Spielplan, Mannschaftsübersicht und Merchandise-Shop.</p>
-        <a href="../web/calcio-kreuzlingen.html" class="calcio-cta-btn">
+      ════════════════════════════════ -->
+      <div class="calc-cta">
+        <h2>Zum Vereins-<em style="font-style:italic;">Website</em></h2>
+        <p>Entdecke die vollständige AS Calcio Kreuzlingen Website mit Spielplan, Mannschaft und Merchandise-Shop.</p>
+        <a href="../web/calcio-kreuzlingen.html" class="calc-cta-btn">
           <i class="fa-solid fa-arrow-right"></i> Website öffnen
         </a>
       </div>
@@ -1619,58 +1222,58 @@
       <div class="container footer-inner">
         <div class="footer-copy">© 2026 Design &amp; Development by Khadija Okbi</div>
         <div class="footer-socials">
-          <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub">
-            <i class="fa-brands fa-github"></i>
-          </a>
-          <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <i class="fa-brands fa-linkedin"></i>
-          </a>
-          <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok">
-            <i class="fa-brands fa-tiktok"></i>
-          </a>
-          <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen">
-            <i class="fa-brands fa-codepen"></i>
-          </a>
+          <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi-652a211a4" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          <a class="social-link" href="https://www.tiktok.com/@mentalwealthy" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a class="social-link" href="https://codepen.io/khadijaokbi1" target="_blank" rel="noopener" aria-label="CodePen"><i class="fa-brands fa-codepen"></i></a>
         </div>
       </div>
     </footer>
 
     <script>
-      // Sticky nav active state
+      /* ── Site header scroll ── */
       (function () {
         var hdr = document.querySelector('.site-header');
-        function onScroll() {
-          hdr.classList.toggle('is-solid', window.scrollY >= 60);
-        }
+        function onScroll() { hdr.classList.toggle('is-solid', window.scrollY >= 60); }
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
 
-        // Accordion
-        document.querySelectorAll('.ca-trigger').forEach(function (btn) {
+        /* ── Accordion ── */
+        document.querySelectorAll('.ca-btn').forEach(function (btn) {
           btn.addEventListener('click', function () {
-            var item = this.closest('.ca-item');
+            var item = btn.closest('.ca-item');
             var isOpen = item.classList.contains('open');
             document.querySelectorAll('.ca-item').forEach(function (el) { el.classList.remove('open'); });
             if (!isOpen) item.classList.add('open');
           });
         });
 
-        // Sticky nav active link
-        var sections = document.querySelectorAll('section[id]');
+        /* ── Sticky nav active state ── */
+        var sections = document.querySelectorAll('section[id], div[id]');
         var navLinks = document.querySelectorAll('.csn-link');
         function updateNav() {
           var scrollY = window.scrollY + 120;
           sections.forEach(function (sec) {
             if (scrollY >= sec.offsetTop && scrollY < sec.offsetTop + sec.offsetHeight) {
-              navLinks.forEach(function (link) { link.classList.remove('active'); });
+              navLinks.forEach(function (l) { l.classList.remove('active'); });
               var active = document.querySelector('.csn-link[href="#' + sec.id + '"]');
               if (active) active.classList.add('active');
             }
           });
         }
         window.addEventListener('scroll', updateNav, { passive: true });
+
+        /* ── data-reveal IntersectionObserver ── */
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.14, rootMargin: '0px 0px -6% 0px' });
+        document.querySelectorAll('[data-reveal]').forEach(function (el) { io.observe(el); });
       })();
     </script>
+
+    <!-- Portfolio JS (typography reveal + preloader) -->
     <script defer src="../assets/js/typography-reveal.js"></script>
     <script defer src="../assets/js/ds-reveal.js"></script>
     <script defer src="../assets/js/preloader.js"></script>
