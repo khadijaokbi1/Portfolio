@@ -27,6 +27,7 @@
        initInstaCarousel();
        initLinkedInSlider();
        initShowcaseNav();
+       initStrategieTabsNew();
    });
    
    // =========================================
@@ -686,5 +687,135 @@
                    window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
                }
            });
+       }
+   }
+
+   // =========================================
+   // 14. PRODUKTE & STRATEGIE — TAB NAVIGATION
+   // =========================================
+   function initStrategieTabsNew() {
+       const btns     = document.querySelectorAll('.strat-btn');
+       const panels   = document.querySelectorAll('.strat-panel');
+       const ruleFill = document.getElementById('ruleFill');
+       const nav      = document.querySelector('.strat-nav');
+
+       if (!btns.length) return;
+
+       // Track animated states
+       const animated = { kpi: false, counters: false };
+
+       /* ── Progress fill height ── */
+       function fillHeight(btn) {
+           if (window.innerWidth <= 780) return;
+           const navH   = nav.offsetHeight;
+           const btnTop = btn.offsetTop;
+           const btnH   = btn.offsetHeight;
+           const pct    = ((btnTop + btnH * 0.5) / navH) * 100;
+           if (ruleFill) ruleFill.style.height = pct + '%';
+       }
+
+       /* ── Switch panel ── */
+       function activate(btn) {
+           const target = btn.getAttribute('data-panel');
+
+           btns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+           panels.forEach(p => p.classList.remove('active'));
+
+           btn.classList.add('active');
+           btn.setAttribute('aria-selected','true');
+
+           const panel = document.getElementById(target);
+           if (panel) panel.classList.add('active');
+
+           fillHeight(btn);
+
+           if (target === 'panel-ads')    setTimeout(animateKPI,      60);
+           if (target === 'panel-social') setTimeout(animateCounters, 60);
+       }
+
+       btns.forEach(btn => {
+           btn.addEventListener('click', () => activate(btn));
+           btn.addEventListener('keydown', e => {
+               const all = Array.from(btns);
+               const i   = all.indexOf(btn);
+               let next;
+               if (e.key === 'ArrowDown'  || e.key === 'ArrowRight') { e.preventDefault(); next = all[(i+1) % all.length]; }
+               if (e.key === 'ArrowUp'    || e.key === 'ArrowLeft')  { e.preventDefault(); next = all[(i-1+all.length) % all.length]; }
+               if (next) { next.focus(); activate(next); }
+           });
+       });
+
+       /* Init fill */
+       requestAnimationFrame(() => {
+           const first = document.querySelector('.strat-btn.active');
+           if (first) fillHeight(first);
+       });
+
+       /* ── Mobile Select ── */
+       const stratSelect = document.getElementById('stratSelect');
+       if (stratSelect) {
+           stratSelect.addEventListener('change', () => {
+               const target = stratSelect.value;
+               const btn = document.querySelector(`.strat-btn[data-panel="${target}"]`);
+               if (btn) activate(btn);
+           });
+
+           // Sync select when buttons are clicked
+           btns.forEach(btn => {
+               btn.addEventListener('click', () => {
+                   stratSelect.value = btn.getAttribute('data-panel');
+               });
+           });
+       }
+
+       /* ── KPI bar animation ─ */
+       function animateKPI() {
+           if (animated.kpi) return;
+           animated.kpi = true;
+           document.querySelectorAll('.kpi-fill').forEach(bar => {
+               bar.style.width = bar.getAttribute('data-w') + '%';
+           });
+       }
+
+       /* ── Counter animation ─ */
+       function animateCounters() {
+           if (animated.counters) return;
+           animated.counters = true;
+           document.querySelectorAll('.stat-num[data-target]').forEach(el => {
+               const target = parseInt(el.getAttribute('data-target'));
+               const suffix = el.getAttribute('data-suffix') || '';
+               const dur    = 1100;
+               const t0     = performance.now();
+               function tick(now) {
+                   const p    = Math.min((now - t0) / dur, 1);
+                   const ease = 1 - Math.pow(1 - p, 3);
+                   el.textContent = Math.round(target * ease) + suffix;
+                   if (p < 1) requestAnimationFrame(tick);
+               }
+               requestAnimationFrame(tick);
+           });
+       }
+
+       /* ── GSAP reveals ─ */
+       if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+           gsap.registerPlugin(ScrollTrigger);
+
+           gsap.fromTo('.strat-header > *',
+               { y: 28, opacity: 0 },
+               { y: 0, opacity: 1, duration: .85, ease: 'power3.out', stagger: .12, clearProps: 'all',
+                 scrollTrigger: { trigger: '.strat-header', start: 'top 86%', once: true } }
+           );
+
+           gsap.fromTo('.strat-btn',
+               { x: -22, opacity: 0 },
+               { x: 0, opacity: 1, duration: .6, ease: 'power3.out', stagger: .09, clearProps: 'all',
+                 scrollTrigger: { trigger: '.strat-tabs', start: 'top 84%', once: true } }
+           );
+
+           gsap.fromTo(['.p-eyebrow','.p-title','.p-body','.p-tags','.p-strip'],
+               { y: 18, opacity: 0 },
+               { y: 0, opacity: 1, duration: .65, ease: 'power3.out', stagger: .08, clearProps: 'all',
+                 scrollTrigger: { trigger: '.strat-panels', start: 'top 82%', once: true } }
+           );
        }
    }

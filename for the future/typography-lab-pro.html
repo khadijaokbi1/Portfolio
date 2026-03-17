@@ -787,7 +787,7 @@
             <li>Le Jour (`/css/le-jour`)</li>
             <li>Bruney (`/css/bruney`)</li>
             <li>SS Bruney (`/css/ss-bruney`)</li>
-            <li>Playfair Display, Cormorant Garamond, Fraunces, Bodoni Moda</li>
+            <li>Playfair Display, Playfair Display, Fraunces, Bodoni Moda</li>
           </ul>
           <p class="mini">Nicht verlässlich auf CDNFonts (in Test 500):</p>
           <ul class="cdn-no">
@@ -847,7 +847,7 @@
       { name: 'Bruney CDN', stack: '"Bruney", serif', source: 'cdn', embed: '<link href="https://fonts.cdnfonts.com/css/bruney" rel="stylesheet">' },
       { name: 'SS Bruney CDN', stack: '"SS Bruney", serif', source: 'cdn', embed: '<link href="https://fonts.cdnfonts.com/css/ss-bruney" rel="stylesheet">' },
       { name: 'Playfair Display CDN', stack: '"Playfair Display", serif', source: 'cdn', embed: '<link href="https://fonts.cdnfonts.com/css/playfair-display" rel="stylesheet">' },
-      { name: 'Cormorant Garamond CDN', stack: '"Cormorant Garamond", serif', source: 'cdn', embed: '<link href="https://fonts.cdnfonts.com/css/cormorant-garamond" rel="stylesheet">' },
+      { name: 'Playfair Display CDN', stack: '"Playfair Display", serif', source: 'cdn', embed: '<link href="https://fonts.cdnfonts.com/css/cormorant-garamond" rel="stylesheet">' },
       { name: 'Fraunces CDN', stack: '"Fraunces", serif', source: 'cdn', embed: '<link href="https://fonts.cdnfonts.com/css/fraunces" rel="stylesheet">' },
       { name: 'Bodoni Moda CDN', stack: '"Bodoni Moda", serif', source: 'cdn', embed: '<link href="https://fonts.cdnfonts.com/css/bodoni-moda" rel="stylesheet">' },
       { name: 'System Serif', stack: '"Iowan Old Style", "Times New Roman", serif', source: 'system' },
@@ -857,10 +857,10 @@
     const presets = [
       { label: 'Editorial Sharp', hint: 'Neglige + Bruney + Le Jour + Sans', h1: 'OT Neglige', h2: 'Bruney Local', sub: 'Le Jour CDN', body: 'System Sans' },
       { label: 'Romantic Editorial', hint: 'SS Bruney + Le Jour + Playfair', h1: 'SS Bruney CDN', h2: 'Le Jour CDN', sub: 'Playfair Display CDN', body: 'System Sans' },
-      { label: 'Swiss Contrast', hint: 'Neglige + Cormorant + Sans', h1: 'OT Neglige', h2: 'Cormorant Garamond CDN', sub: 'Le Jour Local', body: 'System Sans' },
+      { label: 'Swiss Contrast', hint: 'Neglige + Cormorant + Sans', h1: 'OT Neglige', h2: 'Playfair Display CDN', sub: 'Le Jour Local', body: 'System Sans' },
       { label: 'Modern Luxury', hint: 'Bodoni + Fraunces + Sans', h1: 'Bodoni Moda CDN', h2: 'Fraunces CDN', sub: 'Le Jour CDN', body: 'System Sans' },
       { label: 'Local Art Direction', hint: 'Higuen + Bruney + Le Jour', h1: 'Higuen', h2: 'Bruney Local', sub: 'Le Jour Local', body: 'System Sans' },
-      { label: 'Soft Prestige', hint: 'Playfair + Bruney + Cormorant', h1: 'Playfair Display CDN', h2: 'Bruney CDN', sub: 'Cormorant Garamond CDN', body: 'System Sans' }
+      { label: 'Soft Prestige', hint: 'Playfair + Bruney + Cormorant', h1: 'Playfair Display CDN', h2: 'Bruney CDN', sub: 'Playfair Display CDN', body: 'System Sans' }
     ];
 
     const baseDownloads = [

@@ -39,7 +39,7 @@ body.clk #cr{transform:translate(-50%,-50%) scale(.75);background:rgba(110,59,73
 /* ── SECTIONS ── */
 .sec{display:none;min-height:100vh;padding:86px 0 80px;flex-direction:column;align-items:center;gap:0}
 .sec.on{display:flex}
-.sh{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(24px,3vw,38px);letter-spacing:.06em;color:var(--dg);text-align:center;margin-bottom:4px}
+.sh{font-family:'Playfair Display',serif;font-weight:300;font-size:clamp(24px,3vw,38px);letter-spacing:.06em;color:var(--dg);text-align:center;margin-bottom:4px}
 .gl{width:32px;height:1px;background:var(--burg);margin:12px auto 6px}
 .ss{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--mauve);text-align:center;margin-bottom:48px}
 
@@ -55,11 +55,11 @@ body.clk #cr{transform:translate(-50%,-50%) scale(.75);background:rgba(110,59,73
 .sc1{display:flex;align-items:center;justify-content:center;width:90px;height:90px;position:relative}
 .sc1 svg{position:absolute;inset:0;width:100%;height:100%;animation:rot 18s linear infinite}
 @keyframes rot{to{transform:rotate(360deg)}}
-.sc1-inner{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:11px;color:var(--burg);z-index:1;animation:rot 18s linear infinite reverse}
+.sc1-inner{font-family:'Playfair Display',serif;font-style:italic;font-size:11px;color:var(--burg);z-index:1;animation:rot 18s linear infinite reverse}
 
 /* 2 — Fine line + petal drop */
 .sc2{display:flex;flex-direction:column;align-items:center;gap:0}
-.sc2-word{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:.12em;color:var(--off);opacity:.7}
+.sc2-word{font-family:'Playfair Display',serif;font-style:italic;font-size:13px;letter-spacing:.12em;color:var(--off);opacity:.7}
 .sc2-stem{width:1px;height:44px;background:linear-gradient(to bottom,var(--burg),transparent);position:relative}
 .sc2-petal{
   width:10px;height:14px;
@@ -100,7 +100,7 @@ body.clk #cr{transform:translate(-50%,-50%) scale(.75);background:rgba(110,59,73
 .sc5-bracket span:nth-child(1),.sc5-bracket span:nth-child(3){width:100%}
 .sc5-bracket span:nth-child(2){width:1px;margin-left:0;align-self:flex-start;height:100%;background:var(--burg)}
 .sc5-r .sc5-bracket{align-items:flex-end}
-.sc5-word{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--dg)}
+.sc5-word{font-family:'Playfair Display',serif;font-style:italic;font-size:14px;color:var(--dg)}
 .sc5 svg{width:16px;height:16px;animation:arrowBob 1.8s ease-in-out infinite}
 @keyframes arrowBob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 
@@ -108,7 +108,7 @@ body.clk #cr{transform:translate(-50%,-50%) scale(.75);background:rgba(110,59,73
 .sc6{overflow:hidden;width:100%;max-width:140px;position:relative}
 .sc6-track{display:flex;gap:20px;animation:sc6move 4s linear infinite;white-space:nowrap}
 .sc6-track:hover{animation-play-state:paused}
-.sc6-item{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:var(--mauve);display:flex;align-items:center;gap:8px;flex-shrink:0}
+.sc6-item{font-family:'Playfair Display',serif;font-style:italic;font-size:12px;color:var(--mauve);display:flex;align-items:center;gap:8px;flex-shrink:0}
 .sc6-item::after{content:'✦';font-style:normal;font-size:8px;color:var(--burg)}
 @keyframes sc6move{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .sc6-line{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--burg),transparent);margin-top:8px}
@@ -135,7 +135,7 @@ body.clk #cr{transform:translate(-50%,-50%) scale(.75);background:rgba(110,59,73
 /* 8 — Rosette spin */
 .sc8{width:72px;height:72px;position:relative;display:flex;align-items:center;justify-content:center}
 .sc8 svg{width:100%;height:100%;animation:rot 22s linear infinite}
-.sc8-ctr{position:absolute;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:9px;color:var(--burg);text-align:center;line-height:1.3;z-index:1}
+.sc8-ctr{position:absolute;font-family:'Playfair Display',serif;font-style:italic;font-size:9px;color:var(--burg);text-align:center;line-height:1.3;z-index:1}
 
 /* 9 — Feather quill */
 .sc9{display:flex;flex-direction:column;align-items:center;gap:6px}
@@ -151,7 +151,7 @@ body.clk #cr{transform:translate(-50%,-50%) scale(.75);background:rgba(110,59,73
 
 /* 11 — Serif word stack */
 .sc11{display:flex;flex-direction:column;align-items:center;gap:2px}
-.sc11 span{font-family:'Cormorant Garamond',serif;font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--off);opacity:.3;transition:opacity .3s}
+.sc11 span{font-family:'Playfair Display',serif;font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--off);opacity:.3;transition:opacity .3s}
 .sc11 span:nth-child(2){opacity:.55;font-size:11px}
 .sc11 span:nth-child(3){opacity:.85;font-size:12px;color:var(--burg)}
 .sc-card:hover .sc11 span{opacity:1}
@@ -175,7 +175,7 @@ body.clk #cr{transform:translate(-50%,-50%) scale(.75);background:rgba(110,59,73
 .pn-a-side.right::before{transform:translateX(101%)}
 .pn-a-side:hover::before{transform:none}
 .pn-a-dir{font-size:7px;letter-spacing:.28em;text-transform:uppercase;color:var(--mauve);position:relative;z-index:1;transition:color .3s}
-.pn-a-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--black);position:relative;z-index:1;transition:color .3s;line-height:1.25}
+.pn-a-title{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--black);position:relative;z-index:1;transition:color .3s;line-height:1.25}
 .pn-a-arr{font-size:20px;color:rgba(181,161,158,.4);position:relative;z-index:1;transition:all .4s var(--bounce);align-self:flex-end;margin-top:4px}
 .pn-a-side:hover .pn-a-dir,.pn-a-side:hover .pn-a-title,.pn-a-side:hover .pn-a-arr{color:#fff}
 .pn-a-side:hover .pn-a-arr{transform:scale(1.3)}
@@ -191,11 +191,11 @@ body.clk #cr{transform:translate(-50%,-50%) scale(.75);background:rgba(110,59,73
 .pn-b-side:hover{border-color:rgba(110,59,73,.25)}
 .pn-b-side:hover::after{transform:scaleX(1)}
 .pn-b-label{font-size:7px;letter-spacing:.3em;text-transform:uppercase;color:var(--mauve);margin-bottom:8px}
-.pn-b-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:rgba(181,161,158,.15);line-height:1;position:absolute;top:16px;right:20px;transition:color .3s}
+.pn-b-num{font-family:'Playfair Display',serif;font-size:48px;font-weight:300;color:rgba(181,161,158,.15);line-height:1;position:absolute;top:16px;right:20px;transition:color .3s}
 .pn-b-side.left .pn-b-num{right:auto;left:20px}
 .pn-b-side:hover .pn-b-num{color:rgba(110,59,73,.12)}
 .pn-b-cat{font-size:7.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--burg);margin-bottom:4px}
-.pn-b-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--dg);line-height:1.25;transition:color .3s}
+.pn-b-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--dg);line-height:1.25;transition:color .3s}
 .pn-b-side:hover .pn-b-title{color:var(--burg)}
 .pn-b-arrow{font-size:16px;color:var(--mauve);margin-top:10px;display:block;transition:transform .4s var(--bounce),color .3s}
 .pn-b-side:hover .pn-b-arrow{color:var(--burg)}
@@ -209,7 +209,7 @@ body.clk #cr{transform:translate(-50%,-50%) scale(.75);background:rgba(110,59,73
 .pn-c-card .flora-bg{position:absolute;top:-10px;right:-10px;opacity:.08;pointer-events:none}
 .pn-c-dir{font-size:7px;letter-spacing:.3em;text-transform:uppercase;color:rgba(245,245,245,.35);margin-bottom:6px;position:relative;z-index:1}
 .pn-c-card.light .pn-c-dir{color:var(--mauve)}
-.pn-c-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:rgba(245,245,245,.85);line-height:1.25;position:relative;z-index:1;transition:color .3s}
+.pn-c-title{font-family:'Playfair Display',serif;font-style:italic;font-size:19px;color:rgba(245,245,245,.85);line-height:1.25;position:relative;z-index:1;transition:color .3s}
 .pn-c-card.light .pn-c-title{color:var(--dg)}
 .pn-c-arrow{
   position:absolute;top:24px;right:24px;width:36px;height:36px;
@@ -235,8 +235,8 @@ body.clk #cr{transform:translate(-50%,-50%) scale(.75);background:rgba(110,59,73
 .pn-d-item.right:hover .pn-d-arr{transform:translateX(5px)}
 .pn-d-text{}
 .pn-d-hint{font-size:7.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--mauve)}
-.pn-d-name{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--dg);margin-top:2px}
-.pn-d-mid{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--mauve);flex-shrink:0}
+.pn-d-name{font-family:'Playfair Display',serif;font-style:italic;font-size:17px;color:var(--dg);margin-top:2px}
+.pn-d-mid{font-family:'Playfair Display',serif;font-style:italic;font-size:13px;color:var(--mauve);flex-shrink:0}
 
 /* Style E — Mauve bar with floral */
 .pn-e{background:var(--mauve);display:grid;grid-template-columns:1fr auto 1fr;width:100%}
@@ -244,7 +244,7 @@ body.clk #cr{transform:translate(-50%,-50%) scale(.75);background:rgba(110,59,73
 .pn-e-side.right{text-align:right}
 .pn-e-side:hover{background:rgba(110,59,73,.2)}
 .pn-e-label{font-size:7px;letter-spacing:.3em;text-transform:uppercase;color:rgba(245,245,245,.5)}
-.pn-e-title{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--white);line-height:1.3;transition:color .3s}
+.pn-e-title{font-family:'Playfair Display',serif;font-size:17px;color:var(--white);line-height:1.3;transition:color .3s}
 .pn-e-side:hover .pn-e-title{color:#fff}
 .pn-e-sep{display:flex;align-items:center;justify-content:center;padding:0 16px}
 .pn-e-bloom{font-size:20px;opacity:.4;animation:rot 20s linear infinite}
@@ -258,7 +258,7 @@ body.clk #cr{transform:translate(-50%,-50%) scale(.75);background:rgba(110,59,73
 .pn-f-card:hover .pn-f-icon{border-color:var(--burg);color:var(--burg);transform:scale(1.1)}
 .pn-f-card.right:hover .pn-f-icon{transform:scale(1.1)}
 .pn-f-dir{font-size:7px;letter-spacing:.25em;text-transform:uppercase;color:var(--mauve);margin-bottom:4px}
-.pn-f-title{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--dg);transition:color .3s}
+.pn-f-title{font-family:'Playfair Display',serif;font-size:16px;color:var(--dg);transition:color .3s}
 .pn-f-card:hover .pn-f-title{color:var(--burg)}
 
 /* Style G — Burgundy cinematic */
@@ -267,7 +267,7 @@ body.clk #cr{transform:translate(-50%,-50%) scale(.75);background:rgba(110,59,73
 .pn-g-side:hover{background:rgba(0,0,0,.15)}
 .pn-g-side.right{align-items:flex-end;border-left:1px solid rgba(245,245,245,.1)}
 .pn-g-dir{font-size:7px;letter-spacing:.3em;text-transform:uppercase;color:rgba(245,245,245,.35)}
-.pn-g-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:rgba(245,245,245,.9);line-height:1.25;transition:color .3s}
+.pn-g-title{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:rgba(245,245,245,.9);line-height:1.25;transition:color .3s}
 .pn-g-side:hover .pn-g-title{color:#fff}
 .pn-g-line{width:0;height:1px;background:rgba(245,245,245,.3);transition:width .6s var(--ease);margin-top:8px}
 .pn-g-side:hover .pn-g-line{width:48px}
@@ -473,7 +473,7 @@ body.clk #cr{transform:translate(-50%,-50%) scale(.75);background:rgba(110,59,73
         <svg viewBox="0 0 120 60" fill="none">
           <defs><path id="arch" d="M 10,55 Q 60,5 110,55"/></defs>
           <path d="M 10,55 Q 60,5 110,55" stroke="rgba(181,161,158,.25)" stroke-width=".8" fill="none"/>
-          <text font-family="'Cormorant Garamond',serif" font-style="italic" font-size="11" fill="#B5A19E" letter-spacing="3">
+          <text font-family="'Playfair Display',serif" font-style="italic" font-size="11" fill="#B5A19E" letter-spacing="3">
             <textPath href="#arch" startOffset="8%">scroll · entdecken</textPath>
           </text>
           <!-- small arrow below arch center -->

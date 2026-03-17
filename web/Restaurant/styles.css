@@ -62,7 +62,7 @@ body {
 
 /* ── Typography ─────────────────────────────────────────── */
 h1, h2, h3, h4 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   line-height: 1.2;
   font-weight: 600;
 }
@@ -113,7 +113,7 @@ h1, h2, h3, h4 {
 }
 
 .topbar__name {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--ink);
@@ -240,7 +240,7 @@ h1, h2, h3, h4 {
 }
 
 .hero__stat strong {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1.6rem;
   font-weight: 600;
   color: var(--gold-light);
@@ -429,7 +429,7 @@ h1, h2, h3, h4 {
 }
 
 .dish-card .price {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1.35rem;
   font-weight: 600;
   color: var(--ink);
@@ -583,7 +583,7 @@ button {
 }
 
 .cart-item__top strong:last-child {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1.1rem;
   color: var(--ink);
   white-space: nowrap;
@@ -681,7 +681,7 @@ button {
 }
 
 .summary__line--total strong {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--ink);
@@ -786,7 +786,7 @@ button {
 .live-order span { color: var(--muted); }
 
 .live-order strong {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1.1rem;
   color: var(--ink);
 }
@@ -992,14 +992,14 @@ dialog button:hover {
 }
 
 .order-card__id {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1.15rem;
   font-weight: 600;
   color: var(--ink);
 }
 
 .order-card__total {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--ink);

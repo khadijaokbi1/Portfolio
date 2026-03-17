@@ -312,7 +312,7 @@ summary,
 :root,
 [style],
 * {
-  /* Cormorant Garamond → Playfair Display */
+  /* Playfair Display → Playfair Display */
   --serif:        'Playfair Display', Georgia, serif !important;
   --font-serif:   'Playfair Display', Georgia, serif !important;
   --playfair: 'Playfair Display', Georgia, serif !important;
