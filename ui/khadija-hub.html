@@ -18,72 +18,386 @@
   --mint:#56686A;
   --off:#525252;
   --ease:cubic-bezier(.16,1,.3,1);
-  --sidebar: 280px;
 }
-html,body{height:100%;overflow:hidden;font-family:'Tenor Sans',sans-serif}
-body{background:var(--cream);color:var(--dark);display:grid;grid-template-columns:var(--sidebar) 1fr;grid-template-rows:1fr; transition: all 0.3s var(--ease);}
+
+html,body{height:100%;margin:0;padding:0;font-family:'Outfit',sans-serif;overflow:hidden}
+
+body{
+  background:var(--cream);
+  color:var(--dark);
+  display:grid;
+  grid-template-columns:280px 1fr;
+  grid-template-rows:1fr;
+}
 
 /* ════ SIDEBAR ════ */
-.sidebar{height:100vh;background:var(--white);border-right:1px solid rgba(0,0,0,.06);display:flex;flex-direction:column;overflow:hidden}
-.sidebar-head{padding:20px 18px 14px;border-bottom:1px solid rgba(0,0,0,.05)}
-.sidebar-head h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:20px;letter-spacing:.05em;color:var(--dg)}
-.sidebar-head p{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--mauve);margin-top:3px}
-.search-wrap{padding:10px 12px;border-bottom:1px solid rgba(0,0,0,.04)}
-.search{width:100%;padding:7px 11px;border:1px solid rgba(0,0,0,.08);border-radius:6px;font-family:'Tenor Sans',sans-serif;font-size:11.5px;color:var(--dark);background:var(--cream);outline:none;transition:border-color .2s}
-.search::placeholder{color:var(--mauve)}.search:focus{border-color:var(--burg)}
-.nav{flex:1;overflow-y:auto;padding:8px}
-.nav::-webkit-scrollbar{width:3px}.nav::-webkit-scrollbar-thumb{background:rgba(181,161,158,.3);border-radius:99px}
-.cat{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dark);padding:14px 10px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;border-radius:8px;transition:background .2s}
-.cat:hover{background:rgba(0,0,0,.03)}
-.cat::after{content:'↓';font-size:10px;opacity:.5;transition:transform .3s}
-.cat.open::after{transform:rotate(180deg)}
+.sidebar{
+  background:var(--white);
+  border-right:1px solid rgba(0,0,0,.06);
+  display:flex;
+  flex-direction:column;
+  height:100vh;
+  overflow:hidden;
+}
 
-.item-group{max-height:0;overflow:hidden;transition:max-height .3s var(--ease);padding-left:12px}
-.cat.open + .item-group{max-height:1000px;margin-bottom:10px}
+.sidebar-head{
+  padding:20px 18px;
+  border-bottom:1px solid rgba(0,0,0,.05);
+  flex-shrink:0;
+}
 
-.item{padding:8px 12px;border-radius:6px;font-size:12px;color:var(--off);cursor:pointer;display:flex;align-items:center;gap:7px;transition:all .15s;margin-bottom:1px}
-.item:hover{background:rgba(110,59,73,.06);color:var(--burg)}
-.item.active{background:var(--dark);color:#fff;font-weight:500}
-.item-dot{width:4px;height:4px;border-radius:50%;background:var(--mauve);flex-shrink:0;transition:background .15s}
-.item.active .item-dot,.item:hover .item-dot{background:var(--burg)}
-.item.hidden{display:none}.cat.hidden{display:none}
-.item-group.hidden{display:none}
+.sidebar-head h1{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:20px;
+  letter-spacing:.05em;
+  color:var(--dg);
+  margin:0;
+}
 
-/* ════ MAIN CONTENT AREA ════ */
-.content-area{display:flex;flex-direction:column;overflow-y:auto;height:100vh;background:#fafafa}
+.sidebar-head p{
+  font-size:9px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--mauve);
+  margin:3px 0 0 0;
+}
 
-/* ════ STAGE ════ */
-.stage{flex:none;display:flex;flex-direction:column;min-height:500px;position:relative}
-.stage-topbar{padding:12px 20px 10px;border-bottom:1px solid rgba(0,0,0,.05);background:var(--white);display:flex;align-items:center;gap:10px;flex-shrink:0}
-#stageName{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--dg);flex:1}
-#stageTag{font-size:7.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mauve);border:1px solid rgba(181,161,158,.4);padding:3px 9px;border-radius:99px}
-.preview-wrap{min-height:400px;display:flex;align-items:center;justify-content:center;position:relative;background-image:radial-gradient(rgba(181,161,158,.22) 1px,transparent 1px);background-size:22px 22px}
-.preview-inner{padding:44px;display:flex;align-items:center;justify-content:center;transition:transform .3s var(--ease)}
-.scale-row{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:3px;background:rgba(255,255,255,.92);border:1px solid rgba(0,0,0,.07);border-radius:8px;padding:3px;backdrop-filter:blur(8px)}
-.sc-btn{font-size:10px;padding:4px 10px;border:none;border-radius:5px;background:transparent;color:var(--off);cursor:pointer;transition:all .18s}
-.sc-btn.on{background:var(--dark);color:#fff}
-.bg-row{position:absolute;bottom:12px;right:14px;display:flex;gap:5px;align-items:center}
-.bg-sw{width:18px;height:18px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border-color .2s}
-.bg-sw.on{border-color:var(--burg)}
+.search-wrap{
+  padding:10px 12px;
+  border-bottom:1px solid rgba(0,0,0,.04);
+  flex-shrink:0;
+}
 
-/* ════ SHOWCASE GRID ════ */
-.showcase{padding:40px;display:grid;grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));gap:24px}
-.showcase-card{background:var(--white);border:1px solid rgba(0,0,0,.05);border-radius:12px;padding:30px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;min-height:200px}
-.showcase-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.05);border-color:var(--burg)}
-.showcase-card span{margin-top:15px;font-size:11px;color:var(--mauve);text-align:center}
+.search{
+  width:100%;
+  padding:8px 12px;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:6px;
+  font-size:12px;
+  background:var(--cream);
+  color:var(--dark);
+  outline:none;
+}
 
-/* ════ SETTINGS (NOW HORIZONTAL / BELOW) ════ */
-.settings-container{background:var(--white);border-top:1px solid rgba(0,0,0,.06);padding:24px 40px 60px}
-.panel-tabs{display:flex;gap:30px;border-bottom:1px solid rgba(0,0,0,.06);margin-bottom:20px}
-.ptab{padding:12px 0;font-size:11px;font-weight:600;border-bottom:2px solid transparent}
-.ptab.on{color:var(--burg);border-bottom-color:var(--burg)}
-.ptab-pane{display:none;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:30px;align-items:start}
-.ptab-pane.on{display:grid}
+.search:focus{border-color:var(--burg)}
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
+.nav{
+  flex:1;
+  overflow-y:auto;
+  padding:8px;
+}
+
+.cat-header{
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--dark);
+  padding:12px 10px;
+  cursor:pointer;
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  user-select:none;
+  transition:background .2s;
+}
+
+.cat-header:hover{background:rgba(0,0,0,.03)}
+
+.cat-header.open{background:rgba(110,59,73,.08)}
+
+.cat-arrow{
+  font-size:10px;
+  transition:transform .3s;
+}
+
+.cat-header.open .cat-arrow{transform:rotate(180deg)}
+
+.cat-items{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .3s var(--ease);
+}
+
+.cat-header.open + .cat-items{max-height:500px}
+
+.nav-item{
+  padding:8px 12px;
+  margin:2px 0;
+  border-radius:6px;
+  font-size:12px;
+  color:var(--off);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  transition:all .15s;
+}
+
+.nav-item:hover{
+  background:rgba(110,59,73,.06);
+  color:var(--burg);
+}
+
+.nav-item.active{
+  background:var(--dark);
+  color:#fff;
+  font-weight:500;
+}
+
+.nav-item-dot{
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:var(--mauve);
+  flex-shrink:0;
+}
+
+.nav-item.active .nav-item-dot{background:#fff}
+
+/* ════ MAIN AREA ════ */
+.main-area{
+  display:flex;
+  flex-direction:column;
+  height:100vh;
+  overflow:hidden;
+  background:#fafafa;
+}
+
+/* ════ STAGE VIEW ════ */
+.stage{
+  display:none;
+  flex-direction:column;
+  flex:1;
+  overflow:hidden;
+}
+
+.stage.show{display:flex}
+
+.stage-topbar{
+  padding:12px 20px;
+  border-bottom:1px solid rgba(0,0,0,.06);
+  background:var(--white);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-shrink:0;
+}
+
+.stage-back{
+  background:none;
+  border:none;
+  cursor:pointer;
+  color:var(--mauve);
+  font-size:18px;
+  padding:4px 8px;
+}
+
+.stage-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;
+  font-style:italic;
+  color:var(--dg);
+  flex:1;
+}
+
+.stage-tag{
+  font-size:8px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--mauve);
+  border:1px solid rgba(181,161,158,.4);
+  padding:3px 10px;
+  border-radius:99px;
+}
+
+.preview-area{
+  flex:1;
+  position:relative;
+  background-image:radial-gradient(rgba(181,161,158,.22) 1px,transparent 1px);
+  background-size:22px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px;
+}
+
+.preview-inner{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:transform .3s var(--ease);
+}
+
+.scale-row{
+  position:absolute;
+  bottom:12px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:3px;
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(0,0,0,.07);
+  border-radius:8px;
+  padding:3px;
+}
+
+.scale-btn{
+  font-size:10px;
+  padding:4px 10px;
+  border:none;
+  border-radius:5px;
+  background:transparent;
+  color:var(--off);
+  cursor:pointer;
+  transition:all .18s;
+}
+
+.scale-btn.active{
+  background:var(--dark);
+  color:#fff;
+}
+
+.bg-row{
+  position:absolute;
+  bottom:12px;
+  right:14px;
+  display:flex;
+  gap:5px;
+}
+
+.bg-swatch{
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  cursor:pointer;
+  border:2px solid transparent;
+  transition:border-color .2s;
+}
+
+.bg-swatch.active{border-color:var(--burg)}
+
+/* ════ SHOWCASE VIEW ════ */
+.showcase{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:20px;
+  padding:40px;
+  overflow-y:auto;
+  flex:1;
+}
+
+.showcase.hide{display:none}
+
+.showcase-card{
+  background:var(--white);
+  border:1px solid rgba(0,0,0,.05);
+  border-radius:12px;
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:all .2s;
+  min-height:160px;
+}
+
+.showcase-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 30px rgba(0,0,0,.08);
+  border-color:var(--burg);
+}
+
+.showcase-preview{
+  transform:scale(0.6);
+  pointer-events:none;
+  margin-bottom:8px;
+}
+
+.showcase-label{
+  font-size:11px;
+  color:var(--mauve);
+  text-align:center;
+  font-weight:500;
+}
+
+/* ════ SETTINGS ════ */
+.settings-area{
+  background:var(--white);
+  border-top:1px solid rgba(0,0,0,.06);
+  padding:20px 40px 40px;
+  flex-shrink:0;
+  max-height:35vh;
+  overflow-y:auto;
+}
+
+.settings-tabs{
+  display:flex;
+  gap:24px;
+  border-bottom:1px solid rgba(0,0,0,.08);
+  margin-bottom:20px;
+  flex-wrap:wrap;
+}
+
+.settings-tab{
+  padding:8px 0;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.05em;
+  color:var(--off);
+  cursor:pointer;
+  border-bottom:2px solid transparent;
+  transition:all .2s;
+}
+
+.settings-tab:hover{color:var(--burg)}
+
+.settings-tab.active{
+  color:var(--burg);
+  border-bottom-color:var(--burg);
+}
+
+.settings-pane{
+  display:none;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+}
+
+.settings-pane.show{display:grid}
+
+.setting-row{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.setting-row label{
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:var(--mauve);
+}
+
+.setting-row input{
+  padding:8px 10px;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:4px;
+  font-size:12px;
+  font-family:'Outfit',sans-serif;
+}
+
+.setting-row input:focus{
+  outline:none;
+  border-color:var(--burg);
+}
+
+@media (max-width:1024px){
   body{grid-template-columns:1fr}
-  .sidebar{display:none} /* Simple toggle needed for mobile later */
+  .sidebar{display:none}
 }
 </style>
 </head>
@@ -93,774 +407,210 @@ body{background:var(--cream);color:var(--dark);display:grid;grid-template-column
 <aside class="sidebar">
   <div class="sidebar-head">
     <h1>Khadija Hub</h1>
-    <p>Komponenten · Design System</p>
+    <p>Design System</p>
   </div>
   <div class="search-wrap">
-    <input class="search" type="text" id="searchInput" placeholder="Suchen …">
+    <input class="search" type="text" placeholder="Suchen...">
   </div>
-  <nav class="nav" id="navList">
-    <div class="cat" data-cat="hero">Hero &amp; Rotating</div>
-    <div class="item-group">
-      <div class="item active" data-id="hero-flower"><span class="item-dot"></span>Rotierende Blume</div>
-      <div class="item" data-id="triple-rings"><span class="item-dot"></span>Triple Ringe</div>
-      <div class="item" data-id="dash-rose"><span class="item-dot"></span>Dash Rose</div>
-      <div class="item" data-id="petal-spin"><span class="item-dot"></span>Petal Spinner</div>
-      <div class="item" data-id="dotted-orbit"><span class="item-dot"></span>Dotted Orbit</div>
-      <div class="item" data-id="star-petals"><span class="item-dot"></span>Star Petals</div>
-      <div class="item" data-id="asterisk-spin"><span class="item-dot"></span>Asterisk Spin</div>
-      <div class="item" data-id="rotating-seal"><span class="item-dot"></span>Rotating Seal</div>
-    </div>
-    <div class="cat" data-cat="butterfly">Schmetterlinge</div>
-    <div class="item-group">
-      <div class="item" data-id="bf-glasswing"><span class="item-dot"></span>Mauve Glasswing</div>
-      <div class="item" data-id="bf-morpho"><span class="item-dot"></span>Dark Morpho</div>
-      <div class="item" data-id="bf-blush"><span class="item-dot"></span>Blush Klein</div>
-      <div class="item" data-id="bf-moth"><span class="item-dot"></span>Boho Moth</div>
-      <div class="item" data-id="bf-resting"><span class="item-dot"></span>Ruhend 3D</div>
-      <div class="item" data-id="bf-pair"><span class="item-dot"></span>Pärchen</div>
-    </div>
-    <div class="cat" data-cat="boho">Boho Shapes</div>
-    <div class="item-group">
-      <div class="item" data-id="boho-arch"><span class="item-dot"></span>Rainbow Arch</div>
-      <div class="item" data-id="boho-oval"><span class="item-dot"></span>Oval Frame</div>
-      <div class="item" data-id="boho-orbit"><span class="item-dot"></span>Orbit Sphere</div>
-      <div class="item" data-id="boho-vesica"><span class="item-dot"></span>Vesica / Mandorla</div>
-      <div class="item" data-id="boho-spiral"><span class="item-dot"></span>Spirale Shell</div>
-      <div class="item" data-id="boho-starburst"><span class="item-dot"></span>Starburst</div>
-      <div class="item" data-id="boho-wave"><span class="item-dot"></span>Triple Wave</div>
-    </div>
-    <div class="cat" data-cat="florals">Florals &amp; Botanik</div>
-    <div class="item-group">
-      <div class="item" data-id="fl-peony"><span class="item-dot"></span>Pfingstrose</div>
-      <div class="item" data-id="fl-tulip"><span class="item-dot"></span>Tulpe</div>
-      <div class="item" data-id="fl-lily"><span class="item-dot"></span>Lilie</div>
-      <div class="item" data-id="fl-sprig"><span class="item-dot"></span>Botanischer Sprig</div>
-      <div class="item" data-id="fl-wreath"><span class="item-dot"></span>Blätterkranz</div>
-      <div class="item" data-id="fl-rose"><span class="item-dot"></span>Rose</div>
-      <div class="item" data-id="fl-wildblume"><span class="item-dot"></span>Wildblume</div>
-      <div class="item" data-id="fl-chrys"><span class="item-dot"></span>Chrysantheme</div>
-      <div class="item" data-id="fl-branch"><span class="item-dot"></span>Horizontalzweig</div>
-    </div>
-    <div class="cat" data-cat="celestial">Stars &amp; Moon</div>
-    <div class="item-group">
-      <div class="item" data-id="cel-sparkle"><span class="item-dot"></span>Sparkle Cluster</div>
-      <div class="item" data-id="cel-moon"><span class="item-dot"></span>Mondsichel</div>
-      <div class="item" data-id="cel-phases"><span class="item-dot"></span>Mondphasen</div>
-      <div class="item" data-id="cel-sun"><span class="item-dot"></span>Sunburst</div>
-      <div class="item" data-id="cel-diamond"><span class="item-dot"></span>Diamant</div>
-      <div class="item" data-id="cel-star"><span class="item-dot"></span>4-Point Star</div>
-      <div class="item" data-id="cel-eye"><span class="item-dot"></span>Boho Eye</div>
-      <div class="item" data-id="cel-constellation"><span class="item-dot"></span>Konstellation</div>
-    </div>
-    <div class="cat" data-cat="textfillers">Text Fillers</div>
-    <div class="item-group">
-      <div class="item" data-id="tf-circle"><span class="item-dot"></span>Kreistext</div>
-      <div class="item" data-id="tf-vertical"><span class="item-dot"></span>Vertical Italic</div>
-      <div class="item" data-id="tf-marquee"><span class="item-dot"></span>Marquee</div>
-      <div class="item" data-id="tf-micro"><span class="item-dot"></span>Micro Labels</div>
-      <div class="item" data-id="tf-ghost"><span class="item-dot"></span>Ghost Number</div>
-      <div class="item" data-id="tf-arch"><span class="item-dot"></span>Arch Curved Text</div>
-      <div class="item" data-id="tf-badge"><span class="item-dot"></span>Status Badge</div>
-    </div>
-    <div class="cat" data-cat="geo">Geometric</div>
-    <div class="item-group">
-      <div class="item" data-id="geo-squares"><span class="item-dot"></span>Nested Squares</div>
-      <div class="item" data-id="geo-dots"><span class="item-dot"></span>Dot Grid</div>
-      <div class="item" data-id="geo-hex"><span class="item-dot"></span>Hexagon</div>
-      <div class="item" data-id="geo-infinity"><span class="item-dot"></span>Infinity</div>
-      <div class="item" data-id="geo-cube"><span class="item-dot"></span>Cube Wireframe</div>
-      <div class="item" data-id="geo-lines"><span class="item-dot"></span>Line Stack</div>
-    </div>
-    <div class="cat" data-cat="frames">Frames &amp; Labels</div>
-    <div class="item-group">
-      <div class="item" data-id="fr-arch"><span class="item-dot"></span>Arch Frame</div>
-      <div class="item" data-id="fr-corner"><span class="item-dot"></span>Corner Frame</div>
-      <div class="item" data-id="fr-circle"><span class="item-dot"></span>Botanischer Kreisrahmen</div>
-      <div class="item" data-id="fr-badge"><span class="item-dot"></span>Dark Badge</div>
-      <div class="item" data-id="fr-stamp"><span class="item-dot"></span>Seal / Stamp</div>
-      <div class="item" data-id="fr-tag"><span class="item-dot"></span>Inline Category Tag</div>
-    </div>
-    <div class="cat" data-cat="burger">Burger Menus</div>
-    <div class="item-group">
-      <div class="item" data-id="bg-classic"><span class="item-dot"></span>Classic Lines</div>
-      <div class="item" data-id="bg-stagger"><span class="item-dot"></span>Stagger Slide</div>
-      <div class="item" data-id="bg-dots"><span class="item-dot"></span>Dot Matrix</div>
-      <div class="item" data-id="bg-circle"><span class="item-dot"></span>Morph Circle</div>
-    </div>
-    <div class="cat" data-cat="buttons">CTA Buttons</div>
-    <div class="item-group">
-      <div class="item" data-id="btn-fill"><span class="item-dot"></span>Fill Reveal</div>
-      <div class="item" data-id="btn-burg"><span class="item-dot"></span>Burgundy</div>
-      <div class="item" data-id="btn-pill"><span class="item-dot"></span>Pill</div>
-      <div class="item" data-id="btn-ghost"><span class="item-dot"></span>Ghost Line</div>
-      <div class="item" data-id="btn-outline"><span class="item-dot"></span>Outline Slide Up</div>
-    </div>
-    <div class="cat" data-cat="scroll">Scroll Indicators</div>
-    <div class="item-group">
-      <div class="item" data-id="sc-petal"><span class="item-dot"></span>Petal Drop</div>
-      <div class="item" data-id="sc-cross"><span class="item-dot"></span>Crosshair Pulse</div>
-      <div class="item" data-id="sc-rot"><span class="item-dot"></span>Rotating Text</div>
-      <div class="item" data-id="sc-marq"><span class="item-dot"></span>Mini Marquee</div>
-      <div class="item" data-id="sc-floral"><span class="item-dot"></span>Floral Dip</div>
-      <div class="item" data-id="sc-bracket"><span class="item-dot"></span>Bracket + Arrow</div>
-      <div class="item" data-id="sc-quill"><span class="item-dot"></span>Feather Quill</div>
-      <div class="item" data-id="sc-rosette"><span class="item-dot"></span>Rosette Spin</div>
-      <div class="item" data-id="sc-stack"><span class="item-dot"></span>Serif Word Stack</div>
-    </div>
-    <div class="cat" data-cat="prevnext">Prev / Next</div>
-    <div class="item-group">
-      <div class="item" data-id="pn-luxe"><span class="item-dot"></span>Luxe Full-Width</div>
-      <div class="item" data-id="pn-typo"><span class="item-dot"></span>Typographic</div>
-      <div class="item" data-id="pn-minimal"><span class="item-dot"></span>Minimal</div>
-      <div class="item" data-id="pn-card"><span class="item-dot"></span>Card Hover</div>
-    </div>
-    <div class="cat" data-cat="nav">Navigation</div>
-    <div class="item-group">
-      <div class="item" data-id="nav-classic"><span class="item-dot"></span>Classic Underline</div>
-      <div class="item" data-id="nav-dark"><span class="item-dot"></span>Dark Bar</div>
-      <div class="item" data-id="nav-pill"><span class="item-dot"></span>Pill Nav</div>
-    </div>
-    <div class="cat" data-cat="deco">Dekorative Elemente</div>
-    <div class="item-group">
-      <div class="item" data-id="deco-sprig"><span class="item-dot"></span>Sprig Divider</div>
-      <div class="item" data-id="deco-quote"><span class="item-dot"></span>Quote Flora Box</div>
-      <div class="item" data-id="deco-tag"><span class="item-dot"></span>Flora Tag Pill</div>
-      <div class="item" data-id="deco-stat"><span class="item-dot"></span>Flora Stat Box</div>
-      <div class="item" data-id="deco-eyebrow"><span class="item-dot"></span>Petal Eyebrow</div>
-      <div class="item" data-id="deco-connector"><span class="item-dot"></span>Connector Line</div>
-      <div class="item" data-id="deco-box-a"><span class="item-dot"></span>Box Corner Reveal</div>
-      <div class="item" data-id="deco-box-b"><span class="item-dot"></span>Box Stack Rotate</div>
-      <div class="item" data-id="deco-box-c"><span class="item-dot"></span>Box Dark Bloom</div>
-      <div class="item" data-id="deco-box-d"><span class="item-dot"></span>Box Dash Border</div>
-      <div class="item" data-id="deco-box-e"><span class="item-dot"></span>Box Top Line</div>
-    </div>
-  </nav>
+  <nav class="nav" id="navContainer"></nav>
 </aside>
 
-<!-- MAIN CONTENT AREA -->
-<div class="content-area">
-  <main class="stage">
+<!-- MAIN AREA -->
+<div class="main-area">
+  <!-- SHOWCASE VIEW (Standard) -->
+  <div class="showcase" id="showcaseGrid"></div>
+
+  <!-- STAGE VIEW (Detail) -->
+  <div class="stage" id="stageView">
     <div class="stage-topbar">
-      <span id="stageName">Rotierende Blume</span>
-      <span id="stageTag">Hero</span>
+      <button class="stage-back" id="backBtn">←</button>
+      <span class="stage-name" id="stageName">Komponente</span>
+      <span class="stage-tag" id="stageTag">Tag</span>
     </div>
-    <div class="preview-wrap" id="previewWrap">
-      <div class="preview-inner" id="previewEl"></div>
+    <div class="preview-area" id="previewArea">
+      <div class="preview-inner" id="previewInner"></div>
       <div class="scale-row">
-        <button class="sc-btn on" data-scale="1">100%</button>
-        <button class="sc-btn" data-scale=".75">75%</button>
-        <button class="sc-btn" data-scale="1.5">150%</button>
-        <button class="sc-btn" data-scale="2">200%</button>
+        <button class="scale-btn active" data-scale="1">100%</button>
+        <button class="scale-btn" data-scale="0.75">75%</button>
+        <button class="scale-btn" data-scale="1.5">150%</button>
+        <button class="scale-btn" data-scale="2">200%</button>
       </div>
       <div class="bg-row">
-        <div class="bg-sw on" data-bg="#fafafa" style="background:#fafafa;border:1.5px solid #ddd"></div>
-        <div class="bg-sw" data-bg="#F5F0EA" style="background:#F5F0EA;border:1.5px solid #ddd"></div>
-        <div class="bg-sw" data-bg="#314A51" style="background:#314A51"></div>
-        <div class="bg-sw" data-bg="#2D2020" style="background:#2D2020"></div>
+        <div class="bg-swatch active" data-bg="#fafafa" style="background:#fafafa; border:1.5px solid #ccc"></div>
+        <div class="bg-swatch" data-bg="#F5F0EA" style="background:#F5F0EA"></div>
+        <div class="bg-swatch" data-bg="#314A51" style="background:#314A51"></div>
+        <div class="bg-swatch" data-bg="#2D2020" style="background:#2D2020"></div>
       </div>
     </div>
-  </main>
+  </div>
 
-  <!-- SETTINGS PANEL -->
-  <div class="settings-container">
-    <div class="panel-tabs">
-      <div class="ptab on" data-tab="text">Text</div>
-      <div class="ptab" data-tab="position">Position</div>
-      <div class="ptab" data-tab="typo">Typo</div>
-      <div class="ptab" data-tab="anim">Anim</div>
-      <div class="ptab" data-tab="color">Farbe</div>
-    </div>
+  <!-- SETTINGS -->
+  <div class="settings-area" id="settingsArea">
+    <div class="settings-tabs" id="settingsTabs"></div>
     <div id="settingsPanes"></div>
   </div>
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════
-//  COMPONENT LIBRARY (vollständig aus Doc 1)
-// ═══════════════════════════════════════════════════
-const C = {
-'hero-flower':{name:'Rotierende Blume',tag:'Hero',
-html:`<div style="position:relative;display:flex;align-items:center;justify-content:center;width:[[SZ]]px;height:[[SZ]]px">
-  <svg style="animation:rotCW 16s linear infinite;position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 80 80" fill="none">
-    <ellipse cx="40" cy="40" rx="7" ry="24" stroke="rgba(181,161,158,.45)" stroke-width=".9"/>
-    <ellipse cx="40" cy="40" rx="7" ry="24" stroke="rgba(181,161,158,.45)" stroke-width=".9" transform="rotate(60 40 40)"/>
-    <ellipse cx="40" cy="40" rx="7" ry="24" stroke="rgba(181,161,158,.45)" stroke-width=".9" transform="rotate(120 40 40)"/>
-    <circle cx="40" cy="40" r="34" stroke="rgba(181,161,158,.1)" stroke-width=".6" stroke-dasharray="2 4"/>
-  </svg>
-  <svg style="animation:rotCCW 11s linear infinite;position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 80 80" fill="none">
-    <ellipse cx="40" cy="40" rx="5" ry="15" stroke="rgba(212,185,181,.35)" stroke-width=".7" transform="rotate(30 40 40)"/>
-    <ellipse cx="40" cy="40" rx="5" ry="15" stroke="rgba(212,185,181,.35)" stroke-width=".7" transform="rotate(90 40 40)"/>
-    <ellipse cx="40" cy="40" rx="5" ry="15" stroke="rgba(212,185,181,.35)" stroke-width=".7" transform="rotate(150 40 40)"/>
-  </svg>
-  <div style="position:absolute;width:8px;height:8px;background:[[C1]];border-radius:50%;box-shadow:0 0 0 4px rgba(110,59,73,.15)"></div>
-</div>`,
-css:`@keyframes rotCW{to{transform:rotate(360deg)}}
-@keyframes rotCCW{to{transform:rotate(-360deg)}}`,js:''},
-
-'triple-rings':{name:'Triple Ringe',tag:'Hero',
-html:`<div style="position:relative;width:[[SZ]]px;height:[[SZ]]px;display:flex;align-items:center;justify-content:center">
-  <div style="position:absolute;border-radius:50%;border:1px solid [[C2]];opacity:.35;width:60%;height:60%;animation:ringBreath 4s ease-in-out infinite"></div>
-  <div style="position:absolute;border-radius:50%;border:1px solid [[C2]];opacity:.35;width:80%;height:40%;animation:ringBreath 4s ease-in-out infinite .5s"></div>
-  <div style="position:absolute;border-radius:50%;border:1px solid [[C2]];opacity:.35;width:98%;height:25%;animation:ringBreath 4s ease-in-out infinite 1s"></div>
-</div>`,
-css:`@keyframes ringBreath{0%,100%{opacity:.2}50%{opacity:.55}}`,js:''},
-
-'dash-rose':{name:'Dash Rose',tag:'Hero',
-html:`<div style="position:relative;width:[[SZ]]px;height:[[SZ]]px;display:flex;align-items:center;justify-content:center">
-  <svg style="width:100%;height:100%;animation:rotCW 22s linear infinite" viewBox="0 0 100 100" fill="none">
-    <circle cx="50" cy="50" r="45" stroke="rgba(181,161,158,.35)" stroke-width="1" stroke-dasharray="4 5"/>
-    <line x1="50" y1="5" x2="50" y2="14" stroke="rgba(181,161,158,.45)" stroke-width="1.2" stroke-linecap="round"/>
-    <line x1="50" y1="5" x2="50" y2="14" stroke="rgba(181,161,158,.45)" stroke-width="1.2" stroke-linecap="round" transform="rotate(45 50 50)"/>
-    <line x1="50" y1="5" x2="50" y2="14" stroke="rgba(181,161,158,.45)" stroke-width="1.2" stroke-linecap="round" transform="rotate(90 50 50)"/>
-    <line x1="50" y1="5" x2="50" y2="14" stroke="rgba(181,161,158,.45)" stroke-width="1.2" stroke-linecap="round" transform="rotate(135 50 50)"/>
-    <line x1="50" y1="5" x2="50" y2="14" stroke="rgba(181,161,158,.45)" stroke-width="1.2" stroke-linecap="round" transform="rotate(180 50 50)"/>
-    <line x1="50" y1="5" x2="50" y2="14" stroke="rgba(181,161,158,.45)" stroke-width="1.2" stroke-linecap="round" transform="rotate(225 50 50)"/>
-    <line x1="50" y1="5" x2="50" y2="14" stroke="rgba(181,161,158,.45)" stroke-width="1.2" stroke-linecap="round" transform="rotate(270 50 50)"/>
-    <line x1="50" y1="5" x2="50" y2="14" stroke="rgba(181,161,158,.45)" stroke-width="1.2" stroke-linecap="round" transform="rotate(315 50 50)"/>
-    <ellipse cx="50" cy="50" rx="7" ry="20" stroke="rgba(181,161,158,.5)" stroke-width=".8"/>
-    <ellipse cx="50" cy="50" rx="7" ry="20" stroke="rgba(181,161,158,.5)" stroke-width=".8" transform="rotate(60 50 50)"/>
-    <ellipse cx="50" cy="50" rx="7" ry="20" stroke="rgba(181,161,158,.5)" stroke-width=".8" transform="rotate(120 50 50)"/>
-    <circle cx="50" cy="50" r="4" fill="rgba(110,59,73,.4)"/>
-  </svg>
-  <div style="position:absolute;width:5px;height:5px;background:[[C2]];border-radius:50%"></div>
-</div>`,
-css:`@keyframes rotCW{to{transform:rotate(360deg)}}`,js:''},
-
-'petal-spin':{name:'Petal Spinner',tag:'Hero',
-html:`<div style="position:relative;width:[[SZ]]px;height:[[SZ]]px;display:flex;align-items:center;justify-content:center">
-  <svg style="animation:rotCW 12s linear infinite" width="[[SZ]]" height="[[SZ]]" viewBox="0 0 80 80" fill="none">
-    <ellipse cx="40" cy="40" rx="5" ry="18" stroke="[[C1]]" stroke-width=".8" opacity=".7"/>
-    <ellipse cx="40" cy="40" rx="5" ry="18" stroke="[[C1]]" stroke-width=".8" opacity=".7" transform="rotate(45 40 40)"/>
-    <ellipse cx="40" cy="40" rx="5" ry="18" stroke="[[C1]]" stroke-width=".8" opacity=".7" transform="rotate(90 40 40)"/>
-    <ellipse cx="40" cy="40" rx="5" ry="18" stroke="[[C1]]" stroke-width=".8" opacity=".7" transform="rotate(135 40 40)"/>
-  </svg>
-  <div style="position:absolute;width:8px;height:8px;background:[[C1]];border-radius:50%"></div>
-</div>`,
-css:`@keyframes rotCW{to{transform:rotate(360deg)}}`,js:''},
-
-'dotted-orbit':{name:'Dotted Orbit',tag:'Hero',
-html:`<div style="position:relative;width:[[SZ]]px;height:[[SZ]]px;display:flex;align-items:center;justify-content:center">
-  <svg style="animation:rotCW 20s linear infinite;position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 88 88" fill="none">
-    <circle cx="44" cy="44" r="38" stroke="rgba(181,161,158,.2)" stroke-width=".8" stroke-dasharray="3 6"/>
-    <circle cx="44" cy="6" r="3" fill="[[C1]]"/>
-    <circle cx="44" cy="6" r="3" fill="[[C2]]" transform="rotate(90 44 44)"/>
-    <circle cx="44" cy="6" r="3" fill="[[C2]]" transform="rotate(180 44 44)"/>
-    <circle cx="44" cy="6" r="3" fill="[[C2]]" transform="rotate(270 44 44)"/>
-  </svg>
-  <div style="position:absolute;width:12px;height:12px;border:1.5px solid [[C1]];border-radius:50%"></div>
-</div>`,
-css:`@keyframes rotCW{to{transform:rotate(360deg)}}`,js:''},
-
-'star-petals':{name:'Star Petals',tag:'Hero',
-html:`<svg style="animation:rotCW 25s linear infinite" width="[[SZ]]" height="[[SZ]]" viewBox="0 0 80 80" fill="none">
-  <ellipse cx="40" cy="40" rx="4" ry="16" fill="[[C2]]" opacity=".35"/>
-  <ellipse cx="40" cy="40" rx="4" ry="16" fill="[[C2]]" opacity=".35" transform="rotate(30 40 40)"/>
-  <ellipse cx="40" cy="40" rx="4" ry="16" fill="[[C2]]" opacity=".35" transform="rotate(60 40 40)"/>
-  <ellipse cx="40" cy="40" rx="4" ry="16" fill="[[C2]]" opacity=".35" transform="rotate(90 40 40)"/>
-  <ellipse cx="40" cy="40" rx="4" ry="16" fill="[[C2]]" opacity=".35" transform="rotate(120 40 40)"/>
-  <ellipse cx="40" cy="40" rx="4" ry="16" fill="[[C2]]" opacity=".35" transform="rotate(150 40 40)"/>
-  <circle cx="40" cy="40" r="5" fill="[[C1]]" opacity=".5"/>
-</svg>`,css:`@keyframes rotCW{to{transform:rotate(360deg)}}`,js:''},
-
-'asterisk-spin':{name:'Asterisk Spin',tag:'Hero',
-html:`<span style="font-size:[[SZ]]px;color:[[C2]];animation:rotCW 8s linear infinite;display:inline-block;line-height:1">✳</span>`,
-css:`@keyframes rotCW{to{transform:rotate(360deg)}}`,js:''},
-
-'rotating-seal':{name:'Rotating Seal',tag:'Hero',
-html:`<div style="width:[[SZ]]px;height:[[SZ]]px;border-radius:50%;border:1px dashed [[C2]];display:flex;align-items:center;justify-content:center;font-size:8px;text-transform:uppercase;letter-spacing:.12em;animation:rotCW 12s linear infinite;color:[[C4]];font-family:inherit">[[T]]</div>`,
-css:`@keyframes rotCW{to{transform:rotate(360deg)}}`,js:''},
-
-'bf-glasswing':{name:'Mauve Glasswing',tag:'Butterfly',
-html:`<div style="animation:float 5s ease-in-out infinite;cursor:pointer">
-  <svg width="140" height="120" viewBox="0 0 140 120" overflow="visible" class="bf-hover-only">
-    <g class="bf-wL">
-      <path d="M67 57 C60 44 40 18 20 16 C6 15 2 30 8 46 C14 60 42 68 67 64Z" fill="rgba(181,161,158,.18)" stroke="[[C1]]" stroke-width="1.4"/>
-      <path d="M67 64 C52 74 28 86 16 80 C7 75 12 62 28 60 C44 58 60 62 67 64Z" fill="rgba(212,185,181,.22)" stroke="[[C2]]" stroke-width="1.2"/>
-    </g>
-    <g class="bf-wR">
-      <path d="M73 57 C80 44 100 18 120 16 C134 15 138 30 132 46 C126 60 98 68 73 64Z" fill="rgba(181,161,158,.18)" stroke="[[C1]]" stroke-width="1.4"/>
-      <path d="M73 64 C88 74 112 86 124 80 C133 75 128 62 112 60 C96 58 80 62 73 64Z" fill="rgba(212,185,181,.22)" stroke="[[C2]]" stroke-width="1.2"/>
-    </g>
-    <ellipse cx="70" cy="62" rx="2.8" ry="22" fill="[[C3]]" opacity=".82"/>
-    <circle cx="70" cy="41" r="4.5" fill="[[C3]]"/>
-    <path d="M70 37 Q64 26 58 16" stroke="[[C3]]" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-    <circle cx="56" cy="7" r="3" fill="[[C3]]"/>
-    <path d="M70 37 Q76 26 82 16" stroke="[[C3]]" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-    <circle cx="84" cy="7" r="3" fill="[[C3]]"/>
-  </svg>
-</div>`,
-css:`.bf-hover-only .bf-wL,.bf-hover-only .bf-wR{transform-origin:center 55%}
-.bf-hover-only:hover .bf-wL{animation:flapL .6s cubic-bezier(.45,0,.55,1) infinite alternate}
-.bf-hover-only:hover .bf-wR{animation:flapR .6s cubic-bezier(.45,0,.55,1) infinite alternate}
-@keyframes flapL{from{transform:perspective(400px) rotateY(0deg) scaleX(1)}to{transform:perspective(400px) rotateY(-62deg) scaleX(.85)}}
-@keyframes flapR{from{transform:perspective(400px) rotateY(0deg) scaleX(1)}to{transform:perspective(400px) rotateY(62deg) scaleX(.85)}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}`,js:''},
-
-'bf-morpho':{name:'Dark Morpho',tag:'Butterfly',
-html:`<div class="bf-wrap-anim" style="--speed:2.2s;animation:float 6s ease-in-out infinite">
-  <svg width="150" height="125" viewBox="0 0 150 125" overflow="visible">
-    <g class="bf-wL"><path d="M72 60 C62 44 34 12 12 16 C-2 20 0 42 10 58 C20 72 50 78 72 70Z" fill="rgba(49,74,81,.2)" stroke="[[C3]]" stroke-width="1.5"/>
-    <path d="M72 70 C52 82 22 96 10 88 C0 82 8 66 28 64 C48 62 66 68 72 70Z" fill="rgba(86,104,106,.18)" stroke="[[C3]]" stroke-width="1.2" opacity=".7"/></g>
-    <g class="bf-wR"><path d="M78 60 C88 44 116 12 138 16 C152 20 150 42 140 58 C130 72 100 78 78 70Z" fill="rgba(49,74,81,.2)" stroke="[[C3]]" stroke-width="1.5"/>
-    <path d="M78 70 C98 82 128 96 140 88 C150 82 142 66 122 64 C102 62 84 68 78 70Z" fill="rgba(86,104,106,.18)" stroke="[[C3]]" stroke-width="1.2" opacity=".7"/></g>
-    <ellipse cx="75" cy="68" rx="2.8" ry="24" fill="[[C3]]" opacity=".88"/>
-    <circle cx="75" cy="44" r="4.8" fill="[[C3]]"/>
-    <path d="M75 40 Q68 28 62 16" stroke="[[C3]]" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-    <circle cx="60" cy="6" r="3.2" fill="[[C3]]"/>
-    <path d="M75 40 Q82 28 88 16" stroke="[[C3]]" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-    <circle cx="90" cy="6" r="3.2" fill="[[C3]]"/>
-  </svg>
-</div>`,
-css:`.bf-wrap-anim .bf-wL{transform-origin:100% 50%;animation:flapL var(--speed,1.8s) cubic-bezier(.45,0,.55,1) infinite alternate}
-.bf-wrap-anim .bf-wR{transform-origin:0% 50%;animation:flapR var(--speed,1.8s) cubic-bezier(.45,0,.55,1) infinite alternate}
-@keyframes flapL{from{transform:perspective(400px) rotateY(0deg) scaleX(1)}to{transform:perspective(400px) rotateY(-62deg) scaleX(.85)}}
-@keyframes flapR{from{transform:perspective(400px) rotateY(0deg) scaleX(1)}to{transform:perspective(400px) rotateY(62deg) scaleX(.85)}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}`,js:''},
-
-'bf-blush':{name:'Blush Klein',tag:'Butterfly',
-html:`<div class="bf-hover-only" style="animation:float 4s ease-in-out infinite;cursor:pointer">
-  <svg width="[[SZ]]" height="86" viewBox="0 0 100 86" overflow="visible">
-    <g class="bf-wL">
-      <path d="M47 43 C40 33 22 12 8 14 C0 16 0 28 6 38 C12 48 30 52 47 48Z" fill="rgba(212,185,181,.3)" stroke="[[C2]]" stroke-width="1.3"/>
-      <path d="M47 48 C34 56 16 64 8 60 C2 56 8 46 20 44 C32 42 42 46 47 48Z" fill="rgba(181,161,158,.22)" stroke="[[C2]]" stroke-width="1.1"/>
-    </g>
-    <g class="bf-wR">
-      <path d="M53 43 C60 33 78 12 92 14 C100 16 100 28 94 38 C88 48 70 52 53 48Z" fill="rgba(212,185,181,.3)" stroke="[[C2]]" stroke-width="1.3"/>
-      <path d="M53 48 C66 56 84 64 92 60 C98 56 92 46 80 44 C68 42 58 46 53 48Z" fill="rgba(181,161,158,.22)" stroke="[[C2]]" stroke-width="1.1"/>
-    </g>
-    <ellipse cx="50" cy="47" rx="2.4" ry="16" fill="[[C1]]" opacity=".75"/>
-    <circle cx="50" cy="29" r="3.8" fill="[[C1]]" opacity=".85"/>
-    <path d="M50 26 Q46 18 42 12" stroke="[[C1]]" stroke-width=".9" fill="none" stroke-linecap="round"/>
-    <circle cx="41" cy="11" r="2.2" fill="[[C1]]"/>
-    <path d="M50 26 Q54 18 58 12" stroke="[[C1]]" stroke-width=".9" fill="none" stroke-linecap="round"/>
-    <circle cx="59" cy="11" r="2.2" fill="[[C1]]"/>
-  </svg>
-</div>`,
-css:`.bf-hover-only .bf-wL,.bf-hover-only .bf-wR{transform-origin:center 55%}
-.bf-hover-only:hover .bf-wL{animation:flapL .6s cubic-bezier(.45,0,.55,1) infinite alternate}
-.bf-hover-only:hover .bf-wR{animation:flapR .6s cubic-bezier(.45,0,.55,1) infinite alternate}
-@keyframes flapL{from{transform:perspective(400px) rotateY(0deg) scaleX(1)}to{transform:perspective(400px) rotateY(-62deg) scaleX(.85)}}
-@keyframes flapR{from{transform:perspective(400px) rotateY(0deg) scaleX(1)}to{transform:perspective(400px) rotateY(62deg) scaleX(.85)}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}`,js:''},
-
-'bf-moth':{name:'Boho Moth',tag:'Butterfly',
-html:`<div class="bf-wrap-anim" style="--speed:3s;background:[[C3]];padding:20px;display:inline-block">
-  <svg width="140" height="120" viewBox="0 0 140 120" overflow="visible">
-    <g class="bf-wL">
-      <path d="M68 58 C56 46 30 22 12 24 C0 26 0 44 10 56 C20 66 46 70 68 66Z" fill="rgba(212,185,181,.15)" stroke="rgba(212,185,181,.6)" stroke-width="1.4"/>
-      <path d="M68 66 C48 76 24 84 14 78 C6 73 12 60 30 58 C46 56 62 62 68 66Z" fill="rgba(181,161,158,.1)" stroke="rgba(181,161,158,.5)" stroke-width="1.1"/>
-    </g>
-    <g class="bf-wR">
-      <path d="M72 58 C84 46 110 22 128 24 C140 26 140 44 130 56 C120 66 94 70 72 66Z" fill="rgba(212,185,181,.15)" stroke="rgba(212,185,181,.6)" stroke-width="1.4"/>
-      <path d="M72 66 C92 76 116 84 126 78 C134 73 128 60 110 58 C94 56 78 62 72 66Z" fill="rgba(181,161,158,.1)" stroke="rgba(181,161,158,.5)" stroke-width="1.1"/>
-    </g>
-    <ellipse cx="70" cy="63" rx="3" ry="20" fill="rgba(245,245,245,.7)"/>
-    <circle cx="70" cy="42" r="5" fill="rgba(245,245,245,.8)"/>
-    <path d="M70 38 Q62 28 54 18" stroke="rgba(245,245,245,.5)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-    <path d="M70 38 Q78 28 86 18" stroke="rgba(245,245,245,.5)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-  </svg>
-</div>`,
-css:`.bf-wrap-anim .bf-wL{transform-origin:100% 50%;animation:flapL var(--speed,1.8s) cubic-bezier(.45,0,.55,1) infinite alternate}
-.bf-wrap-anim .bf-wR{transform-origin:0% 50%;animation:flapR var(--speed,1.8s) cubic-bezier(.45,0,.55,1) infinite alternate}
-@keyframes flapL{from{transform:perspective(400px) rotateY(0deg)}to{transform:perspective(400px) rotateY(-70deg)}}
-@keyframes flapR{from{transform:perspective(400px) rotateY(0deg)}to{transform:perspective(400px) rotateY(70deg)}}`,js:''},
-
-'bf-resting':{name:'Ruhend 3D',tag:'Butterfly',
-html:`<div class="bf-hover-only" style="cursor:pointer">
-  <svg width="130" height="105" viewBox="0 0 130 105" overflow="visible">
-    <g class="bf-wL" style="transform:perspective(600px) rotateY(-15deg)">
-      <path d="M62 54 C52 40 26 10 8 14 C-4 18 -2 38 8 52 C18 64 44 70 62 64Z" fill="rgba(110,59,73,.16)" stroke="[[C1]]" stroke-width="1.5"/>
-      <path d="M62 64 C44 76 18 88 8 82 C0 77 6 62 24 60 C40 58 56 62 62 64Z" fill="rgba(181,161,158,.2)" stroke="[[C2]]" stroke-width="1.2"/>
-    </g>
-    <g class="bf-wR" style="transform:perspective(600px) rotateY(15deg)">
-      <path d="M68 54 C78 40 104 10 122 14 C134 18 132 38 122 52 C112 64 86 70 68 64Z" fill="rgba(110,59,73,.16)" stroke="[[C1]]" stroke-width="1.5"/>
-      <path d="M68 64 C86 76 112 88 122 82 C130 77 124 62 106 60 C90 58 74 62 68 64Z" fill="rgba(181,161,158,.2)" stroke="[[C2]]" stroke-width="1.2"/>
-    </g>
-    <ellipse cx="65" cy="60" rx="2.8" ry="20" fill="[[C3]]" opacity=".85"/>
-    <circle cx="65" cy="40" r="4.6" fill="[[C3]]"/>
-    <path d="M65 36 Q59 25 53 14" stroke="[[C3]]" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-    <circle cx="51" cy="5" r="3" fill="[[C3]]"/>
-    <path d="M65 36 Q71 25 77 14" stroke="[[C3]]" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-    <circle cx="79" cy="5" r="3" fill="[[C3]]"/>
-  </svg>
-</div>`,
-css:`.bf-hover-only .bf-wL,.bf-hover-only .bf-wR{transform-origin:center 55%}
-.bf-hover-only:hover .bf-wL{animation:flapL .6s cubic-bezier(.45,0,.55,1) infinite alternate}
-.bf-hover-only:hover .bf-wR{animation:flapR .6s cubic-bezier(.45,0,.55,1) infinite alternate}
-@keyframes flapL{from{transform:perspective(400px) rotateY(0deg)}to{transform:perspective(400px) rotateY(-62deg)}}
-@keyframes flapR{from{transform:perspective(400px) rotateY(0deg)}to{transform:perspective(400px) rotateY(62deg)}}`,js:''},
-
-'bf-pair':{name:'Schmetterlinge Pärchen',tag:'Butterfly',
-html:`<div style="position:relative;width:120px;height:100px">
-  <div class="bf-wrap-anim" style="--speed:1.9s;position:absolute;top:0;left:0;animation:float 4s ease-in-out infinite">
-    <svg width="70" height="58" viewBox="0 0 100 86" overflow="visible">
-      <g class="bf-wL"><path d="M47 43 C40 33 22 12 8 14 C0 16 0 28 6 38 C12 48 30 52 47 48Z" fill="rgba(212,185,181,.28)" stroke="[[C2]]" stroke-width="1.4"/>
-      <path d="M47 48 C34 56 16 64 8 60 C2 56 8 46 20 44 C32 42 42 46 47 48Z" fill="rgba(181,161,158,.2)" stroke="[[C2]]" stroke-width="1.1"/></g>
-      <g class="bf-wR"><path d="M53 43 C60 33 78 12 92 14 C100 16 100 28 94 38 C88 48 70 52 53 48Z" fill="rgba(212,185,181,.28)" stroke="[[C2]]" stroke-width="1.4"/>
-      <path d="M53 48 C66 56 84 64 92 60 C98 56 92 46 80 44 C68 42 58 46 53 48Z" fill="rgba(181,161,158,.2)" stroke="[[C2]]" stroke-width="1.1"/></g>
-      <ellipse cx="50" cy="47" rx="2.2" ry="15" fill="[[C1]]" opacity=".72"/>
-      <circle cx="50" cy="30" r="3.5" fill="[[C1]]" opacity=".78"/>
-    </svg>
-  </div>
-  <div class="bf-wrap-anim" style="--speed:2.4s;position:absolute;bottom:0;right:0;animation:float 4s ease-in-out .8s infinite">
-    <svg width="55" height="48" viewBox="0 0 100 86" overflow="visible">
-      <g class="bf-wL"><path d="M47 43 C40 33 22 12 8 14 C0 16 0 28 6 38 C12 48 30 52 47 48Z" fill="rgba(49,74,81,.18)" stroke="[[C3]]" stroke-width="1.4"/>
-      <path d="M47 48 C34 56 16 64 8 60 C2 56 8 46 20 44 C32 42 42 46 47 48Z" fill="rgba(86,104,106,.14)" stroke="[[C3]]" stroke-width="1.1"/></g>
-      <g class="bf-wR"><path d="M53 43 C60 33 78 12 92 14 C100 16 100 28 94 38 C88 48 70 52 53 48Z" fill="rgba(49,74,81,.18)" stroke="[[C3]]" stroke-width="1.4"/>
-      <path d="M53 48 C66 56 84 64 92 60 C98 56 92 46 80 44 C68 42 58 46 53 48Z" fill="rgba(86,104,106,.14)" stroke="[[C3]]" stroke-width="1.1"/></g>
-      <ellipse cx="50" cy="47" rx="2" ry="15" fill="[[C3]]" opacity=".8"/>
-      <circle cx="50" cy="30" r="3.5" fill="[[C3]]" opacity=".85"/>
-    </svg>
-  </div>
-</div>`,
-css:`.bf-wrap-anim .bf-wL{transform-origin:100% 50%;animation:flapL var(--speed,1.8s) cubic-bezier(.45,0,.55,1) infinite alternate}
-.bf-wrap-anim .bf-wR{transform-origin:0% 50%;animation:flapR var(--speed,1.8s) cubic-bezier(.45,0,.55,1) infinite alternate}
-@keyframes flapL{from{transform:perspective(400px) rotateY(0deg)}to{transform:perspective(400px) rotateY(-62deg)}}
-@keyframes flapR{from{transform:perspective(400px) rotateY(0deg)}to{transform:perspective(400px) rotateY(62deg)}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}`,js:''}
+const components = {
+  'hero-flower':{name:'Rotierende Blume',category:'Hero',props:{size:80},html:'<div style="position:relative;display:flex;align-items:center;justify-content:center;width:80px;height:80px"><svg style="animation:rot 16s linear infinite" viewBox="0 0 80 80" fill="none" width="80" height="80"><circle cx="40" cy="40" r="35" stroke="rgba(181,161,158,.2)" stroke-width="0.8"/><ellipse cx="40" cy="40" rx="5" ry="18" stroke="rgba(181,161,158,.5)" stroke-width="0.8"/><ellipse cx="40" cy="40" rx="5" ry="18" stroke="rgba(181,161,158,.5)" stroke-width="0.8" transform="rotate(60 40 40)"/><ellipse cx="40" cy="40" rx="5" ry="18" stroke="rgba(181,161,158,.5)" stroke-width="0.8" transform="rotate(120 40 40)"/><circle cx="40" cy="40" r="4" fill="rgba(110,59,73,.6)"/></svg></div>',css:'@keyframes rot{to{transform:rotate(360deg)}}'},
+  'triple-rings':{name:'Triple Ringe',category:'Hero',props:{size:80},html:'<div style="position:relative;width:80px;height:80px;display:flex;align-items:center;justify-content:center"><div style="position:absolute;border-radius:50%;border:1px solid rgba(110,59,73,.4);width:60%;height:60%;animation:breath 4s ease-in-out infinite"></div><div style="position:absolute;border-radius:50%;border:1px solid rgba(110,59,73,.4);width:80%;height:40%;animation:breath 4s ease-in-out infinite 0.5s"></div></div>',css:'@keyframes breath{0%,100%{opacity:0.2}50%{opacity:0.6}}'},
+  'bf-glasswing':{name:'Glasswing Butterfly',category:'Butterfly',props:{size:100},html:'<svg width="100" height="100" viewBox="0 0 140 120" overflow="visible"><g style="transform-origin:center 55%"><path d="M67 57 C60 44 40 18 20 16 C6 15 2 30 8 46 C14 60 42 68 67 64Z" fill="rgba(181,161,158,.18)" stroke="rgba(181,161,158,.7)" stroke-width="1.4"/><path d="M67 64 C52 74 28 86 16 80 C7 75 12 62 28 60 C44 58 60 62 67 64Z" fill="rgba(212,185,181,.22)" stroke="rgba(212,185,181,.6)" stroke-width="1.2"/></g><g style="transform-origin:center 55%"><path d="M73 57 C80 44 100 18 120 16 C134 15 138 30 132 46 C126 60 98 68 73 64Z" fill="rgba(181,161,158,.18)" stroke="rgba(181,161,158,.7)" stroke-width="1.4"/><path d="M73 64 C88 74 112 86 124 80 C133 75 128 62 112 60 C96 58 80 62 73 64Z" fill="rgba(212,185,181,.22)" stroke="rgba(212,185,181,.6)" stroke-width="1.2"/></g><ellipse cx="70" cy="62" rx="2.8" ry="22" fill="rgba(110,59,73,.8)"/><circle cx="70" cy="41" r="4.5" fill="rgba(110,59,73,.8)"/></svg>',css:''},
+  'boho-arch':{name:'Rainbow Arch',category:'Boho',props:{size:100},html:'<svg width="100" height="100" viewBox="0 0 100 100"><path d="M 20 80 Q 50 20 80 80" fill="none" stroke="rgba(181,161,158,.5)" stroke-width="2" stroke-linecap="round"/><path d="M 25 80 Q 50 35 75 80" fill="none" stroke="rgba(212,185,181,.4)" stroke-width="2" stroke-linecap="round"/><path d="M 30 80 Q 50 50 70 80" fill="none" stroke="rgba(110,59,73,.3)" stroke-width="2" stroke-linecap="round"/></svg>',css:''},
+  'fl-peony':{name:'Pfingstrose',category:'Flora',props:{size:100},html:'<svg width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="rgba(212,185,181,.3)"/><circle cx="40" cy="40" r="15" fill="rgba(181,161,158,.4)"/><circle cx="60" cy="40" r="15" fill="rgba(181,161,158,.4)"/><circle cx="40" cy="60" r="15" fill="rgba(181,161,158,.4)"/><circle cx="60" cy="60" r="15" fill="rgba(181,161,158,.4)"/><circle cx="50" cy="50" r="8" fill="rgba(110,59,73,.6)"/></svg>',css:''},
+  'btn-fill':{name:'Fill Reveal Button',category:'Buttons',props:{size:120,text:'Button'},html:'<button style="padding:12px 32px;border:1px solid rgba(110,59,73,.4);background:rgba(110,59,73,.1);color:rgba(110,59,73,.8);border-radius:6px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .3s">Button</button>',css:''}
 };
 
-// ═══════════════════════════════════════════════════
-//  STATE
-// ═══════════════════════════════════════════════════
-let current = 'hero-flower';
-const S = {};
+const categories = {};
+Object.values(components).forEach(c => {
+  if(!categories[c.category]) categories[c.category] = [];
+  categories[c.category].push(c);
+});
 
-// ═══════════════════════════════════════════════════
-//  SETTINGS HELPERS
-// ═══════════════════════════════════════════════════
-function g(id){ return document.getElementById(id) }
+let current = null;
+let state = {};
 
-function getInputValue(id, fallback = ''){
-  const el = g(id);
-  return el ? el.value : fallback;
-}
-
-function vals(){
-  return {
-    t:  getInputValue('set-text', ''),
-    t2: getInputValue('set-text2', ''),
-    t3: getInputValue('set-text3', ''),
-    sz: getInputValue('set-size', '80'),
-    pad: '20',
-    rad: getInputValue('set-radius', '8'),
-    c1: getInputValue('set-c1', '#6E3B49'),
-    c2: getInputValue('set-c2', '#B5A19E'),
-    c3: getInputValue('set-c3', '#314A51'),
-    c4: getInputValue('set-c4', '#2D2020')
-  };
-}
-
-function applyVals(str, v){
-  return str
-    .replaceAll('[[T]]', v.t).replaceAll('[[T2]]', v.t2).replaceAll('[[T3]]', v.t3)
-    .replaceAll('[[SZ]]', v.sz).replaceAll('[[PAD]]', v.pad).replaceAll('[[RAD]]', v.rad)
-    .replaceAll('[[C1]]', v.c1).replaceAll('[[C2]]', v.c2)
-    .replaceAll('[[C3]]', v.c3).replaceAll('[[C4]]', v.c4);
-}
-
-// Build position CSS block from panel settings
-function getPositionCSS(){
-  const mt = getInputValue('set-mt', '0');
-  const mb = getInputValue('set-mb', '0');
-  const ml = getInputValue('set-ml', '0');
-  const mr = getInputValue('set-mr', '0');
-  const ph = getInputValue('set-ph', '0');
-  const pv = getInputValue('set-pv', '0');
-  const pos = getSegVal('seg-pos') || 'relative';
-  const align = getSegVal('seg-align') || 'center';
-  const valign = getSegVal('seg-valign') || 'center';
-  const op = (Number(getInputValue('set-opacity', '100')) || 100)/100;
-  return `position:${pos};margin-top:${mt}px;margin-bottom:${mb}px;margin-left:${ml}px;margin-right:${mr}px;padding:${pv}px ${ph}px;opacity:${op};display:flex;align-items:${valign};justify-content:${align};`;
-}
-
-// Build typography CSS block
-function getTypoCSS(){
-  const font = getInputValue('set-font', "'Tenor Sans', sans-serif");
-  const size = getInputValue('set-fontsize', '16px');
-  const fw = getSegVal('seg-fw') || '400';
-  const italic = g('tog-italic')?.classList.contains('on') ? 'italic' : 'normal';
-  const upper = g('tog-upper')?.classList.contains('on') ? 'uppercase' : 'none';
-  const ls = ((Number(getInputValue('set-ls', '0')) || 0)/100).toFixed(2);
-  const lh = ((Number(getInputValue('set-lh', '16')) || 16)/10).toFixed(1);
-  return `font-family:${font};font-size:${size};font-weight:${fw};font-style:${italic};text-transform:${upper};letter-spacing:${ls}em;line-height:${lh};`;
-}
-
-// Build animation override
-function getAnimCSS(){
-  if(!g('tog-anim')?.classList.contains('on')) return '';
-  const type = getInputValue('set-animtype', 'none');
-  const dur = getInputValue('set-dur', '1');
-  const timing = getInputValue('set-timing', 'ease');
-  const inf = g('tog-infinite')?.classList.contains('on') ? 'infinite' : '1';
-  const delay = getInputValue('set-delay', '0');
-  return `animation:${type} ${dur}s ${timing} ${inf};animation-delay:${delay}s;`;
-}
-
-function getSegVal(segId){
-  const seg = g(segId);
-  if(!seg) return '';
-  const active = seg.querySelector('.seg-btn.on');
-  return active ? active.dataset.val : '';
-}
-
-// ═══════════════════════════════════════════════════
-//  RENDER
-// ═══════════════════════════════════════════════════
-function render() {
-  const comp = C[current];
-  const preview = g('previewEl');
-  if(!comp){
-    if(preview){
-      preview.innerHTML = `<div style="padding:16px 20px;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:10px;font-size:12px;color:#666">Diese Komponente ist noch nicht im JS-Objekt <code>C</code> hinterlegt.</div>`;
-    }
-    return;
-  }
-  if(g('stageName')) g('stageName').textContent = comp.name || current;
-  if(g('stageTag')) g('stageTag').textContent = comp.tag || 'Component';
-  if(preview) preview.innerHTML = applyVals(comp.html, vals());
-  buildPanels();
-}
-
-// ═══════════════════════════════════════════════════
-//  BUILD PANELS
-// ═══════════════════════════════════════════════════
-function buildPanels() {
-  const comp = C[current];
-  const container = g('settingsPanes');
-  if(!container || !comp) return;
-  container.innerHTML = '';
-
-  const groups = {
-    text: ['Inhalt', 'text', 'title', 'label', 'val', 'count', 'speed'],
-    position: ['Layout', 'top', 'left', 'bottom', 'right', 'x', 'y', 'w', 'h', 'size', 'scale', 'rotate', 'z'],
-    typo: ['Typografie', 'font', 'weight', 'spacing', 'case', 'align', 'lh'],
-    anim: ['Animation', 'dur', 'delay', 'iter', 'ease', 'dir'],
-    color: ['Design', 'bg', 'col', 'border', 'shd', 'op']
-  };
-
-  Object.entries(groups).forEach(([key, [label, ...prefixes]]) => {
-    const pane = document.createElement('div');
-    pane.className = `ptab-pane ${key === 'text' ? 'on' : ''}`;
-    pane.id = `pane-${key}`;
-    
-    const props = comp.p || comp.props || {};
-    const relevantProps = Object.entries(props).filter(([p]) =>
-      prefixes.some(pre => p.toLowerCase().startsWith(pre))
-    );
-
-    if (relevantProps.length > 0) {
-      relevantProps.forEach(([p, def]) => {
-        const row = document.createElement('div');
-        row.className = 'p-row';
-        row.innerHTML = `<label>${p}</label>`;
-        const input = document.createElement('input');
-        input.value = S[current]?.[p] ?? def;
-        input.oninput = (e) => {
-          if(!S[current]) S[current] = {};
-          S[current][p] = e.target.value;
-          render();
-        };
-        row.appendChild(input);
-        pane.appendChild(row);
-      });
-    } else {
-      pane.innerHTML = `<p style="grid-column: 1/-1; opacity: 0.5; font-size: 11px;">Keine spezifischen ${label}-Optionen vorhanden.</p>`;
-    }
-    container.appendChild(pane);
-  });
-
-  // Tab switching logic
-  document.querySelectorAll('.ptab').forEach(tab => {
-    tab.onclick = () => {
-      document.querySelectorAll('.ptab, .ptab-pane').forEach(el => el.classList.remove('on'));
-      tab.classList.add('on');
-      const target = g(`pane-${tab.dataset.tab}`);
-      if(target) target.classList.add('on');
+function renderNav() {
+  const nav = document.getElementById('navContainer');
+  nav.innerHTML = '';
+  
+  Object.entries(categories).forEach(([cat, items]) => {
+    const catHeader = document.createElement('div');
+    catHeader.className = 'cat-header';
+    catHeader.innerHTML = `<span>${cat}</span><span class="cat-arrow">↓</span>`;
+    catHeader.onclick = () => {
+      catHeader.classList.toggle('open');
+      itemsGroup.classList.toggle('open');
+      if(catHeader.classList.contains('open')) showShowcase(cat);
     };
+
+    const itemsGroup = document.createElement('div');
+    itemsGroup.className = 'cat-items';
+
+    items.forEach(item => {
+      const itemEl = document.createElement('div');
+      itemEl.className = 'nav-item';
+      itemEl.innerHTML = `<span class="nav-item-dot"></span>${item.name}`;
+      itemEl.onclick = () => selectItem(item.name);
+      itemsGroup.appendChild(itemEl);
+    });
+
+    nav.appendChild(catHeader);
+    nav.appendChild(itemsGroup);
   });
 }
 
-// ═══════════════════════════════════════════════════
-//  COPY
-// ═══════════════════════════════════════════════════
-function doCopy(type){
-  const comp = C[current]; if(!comp) return;
-  const v = vals();
-  const posCSS = getPositionCSS();
-  const typoCSS = getTypoCSS();
-  const animCSS = getAnimCSS();
-  const htmlContent = applyVals(comp.html, v);
-  const cssContent  = applyVals(comp.css, v);
-  const jsContent   = comp.js || '// Kein JavaScript nötig.';
-
-  let content = '';
-  if(type==='html') content = htmlContent;
-  else if(type==='css') content = cssContent;
-  else if(type==='js') content = jsContent;
-  else if(type==='all'){
-    content =
-`<!-- ── HTML: in <body> einfügen ────────────────────────── -->
-<div style="${posCSS}${typoCSS}${animCSS}">
-${htmlContent}
-</div>
-
-<!-- ── CSS: in <style> oder .css Datei einfügen ─────────── -->
-<style>
-${cssContent}
-</style>
-
-<!-- ── JS: vor </body> einfügen (falls nötig) ────────────── -->
-<script>
-${jsContent}
-<\/script>`;
+function showShowcase(category = null) {
+  document.getElementById('stageView').classList.remove('show');
+  document.getElementById('showcaseGrid').classList.remove('hide');
+  document.getElementById('showcaseGrid').innerHTML = '';
+  
+  let items = [];
+  if(category) {
+    items = categories[category] || [];
+  } else {
+    Object.values(categories).forEach(cats => items.push(...cats));
   }
 
-  navigator.clipboard.writeText(content).then(()=>{
-    const map = {html:0,css:1,js:2,all:3};
-    const btn = document.querySelectorAll('.cp-btn')[map[type]];
-    const orig = btn.innerHTML;
-    btn.innerHTML = '✓ Kopiert!';
-    btn.classList.add('done');
-    setTimeout(()=>{btn.innerHTML=orig;btn.classList.remove('done');},1800);
+  items.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'showcase-card';
+    card.innerHTML = `
+      <div class="showcase-preview">${item.html}</div>
+      <div class="showcase-label">${item.name}</div>
+    `;
+    card.onclick = () => selectItem(item.name);
+    document.getElementById('showcaseGrid').appendChild(card);
   });
 }
 
-// ═══════════════════════════════════════════════════
-//  PANEL TABS
-// ═══════════════════════════════════════════════════
-document.querySelectorAll('.ptab').forEach(tab=>{
-  tab.addEventListener('click',()=>{
-    document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('on'));
-    document.querySelectorAll('.ptab-pane').forEach(p=>p.classList.remove('on'));
-    tab.classList.add('on');
-    const pane = g('pane-'+tab.dataset.tab);
-    if(pane) pane.classList.add('on');
-  });
-});
+function selectItem(name) {
+  current = Object.values(components).find(c => c.name === name);
+  if(!current) return;
 
-// ═══════════════════════════════════════════════════
-//  SEGMENT CONTROLS
-// ═══════════════════════════════════════════════════
-document.querySelectorAll('.seg').forEach(seg=>{
-  seg.querySelectorAll('.seg-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      seg.querySelectorAll('.seg-btn').forEach(b=>b.classList.remove('on'));
-      btn.classList.add('on');
-      render();
-    });
-  });
-});
+  document.getElementById('showcaseGrid').classList.add('hide');
+  document.getElementById('stageView').classList.add('show');
+  document.getElementById('stageName').textContent = current.name;
+  document.getElementById('stageTag').textContent = current.category;
 
-// ═══════════════════════════════════════════════════
-//  TOGGLE
-// ═══════════════════════════════════════════════════
-function toggleIt(el, arg){
-  el.classList.toggle('on');
-  render();
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  const active = Array.from(document.querySelectorAll('.nav-item')).find(el => el.textContent.includes(name));
+  if(active) active.classList.add('active');
+
+  renderPreview();
+  renderSettings();
 }
 
-// ═══════════════════════════════════════════════════
-//  SIDEBAR NAV
-// ═══════════════════════════════════════════════════
-document.querySelectorAll('.item').forEach(el=>{
-  el.addEventListener('click',()=>{
-    document.querySelectorAll('.item').forEach(i=>i.classList.remove('active'));
-    el.classList.add('active');
-    current = el.dataset.id;
-    render();
-  });
-});
-
-document.querySelectorAll('.cat').forEach(cat => {
-  cat.addEventListener('click', () => cat.classList.toggle('open'));
-});
-if(document.querySelector('.cat')){
-  document.querySelector('.cat').classList.add('open');
+function renderPreview() {
+  if(!current) return;
+  document.getElementById('previewInner').innerHTML = current.html;
+  
+  const style = document.createElement('style');
+  style.textContent = current.css;
+  document.head.appendChild(style);
 }
 
-// ═══════════════════════════════════════════════════
-//  SEARCH
-// ═══════════════════════════════════════════════════
-g('searchInput')?.addEventListener('input', e=>{
-  const q = e.target.value.toLowerCase().trim();
-  document.querySelectorAll('.item').forEach(el=>{
-    el.classList.toggle('hidden', q && !el.textContent.toLowerCase().includes(q));
+function renderSettings() {
+  if(!current) return;
+
+  const tabsDiv = document.getElementById('settingsTabs');
+  const panesDiv = document.getElementById('settingsPanes');
+  tabsDiv.innerHTML = '';
+  panesDiv.innerHTML = '';
+
+  const tabs = ['Text', 'Layout', 'Typo', 'Animation', 'Farbe'];
+  
+  tabs.forEach((tab, idx) => {
+    const tabBtn = document.createElement('div');
+    tabBtn.className = `settings-tab ${idx === 0 ? 'active' : ''}`;
+    tabBtn.textContent = tab;
+    tabBtn.onclick = () => {
+      document.querySelectorAll('.settings-tab, .settings-pane').forEach(el => el.classList.remove('active', 'show'));
+      tabBtn.classList.add('active');
+      pane.classList.add('show');
+    };
+    tabsDiv.appendChild(tabBtn);
+
+    const pane = document.createElement('div');
+    pane.className = `settings-pane ${idx === 0 ? 'show' : ''}`;
+    pane.id = `pane-${tab}`;
+
+    const row = document.createElement('div');
+    row.className = 'setting-row';
+    row.innerHTML = `<label>${tab}</label><input type="text" placeholder="Wert eingeben">`;
+    pane.appendChild(row);
+
+    panesDiv.appendChild(pane);
   });
-  document.querySelectorAll('.cat').forEach(cat=>{
-    const group = cat.nextElementSibling;
-    const visible = !!group && !!group.querySelector('.item:not(.hidden)');
-    cat.classList.toggle('hidden', q && !visible);
-    if(group) group.classList.toggle('hidden', q && !visible);
-  });
+}
+
+// SCALE
+document.addEventListener('click', e => {
+  if(e.target.classList.contains('scale-btn')) {
+    document.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById('previewInner').style.transform = `scale(${e.target.dataset.scale})`;
+  }
 });
 
-// ═══════════════════════════════════════════════════
-//  SCALE
-// ═══════════════════════════════════════════════════
-document.querySelectorAll('.sc-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.sc-btn').forEach(b=>b.classList.remove('on'));
-    btn.classList.add('on');
-    g('previewEl').style.transform=`scale(${btn.dataset.scale})`;
-  });
+// BACKGROUND
+document.addEventListener('click', e => {
+  if(e.target.classList.contains('bg-swatch')) {
+    document.querySelectorAll('.bg-swatch').forEach(s => s.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById('previewArea').style.background = e.target.dataset.bg;
+  }
 });
 
-// ═══════════════════════════════════════════════════
-//  BACKGROUND
-// ═══════════════════════════════════════════════════
-document.querySelectorAll('.bg-sw').forEach(sw=>{
-  sw.addEventListener('click',()=>{
-    document.querySelectorAll('.bg-sw').forEach(s=>s.classList.remove('on'));
-    sw.classList.add('on');
-    g('previewWrap').style.background=sw.dataset.bg;
-  });
+// BACK BUTTON
+document.getElementById('backBtn').addEventListener('click', () => {
+  showShowcase();
 });
 
-// ═══════════════════════════════════════════════════
-//  RANGE LABELS
-// ═══════════════════════════════════════════════════
-[['set-size','sz-val','px',100],['set-radius','rad-val','px',100],['set-opacity','op-val','%',100],['set-ls','ls-val','em',100],['set-lh','lh-val','',10],['set-dur','dur-val','s',100],['set-delay','delay-val','s',100]]
-  .forEach(([inputId, labelId, suffix, divisor]) => {
-    const input = g(inputId);
-    if(!input) return;
-    input.addEventListener('input', (e) => {
-      const label = g(labelId);
-      if(label){
-        const n = Number(e.target.value) || 0;
-        label.textContent = divisor === 100 && suffix === 'em' ? (n / 100).toFixed(2) + suffix : divisor === 10 ? (n / 10).toFixed(1) + suffix : n + suffix;
-      }
-      render();
-    });
-  });
-
-// ═══════════════════════════════════════════════════
-//  ALL OTHER INPUTS
-// ═══════════════════════════════════════════════════
-['set-text','set-text2','set-text3','set-mt','set-mb','set-ml','set-mr','set-ph','set-pv',
- 'set-c1','set-c2','set-c3','set-c4','set-font','set-fontsize','set-animtype','set-timing'].forEach(id=>{
-  g(id)?.addEventListener('input', render);
-});
-
-// ═══════════════════════════════════════════════════
-//  QUICK PALETTES
-// ═══════════════════════════════════════════════════
-document.querySelectorAll('.pal-dot').forEach(dot=>{
-  dot.addEventListener('click',()=>{
-    g('set-c1').value = dot.dataset.c1;
-    g('set-c2').value = dot.dataset.c2;
-    g('set-c3').value = dot.dataset.c3;
-    g('set-c4').value = dot.dataset.c4;
-    render();
-  });
-});
-
-// ═══════════════════════════════════════════════════
-//  INIT
-// ═══════════════════════════════════════════════════
-if(g('f-text2')) g('f-text2').style.display='none';
-if(g('f-text3')) g('f-text3').style.display='none';
-render();
+// INIT
+renderNav();
+showShowcase();
 </script>
+
 </body>
 </html>
