@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Komthur GmbH | Khadija Okbi</title>
-  <meta name="description" content="Digitale Neupositionierung der Komthur GmbH — Strategie, Website, SEA, Social Media." />
+  <title>Komthur GmbH — Online-Marketing Konzept | Khadija Okbi</title>
+  <meta name="description" content="IPA 2024 — Online-Marketing Konzept für die Komthur GmbH. Strategie, Website, SEA & Social Media." />
   <link rel="icon" type="image/png" href="../assets/images/branding/logo_white.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,62 +17,55 @@
   <link rel="stylesheet" href="../assets/css/design-system.css" />
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/footer-nav-waves.css" />
-  <link rel="stylesheet" href="style/ipa.css" />
+  <link rel="stylesheet" href="style/komthur.css" />
 </head>
-<body>
+<body class="is-loading">
 
-<!-- ░░ PRELOADER ░░ -->
-<div id="preloader" class="preloader">
-  <div class="preloader-inner">
-    <img src="../assets/images/branding/logo_white.png" alt="Logo" class="preloader-logo" />
+<!-- PRELOADER -->
+<div class="loader loader--sub" id="loaderSub">
+  <div class="loader__riser" id="loaderSubRiser">
+    <svg class="loader__wave-svg" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+      <path class="loader__wave-path" d="M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,250.7C672,256,768,224,864,202.7C960,181,1056,171,1152,181.3C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z"/>
+    </svg>
+    <div class="loader__panel"></div>
   </div>
 </div>
 
-<!-- ░░ NAV ░░ -->
-<nav class="main-nav" id="mainNav">
-  <a href="../index.html" class="nav-logo">
-    <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi" />
-  </a>
-  <ul class="nav-links">
-    <li><a href="../index.html">Home</a></li>
-    <li><a href="../work.html" class="active">Work</a></li>
-    <li><a href="../about.html">About</a></li>
-    <li><a href="../contact.html">Contact</a></li>
-  </ul>
-  <button class="nav-burger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+<!-- HEADER -->
+<header class="site-header" id="siteHeader">
+  <div class="page-container nav-bar">
+    <a href="../index.html" class="logo">
+      <img src="../assets/images/branding/logo_black.png" alt="Khadija Okbi" width="45">
+      <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi" width="45" class="logo-onscroll">
+    </a>
+    <nav class="nav">
+      <a href="../index.html#hero" class="nav-link">Home</a>
+      <a href="../index.html#expertise" class="nav-link">Work</a>
+      <a href="../index.html#blog" class="nav-link">Blog</a>
+      <a href="../about.html" class="nav-link">About</a>
+    </nav>
+  </div>
+</header>
 
-<!-- ════════════════════════════════════════
-     HERO
-════════════════════════════════════════ -->
+<main>
+
+<!-- ══════════════════════════════════════════
+     HERO — Video fullscreen
+══════════════════════════════════════════ -->
 <section class="section-hero">
-  <video class="hero-video" autoplay muted loop playsinline
-         src="../assets/videos/komthur-hero.mp4"
-         poster="../assets/images/komthur/hero-poster.jpg">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="../video/Komthur.mp4" type="video/mp4">
   </video>
-  <div class="work-hero-overlay">
-    <span class="work-hero-eyebrow">IPA · Mediamatik · 2024</span>
-    <h1 class="work-hero-title">Komthur<br><em>GmbH</em></h1>
-  </div>
-  <div class="work-hero-scroll">
-    <span class="work-hero-scroll-label">Scroll</span>
-    <div class="work-hero-scroll-line"></div>
-  </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     INTRO
-════════════════════════════════════════ -->
-<section class="work-intro bg-white">
-  <div class="work-intro-inner">
-    <p class="work-intro-statement">
-      30 Jahre Erfahrung —<br><em>endlich sichtbar.</em>
-    </p>
-    <p class="work-intro-subtitle">
-      Die Komthur GmbH steht für handwerkliche Präzision und tiefes Fachwissen im Gebäudebereich. Was fehlte: eine digitale Präsenz, die das widerspiegelt. Meine IPA umfasste die vollständige Neupositionierung — von der Marktanalyse bis zur Umsetzung in Website, SEA und Social Media.
-    </p>
+<!-- ══════════════════════════════════════════
+     INTRO — Text unter Video
+══════════════════════════════════════════ -->
+<section class="work-intro wave-dark">
+  <div class="page-container">
+    <span class="ds-badge">IPA · Abschlussarbeit · 2024</span>
+    <h1>Online-Marketing<br><em>Konzept.</em></h1>
+    <p class="work-intro-subtitle">Eine ganzheitliche Neuausrichtung für die Komthur GmbH — Kreuzlingen. Von der Zielgruppenanalyse über digitale Transformation bis zur messbaren Erfolgsrealisierung.</p>
     <hr class="work-intro-rule" />
     <div class="work-meta-row">
       <div class="work-meta-item">
@@ -81,7 +74,7 @@
       </div>
       <div class="work-meta-item">
         <span class="work-meta-label">Bereich</span>
-        <span class="work-meta-value">Strategie & Digital</span>
+        <span class="work-meta-value">Online-Marketing</span>
       </div>
       <div class="work-meta-item">
         <span class="work-meta-label">Jahr</span>
@@ -89,845 +82,746 @@
       </div>
       <div class="work-meta-item">
         <span class="work-meta-label">Scope</span>
-        <span class="work-meta-value">Website · SEA · Social</span>
+        <span class="work-meta-value">Strategie · Website · SEA · Social</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     ── PHASE 1: KONZEPT & MARKTANALYSE ──
-════════════════════════════════════════ -->
-<div class="phase-divider bg-cream wave-to-dark">
-  <div class="container">
-    <div class="phase-divider-inner">
-      <span class="phase-num">01</span>
-      <div class="phase-title-group">
-        <span class="phase-kicker">Phase Eins</span>
-        <h2 class="phase-h2">Konzept &amp; <em>Marktanalyse</em></h2>
+<!-- ══════════════════════════════════════════
+     INPAGE NAV
+══════════════════════════════════════════ -->
+<nav class="inpage-nav" id="inpageNav">
+  <div class="page-container inpage-nav-inner">
+    <a href="#marktanalyse" class="inpage-link active" data-target="marktanalyse">
+      <span class="inpage-num">01</span>
+      <span class="inpage-title">Marktanalyse</span>
+    </a>
+    <span class="inpage-sep"></span>
+    <a href="#strategie" class="inpage-link" data-target="strategie">
+      <span class="inpage-num">02</span>
+      <span class="inpage-title">Strategie</span>
+    </a>
+    <span class="inpage-sep"></span>
+    <a href="#content" class="inpage-link" data-target="content">
+      <span class="inpage-num">03</span>
+      <span class="inpage-title">Content</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     01 MARKTANALYSE
+══════════════════════════════════════════ -->
+<section class="k-section bg-cream wave-dark" id="marktanalyse">
+  <div class="page-container">
+
+    <div class="k-section-label">
+      <span class="k-num">01</span>
+      <h2>Markt<em>analyse.</em></h2>
+    </div>
+
+    <!-- Optimierungsplan -->
+    <div class="k-block" id="optimierung">
+      <div class="k-block-header">
+        <h3>Ausgangslage &amp; <em>Ziel.</em></h3>
+        <p>Ist-Zustand und messbares Ziel — sechs strategische Dimensionen im direkten Vergleich.</p>
+      </div>
+      <div class="optim-accordion" id="optimAccordion">
+
+        <div class="oa-item active">
+          <button class="oa-trigger">
+            <span class="oa-num">01</span>
+            <span class="oa-title">Sichtbarkeit</span>
+            <i class="fa-solid fa-chevron-down oa-arrow"></i>
+          </button>
+          <div class="oa-body">
+            <div class="oa-states">
+              <div class="oa-state oa-ist"><span class="oa-state-label">Ist</span><p>Kaum in Suchmaschinen sichtbar</p></div>
+              <div class="oa-divider">→</div>
+              <div class="oa-state oa-soll"><span class="oa-state-label">Ziel</span><p>Top-Rankings für Zielkeywords</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="oa-item">
+          <button class="oa-trigger">
+            <span class="oa-num">02</span>
+            <span class="oa-title">Content &amp; Story</span>
+            <i class="fa-solid fa-chevron-down oa-arrow"></i>
+          </button>
+          <div class="oa-body">
+            <div class="oa-states">
+              <div class="oa-state oa-ist"><span class="oa-state-label">Ist</span><p>Statische, generische Texte</p></div>
+              <div class="oa-divider">→</div>
+              <div class="oa-state oa-soll"><span class="oa-state-label">Ziel</span><p>Emotionales Storytelling</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="oa-item">
+          <button class="oa-trigger">
+            <span class="oa-num">03</span>
+            <span class="oa-title">User Journey</span>
+            <i class="fa-solid fa-chevron-down oa-arrow"></i>
+          </button>
+          <div class="oa-body">
+            <div class="oa-states">
+              <div class="oa-state oa-ist"><span class="oa-state-label">Ist</span><p>Unklare CTAs, hohe Bounce Rate</p></div>
+              <div class="oa-divider">→</div>
+              <div class="oa-state oa-soll"><span class="oa-state-label">Ziel</span><p>Optimierte Conversion-Pfade</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="oa-item">
+          <button class="oa-trigger">
+            <span class="oa-num">04</span>
+            <span class="oa-title">Mobile Experience</span>
+            <i class="fa-solid fa-chevron-down oa-arrow"></i>
+          </button>
+          <div class="oa-body">
+            <div class="oa-states">
+              <div class="oa-state oa-ist"><span class="oa-state-label">Ist</span><p>Darstellungsprobleme, langsam</p></div>
+              <div class="oa-divider">→</div>
+              <div class="oa-state oa-soll"><span class="oa-state-label">Ziel</span><p>100% responsive, &lt;3 Sek. Ladezeit</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="oa-item">
+          <button class="oa-trigger">
+            <span class="oa-num">05</span>
+            <span class="oa-title">Social Presence</span>
+            <i class="fa-solid fa-chevron-down oa-arrow"></i>
+          </button>
+          <div class="oa-body">
+            <div class="oa-states">
+              <div class="oa-state oa-ist"><span class="oa-state-label">Ist</span><p>Unregelmäßige Posts</p></div>
+              <div class="oa-divider">→</div>
+              <div class="oa-state oa-soll"><span class="oa-state-label">Ziel</span><p>16-Wochen Content-Plan</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="oa-item">
+          <button class="oa-trigger">
+            <span class="oa-num">06</span>
+            <span class="oa-title">Tech Score</span>
+            <i class="fa-solid fa-chevron-down oa-arrow"></i>
+          </button>
+          <div class="oa-body">
+            <div class="oa-states">
+              <div class="oa-state oa-ist"><span class="oa-state-label">Ist</span><p>42 / 100 PageSpeed Score</p></div>
+              <div class="oa-divider">→</div>
+              <div class="oa-state oa-soll"><span class="oa-state-label">Ziel</span><p>75–85 / 100</p></div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
-  </div>
-</div>
 
-<!-- ── SWOT ── -->
-<div class="editorial-section bg-cream" id="swot-section">
-  <div class="container">
-    <div class="sub-header">
-      <span class="sub-eyebrow">Analyse</span>
-      <h3 class="sub-h3">SWOT-<em>Analyse</em></h3>
-      <p class="sub-lead">Stärken, Schwächen, Chancen und Risiken — systematisch erfasst als Grundlage für die Strategie.</p>
-    </div>
-    <div class="swot-grid-new">
-      <div class="swot-card">
-        <div class="swot-card-letter">S</div>
-        <div class="swot-card-body">
+    <!-- SWOT -->
+    <div class="k-block">
+      <div class="k-block-header">
+        <h3>SWOT-<em>Analyse.</em></h3>
+        <p>Stärken, Schwächen, Chancen und Risiken.</p>
+      </div>
+      <div class="swot-grid">
+        <div class="swot-card">
+          <div class="swot-letter">S</div>
           <h4>Stärken</h4>
           <ul>
             <li>30+ Jahre Branchenerfahrung</li>
-            <li>Spezialisiertes Fachwissen</li>
-            <li>Hohe Kundenzufriedenheit</li>
-            <li>Persönliche Beratung</li>
+            <li>Hochqualifiziertes Team</li>
+            <li>Starke lokale Präsenz</li>
+            <li>Kundenzufriedenheit >95%</li>
           </ul>
         </div>
-      </div>
-      <div class="swot-card">
-        <div class="swot-card-letter">W</div>
-        <div class="swot-card-body">
+        <div class="swot-card">
+          <div class="swot-letter">W</div>
           <h4>Schwächen</h4>
           <ul>
-            <li>Kaum digitale Sichtbarkeit</li>
             <li>Veraltete Website</li>
-            <li>Kein Social-Media-Auftritt</li>
+            <li>Social-Media Präsenz unaktiv</li>
             <li>Keine SEO-Strategie</li>
+            <li>Geringe Online-Sichtbarkeit</li>
           </ul>
         </div>
-      </div>
-      <div class="swot-card">
-        <div class="swot-card-letter">O</div>
-        <div class="swot-card-body">
+        <div class="swot-card">
+          <div class="swot-letter">O</div>
           <h4>Chancen</h4>
           <ul>
-            <li>Wachsender Online-Markt</li>
-            <li>Lokale SEA-Nachfrage</li>
-            <li>LinkedIn B2B-Potenzial</li>
-            <li>Content-Differenzierung</li>
+            <li>Wachsender Markt digital</li>
+            <li>Regional unterversorgte Zielgruppe</li>
+            <li>Content-Marketing Potential</li>
+            <li>Neue Technologien nutzbar</li>
           </ul>
         </div>
-      </div>
-      <div class="swot-card">
-        <div class="swot-card-letter">T</div>
-        <div class="swot-card-body">
-          <h4>Risiken</h4>
+        <div class="swot-card">
+          <div class="swot-letter">T</div>
+          <h4>Bedrohungen</h4>
           <ul>
-            <li>Starke lokale Mitbewerber</li>
-            <li>Preisdruck durch Vergleichsportale</li>
-            <li>Schneller Technologiewandel</li>
-            <li>Ad-Budgets der Konkurrenz</li>
+            <li>Starker Wettbewerb durch Agenturen</li>
+            <li>Schnelle Marktveränderungen</li>
+            <li>Kundenerwartungen steigen</li>
+            <li>Technologischer Wandel</li>
           </ul>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- ── KONKURRENZANALYSE ── -->
-<div class="editorial-section darkgreen" id="konkurrenz-section">
-  <div class="container">
-    <div class="sub-header">
-      <span class="sub-eyebrow">Marktumfeld</span>
-      <h3 class="sub-h3">Konkurrenz-<em>analyse</em></h3>
-      <p class="sub-lead">Direkter Vergleich mit den stärksten lokalen Mitbewerbern — wo Komthur punktet, wo Lücken bestehen.</p>
-    </div>
-    <div class="konkurrenz-split">
-      <div class="konkurrenz-side">
-        <span class="konkurrenz-name">Mitbewerber A</span>
-        <ul>
-          <li><i class="fa-solid fa-check"></i> Starke Google-Präsenz</li>
-          <li><i class="fa-solid fa-check"></i> Aktives Social Media</li>
-          <li><i class="fa-solid fa-xmark"></i> Wenig persönliche Beratung</li>
-          <li><i class="fa-solid fa-xmark"></i> Standardisierte Lösungen</li>
-        </ul>
+    <!-- Konkurrenz -->
+    <div class="k-block">
+      <div class="k-block-header">
+        <h3>Konkurrenz-<em>analyse.</em></h3>
+        <p>Vergleich mit regionalen Wettbewerbern.</p>
       </div>
-      <div class="konkurrenz-divider">
-        <span>vs.</span>
+      <div class="konkurrenz-split">
+        <div class="konkurrenz-side">
+          <span class="konkurrenz-name">Komthur GmbH</span>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> Langjährige Erfahrung</li>
+            <li><i class="fa-solid fa-check"></i> Hohe Servicequalität</li>
+            <li><i class="fa-solid fa-xmark"></i> Schwache Online-Präsenz</li>
+            <li><i class="fa-solid fa-xmark"></i> Keine SEO</li>
+          </ul>
+        </div>
+        <div class="konkurrenz-vs"><span>VS</span></div>
+        <div class="konkurrenz-side">
+          <span class="konkurrenz-name">Wettbewerber (Ø)</span>
+          <ul>
+            <li><i class="fa-solid fa-xmark"></i> Weniger Erfahrung</li>
+            <li><i class="fa-solid fa-check"></i> Moderne Website</li>
+            <li><i class="fa-solid fa-check"></i> Google Ranking 1-3</li>
+            <li><i class="fa-solid fa-check"></i> Aktive Social Media</li>
+          </ul>
+        </div>
       </div>
-      <div class="konkurrenz-side">
-        <span class="konkurrenz-name">Mitbewerber B</span>
-        <ul>
-          <li><i class="fa-solid fa-check"></i> Grosse Reichweite</li>
-          <li><i class="fa-solid fa-check"></i> Professioneller Webauftritt</li>
-          <li><i class="fa-solid fa-xmark"></i> Kein Spezialisierungsfokus</li>
-          <li><i class="fa-solid fa-xmark"></i> Anonyme Kundenbeziehung</li>
-        </ul>
+      <div class="insight-box">
+        <strong>Positionierung:</strong> Komthur hat das <em>Vertrauens-Advantage</em> — jetzt digital sichtbar machen.
       </div>
     </div>
-    <div class="positioning-insight-new">
-      <strong>Erkenntnis:</strong> Kein Mitbewerber verbindet <em>digitale Sichtbarkeit</em> mit <em>persönlicher Fachkompetenz</em> überzeugend. Genau hier liegt Komthurs Differenzierungspotenzial.
-    </div>
-  </div>
-</div>
-
-<!-- ── ZIELGRUPPE & PERSONAS — zusammen in einem Block ── -->
-<div class="editorial-section darkgreen" id="zielgruppe-section">
-  <div class="container">
 
     <!-- Zielgruppe -->
-    <div class="sub-header">
-      <span class="sub-eyebrow">Zielgruppe &amp; Personas</span>
-      <h3 class="sub-h3">Wer wird <em>angesprochen?</em></h3>
-      <p class="sub-lead">Datenbasierte Analyse der Kernzielgruppen — als Fundament für alle Kommunikationsmassnahmen.</p>
-    </div>
-    <div class="data-grid">
-      <div class="data-item">
-        <div class="data-number">01</div>
-        <h3>Privatkunden 45–65</h3>
-        <p>Hausbesitzer mit konkretem Renovierungsbedarf, suchen Vertrauen und Fachkompetenz. Hauptkanal: Google-Suche.</p>
+    <div class="k-block">
+      <div class="k-block-header">
+        <h3>Zielgruppen-<em>analyse.</em></h3>
+        <p>Datengetriebene Segmentierung.</p>
       </div>
-      <div class="data-item">
-        <div class="data-number">02</div>
-        <h3>KMU &amp; Gewerbe</h3>
-        <p>Kleinbetriebe und Büronutzer mit wiederkehrendem Wartungsbedarf. Entscheidung oft über LinkedIn oder Empfehlung.</p>
+      <div class="data-grid">
+        <div class="data-item">
+          <div class="data-number">01</div>
+          <h4>Demografie</h4>
+          <p>25–50 Jahre, Entscheidungsträger in KMU.</p>
+        </div>
+        <div class="data-item">
+          <div class="data-number">02</div>
+          <h4>Psychografie</h4>
+          <p>Markenbewusst, designaffin, Qualitätsorientiert.</p>
+        </div>
+        <div class="data-item">
+          <div class="data-number">03</div>
+          <h4>Geografie</h4>
+          <p>Kreuzlingen &amp; Bodenseeregion.</p>
+        </div>
+        <div class="data-item">
+          <div class="data-number">04</div>
+          <h4>Verhalten</h4>
+          <p>Hochaktiv auf Google, Social Media &amp; LinkedIn.</p>
+        </div>
       </div>
-      <div class="data-item">
-        <div class="data-number">03</div>
-        <h3>Architekturbüros</h3>
-        <p>Planer, die verlässliche Fachpartner für laufende Projekte suchen. Qualität und Termintreue sind entscheidend.</p>
-      </div>
-      <div class="data-item">
-        <div class="data-number">04</div>
-        <h3>Immobilienverwaltungen</h3>
-        <p>Verwaltungsgesellschaften mit grossem Portfolio. Suchen skalierbare, verlässliche Dienstleistungspartner.</p>
-      </div>
-    </div>
-
-    <!-- Trennlinie Zielgruppe → Personas -->
-    <div class="personas-divider">
-      <div class="personas-divider-line"></div>
-      <span class="personas-divider-label">Personas</span>
-      <div class="personas-divider-line"></div>
     </div>
 
     <!-- Personas -->
-    <div class="personas-grid">
-      <div class="persona-card">
-        <div class="persona-avatar">
-          <img src="../assets/images/komthur/persona-1.jpg" alt="Persona Thomas" loading="lazy" />
-        </div>
-        <div class="persona-content">
-          <span class="persona-role">Privatkunde · 52 Jahre</span>
-          <h3>Thomas M.</h3>
-          <div class="persona-stat">
-            <span>Bedürfnis</span>
-            <p>Sucht einen verlässlichen Handwerker für die Sanierung seiner Eigentumswohnung — Qualität vor Preis.</p>
+    <div class="k-block">
+      <div class="personas-divider">
+        <div class="personas-divider-line"></div>
+        <span class="personas-divider-label">Personas</span>
+        <div class="personas-divider-line"></div>
+      </div>
+      <div class="personas-grid">
+        <div class="persona-card">
+          <div class="persona-avatar">
+            <div class="persona-avatar-placeholder">👩‍💼</div>
           </div>
-          <div class="persona-stat">
-            <span>Touchpoint</span>
-            <p>Google-Suche „Handwerker Zürich", vergleicht 3–4 Websites, entscheidet nach Bewertungen.</p>
+          <div class="persona-content">
+            <h4>Eva</h4>
+            <span class="persona-role">Startup-Gründerin · 25 J.</span>
+            <div class="persona-stat"><span>Bedürfnisse</span><p>Einzigartiges Corporate Design für ihr Startup.</p></div>
+            <div class="persona-stat"><span>Touchpoint</span><p>Instagram, Pinterest, LinkedIn &amp; Website.</p></div>
+          </div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-avatar">
+            <div class="persona-avatar-placeholder">👨‍💼</div>
+          </div>
+          <div class="persona-content">
+            <h4>Daniel</h4>
+            <span class="persona-role">Marketingleiter · 37 J.</span>
+            <div class="persona-stat"><span>Bedürfnisse</span><p>Langfristige Partnerschaft mit Fachkompetenz.</p></div>
+            <div class="persona-stat"><span>Touchpoint</span><p>LinkedIn, Business-Kontakte &amp; Networking.</p></div>
+          </div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-avatar">
+            <div class="persona-avatar-placeholder">👩‍🔬</div>
+          </div>
+          <div class="persona-content">
+            <h4>Maria</h4>
+            <span class="persona-role">Geschäftsführerin · 48 J.</span>
+            <div class="persona-stat"><span>Bedürfnisse</span><p>Erfahrene Agentur für Rebranding-Projekte.</p></div>
+            <div class="persona-stat"><span>Touchpoint</span><p>Google-Suche, Empfehlungen, Telefon.</p></div>
           </div>
         </div>
       </div>
-      <div class="persona-card">
-        <div class="persona-avatar">
-          <img src="../assets/images/komthur/persona-2.jpg" alt="Persona Sandra" loading="lazy" />
-        </div>
-        <div class="persona-content">
-          <span class="persona-role">KMU-Leiterin · 38 Jahre</span>
-          <h3>Sandra K.</h3>
-          <div class="persona-stat">
-            <span>Bedürfnis</span>
-            <p>Braucht einen verlässlichen Partner für die Büro-Instandhaltung — schnell, unkompliziert, professionell.</p>
-          </div>
-          <div class="persona-stat">
-            <span>Touchpoint</span>
-            <p>LinkedIn und Google, entscheidet über Referenzen und persönliche Empfehlungen im Netzwerk.</p>
-          </div>
-        </div>
-      </div>
-      <div class="persona-card">
-        <div class="persona-avatar">
-          <img src="../assets/images/komthur/persona-3.jpg" alt="Persona Marco" loading="lazy" />
-        </div>
-        <div class="persona-content">
-          <span class="persona-role">Architekt · 45 Jahre</span>
-          <h3>Marco F.</h3>
-          <div class="persona-stat">
-            <span>Bedürfnis</span>
-            <p>Sucht Fachpartner, die in Planung integriert werden können — Termintreue und Dokumentation sind Pflicht.</p>
-          </div>
-          <div class="persona-stat">
-            <span>Touchpoint</span>
-            <p>Branchenportale, LinkedIn, direkte Anfrage über Website-Kontaktformular.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="insight-box">
-      <strong>Strategische Erkenntnis:</strong> Alle drei Personas suchen primär über Google — eine <em>lokale SEA-Kampagne</em> mit klarer Spezialisierungsbotschaft ist der wirksamste erste Schritt.
     </div>
 
   </div>
-</div>
+</section>
 
-<!-- ════════════════════════════════════════
-     ── PHASE 2: PRODUKTE & UMSETZUNG ──
-════════════════════════════════════════ -->
-<div class="phase-divider darkgreen">
-  <div class="container">
-    <div class="phase-divider-inner">
-      <span class="phase-num">02</span>
-      <div class="phase-title-group">
-        <span class="phase-kicker">Phase Zwei</span>
-        <h2 class="phase-h2">Produkte &amp; <em>Umsetzung</em></h2>
+<!-- ══════════════════════════════════════════
+     02 STRATEGIE
+══════════════════════════════════════════ -->
+<section class="k-section bg-white wave-dark" id="strategie">
+  <div class="page-container">
+
+    <div class="k-section-label">
+      <span class="k-num">02</span>
+      <h2>Strate<em>gie.</em></h2>
+    </div>
+
+    <div class="k-block">
+      <div class="k-block-header">
+        <h3>Methodik &amp; <em>Planung.</em></h3>
+        <p>Vier strategische Bereiche — zusammen unschlagbar.</p>
       </div>
-    </div>
-  </div>
-</div>
 
-<!-- ── STICKY NAV (Produkte) ── -->
-<div class="showcase-sticky-nav">
-  <div class="ssn-inner">
-    <a href="#website-section" class="ssn-link ssn-active">
-      <i class="fa-solid fa-globe"></i><span>Website</span>
-    </a>
-    <div class="ssn-sep"></div>
-    <a href="#sea-section" class="ssn-link">
-      <i class="fa-solid fa-bullseye"></i><span>SEA</span>
-    </a>
-    <div class="ssn-sep"></div>
-    <a href="#instagram-section" class="ssn-link">
-      <i class="fa-brands fa-instagram"></i><span>Instagram</span>
-    </a>
-    <div class="ssn-sep"></div>
-    <a href="#linkedin-section" class="ssn-link">
-      <i class="fa-brands fa-linkedin"></i><span>LinkedIn</span>
-    </a>
-  </div>
-</div>
+      <!-- Tabs -->
+      <div class="strat-tabs" id="stratTabs">
 
-<!-- ── WEBSITE ── -->
-<div class="editorial-section darkgreen" id="website-section">
-  <div class="container">
-    <div class="sub-header showcase-sub-header">
-      <span class="sub-eyebrow showcase-eyebrow">Produkt 01</span>
-      <h3 class="sub-h3 showcase-sub-title">Website <em>Redesign</em></h3>
-      <p class="sub-lead">Neue Struktur, klare Botschaft, mobile-first — eine Website, die Vertrauen aufbaut und Anfragen generiert.</p>
-    </div>
-    <div class="website-showcase-frame">
-      <div class="wsf-bar">
-        <div class="wsf-dots">
-          <span class="wsf-dot" style="background:#ff5f56"></span>
-          <span class="wsf-dot" style="background:#ffbd2e"></span>
-          <span class="wsf-dot" style="background:#27c93f"></span>
+        <!-- Mobile Select -->
+        <div class="strat-select-wrap">
+          <select class="strat-select" id="stratSelect">
+            <option value="tab-seo">01 — SEO</option>
+            <option value="tab-web">02 — Website</option>
+            <option value="tab-social">03 — Social Media</option>
+            <option value="tab-ads">04 — Paid Ads</option>
+          </select>
         </div>
-        <div class="wsf-url">
-          <i class="fa-solid fa-lock" style="font-size:.6rem;color:rgba(255,255,255,.4)"></i>
-          komthur.ch
+
+        <!-- Desktop Nav -->
+        <nav class="strat-nav" role="tablist">
+          <button class="strat-btn active" role="tab" aria-selected="true" data-tab="tab-seo">
+            <span class="btn-num">01</span>
+            <span class="btn-title">SEO</span>
+            <span class="btn-sub">Suchmaschinen</span>
+          </button>
+          <button class="strat-btn" role="tab" aria-selected="false" data-tab="tab-web">
+            <span class="btn-num">02</span>
+            <span class="btn-title">Website</span>
+            <span class="btn-sub">Design &amp; UX</span>
+          </button>
+          <button class="strat-btn" role="tab" aria-selected="false" data-tab="tab-social">
+            <span class="btn-num">03</span>
+            <span class="btn-title">Social Media</span>
+            <span class="btn-sub">Content &amp; Community</span>
+          </button>
+          <button class="strat-btn" role="tab" aria-selected="false" data-tab="tab-ads">
+            <span class="btn-num">04</span>
+            <span class="btn-title">Paid Ads</span>
+            <span class="btn-sub">Performance</span>
+          </button>
+        </nav>
+
+        <!-- Panels -->
+        <div class="strat-panels">
+
+          <!-- SEO Panel -->
+          <div class="strat-panel active" id="tab-seo">
+            <span class="p-eyebrow">Suchmaschinenoptimierung</span>
+            <h4 class="p-title">Technisches SEO &amp; <em>Sichtbarkeit.</em></h4>
+            <p class="p-body">Google Analytics Analyse, Keywords mit hohem Suchvolumen, technische SEO-Korrektionen: Meta-Tags, Alt-Text, Mobile-Rendering, Ladegeschwindigkeit.</p>
+            <div class="p-tags">
+              <span class="p-tag">Google Analytics</span>
+              <span class="p-tag">Keyword Research</span>
+              <span class="p-tag">Meta-Tags</span>
+              <span class="p-tag">Mobile-First</span>
+            </div>
+            <div class="p-strip">
+              <span class="p-strip-label">Zielkeywords</span>
+              <p class="p-strip-content">"Grafikdesign Kreuzlingen" · "Werbeagentur Thurgau" · "Corporate Design Bodensee"</p>
+            </div>
+            <a href="#content" class="p-cta-link">→ Zum Website-Content</a>
+          </div>
+
+          <!-- Website Panel -->
+          <div class="strat-panel" id="tab-web">
+            <span class="p-eyebrow">Design &amp; User Experience</span>
+            <h4 class="p-title">Website <em>Redesign.</em></h4>
+            <p class="p-body">Vollständige Neukonzeption als responsiver One-Pager. Video-Hero mit Parallax, klare Visual Hierarchy, prominente CTAs.</p>
+            <div class="p-tags">
+              <span class="p-tag">Minimalistisch</span>
+              <span class="p-tag">Mobile-First</span>
+              <span class="p-tag">Conversion</span>
+              <span class="p-tag">Storytelling</span>
+            </div>
+            <div class="p-status">
+              <div class="ps-cell"><span class="ps-l">Status</span><span class="ps-v">Live Prototype</span></div>
+              <div class="ps-cell"><span class="ps-l">Responsive</span><span class="ps-v">Desktop · Tablet · Mobile</span></div>
+              <div class="ps-cell"><span class="ps-l">Performance</span><span class="ps-v">&lt;85 PageSpeed</span></div>
+            </div>
+            <a href="#content" class="p-cta-link">→ Zum Website-Showcase</a>
+          </div>
+
+          <!-- Social Panel -->
+          <div class="strat-panel" id="tab-social">
+            <span class="p-eyebrow">Content &amp; Community</span>
+            <h4 class="p-title">Social Media <em>Strategie.</em></h4>
+            <p class="p-body">16-wöchiger Master-Content-Plan. Serie "Design Dienstag" zur Expertenstatus-Etablierung. Instagram &amp; LinkedIn als Primär-Kanäle.</p>
+            <div class="p-tags">
+              <span class="p-tag">Design-Tipps</span>
+              <span class="p-tag">Team-Storys</span>
+              <span class="p-tag">Brancheninsights</span>
+              <span class="p-tag">Trendanalysen</span>
+            </div>
+            <div class="p-strip">
+              <span class="p-strip-label">Content-Säulen</span>
+              <p class="p-strip-content">Design-Tipps · Team-Storys · Referenzen · Brancheninsights · Trendanalysen</p>
+            </div>
+            <div class="p-stats-row">
+              <div class="p-stat-box"><span class="p-stat-num">16</span><span class="p-stat-label">Wochen Plan</span></div>
+              <div class="p-stat-box"><span class="p-stat-num">3</span><span class="p-stat-label">Kanäle</span></div>
+              <div class="p-stat-box"><span class="p-stat-num">7×</span><span class="p-stat-label">Posts/Woche</span></div>
+            </div>
+            <a href="#content" class="p-cta-link">→ Zu Instagram &amp; LinkedIn</a>
+          </div>
+
+          <!-- Paid Ads Panel -->
+          <div class="strat-panel" id="tab-ads">
+            <span class="p-eyebrow">Performance Marketing</span>
+            <h4 class="p-title">Paid Ads &amp; <em>Budget.</em></h4>
+            <p class="p-body">Preisvergleich über Google Ads, Meta &amp; LinkedIn. CHF 5'000 Jahresbudget für maximale lokale B2B-Reichweite.</p>
+            <div class="p-kpis">
+              <div class="kpi-row">
+                <div class="kpi-platform"><span class="kpi-dot kpi-g"><i class="fa-brands fa-google"></i></span><span class="kpi-name">Google Ads</span></div>
+                <div class="kpi-track"><div class="kpi-fill" style="width: 60%;"></div></div>
+                <div class="kpi-right"><span class="kpi-val">77K Imp.</span><span class="kpi-sub">8.7K Clicks</span></div>
+              </div>
+              <div class="kpi-row">
+                <div class="kpi-platform"><span class="kpi-dot kpi-l"><i class="fa-brands fa-linkedin"></i></span><span class="kpi-name">LinkedIn</span></div>
+                <div class="kpi-track"><div class="kpi-fill" style="width: 25%;"></div></div>
+                <div class="kpi-right"><span class="kpi-val">43K Imp.</span><span class="kpi-sub">6.2K Clicks</span></div>
+              </div>
+              <div class="kpi-row">
+                <div class="kpi-platform"><span class="kpi-dot kpi-m"><i class="fa-brands fa-meta"></i></span><span class="kpi-name">Meta</span></div>
+                <div class="kpi-track"><div class="kpi-fill" style="width: 15%;"></div></div>
+                <div class="kpi-right"><span class="kpi-val">40K Imp.</span><span class="kpi-sub">504 Clicks</span></div>
+              </div>
+            </div>
+            <a href="#content" class="p-cta-link">→ Zum SEA-Showcase</a>
+          </div>
+
         </div>
       </div>
-      <div class="wsf-embed">
-        <iframe src="https://komthur.ch" title="Komthur Website" loading="lazy"
-                style="width:100%;height:480px;border:none;"></iframe>
-      </div>
-      <div class="wsf-caption">
-        <a href="https://komthur.ch" target="_blank" rel="noopener" class="wsf-link">
-          Zur Live-Website <i class="fa-solid fa-arrow-up-right-from-square"></i>
-        </a>
-      </div>
     </div>
-  </div>
-</div>
 
-<!-- ── SEA ── -->
-<div class="editorial-section darkgreen" id="sea-section">
-  <div class="container">
-    <div class="sub-header showcase-sub-header">
-      <span class="sub-eyebrow showcase-eyebrow">Produkt 02</span>
-      <h3 class="sub-h3 showcase-sub-title">SEA &amp; <em>Paid Ads</em></h3>
-      <p class="sub-lead">Gezielte Google-Kampagnen für lokale Sichtbarkeit — vom Keyword bis zur Converting Landing Page.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     03 CONTENT
+══════════════════════════════════════════ -->
+<section class="k-section bg-darkgreen wave-foot" id="content">
+  <div class="page-container">
+
+    <div class="k-section-label k-section-label--light">
+      <span class="k-num">03</span>
+      <h2>Con<em>tent.</em></h2>
     </div>
-    <div class="sea-story-layout-v2">
-      <div class="sea-phone-col">
-        <div class="sea-phone-wrap">
-          <div class="phone-mockup">
-            <div class="phone-frame">
-              <div class="phone-notch"></div>
-              <div class="phone-screen">
-                <video class="phone-video" autoplay muted loop playsinline
-                       src="../assets/videos/komthur-ad.mp4"
-                       poster="../assets/images/komthur/ad-poster.jpg">
-                </video>
-                <div class="phone-story-ui">
-                  <div class="story-progress-bars">
-                    <div class="story-bar active"></div>
-                    <div class="story-bar"></div>
-                    <div class="story-bar"></div>
+
+    <!-- Website Showcase -->
+    <div class="k-block" id="website-showcase">
+      <div class="k-block-header k-block-header--light">
+        <span class="k-eyebrow">Produkt 01</span>
+        <h3>Website <em>Redesign.</em></h3>
+        <p>Mobile First · Storytelling · Conversion</p>
+      </div>
+      <div class="website-showcase-frame">
+        <div class="wsf-bar">
+          <div class="wsf-dots">
+            <span style="background:#ff5f56"></span>
+            <span style="background:#ffbd2e"></span>
+            <span style="background:#27c93f"></span>
+          </div>
+          <div class="wsf-url"><i class="fa-solid fa-lock"></i> komthur.my.canva.site</div>
+        </div>
+        <div class="wsf-embed">
+          <iframe loading="lazy" src="https://www.canva.com/design/DAFiUbYkJD8/imYPvUNS2rY7GK7_-WPWZw/view?embed" allowfullscreen allow="fullscreen" title="Komthur Website"></iframe>
+        </div>
+        <div class="wsf-caption">
+          <a href="https://www.canva.com/design/DAFiUbYkJD8/view" target="_blank" rel="noopener" class="wsf-link">
+            Live Preview öffnen <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEA Showcase -->
+    <div class="k-block" id="sea-showcase">
+      <div class="k-block-header k-block-header--light">
+        <span class="k-eyebrow">Produkt 02</span>
+        <h3>SEA &amp; <em>Paid Ads.</em></h3>
+        <p>Gezielte Kampagnen für lokale Sichtbarkeit</p>
+      </div>
+      <div class="sea-layout">
+        <div class="sea-phone-col">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="phone-placeholder">
+                <i class="fa-brands fa-instagram"></i>
+              </div>
+              <div class="phone-story-ui">
+                <div class="story-bars">
+                  <span class="story-bar active"></span>
+                  <span class="story-bar"></span>
+                  <span class="story-bar"></span>
+                </div>
+                <div class="story-header">
+                  <span>komthur</span>
+                  <span class="story-sponsored">Gesponsert</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="phone-shadow"></div>
+        </div>
+        <div class="sea-info-col">
+          <div class="sea-box">
+            <div class="sea-box-icon"><i class="fa-brands fa-instagram"></i></div>
+            <span class="sea-box-label">Paid Story Ad</span>
+            <h4>Gesponserte Story</h4>
+            <div class="sea-rows">
+              <div class="sea-row"><span>Zielgruppe</span><span>KMU-Entscheider, 25–50 J.</span></div>
+              <div class="sea-row"><span>Geografie</span><span>Kreuzlingen · Thurgau</span></div>
+              <div class="sea-row"><span>Placement</span><span>IG Stories · FB Stories · Reels</span></div>
+              <div class="sea-row"><span>Format</span><span>9:16 Vertical Video</span></div>
+              <div class="sea-row"><span>Laufzeit</span><span>4 Wochen / Quartal</span></div>
+            </div>
+          </div>
+          <div class="sea-box">
+            <div class="sea-box-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <span class="sea-box-label">Performance</span>
+            <h4>Meta Analyse</h4>
+            <div class="sea-rows">
+              <div class="sea-row"><span>Budget</span><em>~CHF 750 / Jahr</em></div>
+              <div class="sea-row"><span>Impressionen</span><em>40'004</em></div>
+              <div class="sea-row"><span>CPL Ziel</span><em>~CHF 6</em></div>
+              <div class="sea-row"><span>CTR Ziel</span><em>~1.8%</em></div>
+              <div class="sea-row"><span>ROI-Erwartung</span><em>3:1 bis 5:1</em></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instagram Showcase -->
+    <div class="k-block" id="instagram-showcase">
+      <div class="k-block-header k-block-header--light">
+        <span class="k-eyebrow">Produkt 03</span>
+        <h3>Instagram <em>Content.</em></h3>
+        <p>Visuell, authentisch, regional</p>
+      </div>
+
+      <div class="insta-carousel-wrap">
+        <button class="ic-arrow" id="icPrev" aria-label="Zurück"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="insta-carousel">
+          <div class="ic-rail" id="icRail">
+
+            <div class="insta-post-card">
+              <div class="ipc-header">
+                <div class="ipc-avatar">K</div>
+                <div class="ipc-meta"><strong>komthur</strong><span>vor 3 Tagen</span></div>
+                <i class="fa-solid fa-ellipsis"></i>
+              </div>
+              <div class="ipc-media-wrap">
+                <div class="ipc-media-placeholder"><i class="fa-solid fa-image"></i></div>
+              </div>
+              <div class="ipc-actions">
+                <div><i class="fa-regular fa-heart"></i><i class="fa-regular fa-comment"></i><i class="fa-regular fa-paper-plane"></i></div>
+                <i class="fa-regular fa-bookmark"></i>
+              </div>
+              <div class="ipc-likes"><strong>312 Gefällt mir</strong></div>
+              <div class="ipc-caption"><strong>komthur</strong> Wir danken all jenen, die hart arbeiten. 🌱</div>
+            </div>
+
+            <div class="insta-post-card">
+              <div class="ipc-header">
+                <div class="ipc-avatar">K</div>
+                <div class="ipc-meta"><strong>komthur</strong><span>vor 1 Woche</span></div>
+                <i class="fa-solid fa-ellipsis"></i>
+              </div>
+              <div class="ipc-media-wrap">
+                <div class="ipc-media-placeholder"><i class="fa-solid fa-image"></i></div>
+              </div>
+              <div class="ipc-actions">
+                <div><i class="fa-regular fa-heart"></i><i class="fa-regular fa-comment"></i><i class="fa-regular fa-paper-plane"></i></div>
+                <i class="fa-regular fa-bookmark"></i>
+              </div>
+              <div class="ipc-likes"><strong>248 Gefällt mir</strong></div>
+              <div class="ipc-caption"><strong>komthur</strong> ✏️ <strong>#DesignDienstag</strong></div>
+            </div>
+
+            <div class="insta-post-card">
+              <div class="ipc-header">
+                <div class="ipc-avatar">K</div>
+                <div class="ipc-meta"><strong>komthur</strong><span>vor 2 Wochen</span></div>
+                <i class="fa-solid fa-ellipsis"></i>
+              </div>
+              <div class="ipc-media-wrap">
+                <div class="ipc-media-placeholder"><i class="fa-solid fa-image"></i></div>
+              </div>
+              <div class="ipc-actions">
+                <div><i class="fa-regular fa-heart"></i><i class="fa-regular fa-comment"></i><i class="fa-regular fa-paper-plane"></i></div>
+                <i class="fa-regular fa-bookmark"></i>
+              </div>
+              <div class="ipc-likes"><strong>487 Gefällt mir</strong></div>
+              <div class="ipc-caption"><strong>komthur</strong> 🚀 Unsere neue Website ist online!</div>
+            </div>
+
+            <div class="insta-post-card">
+              <div class="ipc-header">
+                <div class="ipc-avatar">K</div>
+                <div class="ipc-meta"><strong>komthur</strong><span>vor 3 Wochen</span></div>
+                <i class="fa-solid fa-ellipsis"></i>
+              </div>
+              <div class="ipc-media-wrap">
+                <div class="ipc-media-placeholder"><i class="fa-solid fa-image"></i></div>
+              </div>
+              <div class="ipc-actions">
+                <div><i class="fa-regular fa-heart"></i><i class="fa-regular fa-comment"></i><i class="fa-regular fa-paper-plane"></i></div>
+                <i class="fa-regular fa-bookmark"></i>
+              </div>
+              <div class="ipc-likes"><strong>391 Gefällt mir</strong></div>
+              <div class="ipc-caption"><strong>komthur</strong> Progress fliesst — wie gutes Design. 💧</div>
+            </div>
+
+          </div>
+        </div>
+        <button class="ic-arrow" id="icNext" aria-label="Weiter"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+      <div class="ic-dots" id="icDots"></div>
+    </div>
+
+    <!-- LinkedIn Showcase -->
+    <div class="k-block" id="linkedin-showcase">
+      <div class="k-block-header k-block-header--light">
+        <span class="k-eyebrow">Produkt 04</span>
+        <h3>LinkedIn <em>B2B Content.</em></h3>
+        <p>Expertise teilen, Vertrauen gewinnen</p>
+      </div>
+      <div class="li-layout">
+        <div class="li-mac-wrap">
+          <div class="li-mac">
+            <div class="li-monitor">
+              <div class="li-chin"></div>
+              <div class="li-lid">
+                <div class="li-screen">
+                  <div class="li-chrome">
+                    <div class="li-dots"><span></span><span></span><span></span></div>
+                    <div class="li-url"><i class="fa-brands fa-linkedin"></i> linkedin.com/company/komthur</div>
                   </div>
-                  <div class="story-header-ui">
-                    <img class="story-avatar-img" src="../assets/images/komthur/logo-small.jpg" alt="Komthur" />
-                    <span>komthur_gmbh</span>
-                    <span class="story-sponsored-badge">Gesponsert</span>
+                  <div class="li-feed">
+                    <div class="li-post">
+                      <div class="li-post-header">
+                        <div class="li-avatar">K</div>
+                        <div class="li-post-meta">
+                          <strong>Komthur GmbH</strong>
+                          <span>Grafik &amp; Design · Kreuzlingen</span>
+                          <span>vor 2 Tagen</span>
+                        </div>
+                        <button class="li-follow">+ Folgen</button>
+                      </div>
+                      <div class="li-post-body">
+                        ✦ <strong>Design Dienstag #07</strong> — 94% der Nutzerurteile basieren auf Design.
+                      </div>
+                      <div class="li-slider-wrap">
+                        <div class="li-slider" id="liSlider">
+                          <div class="li-slide"><div class="li-slide-placeholder"><i class="fa-solid fa-image"></i></div></div>
+                          <div class="li-slide"><div class="li-slide-placeholder"><i class="fa-solid fa-image"></i></div></div>
+                          <div class="li-slide"><div class="li-slide-placeholder"><i class="fa-solid fa-image"></i></div></div>
+                        </div>
+                        <button class="li-btn li-prev" id="liPrev"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="li-btn li-next" id="liNext"><i class="fa-solid fa-chevron-right"></i></button>
+                        <div class="li-dots-row" id="liDots"></div>
+                        <div class="li-counter"><span id="liCurrent">1</span> / 3</div>
+                      </div>
+                      <div class="li-reactions">
+                        <span>👍❤️💡</span>
+                        <span><strong>284</strong> Reaktionen</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="phone-shadow"></div>
+            <div class="li-stand">
+              <div class="li-neck"></div>
+              <div class="li-base"></div>
+            </div>
           </div>
+          <div class="li-shadow"></div>
         </div>
-      </div>
-      <div class="sea-boxes-col">
-        <div class="sea-info-box">
-          <div class="sea-box-icon">
-            <i class="fa-brands fa-google"></i>
+        <div class="li-info">
+          <div class="li-info-profile">
+            <div class="li-info-avatar">K</div>
+            <div><strong>Komthur GmbH</strong><span>284 Follower</span></div>
           </div>
-          <span class="sea-box-label">Google Ads</span>
-          <h4 class="sea-box-title">Kampagnenstruktur</h4>
-          <div class="sea-box-rows">
-            <div class="sea-box-row">
-              <span>Kampagnentyp</span>
-              <span>Search + Display</span>
-            </div>
-            <div class="sea-box-row">
-              <span>Zielregion</span>
-              <span>Zürich &amp; Umgebung</span>
-            </div>
-            <div class="sea-box-row">
-              <span>Keywords</span>
-              <span>42 Exact Match</span>
-            </div>
-            <div class="sea-box-row">
-              <span>Tagesbudget</span>
-              <span>CHF 25.–</span>
-            </div>
+          <div class="li-info-stats">
+            <div class="li-stat"><span class="li-stat-num">10</span><span>Design-Posts</span></div>
+            <div class="li-stat"><span class="li-stat-num">16</span><span>Wochen Plan</span></div>
+            <div class="li-stat"><span class="li-stat-num">B2B</span><span>Fokus</span></div>
           </div>
-        </div>
-        <div class="sea-info-box">
-          <div class="sea-box-icon">
-            <i class="fa-solid fa-chart-line"></i>
+          <div class="li-info-tags">
+            <span>#DesignDienstag</span>
+            <span>#Branding</span>
+            <span>#CorporateIdentity</span>
           </div>
-          <span class="sea-box-label">Ergebnisse</span>
-          <h4 class="sea-box-title">Performance</h4>
-          <div class="sea-box-rows">
-            <div class="sea-box-row">
-              <span>Impressionen</span>
-              <em>+340%</em>
-            </div>
-            <div class="sea-box-row">
-              <span>Klickrate (CTR)</span>
-              <em>6.2%</em>
-            </div>
-            <div class="sea-box-row">
-              <span>Kosten pro Klick</span>
-              <em>CHF 1.85</em>
-            </div>
-            <div class="sea-box-row">
-              <span>Anfragen/Monat</span>
-              <em>+18</em>
-            </div>
-          </div>
+          <p class="li-info-note"><i class="fa-brands fa-linkedin"></i> Wöchentliche Design-Fakten für Entscheidungsträger.</p>
         </div>
       </div>
     </div>
+
   </div>
-</div>
+</section>
 
-<!-- ── INSTAGRAM ── -->
-<div class="editorial-section darkgreen" id="instagram-section">
-  <div class="container">
-    <div class="sub-header showcase-sub-header">
-      <span class="sub-eyebrow showcase-eyebrow">Produkt 03</span>
-      <h3 class="sub-h3 showcase-sub-title">Instagram <em>Content</em></h3>
-      <p class="sub-lead">Visueller Markenaufbau über hochwertige Reels und Posts — Handwerk, das man sehen kann.</p>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="page-container footer-inner">
+    <div class="footer-copy">&copy; 2026 Design &amp; Development by Khadija Okbi</div>
+    <div class="footer-links">
+      <a href="../pages/impressum.html" class="footer-link">Impressum</a>
+      <a href="mailto:khadijaokbi@gmail.com" class="footer-link contact-btn"><span>Kontakt</span></a>
+      <a href="../pages/datenschutz.html" class="footer-link">Datenschutz</a>
     </div>
-
-    <div class="insta-platform-intro">
-      <div class="ipi-main">
-        <span class="ipi-label"><i class="fa-brands fa-instagram"></i> Strategie</span>
-        <p>Wöchentliche Reels zeigen Projekte von Anfang bis Abschluss. Statische Posts vermitteln Expertise und Vertrauen. Ziel: organische Reichweite im Grossraum Zürich.</p>
-      </div>
-      <a href="https://instagram.com/komthur_gmbh" target="_blank" class="ipi-strategy-link">
-        Zum Profil <i class="fa-solid fa-arrow-up-right-from-square"></i>
+    <div class="footer-socials">
+      <a class="social-link" href="https://github.com/khadijaokbi1" target="_blank" rel="noopener">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a class="social-link" href="https://ch.linkedin.com/in/khadija-okbi" target="_blank" rel="noopener">
+        <i class="fa-brands fa-linkedin"></i>
       </a>
     </div>
-
-    <!-- Carousel -->
-    <div class="insta-carousel-wrap">
-      <button class="ic-arrow ic-dark" id="icPrev" aria-label="Vorheriger Post">
-        <i class="fa-solid fa-chevron-left"></i>
-      </button>
-      <div class="insta-carousel">
-        <div class="ic-rail" id="icRail">
-
-          <!-- Post 1 -->
-          <div class="insta-post-card">
-            <div class="ipc-header">
-              <img class="ipc-avatar-img" src="../assets/images/komthur/insta-avatar.jpg" alt="Komthur" />
-              <div class="ipc-meta">
-                <strong>komthur_gmbh</strong>
-                <span>Zürich, Schweiz</span>
-              </div>
-              <i class="fa-solid fa-ellipsis ipc-dots"></i>
-            </div>
-            <div class="ipc-media-wrap">
-              <img class="ipc-media" src="../assets/images/komthur/insta-1.jpg" alt="Post 1" loading="lazy" />
-              <span class="ipc-reel-badge"><i class="fa-brands fa-instagram"></i> Reel</span>
-            </div>
-            <div class="ipc-actions">
-              <div class="ipc-actions-left">
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-regular fa-comment"></i>
-                <i class="fa-regular fa-paper-plane"></i>
-              </div>
-              <i class="fa-regular fa-bookmark"></i>
-            </div>
-            <p class="ipc-likes">312 Likes</p>
-            <p class="ipc-caption"><strong>komthur_gmbh</strong> Aus alt mach neu — Parkettboden komplett erneuert. <span class="ipc-hashtags">#handwerk #zürich #renovation</span></p>
-            <span class="ipc-timestamp">Vor 2 Tagen</span>
-          </div>
-
-          <!-- Post 2 -->
-          <div class="insta-post-card">
-            <div class="ipc-header">
-              <img class="ipc-avatar-img" src="../assets/images/komthur/insta-avatar.jpg" alt="Komthur" />
-              <div class="ipc-meta">
-                <strong>komthur_gmbh</strong>
-                <span>Zürich, Schweiz</span>
-              </div>
-              <i class="fa-solid fa-ellipsis ipc-dots"></i>
-            </div>
-            <div class="ipc-media-wrap">
-              <img class="ipc-media" src="../assets/images/komthur/insta-2.jpg" alt="Post 2" loading="lazy" />
-            </div>
-            <div class="ipc-actions">
-              <div class="ipc-actions-left">
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-regular fa-comment"></i>
-                <i class="fa-regular fa-paper-plane"></i>
-              </div>
-              <i class="fa-regular fa-bookmark"></i>
-            </div>
-            <p class="ipc-likes">248 Likes</p>
-            <p class="ipc-caption"><strong>komthur_gmbh</strong> Präzision bis ins Detail. <span class="ipc-hashtags">#qualität #handwerksstolz</span></p>
-            <span class="ipc-timestamp">Vor 5 Tagen</span>
-          </div>
-
-          <!-- Post 3 -->
-          <div class="insta-post-card">
-            <div class="ipc-header">
-              <img class="ipc-avatar-img" src="../assets/images/komthur/insta-avatar.jpg" alt="Komthur" />
-              <div class="ipc-meta">
-                <strong>komthur_gmbh</strong>
-                <span>Zürich, Schweiz</span>
-              </div>
-              <i class="fa-solid fa-ellipsis ipc-dots"></i>
-            </div>
-            <div class="ipc-media-wrap">
-              <img class="ipc-media" src="../assets/images/komthur/insta-3.jpg" alt="Post 3" loading="lazy" />
-              <span class="ipc-reel-badge"><i class="fa-brands fa-instagram"></i> Reel</span>
-            </div>
-            <div class="ipc-actions">
-              <div class="ipc-actions-left">
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-regular fa-comment"></i>
-                <i class="fa-regular fa-paper-plane"></i>
-              </div>
-              <i class="fa-regular fa-bookmark"></i>
-            </div>
-            <p class="ipc-likes">189 Likes</p>
-            <p class="ipc-caption"><strong>komthur_gmbh</strong> Behind the scenes: Küchenmontage in Wipkingen. <span class="ipc-hashtags">#küche #montage #komthur</span></p>
-            <span class="ipc-timestamp">Vor 1 Woche</span>
-          </div>
-
-          <!-- Post 4 -->
-          <div class="insta-post-card">
-            <div class="ipc-header">
-              <img class="ipc-avatar-img" src="../assets/images/komthur/insta-avatar.jpg" alt="Komthur" />
-              <div class="ipc-meta">
-                <strong>komthur_gmbh</strong>
-                <span>Zürich, Schweiz</span>
-              </div>
-              <i class="fa-solid fa-ellipsis ipc-dots"></i>
-            </div>
-            <div class="ipc-media-wrap">
-              <img class="ipc-media" src="../assets/images/komthur/insta-4.jpg" alt="Post 4" loading="lazy" />
-            </div>
-            <div class="ipc-actions">
-              <div class="ipc-actions-left">
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-regular fa-comment"></i>
-                <i class="fa-regular fa-paper-plane"></i>
-              </div>
-              <i class="fa-regular fa-bookmark"></i>
-            </div>
-            <p class="ipc-likes">421 Likes</p>
-            <p class="ipc-caption"><strong>komthur_gmbh</strong> Vorher/Nachher — Badezimmer komplett erneuert in 4 Tagen. <span class="ipc-hashtags">#bad #sanierung #zürich</span></p>
-            <span class="ipc-timestamp">Vor 2 Wochen</span>
-          </div>
-
-        </div><!-- /ic-rail -->
-      </div><!-- /insta-carousel -->
-      <button class="ic-arrow ic-dark" id="icNext" aria-label="Nächster Post">
-        <i class="fa-solid fa-chevron-right"></i>
-      </button>
-    </div><!-- /insta-carousel-wrap -->
-
-  </div>
-</div>
-
-<!-- ── LINKEDIN ── -->
-<div class="editorial-section darkgreen" id="linkedin-section">
-  <div class="container">
-    <div class="sub-header showcase-sub-header">
-      <span class="sub-eyebrow showcase-eyebrow">Produkt 04</span>
-      <h3 class="sub-h3 showcase-sub-title">LinkedIn <em>Präsenz</em></h3>
-      <p class="sub-lead">B2B-Kommunikation auf Augenhöhe — Expertise teilen, Netzwerk aufbauen, Vertrauen bei Entscheidern gewinnen.</p>
-    </div>
-
-    <div class="li-macbook-layout">
-
-      <!-- iMac Mockup -->
-      <div class="li-macbook-wrap">
-        <div class="li-macbook">
-          <!-- Monitor -->
-          <div class="li-imac-monitor">
-            <div class="li-imac-chin"></div>
-            <!-- Screen bezel -->
-            <div class="li-macbook-lid">
-              <div class="li-macbook-screen">
-                <!-- Browser Chrome -->
-                <div class="li-browser-chrome">
-                  <div class="li-browser-dots">
-                    <span></span><span></span><span></span>
-                  </div>
-                  <div class="li-browser-url">
-                    <i class="fa-solid fa-lock" style="font-size:.55rem;color:#0A66C2"></i>
-                    linkedin.com/company/komthur
-                  </div>
-                </div>
-                <!-- LinkedIn Feed -->
-                <div class="li-screen-inner" id="liSlider">
-                  <!-- Post 1 -->
-                  <div class="li-screen-post" style="margin-bottom:.75rem">
-                    <div class="li-sp-header">
-                      <img class="li-sp-avatar" src="../assets/images/komthur/li-avatar.jpg" alt="Komthur" />
-                      <div class="li-sp-meta">
-                        <strong>Komthur GmbH</strong>
-                        <span>Handwerk &amp; Renovation · Zürich</span>
-                        <span class="li-sp-time">2 Tage • <i class="fa-solid fa-globe" style="font-size:.55rem"></i></span>
-                      </div>
-                      <button class="li-sp-follow">+ Folgen</button>
-                    </div>
-                    <div class="li-sp-body">
-                      Wir glauben: <strong>Qualität zeigt sich im Detail.</strong> Hier ein Einblick in unser aktuelles Projekt — Parkett-Komplettsanierung in Zürich Höngg.
-                      <span class="li-sp-tags">#handwerk #renovation #zürich #qualität</span>
-                    </div>
-                    <div class="li-img-slider-wrap">
-                      <div class="li-img-slider" id="liImgSlider1">
-                        <div class="li-slide"><img src="../assets/images/komthur/li-post-1a.jpg" alt="LinkedIn Bild 1" /></div>
-                        <div class="li-slide"><img src="../assets/images/komthur/li-post-1b.jpg" alt="LinkedIn Bild 2" /></div>
-                        <div class="li-slide"><img src="../assets/images/komthur/li-post-1c.jpg" alt="LinkedIn Bild 3" /></div>
-                      </div>
-                      <button class="li-slide-btn li-slide-prev" data-slider="liImgSlider1" disabled><i class="fa-solid fa-chevron-left"></i></button>
-                      <button class="li-slide-btn li-slide-next" data-slider="liImgSlider1"><i class="fa-solid fa-chevron-right"></i></button>
-                    </div>
-                    <div class="li-slide-dots" id="liDots1"></div>
-                    <div class="li-slide-counter" id="liCounter1">1 / 3</div>
-                    <div class="li-sp-reactions">
-                      <span class="li-sp-emojis">👍❤️💡</span>
-                      <span>47 Reaktionen · 8 Kommentare</span>
-                    </div>
-                    <hr class="li-sp-divider" />
-                    <div class="li-sp-actions">
-                      <div class="li-sp-btn"><i class="fa-regular fa-thumbs-up"></i> Gefällt mir</div>
-                      <div class="li-sp-btn"><i class="fa-regular fa-comment"></i> Kommentar</div>
-                      <div class="li-sp-btn"><i class="fa-solid fa-retweet"></i> Teilen</div>
-                    </div>
-                  </div>
-                  <!-- Post 2 -->
-                  <div class="li-screen-post">
-                    <div class="li-sp-header">
-                      <img class="li-sp-avatar" src="../assets/images/komthur/li-avatar.jpg" alt="Komthur" />
-                      <div class="li-sp-meta">
-                        <strong>Komthur GmbH</strong>
-                        <span>Handwerk &amp; Renovation · Zürich</span>
-                        <span class="li-sp-time">1 Woche • <i class="fa-solid fa-globe" style="font-size:.55rem"></i></span>
-                      </div>
-                      <button class="li-sp-follow">+ Folgen</button>
-                    </div>
-                    <div class="li-sp-body">
-                      30 Jahre Erfahrung — und noch immer lernen wir jeden Tag dazu. Was macht gutes Handwerk aus? <strong>Verlässlichkeit, Präzision und Respekt vor dem Material.</strong>
-                      <span class="li-sp-tags">#handwerksstolz #qualität #komthurgmbh</span>
-                    </div>
-                    <div class="li-img-slider-wrap">
-                      <div class="li-img-slider" id="liImgSlider2">
-                        <div class="li-slide"><img src="../assets/images/komthur/li-post-2a.jpg" alt="LinkedIn Post 2" /></div>
-                        <div class="li-slide"><img src="../assets/images/komthur/li-post-2b.jpg" alt="LinkedIn Post 2b" /></div>
-                      </div>
-                      <button class="li-slide-btn li-slide-prev" data-slider="liImgSlider2" disabled><i class="fa-solid fa-chevron-left"></i></button>
-                      <button class="li-slide-btn li-slide-next" data-slider="liImgSlider2"><i class="fa-solid fa-chevron-right"></i></button>
-                    </div>
-                    <div class="li-slide-dots" id="liDots2"></div>
-                    <div class="li-slide-counter" id="liCounter2">1 / 2</div>
-                    <div class="li-sp-reactions">
-                      <span class="li-sp-emojis">👍❤️</span>
-                      <span>31 Reaktionen · 4 Kommentare</span>
-                    </div>
-                    <hr class="li-sp-divider" />
-                    <div class="li-sp-actions">
-                      <div class="li-sp-btn"><i class="fa-regular fa-thumbs-up"></i> Gefällt mir</div>
-                      <div class="li-sp-btn"><i class="fa-regular fa-comment"></i> Kommentar</div>
-                      <div class="li-sp-btn"><i class="fa-solid fa-retweet"></i> Teilen</div>
-                    </div>
-                  </div>
-                </div><!-- /li-screen-inner -->
-              </div><!-- /li-macbook-screen -->
-            </div><!-- /li-macbook-lid -->
-          </div><!-- /li-imac-monitor -->
-
-          <!-- Standfuss -->
-          <div class="li-imac-stand">
-            <div class="li-imac-neck"></div>
-            <div class="li-imac-base"></div>
-          </div>
-        </div><!-- /li-macbook -->
-        <div class="li-macbook-shadow"></div>
-      </div><!-- /li-macbook-wrap -->
-
-      <!-- Info Side -->
-      <div class="li-macbook-info">
-        <div class="li-mi-profile">
-          <img class="li-mi-avatar" src="../assets/images/komthur/li-avatar.jpg" alt="Komthur" />
-          <div>
-            <strong>Komthur GmbH</strong>
-            <span>Handwerk &amp; Renovation · Zürich</span>
-          </div>
-        </div>
-        <div class="li-mi-stats">
-          <div class="li-mi-stat">
-            <span class="li-mi-num">340</span>
-            <span>Follower</span>
-          </div>
-          <div class="li-mi-stat">
-            <span class="li-mi-num">12</span>
-            <span>Posts</span>
-          </div>
-          <div class="li-mi-stat">
-            <span class="li-mi-num">6.2%</span>
-            <span>Engagement</span>
-          </div>
-        </div>
-        <div class="li-mi-tags">
-          <span>B2B</span>
-          <span>Handwerk</span>
-          <span>Renovation</span>
-          <span>Zürich</span>
-        </div>
-        <div class="li-mi-note">
-          <i class="fa-solid fa-circle-info"></i>
-          LinkedIn wird als B2B-Kanal für Architekturbüros und Immobilienverwaltungen bespielt — mit Fachbeiträgen und Projekt-Einblicken.
-        </div>
-      </div>
-
-    </div><!-- /li-macbook-layout -->
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════ -->
-<footer class="site-footer">
-  <div class="footer-inner container">
-    <div class="footer-logo">
-      <img src="../assets/images/branding/logo_white.png" alt="Khadija Okbi" />
-    </div>
-    <nav class="footer-nav">
-      <a href="../index.html">Home</a>
-      <a href="../work.html">Work</a>
-      <a href="../about.html">About</a>
-      <a href="../contact.html">Contact</a>
-    </nav>
-    <p class="footer-copy">© 2024 Khadija Okbi · Alle Rechte vorbehalten</p>
   </div>
 </footer>
 
 <script src="../assets/js/preloader.js"></script>
 <script src="../assets/js/main.js"></script>
-<script>
-/* ════════════════════════════════════════
-   KOMTHUR PAGE SCRIPTS
-   Isoliert — kein GSAP dependency
-════════════════════════════════════════ */
-document.addEventListener('DOMContentLoaded', () => {
-
-  /* ── Sticky Nav Active State ── */
-  const ssnLinks = document.querySelectorAll('.ssn-link');
-  const sections = ['website-section','sea-section','instagram-section','linkedin-section'];
-
-  const ssnObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        ssnLinks.forEach(l => l.classList.remove('ssn-active'));
-        const active = document.querySelector(`.ssn-link[href="#${entry.target.id}"]`);
-        if (active) active.classList.add('ssn-active');
-      }
-    });
-  }, { threshold: 0.4 });
-
-  sections.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) ssnObserver.observe(el);
-  });
-
-  /* ── Instagram Carousel ── */
-  const rail    = document.getElementById('icRail');
-  const btnPrev = document.getElementById('icPrev');
-  const btnNext = document.getElementById('icNext');
-
-  if (rail && btnPrev && btnNext) {
-    const isDesktop = () => window.innerWidth >= 1025;
-
-    let currentIdx = 0;
-
-    const getCards = () => rail.querySelectorAll('.insta-post-card');
-    const getCardWidth = () => {
-      const card = getCards()[0];
-      if (!card) return 0;
-      return card.offsetWidth + parseInt(getComputedStyle(rail).gap || 20);
-    };
-
-    const goTo = (idx) => {
-      const cards = getCards();
-      currentIdx = Math.max(0, Math.min(idx, cards.length - 1));
-      if (isDesktop()) {
-        rail.style.transform = `translateX(-${currentIdx * getCardWidth()}px)`;
-      }
-      btnPrev.disabled = currentIdx === 0;
-      btnNext.disabled = currentIdx >= cards.length - (isDesktop() ? 2 : 1);
-    };
-
-    btnPrev.addEventListener('click', () => goTo(currentIdx - 1));
-    btnNext.addEventListener('click', () => goTo(currentIdx + 1));
-
-    // Reset on resize
-    window.addEventListener('resize', () => {
-      if (!isDesktop()) {
-        rail.style.transform = '';
-      } else {
-        goTo(currentIdx);
-      }
-    });
-
-    goTo(0);
-  }
-
-  /* ── LinkedIn Image Sliders ── */
-  document.querySelectorAll('.li-img-slider-wrap').forEach(wrap => {
-    const slider  = wrap.querySelector('.li-img-slider');
-    const slides  = wrap.querySelectorAll('.li-slide');
-    const prevBtn = wrap.querySelector('.li-slide-prev');
-    const nextBtn = wrap.querySelector('.li-slide-next');
-    if (!slider || slides.length === 0) return;
-
-    const dotsId    = wrap.nextElementSibling?.id;
-    const counterId = wrap.nextElementSibling?.nextElementSibling?.id;
-    const dotsEl    = dotsId    ? document.getElementById(dotsId)    : null;
-    const counterEl = counterId ? document.getElementById(counterId) : null;
-
-    let idx = 0;
-    const total = slides.length;
-
-    // Build dots
-    if (dotsEl) {
-      slides.forEach((_, i) => {
-        const dot = document.createElement('div');
-        dot.className = 'li-slide-dot' + (i === 0 ? ' active' : '');
-        dot.addEventListener('click', () => goTo(i));
-        dotsEl.appendChild(dot);
-      });
-    }
-
-    const goTo = (n) => {
-      idx = Math.max(0, Math.min(n, total - 1));
-      slider.style.transform = `translateX(-${idx * 100}%)`;
-      if (prevBtn) prevBtn.disabled = idx === 0;
-      if (nextBtn) nextBtn.disabled = idx === total - 1;
-      if (counterEl) counterEl.textContent = `${idx + 1} / ${total}`;
-      if (dotsEl) {
-        dotsEl.querySelectorAll('.li-slide-dot').forEach((d, i) => {
-          d.classList.toggle('active', i === idx);
-        });
-      }
-    };
-
-    // Drag support
-    let startX = 0, isDragging = false;
-    slider.addEventListener('mousedown',  e => { startX = e.clientX; isDragging = true; slider.classList.add('is-dragging'); });
-    slider.addEventListener('mousemove',  e => { if (!isDragging) return; });
-    slider.addEventListener('mouseup',    e => {
-      if (!isDragging) return;
-      isDragging = false; slider.classList.remove('is-dragging');
-      const diff = startX - e.clientX;
-      if (Math.abs(diff) > 40) goTo(diff > 0 ? idx + 1 : idx - 1);
-    });
-    slider.addEventListener('mouseleave', () => { if (isDragging) { isDragging = false; slider.classList.remove('is-dragging'); } });
-
-    // Touch
-    let touchStartX = 0;
-    slider.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-    slider.addEventListener('touchend',   e => {
-      const diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) goTo(diff > 0 ? idx + 1 : idx - 1);
-    });
-
-    if (prevBtn) prevBtn.addEventListener('click', () => goTo(idx - 1));
-    if (nextBtn) nextBtn.addEventListener('click', () => goTo(idx + 1));
-
-    goTo(0);
-  });
-
-});
-</script>
+<script src="script/komthur.js"></script>
 
 </body>
 </html>
