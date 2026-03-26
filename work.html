@@ -510,13 +510,17 @@
   .ip-stage { height: 320px; }
   .ip { width: 140px; height: 290px; }
   .kpis { gap: 18px; }
+  .work-hero .hero-top { font-size: clamp(40px, 11vw, 64px); overflow-wrap: break-word; word-break: break-word; hyphens: auto; }
+  .work-hero-meta { flex-direction: column; gap: 16px; }
+  .work-hero-bignum { font-size: 52px; }
+  .work-hero-desc { max-width: 100%; }
 }
 </style>
 </head>
 <body>
 
 <!-- NAV — your exact site-header structure -->
-<header class="site-header" id="top" aria-label="Seitennavigation"></header>
+<header class="site-header" id="top" aria-label="Seitennavigation">
     <div class="page-container nav-bar">
       <a href="index.html" class="logo">
         <img src="assets/images/branding/logo_black.png" alt="Khadija Okbi" width="45">
@@ -532,7 +536,7 @@
   </header>
 
 <!-- HERO — darkgreen, Higuen H1 -->
-<section class="work-hero wave-mint"></section>
+<section class="work-hero wave-mint">
   <div class="work-hero-inner">
     <p class="photo-eyebrow rv" style="color:var(--mauve);animation:fadeUp 1s cubic-bezier(0,0,0.2,1) 0.2s both">
       Portfolio · Ausgewählte Arbeiten
@@ -546,7 +550,7 @@
 </section>
 
 <!-- WEB EXPERIENCES -->
-<section class="section-web wave-cream"></section>
+<section class="section-web wave-cream">
   <div class="in85">
     <p class="photo-eyebrow rv" style="color:var(--mauve)">Web Experiences</p>
     <h2 class="rv d1">Gebaute <em>Welten.</em></h2>
@@ -702,13 +706,13 @@
 </section>
 
 <!-- COLLECTIONS -->
-<section class="section-collections wave-foot"></section>
+<section class="section-collections wave-foot">
   <div class="in85">
     <p class="photo-eyebrow rv" style="color:var(--mauve)">Sammlungen & Archiv</p>
     <h2 class="rv d1">Vier Jahre <em>Schaffen.</em></h2>
 
     <div class="cg">
-      <div class="cc rv"></div>
+      <div class="cc rv">
         <div class="cc-bg bg-sbw">
           <div class="fst">
             <div class="fsr"><div class="fsh"></div><div class="fsf"></div><div class="fsf"></div><div class="fsf"></div><div class="fsh"></div></div>

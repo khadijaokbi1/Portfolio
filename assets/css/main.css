@@ -1029,3 +1029,25 @@ h2.title-neglige {
   .section-blog .blog-grid { grid-template-columns: 1fr; gap: 2rem; }
   .blog-thumb { height: 35vh; min-height: 220px; }
 }
+
+/* =========================================
+   12. MOBILE TEXT OVERFLOW PROTECTION
+   ========================================= */
+@media (max-width: 768px) {
+  p, li, td, blockquote {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  .container,
+  .page-container,
+  .page-wrap,
+  .section-inner {
+    overflow-x: hidden;
+  }
+}
