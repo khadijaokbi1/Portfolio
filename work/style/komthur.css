@@ -5206,3 +5206,1502 @@
     margin: 0 0 2rem;
   }
 }
+
+/* ========================================
+   ZUSATZSTYLES (zusammengefuehrt)
+   Quelle: komthur-redesign.css
+======================================== */
+
+/* ========================================
+   KOMTHUR REDESIGN - Editorial & Variativ
+   Nutzt ECHTE Variablen aus main.css
+   Mobile First • Responsive • Editorial
+======================================== */
+
+/* ========================================
+   INSIGHT CARDS - Elegante Editorialität
+======================================== */
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(2rem, 4vw, 2.5rem);
+  margin: clamp(2rem, 5vw, 3rem) 0;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.insight-card {
+  background: var(--white);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border-radius: 6px;
+  border: 1px solid var(--divider-light);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 2vw, 1rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.insight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--burgundy);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.insight-card:hover::before {
+  transform: scaleY(1);
+}
+
+.insight-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+  border-color: rgba(110, 59, 73, 0.2);
+}
+
+.insight-number {
+  font-family: var(--playfair);
+  font-size: clamp(2.5rem, 5vw, 3rem);
+  font-weight: 900;
+  color: rgba(110, 59, 73, 0.08);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.insight-title {
+  font-family: var(--work);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-weight: 700;
+  color: var(--black);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.insight-text {
+  font-family: var(--work);
+  font-size: clamp(0.9rem, 1.8vw, 0.95rem);
+  line-height: 1.6;
+  color: var(--off-black);
+  margin: 0;
+  flex-grow: 1;
+  opacity: 0.85;
+}
+
+.insight-text strong {
+  color: var(--black);
+  font-weight: 600;
+}
+
+.insight-goal {
+  display: inline-block;
+  font-family: var(--tenor);
+  font-size: clamp(0.75rem, 1.5vw, 0.8rem);
+  font-weight: 600;
+  color: var(--burgundy);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.5rem 1rem;
+  background: rgba(110, 59, 73, 0.06);
+  border-radius: 3px;
+  align-self: flex-start;
+  margin-top: 0.5rem;
+  border-left: 2px solid var(--burgundy);
+}
+
+/* ========================================
+   SECTION HEADERS - Variativ & Editorial
+======================================== */
+
+.section-header {
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.section-header h3 {
+  font-family: var(--higuen);
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  font-weight: 700;
+  margin: 0 0 clamp(0.75rem, 2vw, 1rem);
+  color: var(--black);
+  line-height: 1.1;
+  font-style: normal;
+  letter-spacing: 0.02em;
+}
+
+.section-header h3 .highlight-burgundy {
+  color: var(--burgundy);
+  font-family: var(--playfair);
+  font-style: italic;
+}
+
+.section-header h3 .highlight-mint {
+  color: var(--mint);
+  font-family: var(--playfair);
+  font-style: italic;
+}
+
+.section-intro {
+  font-family: var(--work);
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  line-height: 1.7;
+  color: var(--off-black);
+  max-width: 650px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+.section-intro-dark {
+  color: var(--off-black);
+  opacity: 0.85;
+}
+
+/* ========================================
+   SWOT ANALYSE - 4 unterschiedliche Styles
+======================================== */
+
+.swot-grid-new {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2rem);
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.swot-card {
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: var(--white);
+  border-radius: 6px;
+  border: 1px solid var(--divider-light);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s var(--easing-decelerate);
+  position: relative;
+  overflow: hidden;
+}
+
+.swot-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: currentColor;
+  opacity: 1;
+}
+
+/* Stärken - Grün */
+.swot-card:nth-child(1) {
+  border-left: 4px solid #27AE60;
+  --swot-color: #27AE60;
+}
+
+.swot-card:nth-child(1):hover {
+  border-left-color: #27AE60;
+  background: rgba(39, 174, 96, 0.02);
+}
+
+/* Schwächen - Rot */
+.swot-card:nth-child(2) {
+  border-left: 4px solid #E74C3C;
+  --swot-color: #E74C3C;
+}
+
+.swot-card:nth-child(2):hover {
+  border-left-color: #E74C3C;
+  background: rgba(231, 76, 60, 0.02);
+}
+
+/* Chancen - Blau */
+.swot-card:nth-child(3) {
+  border-left: 4px solid #3498DB;
+  --swot-color: #3498DB;
+}
+
+.swot-card:nth-child(3):hover {
+  border-left-color: #3498DB;
+  background: rgba(52, 152, 219, 0.02);
+}
+
+/* Bedrohungen - Orange */
+.swot-card:nth-child(4) {
+  border-left: 4px solid #F39C12;
+  --swot-color: #F39C12;
+}
+
+.swot-card:nth-child(4):hover {
+  border-left-color: #F39C12;
+  background: rgba(243, 156, 18, 0.02);
+}
+
+.swot-card-letter {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-family: var(--playfair);
+  font-size: clamp(3rem, 6vw, 4rem);
+  font-weight: 900;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.swot-card h4 {
+  font-family: var(--work);
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-weight: 700;
+  margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+  color: var(--black);
+}
+
+.swot-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1vw, 0.65rem);
+}
+
+.swot-card li {
+  font-family: var(--work);
+  font-size: clamp(0.9rem, 1.8vw, 0.95rem);
+  line-height: 1.5;
+  color: var(--off-black);
+  padding-left: 0;
+  opacity: 0.85;
+}
+
+/* ========================================
+   KONKURRENZ ANALYSE - Responsive Split
+======================================== */
+
+.konkurrenz-split {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: clamp(1.5rem, 3vw, 2rem);
+  align-items: start;
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+  border: 1px solid var(--divider-light);
+}
+
+.konkurrenz-side {
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: var(--white);
+  border-radius: 6px;
+  border: 1px solid var(--divider-light);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s var(--easing-decelerate);
+}
+
+.konkurrenz-side:hover {
+  box-shadow: var(--shadow-md);
+  border-color: rgba(110, 59, 73, 0.15);
+}
+
+.konkurrenz-name {
+  display: block;
+  font-family: var(--work);
+  font-weight: 700;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  color: var(--black);
+}
+
+.konkurrenz-side ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.konkurrenz-side li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--work);
+  font-size: clamp(0.9rem, 1.8vw, 0.95rem);
+  line-height: 1.8;
+  color: var(--off-black);
+  padding: 0.25rem 0;
+  opacity: 0.85;
+}
+
+.konkurrenz-side i {
+  width: 16px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.konkurrenz-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--higuen);
+  font-size: clamp(1.75rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--burgundy);
+  height: 100%;
+}
+
+.positioning-insight-new {
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: rgba(110, 59, 73, 0.08);
+  border-left: 3px solid var(--burgundy);
+  border-radius: 6px;
+  font-family: var(--work);
+  font-size: clamp(0.95rem, 1.8vw, 1rem);
+  line-height: 1.8;
+  color: var(--off-black);
+  opacity: 0.9;
+}
+
+.positioning-insight-new em {
+  color: var(--burgundy);
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* ========================================
+   DATA GRID - Editorial Card Variations
+======================================== */
+
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2rem);
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.data-item {
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: var(--white);
+  border-radius: 6px;
+  text-align: left;
+  border: 1px solid var(--divider-light);
+  transition: all 0.3s var(--easing-decelerate);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.data-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--burgundy), var(--mint));
+  opacity: 0;
+  transition: opacity 0.3s var(--easing-decelerate);
+}
+
+.data-item:hover {
+  border-color: rgba(110, 59, 73, 0.2);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.data-item:hover::before {
+  opacity: 1;
+}
+
+.data-number {
+  font-family: var(--playfair);
+  font-size: clamp(2.25rem, 4vw, 2.75rem);
+  font-weight: 900;
+  color: rgba(110, 59, 73, 0.08);
+  line-height: 1;
+}
+
+.data-item h3 {
+  font-family: var(--work);
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-weight: 700;
+  margin: 0;
+  color: var(--black);
+}
+
+.data-item p {
+  font-family: var(--work);
+  font-size: clamp(0.9rem, 1.8vw, 0.95rem);
+  line-height: 1.6;
+  color: var(--off-black);
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* ========================================
+   SHOWCASE SECTIONS - Bessere Struktur
+======================================== */
+
+.showcase-subsection {
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--divider-light);
+}
+
+.showcase-subsection:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.showcase-sub-header {
+  margin-bottom: clamp(2rem, 3vw, 2.5rem);
+}
+
+.showcase-eyebrow {
+  display: block;
+  font-family: var(--tenor);
+  font-size: clamp(0.7rem, 1.5vw, 0.75rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--burgundy);
+  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
+}
+
+.showcase-sub-title {
+  font-family: var(--higuen);
+  font-size: clamp(1.5rem, 4vw, 1.75rem);
+  font-weight: 700;
+  color: var(--black);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.showcase-sub-title em {
+  color: var(--burgundy);
+  font-style: italic;
+  font-family: var(--playfair);
+}
+
+/* ========================================
+   WEBSITE SHOWCASE FRAME
+======================================== */
+
+.website-showcase-frame {
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  background: var(--white);
+  border: 1px solid var(--divider-light);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s var(--easing-decelerate);
+}
+
+.website-showcase-frame:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(110, 59, 73, 0.2);
+}
+
+.wsf-bar {
+  background: #f8f8f8;
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--divider-light);
+  gap: 1rem;
+}
+
+.wsf-dots {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.wsf-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ddd;
+}
+
+.wsf-url {
+  flex: 1;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+  color: var(--mint);
+  opacity: 0.7;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wsf-embed {
+  width: 100%;
+}
+
+.wsf-caption {
+  padding: clamp(1.25rem, 2vw, 1.5rem);
+  text-align: center;
+  border-top: 1px solid var(--divider-light);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.wsf-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--tenor);
+  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+  font-weight: 600;
+  color: var(--burgundy);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s var(--easing-decelerate);
+}
+
+.wsf-link:hover {
+  gap: 0.75rem;
+  color: var(--black);
+}
+
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+======================================== */
+
+@media (max-width: 1024px) {
+  .personas-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .konkurrenz-split {
+    grid-template-columns: 1fr;
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .konkurrenz-divider {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .personas-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .insights-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .insight-card {
+    padding: clamp(1rem, 2vw, 1.5rem);
+    gap: 0.5rem;
+  }
+
+  .swot-grid-new {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .data-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .konkurrenz-split {
+    padding: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .konkurrenz-side {
+    padding: clamp(1rem, 2vw, 1.25rem);
+  }
+
+  .section-header h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .showcase-subsection {
+    margin-bottom: clamp(2rem, 3vw, 3rem);
+    padding-top: clamp(1.5rem, 2vw, 2rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .section-header {
+    margin-bottom: clamp(1.5rem, 2vw, 2rem);
+  }
+
+  .section-header h3 {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .insights-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(0.75rem, 1.5vw, 1rem);
+    margin-bottom: clamp(2rem, 3vw, 3rem);
+  }
+
+  .insight-card {
+    padding: clamp(1rem, 2vw, 1.25rem);
+    gap: 0.5rem;
+  }
+
+  .insight-number {
+    font-size: 1.75rem;
+    margin-bottom: 0.125rem;
+  }
+
+  .swot-grid-new {
+    grid-template-columns: 1fr;
+    gap: clamp(0.75rem, 1.5vw, 1rem);
+  }
+
+  .swot-card {
+    padding: clamp(1rem, 2vw, 1.25rem);
+  }
+
+  .data-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(0.75rem, 1.5vw, 1rem);
+  }
+
+  .data-item {
+    padding: clamp(1rem, 2vw, 1.25rem);
+    text-align: left;
+  }
+
+  .konkurrenz-split {
+    gap: clamp(0.75rem, 1.5vw, 1rem);
+    padding: clamp(1rem, 1.5vw, 1.25rem);
+  }
+
+  .konkurrenz-side {
+    padding: clamp(1rem, 1.5vw, 1.25rem);
+  }
+
+  .showcase-subsection {
+    margin-bottom: clamp(1.5rem, 2vw, 2rem);
+    padding-top: clamp(1rem, 1.5vw, 1.5rem);
+  }
+
+  .wsf-bar {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .wsf-url {
+    margin: 0;
+  }
+}
+
+/* ========================================
+   PERSONAS - RESPONSIVE ONLY (NO CHANGES)
+   Strategie Section - RESPONSIVE ONLY (NO CHANGES)
+======================================== */
+
+/* Diese Sections bleiben unverändert!
+   Nur responsive Breakpoints in bestehenden Dateien */
+
+
+/* ========================================
+   ZUSATZSTYLES (zusammengefuehrt)
+   Quelle: komthur-luxury-posts.css
+======================================== */
+
+/* ========================================
+   LUXURY POSTS - LinkedIn & Instagram
+   Mit Fülle, Variationen & Wow-Effekt
+   Editorial • Elegant • Luxuriös
+======================================== */
+
+/* ========================================
+   LINKEDIN POST - VARIATION 1: Expert Carousel
+======================================== */
+
+.li-post-container {
+  max-width: 552px;
+  margin: 0 auto 4rem;
+  background: white;
+  border: 1px solid rgba(45, 45, 45, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  font-family: var(--work);
+  color: var(--black);
+  transition: all 0.3s ease;
+}
+
+.li-post-container:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  border-color: rgba(110, 59, 73, 0.15);
+}
+
+/* Header mit Avatar & Meta */
+.li-post-header {
+  padding: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border-bottom: 1px solid rgba(45, 45, 45, 0.08);
+}
+
+.li-post-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(110, 59, 73, 0.1);
+}
+
+.li-post-meta {
+  flex: 1;
+}
+
+.li-post-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 2px;
+  font-family: var(--work);
+}
+
+.li-post-role {
+  font-size: 12px;
+  color: var(--mint);
+  margin-bottom: 4px;
+  font-family: var(--tenor);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.li-post-time {
+  font-size: 12px;
+  color: rgba(45, 45, 45, 0.6);
+  font-family: var(--tenor);
+}
+
+/* Post Content */
+.li-post-content {
+  padding: 20px;
+}
+
+.li-post-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--off-black);
+  margin-bottom: 16px;
+  font-family: var(--work);
+}
+
+.li-post-text em {
+  color: var(--burgundy);
+  font-weight: 600;
+  font-style: italic;
+}
+
+.li-post-text strong {
+  color: var(--black);
+  font-weight: 700;
+}
+
+/* Carousel Section */
+.li-carousel-wrapper {
+  position: relative;
+  background: linear-gradient(135deg, rgba(49, 74, 81, 0.05), rgba(110, 59, 73, 0.05));
+  aspect-ratio: 1;
+  overflow: hidden;
+  margin-bottom: 16px;
+  border-radius: 6px;
+}
+
+.li-carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.li-carousel-counter {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 11px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-family: var(--tenor);
+  letter-spacing: 0.05em;
+  z-index: 10;
+}
+
+.li-carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--black);
+  z-index: 20;
+  transition: all 0.2s ease;
+}
+
+.li-carousel-nav:hover {
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.li-carousel-prev { left: 12px; }
+.li-carousel-next { right: 12px; }
+
+/* Stats */
+.li-engagement-stats {
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(45, 45, 45, 0.08);
+  margin-bottom: 12px;
+}
+
+.li-stat-text {
+  color: rgba(45, 45, 45, 0.7);
+  font-family: var(--tenor);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Action Buttons */
+.li-action-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+.li-action-btn {
+  padding: 10px;
+  background: transparent;
+  border: none;
+  color: var(--mint);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--tenor);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+.li-action-btn:hover {
+  background: rgba(49, 74, 81, 0.08);
+  color: var(--burgundy);
+}
+
+/* ========================================
+   INSTAGRAM POST - VARIATION 2: Story-Style
+======================================== */
+
+.ig-post-wrapper {
+  max-width: 552px;
+  margin: 0 auto 4rem;
+  background: white;
+  border: 1px solid rgba(45, 45, 45, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.ig-post-wrapper:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  border-color: rgba(110, 59, 73, 0.15);
+}
+
+/* Header */
+.ig-post-header {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(45, 45, 45, 0.08);
+}
+
+.ig-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.ig-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, #feda75, #fa7e1e, #d52e7f, #9b36b7, #515bd4);
+  padding: 2px;
+}
+
+.ig-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: white;
+}
+
+.ig-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ig-username {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--black);
+  font-family: var(--work);
+}
+
+.ig-location {
+  font-size: 12px;
+  color: var(--mint);
+  font-family: var(--tenor);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.ig-menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: rgba(45, 45, 45, 0.6);
+  padding: 4px 8px;
+}
+
+/* Image/Carousel */
+.ig-media-wrapper {
+  position: relative;
+  background: linear-gradient(135deg, rgba(49, 74, 81, 0.05), rgba(110, 59, 73, 0.05));
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.ig-media-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ig-carousel-indicator {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--tenor);
+  letter-spacing: 0.05em;
+  z-index: 10;
+}
+
+/* Actions */
+.ig-action-row {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(45, 45, 45, 0.08);
+}
+
+.ig-actions-left {
+  display: flex;
+  gap: 16px;
+}
+
+.ig-action-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--black);
+  padding: 4px;
+  transition: all 0.2s ease;
+}
+
+.ig-action-icon:hover {
+  color: var(--burgundy);
+  transform: scale(1.1);
+}
+
+.ig-action-icon.liked {
+  color: #E1306C;
+}
+
+/* Likes & Caption */
+.ig-likes-row {
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--black);
+  font-family: var(--work);
+  border-bottom: 1px solid rgba(45, 45, 45, 0.08);
+}
+
+.ig-caption-row {
+  padding: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--off-black);
+  font-family: var(--work);
+}
+
+.ig-caption-username {
+  font-weight: 700;
+  color: var(--black);
+  margin-right: 4px;
+}
+
+.ig-caption-text {
+  color: var(--off-black);
+}
+
+.ig-caption-hashtags {
+  color: var(--burgundy);
+  font-weight: 600;
+}
+
+.ig-timestamp {
+  font-size: 11px;
+  color: rgba(45, 45, 45, 0.5);
+  font-family: var(--tenor);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 8px;
+  display: block;
+}
+
+/* ========================================
+   VARIATIONS: Card Styles für 4x Posts
+======================================== */
+
+/* Variation A: Minimalist */
+.li-post-container.var-minimal {
+  border: 1px solid rgba(49, 74, 81, 0.15);
+  background: linear-gradient(135deg, white 0%, rgba(49, 74, 81, 0.02) 100%);
+}
+
+.li-post-container.var-minimal .li-post-header {
+  border-bottom: none;
+  padding: 16px;
+}
+
+/* Variation B: Bold Accent */
+.li-post-container.var-bold {
+  border-left: 4px solid var(--burgundy);
+}
+
+.li-post-container.var-bold .li-post-header {
+  background: rgba(110, 59, 73, 0.04);
+}
+
+/* Variation C: Gradient Edge */
+.li-post-container.var-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--burgundy), var(--mint), var(--darkgreen));
+  pointer-events: none;
+}
+
+/* Variation D: Shadow Play */
+.li-post-container.var-shadow {
+  box-shadow: 
+    0 4px 12px rgba(110, 59, 73, 0.08),
+    0 0 24px rgba(110, 59, 73, 0.04);
+}
+
+/* ========================================
+   INSTAGRAM VARIATIONS
+======================================== */
+
+/* Variation A: Color Frame */
+.ig-post-wrapper.var-frame {
+  border: 2px solid;
+  border-color: var(--burgundy);
+}
+
+.ig-post-wrapper.var-frame .ig-post-header {
+  background: rgba(110, 59, 73, 0.04);
+}
+
+/* Variation B: Shadow Story */
+.ig-post-wrapper.var-story {
+  box-shadow: 
+    0 6px 16px rgba(110, 59, 73, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Variation C: Dark Mode */
+.ig-post-wrapper.var-dark {
+  background: rgba(45, 45, 45, 0.95);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.ig-post-wrapper.var-dark .ig-username {
+  color: white;
+}
+
+.ig-post-wrapper.var-dark .ig-caption-text {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 768px) {
+  .li-post-container,
+  .ig-post-wrapper {
+    max-width: 100%;
+    margin: 0 0 2rem;
+  }
+
+  .li-action-buttons {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .li-post-header,
+  .ig-post-header {
+    padding: 12px;
+  }
+
+  .li-post-content,
+  .ig-caption-row {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .li-post-container,
+  .ig-post-wrapper {
+    border-radius: 6px;
+    margin: 0 0 1.5rem;
+  }
+
+  .li-carousel-nav {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .li-carousel-prev { left: 8px; }
+  .li-carousel-next { right: 8px; }
+
+  .li-action-buttons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ig-actions-left {
+    gap: 12px;
+  }
+
+  .ig-action-icon {
+    font-size: 16px;
+  }
+}
+
+
+/* ========================================
+   ZUSATZSTYLES (zusammengefuehrt)
+   Quelle: komthur-strategie-fix.css
+======================================== */
+
+/* ========================================
+   STRATEGIE SECTION - FARBKORREKTUR
+   Dunkler Hintergrund mit weißem Text
+======================================== */
+
+.strategie {
+  background: var(--darkgreen) !important;
+  color: white !important;
+}
+
+.strategie .strat-header {
+  color: white;
+}
+
+.strategie .strat-eyebrow {
+  color: var(--mauve);
+  border-color: rgba(181, 161, 158, 0.3);
+}
+
+.strategie .strat-headline {
+  color: white;
+  font-style: italic;
+}
+
+.strategie .strat-lead {
+  color: var(--mauve);
+  opacity: 0.9;
+}
+
+.strategie .strat-nav {
+  background: transparent;
+  border-bottom: 1px solid rgba(181, 161, 158, 0.2);
+}
+
+.strategie .strat-btn {
+  color: var(--mauve);
+  border: none;
+}
+
+.strategie .strat-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.strategie .strat-btn.active {
+  background: rgba(181, 161, 158, 0.15);
+  color: white;
+}
+
+.strategie .btn-num {
+  color: var(--mauve);
+}
+
+.strategie .btn-title {
+  color: white;
+}
+
+.strategie .btn-sub {
+  color: var(--mauve);
+  opacity: 0.8;
+}
+
+.strategie .strat-rule-fill {
+  background: var(--mauve);
+}
+
+.strategie .p-eyebrow {
+  color: var(--mauve);
+  border-color: rgba(181, 161, 158, 0.3);
+}
+
+.strategie .p-title {
+  color: white;
+}
+
+.strategie .p-title em {
+  color: var(--mauve);
+}
+
+.strategie .p-body {
+  color: var(--mauve);
+  opacity: 0.95;
+}
+
+.strategie .p-tag {
+  background: rgba(181, 161, 158, 0.12);
+  color: white;
+  border-color: rgba(181, 161, 158, 0.2);
+}
+
+.strategie .p-tag:hover {
+  background: rgba(181, 161, 158, 0.2);
+  border-color: rgba(181, 161, 158, 0.3);
+}
+
+.strategie .p-strip {
+  background: rgba(181, 161, 158, 0.1);
+  border-left-color: var(--mauve);
+}
+
+.strategie .p-strip-label {
+  color: var(--mauve);
+}
+
+.strategie .p-strip-content {
+  color: white;
+}
+
+.strategie .ps-cell {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(181, 161, 158, 0.2);
+  color: white;
+}
+
+.strategie .ps-cell:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(181, 161, 158, 0.3);
+}
+
+.strategie .ps-l {
+  color: var(--mauve);
+}
+
+.strategie .ps-v {
+  color: white;
+}
+
+.strategie .p-stat {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.strategie .p-stat:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.strategie .stat-num {
+  color: var(--mauve);
+}
+
+.strategie .stat-label {
+  color: white;
+}
+
+.strategie .stat-sub {
+  color: var(--mauve);
+  opacity: 0.8;
+}
+
+.strategie .analytics-card {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(181, 161, 158, 0.2);
+  color: white;
+}
+
+.strategie .analytics-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(181, 161, 158, 0.15);
+}
+
+.strategie .analytics-card h3 {
+  color: white;
+}
+
+.strategie .seo-text {
+  color: var(--mauve);
+  opacity: 0.9;
+}
+
+.strategie .info-box {
+  background: rgba(181, 161, 158, 0.1);
+  border-left-color: var(--mauve);
+  color: var(--mauve);
+}
+
+.strategie .info-box em {
+  color: white;
+}
+
+.strategie .ads-header {
+  color: white;
+}
+
+.strategie .ads-value {
+  color: var(--mauve);
+}
+
+.strategie .ads-item {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.strategie .ads-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.strategie .ads-meta {
+  color: var(--mauve);
+  opacity: 0.8;
+}
+
+.strategie .progress-bar {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.strategie .kpi-row {
+  background: rgba(255, 255, 255, 0.06);
+  color: white;
+}
+
+.strategie .kpi-row:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.strategie .kpi-name {
+  color: white;
+}
+
+.strategie .kpi-val {
+  color: white;
+}
+
+.strategie .kpi-sub-txt {
+  color: var(--mauve);
+  opacity: 0.8;
+}
+
+.strategie .p-budget {
+  background: rgba(181, 161, 158, 0.1);
+  border-color: rgba(181, 161, 158, 0.2);
+}
+
+.strategie .budget-num {
+  color: var(--mauve);
+}
+
+.strategie .budget-lbl {
+  color: var(--mauve);
+  opacity: 0.8;
+}
+
+.strategie .bl {
+  color: white;
+}
+
+.strategie .strat-select {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  border-color: rgba(181, 161, 158, 0.2);
+}
+
+.strategie .strat-select:hover {
+  border-color: rgba(181, 161, 158, 0.4);
+}
+
+.strategie .strat-select option {
+  background: var(--darkgreen);
+  color: white;
+}
