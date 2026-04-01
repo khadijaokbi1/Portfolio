@@ -21,11 +21,314 @@
 
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
 
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/footer-nav-waves.css">
   <link rel="stylesheet" href="assets/css/about.css">
   <link rel="stylesheet" href="assets/css/preloader.css">
+
+  <style>
+    /* ═══ ABOUT HERO v2 — Editorial Light ═══ */
+    .ah-hero {
+      min-height: 100vh;
+      background: #F9F7F4;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: clamp(7rem, 14vh, 11rem) 0 clamp(5rem, 10vw, 8rem);
+      overflow: hidden;
+    }
+    .ah-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 60% 50%, rgba(181,161,158,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ah-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 20vh;
+      background-color: #56686a;
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,260 C200,220 440,160 680,190 C920,220 1120,300 1440,270 L1440,400 Z'/%3E%3C/svg%3E");
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,260 C200,220 440,160 680,190 C920,220 1120,300 1440,270 L1440,400 Z'/%3E%3C/svg%3E");
+      mask-size: 100% 100%;
+      -webkit-mask-size: 100% 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .ah-hero__inner {
+      max-width: 88vw;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 8rem);
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .ah-hero__text { display: flex; flex-direction: column; }
+    .ah-hero__eyebrow {
+      font-family: var(--tenor);
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--mauve);
+      display: block;
+      margin-bottom: clamp(1.5rem, 4vh, 3rem);
+      opacity: 0;
+      animation: ahFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
+    }
+    .ah-hero__title {
+      font-family: var(--higuen);
+      font-size: clamp(3.2rem, 8vw, 9.5rem);
+      font-weight: 400;
+      line-height: 0.88;
+      letter-spacing: -0.01em;
+      color: var(--black);
+      text-transform: uppercase;
+      margin: 0 0 clamp(1.5rem, 3vh, 2.5rem);
+    }
+    .ah-hero__title em {
+      font-family: var(--playfair);
+      font-style: italic;
+      font-size: 0.85em;
+      text-transform: none;
+      color: var(--burgundy);
+    }
+    .ah-title-line { display: block; overflow: hidden; }
+    .ah-title-inner {
+      display: block;
+      opacity: 0;
+      transform: translateY(100%);
+      animation: ahSlideUp 1.1s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .ah-title-inner:nth-child(1) { animation-delay: 0.4s; }
+    .ah-title-inner:nth-child(2) { animation-delay: 0.55s; }
+    .ah-title-inner:nth-child(3) { animation-delay: 0.7s; }
+    .ah-title-inner:nth-child(4) { animation-delay: 0.85s; }
+    .ah-hero__sub {
+      font-family: var(--playfair);
+      font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+      font-style: italic;
+      color: var(--mint);
+      letter-spacing: 0.03em;
+      opacity: 0;
+      animation: ahFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 1s forwards;
+    }
+    .ah-hero__portrait-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+    .ah-hero__portrait-img {
+      width: 100%;
+      max-width: 460px;
+      height: clamp(360px, 58vh, 580px);
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      opacity: 0;
+      animation: ahFadeUp 1.2s cubic-bezier(0.16,1,0.3,1) 0.6s forwards;
+    }
+    .ah-hero__deco-line {
+      position: absolute;
+      bottom: -1.5rem;
+      left: -1.5rem;
+      width: 60px;
+      height: 60px;
+      border-left: 1.5px solid var(--burgundy);
+      border-bottom: 1.5px solid var(--burgundy);
+      opacity: 0.3;
+    }
+    .ah-hero__scroll-hint {
+      position: absolute;
+      bottom: clamp(2.5rem, 6vh, 5rem);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      animation: ahFadeUp 0.8s ease 1.4s forwards;
+      z-index: 3;
+    }
+    .ah-hero__scroll-label {
+      font-family: var(--tenor);
+      font-size: 0.5rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: rgba(82,82,82,0.38);
+    }
+    .ah-hero__scroll-line {
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(180deg, var(--burgundy), transparent);
+      opacity: 0.3;
+      animation: scrollPulse 2.2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { transform: scaleY(1); opacity: 0.3; }
+      50% { transform: scaleY(0.4); opacity: 0.1; }
+    }
+    @keyframes ahFadeUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes ahSlideUp { to { opacity: 1; transform: translateY(0); } }
+
+    /* ═══ ABOUT ME — Typewriter & Trivia ═══ */
+    .about-tw__headline {
+      margin: 0.8rem 0 2rem;
+      line-height: 1.1;
+    }
+    .tw-prefix {
+      font-family: var(--work);
+      font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+      color: rgba(245,245,245,0.55);
+      text-transform: lowercase;
+      letter-spacing: 0.08em;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .tw-big {
+      font-family: var(--higuen);
+      font-size: clamp(2.8rem, 6vw, 6rem);
+      font-weight: 400;
+      text-transform: uppercase;
+      line-height: 0.9;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      display: block;
+      min-height: 1em;
+    }
+    .typed-about { color: rgba(245,245,245,0.9); }
+    .typed-cursor { color: var(--mauve); font-weight: 100; }
+
+    /* Text reveal */
+    .reveal-para {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-para.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* CTA */
+    .about-resume-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 2rem;
+      background: var(--burgundy);
+      color: var(--white);
+      font-family: var(--tenor);
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+      margin-top: 2rem;
+      align-self: flex-start;
+    }
+    .about-resume-cta:hover { background: var(--black); transform: translateY(-2px); }
+    .about-resume-cta:hover svg { transform: translate(3px,-3px); }
+    .about-resume-cta svg { transition: transform 0.3s ease; }
+
+    /* 3 Trivia strips below portrait */
+    .about-trivia {
+      margin-top: 1.8rem;
+      border-top: 1px solid rgba(245,245,245,0.15);
+    }
+    .trivia-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(245,245,245,0.1);
+      opacity: 0;
+      transform: translateX(-14px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .trivia-item.is-visible { opacity: 1; transform: translateX(0); }
+    .trivia-num {
+      font-family: var(--playfair);
+      font-size: 0.68rem;
+      font-style: italic;
+      color: var(--mauve);
+      flex-shrink: 0;
+      padding-top: 2px;
+      min-width: 20px;
+    }
+    .trivia-body { display: flex; flex-direction: column; gap: 0.12rem; }
+    .trivia-label {
+      font-family: var(--tenor);
+      font-size: 0.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      color: var(--mauve);
+    }
+    .trivia-val {
+      font-family: var(--playfair);
+      font-size: 0.85rem;
+      font-style: italic;
+      color: rgba(245,245,245,0.85);
+    }
+
+    /* Counter feinschliff */
+    .fav-books-hero__counter .big-counter {
+      display: flex;
+      gap: clamp(2rem, 6vw, 6rem);
+      justify-content: center;
+      align-items: baseline;
+      padding: clamp(2rem, 4vh, 3rem) 0;
+    }
+    .big-counter__box { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; }
+    .big-counter__year {
+      font-family: var(--tenor);
+      font-size: 0.55rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--mauve);
+    }
+    .big-counter__num {
+      font-family: var(--higuen);
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 400;
+      line-height: 1;
+      color: var(--white);
+      letter-spacing: -0.03em;
+    }
+    .big-counter__unit {
+      font-family: var(--work);
+      font-size: 0.72rem;
+      color: rgba(245,245,245,0.45);
+      letter-spacing: 0.06em;
+    }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 900px) {
+      .ah-hero__inner { grid-template-columns: 1fr; text-align: center; }
+      .ah-hero__text { align-items: center; order: 2; }
+      .ah-hero__portrait-wrap { order: 1; }
+      .ah-hero__portrait-img { max-width: 280px; height: 320px; margin: 0 auto; }
+      .ah-hero__deco-line { display: none; }
+      .tw-big, .typed-about { font-size: clamp(2.4rem, 10vw, 4.5rem); }
+    }
+    @media (max-width: 600px) {
+      .ah-hero__title { font-size: clamp(2.4rem, 14vw, 4rem); }
+      .about-tw__headline { text-align: left; }
+    }
+  </style>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-B415ZJNKNW"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-B415ZJNKNW');</script>
@@ -61,65 +364,55 @@
   <main>
 
     <!-- ═══════════════════════════════════════
-         HERO
+         HERO — Editorial Light, Child Photo
     ═══════════════════════════════════════ -->
-    <section class="about-hero wave-mint" id="hero" aria-label="Hero">
-      <div class="about-hero_bg"></div>
+    <section class="ah-hero" id="hero" aria-label="Hero">
+      <div class="ah-hero__inner">
 
-      <!-- ✦ NEU: Grain Textur -->
-      <div class="about-hero__grain" aria-hidden="true"></div>
-
-      <!-- ✦ NEU: Radiales Vignette -->
-      <div class="about-hero__vignette" aria-hidden="true"></div>
-
-      <!-- ✦ NEU: Schwebende Sparkles oben-rechts -->
-      <div class="about-hero__sparkles" aria-hidden="true">
-        <svg class="hero-spark" width="22" height="22" viewBox="0 0 22 22" fill="none">
-          <path d="M11 1 L12.4 8.6 L20 10 L12.4 11.4 L11 19 L9.6 11.4 L2 10 L9.6 8.6Z" fill="rgba(181,161,158,0.55)"/>
-        </svg>
-        <svg class="hero-spark" width="13" height="13" viewBox="0 0 13 13" fill="none" style="margin-left:18px">
-          <path d="M6.5 0.5 L7.4 4.6 L11.5 5.5 L7.4 6.4 L6.5 10.5 L5.6 6.4 L1.5 5.5 L5.6 4.6Z" fill="rgba(181,161,158,0.38)"/>
-        </svg>
-        <svg class="hero-spark" width="8" height="8" viewBox="0 0 8 8" fill="none" style="margin-left:5px">
-          <path d="M4 0.5 L4.6 3 L7.5 3.5 L4.6 4 L4 6.5 L3.4 4 L0.5 3.5 L3.4 3Z" fill="rgba(181,161,158,0.25)"/>
-        </svg>
-      </div>
-
-
-
-
-      <!-- ✦ NEU: Rotierende Blume ersetzt scroll-line -->
-      <div class="about-hero__flower" aria-hidden="true">
-        <div style="position:relative;width:44px;height:44px">
-          <svg class="flower-ring-outer" viewBox="0 0 44 44" fill="none" width="44" height="44" style="position:absolute;inset:0">
-            <ellipse cx="22" cy="22" rx="3.5" ry="13" fill="none" stroke="rgba(181,161,158,0.48)" stroke-width="0.9"/>
-            <ellipse cx="22" cy="22" rx="3.5" ry="13" fill="none" stroke="rgba(181,161,158,0.48)" stroke-width="0.9" transform="rotate(60 22 22)"/>
-            <ellipse cx="22" cy="22" rx="3.5" ry="13" fill="none" stroke="rgba(181,161,158,0.48)" stroke-width="0.9" transform="rotate(120 22 22)"/>
-            <circle cx="22" cy="22" r="18" fill="none" stroke="rgba(181,161,158,0.1)" stroke-width="0.6" stroke-dasharray="2 4"/>
-          </svg>
-          <svg class="flower-ring-inner" viewBox="0 0 44 44" fill="none" width="44" height="44" style="position:absolute;inset:0">
-            <ellipse cx="22" cy="22" rx="2.5" ry="8" fill="none" stroke="rgba(212,185,181,0.3)" stroke-width="0.7" transform="rotate(30 22 22)"/>
-            <ellipse cx="22" cy="22" rx="2.5" ry="8" fill="none" stroke="rgba(212,185,181,0.3)" stroke-width="0.7" transform="rotate(90 22 22)"/>
-            <ellipse cx="22" cy="22" rx="2.5" ry="8" fill="none" stroke="rgba(212,185,181,0.3)" stroke-width="0.7" transform="rotate(150 22 22)"/>
-          </svg>
-          <div class="flower-center-dot"></div>
+        <!-- Text Side -->
+        <div class="ah-hero__text">
+          <span class="ah-hero__eyebrow">About</span>
+          <h1 class="ah-hero__title">
+            <span class="ah-title-line"><span class="ah-title-inner">THE</span></span>
+            <span class="ah-title-line"><span class="ah-title-inner">VISIONARY</span></span>
+            <span class="ah-title-line"><span class="ah-title-inner"><em>&amp;</em> THE</span></span>
+            <span class="ah-title-line"><span class="ah-title-inner">STRATEGIST.</span></span>
+          </h1>
+          <p class="ah-hero__sub">Mediamatikerin &middot; Creative Director &middot; Developer</p>
         </div>
-        <span class="hero-scroll-label">Scroll</span>
+
+        <!-- Portrait Side -->
+        <div class="ah-hero__portrait-wrap">
+          <img
+            src="assets/images/about/minime.png"
+            alt="Junge Khadija mit Kamera"
+            class="ah-hero__portrait-img"
+            loading="eager"
+          >
+          <div class="ah-hero__deco-line" aria-hidden="true"></div>
+        </div>
+
       </div>
 
-      <!-- Scroll hint (hidden via CSS, flower takes over) -->
-      <div class="about-hero__scroll" aria-hidden="true">
-        <div class="about-hero__scroll-line"></div>
+      <!-- Scroll hint -->
+      <div class="ah-hero__scroll-hint" aria-hidden="true">
+        <div class="ah-hero__scroll-line"></div>
+        <span class="ah-hero__scroll-label">Scroll</span>
       </div>
+
+
+
+
     </section>
 
+
     <!-- ═══════════════════════════════════════
-         ABOUT ME — cinematic editorial
+         ABOUT ME — Typewriter, Text Reveal, CTA
     ═══════════════════════════════════════ -->
     <section class="about-me wave-mint" id="about-me" aria-label="Über mich">
       <div class="about-me__inner">
 
-        <!-- LEFT COL — portrait + identity pills -->
+        <!-- LEFT COL — portrait + 3 elegant trivia -->
         <div class="about-me__left">
 
           <div class="about-me__portrait-frame">
@@ -129,47 +422,65 @@
               class="about-me__portrait"
               loading="eager"
             >
-            
           </div>
-           
-          <div class="about-me__cards">
-            <div class="about-me__card about-me__card--burgundy">
-              <span class="card__eyebrow"><i class="fa-solid fa-chess-queen"></i> Personality</span>
-              <h3 class="card__title">ENTJ‑A</h3>
-              <p class="card__sub"><em>The Commander</em></p>
-              <p class="card__desc">Strategisch. Entschlossen. Ich sehe Strukturen, wo andere Chaos sehen.</p>
-            </div>
-            <div class="about-me__card about-me__card--dark">
-              <span class="card__eyebrow"><i class="fa-solid fa-moon"></i> Zodiac</span>
-              <h3 class="card__title">Cancer ☽</h3>
-              <p class="card__sub"><em>The Intuitive</em></p>
-              <p class="card__desc">Tiefgründig, intuitiv. Das emotionale Gegengewicht zu meiner Strategie.</p>
-            </div>
 
+          <!-- 3 Minimal identity strips -->
+          <div class="about-trivia">
+            <div class="trivia-item">
+              <span class="trivia-num">01</span>
+              <div class="trivia-body">
+                <span class="trivia-label">Personality</span>
+                <span class="trivia-val">ENTJ-A &mdash; The Commander</span>
+              </div>
+            </div>
+            <div class="trivia-item">
+              <span class="trivia-num">02</span>
+              <div class="trivia-body">
+                <span class="trivia-label">Zodiac</span>
+                <span class="trivia-val">Cancer &#9789; &mdash; The Intuitive</span>
+              </div>
+            </div>
+            <div class="trivia-item">
+              <span class="trivia-num">03</span>
+              <div class="trivia-body">
+                <span class="trivia-label">Standort</span>
+                <span class="trivia-val">Kreuzlingen, Schweiz</span>
+              </div>
+            </div>
           </div>
+
         </div>
 
-        <!-- RIGHT COL — editorial text -->
+        <!-- RIGHT COL — typewriter + text reveal + CTA -->
         <div class="about-me__right">
 
           <div class="about-me__header">
             <span class="about-eyebrow">Wer ich bin</span>
-            <h2 class="about-me__title">About <em>Me</em></h2>
+            <div class="about-tw__headline">
+              <span class="tw-prefix">ich bin</span>
+              <span class="tw-big"><span id="typedAbout" class="typed-about"></span></span>
+            </div>
           </div>
-
 
           <div class="about-me__body">
 
-            <p> Meine Kreativität zeichnet mich in allen Lebensbereichen aus. Diese Eigenschaft ermöglicht es mir, nicht nur künstlerische Projekte und Ideen zu verwirklichen, sondern auch neue Perspektiven einzunehmen und aussergewöhnliche Herangehensweisen zu entwickeln. An mich und meine Arbeit stelle ich häufig sehr hohe Ansprüche. Dadurch konnte ich mir über die Jahre Fähigkeiten in diversen Bereichen aneignen, ganz nach dem Motto: «Wo ein Wille ist, ist auch ein Weg.» </p>
-            
-            <p>Bereits seit meinem 11. Lebensjahr schneide ich leidenschaftlich gerne Videos. Was als Hobby begann, führte dazu, dass ich 2018 ein einjähriges Praktikum im Bereich Social Media und Event Marketing absolvieren und wertvolle Erfahrungen sammeln konnte. Diese Zeit hat mich sowie meinen persönlichen Stil sehr geprägt und mir die Türen für meine anschliessende Lehre zur Mediamatikerin geöffnet.</p>
-            
-            <p> Neben der digitalen Gestaltung liebe ich es, zu zeichnen, zu basteln, zu malen und mit unterschiedlichen Materialien zu experimentieren. Es macht mir viel Freude, Dingen durch kleine Details das gewisse Etwas zu verleihen und Gegenständen oder Räumen eine ganz andere Wirkung zu geben. Meine Wohnung dient seit meinem Einzug als kreative Leinwand für Visionen und Inspirationen, die bereits seit Jahren in meinen Pinterest Boards auf ihre Umsetzung warten.</p>
-            
-              <p>Eine weitere Leidenschaft, die ich 2021 wieder für mich entdeckt habe, ist das Lesen. Als Kind habe ich die Bücher von Enid Blyton, Die Drei !!! sowie diverse Detektiv- und Fantasyromane verschlungen. Nachdem ich während der Corona-Pandemie im Bücherschrank unseres Quartiers auf den Psychothriller «Gone Girl» gestossen bin, war ich erneut im Bann der Bücherwelt. Seit der Anschaffung meines Kindles im Sommer 2024 habe ich über 200 Bücher gelesen.</p>
+            <p class="reveal-para">Meine Kreativität zeichnet mich in allen Lebensbereichen aus. Diese Eigenschaft ermöglicht es mir, nicht nur künstlerische Projekte und Ideen zu verwirklichen, sondern auch neue Perspektiven einzunehmen und aussergewöhnliche Herangehensweisen zu entwickeln. An mich und meine Arbeit stelle ich häufig sehr hohe Ansprüche. Dadurch konnte ich mir über die Jahre Fähigkeiten in diversen Bereichen aneignen, ganz nach dem Motto: «Wo ein Wille ist, ist auch ein Weg.»</p>
 
-          <!-- Personality cards — horizontal, editorial -->
+            <p class="reveal-para">Bereits seit meinem 11. Lebensjahr schneide ich leidenschaftlich gerne Videos. Was als Hobby begann, führte dazu, dass ich 2018 ein einjähriges Praktikum im Bereich Social Media und Event Marketing absolvieren und wertvolle Erfahrungen sammeln konnte. Diese Zeit hat mich sowie meinen persönlichen Stil sehr geprägt und mir die Türen für meine anschliessende Lehre zur Mediamatikerin geöffnet.</p>
 
+            <p class="reveal-para">Neben der digitalen Gestaltung liebe ich es, zu zeichnen, zu basteln, zu malen und mit unterschiedlichen Materialien zu experimentieren. Es macht mir viel Freude, Dingen durch kleine Details das gewisse Etwas zu verleihen und Gegenständen oder Räumen eine ganz andere Wirkung zu geben. Meine Wohnung dient seit meinem Einzug als kreative Leinwand für Visionen und Inspirationen, die bereits seit Jahren in meinen Pinterest Boards auf ihre Umsetzung warten.</p>
+
+            <p class="reveal-para">Eine weitere Leidenschaft, die ich 2021 wieder für mich entdeckt habe, ist das Lesen. Als Kind habe ich die Bücher von Enid Blyton, Die Drei !!! sowie diverse Detektiv- und Fantasyromane verschlungen. Nachdem ich während der Corona-Pandemie im Bücherschrank unseres Quartiers auf den Psychothriller «Gone Girl» gestossen bin, war ich erneut im Bann der Bücherwelt. Seit der Anschaffung meines Kindles im Sommer 2024 habe ich über 200 Bücher gelesen.</p>
+
+          </div>
+
+          <!-- CTA: Link to Resume -->
+          <a href="resume.html" class="about-resume-cta" aria-label="Lebenslauf ansehen">
+            <span>Lebenslauf ansehen</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/>
+            </svg>
+          </a>
 
         </div>
       </div>
@@ -177,7 +488,7 @@
 
 
     <!-- ═══════════════════════════════════════
-         BÜCHER & MUSIK
+         BÜCHER & MUSIK — UNCHANGED
     ═══════════════════════════════════════ -->
     <section class="about-favorites wave-foot" id="favorites" aria-label="Bücher und Musik">
         <header class="about-timeline__header">
@@ -376,28 +687,51 @@
       });
     });
 
+    // ── Typewriter ─────────────────────────────
+    if (typeof Typed !== 'undefined') {
+      new Typed('#typedAbout', {
+        strings: ['Khadija.', 'Mediamatikerin.', 'Creative Director.'],
+        typeSpeed: 70,
+        backSpeed: 38,
+        backDelay: 2400,
+        loop: true,
+        showCursor: true,
+        cursorChar: '|'
+      });
+    }
+
+    // ── Paragraph scroll-reveal ────────────────
+    const paraObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-revealed'); paraObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal-para').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.18}s`;
+      paraObs.observe(el);
+    });
+
+    // ── Trivia strips reveal ───────────────────
+    const triviaObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); triviaObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.trivia-item').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.12}s`;
+      triviaObs.observe(el);
+    });
+
     // ── Generic scroll-reveal ──────────────────
     const revealObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('is-visible'); revealObs.unobserve(e.target); }
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-
-    document.querySelectorAll(
-      '.komp-card, .book-entry, .vinyl-card, .about-me__card, .about-me__pills, .tl-row, .big-counter__item, .pill'
-    ).forEach((el, i) => {
+    document.querySelectorAll('.book-entry, .vinyl-card').forEach((el, i) => {
       el.style.transitionDelay = `${(i % 4) * 0.08}s`;
       revealObs.observe(el);
     });
-
-    // ── ✦ NEU: Quote border draw on scroll ────
-    const rightColObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('is-visible'); rightColObs.unobserve(e.target); }
-      });
-    }, { threshold: 0.2 });
-    const rightCol = document.querySelector('.about-me__right');
-    if (rightCol) rightColObs.observe(rightCol);
 
     // ── Book review accordion ──────────────────
     document.querySelectorAll('.review-btn').forEach(btn => {
@@ -469,70 +803,22 @@
       }
     });
 
-    // ── GSAP cinematic entrance ────────────────
+    // ── GSAP entrance ─────────────────────────
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
-      gsap.fromTo('.about-me__portrait', { scale: 1.08, opacity: 0, filter: 'blur(8px)' }, { scale: 1, opacity: 1, filter: 'blur(0px)', duration: 1.4, ease: 'power3.out', scrollTrigger: { trigger: '.about-me', start: 'top 80%' } });
-      gsap.fromTo('.about-me__badge', { opacity: 0, scale: 0.7, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: 'back.out(1.7)', delay: 0.5, scrollTrigger: { trigger: '.about-me', start: 'top 75%' } });
-      gsap.fromTo('.about-me__header, .about-me__quote, .about-me__body p', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.12, scrollTrigger: { trigger: '.about-me__right', start: 'top 80%' } });
-      gsap.fromTo('.about-me__card', { opacity: 0, y: 30, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'power2.out', stagger: 0.12, scrollTrigger: { trigger: '.about-me__cards', start: 'top 85%' } });
-      gsap.fromTo('.komp-card', { opacity: 0, y: 50, rotateX: 8 }, { opacity: 1, y: 0, rotateX: 0, duration: 0.9, ease: 'power3.out', stagger: 0.1, scrollTrigger: { trigger: '.komp-grid', start: 'top 80%' } });
-      gsap.fromTo('.tl-row', { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out', stagger: 0.08, scrollTrigger: { trigger: '.tl-accordion', start: 'top 80%' } });
-      gsap.fromTo('.big-counter', { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: '.fav-books-hero', start: 'top 75%' } });
-      gsap.fromTo('.vinyl-card', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.15, scrollTrigger: { trigger: '.vinyl-grid', start: 'top 80%' } });
-      gsap.fromTo('.pill', { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.6, ease: 'back.out(1.4)', stagger: 0.1, scrollTrigger: { trigger: '.about-me__pills', start: 'top 85%' } });
+      gsap.fromTo('.about-me__portrait',
+        { scale: 1.08, opacity: 0, filter: 'blur(8px)' },
+        { scale: 1, opacity: 1, filter: 'blur(0px)', duration: 1.4, ease: 'power3.out',
+          scrollTrigger: { trigger: '.about-me', start: 'top 80%' } });
+      gsap.fromTo('.vinyl-card',
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.15,
+          scrollTrigger: { trigger: '.vinyl-grid', start: 'top 80%' } });
+      gsap.fromTo('.big-counter__box',
+        { opacity: 0, y: 30, scale: 0.92 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'power3.out', stagger: 0.2,
+          scrollTrigger: { trigger: '.fav-books-hero__counter', start: 'top 80%' } });
     }
-
-    // ── Timeline OUTER toggle ──────────────────
-    const outerBtn = document.querySelector('.vis-tl-toggle-btn');
-    const outerPanel = document.querySelector('.vis-tl-collapsible');
-    if (outerBtn && outerPanel) {
-      outerBtn.addEventListener('click', function () {
-        const isOpen = this.getAttribute('aria-expanded') === 'true';
-        if (!isOpen) {
-          this.setAttribute('aria-expanded', 'true');
-          outerPanel.style.height = outerPanel.scrollHeight + 'px';
-          setTimeout(() => { if (outerBtn.getAttribute('aria-expanded') === 'true') outerPanel.style.height = 'auto'; }, 700);
-        } else {
-          outerPanel.style.height = outerPanel.scrollHeight + 'px';
-          outerPanel.offsetHeight;
-          this.setAttribute('aria-expanded', 'false');
-          outerPanel.style.height = '0';
-        }
-      });
-    }
-
-    // ── Timeline EVENT card toggles ────────────
-    document.querySelectorAll('.vis-event-toggle').forEach(btn => {
-      btn.addEventListener('click', function () {
-        const card = this.closest('.vis-event-card');
-        const desc = card.querySelector('.vis-event-description');
-        const isOpen = this.getAttribute('aria-expanded') === 'true';
-        const icon = this.querySelector('svg');
-        if (!isOpen) {
-          this.setAttribute('aria-expanded', 'true');
-          desc.style.maxHeight = desc.scrollHeight + 'px';
-          desc.classList.add('is-open');
-          if (icon) icon.style.transform = 'rotate(180deg)';
-        } else {
-          this.setAttribute('aria-expanded', 'false');
-          desc.style.maxHeight = '0';
-          desc.classList.remove('is-open');
-          if (icon) icon.style.transform = 'rotate(0deg)';
-        }
-      });
-    });
-
-    // ── Timeline event scroll-reveal ───────────
-    const tlEventObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('is-visible'); tlEventObs.unobserve(e.target); }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.vis-tl-event').forEach((el, i) => {
-      el.style.transitionDelay = `${i * 0.08}s`;
-      tlEventObs.observe(el);
-    });
 
   });
   </script>
