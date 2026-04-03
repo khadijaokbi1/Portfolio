@@ -15,10 +15,9 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollSmoother.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/SplitText.min.js"></script>
   <link rel="stylesheet" href="../assets/css/preloader.css" />
+  <link rel="stylesheet" href="style/mobile-editorial-odd-even.css" />
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/footer-nav-waves.css" />
-  <link rel="stylesheet" href="style/komthur-redesign.css" />
-  <link rel="stylesheet" href="style/komthur-redesign.css" />
   <link rel="stylesheet" href="style/komthur.css" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-B415ZJNKNW"></script>
   <script>
@@ -55,7 +54,7 @@
   </header>
   <main>
         <!-- HERO SECTION -->
-        <section class="hero-section wave-cream">
+        <section class="hero-section">
             <video class="hero-video" autoplay muted loop playsinline>
                 <source src="../video/Komthur.mp4" type="video/mp4">
             </video>
@@ -70,6 +69,28 @@
                 </h1>
                 <p class="hero-subtitle">Eine ganzheitliche Neuausrichtung für die Komthur GmbH. Von der Zielgruppenanalyse über digitale Transformation bis zur messbaren Erfolgsrealisierung.</p>
         </section>
+           <div class="site-footer"> 
+            <div class="container">
+
+                <div class="footer-info-grid">
+                    <div class="footer-info-item">
+                        <span class="uppercase-label">Auftraggeber</span>
+                        <h3>Komthur GmbH</h3>
+                        <p>Kreuzlingen, Thurgau • est.2020</p>
+                    </div>
+                    <div class="footer-info-item">
+                        <span class="uppercase-label">Projektdauer</span>
+                        <h3>90 Stunden</h3>
+                        <p>2 Wochen (IPA Rahmenbedingungen)</p>
+                    </div>
+                    <div class="footer-info-item">
+                        <span class="uppercase-label">Budget</span>
+                        <h3>CHF 14'650</h3>
+                        <p>Inkl. Beratung, Design, Dokumentation</p>
+                    </div>
+                </div>
+                </div>
+            </div>
 
     <!-- ELEGANT INPAGE NAVIGATION -->
     <nav class="inpage-nav" id="inpageNav">
@@ -92,66 +113,107 @@
     <!-- ════════════════════════════════════════════
          SECTION 01: MARKTANALYSE
     ════════════════════════════════════════════ -->
-    <section class="marktanalyse wave-burg" id="section-marktanalyse">
+    <section class="marktanalyse wave-dark" id="section-marktanalyse">
       <div class="container">
-<h2> 01 Marktananlyse</h2>
+        <!-- Orbit decoration (top right, absolute) -->
+        <div class="mk-orbit-deco" aria-hidden="true">
+          <svg width="160" height="160" viewBox="0 0 160 160" fill="none">
+            <circle cx="80" cy="80" r="72" fill="none" stroke="rgba(49,74,81,0.07)" stroke-width="1" stroke-dasharray="3 7"/>
+            <circle cx="80" cy="80" r="52" fill="none" stroke="rgba(49,74,81,0.05)" stroke-width="0.8" stroke-dasharray="2 5"/>
+            <circle cx="80" cy="80" r="34" fill="none" stroke="rgba(110,59,73,0.06)" stroke-width="0.8"/>
+            <circle cx="80" cy="8" r="4" fill="none" stroke="rgba(49,74,81,0.15)" stroke-width="1"/>
+            <circle cx="80" cy="8" r="1.5" fill="rgba(110,59,73,0.3)"/>
+            <line x1="80" y1="80" x2="80" y2="8" stroke="rgba(49,74,81,0.06)" stroke-width="0.5"/>
+            <line x1="80" y1="80" x2="152" y2="80" stroke="rgba(49,74,81,0.06)" stroke-width="0.5"/>
+            <line x1="80" y1="80" x2="131" y2="29" stroke="rgba(49,74,81,0.04)" stroke-width="0.5"/>
+          </svg>
+        </div>
+<h2 class="reveal">01 Marktanalyse</h2>
         <!-- AUSGANGSLAGE & ZIEL -->
-        <div class="section-header">
+        <div class="section-header section-header--entry reveal">
+          <span class="section-kicker">Projektstart</span>
           <h3>Ausgangslage &amp; <span class="highlight-burgundy">Ziel.</span></h3>
-          <p class="section-intro">Ist-Zustand und messbares Ziel — sechs strategische Dimensionen zur ganzheitlichen Verbesserung.</p>
+          <p class="section-intro">Ist-Zustand und klares Zielbild in sechs strategischen Dimensionen.</p>
         </div>
 
-        <div class="insights-grid">
-          <div class="insight-card">
-            <div class="insight-number">01</div>
-            <h4 class="insight-title">Sichtbarkeit</h4>
-            <p class="insight-text"><strong>Ist:</strong> Kaum in Suchmaschinen sichtbar — keine Keyword-Strategie</p>
-            <span class="insight-stat">→ Top-Rankings für Zielkeywords</span>
-                </div>
-          <div class="insight-card">
-            <div class="insight-number">02</div>
-            <h4 class="insight-title">Content & Story</h4>
-            <p class="insight-text"><strong>Ist:</strong> Statische Texte ohne Markencharakter</p>
-            <span class="insight-stat">→ Authentisches Storytelling</span>
-                </div>
-          <div class="insight-card">
-            <div class="insight-number">03</div>
-            <h4 class="insight-title">User Journey</h4>
-            <p class="insight-text"><strong>Ist:</strong> Unklare CTAs, hohe Absprungrate</p>
-            <span class="insight-stat">→ Optimierte Conversion-Pfade</span>
-              </div>
-          <div class="insight-card">
-            <div class="insight-number">04</div>
-            <h4 class="insight-title">Mobile Experience</h4>
-            <p class="insight-text"><strong>Ist:</strong> Darstellungsprobleme, langsame Ladezeit</p>
-            <span class="insight-stat">→ 100% responsive, &lt;3s Laden</span>
+        <div class="al-list">
+          <div class="al-row reveal" data-delay="1">
+            <div class="al-num">01</div>
+            <div class="al-content">
+              <h4 class="al-title">Sichtbarkeit</h4>
+              <p class="al-ist">Kaum in Suchmaschinen sichtbar — keine Keyword-Strategie</p>
             </div>
-          <div class="insight-card">
-            <div class="insight-number">05</div>
-            <h4 class="insight-title">Social Presence</h4>
-            <p class="insight-text"><strong>Ist:</strong> Unregelmässige Posts</p>
-            <span class="insight-stat">→ 16-Wochen Content-Plan</span>
+            <div class="al-ziel">Top-Rankings für Zielkeywords</div>
           </div>
-          <div class="insight-card">
-            <div class="insight-number">06</div>
-            <h4 class="insight-title">Tech Score</h4>
-            <p class="insight-text"><strong>Ist:</strong> 42/100 PageSpeed</p>
-            <span class="insight-stat">→ 75–85/100 PageSpeed</span>
+          <div class="al-row reveal" data-delay="2">
+            <div class="al-num">02</div>
+            <div class="al-content">
+              <h4 class="al-title">Content &amp; Story</h4>
+              <p class="al-ist">Statische Texte ohne Markencharakter</p>
+            </div>
+            <div class="al-ziel">Authentisches Storytelling</div>
+          </div>
+          <div class="al-row reveal" data-delay="3">
+            <div class="al-num">03</div>
+            <div class="al-content">
+              <h4 class="al-title">User Journey</h4>
+              <p class="al-ist">Unklare CTAs, hohe Absprungrate</p>
+            </div>
+            <div class="al-ziel">Optimierte Conversion-Pfade</div>
+          </div>
+          <div class="al-row reveal" data-delay="4">
+            <div class="al-num">04</div>
+            <div class="al-content">
+              <h4 class="al-title">Mobile Experience</h4>
+              <p class="al-ist">Darstellungsprobleme, langsame Ladezeit</p>
+            </div>
+            <div class="al-ziel">100% responsive, &lt;3s Laden</div>
+          </div>
+          <div class="al-row reveal" data-delay="5">
+            <div class="al-num">05</div>
+            <div class="al-content">
+              <h4 class="al-title">Social Presence</h4>
+              <p class="al-ist">Unregelmässige Posts ohne Strategie</p>
+            </div>
+            <div class="al-ziel">16-Wochen Content-Plan</div>
+          </div>
+          <div class="al-row reveal" data-delay="6">
+            <div class="al-num">06</div>
+            <div class="al-content">
+              <h4 class="al-title">Tech Score</h4>
+              <p class="al-ist">42/100 PageSpeed — langsam und instabil</p>
+            </div>
+            <div class="al-ziel">75–85/100 PageSpeed</div>
           </div>
         </div>
 
         <!-- SWOT ANALYSE -->
-        <div class="section-header" style="margin-top: 5rem;">
+        <div class="mk-sprig-divider" aria-hidden="true">
+          <div class="mk-sprig-line"></div>
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <ellipse cx="14" cy="14" rx="3.5" ry="10" fill="none" stroke="rgba(49,74,81,0.3)" stroke-width="0.9"/>
+            <ellipse cx="14" cy="14" rx="10" ry="3.5" fill="none" stroke="rgba(49,74,81,0.3)" stroke-width="0.9"/>
+            <circle cx="14" cy="14" r="2.5" fill="rgba(110,59,73,0.35)"/>
+          </svg>
+          <div class="mk-sprig-line mk-sprig-r"></div>
+        </div>
+        <div class="section-header reveal" style="margin-top: 2.5rem;">
           <h3>SWOT <span class="highlight-burgundy">Analyse.</span></h3>
           <p class="section-intro">Strategische Bewertung der Marktposition und Wettbewerbsfähigkeit.</p>
         </div>
 
-        <div class="swot-grid-new">
-          <div class="swot-card">
-            <div class="swot-card-letter">S</div>
-            <div class="swot-card-body">
-              <h4>Stärken</h4>
-              <ul>
+        <div class="swot-matrix">
+          <div class="swot-matrix__axes">
+            <div class="swot-ax-corner"></div>
+            <div class="swot-ax swot-ax--h">Hilfreich</div>
+            <div class="swot-ax swot-ax--h swot-ax--neg">Schädlich</div>
+          </div>
+          <div class="swot-matrix__row">
+            <div class="swot-ax swot-ax--v">Intern</div>
+            <div class="swot-q swot-q--s reveal" data-delay="1">
+              <span class="sq-letter">S</span>
+              <h4 class="sq-title">Stärken</h4>
+              <ul class="sq-list">
                 <li>30+ Jahre Branchenerfahrung</li>
                 <li>Hochqualifiziertes Team</li>
                 <li>Starke lokale Präsenz</li>
@@ -159,12 +221,10 @@
                 <li>Flexible Projektabwicklung</li>
               </ul>
             </div>
-          </div>
-          <div class="swot-card">
-            <div class="swot-card-letter">W</div>
-            <div class="swot-card-body">
-              <h4>Schwächen</h4>
-              <ul>
+            <div class="swot-q swot-q--w reveal" data-delay="2">
+              <span class="sq-letter">W</span>
+              <h4 class="sq-title">Schwächen</h4>
+              <ul class="sq-list">
                 <li>Veraltete Website</li>
                 <li>Schwache Social-Media-Präsenz</li>
                 <li>Begrenzte digitale Marketing-Skills</li>
@@ -173,11 +233,12 @@
               </ul>
             </div>
           </div>
-          <div class="swot-card">
-            <div class="swot-card-letter">O</div>
-            <div class="swot-card-body">
-              <h4>Chancen</h4>
-              <ul>
+          <div class="swot-matrix__row">
+            <div class="swot-ax swot-ax--v">Extern</div>
+            <div class="swot-q swot-q--o reveal" data-delay="3">
+              <span class="sq-letter">O</span>
+              <h4 class="sq-title">Chancen</h4>
+              <ul class="sq-list">
                 <li>Wachsender Markt für digitale Services</li>
                 <li>Zunehmende Online-Nachfrage</li>
                 <li>Regional unterversorgte Zielgruppe</li>
@@ -185,12 +246,10 @@
                 <li>B2B Content-Marketing Potential</li>
               </ul>
             </div>
-          </div>
-          <div class="swot-card">
-            <div class="swot-card-letter">T</div>
-            <div class="swot-card-body">
-              <h4>Bedrohungen</h4>
-              <ul>
+            <div class="swot-q swot-q--t reveal" data-delay="4">
+              <span class="sq-letter">T</span>
+              <h4 class="sq-title">Bedrohungen</h4>
+              <ul class="sq-list">
                 <li>Starker Wettbewerb durch Agenturen</li>
                 <li>Schnelle Marktveränderungen</li>
                 <li>Kundenerwartungen steigen</li>
@@ -202,7 +261,16 @@
         </div>
 
         <!-- KONKURRENZ ANALYSE -->
-        <div class="section-header" style="margin-top: 5rem;">
+        <div class="mk-sprig-divider" aria-hidden="true">
+          <div class="mk-sprig-line"></div>
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <ellipse cx="14" cy="14" rx="3.5" ry="10" fill="none" stroke="rgba(49,74,81,0.3)" stroke-width="0.9"/>
+            <ellipse cx="14" cy="14" rx="10" ry="3.5" fill="none" stroke="rgba(49,74,81,0.3)" stroke-width="0.9"/>
+            <circle cx="14" cy="14" r="2.5" fill="rgba(110,59,73,0.35)"/>
+          </svg>
+          <div class="mk-sprig-line mk-sprig-r"></div>
+        </div>
+        <div class="section-header reveal" style="margin-top: 2.5rem;">
           <h3>Konkurrenz<span class="highlight-burgundy">analyse.</span></h3>
           <p class="section-intro">Vergleich mit 3 regionalen Wettbewerbern — wo Komthur überzeugt und wo Verbesserungen nötig sind.</p>
         </div>
@@ -234,45 +302,69 @@
         </div>
 
         <div class="positioning-insight-new">
+          <div class="pin-corners" aria-hidden="true">
+            <span class="pin-c pin-tl"></span>
+            <span class="pin-c pin-tr"></span>
+            <span class="pin-c pin-bl"></span>
+            <span class="pin-c pin-br"></span>
+          </div>
           <strong>Marktposition:</strong> Komthur hat das <em>Vertrauens-Advantage</em> (Erfahrung + Qualität), verliert aber im <em>Visibility-Game</em> gegen digitale Konkurrenz. Mit dieser Strategie wird das digitale Defizit behoben — die eigentliche Stärke (Fachkompetenz) bleibt erhalten und wird endlich sichtbar gemacht.
         </div>
 
         <!-- ZIELGRUPPEN ANALYSE -->
-        <div class="section-header" style="margin-top: 5rem;">
+        <div class="mk-sprig-divider" aria-hidden="true">
+          <div class="mk-sprig-line"></div>
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <ellipse cx="14" cy="14" rx="3.5" ry="10" fill="none" stroke="rgba(49,74,81,0.3)" stroke-width="0.9"/>
+            <ellipse cx="14" cy="14" rx="10" ry="3.5" fill="none" stroke="rgba(49,74,81,0.3)" stroke-width="0.9"/>
+            <circle cx="14" cy="14" r="2.5" fill="rgba(110,59,73,0.35)"/>
+          </svg>
+          <div class="mk-sprig-line mk-sprig-r"></div>
+        </div>
+        <div class="section-header reveal" style="margin-top: 2.5rem;">
           <h3>Zielgruppen<span class="highlight-burgundy">analyse.</span></h3>
           <p class="section-intro">Datengetriebene Segmentierung — vier strategische Dimensionen zur präzisen Kundenansprache.</p>
         </div>
 
-        <div class="data-grid">
-          <div class="data-item">
-            <div class="data-number">01</div>
-            <h3>Demografie</h3>
-            <p>25–50 Jahre, Entscheidungsträger in KMU. Gehobenes Bildungsniveau, hohe Kaufkraft.</p>
+        <div class="zg-bento">
+          <div class="zg-item zg-1 reveal" data-delay="1">
+            <span class="zg-num">01</span>
+            <h3 class="zg-title">Demografie</h3>
+            <p class="zg-text">25–50 Jahre, Entscheidungsträger in KMU. Gehobenes Bildungsniveau, hohe Kaufkraft.</p>
           </div>
-          <div class="data-item">
-            <div class="data-number">02</div>
-            <h3>Psychografie</h3>
-            <p>Markenbewusst, designaffin. Bedürfnis nach Qualität, Authentizität und persönlicher Beratung.</p>
+          <div class="zg-item zg-2 reveal" data-delay="2">
+            <span class="zg-num">02</span>
+            <h3 class="zg-title">Psychografie</h3>
+            <p class="zg-text">Markenbewusst, designaffin. Bedürfnis nach Qualität, Authentizität und persönlicher Beratung.</p>
           </div>
-          <div class="data-item">
-            <div class="data-number">03</div>
-            <h3>Geografie</h3>
-            <p>Fokus Kreuzlingen & Bodenseeregion. Regionale Präsenz mit nationaler Reichweite.</p>
+          <div class="zg-item zg-3 reveal" data-delay="3">
+            <span class="zg-num">03</span>
+            <h3 class="zg-title">Geografie</h3>
+            <p class="zg-text">Fokus Kreuzlingen &amp; Bodenseeregion. Regionale Präsenz mit nationaler Reichweite.</p>
           </div>
-          <div class="data-item">
-            <div class="data-number">04</div>
-            <h3>Verhalten</h3>
-            <p>Hochaktiv auf Social Media & Google. Nutzen Empfehlungen als Entscheidungshilfe.</p>
+          <div class="zg-item zg-4 reveal" data-delay="4">
+            <span class="zg-num">04</span>
+            <h3 class="zg-title">Verhalten</h3>
+            <p class="zg-text">Hochaktiv auf Social Media &amp; Google. Nutzen Empfehlungen als Entscheidungshilfe.</p>
           </div>
         </div>
 
         <!-- PERSONAS -->
-        <div class="section-header" style="margin-top: 5rem; border-top: 2px solid rgba(49,74,81,.15); padding-top: 5rem;">
+        <div class="mk-sprig-divider" aria-hidden="true">
+          <div class="mk-sprig-line"></div>
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <ellipse cx="14" cy="14" rx="3.5" ry="10" fill="none" stroke="rgba(49,74,81,0.3)" stroke-width="0.9"/>
+            <ellipse cx="14" cy="14" rx="10" ry="3.5" fill="none" stroke="rgba(49,74,81,0.3)" stroke-width="0.9"/>
+            <circle cx="14" cy="14" r="2.5" fill="rgba(110,59,73,0.35)"/>
+          </svg>
+          <div class="mk-sprig-line mk-sprig-r"></div>
+        </div>
+        <div class="section-header reveal" style="margin-top: 2.5rem;">
           <h3>Per<span class="highlight-burgundy">sonas.</span></h3>
         </div>
 
         <div class="personas-grid">
-          <div class="persona-card">
+          <div class="persona-card reveal" data-delay="1">
             <div class="persona-avatar">
               <img src="../assets/images/komthur/Komthur_Persona_Eva.png" alt="Eva">
             </div>
@@ -293,7 +385,7 @@
               </div>
             </div>
           </div>
-          <div class="persona-card">
+          <div class="persona-card reveal" data-delay="2">
             <div class="persona-avatar">
               <img src="../assets/images/komthur/Komthur_Persona_Daniel.png" alt="Daniel">
             </div>
@@ -314,7 +406,7 @@
               </div>
             </div>
           </div>
-          <div class="persona-card">
+          <div class="persona-card reveal" data-delay="3">
             <div class="persona-avatar">
               <img src="../assets/images/komthur/Komthur_Persona_Maria.png" alt="Maria">
             </div>
@@ -337,7 +429,13 @@
           </div>
         </div>
 
-        <div class="insight-box">
+        <div class="insight-box insight-box--corner">
+          <div class="pin-corners" aria-hidden="true">
+            <span class="pin-c pin-tl"></span>
+            <span class="pin-c pin-tr"></span>
+            <span class="pin-c pin-bl"></span>
+            <span class="pin-c pin-br"></span>
+          </div>
           <strong>Insight:</strong> Alle drei Personas vereint das Bedürfnis nach <em>Authentizität</em>, <em>Fachkompetenz</em> und <em>persönlicher Betreuung</em>.
         </div>
 
@@ -347,7 +445,7 @@
     <!-- ════════════════════════════════════════════
          SECTION 02: STRATEGIE
     ════════════════════════════════════════════ -->
-    <section class="strategie wave-dark" id="section-strategie">
+    <section class="strategie wave-mint" id="section-strategie">
       <div class="container">
         <header class="strat-header">
           <span class="strat-eyebrow">Methodik &amp; Planung</span>
@@ -360,11 +458,12 @@
           </div>
 
           <div class="strat-select-wrap">
+            <label class="strat-select-label" for="stratSelect">Bereich waehlen</label>
             <select class="strat-select" id="stratSelect">
-              <option value="panel-seo">01 — SEO</option>
-              <option value="panel-web">02 — Website</option>
-              <option value="panel-social">03 — Social Media</option>
-              <option value="panel-ads">04 — Paid Ads</option>
+              <option value="panel-seo">01 SEO</option>
+              <option value="panel-web">02 Web</option>
+              <option value="panel-social">03 Social Media</option>
+              <option value="panel-ads">04 SEA</option>
             </select>
           </div>
 
@@ -372,22 +471,22 @@
             <button class="strat-btn active" role="tab" aria-selected="true" aria-controls="panel-seo" data-panel="panel-seo">
               <span class="btn-num">01</span>
               <span class="btn-title">SEO</span>
-              <span class="btn-sub">Suchmaschinen</span>
+              <span class="btn-sub">Suchmaschinenoptimierung</span>
             </button>
             <button class="strat-btn" role="tab" aria-selected="false" aria-controls="panel-web" data-panel="panel-web">
               <span class="btn-num">02</span>
-              <span class="btn-title">Website</span>
+              <span class="btn-title">Web</span>
               <span class="btn-sub">Design &amp; UX</span>
             </button>
             <button class="strat-btn" role="tab" aria-selected="false" aria-controls="panel-social" data-panel="panel-social">
               <span class="btn-num">03</span>
-              <span class="btn-title">Social</span>
-              <span class="btn-sub">Content &amp; Community</span>
+              <span class="btn-title">Social Media</span>
+              <span class="btn-sub">Content &amp; Strategie</span>
             </button>
             <button class="strat-btn" role="tab" aria-selected="false" aria-controls="panel-ads" data-panel="panel-ads">
               <span class="btn-num">04</span>
-              <span class="btn-title">Paid Ads</span>
-              <span class="btn-sub">Performance</span>
+              <span class="btn-title">SEA</span>
+              <span class="btn-sub">Paid Ads</span>
             </button>
           </nav>
 
@@ -558,69 +657,106 @@
     </section>
 
     <!-- ════════════════════════════════════════════
-         SECTION 03: CONTENT SHOWCASE
+         SECTION 03: WEB & SOCIAL MEDIA
     ════════════════════════════════════════════ -->
     <section class="produkte wave-mint" id="section-content">
       <div class="container">
-<h2>03 Web & Social Media</h2>
-        <div class="section-header">
-          <h3>Produkt<span class="highlight-mint">e &amp; Showcase.</span></h3>
-          <p class="section-intro-dark">UX-Redesign, LinkedIn Content-Plan & Instagram SEA & SEO</p>
+        <!-- Ghost bloom decoration -->
+        <div class="sec03-bloom-deco" aria-hidden="true">
+          <svg width="260" height="260" viewBox="0 0 260 260" fill="none">
+            <ellipse cx="130" cy="130" rx="16" ry="90" fill="none" stroke="white" stroke-width="1"/>
+            <ellipse cx="130" cy="130" rx="16" ry="90" fill="none" stroke="white" stroke-width="1" transform="rotate(30 130 130)"/>
+            <ellipse cx="130" cy="130" rx="16" ry="90" fill="none" stroke="white" stroke-width="1" transform="rotate(60 130 130)"/>
+            <ellipse cx="130" cy="130" rx="16" ry="90" fill="none" stroke="white" stroke-width="1" transform="rotate(90 130 130)"/>
+            <ellipse cx="130" cy="130" rx="16" ry="90" fill="none" stroke="white" stroke-width="1" transform="rotate(120 130 130)"/>
+            <ellipse cx="130" cy="130" rx="16" ry="90" fill="none" stroke="white" stroke-width="1" transform="rotate(150 130 130)"/>
+            <circle cx="130" cy="130" r="110" fill="none" stroke="white" stroke-width="0.5" stroke-dasharray="3 8"/>
+          </svg>
         </div>
 
-        <script src="https://unpkg.com/lucide@latest"></script>
-
-<section class="komthur-section">
-  <header class="editorial-header">
-    <div class="header-content">
-      <div class="subtitle-wrapper">
-        <span class="mint-divider"></span>
-        <span class="eyebrow">UX Case Study</span>
-      </div>
-      <h1 class="display-title">
-        Komthur <span class="italic-mint">Redesign.</span>
-      </h1>
-    </div>
-    
-    <a href="https://www.canva.com/design/DAFiUbYkJD8/imYPvUNS2rY7GK7_-WPWZw/view" 
-       target="_blank" 
-       class="cta-button">
-      <span class="cta-text">In neuem Tab öffnen</span>
-      <i data-lucide="arrow-up-right" class="icon-arrow"></i>
-    </a>
-  </header>
-
-  <div class="showcase-container">
-    <div class="macbook-frame">
-      <div class="macbook-screen">
-        <div class="macbook-notch"></div>
-        <div class="canva-wrapper">
-          <iframe 
-            class="canva-iframe"
-            src="https://www.canva.com/design/DAFiUbYkJD8/imYPvUNS2rY7GK7_-WPWZw/view?embed" 
-            allowfullscreen 
-            loading="lazy">
-          </iframe>
+        <!-- Sektion Intro -->
+        <div class="sec03-intro reveal">
+          <span class="sec03-overline">03 — Web &amp; Social Media</span>
+          <h2 class="sec03-title">Produkte &amp; <em>Showcase.</em></h2>
+          <p class="sec03-lead">UX-Redesign · LinkedIn Content · Instagram SEA</p>
         </div>
-      </div>
-      
-      <div class="macbook-base">
-        <div class="base-top"></div>
-        <div class="base-indent"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<script>
-  // Aktiviert die Icons
-  lucide.createIcons();
-</script>
+        <!-- ─── 01 WEBSITE REDESIGN ─── -->
+        <div class="product-block reveal" id="product-web-redesign">
+          <div class="product-block__header">
+            <span class="pb-num">01</span>
+            <div class="pb-meta">
+              <span class="pb-eyebrow">UX Case Study</span>
+              <h3 class="pb-title">Komthur <em>Redesign.</em></h3>
+              <p class="pb-desc">Vollständiges UX-Redesign — neue Informationsarchitektur, klare Conversion-Pfade und modernes Editorial-Design für die Komthur Website.</p>
+            </div>
+          </div>
+
+          <div class="showcase-container">
+            <div class="macbook-frame">
+              <div class="macbook-screen">
+                <div class="macbook-notch"></div>
+                <div class="canva-wrapper">
+                  <iframe
+                    class="canva-iframe"
+                    src="https://www.canva.com/design/DAFiUbYkJD8/imYPvUNS2rY7GK7_-WPWZw/view?embed"
+                    allowfullscreen
+                    loading="lazy">
+                  </iframe>
+                </div>
+              </div>
+              <div class="macbook-base">
+                <div class="base-top"></div>
+                <div class="base-indent"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-block__footer">
+            <a href="https://www.canva.com/design/DAFiUbYkJD8/imYPvUNS2rY7GK7_-WPWZw/view"
+               target="_blank" rel="noopener"
+               class="pb-cta">
+              <span>Präsentation öffnen</span>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
 
 
-      
-<!-- LinkedIn Post Component (ersetzt li-macbook-wrap) -->
-<div class="li-post-container">
+        <!-- ─── 02 LINKEDIN ─── -->
+        <div class="product-block product-block--centered reveal" id="product-linkedin">
+          <div class="product-block__header">
+            <span class="pb-num">02</span>
+            <div class="pb-meta">
+              <span class="pb-eyebrow">LinkedIn Strategy</span>
+              <h3 class="pb-title">Content <em>Plan.</em></h3>
+              <p class="pb-desc">16-Wochen Editorial-Plan mit Design-Dienstag-Reihe, Expertenposts und Community-Aufbau via LinkedIn Carousel.</p>
+            </div>
+          </div>
+
+          <div class="pb-card-wrap pb-card-wrap--with-deco">
+            <!-- LinkedIn desktop deco -->
+            <aside class="pb-deco-aside" aria-hidden="true">
+              <div class="pb-deco-stat">
+                <span class="pb-deco-stat__num">16</span>
+                <span class="pb-deco-stat__label">Wochen Plan</span>
+              </div>
+              <div class="pb-deco-line"></div>
+              <div class="pb-deco-stat">
+                <span class="pb-deco-stat__num">7×</span>
+                <span class="pb-deco-stat__label">Posts / Woche</span>
+              </div>
+              <div class="pb-deco-line"></div>
+              <div class="pb-deco-stat">
+                <span class="pb-deco-stat__num">43k</span>
+                <span class="pb-deco-stat__label">Impressionen</span>
+              </div>
+              <div class="pb-deco-tag">B2B Content</div>
+              <div class="pb-deco-tag">#DesignDienstag</div>
+              <div class="pb-deco-platform-icon"><i class="fa-brands fa-linkedin"></i></div>
+            </aside>
+            <!-- LinkedIn Post -->
+            <div class="li-post-container">
   
     <!-- Header Section -->
     <div class="li-post-header">
@@ -717,206 +853,200 @@
         <span>Senden</span>
       </button>
     </div>
-  </div>
-   <!-- SEA / Paid Ads - Instagram Story Showcase -->
-<div class="showcase-subsection" id="sea-section">
-    <div class="showcase-sub-header">
-      <span class="showcase-eyebrow">Instagram Marketing</span>
-      <h3 class="showcase-sub-title">SEA <em>& SEO</em></h3>
-    </div>
-  
-    <div class="sea-story-layout">
-      <!-- TEXT CONTENT - Left Side -->
-      <div class="sea-text-col">
-        <div class="sea-text-content">
-          <span class="sea-eyebrow">Mobile Experience</span>
-          <h3 class="sea-title">
-            Insta Story <br>
-            <span class="sea-title-highlight">SEA</span>
-          </h3>
-          
-          <p class="sea-description">
-            Eine nahtlose Integration von Motion Design in soziale Netzwerke. Hochkant-Storytelling, optimiert für maximale Aufmerksamkeit und haptisches Feedback.
-          </p>
-  
-          <div class="sea-cta-group">
-            <a href="#" class="sea-cta-link">
-              <i class="fa-solid fa-arrow-right"></i>
-              <span>Kampagne ansehen</span>
-            </a>
-  
-            <div class="sea-meta-boxes">
-              <div class="sea-meta-item">
-                <span class="sea-meta-label">Format</span>
-                <p class="sea-meta-value">9:16 Vertical</p>
-              </div>
-              <div class="sea-meta-item">
-                <span class="sea-meta-label">Tech</span>
-                <p class="sea-meta-value">4K H.265 Render</p>
-              </div>
+          </div><!-- /li-post-container -->
+          </div><!-- /pb-card-wrap -->
+        </div><!-- /product-block 02 -->
+
+        <!-- ─── 03 INSTAGRAM STORY / SEA ─── -->
+        <div class="product-block product-block--story reveal" id="product-insta-story">
+          <div class="product-block__header">
+            <span class="pb-num">03</span>
+            <div class="pb-meta">
+              <span class="pb-eyebrow">Instagram SEA</span>
+              <h3 class="pb-title">Story <em>Kampagne.</em></h3>
+              <p class="pb-desc">Motion-Design für Instagram Stories — 9:16 Vertical Video, optimiert für maximale Aufmerksamkeit und haptisches Feedback.</p>
             </div>
           </div>
-        </div>
-      </div>
-  
-      <!-- SMARTPHONE UI - Right Side -->
-      <div class="sea-phone-col">
-        <div class="sea-phone-wrap">
-          <!-- Phone Device -->
-          <div class="phone-device">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <!-- Story Background -->
-              <div class="story-bg">
-                <video class="story-video" autoplay muted loop playsinline preload="auto">
-                  <source src="../assets/images/komthur/showcase_komthur_instastory.mp4" type="video/mp4">
-                </video>
-                <div class="story-overlay"></div>
-              </div>
-  
-              <!-- Story UI Content -->
-              <div class="story-content-overlay">
-                <!-- Progress Bar -->
-                <div class="story-progress-wrapper">
-                  <div class="story-progress-bars">
-                    <span class="story-bar active" id="storyProgressBar"></span>
-                    <span class="story-bar"></span>
-                    <span class="story-bar"></span>
-                  </div>
-                </div>
-  
-                <!-- Header -->
-                <div class="story-header">
-                  <div class="story-user">
-                    <img src="../assets/images/komthur/komthur_favicon.png" alt="komthur" class="story-avatar">
-                    <div class="story-user-info">
-                      <strong>komthur</strong>
-                      <span>12h</span>
+
+          <div class="sea-story-layout">
+            <!-- TEXT CONTENT - Left Side -->
+            <div class="sea-text-col">
+              <div class="sea-text-content">
+                <span class="sea-eyebrow">Mobile Experience</span>
+                <h3 class="sea-title">
+                  Insta Story <br>
+                  <span class="sea-title-highlight">SEA</span>
+                </h3>
+                <p class="sea-description">
+                  Eine nahtlose Integration von Motion Design in soziale Netzwerke. Hochkant-Storytelling, optimiert für maximale Aufmerksamkeit und haptisches Feedback.
+                </p>
+                <div class="sea-cta-group">
+                  <a href="#" class="sea-cta-link">
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <span>Kampagne ansehen</span>
+                  </a>
+                  <div class="sea-meta-boxes">
+                    <div class="sea-meta-item">
+                      <span class="sea-meta-label">Format</span>
+                      <p class="sea-meta-value">9:16 Vertical</p>
+                    </div>
+                    <div class="sea-meta-item">
+                      <span class="sea-meta-label">Tech</span>
+                      <p class="sea-meta-value">4K H.265 Render</p>
                     </div>
                   </div>
-                  <div class="story-actions">
-                    <i class="fa-solid fa-ellipsis-v"></i>
-                    <i class="fa-solid fa-xmark"></i>
-                  </div>
-                </div>
-  
-                <!-- Center Content -->
-                <div class="story-center">
-                  <div class="story-badge">Neuerscheinung</div>
-                  <h3 class="story-title">
-                    UI <br>
-                    <span class="story-subtitle">Design</span>
-                  </h3>
-  
-                  <!-- Play Button -->
-                  <div class="story-play-section">
-                    <div class="play-btn-wrapper">
-                      <button class="play-btn">
-                        <i class="fa-solid fa-play"></i>
-                      </button>
+                </div><!-- /sea-cta-group -->
+              </div><!-- /sea-text-content -->
+            </div><!-- /sea-text-col -->
+
+            <!-- SMARTPHONE UI - Right Side -->
+            <div class="sea-phone-col">
+              <div class="sea-phone-wrap">
+                <div class="phone-device">
+                  <div class="phone-notch"></div>
+                  <div class="phone-screen">
+                    <!-- Story Hintergrund -->
+                    <div class="story-bg">
+                      <video class="story-video" autoplay muted loop playsinline preload="auto">
+                        <source src="../assets/images/komthur/showcase_komthur_instastory.mp4" type="video/mp4">
+                      </video>
+                      <div class="story-overlay"></div>
                     </div>
-                    <span class="play-label">Ansehen</span>
-                  </div>
-                </div>
-  
-                <!-- Bottom Actions -->
-                <div class="story-bottom">
-                  <input type="text" placeholder="Nachricht senden..." class="story-message-input" readonly>
-                  <div class="story-bottom-actions">
-                    <button class="story-action-btn" id="storyLikeBtn">
-                      <i class="fa-regular fa-heart"></i>
-                    </button>
-                    <button class="story-action-btn">
-                      <i class="fa-solid fa-paper-plane"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-  
-              <!-- Screen Glare -->
-              <div class="screen-glare"></div>
+                    <!-- Story UI -->
+                    <div class="story-content-overlay">
+                      <div class="story-progress-wrapper">
+                        <div class="story-progress-bars">
+                          <span class="story-bar active" id="storyProgressBar"></span>
+                          <span class="story-bar"></span>
+                          <span class="story-bar"></span>
+                        </div>
+                      </div>
+                      <div class="story-header">
+                        <div class="story-user">
+                          <img src="../assets/images/komthur/komthur_favicon.png" alt="komthur" class="story-avatar">
+                          <div class="story-user-info">
+                            <strong>komthur</strong>
+                            <span>12h</span>
+                          </div>
+                        </div>
+                        <div class="story-actions">
+                          <i class="fa-solid fa-ellipsis-v"></i>
+                          <i class="fa-solid fa-xmark"></i>
+                        </div>
+                      </div>
+                      <div class="story-center">
+                        <div class="story-badge">Neuerscheinung</div>
+                        <h3 class="story-title">UI <br><span class="story-subtitle">Design</span></h3>
+                        <div class="story-play-section">
+                          <div class="play-btn-wrapper">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                          </div>
+                          <span class="play-label">Ansehen</span>
+                        </div>
+                      </div>
+                      <div class="story-bottom">
+                        <input type="text" placeholder="Nachricht senden..." class="story-message-input" readonly>
+                        <div class="story-bottom-actions">
+                          <button class="story-action-btn" id="storyLikeBtn"><i class="fa-regular fa-heart"></i></button>
+                          <button class="story-action-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                        </div>
+                      </div>
+                    </div><!-- /story-content-overlay -->
+                    <div class="screen-glare"></div>
+                  </div><!-- /phone-screen -->
+                  <div class="phone-bezel"></div>
+                </div><!-- /phone-device -->
+                <div class="phone-shadow-effect"></div>
+              </div><!-- /sea-phone-wrap -->
+            </div><!-- /sea-phone-col -->
+          </div><!-- /sea-story-layout -->
+        </div><!-- /product-block 03 -->
+
+        <!-- ─── 04 INSTAGRAM POSTS ─── -->
+        <div class="product-block product-block--centered reveal" id="product-insta-posts">
+          <div class="product-block__header">
+            <span class="pb-num">04</span>
+            <div class="pb-meta">
+              <span class="pb-eyebrow">Instagram Content</span>
+              <h3 class="pb-title">Social <em>Posts.</em></h3>
+              <p class="pb-desc">Regelmässiger Design-Dienstag-Content — 10 Posts mit konsistenter visueller Sprache und Markenidentität.</p>
             </div>
-            
-            <!-- Phone Bezel -->
-            <div class="phone-bezel"></div>
           </div>
-  
-          <!-- Phone Shadow -->
-          <div class="phone-shadow-effect"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-          
-   <!-- Instagram Post Container (NEU wie LinkedIn) -->
-   <div class="showcase-subsection" id="instagram-section">
-     <div class="showcase-sub-header">
-       <span class="showcase-eyebrow">Instagram</span>
-       <h3 class="showcase-sub-title">Social <em>Content.</em></h3>
-     </div>
 
-     <div class="ig-post-container">
-       <!-- Header -->
-       <div class="ig-post-header">
-         <div class="ig-post-avatar-wrap">
-           <img src="../assets/images/komthur/komthur_favicon.png" alt="Komthur" class="ig-post-avatar">
-         </div>
-         <div class="ig-post-meta">
-           <div class="ig-post-name-row">
-             <strong class="ig-post-name">komthur</strong>
-           </div>
-           <p class="ig-post-role">Kreuzlingen, Switzerland</p>
-         </div>
-         <button class="ig-post-menu"><i class="fa-solid fa-ellipsis"></i></button>
-       </div>
+          <div class="pb-card-wrap pb-card-wrap--with-deco">
+            <div class="ig-post-container">
+              <!-- Header -->
+              <div class="ig-post-header">
+                <div class="ig-post-avatar-wrap">
+                  <img src="../assets/images/komthur/komthur_favicon.png" alt="Komthur" class="ig-post-avatar">
+                </div>
+                <div class="ig-post-meta">
+                  <div class="ig-post-name-row">
+                    <strong class="ig-post-name">komthur</strong>
+                  </div>
+                  <p class="ig-post-role">Kreuzlingen, Switzerland</p>
+                </div>
+                <button class="ig-post-menu"><i class="fa-solid fa-ellipsis"></i></button>
+              </div>
+              <!-- Carousel -->
+              <div class="ig-carousel-wrapper">
+                <div class="ig-carousel-counter" id="igCarouselCounter">1 / 10</div>
+                <button class="ig-carousel-btn ig-carousel-prev" id="igCarouselPrev"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="ig-carousel-btn ig-carousel-next" id="igCarouselNext"><i class="fa-solid fa-chevron-right"></i></button>
+                <div class="ig-carousel-container">
+                  <div class="ig-carousel-rail" id="igCarouselRail"></div>
+                </div>
+                <div class="ig-carousel-dots" id="igCarouselDots"></div>
+              </div>
+              <!-- Action Bar -->
+              <div class="ig-action-bar">
+                <div class="ig-actions-left">
+                  <button class="ig-action-btn" id="igLikeBtn"><i class="fa-regular fa-heart"></i></button>
+                  <button class="ig-action-btn"><i class="fa-regular fa-comment"></i></button>
+                  <button class="ig-action-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+                <button class="ig-action-btn" id="igSaveBtn"><i class="fa-regular fa-bookmark"></i></button>
+              </div>
+              <!-- Likes -->
+              <div class="ig-likes-section">
+                Gefällt <strong id="igLikesCount">428</strong> Mal
+              </div>
+              <!-- Caption -->
+              <div class="ig-caption-section">
+                <p class="ig-caption">
+                  <span class="ig-username">komthur</span>
+                  <span id="igCaptionText">✦ Design Dienstag #01 — Kreativität kennt keine Zeit. 🎨</span>
+                </p>
+                <p class="ig-timestamp" id="igTimestamp">vor 3 Tagen</p>
+              </div>
+              <!-- Kommentar -->
+              <div class="ig-comment-box">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" alt="Profil" class="ig-comment-avatar">
+                <input type="text" placeholder="Kommentieren..." class="ig-comment-input">
+                <button class="ig-comment-btn">Posten</button>
+              </div>
+            </div><!-- /ig-post-container -->
+            <!-- Instagram desktop deco -->
+            <aside class="pb-deco-aside" aria-hidden="true">
+              <div class="pb-deco-platform-icon"><i class="fa-brands fa-instagram"></i></div>
+              <div class="pb-deco-line"></div>
+              <div class="pb-deco-stat">
+                <span class="pb-deco-stat__num">534</span>
+                <span class="pb-deco-stat__label">Max. Likes</span>
+              </div>
+              <div class="pb-deco-line"></div>
+              <div class="pb-deco-stat">
+                <span class="pb-deco-stat__num">10</span>
+                <span class="pb-deco-stat__label">Posts Serie</span>
+              </div>
+              <div class="pb-deco-tag">#DesignDienstag</div>
+              <div class="pb-deco-tag">Visual Identity</div>
+            </aside>
+          </div><!-- /pb-card-wrap -->
+        </div><!-- /product-block 04 -->
 
-       <!-- Carousel mit SQUARE CONTAINER -->
-       <div class="ig-carousel-wrapper">
-         <div class="ig-carousel-counter" id="igCarouselCounter">1 / 10</div>
-         <button class="ig-carousel-btn ig-carousel-prev" id="igCarouselPrev"><i class="fa-solid fa-chevron-left"></i></button>
-         <button class="ig-carousel-btn ig-carousel-next" id="igCarouselNext"><i class="fa-solid fa-chevron-right"></i></button>
-         <div class="ig-carousel-container">
-           <div class="ig-carousel-rail" id="igCarouselRail"></div>
-         </div>
-         <div class="ig-carousel-dots" id="igCarouselDots"></div>
-       </div>
-
-       <!-- Action Bar -->
-       <div class="ig-action-bar">
-         <div class="ig-actions-left">
-           <button class="ig-action-btn" id="igLikeBtn"><i class="fa-regular fa-heart"></i></button>
-           <button class="ig-action-btn"><i class="fa-regular fa-comment"></i></button>
-           <button class="ig-action-btn"><i class="fa-solid fa-paper-plane"></i></button>
-         </div>
-         <button class="ig-action-btn" id="igSaveBtn"><i class="fa-regular fa-bookmark"></i></button>
-       </div>
-
-       <!-- Likes -->
-       <div class="ig-likes-section">
-         Gefällt <strong id="igLikesCount">428</strong> Mal
-       </div>
-
-       <!-- Caption -->
-       <div class="ig-caption-section">
-         <p class="ig-caption">
-           <span class="ig-username">komthur</span>
-           <span id="igCaptionText">✦ Design Dienstag #01 — Kreativität kennt keine Zeit. 🎨</span>
-         </p>
-         <p class="ig-timestamp" id="igTimestamp">vor 3 Tagen</p>
-       </div>
-
-       <!-- Comment Input -->
-       <div class="ig-comment-box">
-         <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" alt="Profil" class="ig-comment-avatar">
-         <input type="text" placeholder="Kommentieren..." class="ig-comment-input">
-         <button class="ig-comment-btn">Posten</button>
-       </div>
-     </div>
-   </div>
-  </div>
-      </div>
-    </div>
-    </section>
+      </div><!-- /container -->
+    </section><!-- /section-content -->
     </main>
   <footer class="site-footer">
     <div class="container footer-inner">

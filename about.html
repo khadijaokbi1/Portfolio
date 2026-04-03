@@ -22,313 +22,12 @@
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+  <script src="https://unpkg.com/split-type"></script>
 
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/footer-nav-waves.css">
   <link rel="stylesheet" href="assets/css/about.css">
   <link rel="stylesheet" href="assets/css/preloader.css">
-
-  <style>
-    /* ═══ ABOUT HERO v2 — Editorial Light ═══ */
-    .ah-hero {
-      min-height: 100vh;
-      background: #F9F7F4;
-      position: relative;
-      display: flex;
-      align-items: center;
-      padding: clamp(7rem, 14vh, 11rem) 0 clamp(5rem, 10vw, 8rem);
-      overflow: hidden;
-    }
-    .ah-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 60% 50%, rgba(181,161,158,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .ah-hero::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 100%;
-      height: 20vh;
-      background-color: #56686a;
-      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,260 C200,220 440,160 680,190 C920,220 1120,300 1440,270 L1440,400 Z'/%3E%3C/svg%3E");
-      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,260 C200,220 440,160 680,190 C920,220 1120,300 1440,270 L1440,400 Z'/%3E%3C/svg%3E");
-      mask-size: 100% 100%;
-      -webkit-mask-size: 100% 100%;
-      pointer-events: none;
-      z-index: 2;
-    }
-    .ah-hero__inner {
-      max-width: 88vw;
-      margin: 0 auto;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(3rem, 6vw, 8rem);
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-    .ah-hero__text { display: flex; flex-direction: column; }
-    .ah-hero__eyebrow {
-      font-family: var(--tenor);
-      font-size: 0.55rem;
-      font-weight: 700;
-      letter-spacing: 0.38em;
-      text-transform: uppercase;
-      color: var(--mauve);
-      display: block;
-      margin-bottom: clamp(1.5rem, 4vh, 3rem);
-      opacity: 0;
-      animation: ahFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
-    }
-    .ah-hero__title {
-      font-family: var(--higuen);
-      font-size: clamp(3.2rem, 8vw, 9.5rem);
-      font-weight: 400;
-      line-height: 0.88;
-      letter-spacing: -0.01em;
-      color: var(--black);
-      text-transform: uppercase;
-      margin: 0 0 clamp(1.5rem, 3vh, 2.5rem);
-    }
-    .ah-hero__title em {
-      font-family: var(--playfair);
-      font-style: italic;
-      font-size: 0.85em;
-      text-transform: none;
-      color: var(--burgundy);
-    }
-    .ah-title-line { display: block; overflow: hidden; }
-    .ah-title-inner {
-      display: block;
-      opacity: 0;
-      transform: translateY(100%);
-      animation: ahSlideUp 1.1s cubic-bezier(0.16,1,0.3,1) forwards;
-    }
-    .ah-title-inner:nth-child(1) { animation-delay: 0.4s; }
-    .ah-title-inner:nth-child(2) { animation-delay: 0.55s; }
-    .ah-title-inner:nth-child(3) { animation-delay: 0.7s; }
-    .ah-title-inner:nth-child(4) { animation-delay: 0.85s; }
-    .ah-hero__sub {
-      font-family: var(--playfair);
-      font-size: clamp(0.85rem, 1.4vw, 1.05rem);
-      font-style: italic;
-      color: var(--mint);
-      letter-spacing: 0.03em;
-      opacity: 0;
-      animation: ahFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 1s forwards;
-    }
-    .ah-hero__portrait-wrap {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-    }
-    .ah-hero__portrait-img {
-      width: 100%;
-      max-width: 460px;
-      height: clamp(360px, 58vh, 580px);
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      opacity: 0;
-      animation: ahFadeUp 1.2s cubic-bezier(0.16,1,0.3,1) 0.6s forwards;
-    }
-    .ah-hero__deco-line {
-      position: absolute;
-      bottom: -1.5rem;
-      left: -1.5rem;
-      width: 60px;
-      height: 60px;
-      border-left: 1.5px solid var(--burgundy);
-      border-bottom: 1.5px solid var(--burgundy);
-      opacity: 0.3;
-    }
-    .ah-hero__scroll-hint {
-      position: absolute;
-      bottom: clamp(2.5rem, 6vh, 5rem);
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      opacity: 0;
-      animation: ahFadeUp 0.8s ease 1.4s forwards;
-      z-index: 3;
-    }
-    .ah-hero__scroll-label {
-      font-family: var(--tenor);
-      font-size: 0.5rem;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: rgba(82,82,82,0.38);
-    }
-    .ah-hero__scroll-line {
-      width: 1px;
-      height: 44px;
-      background: linear-gradient(180deg, var(--burgundy), transparent);
-      opacity: 0.3;
-      animation: scrollPulse 2.2s ease-in-out infinite;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { transform: scaleY(1); opacity: 0.3; }
-      50% { transform: scaleY(0.4); opacity: 0.1; }
-    }
-    @keyframes ahFadeUp { to { opacity: 1; transform: translateY(0); } }
-    @keyframes ahSlideUp { to { opacity: 1; transform: translateY(0); } }
-
-    /* ═══ ABOUT ME — Typewriter & Trivia ═══ */
-    .about-tw__headline {
-      margin: 0.8rem 0 2rem;
-      line-height: 1.1;
-    }
-    .tw-prefix {
-      font-family: var(--work);
-      font-size: clamp(0.85rem, 1.5vw, 1.05rem);
-      color: rgba(245,245,245,0.55);
-      text-transform: lowercase;
-      letter-spacing: 0.08em;
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-    .tw-big {
-      font-family: var(--higuen);
-      font-size: clamp(2.8rem, 6vw, 6rem);
-      font-weight: 400;
-      text-transform: uppercase;
-      line-height: 0.9;
-      letter-spacing: 0.04em;
-      color: var(--white);
-      display: block;
-      min-height: 1em;
-    }
-    .typed-about { color: rgba(245,245,245,0.9); }
-    .typed-cursor { color: var(--mauve); font-weight: 100; }
-
-    /* Text reveal */
-    .reveal-para {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
-    }
-    .reveal-para.is-revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* CTA */
-    .about-resume-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.85rem 2rem;
-      background: var(--burgundy);
-      color: var(--white);
-      font-family: var(--tenor);
-      font-size: 0.6rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      text-decoration: none;
-      transition: background 0.3s ease, transform 0.3s ease;
-      margin-top: 2rem;
-      align-self: flex-start;
-    }
-    .about-resume-cta:hover { background: var(--black); transform: translateY(-2px); }
-    .about-resume-cta:hover svg { transform: translate(3px,-3px); }
-    .about-resume-cta svg { transition: transform 0.3s ease; }
-
-    /* 3 Trivia strips below portrait */
-    .about-trivia {
-      margin-top: 1.8rem;
-      border-top: 1px solid rgba(245,245,245,0.15);
-    }
-    .trivia-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1.2rem;
-      padding: 1rem 0;
-      border-bottom: 1px solid rgba(245,245,245,0.1);
-      opacity: 0;
-      transform: translateX(-14px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .trivia-item.is-visible { opacity: 1; transform: translateX(0); }
-    .trivia-num {
-      font-family: var(--playfair);
-      font-size: 0.68rem;
-      font-style: italic;
-      color: var(--mauve);
-      flex-shrink: 0;
-      padding-top: 2px;
-      min-width: 20px;
-    }
-    .trivia-body { display: flex; flex-direction: column; gap: 0.12rem; }
-    .trivia-label {
-      font-family: var(--tenor);
-      font-size: 0.5rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.26em;
-      color: var(--mauve);
-    }
-    .trivia-val {
-      font-family: var(--playfair);
-      font-size: 0.85rem;
-      font-style: italic;
-      color: rgba(245,245,245,0.85);
-    }
-
-    /* Counter feinschliff */
-    .fav-books-hero__counter .big-counter {
-      display: flex;
-      gap: clamp(2rem, 6vw, 6rem);
-      justify-content: center;
-      align-items: baseline;
-      padding: clamp(2rem, 4vh, 3rem) 0;
-    }
-    .big-counter__box { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; }
-    .big-counter__year {
-      font-family: var(--tenor);
-      font-size: 0.55rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--mauve);
-    }
-    .big-counter__num {
-      font-family: var(--higuen);
-      font-size: clamp(4rem, 10vw, 8rem);
-      font-weight: 400;
-      line-height: 1;
-      color: var(--white);
-      letter-spacing: -0.03em;
-    }
-    .big-counter__unit {
-      font-family: var(--work);
-      font-size: 0.72rem;
-      color: rgba(245,245,245,0.45);
-      letter-spacing: 0.06em;
-    }
-
-    /* ═══ RESPONSIVE ═══ */
-    @media (max-width: 900px) {
-      .ah-hero__inner { grid-template-columns: 1fr; text-align: center; }
-      .ah-hero__text { align-items: center; order: 2; }
-      .ah-hero__portrait-wrap { order: 1; }
-      .ah-hero__portrait-img { max-width: 280px; height: 320px; margin: 0 auto; }
-      .ah-hero__deco-line { display: none; }
-      .tw-big, .typed-about { font-size: clamp(2.4rem, 10vw, 4.5rem); }
-    }
-    @media (max-width: 600px) {
-      .ah-hero__title { font-size: clamp(2.4rem, 14vw, 4rem); }
-      .about-tw__headline { text-align: left; }
-    }
-  </style>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-B415ZJNKNW"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-B415ZJNKNW');</script>
@@ -364,44 +63,53 @@
   <main>
 
     <!-- ═══════════════════════════════════════
-         HERO — Editorial Light, Child Photo
+         HERO — Editorial Dark, Full BG Collage
     ═══════════════════════════════════════ -->
     <section class="ah-hero" id="hero" aria-label="Hero">
+
+      <!-- Background — kein Overlay, Mini-Me als visuelle Maske -->
+      <div class="ah-hero__bg"    aria-hidden="true"></div>
+      <div class="ah-hero__grain" aria-hidden="true"></div>
+
       <div class="ah-hero__inner">
 
-        <!-- Text Side -->
-        <div class="ah-hero__text">
-          <span class="ah-hero__eyebrow">About</span>
-          <h1 class="ah-hero__title">
-            <span class="ah-title-line"><span class="ah-title-inner">THE</span></span>
-            <span class="ah-title-line"><span class="ah-title-inner">VISIONARY</span></span>
-            <span class="ah-title-line"><span class="ah-title-inner"><em>&amp;</em> THE</span></span>
-            <span class="ah-title-line"><span class="ah-title-inner">STRATEGIST.</span></span>
+        <!-- Links: Eyebrow + erste Titelzeilen -->
+        <div class="ah-hero__text ah-hero__text--l">
+          <span class="ah-hero__eyebrow" id="ahEyebrow">About</span>
+          <h1 class="ah-hero__title" id="ahTitle">
+            <span class="ah-title-line"><span class="ah-title-inner">CREA&shy;TIVITY</span></span>
+            <span class="ah-title-line"><span class="ah-title-inner">IS THE</span></span>
           </h1>
-          <p class="ah-hero__sub">Mediamatikerin &middot; Creative Director &middot; Developer</p>
         </div>
 
-        <!-- Portrait Side -->
+        <!-- Mitte: Mini-Me (transparentes PNG, fließt visuell um den Text) -->
         <div class="ah-hero__portrait-wrap">
           <img
             src="assets/images/about/minime.png"
-            alt="Junge Khadija mit Kamera"
+            alt="Khadija als Kind"
             class="ah-hero__portrait-img"
+            id="ahPortrait"
             loading="eager"
           >
-          <div class="ah-hero__deco-line" aria-hidden="true"></div>
+        </div>
+
+        <!-- Rechts: restliche Titelzeilen + Sub -->
+        <div class="ah-hero__text ah-hero__text--r">
+          <div class="ah-hero__title">
+            <span class="ah-title-line"><span class="ah-title-inner">BIGGEST</span></span>
+            <span class="ah-title-line"><span class="ah-title-inner">REBEL&shy;LION</span></span>
+            <span class="ah-title-line"><span class="ah-title-inner">IN EXIST&shy;ENCE.</span></span>
+          </div>
+          <p class="ah-hero__sub" id="ahSub">Mediamatikerin &middot; Creative Director &middot; Developer</p>
         </div>
 
       </div>
 
       <!-- Scroll hint -->
-      <div class="ah-hero__scroll-hint" aria-hidden="true">
+      <div class="ah-hero__scroll-hint" id="ahScrollHint" aria-hidden="true">
         <div class="ah-hero__scroll-line"></div>
         <span class="ah-hero__scroll-label">Scroll</span>
       </div>
-
-
-
 
     </section>
 
@@ -422,6 +130,47 @@
               class="about-me__portrait"
               loading="eager"
             >
+
+            <!-- Deko-Ecken: erscheinen beim Hover -->  
+            <div class="deco-corner deco-corner--tl" aria-hidden="true"></div>
+            <div class="deco-corner deco-corner--br" aria-hidden="true"></div>
+
+            <!-- Blume — elegantes Ornament statt Schmetterling, position absolute, kein Layout-Shift -->
+            <div class="portrait-butterfly" aria-hidden="true">
+              <svg width="64" height="64" viewBox="0 0 80 80" fill="none" style="animation:bfFloat 5.2s ease-in-out infinite">
+                <path d="M40 40 C37 30 36 16 40 8 C44 16 43 30 40 40Z" fill="rgba(212,185,181,.22)" stroke="#B5A19E" stroke-width="1.1" opacity=".8"/>
+                <path d="M40 40 C37 30 36 16 40 8 C44 16 43 30 40 40Z" fill="rgba(212,185,181,.22)" stroke="#B5A19E" stroke-width="1.1" opacity=".8" transform="rotate(60 40 40)"/>
+                <path d="M40 40 C37 30 36 16 40 8 C44 16 43 30 40 40Z" fill="rgba(212,185,181,.22)" stroke="#B5A19E" stroke-width="1.1" opacity=".8" transform="rotate(120 40 40)"/>
+                <path d="M40 40 C37 30 36 16 40 8 C44 16 43 30 40 40Z" fill="rgba(212,185,181,.22)" stroke="#B5A19E" stroke-width="1.1" opacity=".8" transform="rotate(180 40 40)"/>
+                <path d="M40 40 C37 30 36 16 40 8 C44 16 43 30 40 40Z" fill="rgba(212,185,181,.22)" stroke="#B5A19E" stroke-width="1.1" opacity=".8" transform="rotate(240 40 40)"/>
+                <path d="M40 40 C37 30 36 16 40 8 C44 16 43 30 40 40Z" fill="rgba(212,185,181,.22)" stroke="#B5A19E" stroke-width="1.1" opacity=".8" transform="rotate(300 40 40)"/>
+                <path d="M40 40 C38 33 37 24 40 18 C43 24 42 33 40 40Z" fill="rgba(181,161,158,.18)" stroke="rgba(181,161,158,.55)" stroke-width=".8" transform="rotate(30 40 40)"/>
+                <path d="M40 40 C38 33 37 24 40 18 C43 24 42 33 40 40Z" fill="rgba(181,161,158,.18)" stroke="rgba(181,161,158,.55)" stroke-width=".8" transform="rotate(90 40 40)"/>
+                <path d="M40 40 C38 33 37 24 40 18 C43 24 42 33 40 40Z" fill="rgba(181,161,158,.18)" stroke="rgba(181,161,158,.55)" stroke-width=".8" transform="rotate(150 40 40)"/>
+                <path d="M40 40 C38 33 37 24 40 18 C43 24 42 33 40 40Z" fill="rgba(181,161,158,.18)" stroke="rgba(181,161,158,.55)" stroke-width=".8" transform="rotate(210 40 40)"/>
+                <path d="M40 40 C38 33 37 24 40 18 C43 24 42 33 40 40Z" fill="rgba(181,161,158,.18)" stroke="rgba(181,161,158,.55)" stroke-width=".8" transform="rotate(270 40 40)"/>
+                <path d="M40 40 C38 33 37 24 40 18 C43 24 42 33 40 40Z" fill="rgba(181,161,158,.18)" stroke="rgba(181,161,158,.55)" stroke-width=".8" transform="rotate(330 40 40)"/>
+                <circle cx="40" cy="40" r="6.5" fill="none" stroke="#6E3B49" stroke-width=".9" opacity=".6"/>
+                <circle cx="40" cy="40" r="3" fill="#6E3B49" opacity=".5"/>
+              </svg>
+            </div>
+
+            <!-- Botanischer Sprig links — position absolute -->
+            <div class="about-portrait-sprig" aria-hidden="true">
+              <svg width="44" height="64" viewBox="0 0 70 90" fill="none" style="animation:bfFloat 5.5s ease-in-out 0.3s infinite">
+                <path d="M35 90 Q32 70 30 50 Q28 30 32 12" stroke="#B5A19E" stroke-width="1.1" fill="none"/>
+                <circle cx="32" cy="12" r="4" fill="none" stroke="#6E3B49" stroke-width="1"/>
+                <circle cx="24" cy="22" r="3" fill="none" stroke="rgba(110,59,73,.45)" stroke-width=".9"/>
+                <path d="M30 22 L24 22" stroke="#B5A19E" stroke-width=".7"/>
+                <circle cx="42" cy="30" r="2.5" fill="none" stroke="rgba(110,59,73,.35)" stroke-width=".8"/>
+                <path d="M32 30 L42 30" stroke="#B5A19E" stroke-width=".7"/>
+                <path d="M30 42 Q18 38 16 28 Q22 32 30 40Z" fill="none" stroke="#56686A" stroke-width=".9"/>
+                <path d="M31 52 Q44 48 46 38 Q40 42 31 50Z" fill="none" stroke="#56686A" stroke-width=".9"/>
+                <path d="M30 64 Q18 60 16 50 Q22 54 30 62Z" fill="none" stroke="rgba(86,104,106,.55)" stroke-width=".8"/>
+                <path d="M31 74 Q44 70 46 60 Q40 64 31 72Z" fill="none" stroke="rgba(86,104,106,.55)" stroke-width=".8"/>
+              </svg>
+            </div>
+
           </div>
 
           <!-- 3 Minimal identity strips -->
@@ -460,17 +209,36 @@
               <span class="tw-prefix">ich bin</span>
               <span class="tw-big"><span id="typedAbout" class="typed-about"></span></span>
             </div>
+
+            <!-- Sparkle-Cluster oben rechts — position absolute, kein Layout-Shift -->
+            <div class="about-header-deco" aria-hidden="true">
+              <svg width="52" height="44" viewBox="0 0 70 60" fill="none">
+                <path d="M35 4 L37 18 L50 20 L37 22 L35 36 L33 22 L20 20 L33 18Z" fill="#B5A19E" opacity=".65" style="animation:decoTwinkle 2.2s ease-in-out infinite"/>
+                <path d="M14 12 L15 20 L22 21 L15 22 L14 30 L13 22 L6 21 L13 20Z" fill="rgba(181,161,158,.4)" style="animation:decoTwinkle 1.8s ease-in-out .4s infinite"/>
+                <path d="M58 8 L59 14 L64 15 L59 16 L58 22 L57 16 L52 15 L57 14Z" fill="rgba(181,161,158,.32)" style="animation:decoTwinkle 2.5s ease-in-out .9s infinite"/>
+                <circle cx="52" cy="42" r="2" fill="rgba(181,161,158,.35)" style="animation:decoTwinkle 1.6s ease-in-out .2s infinite"/>
+                <circle cx="18" cy="46" r="1.5" fill="#6E3B49" opacity=".25" style="animation:decoTwinkle 2s ease-in-out .7s infinite"/>
+              </svg>
+            </div>
+
           </div>
 
           <div class="about-me__body">
 
-            <p class="reveal-para">Meine Kreativität zeichnet mich in allen Lebensbereichen aus. Diese Eigenschaft ermöglicht es mir, nicht nur künstlerische Projekte und Ideen zu verwirklichen, sondern auch neue Perspektiven einzunehmen und aussergewöhnliche Herangehensweisen zu entwickeln. An mich und meine Arbeit stelle ich häufig sehr hohe Ansprüche. Dadurch konnte ich mir über die Jahre Fähigkeiten in diversen Bereichen aneignen, ganz nach dem Motto: «Wo ein Wille ist, ist auch ein Weg.»</p>
+            <p class="reveal-para about-text__intro">Meine Kreativität zeichnet mich in allen Lebensbereichen aus. Diese Eigenschaft ermöglicht es mir, nicht nur künstlerische Projekte und Ideen zu verwirklichen, sondern auch neue Perspektiven einzunehmen und aussergewöhnliche Herangehensweisen zu entwickeln. An mich und meine Arbeit stelle ich häufig sehr hohe Ansprüche. Dadurch konnte ich mir über die Jahre Fähigkeiten in diversen Bereichen aneignen, ganz nach dem Motto: «Wo ein Wille ist, ist auch ein Weg.»</p>
 
-            <p class="reveal-para">Bereits seit meinem 11. Lebensjahr schneide ich leidenschaftlich gerne Videos. Was als Hobby begann, führte dazu, dass ich 2018 ein einjähriges Praktikum im Bereich Social Media und Event Marketing absolvieren und wertvolle Erfahrungen sammeln konnte. Diese Zeit hat mich sowie meinen persönlichen Stil sehr geprägt und mir die Türen für meine anschliessende Lehre zur Mediamatikerin geöffnet.</p>
+            <button class="about-readmore-btn" id="readMoreBtn" aria-expanded="false">
+              <span>Mehr lesen</span>
+              <svg class="about-readmore-btn__icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </button>
 
-            <p class="reveal-para">Neben der digitalen Gestaltung liebe ich es, zu zeichnen, zu basteln, zu malen und mit unterschiedlichen Materialien zu experimentieren. Es macht mir viel Freude, Dingen durch kleine Details das gewisse Etwas zu verleihen und Gegenständen oder Räumen eine ganz andere Wirkung zu geben. Meine Wohnung dient seit meinem Einzug als kreative Leinwand für Visionen und Inspirationen, die bereits seit Jahren in meinen Pinterest Boards auf ihre Umsetzung warten.</p>
+            <div class="about-text__expandable" id="aboutExpandable" aria-hidden="true">
+              <p class="reveal-para">Bereits seit meinem 11. Lebensjahr schneide ich leidenschaftlich gerne Videos. Was als Hobby begann, führte dazu, dass ich 2018 ein einjähriges Praktikum im Bereich Social Media und Event Marketing absolvieren und wertvolle Erfahrungen sammeln konnte. Diese Zeit hat mich sowie meinen persönlichen Stil sehr geprägt und mir die Türen für meine anschliessende Lehre zur Mediamatikerin geöffnet.</p>
 
-            <p class="reveal-para">Eine weitere Leidenschaft, die ich 2021 wieder für mich entdeckt habe, ist das Lesen. Als Kind habe ich die Bücher von Enid Blyton, Die Drei !!! sowie diverse Detektiv- und Fantasyromane verschlungen. Nachdem ich während der Corona-Pandemie im Bücherschrank unseres Quartiers auf den Psychothriller «Gone Girl» gestossen bin, war ich erneut im Bann der Bücherwelt. Seit der Anschaffung meines Kindles im Sommer 2024 habe ich über 200 Bücher gelesen.</p>
+              <p class="reveal-para">Neben der digitalen Gestaltung liebe ich es, zu zeichnen, zu basteln, zu malen und mit unterschiedlichen Materialien zu experimentieren. Es macht mir viel Freude, Dingen durch kleine Details das gewisse Etwas zu verleihen und Gegenständen oder Räumen eine ganz andere Wirkung zu geben. Meine Wohnung dient seit meinem Einzug als kreative Leinwand für Visionen und Inspirationen, die bereits seit Jahren in meinen Pinterest Boards auf ihre Umsetzung warten.</p>
+
+              <p class="reveal-para">Eine weitere Leidenschaft, die ich 2021 wieder für mich entdeckt habe, ist das Lesen. Als Kind habe ich die Bücher von Enid Blyton, Die Drei !!! sowie diverse Detektiv- und Fantasyromane verschlungen. Nachdem ich während der Corona-Pandemie im Bücherschrank unseres Quartiers auf den Psychothriller «Gone Girl» gestossen bin, war ich erneut im Bann der Bücherwelt. Seit der Anschaffung meines Kindles im Sommer 2024 habe ich über 200 Bücher gelesen.</p>
+            </div>
 
           </div>
 
@@ -493,6 +261,21 @@
     <section class="about-favorites wave-foot" id="favorites" aria-label="Bücher und Musik">
         <header class="about-timeline__header">
           <span class="about-eyebrow about-eyebrow--light">Creative Fuel</span>
+
+          <!-- Rotierende Chrysantheme als Ornament zwischen Eyebrow und Titel -->
+          <div class="fav-chrys-ornament" aria-hidden="true">
+            <svg style="animation:rotCW 28s linear infinite" width="36" height="36" viewBox="0 0 52 52" fill="none">
+              <ellipse cx="26" cy="26" rx="5" ry="18" fill="none" stroke="rgba(181,161,158,.45)" stroke-width="1"/>
+              <ellipse cx="26" cy="26" rx="5" ry="18" fill="none" stroke="rgba(181,161,158,.45)" stroke-width="1" transform="rotate(30 26 26)"/>
+              <ellipse cx="26" cy="26" rx="5" ry="18" fill="none" stroke="rgba(181,161,158,.45)" stroke-width="1" transform="rotate(60 26 26)"/>
+              <ellipse cx="26" cy="26" rx="5" ry="18" fill="none" stroke="rgba(181,161,158,.45)" stroke-width="1" transform="rotate(90 26 26)"/>
+              <ellipse cx="26" cy="26" rx="5" ry="18" fill="none" stroke="rgba(181,161,158,.45)" stroke-width="1" transform="rotate(120 26 26)"/>
+              <ellipse cx="26" cy="26" rx="5" ry="18" fill="none" stroke="rgba(181,161,158,.45)" stroke-width="1" transform="rotate(150 26 26)"/>
+              <circle cx="26" cy="26" r="5" fill="none" stroke="#6E3B49" stroke-width=".85" opacity=".7"/>
+              <circle cx="26" cy="26" r="2" fill="#6E3B49" opacity=".4"/>
+            </svg>
+          </div>
+
           <h2 class="about-komp__title">Meine <em>Favoriten</em></h2>
           <p class="about-timeline__sub">Bücher & Musik, die mein 2025 geprägt haben.</p>
            <a href="https://www.goodreads.com/user/year_in_books/2025/86919904" target="_blank" rel="noopener noreferrer" class="fav-goodreads-btn">
@@ -500,20 +283,30 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
         </header>
-     <div class="fav-books-hero__counter">
-            <div class="big-counter">
-              <div class="big-counter__box">
-                <span class="big-counter__year">2024</span>
-                <span class="big-counter__num" data-target="52">0</span>
-                <span class="big-counter__unit">Bücher</span>
-              </div>
-              <div class="big-counter__box">
-                <span class="big-counter__year">2025</span>
-                <span class="big-counter__num" data-target="104">0</span>
-                <span class="big-counter__unit">Bücher</span>
-              </div>
+
+        <!-- Eyebrow + Counter (Lesejahre) -->
+        <div class="about-books-label">
+          <span class="about-eyebrow about-eyebrow--light">Meine Lesejahre</span>
+        </div>
+        <div class="fav-books-hero__counter">
+          <div class="big-counter">
+            <div class="big-counter__box">
+              <span class="big-counter__year">Lesejahr</span>
+              <span class="big-counter__num" data-target="52">0</span>
+              <span class="big-counter__unit">2024</span>
+            </div>
+            <div class="big-counter__box big-counter__box--accent">
+              <span class="big-counter__year">Lesejahr</span>
+              <span class="big-counter__num" data-target="104">0</span>
+              <span class="big-counter__unit">2025</span>
             </div>
           </div>
+        </div>
+
+        <!-- Eyebrow über den Büchern -->
+        <div class="about-books-label">
+          <span class="about-eyebrow about-eyebrow--light">Meine Top 3 &middot; 2025</span>
+        </div>
         <ul class="book-list" role="list">
           <li class="book-entry">
             <div class="book-entry__cover"><div class="book-3d">
@@ -531,8 +324,9 @@
               <h4 class="book-title-main">Fourth Wing</h4>
               <p class="book-author-main">Rebecca Yarros</p>
               <div class="book-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-              <button class="review-btn" aria-expanded="false">Rezension <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button>
-              <div class="review-body" aria-hidden="true"><p>Mein erstes Buch 2025 — hat die Messlatte unschlagbar hoch gelegt. Von der ersten Seite an zog mich die Empyrean-Reihe in ihren Bann. Die Dynamik zwischen den Charakteren, die ständige Bedrohung und die überraschenden Wendungen haben mich bis zur letzten Seite nicht losgelassen.</p></div>
+              <p class="review-teaser">Mein erstes Buch 2025 &mdash; hat die Messlatte unschlagbar hoch gelegt.</p>
+              <button class="review-btn" aria-expanded="false">Vollständige Rezension <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button>
+              <div class="review-body" aria-hidden="true"><p>Von der ersten Seite an zog mich die Empyrean-Reihe in ihren Bann. Die Dynamik zwischen den Charakteren, die ständige Bedrohung und die überraschenden Wendungen haben mich bis zur letzten Seite nicht losgelassen.</p></div>
             </div>
           </li>
 
@@ -552,8 +346,9 @@
               <h4 class="book-title-main">A Good Girl's Guide to Murder</h4>
               <p class="book-author-main">Holly Jackson</p>
               <div class="book-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-              <button class="review-btn" aria-expanded="false">Rezension <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button>
-              <div class="review-body" aria-hidden="true"><p>Band drei verleiht der Reihe einen Flair, dem ich so noch nie begegnet bin. Besonders einprägend fand ich Jacksons Fähigkeit, komplexe Charaktere aufzubauen und die Entwicklung der Hauptprotagonistin so unerwartet zu gestalten, dass sie einen bleibenden Eindruck hinterlassen hat.</p></div>
+              <p class="review-teaser">Band drei verleiht der Reihe einen Flair, dem ich so noch nie begegnet bin.</p>
+              <button class="review-btn" aria-expanded="false">Vollständige Rezension <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button>
+              <div class="review-body" aria-hidden="true"><p>Besonders einprägend fand ich Jacksons Fähigkeit, komplexe Charaktere aufzubauen und die Entwicklung der Hauptprotagonistin so unerwartet zu gestalten, dass sie einen bleibenden Eindruck hinterlassen hat.</p></div>
             </div>
           </li>
 
@@ -573,8 +368,9 @@
               <h4 class="book-title-main">Reminders of Him</h4>
               <p class="book-author-main">Colleen Hoover</p>
               <div class="book-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-              <button class="review-btn" aria-expanded="false">Rezension <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button>
-              <div class="review-body" aria-hidden="true"><p>Die Bücher, die mich zu Tränen gerührt haben, kann ich an einer Hand abzählen. Die schonungslose Ehrlichkeit, mit der dieser schmale Grat zwischen Schicksal und Schuld gezeichnet wird — eine emotionale Achterbahnfahrt, die tief unter die Haut geht.</p></div>
+              <p class="review-teaser">Die Bücher, die mich zu Tränen gerührt haben, kann ich an einer Hand abzählen.</p>
+              <button class="review-btn" aria-expanded="false">Vollständige Rezension <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button>
+              <div class="review-body" aria-hidden="true"><p>Die schonungslose Ehrlichkeit, mit der dieser schmale Grat zwischen Schicksal und Schuld gezeichnet wird &mdash; eine emotionale Achterbahnfahrt, die tief unter die Haut geht.</p></div>
             </div>
           </li>
         </ul>
@@ -623,7 +419,6 @@
           </div>
         </div>
         <audio id="vinyl-audio" preload="none" aria-hidden="true"></audio>
-</div>
       </div>
     </section>
 
@@ -803,17 +598,103 @@
       }
     });
 
-    // ── GSAP entrance ─────────────────────────
+    // ── Read More Toggle ───────────────────────
+    const readMoreBtn = document.getElementById('readMoreBtn');
+    const expandable  = document.getElementById('aboutExpandable');
+    if (readMoreBtn && expandable) {
+      readMoreBtn.addEventListener('click', () => {
+        const isOpen = expandable.classList.contains('is-open');
+        expandable.classList.toggle('is-open');
+        expandable.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+        readMoreBtn.classList.toggle('is-open');
+        readMoreBtn.setAttribute('aria-expanded', (!isOpen).toString());
+        readMoreBtn.querySelector('span').textContent = isOpen ? 'Mehr lesen' : 'Weniger anzeigen';
+      });
+    }
+
+    // ── GSAP ───────────────────────────────────
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
+
+      // Hero title — line-by-line slide up on load
+      const titleInners = document.querySelectorAll('.ah-title-inner');
+      gsap.to(titleInners, {
+        opacity: 1,
+        yPercent: 0,
+        duration: 1.15,
+        ease: 'power4.out',
+        stagger: 0.1,
+        delay: 0.5,
+        onComplete() {
+          gsap.to('#ahEyebrow',    { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' });
+          gsap.to('#ahSub',        { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', delay: 0.12 });
+          gsap.to('#ahScrollHint', { opacity: 1, duration: 0.7, ease: 'power2.out', delay: 0.3 });
+        }
+      });
+
+      // Portrait — parallax scrub
+      gsap.to('#ahPortrait', {
+        yPercent: -14,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.ah-hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1.2
+        }
+      });
+
+      // About-me portrait entrance
       gsap.fromTo('.about-me__portrait',
         { scale: 1.08, opacity: 0, filter: 'blur(8px)' },
         { scale: 1, opacity: 1, filter: 'blur(0px)', duration: 1.4, ease: 'power3.out',
           scrollTrigger: { trigger: '.about-me', start: 'top 80%' } });
+
+      // About-me text — SplitType line-by-line reveal
+      if (typeof SplitType !== 'undefined') {
+        document.querySelectorAll('.about-me__body .reveal-para').forEach((para, idx) => {
+          if (idx === 0) {
+            // Erstes Absatz hat Drop Cap — SplitType überspringen, ganzen Absatz animieren
+            gsap.from(para, { opacity: 0, y: 22, duration: 1.2, ease: 'power3.out',
+              scrollTrigger: { trigger: para, start: 'top 88%' } });
+            return;
+          }
+          const split = new SplitType(para, { types: 'lines' });
+          split.lines.forEach(line => {
+            const wrap = document.createElement('div');
+            wrap.style.cssText = 'overflow:hidden;padding-bottom:0.06em;';
+            line.parentNode.insertBefore(wrap, line);
+            wrap.appendChild(line);
+          });
+          gsap.from(split.lines, {
+            yPercent: 108,
+            opacity: 0,
+            duration: 0.85,
+            stagger: 0.055,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: para, start: 'top 88%' }
+          });
+        });
+      } else {
+        // Fallback CSS reveal
+        const paraObs = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('is-revealed'); paraObs.unobserve(e.target); }
+          });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal-para').forEach((el, i) => {
+          el.style.transitionDelay = `${i * 0.18}s`;
+          paraObs.observe(el);
+        });
+      }
+
+      // Vinyl cards
       gsap.fromTo('.vinyl-card',
         { opacity: 0, y: 40 },
         { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.15,
           scrollTrigger: { trigger: '.vinyl-grid', start: 'top 80%' } });
+
+      // Counters
       gsap.fromTo('.big-counter__box',
         { opacity: 0, y: 30, scale: 0.92 },
         { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'power3.out', stagger: 0.2,

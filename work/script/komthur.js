@@ -362,12 +362,16 @@ function initAnalyticsAnimations() {
           }
         });
         entry.target.querySelectorAll('.ads-bar').forEach(bar => {
-          bar.style.animationPlayState = 'running';
+          if (!bar.classList.contains('animated')) {
+            bar.style.animationPlayState = 'running';
+            bar.classList.add('animated');
+          }
         });
+        observer.unobserve(entry.target);
       }
     });
-  });
-  document.querySelectorAll('.analytics-grid, .p-kpis').forEach(el => observer.observe(el));
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.analytics-grid, .p-kpis, .ads-list').forEach(el => observer.observe(el));
 }
 
 // ========================================
@@ -541,4 +545,47 @@ function initInstagramCarousel() {
 // ════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
   initInstagramCarousel();
+  initScrollReveal();
 });
+
+// ========================================
+// SCROLL REVEAL — staggered fade-up
+// ========================================
+function initScrollReveal() {
+  const autoRevealSelectors = [
+    '.section-header',
+    '.mk-sprig-divider',
+    '.positioning-insight-new',
+    '.insight-box',
+    '.swot-matrix',
+    '.konkurrenz-split',
+    '.zg-bento',
+    '.personas-grid',
+    '.strat-header',
+    '.strat-tabs',
+    '.product-block__header',
+    '.showcase-container',
+    '.pb-card-wrap',
+    '.sea-story-layout',
+    '.footer-info-item'
+  ];
+
+  autoRevealSelectors.forEach((selector) => {
+    document.querySelectorAll(selector).forEach((el) => {
+      if (!el.classList.contains('reveal')) {
+        el.classList.add('reveal');
+      }
+    });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}

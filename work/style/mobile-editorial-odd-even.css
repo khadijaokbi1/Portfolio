@@ -1,0 +1,60 @@
+/* Global mobile editorial rhythm for /work pages */
+@media (max-width: 768px) {
+  :root {
+    --mobile-editorial-indent: clamp(0.45rem, 2.4vw, 0.95rem);
+  }
+
+  main > section:not(.hero-section):not(.section-hero):not(.hero-overlay):not(.sbw-hero-section),
+  main > article,
+  main .product-block,
+  main .showcase-subsection,
+  main .content-block,
+  main .project-block,
+  main .module-block,
+  main .card-block {
+    width: min(100%, 760px);
+  }
+
+  main > section:not(.hero-section):not(.section-hero):not(.hero-overlay):not(.sbw-hero-section):nth-of-type(odd),
+  main > article:nth-of-type(odd),
+  main .product-block:nth-of-type(odd),
+  main .showcase-subsection:nth-of-type(odd),
+  main .content-block:nth-of-type(odd),
+  main .project-block:nth-of-type(odd),
+  main .module-block:nth-of-type(odd),
+  main .card-block:nth-of-type(odd) {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    padding-right: var(--mobile-editorial-indent);
+  }
+
+  main > section:not(.hero-section):not(.section-hero):not(.hero-overlay):not(.sbw-hero-section):nth-of-type(even),
+  main > article:nth-of-type(even),
+  main .product-block:nth-of-type(even),
+  main .showcase-subsection:nth-of-type(even),
+  main .content-block:nth-of-type(even),
+  main .project-block:nth-of-type(even),
+  main .module-block:nth-of-type(even),
+  main .card-block:nth-of-type(even) {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    padding-left: var(--mobile-editorial-indent);
+  }
+}
+
+@media (max-width: 480px) {
+  main > section,
+  main > article,
+  main .product-block,
+  main .showcase-subsection,
+  main .content-block,
+  main .project-block,
+  main .module-block,
+  main .card-block {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100%;
+  }
+}
