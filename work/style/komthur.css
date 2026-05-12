@@ -20,15 +20,17 @@
   align-items: center;
   text-align: center;
   height: auto;
-  margin-top: 80px;
+  padding-top: 60px;
+  background: var(--mint);
+  line-height: normal;
 }
 
 .hero-badge {
-  border: 1px solid var(--burgundy);
+  border: 2px solid var(--mauve);
   padding: 0.5rem 1.5rem;
   border-radius: 50px;
-  color: #314A51;
-  margin-bottom: 2rem;
+  color: var(--white);
+  margin-bottom: 3rem;
   backdrop-filter: blur(5px);
   display: inline-block;
   width: 50vw;
@@ -37,20 +39,18 @@
 .hero-title-large {
   font-family: var(--higuen);
   font-size: clamp(3rem, 10vw, 7rem);
-  line-height: 0.9;
-  color: #314A51;
-  margin-bottom: 5rem;
-  margin-top: 5rem;
+  font-weight: 400;
+  color: var(--mauve);
+  text-transform: uppercase;
 }
 
 .hero-title-large span {
   display: block;
-  font-style: italic;
-  color: #6E3B49;
+  color: var(--white);
 }
 
 .hero-subtitle {
-  color: #314A51;
+  color: var(--mauve);
   font-weight: 300;
   letter-spacing: 0.1em;
   max-width: 700px;
@@ -72,7 +72,7 @@ h3 {
     right: 3rem;
     transform: translateY(-50%);
     z-index: 100;
-    display: none;
+    display: flex;
   }
   
   .inpage-nav.is-visible {
@@ -5184,7 +5184,6 @@ h3 {
 
 .ig-carousel-counter {
   position: absolute;
-  bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.6);
@@ -6923,9 +6922,6 @@ h3 {
   padding: 0 0 0 0;
 }
 
-.swot-ax-corner {
-  /* empty corner cell */
-}
 
 .swot-ax {
   font-family: var(--tenor);
@@ -7369,7 +7365,9 @@ h3 {
   position: relative;
 }
 
-
+.highlight {
+  color: var(--burgundy);
+}
 
 .sec03-intro {
   text-align: center;
@@ -7741,6 +7739,7 @@ h3 {
   font-weight: 700 !important;
 }
 
+
 .section-header h3 {
   font-family: var(--playfair) !important;
   font-weight: 700 !important;
@@ -8009,4 +8008,17 @@ h3 {
     opacity: 0.8;
     font-size: 0.9rem;
     margin: 0;
+}
+/* Section 01: Marktanalyse */
+.sec01-intro .sec01-overline,
+.sec01-intro .sec01-title,
+.sec01-intro .sec01-lead {
+  color: var(--text-primary-light); /* Helle Farbe für dunklen Hintergrund */
+}
+
+/* Section 02: Strategie */
+.sec02-intro .sec02-overline,
+.sec02-intro .sec02-title,
+.sec02-intro .sec02-lead {
+  color: var(--text-primary-dark); /* Dunkle Farbe für hellen Hintergrund */
 }
