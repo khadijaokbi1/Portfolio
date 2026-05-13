@@ -54,6 +54,8 @@
   font-weight: 300;
   letter-spacing: 0.1em;
   max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
   line-height: 1.8;
   font-size: 1.05rem;
 }
@@ -62,6 +64,7 @@ h3 {
     font-size: clamp(1.5rem, 3vw, 2.5rem);
     font-weight: 700;
     font-style: italic;
+    text-align: center;
 }
 /* ========================================
    INPAGE NAVIGATION
@@ -88,6 +91,7 @@ h3 {
     border-radius: 100px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(49, 74, 81, 0.1);
+    opacity: 0;
   }
   
   .inpage-nav-link {
@@ -131,7 +135,7 @@ h3 {
   }
   .marktanalyse {
     background-color: #f7f4f1;
-    border-top: 4px solid var(--darkgreen);
+    border-top: 4px;
     position: relative;
     overflow: hidden;
   }
@@ -4293,6 +4297,7 @@ h3 {
   color: var(--text-primary);
   line-height: 1.2;
   font-style: italic;
+  text-align: left;
 }
 
 .p-title em {
@@ -5401,6 +5406,7 @@ h3 {
   line-height: 1.1;
   font-style: normal;
   letter-spacing: 0.02em;
+  text-align: left;
 }
 
 .section-header h3 .highlight-burgundy {
@@ -5420,8 +5426,9 @@ h3 {
   font-size: clamp(0.95rem, 2vw, 1.05rem);
   line-height: 1.7;
   color: var(--off-black);
-  max-width: 650px;
+  max-width: 700px;
   margin: 0 auto;
+  text-align: center;
   opacity: 0.9;
 }
 
@@ -7474,6 +7481,7 @@ h3 {
   margin: 0 0 0.75rem;
   line-height: 1.05;
   letter-spacing: 0.02em;
+  text-align: left;
 }
 
 .pb-title em {
