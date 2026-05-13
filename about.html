@@ -66,26 +66,14 @@
          HERO — Editorial Dark, Full BG Collage
     ═══════════════════════════════════════ -->
     <section class="ah-hero" id="hero" aria-label="Hero">
-      <div class="hero-fig-img">
-        <img src="assets/images/about/minime.png" alt="Portrait von Khadija Okbi">
-      </div><div class="ah-hero__portrait-wrap">
-        <img
-          src="assets/images/about/minime.png"
-          alt="Khadija als Kind"
-          class="ah-hero__portrait-img"
-          id="ahPortrait"
-          loading="eager"
-        >
-      </div>
       <!-- Background — kein Overlay, Mini-Me als visuelle Maske -->
       <div class="ah-hero__bg"    aria-hidden="true"></div>
       <div class="ah-hero__grain" aria-hidden="true"></div>
 
       <div class="ah-hero__inner">
 
-        <!-- Links: Eyebrow + erste Titelzeilen -->
+        <!-- Links: Title -->
         <div class="ah-hero__text ah-hero__text--l">
-          <span class="ah-hero__eyebrow" id="ahEyebrow">About</span>
           <h1 class="ah-hero__title" id="ahTitle">
             <span class="ah-title-line"><span class="ah-title-inner">CREA&shy;TIVITY</span></span>
             <span class="ah-title-line"><span class="ah-title-inner">IS THE</span></span>
@@ -93,26 +81,28 @@
           </h1>
         </div>
 
-        <!-- Mitte: Mini-Me (transparentes PNG, fließt visuell um den Text) -->
-        <div class="ah-hero__portrait-wrap">
-          <img
-            src="assets/images/about/minime.png"
-            alt="Khadija als Kind"
-            class="ah-hero__portrait-img"
-            id="ahPortrait"
-            loading="eager"
-          >
-        </div>
+        <!-- Mitte: leer für Layout Spacing -->
+        <div></div>
 
-        <!-- Rechts: restliche Titelzeilen + Sub -->
+        <!-- Rechts: Title -->
         <div class="ah-hero__text ah-hero__text--r">
           <div class="ah-hero__title">
             <span class="ah-title-line"><span class="ah-title-inner">REBEL&shy;LION</span></span>
             <span class="ah-title-line"><span class="ah-title-inner">IN EXIST&shy;ENCE.</span></span>
           </div>
-          <p class="ah-hero__sub" id="ahSub">Mediamatikerin &middot; Creative Director &middot; Developer</p>
         </div>
 
+      </div>
+
+      <!-- Mini-Me am Boden (kaschiert Wave) -->
+      <div class="ah-hero__portrait-bottom">
+        <img
+          src="assets/images/about/minime.png"
+          alt="Khadija als Kind"
+          class="ah-hero__portrait-bottom-img"
+          id="ahPortrait"
+          loading="eager"
+        >
       </div>
 
       <!-- Scroll hint -->
@@ -127,7 +117,7 @@
     <!-- ═══════════════════════════════════════
          ABOUT ME — Typewriter, Text Reveal, CTA
     ═══════════════════════════════════════ -->
-    <section class="about-me wave-mint" id="about-me" aria-label="Über mich">
+    <section class="about-me wave-cream" id="about-me" aria-label="Über mich">
       <div class="about-me__inner">
 
         <!-- LEFT COL — portrait + 3 elegant trivia -->
@@ -214,9 +204,9 @@
         <div class="about-me__right">
 
           <div class="about-me__header">
-            <span class="about-eyebrow">Wer ich bin</span>
+            <span class="about-eyebrow">About me</span>
             <div class="about-tw__headline">
-              <span class="tw-prefix">ich bin</span>
+              <span class="tw-prefix">Hi! Ich bin</span>
               <span class="tw-big"><span id="typedAbout" class="typed-about"></span></span>
             </div>
 
@@ -325,7 +315,7 @@
               <h4 class="book-title-main">Fourth Wing</h4>
               <p class="book-author-main">Rebecca Yarros</p>
               <div class="book-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-              <p class="review-teaser">Mein erstes Buch 2025 &mdash; hat die Messlatte unschlagbar hoch gelegt.</p>
+              <p class="review-teaser">Mein erstes Buch 2025 hat die Messlatte unschlagbar hoch gelegt.</p>
               <button class="review-btn" aria-expanded="false">Vollständige Rezension <svg class="review-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button>
               <div class="review-body" aria-hidden="true"><p>Von der ersten Seite an zog mich die Empyrean-Reihe in ihren Bann. Die Dynamik zwischen den Charakteren, die ständige Bedrohung und die überraschenden Wendungen haben mich bis zur letzten Seite nicht losgelassen.</p></div>
             </div>
@@ -486,8 +476,8 @@
       // ── Typewriter ─────────────────────────────
       if (typeof Typed !== 'undefined') {
         new Typed('#typedAbout', {
-          strings: ['Khadija.', 'Mediamatikerin.', 'Creative Director.'],
-          typeSpeed: 70,
+          strings: ['Khadija.'],
+          typeSpeed: 60,
           backSpeed: 38,
           backDelay: 2400,
           loop: true,
@@ -627,10 +617,7 @@
           stagger: 0.1,
           delay: 0.5,
           onComplete() {
-            gsap.to('#ahEyebrow',    { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' });
-            gsap.to('#ahSub',        { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', delay: 0.12 });
-            gsap.to('#ahClaim',      { opacity: 1, y: 0, duration: 0.85, ease: 'power2.out', delay: 0.28 });
-            gsap.to('#ahScrollHint', { opacity: 1, duration: 0.7, ease: 'power2.out', delay: 0.5 });
+            gsap.to('#ahScrollHint', { opacity: 1, duration: 0.7, ease: 'power2.out', delay: 0.35 });
           }
         });
    
@@ -654,6 +641,12 @@
    
         // About-me text — SplitType line-by-line reveal
         if (typeof SplitType !== 'undefined') {
+          // Intro text animation
+          gsap.from('.about-text__intro', { 
+            opacity: 0, y: 22, duration: 1.2, ease: 'power3.out',
+            scrollTrigger: { trigger: '.about-me__body', start: 'top 88%' } 
+          });
+          
           document.querySelectorAll('.about-me__body .reveal-para').forEach((para, idx) => {
             if (idx === 0) {
               gsap.from(para, { opacity: 0, y: 22, duration: 1.2, ease: 'power3.out',

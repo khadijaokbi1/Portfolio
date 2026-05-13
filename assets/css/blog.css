@@ -216,6 +216,18 @@ body {
     filter: saturate(0.85) brightness(1.04);
 }
 
+/* ── Sidebar Images (kein Beschnitt der Höhe) ── */
+.article-sidebar .img-reveal-wrapper {
+    overflow: hidden;
+}
+
+.article-sidebar .img-reveal-wrapper img {
+    max-height: none;
+    object-fit: unset;
+    width: 100%;
+    height: auto;
+}
+
 /* ── Motion Toggle Button ──
    HTML vor </body> einfügen:
    <button id="motionToggle" class="motion-toggle-btn" aria-pressed="true">

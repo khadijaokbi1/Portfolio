@@ -34,8 +34,8 @@ html {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.32em;
-  color: var(--burgundy);
-  border: 1.7px solid var(--burgundy);
+  color: var(--mauve);
+  border: 1.7px solid var(--mauve);
   padding: 0.56em 2.2em;
   border-radius: 999px;
   margin-bottom: 1rem;
@@ -320,11 +320,11 @@ html {
   }
   
   .about-me__inner {
-  max-width: 88vw;
+  max-width: 90vw;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(4rem, 7vw, 9rem);
+  grid-template-columns: 0.95fr 1.1fr;
+  gap: clamp(4rem, 8vw, 10rem);
   align-items: center;
   padding-bottom: clamp(5rem, 12vh, 9rem);
   }
@@ -337,12 +337,13 @@ html {
   
   .about-me__portrait-frame {
   position: relative;
-  display: inline-block;
+  display: block;
+  width: 100%;
   }
   
   .about-me__portrait {
   width: 100%;
-  max-width: 420px;
+  max-width: 100%;
   display: block;
   opacity: 0;
   }
@@ -544,16 +545,17 @@ html {
   .about-me__body {
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  gap: 1.8rem;
   margin-bottom: 2.5rem;
   }
   
   .about-me__body p {
   font-family: var(--work);
-  font-size: clamp(0.9rem, 1.35vw, 1.01rem);
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   font-weight: 400;
-  color: rgba(245, 245, 245, 0.82);
-  line-height: 1.92;
+  color: rgba(245, 245, 245, 0.88);
+  line-height: 1.98;
+  letter-spacing: 0.01em;
   }
   
   .about-me__cards {
@@ -1507,7 +1509,7 @@ html {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(130deg, rgba(14, 21, 22, 0.90) 0%, rgba(14, 21, 22, 0.62) 55%, rgba(110, 59, 73, 0.24) 100%);
+  background: linear-gradient(130deg, rgba(14, 21, 22, 0.72) 0%, rgba(14, 21, 22, 0.45) 55%, rgba(110, 59, 73, 0.15) 100%);
 }
 
 .ah-hero__grain {
@@ -1538,18 +1540,20 @@ html {
 .ah-hero__inner {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr clamp(240px, 28vw, 420px) 1fr;
-  gap: clamp(0.5rem, 2vw, 3rem);
-  align-items: flex-end;
-  padding: clamp(6rem, 12vh, 10rem) clamp(2rem, 4vw, 6rem) 0;
+  grid-template-columns: 1fr auto 1fr;
+  gap: clamp(2rem, 5vw, 6rem);
+  align-items: center;
+  justify-items: center;
+  padding: clamp(6rem, 10vh, 12rem) clamp(2rem, 4vw, 6rem) clamp(4rem, 6vh, 8rem);
   position: relative;
   z-index: 3;
+  min-height: 50vh;
 }
 
-.ah-hero__text { display: flex; flex-direction: column; }
+.ah-hero__text { display: none; }
 
-.ah-hero__text--l { text-align: right; align-items: flex-end; padding-bottom: clamp(4rem, 10vh, 7rem); }
-.ah-hero__text--r { text-align: left; align-items: flex-start; padding-bottom: clamp(4rem, 10vh, 7rem); }
+.ah-hero__text--l { text-align: right; align-items: flex-end; padding-bottom: 0; }
+.ah-hero__text--r { text-align: left; align-items: flex-start; padding-bottom: 0; }
 
 .ah-hero__eyebrow {
   font-family: var(--tenor);
@@ -1557,10 +1561,11 @@ html {
   font-weight: 700;
   letter-spacing: 0.38em;
   text-transform: uppercase;
-  color: var(--mauve);
+  color: rgba(245, 245, 245, 0.95);
   display: block;
   margin-bottom: clamp(1.5rem, 4vh, 3rem);
   opacity: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .ah-hero__title {
@@ -1569,10 +1574,12 @@ html {
   font-weight: 600;
   line-height: 0.88;
   letter-spacing: -0.01em;
-  color: var(--black);
+  color: var(--white);
   text-transform: uppercase;
   margin: 0 0 clamp(0.8rem, 2vh, 1.5rem);
-  opacity: 0;
+  opacity: 1;
+  position: relative;
+  z-index: 10;
 }
 
 .ah-hero__title em { font-family: var(--playfair); font-style: italic; font-size: 0.85em; text-transform: none; color: var(--mauve); }
@@ -1584,43 +1591,37 @@ html {
   font-family: var(--playfair);
   font-size: clamp(0.85rem, 1.4vw, 1.05rem);
   font-style: italic;
-  color: rgba(245, 245, 245, 0.52);
+  color: rgba(245, 245, 245, 0.75);
   letter-spacing: 0.03em;
   opacity: 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
-.ah-hero__portrait-wrap { position: relative; display: flex; justify-content: center; align-items: flex-end; overflow: visible; }
+.ah-hero__portrait-wrap { display: none; }
 
-  /* Portrait-Bilder Positionierung */
-  .hero-fig {
-    position: absolute;
-    top: var(--hero-fig-top);
-    left: 50%;
-    transform: translateX(-50%) translateY(var(--parallax-images, 0px));
-    width: var(--hero-fig-width);
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    will-change: transform;
-  }
-  .hero-fig-bg, .hero-fig-img {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    height: auto;
-    pointer-events: none;
-  }
-.ah-hero__portrait-img {
-  width: 50vw;
-  height: auto;
-  object-fit: cover;
-  object-position: center top;
+/* Bottom-positioned portrait */
+.ah-hero__portrait-bottom {
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  pointer-events: none;
+}
+
+.ah-hero__portrait-bottom-img {
+  width: auto;
+  height: clamp(400px, 80vh, 900px);
+  object-fit: contain;
+  object-position: center bottom;
   display: block;
   will-change: transform;
   filter: grayscale(0.1) contrast(1.06);
-  opacity: 0.8;
+  opacity: 0.95;
 }
 
 .ah-hero__deco-line { position: absolute; bottom: -1.5rem; left: -1.5rem; width: 60px; height: 60px; border-left: 1.5px solid var(--mauve); border-bottom: 1.5px solid var(--mauve); opacity: 0.3; }
@@ -1652,25 +1653,53 @@ html {
   50% { transform: scaleY(0.4); opacity: 0.12; }
 }
 
+@keyframes maskRevealLeft {
+  0% {
+    mask-image: linear-gradient(90deg, transparent 0%, transparent 50%, black 100%, black 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 50%, black 100%, black 100%);
+  }
+  100% {
+    mask-image: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%);
+  }
+}
+
+@keyframes maskRevealRight {
+  0% {
+    mask-image: linear-gradient(90deg, black 0%, black 0%, transparent 50%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, black 0%, black 0%, transparent 50%, transparent 100%);
+  }
+  100% {
+    mask-image: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%);
+  }
+}
+
 /* ═══ HERO CLAIM (NEU) ═══ */
 
 .ah-hero__claim {
-  margin-top: clamp(1.8rem, 4vh, 3rem);
+  margin-top: clamp(2.2rem, 5vh, 4rem);
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
-  opacity: 0;
-  transform: translateY(14px);
+  gap: 0.85rem;
+  opacity: 1;
 }
 
-.ah-hero__claim p {
+.ah-claim-line {
   font-family: var(--work);
-  font-size: clamp(0.82rem, 1.3vw, 0.96rem);
+  font-size: clamp(1rem, 1.75vw, 1.15rem);
   font-weight: 400;
-  line-height: 1.9;
-  color: rgba(245, 245, 245, 0.58);
-  letter-spacing: 0.01em;
-  max-width: 38ch;
+  line-height: 1.85;
+  color: rgba(245, 245, 245, 0.92);
+  letter-spacing: 0.02em;
+  max-width: 42ch;
+  position: relative;
+  mask-image: linear-gradient(90deg, black 0%, black 0%, transparent 50%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, black 0%, black 0%, transparent 50%, transparent 100%);
+  opacity: 0;
+  transform: translateY(12px);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  animation: maskRevealRight 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 .ah-hero__cta {
@@ -1727,8 +1756,8 @@ html {
 /* ═══ Paragraph reveal ═══ */
 
 .reveal-para {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -1758,6 +1787,9 @@ html {
   line-height: 1.92;
   color: rgba(245, 245, 245, 0.82);
   max-width: 62ch;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .about-text__second {
@@ -1783,7 +1815,7 @@ html {
   opacity: 0;
 }
 
-.about-text__expandable.is-open { max-height: 1400px; opacity: 1; }
+.about-text__expandable.is-open { max-height: 2400px; opacity: 1; }
 
 .about-readmore-btn {
   display: inline-flex;
