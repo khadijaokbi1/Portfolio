@@ -154,7 +154,7 @@ small,
 h2 {
   font-family: var(--higuen) !important;
   font-style: normal;
-  font-weight: 800;
+  font-weight: 500;
   font-size: clamp(60px, 8vw, 140px);
   line-height: 0.92;
   letter-spacing: 0.08em;

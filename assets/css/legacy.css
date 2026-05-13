@@ -305,7 +305,7 @@ h1, h2, h3, h4, h5, h6,
 .we-make {
   font-family: var(--higuen);
   font-style: normal;
-  font-weight: 800;
+  font-weight: 400;
   font-size: clamp(2.4rem, 4.5vw, 6rem);
   line-height: 0.92;
   letter-spacing: 0.08em;
