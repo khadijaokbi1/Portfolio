@@ -26,7 +26,8 @@ function initProjectFilter() {
       });
       setTimeout(() => {
         projectCards.forEach((card, index) => {
-          const show = filter === 'all' || card.dataset.category === filter;
+          const categories = card.dataset.category.split(',').map(c => c.trim());
+          const show = filter === 'all' || categories.includes(filter);
           card.style.display = show ? 'block' : 'none';
           if (show) {
             gsap.fromTo(card, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, delay: index * 0.05, ease: 'power3.out' });

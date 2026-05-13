@@ -83,7 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const filter = btn.dataset.filter;
       projectCards.forEach(card => {
-        const show = filter === 'all' || card.dataset.category === filter;
+        const categories = card.dataset.category.split(',').map(c => c.trim());
+        const show = filter === 'all' || categories.includes(filter);
         card.style.display = show ? 'block' : 'none';
       });
 
@@ -100,7 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const filter = btn.dataset.filter;
       blogCards.forEach(card => {
-        const show = filter === 'all' || card.dataset.category === filter;
+        const categories = card.dataset.category.split(',').map(c => c.trim());
+        const show = filter === 'all' || categories.includes(filter);
         card.style.display = show ? 'grid' : 'none';
       });
 
