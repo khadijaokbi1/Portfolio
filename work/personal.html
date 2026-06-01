@@ -1487,6 +1487,296 @@ body.hov #cur-ring {
 }
 
 /* ══════════════════════════════════════════
+   TIKTOK — Strategie Section
+══════════════════════════════════════════ */
+.tiktok-section {
+  background: var(--mint);
+  padding: clamp(5rem, 12vh, 10rem) 0;
+  position: relative;
+  overflow: visible;
+}
+
+.tiktok-section::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 20vh;
+  z-index: 10;
+  pointer-events: none;
+  background-color: var(--darkgreen);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,290 C180,245 420,205 720,225 C1020,245 1240,305 1440,285 L1440,400 Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,400 L0,290 C180,245 420,205 720,225 C1020,245 1240,305 1440,285 L1440,400 Z'/%3E%3C/svg%3E");
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+}
+
+.tiktok-inner {
+  max-width: 85vw;
+  width: 85vw;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(340px, .95fr);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
+}
+
+.tiktok-left,
+.tiktok-right {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.tiktok-left {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2.4vw, 1.4rem);
+  color: var(--white);
+}
+
+.tiktok-right {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tiktok-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .9rem;
+  font-family: var(--font-sub);
+  font-size: clamp(.34rem, .75vw, .42rem);
+  letter-spacing: .55em;
+  text-transform: uppercase;
+  color: var(--mauve);
+}
+
+.tiktok-eyebrow::before {
+  content: '';
+  width: 26px;
+  height: 1px;
+  background: currentColor;
+  opacity: .5;
+  flex-shrink: 0;
+}
+
+.tiktok-title {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2rem, 5vw, 4.4rem);
+  line-height: .92;
+  letter-spacing: -.02em;
+  color: var(--white);
+}
+
+.tiktok-title em {
+  font-style: italic;
+  color: var(--burgundy);
+}
+
+.tiktok-lead {
+  margin-top: 1.2rem;
+  max-width: 60ch;
+  font-family: var(--font-body);
+  font-size: clamp(.82rem, 1.25vw, .98rem);
+  line-height: 1.85;
+  color: rgba(255,255,255,.92);
+}
+
+.tiktok-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 0;
+}
+
+.tiktok-meta-card {
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 1rem;
+  padding: 1rem 1rem 1.05rem;
+  background: rgba(25,39,34,.18);
+  box-shadow: 0 10px 30px rgba(28,23,20,.08);
+}
+
+.tiktok-side-kpis {
+  display: grid;
+  gap: .9rem;
+}
+
+.tiktok-side-kpis .tiktok-meta-card {
+  display: grid;
+  gap: .25rem;
+}
+
+.tiktok-meta-label {
+  font-family: var(--font-sub);
+  font-size: clamp(.3rem, .65vw, .38rem);
+  letter-spacing: .48em;
+  text-transform: uppercase;
+  color: var(--mauve);
+}
+
+.tiktok-meta-value {
+  margin-top: .55rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(.9rem, 1.6vw, 1.15rem);
+  line-height: 1.2;
+  color: var(--white);
+}
+
+.tiktok-meta-note {
+  margin-top: .45rem;
+  font-family: var(--font-body);
+  font-size: clamp(.55rem, .95vw, .72rem);
+  line-height: 1.6;
+  color: rgba(255,255,255,.78);
+}
+
+.tiktok-embed-panel {
+  border-radius: 1.4rem;
+  border: 1px solid rgba(255,255,255,.16);
+  background: linear-gradient(180deg, rgba(49,74,81,.18), rgba(49,74,81,.10));
+  box-shadow: 0 16px 42px rgba(28,23,20,.12);
+  padding: 1rem;
+}
+
+.tiktok-embed-label {
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+  font-family: var(--font-sub);
+  font-size: clamp(.3rem, .65vw, .38rem);
+  letter-spacing: .48em;
+  text-transform: uppercase;
+  color: var(--mauve);
+  margin-bottom: .85rem;
+}
+
+.tiktok-embed-label::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+  opacity: .55;
+}
+
+.tiktok-embed-frame {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: rgba(255,255,255,.92);
+  min-height: 680px;
+}
+
+.tiktok-embed-frame blockquote {
+  margin: 0 !important;
+  width: 100% !important;
+  min-height: 680px;
+}
+
+.tiktok-embed-fallback {
+  margin-top: .8rem;
+  font-family: var(--font-body);
+  font-size: clamp(.62rem, 1vw, .78rem);
+  line-height: 1.6;
+  color: rgba(255,255,255,.82);
+}
+
+.tiktok-embed-fallback a {
+  color: var(--burgundy);
+  text-decoration: underline;
+  text-underline-offset: .15em;
+}
+
+/* compact text blocks for the editorial case study */
+.tiktok-body {
+  max-width: 58ch;
+  font-family: var(--font-body);
+  font-size: clamp(.72rem, 1.15vw, .88rem);
+  line-height: 1.85;
+  color: rgba(255,255,255,.88);
+}
+
+.tiktok-inline-note {
+  margin-top: .9rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(.66rem, 1vw, .8rem);
+  color: var(--burgundy);
+}
+
+@media (max-width: 980px) {
+  .tiktok-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .tiktok-left,
+  .tiktok-right {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .tiktok-right {
+    order: 2;
+  }
+
+  .tiktok-left {
+    order: 1;
+  }
+
+  .tiktok-meta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tiktok-embed-frame,
+  .tiktok-embed-frame blockquote {
+    min-height: 560px;
+  }
+}
+
+@media (max-width: 640px) {
+  .tiktok-section {
+    padding: clamp(4rem, 10vh, 7rem) 0;
+  }
+
+  .tiktok-inner {
+    width: min(92vw, 92vw);
+    max-width: 92vw;
+    gap: 1.4rem;
+  }
+
+  .tiktok-title {
+    font-size: clamp(1.85rem, 12vw, 2.7rem);
+  }
+
+  .tiktok-lead {
+    font-size: .92rem;
+    line-height: 1.9;
+  }
+
+  .tiktok-embed-frame,
+  .tiktok-embed-frame blockquote {
+    min-height: 500px;
+  }
+
+  .tiktok-meta-card,
+  .tiktok-embed-panel {
+    border-radius: 1.1rem;
+  }
+}
+
+/* ══════════════════════════════════════════
    EDITORIAL — BUTTERFLY + CONSTELLATION
 ══════════════════════════════════════════ */
 @keyframes ed-bf-bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
@@ -1858,6 +2148,52 @@ body.hov #cur-ring {
 </section>
 
 
+<!-- ══════ TIKTOK — Strategie ══════ -->
+<section class="tiktok-section wave-mint" id="tiktokSec" aria-labelledby="tiktokHeading">
+  <div class="tiktok-inner">
+    <div class="tiktok-left" id="tiktokLeft">
+      <div class="tiktok-copy" id="tiktokCopy">
+        <span class="tiktok-eyebrow">Social Media Strategie</span>
+        <h2 class="tiktok-title" id="tiktokHeading">TikTok <em>Strategie.</em></h2>
+        <p class="tiktok-lead">Aus Marketingsicht war das kein Zufall, sondern eine kleine Content-Engine: 30 Tage lang täglich ein Slider, produziert mit ChatGPT für Ideen, Hooks und Copy sowie mit Canva für die visuelle Umsetzung. Durch eine klar definierte Nische, konsequente Wiederholung und starke Buch-CTAs konnte ich organisch rund 200 Bücher über Amazon verkaufen, in einem Monat auf 10k Follower wachsen und die Community bis heute bei rund 8'600 Followern halten.</p>
+        <p class="tiktok-inline-note">Die Reichweite entstand aus Wiederholung, klarer Nische und messbarer Conversion, nicht aus komplexer Produktion.</p>
+      </div>
+    </div>
+
+    <div class="tiktok-right">
+      <div class="tiktok-side-kpis" aria-label="Projekt Eckdaten">
+        <div class="tiktok-meta-card">
+          <span class="tiktok-meta-label">Run</span>
+          <div class="tiktok-meta-value">30 Tage, täglich</div>
+          <p class="tiktok-meta-note">Ein täglicher Output mit klarer Taktung und hoher Wiederholbarkeit.</p>
+        </div>
+        <div class="tiktok-meta-card">
+          <span class="tiktok-meta-label">Conversion</span>
+          <div class="tiktok-meta-value">200 Bücher verkauft</div>
+          <p class="tiktok-meta-note">Die Buchlinks waren direkt auf messbaren Umsatz ausgerichtet.</p>
+        </div>
+        <div class="tiktok-meta-card">
+          <span class="tiktok-meta-label">Audience</span>
+          <div class="tiktok-meta-value">10k in 1 Monat</div>
+          <p class="tiktok-meta-note">Organisches Wachstum durch Nische, Wiederholung und klare Hooks.</p>
+        </div>
+      </div>
+
+      <div class="tiktok-embed-panel">
+        <div class="tiktok-embed-label">Creator Preview</div>
+        <div class="tiktok-embed-frame">
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mentalwealthy" data-unique-id="mentalwealthy" data-embed-from="embed_page" data-embed-type="creator" style="max-width:100%; min-width:100%;">
+            <section>
+              <a target="_blank" href="https://www.tiktok.com/@mentalwealthy?refer=creator_embed">@mentalwealthy</a>
+            </section>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- ══════ MEIN WEG — Editorial ══════ -->
 <section class="editorial-section" id="editorialSec" aria-label="Mein Weg">
   <!-- Butterfly deco — Nachtpfauenauge (weiß auf dunkel) -->
@@ -2012,53 +2348,6 @@ body.hov #cur-ring {
       <div class="editorial-drag-hint-line"></div>
       <span>Drag to explore</span>
       <div class="editorial-drag-hint-line"></div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════ BROWSER MOCKUP ══════ -->
-<section class="mockup-section" id="mockupSec" aria-label="Portfolio Interface">
-  <div class="mockup-ghost-num" aria-hidden="true">03</div>
-  <div class="mockup-corner-deco" aria-hidden="true">
-    <svg width="80" height="60" viewBox="0 0 80 60" fill="none">
-      <path d="M3 18 L3 3 L18 3" fill="none" stroke="rgba(181,161,158,.3)" stroke-width="1.2"/>
-      <path d="M62 3 L77 3 L77 18" fill="none" stroke="rgba(181,161,158,.3)" stroke-width="1.2"/>
-      <path d="M3 42 L3 57 L18 57" fill="none" stroke="rgba(181,161,158,.22)" stroke-width="1.2"/>
-      <path d="M62 57 L77 57 L77 42" fill="none" stroke="rgba(181,161,158,.22)" stroke-width="1.2"/>
-      <rect x="3" y="3" width="74" height="54" fill="none" stroke="rgba(181,161,158,.1)" stroke-width=".6"/>
-      <path d="M40 28 L41.2 33 L45 34 L41.2 35 L40 39.5 L38.8 35 L35 34 L38.8 33Z" fill="rgba(181,161,158,.2)"/>
-    </svg>
-  </div>
-  <div class="mockup-inner">
-    <div class="mockup-header" id="mockupHeader">
-      <span class="mockup-eyebrow">Digital Experience</span>
-      <h2 class="mockup-title">Portfolio <em>Interface.</em></h2>
-    </div>
-
-    <div class="browser-stage" id="browserStage">
-      <div class="browser-deco browser-deco--1" aria-hidden="true"></div>
-      <div class="browser-deco browser-deco--2" aria-hidden="true"></div>
-      <div class="browser" id="browserEl">
-        <div class="browser-bar">
-          <div class="b-dot b-dot--r"></div>
-          <div class="b-dot b-dot--y"></div>
-          <div class="b-dot b-dot--g"></div>
-          <div class="b-url">khadijaokbi.ch &middot; personal</div>
-        </div>
-        <div class="browser-screen">
-          <div class="browser-placeholder" id="bPlaceholder">Web Showcase</div>
-          <video autoplay muted loop playsinline id="bVideo">
-            <source src="../assets/images/personal/showcase_personal_web1.mp4" type="video/mp4">
-          </video>
-          <div class="browser-hover-overlay">
-            <div class="browser-hover-text">
-              <h4>Portfolio Interface</h4>
-              <p>Smooth Transitions &middot; Minimal Layout</p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -2409,13 +2698,53 @@ ScrollTrigger.create({
 });
 
 /* ══ EYEBROW LINE REVEALS ══ */
-gsap.utils.toArray('.editorial-eyebrow, .marquee-header-label, .mockup-eyebrow').forEach(el => {
+gsap.utils.toArray('.editorial-eyebrow, .marquee-header-label, .mockup-eyebrow, .tiktok-eyebrow').forEach(el => {
   gsap.from(el, {
     scrollTrigger: { trigger: el, start: 'top 88%' },
     clipPath: 'inset(0 100% 0 0)', opacity: 0,
     duration: 1.1, ease: 'expo.out'
   });
 });
+
+/* ══ TIKTOK ENTRANCE ══ */
+ScrollTrigger.create({
+  trigger: '#tiktokSec',
+  start: 'top 76%',
+  onEnter: () => {
+    gsap.to('#tiktokLeft', {
+      opacity: 1, y: 0, duration: 1.1, ease: 'expo.out'
+    });
+    gsap.to('.tiktok-right', {
+      opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', delay: .12
+    });
+  }
+});
+
+ScrollTrigger.create({
+  trigger: '#tiktokSec',
+  start: 'top 72%',
+  once: true,
+  onEnter: () => {
+    gsap.from('.tiktok-item', {
+      opacity: 0, y: 24, stagger: .12, duration: .95, ease: 'expo.out', delay: .15
+    });
+  }
+});
+
+function initTikTokEmbed() {
+  if (document.getElementById('tiktok-embed-script')) return;
+  const embedScript = document.createElement('script');
+  embedScript.id = 'tiktok-embed-script';
+  embedScript.async = true;
+  embedScript.src = 'https://www.tiktok.com/embed.js';
+  document.body.appendChild(embedScript);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initTikTokEmbed);
+} else {
+  initTikTokEmbed();
+}
 
 /* ══ SHOWCASE — Slider Logic ══ */
 const scSlides = [
@@ -2605,7 +2934,7 @@ if (window.DeviceOrientationEvent) {
     cr.style.left = rx + 'px'; cr.style.top = ry + 'px';
     requestAnimationFrame(loop);
   })();
-  const hoverEls = document.querySelectorAll('a, button, .lc-card, .editorial-card-media, .browser, .iphone-frame, .sc-arrow, .sc-dot');
+  const hoverEls = document.querySelectorAll('a, button, .lc-card, .editorial-card-media, .browser, .iphone-frame, .sc-arrow, .sc-dot, .tiktok-trigger');
   hoverEls.forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('hov'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('hov'));
