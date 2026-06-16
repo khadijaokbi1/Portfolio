@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Julius — Wichtige Nachricht</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --night: #080C14;
+    --pitch: #0A1F0F;
+    --grass: #1A3D20;
+    --line: rgba(255,255,255,0.15);
+    --white: #FFFFFF;
+    --cyan: #00F5C4;
+    --amber: #FFB800;
+    --red: #FF3B3B;
+    --card: rgba(255,255,255,0.04);
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    background: var(--night);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── SCREENS ── */
+  .screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+    z-index: 10;
+  }
+  .screen.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* ── PITCH BACKGROUND ── */
+  .pitch-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .pitch-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 60px,
+        rgba(255,255,255,0.025) 60px,
+        rgba(255,255,255,0.025) 61px
+      ),
+      radial-gradient(ellipse 120% 60% at 50% 50%, #0D2A14 0%, #080C14 70%);
+  }
+  /* Centre circle */
+  .pitch-bg::after {
+    content: '';
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(320px, 80vw);
+    height: min(320px, 80vw);
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+    pointer-events: none;
+  }
+
+  /* ── FLOATING BALLS ── */
+  .balls-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .fball {
+    position: absolute;
+    font-size: 28px;
+    opacity: 0.12;
+    animation: floatBall linear infinite;
+    user-select: none;
+  }
+
+  @keyframes floatBall {
+    0%   { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.12; }
+    90%  { opacity: 0.12; }
+    100% { transform: translateY(-20vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* ── SCREEN 1 — LOADER ── */
+  #s1 .badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--cyan);
+    margin-bottom: 32px;
+    opacity: 0.7;
+  }
+  #s1 .title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 10vw, 64px);
+    line-height: 1;
+    text-align: center;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  #s1 .title span { color: var(--cyan); }
+  #s1 .subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 48px;
+  }
+
+  /* Loader bar */
+  .loader-track {
+    width: min(340px, 90vw);
+    height: 3px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .loader-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--cyan);
+    border-radius: 2px;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 12px var(--cyan);
+  }
+  .loader-status {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.5px;
+    height: 18px;
+    text-align: center;
+  }
+
+  /* ── SCREEN 2 — TRENNUNGS-SCREEN ── */
+  #s2 {
+    background: rgba(8, 12, 20, 0.6);
+  }
+  #s2 .tag {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .duo-card {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 28px 24px;
+    width: min(360px, 92vw);
+    text-align: center;
+    backdrop-filter: blur(12px);
+    margin-bottom: 28px;
+  }
+  .duo-names {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 8vw, 48px);
+    letter-spacing: 2px;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .duo-names .amp { color: var(--cyan); margin: 0 8px; }
+  .years-badge {
+    display: inline-block;
+    background: rgba(0, 245, 196, 0.1);
+    border: 1px solid rgba(0,245,196,0.2);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    color: var(--cyan);
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+
+  /* Frau Fricker tribute */
+  .tribute-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 0;
+  }
+  .tribute-text strong { color: var(--white); }
+
+  /* Broken heart */
+  .heart-container {
+    position: relative;
+    width: 80px;
+    height: 72px;
+    margin: 0 auto 20px;
+  }
+  .heart-half {
+    position: absolute;
+    font-size: 56px;
+    line-height: 1;
+    top: 0;
+    animation: heartBreak 0.5s ease 0.8s both;
+  }
+  .heart-left {
+    left: 0;
+    clip-path: inset(0 50% 0 0);
+  }
+  .heart-right {
+    left: 0;
+    clip-path: inset(0 0 0 50%);
+  }
+  @keyframes heartBreak {
+    0%   { transform: translateX(0) rotate(0deg); }
+    100% { transform: translateX(var(--dx)) rotate(var(--dr)); opacity: 0.6; }
+  }
+  .heart-left  { --dx: -14px; --dr: -8deg; }
+  .heart-right { --dx:  14px; --dr:  8deg; }
+
+  .sad-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* Reveal button */
+  .reveal-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.6);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    padding: 14px 32px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+  }
+  .reveal-btn:hover, .reveal-btn:active {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    box-shadow: 0 0 20px rgba(0,245,196,0.15);
+  }
+
+  /* ── SCREEN 3 — SIKE REVEAL ── */
+  #s3 {
+    background: rgba(8, 12, 20, 0.85);
+  }
+
+  .sike-word {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 22vw, 140px);
+    line-height: 0.9;
+    color: var(--amber);
+    text-shadow: 0 0 60px rgba(255,184,0,0.5), 0 0 120px rgba(255,184,0,0.2);
+    animation: sikePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    letter-spacing: -2px;
+    text-align: center;
+  }
+  @keyframes sikePop {
+    0%   { transform: scale(0.3) rotate(-5deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+
+  .thought-line {
+    font-size: clamp(13px, 4vw, 16px);
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 1px;
+    margin: 16px 0 32px;
+    text-align: center;
+    animation: fadeUp 0.5s ease 0.3s both;
+  }
+  @keyframes fadeUp {
+    from { transform: translateY(12px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+  }
+
+  /* Taktiktafel-Karte */
+  .tactic-board {
+    background: var(--grass);
+    border: 2px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 24px 20px;
+    width: min(360px, 92vw);
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.5s ease 0.5s both;
+  }
+  .tactic-board::before {
+    content: '';
+    position: absolute;
+    left: 50%; top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(255,255,255,0.12);
+  }
+  .tactic-board::after {
+    content: '';
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 64px; height: 64px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50%;
+  }
+  .tactic-header {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+  }
+  .tactic-header .season {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .tactic-header .team-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--white);
+  }
+  .tactic-header .team-name span { color: var(--cyan); }
+
+  .players-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    position: relative;
+    z-index: 2;
+    padding: 8px 0;
+  }
+  .player-pin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .player-circle {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid var(--cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 0 16px rgba(0,245,196,0.2);
+  }
+  .player-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: var(--white);
+  }
+  .vs-dot {
+    width: 8px; height: 8px;
+    background: var(--cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--cyan);
+    margin-bottom: 24px;
+  }
+
+  .official-stamp {
+    text-align: center;
+    margin-top: 16px;
+    position: relative;
+    z-index: 2;
+  }
+  .official-stamp .class-line {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(20px, 6vw, 28px);
+    letter-spacing: 2px;
+    color: var(--amber);
+    text-shadow: 0 0 20px rgba(255,184,0,0.4);
+    margin-bottom: 2px;
+  }
+  .official-stamp .teacher {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* Confetti canvas */
+  #confetti-canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* ── TRANSITION FLASH ── */
+  .flash {
+    position: fixed;
+    inset: 0;
+    background: var(--amber);
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+  }
+
+  /* pitch line at bottom */
+  .pitch-line-bottom {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: rgba(255,255,255,0.04);
+    z-index: 1;
+  }
+
+  /* Staggered animations for s2 */
+  #s2 .tag        { animation: none; }
+  #s2.active .tag { animation: fadeUp 0.4s ease 0.1s both; }
+  #s2.active .duo-card { animation: fadeUp 0.5s ease 0.2s both; }
+  #s2.active .heart-container { animation: fadeUp 0.4s ease 0.4s both; }
+  #s2.active .sad-label { animation: fadeUp 0.4s ease 0.6s both; }
+  #s2.active .reveal-btn { animation: fadeUp 0.4s ease 0.8s both; }
+
+  #s1.active .title    { animation: fadeUp 0.5s ease 0.1s both; }
+  #s1.active .subtitle { animation: fadeUp 0.5s ease 0.2s both; }
+  #s1.active .badge    { animation: fadeUp 0.5s ease 0s both; }
+</style>
+</head>
+<body>
+
+<!-- PITCH BACKGROUND -->
+<div class="pitch-bg"></div>
+<div class="balls-layer" id="ballsLayer"></div>
+<div class="pitch-line-bottom"></div>
+
+<!-- FLASH OVERLAY -->
+<div class="flash" id="flash"></div>
+
+<!-- CONFETTI -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- ═══════════════════════════════ SCREEN 1 — LOADER ═══════════════════════════ -->
+<div class="screen active" id="s1">
+  <div class="badge">Vertrauliche Übertragung</div>
+  <h1 class="title">Julius<span>.</span><br>Hör zu.</h1>
+  <p class="subtitle">Wir überprüfen deine Klasseneinteilung&nbsp;2026</p>
+
+  <div class="loader-track">
+    <div class="loader-fill" id="loaderFill"></div>
+  </div>
+  <div class="loader-status" id="loaderStatus">Verbindung wird aufgebaut…</div>
+</div>
+
+
+<!-- ═══════════════════════════════ SCREEN 2 — ABSCHIED ══════════════════════════ -->
+<div class="screen" id="s2">
+  <div class="tag">Klasseneinteilung 2026 — Ergebnis</div>
+
+  <div class="duo-card">
+    <div class="years-badge">3. &amp; 4. Klasse · 2 Jahre · Frau Fricker</div>
+    <div class="tribute-text">
+      Danke für die <strong>coolsten zwei Jahre</strong> zusammen.<br>
+      Ihr habt alles gegeben — auf dem Schulhof und auf dem Platz.<br>
+      Aber leider… endet unsere Reise hier.
+    </div>
+  </div>
+
+  <div class="heart-container" id="heartBox">
+    <div class="heart-half heart-left">❤️</div>
+    <div class="heart-half heart-right">❤️</div>
+  </div>
+  <div class="sad-label">Ab Sommer getrennte Wege</div>
+
+  <br><br>
+
+  <button class="reveal-btn" onclick="showReveal()">Okay… und weiter?</button>
+</div>
+
+
+<!-- ═══════════════════════════════ SCREEN 3 — SIKE ══════════════════════════════ -->
+<div class="screen" id="s3">
+  <div class="sike-word">SIKEEEE</div>
+  <p class="thought-line">Du dachtest du bist ihn los?&nbsp;😂</p>
+
+  <div class="tactic-board">
+    <div class="tactic-header">
+      <div class="season">Saison 2026 / 27</div>
+      <div class="team-name">5–6. Klasse · <span>Herr Vetsch</span></div>
+    </div>
+
+    <div class="players-row">
+      <div class="player-pin">
+        <div class="player-circle">⚽</div>
+        <div class="player-name">Julius</div>
+      </div>
+      <div class="vs-dot"></div>
+      <div class="player-pin">
+        <div class="player-circle">⚽</div>
+        <div class="player-name">Tyago</div>
+      </div>
+    </div>
+
+    <div class="official-stamp">
+      <div class="class-line">Gleiche Klasse. Gleiches Team.</div>
+      <div class="teacher">Offiziell bestätigt ✓</div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  /* ── FLOATING BALLS ── */
+  (function() {
+    const layer = document.getElementById('ballsLayer');
+    const emojis = ['⚽','⚽','⚽','🏆','⚽'];
+    for (let i = 0; i < 14; i++) {
+      const el = document.createElement('div');
+      el.className = 'fball';
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.fontSize = (20 + Math.random() * 24) + 'px';
+      const dur = 12 + Math.random() * 18;
+      const delay = Math.random() * 20;
+      el.style.animationDuration = dur + 's';
+      el.style.animationDelay = (-delay) + 's';
+      layer.appendChild(el);
+    }
+  })();
+
+  /* ── LOADER SEQUENCE ── */
+  const statuses = [
+    'Verbindung wird aufgebaut…',
+    'Schülerdaten werden abgerufen…',
+    'Klassenzuteilung 5–6 wird geprüft…',
+    'Lehrerzuweisung: Herr Vetsch…',
+    'Mitschüler werden abgeglichen…',
+    'Verarbeitung abgeschlossen.'
+  ];
+
+  let progress = 0;
+  let statusIdx = 0;
+  const fillEl = document.getElementById('loaderFill');
+  const statusEl = document.getElementById('loaderStatus');
+
+  function runLoader() {
+    const interval = setInterval(() => {
+      progress += (Math.random() * 2.5 + 0.5);
+      if (progress > 100) progress = 100;
+      fillEl.style.width = progress + '%';
+
+      const idx = Math.floor((progress / 100) * statuses.length);
+      if (idx !== statusIdx && idx < statuses.length) {
+        statusIdx = idx;
+        statusEl.style.opacity = '0';
+        setTimeout(() => {
+          statusEl.textContent = statuses[statusIdx];
+          statusEl.style.transition = 'opacity 0.3s';
+          statusEl.style.opacity = '1';
+        }, 150);
+      }
+
+      if (progress >= 100) {
+        clearInterval(interval);
+        setTimeout(showScreen2, 900);
+      }
+    }, 60);
+  }
+
+  function showScreen2() {
+    const s1 = document.getElementById('s1');
+    const s2 = document.getElementById('s2');
+    s1.classList.remove('active');
+    setTimeout(() => {
+      s2.classList.add('active');
+    }, 300);
+  }
+
+  function showReveal() {
+    const flash = document.getElementById('flash');
+    const s2 = document.getElementById('s2');
+    const s3 = document.getElementById('s3');
+
+    // Flash effect
+    flash.style.opacity = '1';
+    setTimeout(() => {
+      flash.style.transition = 'opacity 0.4s';
+      flash.style.opacity = '0';
+    }, 120);
+
+    s2.classList.remove('active');
+    setTimeout(() => {
+      s3.classList.add('active');
+      startConfetti();
+      shakeDevice();
+    }, 200);
+  }
+
+  /* ── CONFETTI (footballs + squares) ── */
+  function startConfetti() {
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const colors = ['#00F5C4','#FFB800','#FFFFFF','#FF3B3B','#00B4FF'];
+    const pieces = Array.from({length: 100}).map(() => ({
+      x: Math.random() * canvas.width,
+      y: -20 - Math.random() * canvas.height,
+      r: 5 + Math.random() * 6,
+      d: 3 + Math.random() * 5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      swing: Math.random() * 3,
+      swingDir: Math.random() > 0.5 ? 1 : -1,
+      t: Math.random() * Math.PI * 2,
+      isBall: Math.random() > 0.7
+    }));
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach(p => {
+        p.t += 0.05;
+        p.x += Math.sin(p.t) * p.swing * p.swingDir;
+        p.y += p.d;
+
+        if (p.isBall) {
+          ctx.font = (p.r * 2.5) + 'px serif';
+          ctx.fillText('⚽', p.x, p.y);
+        } else {
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.t);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.r/2, -p.r/2, p.r, p.r * 0.6);
+          ctx.restore();
+        }
+
+        if (p.y > canvas.height + 20) {
+          p.y = -20;
+          p.x = Math.random() * canvas.width;
+        }
+      });
+    }
+
+    const anim = setInterval(draw, 25);
+    setTimeout(() => clearInterval(anim), 8000);
+  }
+
+  /* ── HAPTIC FEEDBACK ── */
+  function shakeDevice() {
+    if (navigator.vibrate) navigator.vibrate([80, 40, 80, 40, 200]);
+  }
+
+  /* ── START ── */
+  window.addEventListener('load', () => {
+    setTimeout(runLoader, 600);
+  });
+
+  window.addEventListener('resize', () => {
+    const c = document.getElementById('confetti-canvas');
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+  });
+</script>
+</body>
+</html>
